@@ -1,0 +1,673 @@
+{
+  "video_name": "test_1.mp4",
+  "fps": 30,
+  "seconds_per_caption": 2,
+  "frames_per_caption": 8,
+  "segments": [
+    {
+      "segment_id": 0,
+      "segment_key": "0_60",
+      "start_frame": 0,
+      "end_frame": 60,
+      "start_time": 0.0,
+      "end_time": 2.0,
+      "sampled_frame_indices": [
+        0,
+        7,
+        14,
+        21,
+        28,
+        35,
+        42,
+        49
+      ],
+      "caption": "A silver car drives past the camera."
+    },
+    {
+      "segment_id": 1,
+      "segment_key": "60_120",
+      "start_frame": 60,
+      "end_frame": 120,
+      "start_time": 2.0,
+      "end_time": 4.0,
+      "sampled_frame_indices": [
+        60,
+        67,
+        74,
+        81,
+        88,
+        95,
+        102,
+        109
+      ],
+      "caption": "A silver car drives out of the parking lot."
+    },
+    {
+      "segment_id": 2,
+      "segment_key": "120_180",
+      "start_frame": 120,
+      "end_frame": 180,
+      "start_time": 4.0,
+      "end_time": 6.0,
+      "sampled_frame_indices": [
+        120,
+        127,
+        134,
+        141,
+        148,
+        155,
+        162,
+        169
+      ],
+      "caption": "A silver car drives out of the parking lot."
+    },
+    {
+      "segment_id": 3,
+      "segment_key": "180_240",
+      "start_frame": 180,
+      "end_frame": 240,
+      "start_time": 6.0,
+      "end_time": 8.0,
+      "sampled_frame_indices": [
+        180,
+        187,
+        194,
+        201,
+        208,
+        215,
+        222,
+        229
+      ],
+      "caption": "a car drives into the parking lot"
+    },
+    {
+      "segment_id": 4,
+      "segment_key": "240_300",
+      "start_frame": 240,
+      "end_frame": 300,
+      "start_time": 8.0,
+      "end_time": 10.0,
+      "sampled_frame_indices": [
+        240,
+        247,
+        254,
+        261,
+        268,
+        275,
+        282,
+        289
+      ],
+      "caption": "A car drives into the parking lot."
+    },
+    {
+      "segment_id": 5,
+      "segment_key": "300_360",
+      "start_frame": 300,
+      "end_frame": 360,
+      "start_time": 10.0,
+      "end_time": 12.0,
+      "sampled_frame_indices": [
+        300,
+        307,
+        314,
+        321,
+        328,
+        335,
+        342,
+        349
+      ],
+      "caption": "A silver car drives out of the parking lot."
+    },
+    {
+      "segment_id": 6,
+      "segment_key": "360_420",
+      "start_frame": 360,
+      "end_frame": 420,
+      "start_time": 12.0,
+      "end_time": 14.0,
+      "sampled_frame_indices": [
+        360,
+        367,
+        374,
+        381,
+        388,
+        395,
+        402,
+        409
+      ],
+      "caption": "A car drives past the parking lot."
+    },
+    {
+      "segment_id": 7,
+      "segment_key": "420_480",
+      "start_frame": 420,
+      "end_frame": 480,
+      "start_time": 14.0,
+      "end_time": 16.0,
+      "sampled_frame_indices": [
+        420,
+        427,
+        434,
+        441,
+        448,
+        455,
+        462,
+        469
+      ],
+      "caption": "A car drives past the parking lot."
+    },
+    {
+      "segment_id": 8,
+      "segment_key": "480_540",
+      "start_frame": 480,
+      "end_frame": 540,
+      "start_time": 16.0,
+      "end_time": 18.0,
+      "sampled_frame_indices": [
+        480,
+        487,
+        494,
+        501,
+        508,
+        515,
+        522,
+        529
+      ],
+      "caption": "A white truck drives through the parking lot."
+    },
+    {
+      "segment_id": 9,
+      "segment_key": "540_600",
+      "start_frame": 540,
+      "end_frame": 600,
+      "start_time": 18.0,
+      "end_time": 20.0,
+      "sampled_frame_indices": [
+        540,
+        547,
+        554,
+        561,
+        568,
+        575,
+        582,
+        589
+      ],
+      "caption": "a white pickup truck drives down the road"
+    },
+    {
+      "segment_id": 10,
+      "segment_key": "600_660",
+      "start_frame": 600,
+      "end_frame": 660,
+      "start_time": 20.0,
+      "end_time": 22.0,
+      "sampled_frame_indices": [
+        600,
+        607,
+        614,
+        621,
+        628,
+        635,
+        642,
+        649
+      ],
+      "caption": "A white pickup truck drives past a parking lot."
+    },
+    {
+      "segment_id": 11,
+      "segment_key": "660_720",
+      "start_frame": 660,
+      "end_frame": 720,
+      "start_time": 22.0,
+      "end_time": 24.0,
+      "sampled_frame_indices": [
+        660,
+        667,
+        674,
+        681,
+        688,
+        695,
+        702,
+        709
+      ],
+      "caption": "A car drives into the parking lot."
+    },
+    {
+      "segment_id": 12,
+      "segment_key": "720_780",
+      "start_frame": 720,
+      "end_frame": 780,
+      "start_time": 24.0,
+      "end_time": 26.0,
+      "sampled_frame_indices": [
+        720,
+        727,
+        734,
+        741,
+        748,
+        755,
+        762,
+        769
+      ],
+      "caption": "A car drives into the parking lot."
+    },
+    {
+      "segment_id": 13,
+      "segment_key": "780_840",
+      "start_frame": 780,
+      "end_frame": 840,
+      "start_time": 26.0,
+      "end_time": 28.0,
+      "sampled_frame_indices": [
+        780,
+        787,
+        794,
+        801,
+        808,
+        815,
+        822,
+        829
+      ],
+      "caption": "A man walks towards the silver car."
+    },
+    {
+      "segment_id": 14,
+      "segment_key": "840_900",
+      "start_frame": 840,
+      "end_frame": 900,
+      "start_time": 28.0,
+      "end_time": 30.0,
+      "sampled_frame_indices": [
+        840,
+        847,
+        854,
+        861,
+        868,
+        875,
+        882,
+        889
+      ],
+      "caption": "A man walks towards his silver car."
+    },
+    {
+      "segment_id": 15,
+      "segment_key": "900_960",
+      "start_frame": 900,
+      "end_frame": 960,
+      "start_time": 30.0,
+      "end_time": 32.0,
+      "sampled_frame_indices": [
+        900,
+        907,
+        914,
+        921,
+        928,
+        935,
+        942,
+        949
+      ],
+      "caption": "A silver car drives out of the parking lot."
+    },
+    {
+      "segment_id": 16,
+      "segment_key": "960_1020",
+      "start_frame": 960,
+      "end_frame": 1020,
+      "start_time": 32.0,
+      "end_time": 34.0,
+      "sampled_frame_indices": [
+        960,
+        967,
+        974,
+        981,
+        988,
+        995,
+        1002,
+        1009
+      ],
+      "caption": "A silver car drives out of the parking lot."
+    },
+    {
+      "segment_id": 17,
+      "segment_key": "1020_1080",
+      "start_frame": 1020,
+      "end_frame": 1080,
+      "start_time": 34.0,
+      "end_time": 36.0,
+      "sampled_frame_indices": [
+        1020,
+        1027,
+        1034,
+        1041,
+        1048,
+        1055,
+        1062,
+        1069
+      ],
+      "caption": "a car drives into the parking lot"
+    },
+    {
+      "segment_id": 18,
+      "segment_key": "1080_1140",
+      "start_frame": 1080,
+      "end_frame": 1140,
+      "start_time": 36.0,
+      "end_time": 38.0,
+      "sampled_frame_indices": [
+        1080,
+        1087,
+        1094,
+        1101,
+        1108,
+        1115,
+        1122,
+        1129
+      ],
+      "caption": "A silver car drives out of the parking lot."
+    },
+    {
+      "segment_id": 19,
+      "segment_key": "1140_1200",
+      "start_frame": 1140,
+      "end_frame": 1200,
+      "start_time": 38.0,
+      "end_time": 40.0,
+      "sampled_frame_indices": [
+        1140,
+        1147,
+        1154,
+        1161,
+        1168,
+        1175,
+        1182,
+        1189
+      ],
+      "caption": "A person exits the silver car and walks towards the back of it."
+    },
+    {
+      "segment_id": 20,
+      "segment_key": "1200_1260",
+      "start_frame": 1200,
+      "end_frame": 1260,
+      "start_time": 40.0,
+      "end_time": 42.0,
+      "sampled_frame_indices": [
+        1200,
+        1207,
+        1214,
+        1221,
+        1228,
+        1235,
+        1242,
+        1249
+      ],
+      "caption": "A car drives out of the parking lot."
+    },
+    {
+      "segment_id": 21,
+      "segment_key": "1260_1320",
+      "start_frame": 1260,
+      "end_frame": 1320,
+      "start_time": 42.0,
+      "end_time": 44.0,
+      "sampled_frame_indices": [
+        1260,
+        1267,
+        1274,
+        1281,
+        1288,
+        1295,
+        1302,
+        1309
+      ],
+      "caption": "A car drives into the parking lot."
+    },
+    {
+      "segment_id": 22,
+      "segment_key": "1320_1380",
+      "start_frame": 1320,
+      "end_frame": 1380,
+      "start_time": 44.0,
+      "end_time": 46.0,
+      "sampled_frame_indices": [
+        1320,
+        1327,
+        1334,
+        1341,
+        1348,
+        1355,
+        1362,
+        1369
+      ],
+      "caption": "A man walks past a car in a parking lot."
+    },
+    {
+      "segment_id": 23,
+      "segment_key": "1380_1440",
+      "start_frame": 1380,
+      "end_frame": 1440,
+      "start_time": 46.0,
+      "end_time": 48.0,
+      "sampled_frame_indices": [
+        1380,
+        1387,
+        1394,
+        1401,
+        1408,
+        1415,
+        1422,
+        1429
+      ],
+      "caption": "A man walks towards his car in the parking lot."
+    },
+    {
+      "segment_id": 24,
+      "segment_key": "1440_1500",
+      "start_frame": 1440,
+      "end_frame": 1500,
+      "start_time": 48.0,
+      "end_time": 50.0,
+      "sampled_frame_indices": [
+        1440,
+        1447,
+        1454,
+        1461,
+        1468,
+        1475,
+        1482,
+        1489
+      ],
+      "caption": "a man opens his car door"
+    },
+    {
+      "segment_id": 25,
+      "segment_key": "1500_1560",
+      "start_frame": 1500,
+      "end_frame": 1560,
+      "start_time": 50.0,
+      "end_time": 52.0,
+      "sampled_frame_indices": [
+        1500,
+        1507,
+        1514,
+        1521,
+        1528,
+        1535,
+        1542,
+        1549
+      ],
+      "caption": "A man walks towards his car in the parking lot."
+    },
+    {
+      "segment_id": 26,
+      "segment_key": "1560_1620",
+      "start_frame": 1560,
+      "end_frame": 1620,
+      "start_time": 52.0,
+      "end_time": 54.0,
+      "sampled_frame_indices": [
+        1560,
+        1567,
+        1574,
+        1581,
+        1588,
+        1595,
+        1602,
+        1609
+      ],
+      "caption": "A man walks past a silver car."
+    },
+    {
+      "segment_id": 27,
+      "segment_key": "1620_1680",
+      "start_frame": 1620,
+      "end_frame": 1680,
+      "start_time": 54.0,
+      "end_time": 56.0,
+      "sampled_frame_indices": [
+        1620,
+        1627,
+        1634,
+        1641,
+        1648,
+        1655,
+        1662,
+        1669
+      ],
+      "caption": "A man walks past a parked car."
+    },
+    {
+      "segment_id": 28,
+      "segment_key": "1680_1740",
+      "start_frame": 1680,
+      "end_frame": 1740,
+      "start_time": 56.0,
+      "end_time": 58.0,
+      "sampled_frame_indices": [
+        1680,
+        1687,
+        1694,
+        1701,
+        1708,
+        1715,
+        1722,
+        1729
+      ],
+      "caption": "A man walks across the parking lot."
+    },
+    {
+      "segment_id": 29,
+      "segment_key": "1740_1800",
+      "start_frame": 1740,
+      "end_frame": 1800,
+      "start_time": 58.0,
+      "end_time": 60.0,
+      "sampled_frame_indices": [
+        1740,
+        1747,
+        1754,
+        1761,
+        1768,
+        1775,
+        1782,
+        1789
+      ],
+      "caption": "The man walks across the parking lot."
+    },
+    {
+      "segment_id": 30,
+      "segment_key": "1800_1860",
+      "start_frame": 1800,
+      "end_frame": 1860,
+      "start_time": 60.0,
+      "end_time": 62.0,
+      "sampled_frame_indices": [
+        1800,
+        1807,
+        1814,
+        1821,
+        1828,
+        1835,
+        1842,
+        1849
+      ],
+      "caption": "A man walks across the road."
+    },
+    {
+      "segment_id": 31,
+      "segment_key": "1860_1920",
+      "start_frame": 1860,
+      "end_frame": 1920,
+      "start_time": 62.0,
+      "end_time": 64.0,
+      "sampled_frame_indices": [
+        1860,
+        1867,
+        1874,
+        1881,
+        1888,
+        1895,
+        1902,
+        1909
+      ],
+      "caption": "A man walks across the road."
+    },
+    {
+      "segment_id": 32,
+      "segment_key": "1920_1980",
+      "start_frame": 1920,
+      "end_frame": 1980,
+      "start_time": 64.0,
+      "end_time": 66.0,
+      "sampled_frame_indices": [
+        1920,
+        1927,
+        1934,
+        1941,
+        1948,
+        1955,
+        1962,
+        1969
+      ],
+      "caption": "A car drives past the parking lot."
+    },
+    {
+      "segment_id": 33,
+      "segment_key": "1980_2040",
+      "start_frame": 1980,
+      "end_frame": 2040,
+      "start_time": 66.0,
+      "end_time": 68.0,
+      "sampled_frame_indices": [
+        1980,
+        1987,
+        1994,
+        2001,
+        2008,
+        2015,
+        2022,
+        2029
+      ],
+      "caption": "A silver car drives out of the parking lot."
+    },
+    {
+      "segment_id": 34,
+      "segment_key": "2040_2100",
+      "start_frame": 2040,
+      "end_frame": 2100,
+      "start_time": 68.0,
+      "end_time": 70.0,
+      "sampled_frame_indices": [
+        2040,
+        2047,
+        2054,
+        2061,
+        2068,
+        2075,
+        2082,
+        2089
+      ],
+      "caption": "A silver car drives into the parking lot."
+    }
+  ]
+}
