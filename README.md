@@ -7,7 +7,7 @@ Capstone/
 │ ├── trackers/
 │ ├── models/
 │ └── retrieval/
-├── src/
+├── video/
 │ ├── core/ # 底层模型封装与统一数据协议
 │ │ ├── models/ # YOLO / embedding / LLM / VLM 封装
 │ │ └── schema/ # Event / Track / Clip / Query / Evidence
@@ -28,6 +28,13 @@ Capstone/
 │ │ ├── embedder.py # Text / Image embedding
 │ │ ├── graph\_builder.py # 时序 / 实体 / 关系图构建
 │ │ └── store\_manager.py # vector / graph / metadata 一致性写入
+
+│
+├── agent/ # LangGraph 编排层（必须保留）
+│ ├── state.py # 全局状态 / 上下文 / 中间结果
+│ ├── graph.py # 主决策图
+│ ├── nodes/ # parse / route / retrieve / answer
+│ └── tools/ # 搜索、核查、回放、总结等 Tool 封装
 │ │
 │ ├── retrieval/ # 纯检索层
 │ │ ├── event\_retriever.py # 事件级向量检索
@@ -37,13 +44,6 @@ Capstone/
 │ │ ├── multi\_modal.py # 跨模态匹配
 │ │ ├── reranker.py # 召回结果精排
 │ │ └── fusion.py # 多路证据融合
-│ │
-│ ├── agent/ # LangGraph 编排层（必须保留）
-│ │ ├── state.py # 全局状态 / 上下文 / 中间结果
-│ │ ├── graph.py # 主决策图
-│ │ ├── nodes/ # parse / route / retrieve / answer
-│ │ └── tools/ # 搜索、核查、回放、总结等 Tool 封装
-│ │
 │ └── common/ # 通用配置、日志、路径、工具函数
 │
 ├── outputs/
