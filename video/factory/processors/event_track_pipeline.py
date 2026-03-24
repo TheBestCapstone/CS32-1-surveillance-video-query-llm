@@ -1,6 +1,9 @@
 """
 编排入口：串联 vision（检测跟踪）与 analyzer（事件切片），并写 JSON。
 详细算法见 vision.py / analyzer.py。
+
+命令行请用：video.factory.coordinator.cli_run_video_events 或
+python -m video.factory.coordinator video ...
 """
 
 from __future__ import annotations
@@ -9,7 +12,6 @@ import json
 from pathlib import Path
 from typing import Any
 
-from video.common.paths import pipeline_output_dir
 from video.factory.processors.analyzer import aggregate_tracks, slice_events
 from video.factory.processors.vision import resolve_model, run_yolo_track_on_video
 
@@ -96,50 +98,7 @@ def save_pipeline_output(
     return events_path, clips_path
 
 
-def main() -> None:
-    import argparse
-
-    parser = argparse.ArgumentParser(description="视频 → YOLO+跟踪 → 事件与 clip 时间段")
-    parser.add_argument("video", nargs="?", default="VIRAT_S_000200_00_000100_000171.mp4", help="视频路径")
-    parser.add_argument(
-        "--tracker",
-        type=str,
-        default="botsort_reid",
-        help="botsort_reid(默认 BoT-SORT+ReID) | botsort | bytetrack | 某.yaml 路径",
-    )
-    parser.add_argument("--model", "-m", type=str, default="n", help="YOLO 权重")
-    parser.add_argument("--conf", type=float, default=0.25, help="检测置信度阈值")
-    parser.add_argument("--iou", type=float, default=0.25, help="检测 NMS IoU 阈值")
-    parser.add_argument("--save-video", action="store_true", help="输出带框+track_id 的标注视频")
-    parser.add_argument("--save-video-path", type=str, default=None, help="标注视频输出路径")
-    args = parser.parse_args()
-
-    out_dir = pipeline_output_dir()
-    print(
-        f"正在运行: {args.video} | 模型={args.model} conf={args.conf} iou={args.iou} | tracker={args.tracker}"
-    )
-    events, clip_segments, meta = run_pipeline(
-        args.video,
-        model_path=args.model,
-        conf=args.conf,
-        iou=args.iou,
-        motion_threshold=5.0,
-        min_clip_duration=1.0,
-        max_static_duration=30.0,
-        tracker=args.tracker,
-        save_annotated_video=bool(args.save_video),
-        annotated_video_path=args.save_video_path,
-    )
-
-    events_path, clips_path = save_pipeline_output(events, clip_segments, meta, out_dir)
-    print(f"元信息: {json.dumps(meta, ensure_ascii=False, indent=2)}")
-    print(f"事件已保存: {events_path}，共 {len(events)} 条")
-    print(f"Clip 段已保存: {clips_path}，共 {len(clip_segments)} 段")
-    print("\n前 3 条事件:")
-    print(json.dumps(events[:3], ensure_ascii=False, indent=2))
-    print("\n前 5 段 clip (start_sec, end_sec):")
-    print(json.dumps(clip_segments[:5], ensure_ascii=False, indent=2))
-
-
 if __name__ == "__main__":
-    main()
+    from video.factory.coordinator import cli_run_video_events
+
+    cli_run_video_events()
