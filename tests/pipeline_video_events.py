@@ -1,9 +1,13 @@
 """
-兼容入口：视频 → YOLO+跟踪 → 事件与 clip JSON。
-推荐在代码中调用：video.factory.coordinator.run_video_to_events(...)
+测试/本地跑视频流水线时的便捷入口（与仓库根 pipeline_video_events.py 一致）。
+
+在仓库根执行（把路径换成你的视频）:
+  python tests/pipeline_video_events.py /path/to/video.mp4 -m n
+
+视频路径：第一个位置参数 `video`；其它与 coordinator CLI 相同（--tracker、--out-dir 等）。
 """
 
-from video.factory.processors.event_track_pipeline import main
+from video.factory.coordinator import cli_run_video_events
 
 if __name__ == "__main__":
-    main()
+    cli_run_video_events()
