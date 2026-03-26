@@ -1,12 +1,108 @@
 import os
 import sys
 from pathlib import Path
+import lancedb
 
 # 添加项目根目录到 Python Path
+# __file__ = Capstone/agent/backup_legacy/src/agent/memory/episodic/test.py
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent.parent
-sys.path.append(str(BASE_DIR))
+CAPSTONE_DIR = BASE_DIR.parent.parent
+sys.path.append(str(CAPSTONE_DIR))
 
-from src.retrieval.event_retriever import EventRetriever
+from video.indexing.embedder import get_qwen_embedding
+
+class EventRetriever:
+    def __init__(self):
+        # LanceDB 路径
+        db_path = str(BASE_DIR / "src" / "agent" / "memory" / "episodic" / "lancedb")
+        self.db = lancedb.connect(db_path)
+        self.table_name = "episodic_events"
+        
+    def get_table(self):
+        if self.table_name in self.db.list_tables():
+            return self.db.open_table(self.table_name)
+        return None
+
+    def structured_search(self, 
+                          video_id: str = None, 
+                          object_type: str = None,
+                          scene_zone_cn: str = None,
+                          min_duration: float = None,
+                          start_time_after: float = None,
+                          limit: int = 10):
+        tbl = self.get_table()
+        if not tbl:
+            return []
+            
+        filters = []
+        if video_id:
+            filters.append(f"video_id = '{video_id}'")
+        if object_type:
+            filters.append(f"object_type = '{object_type}'")
+        if scene_zone_cn:
+            filters.append(f"scene_zone_cn = '{scene_zone_cn}'")
+        if min_duration is not None:
+            filters.append(f"duration >= {min_duration}")
+        if start_time_after is not None:
+            filters.append(f"start_time >= {start_time_after}")
+            
+        query = tbl.search()
+        if filters:
+            query = query.where(" AND ".join(filters))
+            
+        try:
+            results = query.limit(limit).to_list()
+            # Sort by start_time ascending as in original SQLite logic
+            results.sort(key=lambda x: x.get('start_time', 0))
+            return results
+        except Exception as e:
+            print(f"Structured search error: {e}")
+            return []
+
+    def hybrid_event_search(self, 
+                            query_text: str, 
+                            top_k: int = 5,
+                            video_id: str = None,
+                            object_type: str = None,
+                            scene_zone_cn: str = None,
+                            start_time_after: float = None,
+                            end_time_before: float = None):
+        try:
+            query_vector = get_qwen_embedding(query_text)
+        except Exception as e:
+            print(f"获取 Query Embedding 失败: {e}")
+            return []
+
+        tbl = self.get_table()
+        if not tbl:
+            return []
+
+        filters = []
+        if video_id:
+            filters.append(f"video_id = '{video_id}'")
+        if object_type:
+            filters.append(f"object_type = '{object_type}'")
+        if scene_zone_cn:
+            filters.append(f"scene_zone_cn = '{scene_zone_cn}'")
+        if start_time_after is not None:
+            filters.append(f"start_time >= {start_time_after}")
+        if end_time_before is not None:
+            filters.append(f"end_time <= {end_time_before}")
+            
+        query = tbl.search(query_vector)
+        if filters:
+            query = query.where(" AND ".join(filters))
+            
+        try:
+            results = query.limit(top_k).to_list()
+            # LanceDB adds _distance field automatically
+            for r in results:
+                if '_distance' in r:
+                    r['distance'] = r['_distance']
+            return results
+        except Exception as e:
+            print(f"Hybrid search error: {e}")
+            return []
 
 def run_tests():
     # 尝试加载 .env
