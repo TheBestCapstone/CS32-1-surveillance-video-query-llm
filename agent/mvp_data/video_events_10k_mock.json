@@ -1,0 +1,3252 @@
+[
+  {
+    "video_id": "VIRAT_S_000001_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000001_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 1628.52,
+        "end_time": 1640.9,
+        "object_type": "bike",
+        "object_color_cn": "蓝",
+        "appearance_notes_cn": "自行车骑行通过",
+        "scene_zone_cn": "停车位区域",
+        "event_text_cn": "1628.52-1640.9秒，蓝色自行车在停车位区域自行车骑行通过。",
+        "keywords": [
+          "bike",
+          "骑行通过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          672.91,
+          54.26,
+          205.55,
+          410.27
+        ],
+        "end_bbox_xyxy": [
+          419.31,
+          525.68,
+          988.15,
+          586.35
+        ],
+        "entity_hint": "track_id=1"
+      },
+      {
+        "video_id": "VIRAT_S_000001_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2505.7,
+        "end_time": 2542.07,
+        "object_type": "truck",
+        "object_color_cn": "黄",
+        "appearance_notes_cn": "缓慢驶出并进入道路中央",
+        "scene_zone_cn": "道路中央",
+        "event_text_cn": "2505.7-2542.07秒，黄色卡车在道路中央缓慢驶出并进入道路中央。",
+        "keywords": [
+          "truck",
+          "缓慢驶出",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          228.85,
+          255.67,
+          314.83,
+          477.66
+        ],
+        "end_bbox_xyxy": [
+          695.44,
+          40.15,
+          629.07,
+          104.97
+        ],
+        "entity_hint": "track_id=2"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000002_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000002_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 1456.62,
+        "end_time": 1649.59,
+        "object_type": "car",
+        "object_color_cn": "蓝",
+        "appearance_notes_cn": "静止停放，几乎无明显位移",
+        "scene_zone_cn": "停车场入口附近",
+        "event_text_cn": "1456.62-1649.59秒，蓝色轿车在停车场入口附近静止停放，几乎无明显位移。",
+        "keywords": [
+          "car",
+          "静止停放",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          491.62,
+          593.77,
+          427.89,
+          713.52
+        ],
+        "end_bbox_xyxy": [
+          514.69,
+          19.71,
+          522.06,
+          502.51
+        ],
+        "entity_hint": "track_id=3"
+      },
+      {
+        "video_id": "VIRAT_S_000002_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 1951.28,
+        "end_time": 2123.54,
+        "object_type": "car",
+        "object_color_cn": "绿",
+        "appearance_notes_cn": "缓慢驶出并进入大楼入口",
+        "scene_zone_cn": "大楼入口",
+        "event_text_cn": "1951.28-2123.54秒，绿色轿车在大楼入口缓慢驶出并进入大楼入口。",
+        "keywords": [
+          "car",
+          "缓慢驶出",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          259.47,
+          451.02,
+          361.76,
+          230.83
+        ],
+        "end_bbox_xyxy": [
+          540.48,
+          446.94,
+          501.52,
+          757.41
+        ],
+        "entity_hint": "track_id=4"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000003_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000003_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 663.11,
+        "end_time": 845.41,
+        "object_type": "person",
+        "object_color_cn": "不确定",
+        "appearance_notes_cn": "行人在十字路口徘徊",
+        "scene_zone_cn": "十字路口",
+        "event_text_cn": "663.11-845.41秒，不确定色人在十字路口行人在十字路口徘徊。",
+        "keywords": [
+          "person",
+          "徘徊",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          58.14,
+          40.88,
+          875.47,
+          108.77
+        ],
+        "end_bbox_xyxy": [
+          226.31,
+          543.23,
+          314.04,
+          175.79
+        ],
+        "entity_hint": "track_id=5"
+      },
+      {
+        "video_id": "VIRAT_S_000003_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 676.53,
+        "end_time": 874.86,
+        "object_type": "car",
+        "object_color_cn": "蓝",
+        "appearance_notes_cn": "路过并进入大楼入口",
+        "scene_zone_cn": "大楼入口",
+        "event_text_cn": "676.53-874.86秒，蓝色轿车在大楼入口路过并进入大楼入口。",
+        "keywords": [
+          "car",
+          "路过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          156.44,
+          306.21,
+          323.3,
+          672.44
+        ],
+        "end_bbox_xyxy": [
+          412.1,
+          190.09,
+          200.38,
+          325.19
+        ],
+        "entity_hint": "track_id=6"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000004_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000004_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2141.28,
+        "end_time": 2187.8,
+        "object_type": "bike",
+        "object_color_cn": "不确定",
+        "appearance_notes_cn": "自行车骑行通过",
+        "scene_zone_cn": "十字路口",
+        "event_text_cn": "2141.28-2187.8秒，不确定色自行车在十字路口自行车骑行通过。",
+        "keywords": [
+          "bike",
+          "骑行通过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          519.87,
+          276.9,
+          511.77,
+          496.4
+        ],
+        "end_bbox_xyxy": [
+          278.21,
+          53.86,
+          343.38,
+          284.76
+        ],
+        "entity_hint": "track_id=8"
+      },
+      {
+        "video_id": "VIRAT_S_000004_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2497.6,
+        "end_time": 2521.29,
+        "object_type": "bike",
+        "object_color_cn": "红",
+        "appearance_notes_cn": "自行车骑行通过",
+        "scene_zone_cn": "停车位区域",
+        "event_text_cn": "2497.6-2521.29秒，红色自行车在停车位区域自行车骑行通过。",
+        "keywords": [
+          "bike",
+          "骑行通过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          95.48,
+          415.11,
+          261.13,
+          246.77
+        ],
+        "end_bbox_xyxy": [
+          769.47,
+          402.26,
+          642.99,
+          459.13
+        ],
+        "entity_hint": "track_id=7"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000005_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000005_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 967.74,
+        "end_time": 1075.18,
+        "object_type": "person",
+        "object_color_cn": "黄",
+        "appearance_notes_cn": "行人在大楼入口快步走过",
+        "scene_zone_cn": "大楼入口",
+        "event_text_cn": "967.74-1075.18秒，黄色人在大楼入口行人在大楼入口快步走过。",
+        "keywords": [
+          "person",
+          "快步走过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          723.05,
+          296.93,
+          574.45,
+          237.0
+        ],
+        "end_bbox_xyxy": [
+          744.43,
+          231.32,
+          896.76,
+          556.96
+        ],
+        "entity_hint": "track_id=9"
+      },
+      {
+        "video_id": "VIRAT_S_000005_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 3237.51,
+        "end_time": 3287.03,
+        "object_type": "bike",
+        "object_color_cn": "红",
+        "appearance_notes_cn": "自行车骑行通过",
+        "scene_zone_cn": "停车场入口附近",
+        "event_text_cn": "3237.51-3287.03秒，红色自行车在停车场入口附近自行车骑行通过。",
+        "keywords": [
+          "bike",
+          "骑行通过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          39.18,
+          303.32,
+          490.72,
+          521.12
+        ],
+        "end_bbox_xyxy": [
+          632.45,
+          573.41,
+          189.49,
+          563.64
+        ],
+        "entity_hint": "track_id=10"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000006_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000006_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 687.67,
+        "end_time": 935.85,
+        "object_type": "car",
+        "object_color_cn": "红",
+        "appearance_notes_cn": "路过并进入马路对侧停车位",
+        "scene_zone_cn": "马路对侧停车位",
+        "event_text_cn": "687.67-935.85秒，红色轿车在马路对侧停车位路过并进入马路对侧停车位。",
+        "keywords": [
+          "car",
+          "路过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          235.02,
+          295.38,
+          729.04,
+          414.77
+        ],
+        "end_bbox_xyxy": [
+          69.5,
+          127.35,
+          363.68,
+          203.66
+        ],
+        "entity_hint": "track_id=12"
+      },
+      {
+        "video_id": "VIRAT_S_000006_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 3455.89,
+        "end_time": 3748.19,
+        "object_type": "bike",
+        "object_color_cn": "黑",
+        "appearance_notes_cn": "自行车停放",
+        "scene_zone_cn": "马路对侧停车位",
+        "event_text_cn": "3455.89-3748.19秒，黑色自行车在马路对侧停车位自行车停放。",
+        "keywords": [
+          "bike",
+          "停放",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          76.72,
+          391.69,
+          571.27,
+          688.49
+        ],
+        "end_bbox_xyxy": [
+          738.32,
+          146.73,
+          529.32,
+          282.67
+        ],
+        "entity_hint": "track_id=11"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000007_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000007_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 1551.97,
+        "end_time": 1793.97,
+        "object_type": "bike",
+        "object_color_cn": "不确定",
+        "appearance_notes_cn": "自行车骑行通过",
+        "scene_zone_cn": "停车场入口附近",
+        "event_text_cn": "1551.97-1793.97秒，不确定色自行车在停车场入口附近自行车骑行通过。",
+        "keywords": [
+          "bike",
+          "骑行通过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          56.4,
+          105.99,
+          402.23,
+          422.61
+        ],
+        "end_bbox_xyxy": [
+          534.08,
+          74.0,
+          564.06,
+          718.5
+        ],
+        "entity_hint": "track_id=13"
+      },
+      {
+        "video_id": "VIRAT_S_000007_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 3063.28,
+        "end_time": 3210.86,
+        "object_type": "person",
+        "object_color_cn": "白",
+        "appearance_notes_cn": "行人在停车位区域徘徊",
+        "scene_zone_cn": "停车位区域",
+        "event_text_cn": "3063.28-3210.86秒，白色人在停车位区域行人在停车位区域徘徊。",
+        "keywords": [
+          "person",
+          "徘徊",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          299.68,
+          52.23,
+          844.97,
+          121.42
+        ],
+        "end_bbox_xyxy": [
+          268.97,
+          216.3,
+          476.27,
+          587.03
+        ],
+        "entity_hint": "track_id=14"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000008_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000008_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 738.0,
+        "end_time": 863.97,
+        "object_type": "person",
+        "object_color_cn": "白",
+        "appearance_notes_cn": "行人在停车场入口附近奔跑",
+        "scene_zone_cn": "停车场入口附近",
+        "event_text_cn": "738.0-863.97秒，白色人在停车场入口附近行人在停车场入口附近奔跑。",
+        "keywords": [
+          "person",
+          "奔跑",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          212.29,
+          396.94,
+          904.67,
+          333.58
+        ],
+        "end_bbox_xyxy": [
+          207.21,
+          295.5,
+          675.84,
+          357.15
+        ],
+        "entity_hint": "track_id=15"
+      },
+      {
+        "video_id": "VIRAT_S_000008_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 3372.18,
+        "end_time": 3409.06,
+        "object_type": "person",
+        "object_color_cn": "银灰",
+        "appearance_notes_cn": "行人在马路对侧停车位快步走过",
+        "scene_zone_cn": "马路对侧停车位",
+        "event_text_cn": "3372.18-3409.06秒，银灰色人在马路对侧停车位行人在马路对侧停车位快步走过。",
+        "keywords": [
+          "person",
+          "快步走过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          764.18,
+          50.51,
+          125.46,
+          547.24
+        ],
+        "end_bbox_xyxy": [
+          356.68,
+          441.82,
+          446.44,
+          280.4
+        ],
+        "entity_hint": "track_id=16"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000009_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000009_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 873.57,
+        "end_time": 1108.6,
+        "object_type": "truck",
+        "object_color_cn": "黑",
+        "appearance_notes_cn": "缓慢驶出并进入十字路口",
+        "scene_zone_cn": "十字路口",
+        "event_text_cn": "873.57-1108.6秒，黑色卡车在十字路口缓慢驶出并进入十字路口。",
+        "keywords": [
+          "truck",
+          "缓慢驶出",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          711.99,
+          134.99,
+          435.0,
+          175.33
+        ],
+        "end_bbox_xyxy": [
+          401.1,
+          585.0,
+          743.4,
+          239.02
+        ],
+        "entity_hint": "track_id=17"
+      },
+      {
+        "video_id": "VIRAT_S_000009_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2234.25,
+        "end_time": 2399.7,
+        "object_type": "bike",
+        "object_color_cn": "不确定",
+        "appearance_notes_cn": "自行车骑行通过",
+        "scene_zone_cn": "停车场边缘步行区",
+        "event_text_cn": "2234.25-2399.7秒，不确定色自行车在停车场边缘步行区自行车骑行通过。",
+        "keywords": [
+          "bike",
+          "骑行通过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          253.03,
+          292.69,
+          248.52,
+          728.8
+        ],
+        "end_bbox_xyxy": [
+          16.68,
+          514.59,
+          885.69,
+          102.67
+        ],
+        "entity_hint": "track_id=18"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000010_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000010_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2298.96,
+        "end_time": 2309.67,
+        "object_type": "bike",
+        "object_color_cn": "银灰",
+        "appearance_notes_cn": "自行车停放",
+        "scene_zone_cn": "道路中央",
+        "event_text_cn": "2298.96-2309.67秒，银灰色自行车在道路中央自行车停放。",
+        "keywords": [
+          "bike",
+          "停放",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          284.0,
+          583.64,
+          129.32,
+          743.29
+        ],
+        "end_bbox_xyxy": [
+          71.27,
+          139.19,
+          119.17,
+          774.29
+        ],
+        "entity_hint": "track_id=20"
+      },
+      {
+        "video_id": "VIRAT_S_000010_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 3578.01,
+        "end_time": 3789.67,
+        "object_type": "person",
+        "object_color_cn": "银灰",
+        "appearance_notes_cn": "行人在马路对侧停车位短暂停留",
+        "scene_zone_cn": "马路对侧停车位",
+        "event_text_cn": "3578.01-3789.67秒，银灰色人在马路对侧停车位行人在马路对侧停车位短暂停留。",
+        "keywords": [
+          "person",
+          "短暂停留",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          115.3,
+          255.09,
+          566.57,
+          269.29
+        ],
+        "end_bbox_xyxy": [
+          465.0,
+          362.81,
+          496.01,
+          486.82
+        ],
+        "entity_hint": "track_id=19"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000011_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000011_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 521.24,
+        "end_time": 743.51,
+        "object_type": "person",
+        "object_color_cn": "黑",
+        "appearance_notes_cn": "行人在十字路口徘徊",
+        "scene_zone_cn": "十字路口",
+        "event_text_cn": "521.24-743.51秒，黑色人在十字路口行人在十字路口徘徊。",
+        "keywords": [
+          "person",
+          "徘徊",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          698.93,
+          462.84,
+          709.14,
+          299.33
+        ],
+        "end_bbox_xyxy": [
+          415.58,
+          179.4,
+          665.03,
+          603.69
+        ],
+        "entity_hint": "track_id=22"
+      },
+      {
+        "video_id": "VIRAT_S_000011_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2514.03,
+        "end_time": 2587.38,
+        "object_type": "truck",
+        "object_color_cn": "黑",
+        "appearance_notes_cn": "静止停放，几乎无明显位移",
+        "scene_zone_cn": "道路中央",
+        "event_text_cn": "2514.03-2587.38秒，黑色卡车在道路中央静止停放，几乎无明显位移。",
+        "keywords": [
+          "truck",
+          "静止停放",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          75.13,
+          303.49,
+          873.1,
+          460.07
+        ],
+        "end_bbox_xyxy": [
+          686.74,
+          157.94,
+          765.43,
+          248.29
+        ],
+        "entity_hint": "track_id=21"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000012_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000012_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 3257.95,
+        "end_time": 3363.97,
+        "object_type": "person",
+        "object_color_cn": "红",
+        "appearance_notes_cn": "行人在停车位区域奔跑",
+        "scene_zone_cn": "停车位区域",
+        "event_text_cn": "3257.95-3363.97秒，红色人在停车位区域行人在停车位区域奔跑。",
+        "keywords": [
+          "person",
+          "奔跑",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          75.98,
+          315.28,
+          552.21,
+          753.52
+        ],
+        "end_bbox_xyxy": [
+          714.26,
+          116.69,
+          695.61,
+          167.23
+        ],
+        "entity_hint": "track_id=23"
+      },
+      {
+        "video_id": "VIRAT_S_000012_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 3413.4,
+        "end_time": 3594.71,
+        "object_type": "truck",
+        "object_color_cn": "黑",
+        "appearance_notes_cn": "静止停放，几乎无明显位移",
+        "scene_zone_cn": "马路对侧停车位",
+        "event_text_cn": "3413.4-3594.71秒，黑色卡车在马路对侧停车位静止停放，几乎无明显位移。",
+        "keywords": [
+          "truck",
+          "静止停放",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          340.12,
+          178.24,
+          121.19,
+          582.41
+        ],
+        "end_bbox_xyxy": [
+          270.12,
+          302.96,
+          611.24,
+          287.58
+        ],
+        "entity_hint": "track_id=24"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000013_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000013_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 93.88,
+        "end_time": 173.26,
+        "object_type": "person",
+        "object_color_cn": "红",
+        "appearance_notes_cn": "行人在停车位区域短暂停留",
+        "scene_zone_cn": "停车位区域",
+        "event_text_cn": "93.88-173.26秒，红色人在停车位区域行人在停车位区域短暂停留。",
+        "keywords": [
+          "person",
+          "短暂停留",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          234.02,
+          547.22,
+          788.45,
+          541.54
+        ],
+        "end_bbox_xyxy": [
+          482.48,
+          151.77,
+          330.62,
+          663.72
+        ],
+        "entity_hint": "track_id=25"
+      },
+      {
+        "video_id": "VIRAT_S_000013_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 1586.73,
+        "end_time": 1592.2,
+        "object_type": "car",
+        "object_color_cn": "不确定",
+        "appearance_notes_cn": "缓慢驶出并进入道路中央",
+        "scene_zone_cn": "道路中央",
+        "event_text_cn": "1586.73-1592.2秒，不确定色轿车在道路中央缓慢驶出并进入道路中央。",
+        "keywords": [
+          "car",
+          "缓慢驶出",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          725.05,
+          231.07,
+          197.97,
+          391.76
+        ],
+        "end_bbox_xyxy": [
+          397.84,
+          587.96,
+          706.89,
+          646.54
+        ],
+        "entity_hint": "track_id=26"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000014_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000014_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 919.87,
+        "end_time": 1027.0,
+        "object_type": "bike",
+        "object_color_cn": "黄",
+        "appearance_notes_cn": "自行车停放",
+        "scene_zone_cn": "停车场边缘步行区",
+        "event_text_cn": "919.87-1027.0秒，黄色自行车在停车场边缘步行区自行车停放。",
+        "keywords": [
+          "bike",
+          "停放",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          225.62,
+          81.28,
+          866.32,
+          223.8
+        ],
+        "end_bbox_xyxy": [
+          150.33,
+          54.51,
+          319.34,
+          256.2
+        ],
+        "entity_hint": "track_id=28"
+      },
+      {
+        "video_id": "VIRAT_S_000014_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 3258.05,
+        "end_time": 3381.29,
+        "object_type": "bike",
+        "object_color_cn": "红",
+        "appearance_notes_cn": "自行车停放",
+        "scene_zone_cn": "大楼入口",
+        "event_text_cn": "3258.05-3381.29秒，红色自行车在大楼入口自行车停放。",
+        "keywords": [
+          "bike",
+          "停放",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          334.51,
+          83.02,
+          384.99,
+          109.28
+        ],
+        "end_bbox_xyxy": [
+          41.86,
+          158.6,
+          110.89,
+          395.18
+        ],
+        "entity_hint": "track_id=27"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000015_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000015_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2370.65,
+        "end_time": 2579.86,
+        "object_type": "bike",
+        "object_color_cn": "绿",
+        "appearance_notes_cn": "自行车停放",
+        "scene_zone_cn": "十字路口",
+        "event_text_cn": "2370.65-2579.86秒，绿色自行车在十字路口自行车停放。",
+        "keywords": [
+          "bike",
+          "停放",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          403.33,
+          427.53,
+          551.67,
+          747.17
+        ],
+        "end_bbox_xyxy": [
+          211.89,
+          103.4,
+          862.01,
+          765.36
+        ],
+        "entity_hint": "track_id=29"
+      },
+      {
+        "video_id": "VIRAT_S_000015_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 3541.39,
+        "end_time": 3643.91,
+        "object_type": "person",
+        "object_color_cn": "黄",
+        "appearance_notes_cn": "行人在停车场边缘步行区快步走过",
+        "scene_zone_cn": "停车场边缘步行区",
+        "event_text_cn": "3541.39-3643.91秒，黄色人在停车场边缘步行区行人在停车场边缘步行区快步走过。",
+        "keywords": [
+          "person",
+          "快步走过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          774.85,
+          481.44,
+          802.57,
+          409.31
+        ],
+        "end_bbox_xyxy": [
+          521.38,
+          201.85,
+          489.37,
+          449.38
+        ],
+        "entity_hint": "track_id=30"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000016_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000016_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2440.96,
+        "end_time": 2670.74,
+        "object_type": "bike",
+        "object_color_cn": "绿",
+        "appearance_notes_cn": "自行车停放",
+        "scene_zone_cn": "道路中央",
+        "event_text_cn": "2440.96-2670.74秒，绿色自行车在道路中央自行车停放。",
+        "keywords": [
+          "bike",
+          "停放",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          524.27,
+          572.88,
+          458.59,
+          175.47
+        ],
+        "end_bbox_xyxy": [
+          270.68,
+          549.54,
+          989.68,
+          569.91
+        ],
+        "entity_hint": "track_id=31"
+      },
+      {
+        "video_id": "VIRAT_S_000016_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2572.4,
+        "end_time": 2599.71,
+        "object_type": "car",
+        "object_color_cn": "银灰",
+        "appearance_notes_cn": "静止停放，几乎无明显位移",
+        "scene_zone_cn": "道路中央",
+        "event_text_cn": "2572.4-2599.71秒，银灰色轿车在道路中央静止停放，几乎无明显位移。",
+        "keywords": [
+          "car",
+          "静止停放",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          634.12,
+          276.26,
+          946.57,
+          571.03
+        ],
+        "end_bbox_xyxy": [
+          388.09,
+          483.7,
+          786.27,
+          662.04
+        ],
+        "entity_hint": "track_id=32"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000017_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000017_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 1240.42,
+        "end_time": 1301.04,
+        "object_type": "person",
+        "object_color_cn": "红",
+        "appearance_notes_cn": "行人在停车场边缘步行区短暂停留",
+        "scene_zone_cn": "停车场边缘步行区",
+        "event_text_cn": "1240.42-1301.04秒，红色人在停车场边缘步行区行人在停车场边缘步行区短暂停留。",
+        "keywords": [
+          "person",
+          "短暂停留",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          456.88,
+          75.51,
+          749.55,
+          449.0
+        ],
+        "end_bbox_xyxy": [
+          265.16,
+          184.78,
+          980.44,
+          118.67
+        ],
+        "entity_hint": "track_id=33"
+      },
+      {
+        "video_id": "VIRAT_S_000017_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 1740.09,
+        "end_time": 2000.69,
+        "object_type": "car",
+        "object_color_cn": "绿",
+        "appearance_notes_cn": "缓慢驶出并进入十字路口",
+        "scene_zone_cn": "十字路口",
+        "event_text_cn": "1740.09-2000.69秒，绿色轿车在十字路口缓慢驶出并进入十字路口。",
+        "keywords": [
+          "car",
+          "缓慢驶出",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          578.69,
+          76.3,
+          465.69,
+          122.07
+        ],
+        "end_bbox_xyxy": [
+          404.08,
+          15.8,
+          801.74,
+          664.85
+        ],
+        "entity_hint": "track_id=34"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000018_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000018_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 74.41,
+        "end_time": 140.11,
+        "object_type": "truck",
+        "object_color_cn": "绿",
+        "appearance_notes_cn": "快速驶入并进入停车场入口附近",
+        "scene_zone_cn": "停车场入口附近",
+        "event_text_cn": "74.41-140.11秒，绿色卡车在停车场入口附近快速驶入并进入停车场入口附近。",
+        "keywords": [
+          "truck",
+          "快速驶入",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          490.79,
+          80.85,
+          211.54,
+          182.34
+        ],
+        "end_bbox_xyxy": [
+          36.45,
+          512.6,
+          385.05,
+          596.38
+        ],
+        "entity_hint": "track_id=36"
+      },
+      {
+        "video_id": "VIRAT_S_000018_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2535.38,
+        "end_time": 2654.6,
+        "object_type": "person",
+        "object_color_cn": "白",
+        "appearance_notes_cn": "行人在停车场边缘步行区搬运物品",
+        "scene_zone_cn": "停车场边缘步行区",
+        "event_text_cn": "2535.38-2654.6秒，白色人在停车场边缘步行区行人在停车场边缘步行区搬运物品。",
+        "keywords": [
+          "person",
+          "搬运物品",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          484.71,
+          190.28,
+          182.56,
+          318.71
+        ],
+        "end_bbox_xyxy": [
+          769.91,
+          96.73,
+          480.85,
+          140.31
+        ],
+        "entity_hint": "track_id=35"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000019_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000019_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 1643.47,
+        "end_time": 1806.22,
+        "object_type": "car",
+        "object_color_cn": "红",
+        "appearance_notes_cn": "静止停放，几乎无明显位移",
+        "scene_zone_cn": "停车场边缘步行区",
+        "event_text_cn": "1643.47-1806.22秒，红色轿车在停车场边缘步行区静止停放，几乎无明显位移。",
+        "keywords": [
+          "car",
+          "静止停放",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          577.16,
+          429.14,
+          816.78,
+          337.87
+        ],
+        "end_bbox_xyxy": [
+          468.07,
+          455.62,
+          356.08,
+          527.56
+        ],
+        "entity_hint": "track_id=38"
+      },
+      {
+        "video_id": "VIRAT_S_000019_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2207.8,
+        "end_time": 2416.66,
+        "object_type": "car",
+        "object_color_cn": "黄",
+        "appearance_notes_cn": "缓慢驶出并进入停车场边缘步行区",
+        "scene_zone_cn": "停车场边缘步行区",
+        "event_text_cn": "2207.8-2416.66秒，黄色轿车在停车场边缘步行区缓慢驶出并进入停车场边缘步行区。",
+        "keywords": [
+          "car",
+          "缓慢驶出",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          783.29,
+          258.06,
+          938.88,
+          315.01
+        ],
+        "end_bbox_xyxy": [
+          361.39,
+          367.35,
+          866.1,
+          476.15
+        ],
+        "entity_hint": "track_id=37"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000020_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000020_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 1782.1,
+        "end_time": 1821.36,
+        "object_type": "bike",
+        "object_color_cn": "黑",
+        "appearance_notes_cn": "自行车停放",
+        "scene_zone_cn": "马路对侧停车位",
+        "event_text_cn": "1782.1-1821.36秒，黑色自行车在马路对侧停车位自行车停放。",
+        "keywords": [
+          "bike",
+          "停放",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          354.08,
+          318.15,
+          526.0,
+          772.0
+        ],
+        "end_bbox_xyxy": [
+          73.15,
+          385.54,
+          869.11,
+          595.56
+        ],
+        "entity_hint": "track_id=39"
+      },
+      {
+        "video_id": "VIRAT_S_000020_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 3574.77,
+        "end_time": 3812.73,
+        "object_type": "bike",
+        "object_color_cn": "黑",
+        "appearance_notes_cn": "自行车骑行通过",
+        "scene_zone_cn": "停车场入口附近",
+        "event_text_cn": "3574.77-3812.73秒，黑色自行车在停车场入口附近自行车骑行通过。",
+        "keywords": [
+          "bike",
+          "骑行通过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          27.45,
+          426.27,
+          631.2,
+          271.87
+        ],
+        "end_bbox_xyxy": [
+          583.55,
+          53.61,
+          992.77,
+          159.44
+        ],
+        "entity_hint": "track_id=40"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000021_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000021_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 89.78,
+        "end_time": 153.84,
+        "object_type": "truck",
+        "object_color_cn": "蓝",
+        "appearance_notes_cn": "静止停放，几乎无明显位移",
+        "scene_zone_cn": "停车场入口附近",
+        "event_text_cn": "89.78-153.84秒，蓝色卡车在停车场入口附近静止停放，几乎无明显位移。",
+        "keywords": [
+          "truck",
+          "静止停放",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          451.18,
+          63.56,
+          131.44,
+          217.72
+        ],
+        "end_bbox_xyxy": [
+          795.05,
+          317.74,
+          574.52,
+          344.8
+        ],
+        "entity_hint": "track_id=41"
+      },
+      {
+        "video_id": "VIRAT_S_000021_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 323.2,
+        "end_time": 343.93,
+        "object_type": "person",
+        "object_color_cn": "蓝",
+        "appearance_notes_cn": "行人在马路对侧停车位奔跑",
+        "scene_zone_cn": "马路对侧停车位",
+        "event_text_cn": "323.2-343.93秒，蓝色人在马路对侧停车位行人在马路对侧停车位奔跑。",
+        "keywords": [
+          "person",
+          "奔跑",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          466.33,
+          422.24,
+          929.99,
+          650.04
+        ],
+        "end_bbox_xyxy": [
+          655.36,
+          152.47,
+          343.09,
+          468.12
+        ],
+        "entity_hint": "track_id=42"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000022_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000022_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2542.95,
+        "end_time": 2549.02,
+        "object_type": "bike",
+        "object_color_cn": "银灰",
+        "appearance_notes_cn": "自行车停放",
+        "scene_zone_cn": "十字路口",
+        "event_text_cn": "2542.95-2549.02秒，银灰色自行车在十字路口自行车停放。",
+        "keywords": [
+          "bike",
+          "停放",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          366.96,
+          23.37,
+          929.66,
+          717.54
+        ],
+        "end_bbox_xyxy": [
+          350.0,
+          97.05,
+          945.61,
+          254.15
+        ],
+        "entity_hint": "track_id=44"
+      },
+      {
+        "video_id": "VIRAT_S_000022_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2677.58,
+        "end_time": 2929.42,
+        "object_type": "car",
+        "object_color_cn": "黑",
+        "appearance_notes_cn": "路过并进入大楼入口",
+        "scene_zone_cn": "大楼入口",
+        "event_text_cn": "2677.58-2929.42秒，黑色轿车在大楼入口路过并进入大楼入口。",
+        "keywords": [
+          "car",
+          "路过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          717.24,
+          160.78,
+          356.33,
+          439.31
+        ],
+        "end_bbox_xyxy": [
+          481.23,
+          152.87,
+          699.23,
+          545.06
+        ],
+        "entity_hint": "track_id=43"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000023_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000023_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 157.94,
+        "end_time": 341.5,
+        "object_type": "person",
+        "object_color_cn": "蓝",
+        "appearance_notes_cn": "行人在停车位区域快步走过",
+        "scene_zone_cn": "停车位区域",
+        "event_text_cn": "157.94-341.5秒，蓝色人在停车位区域行人在停车位区域快步走过。",
+        "keywords": [
+          "person",
+          "快步走过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          586.88,
+          298.77,
+          886.17,
+          520.05
+        ],
+        "end_bbox_xyxy": [
+          541.31,
+          28.04,
+          757.12,
+          379.51
+        ],
+        "entity_hint": "track_id=45"
+      },
+      {
+        "video_id": "VIRAT_S_000023_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2789.45,
+        "end_time": 2991.7,
+        "object_type": "person",
+        "object_color_cn": "不确定",
+        "appearance_notes_cn": "行人在十字路口奔跑",
+        "scene_zone_cn": "十字路口",
+        "event_text_cn": "2789.45-2991.7秒，不确定色人在十字路口行人在十字路口奔跑。",
+        "keywords": [
+          "person",
+          "奔跑",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          202.32,
+          589.59,
+          262.26,
+          729.89
+        ],
+        "end_bbox_xyxy": [
+          472.67,
+          433.22,
+          579.86,
+          155.14
+        ],
+        "entity_hint": "track_id=46"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000024_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000024_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 608.7,
+        "end_time": 707.88,
+        "object_type": "bike",
+        "object_color_cn": "红",
+        "appearance_notes_cn": "自行车停放",
+        "scene_zone_cn": "绿化带旁",
+        "event_text_cn": "608.7-707.88秒，红色自行车在绿化带旁自行车停放。",
+        "keywords": [
+          "bike",
+          "停放",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          722.11,
+          91.67,
+          203.38,
+          398.13
+        ],
+        "end_bbox_xyxy": [
+          57.18,
+          326.52,
+          840.05,
+          461.89
+        ],
+        "entity_hint": "track_id=48"
+      },
+      {
+        "video_id": "VIRAT_S_000024_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2409.06,
+        "end_time": 2568.58,
+        "object_type": "car",
+        "object_color_cn": "蓝",
+        "appearance_notes_cn": "倒车并进入绿化带旁",
+        "scene_zone_cn": "绿化带旁",
+        "event_text_cn": "2409.06-2568.58秒，蓝色轿车在绿化带旁倒车并进入绿化带旁。",
+        "keywords": [
+          "car",
+          "倒车",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          452.06,
+          434.4,
+          743.17,
+          483.92
+        ],
+        "end_bbox_xyxy": [
+          507.79,
+          13.22,
+          166.51,
+          773.07
+        ],
+        "entity_hint": "track_id=47"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000025_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000025_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 283.1,
+        "end_time": 354.04,
+        "object_type": "car",
+        "object_color_cn": "黄",
+        "appearance_notes_cn": "路过并进入绿化带旁",
+        "scene_zone_cn": "绿化带旁",
+        "event_text_cn": "283.1-354.04秒，黄色轿车在绿化带旁路过并进入绿化带旁。",
+        "keywords": [
+          "car",
+          "路过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          106.43,
+          465.88,
+          592.69,
+          216.6
+        ],
+        "end_bbox_xyxy": [
+          337.38,
+          248.68,
+          879.28,
+          762.32
+        ],
+        "entity_hint": "track_id=49"
+      },
+      {
+        "video_id": "VIRAT_S_000025_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 3191.61,
+        "end_time": 3486.28,
+        "object_type": "bike",
+        "object_color_cn": "不确定",
+        "appearance_notes_cn": "自行车骑行通过",
+        "scene_zone_cn": "大楼入口",
+        "event_text_cn": "3191.61-3486.28秒，不确定色自行车在大楼入口自行车骑行通过。",
+        "keywords": [
+          "bike",
+          "骑行通过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          673.46,
+          557.7,
+          707.34,
+          175.39
+        ],
+        "end_bbox_xyxy": [
+          349.61,
+          49.67,
+          830.34,
+          131.33
+        ],
+        "entity_hint": "track_id=50"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000026_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000026_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 1243.41,
+        "end_time": 1399.11,
+        "object_type": "car",
+        "object_color_cn": "白",
+        "appearance_notes_cn": "路过并进入道路中央",
+        "scene_zone_cn": "道路中央",
+        "event_text_cn": "1243.41-1399.11秒，白色轿车在道路中央路过并进入道路中央。",
+        "keywords": [
+          "car",
+          "路过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          644.52,
+          121.69,
+          215.75,
+          699.76
+        ],
+        "end_bbox_xyxy": [
+          85.11,
+          439.12,
+          270.52,
+          664.81
+        ],
+        "entity_hint": "track_id=52"
+      },
+      {
+        "video_id": "VIRAT_S_000026_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 1814.77,
+        "end_time": 2050.2,
+        "object_type": "car",
+        "object_color_cn": "白",
+        "appearance_notes_cn": "路过并进入大楼入口",
+        "scene_zone_cn": "大楼入口",
+        "event_text_cn": "1814.77-2050.2秒，白色轿车在大楼入口路过并进入大楼入口。",
+        "keywords": [
+          "car",
+          "路过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          266.2,
+          258.14,
+          987.28,
+          765.3
+        ],
+        "end_bbox_xyxy": [
+          694.42,
+          397.2,
+          801.17,
+          172.62
+        ],
+        "entity_hint": "track_id=51"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000027_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000027_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 375.33,
+        "end_time": 395.37,
+        "object_type": "bike",
+        "object_color_cn": "银灰",
+        "appearance_notes_cn": "自行车骑行通过",
+        "scene_zone_cn": "绿化带旁",
+        "event_text_cn": "375.33-395.37秒，银灰色自行车在绿化带旁自行车骑行通过。",
+        "keywords": [
+          "bike",
+          "骑行通过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          16.6,
+          59.12,
+          167.5,
+          104.56
+        ],
+        "end_bbox_xyxy": [
+          376.53,
+          330.54,
+          848.16,
+          329.04
+        ],
+        "entity_hint": "track_id=54"
+      },
+      {
+        "video_id": "VIRAT_S_000027_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2520.89,
+        "end_time": 2799.84,
+        "object_type": "car",
+        "object_color_cn": "不确定",
+        "appearance_notes_cn": "倒车并进入停车场入口附近",
+        "scene_zone_cn": "停车场入口附近",
+        "event_text_cn": "2520.89-2799.84秒，不确定色轿车在停车场入口附近倒车并进入停车场入口附近。",
+        "keywords": [
+          "car",
+          "倒车",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          617.42,
+          573.73,
+          229.38,
+          701.65
+        ],
+        "end_bbox_xyxy": [
+          15.81,
+          363.45,
+          584.61,
+          497.88
+        ],
+        "entity_hint": "track_id=53"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000028_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000028_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 960.55,
+        "end_time": 1066.78,
+        "object_type": "truck",
+        "object_color_cn": "绿",
+        "appearance_notes_cn": "静止停放，几乎无明显位移",
+        "scene_zone_cn": "停车场边缘步行区",
+        "event_text_cn": "960.55-1066.78秒，绿色卡车在停车场边缘步行区静止停放，几乎无明显位移。",
+        "keywords": [
+          "truck",
+          "静止停放",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          514.85,
+          93.5,
+          167.45,
+          799.97
+        ],
+        "end_bbox_xyxy": [
+          142.2,
+          500.84,
+          566.29,
+          181.9
+        ],
+        "entity_hint": "track_id=56"
+      },
+      {
+        "video_id": "VIRAT_S_000028_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 1137.72,
+        "end_time": 1353.15,
+        "object_type": "car",
+        "object_color_cn": "黑",
+        "appearance_notes_cn": "路过并进入道路中央",
+        "scene_zone_cn": "道路中央",
+        "event_text_cn": "1137.72-1353.15秒，黑色轿车在道路中央路过并进入道路中央。",
+        "keywords": [
+          "car",
+          "路过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          32.17,
+          54.34,
+          265.18,
+          675.68
+        ],
+        "end_bbox_xyxy": [
+          654.19,
+          266.32,
+          395.57,
+          605.71
+        ],
+        "entity_hint": "track_id=55"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000029_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000029_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 1163.06,
+        "end_time": 1210.14,
+        "object_type": "bike",
+        "object_color_cn": "白",
+        "appearance_notes_cn": "自行车骑行通过",
+        "scene_zone_cn": "马路对侧停车位",
+        "event_text_cn": "1163.06-1210.14秒，白色自行车在马路对侧停车位自行车骑行通过。",
+        "keywords": [
+          "bike",
+          "骑行通过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          602.06,
+          538.85,
+          899.81,
+          372.28
+        ],
+        "end_bbox_xyxy": [
+          490.5,
+          504.7,
+          837.1,
+          496.89
+        ],
+        "entity_hint": "track_id=58"
+      },
+      {
+        "video_id": "VIRAT_S_000029_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2703.92,
+        "end_time": 2849.82,
+        "object_type": "bike",
+        "object_color_cn": "红",
+        "appearance_notes_cn": "自行车骑行通过",
+        "scene_zone_cn": "十字路口",
+        "event_text_cn": "2703.92-2849.82秒，红色自行车在十字路口自行车骑行通过。",
+        "keywords": [
+          "bike",
+          "骑行通过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          95.68,
+          502.38,
+          499.58,
+          500.57
+        ],
+        "end_bbox_xyxy": [
+          233.85,
+          478.17,
+          124.13,
+          532.52
+        ],
+        "entity_hint": "track_id=57"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000030_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000030_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 199.49,
+        "end_time": 242.75,
+        "object_type": "person",
+        "object_color_cn": "蓝",
+        "appearance_notes_cn": "行人在绿化带旁徘徊",
+        "scene_zone_cn": "绿化带旁",
+        "event_text_cn": "199.49-242.75秒，蓝色人在绿化带旁行人在绿化带旁徘徊。",
+        "keywords": [
+          "person",
+          "徘徊",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          701.48,
+          564.96,
+          585.52,
+          795.13
+        ],
+        "end_bbox_xyxy": [
+          40.17,
+          18.17,
+          145.3,
+          616.06
+        ],
+        "entity_hint": "track_id=60"
+      },
+      {
+        "video_id": "VIRAT_S_000030_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 879.9,
+        "end_time": 899.53,
+        "object_type": "person",
+        "object_color_cn": "蓝",
+        "appearance_notes_cn": "行人在道路中央搬运物品",
+        "scene_zone_cn": "道路中央",
+        "event_text_cn": "879.9-899.53秒，蓝色人在道路中央行人在道路中央搬运物品。",
+        "keywords": [
+          "person",
+          "搬运物品",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          399.47,
+          212.86,
+          865.14,
+          498.85
+        ],
+        "end_bbox_xyxy": [
+          337.76,
+          552.17,
+          906.05,
+          518.68
+        ],
+        "entity_hint": "track_id=59"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000031_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000031_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 757.88,
+        "end_time": 897.7,
+        "object_type": "truck",
+        "object_color_cn": "蓝",
+        "appearance_notes_cn": "快速驶入并进入停车位区域",
+        "scene_zone_cn": "停车位区域",
+        "event_text_cn": "757.88-897.7秒，蓝色卡车在停车位区域快速驶入并进入停车位区域。",
+        "keywords": [
+          "truck",
+          "快速驶入",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          141.08,
+          356.14,
+          831.81,
+          459.96
+        ],
+        "end_bbox_xyxy": [
+          703.95,
+          461.26,
+          599.15,
+          195.03
+        ],
+        "entity_hint": "track_id=62"
+      },
+      {
+        "video_id": "VIRAT_S_000031_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2222.59,
+        "end_time": 2388.84,
+        "object_type": "car",
+        "object_color_cn": "红",
+        "appearance_notes_cn": "快速驶入并进入停车场边缘步行区",
+        "scene_zone_cn": "停车场边缘步行区",
+        "event_text_cn": "2222.59-2388.84秒，红色轿车在停车场边缘步行区快速驶入并进入停车场边缘步行区。",
+        "keywords": [
+          "car",
+          "快速驶入",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          39.55,
+          80.98,
+          747.07,
+          384.64
+        ],
+        "end_bbox_xyxy": [
+          356.52,
+          583.7,
+          257.68,
+          240.24
+        ],
+        "entity_hint": "track_id=61"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000032_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000032_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 1378.35,
+        "end_time": 1417.36,
+        "object_type": "car",
+        "object_color_cn": "银灰",
+        "appearance_notes_cn": "路过并进入绿化带旁",
+        "scene_zone_cn": "绿化带旁",
+        "event_text_cn": "1378.35-1417.36秒，银灰色轿车在绿化带旁路过并进入绿化带旁。",
+        "keywords": [
+          "car",
+          "路过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          450.89,
+          154.08,
+          370.11,
+          740.01
+        ],
+        "end_bbox_xyxy": [
+          749.93,
+          500.56,
+          237.2,
+          307.64
+        ],
+        "entity_hint": "track_id=63"
+      },
+      {
+        "video_id": "VIRAT_S_000032_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 3499.04,
+        "end_time": 3652.51,
+        "object_type": "person",
+        "object_color_cn": "黄",
+        "appearance_notes_cn": "行人在绿化带旁徘徊",
+        "scene_zone_cn": "绿化带旁",
+        "event_text_cn": "3499.04-3652.51秒，黄色人在绿化带旁行人在绿化带旁徘徊。",
+        "keywords": [
+          "person",
+          "徘徊",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          365.52,
+          337.28,
+          890.81,
+          608.79
+        ],
+        "end_bbox_xyxy": [
+          479.71,
+          351.37,
+          676.87,
+          778.54
+        ],
+        "entity_hint": "track_id=64"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000033_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000033_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 1461.77,
+        "end_time": 1710.37,
+        "object_type": "person",
+        "object_color_cn": "白",
+        "appearance_notes_cn": "行人在绿化带旁搬运物品",
+        "scene_zone_cn": "绿化带旁",
+        "event_text_cn": "1461.77-1710.37秒，白色人在绿化带旁行人在绿化带旁搬运物品。",
+        "keywords": [
+          "person",
+          "搬运物品",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          50.43,
+          588.87,
+          958.38,
+          383.8
+        ],
+        "end_bbox_xyxy": [
+          282.73,
+          85.11,
+          165.88,
+          184.48
+        ],
+        "entity_hint": "track_id=66"
+      },
+      {
+        "video_id": "VIRAT_S_000033_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 1566.81,
+        "end_time": 1802.22,
+        "object_type": "bike",
+        "object_color_cn": "黑",
+        "appearance_notes_cn": "自行车停放",
+        "scene_zone_cn": "道路中央",
+        "event_text_cn": "1566.81-1802.22秒，黑色自行车在道路中央自行车停放。",
+        "keywords": [
+          "bike",
+          "停放",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          720.18,
+          433.36,
+          144.49,
+          692.39
+        ],
+        "end_bbox_xyxy": [
+          718.28,
+          328.13,
+          813.18,
+          507.1
+        ],
+        "entity_hint": "track_id=65"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000034_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000034_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 618.57,
+        "end_time": 704.64,
+        "object_type": "truck",
+        "object_color_cn": "蓝",
+        "appearance_notes_cn": "缓慢驶出并进入停车场入口附近",
+        "scene_zone_cn": "停车场入口附近",
+        "event_text_cn": "618.57-704.64秒，蓝色卡车在停车场入口附近缓慢驶出并进入停车场入口附近。",
+        "keywords": [
+          "truck",
+          "缓慢驶出",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          577.92,
+          408.72,
+          516.48,
+          392.27
+        ],
+        "end_bbox_xyxy": [
+          551.4,
+          410.63,
+          557.55,
+          751.88
+        ],
+        "entity_hint": "track_id=67"
+      },
+      {
+        "video_id": "VIRAT_S_000034_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 1701.71,
+        "end_time": 1771.51,
+        "object_type": "bike",
+        "object_color_cn": "绿",
+        "appearance_notes_cn": "自行车停放",
+        "scene_zone_cn": "大楼入口",
+        "event_text_cn": "1701.71-1771.51秒，绿色自行车在大楼入口自行车停放。",
+        "keywords": [
+          "bike",
+          "停放",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          400.38,
+          111.56,
+          285.14,
+          590.28
+        ],
+        "end_bbox_xyxy": [
+          510.58,
+          474.5,
+          702.72,
+          532.4
+        ],
+        "entity_hint": "track_id=68"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000035_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000035_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2179.4,
+        "end_time": 2397.28,
+        "object_type": "car",
+        "object_color_cn": "蓝",
+        "appearance_notes_cn": "缓慢驶出并进入绿化带旁",
+        "scene_zone_cn": "绿化带旁",
+        "event_text_cn": "2179.4-2397.28秒，蓝色轿车在绿化带旁缓慢驶出并进入绿化带旁。",
+        "keywords": [
+          "car",
+          "缓慢驶出",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          220.29,
+          211.04,
+          759.11,
+          563.99
+        ],
+        "end_bbox_xyxy": [
+          387.1,
+          504.93,
+          911.21,
+          435.38
+        ],
+        "entity_hint": "track_id=70"
+      },
+      {
+        "video_id": "VIRAT_S_000035_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2636.03,
+        "end_time": 2913.27,
+        "object_type": "person",
+        "object_color_cn": "红",
+        "appearance_notes_cn": "行人在十字路口短暂停留",
+        "scene_zone_cn": "十字路口",
+        "event_text_cn": "2636.03-2913.27秒，红色人在十字路口行人在十字路口短暂停留。",
+        "keywords": [
+          "person",
+          "短暂停留",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          541.16,
+          103.65,
+          435.24,
+          184.43
+        ],
+        "end_bbox_xyxy": [
+          755.37,
+          284.16,
+          659.09,
+          551.62
+        ],
+        "entity_hint": "track_id=69"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000036_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000036_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 279.29,
+        "end_time": 433.32,
+        "object_type": "bike",
+        "object_color_cn": "不确定",
+        "appearance_notes_cn": "自行车骑行通过",
+        "scene_zone_cn": "绿化带旁",
+        "event_text_cn": "279.29-433.32秒，不确定色自行车在绿化带旁自行车骑行通过。",
+        "keywords": [
+          "bike",
+          "骑行通过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          162.52,
+          431.11,
+          320.16,
+          513.73
+        ],
+        "end_bbox_xyxy": [
+          242.21,
+          81.44,
+          722.91,
+          395.3
+        ],
+        "entity_hint": "track_id=72"
+      },
+      {
+        "video_id": "VIRAT_S_000036_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2586.86,
+        "end_time": 2818.27,
+        "object_type": "truck",
+        "object_color_cn": "绿",
+        "appearance_notes_cn": "快速驶入并进入停车位区域",
+        "scene_zone_cn": "停车位区域",
+        "event_text_cn": "2586.86-2818.27秒，绿色卡车在停车位区域快速驶入并进入停车位区域。",
+        "keywords": [
+          "truck",
+          "快速驶入",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          97.63,
+          80.2,
+          153.35,
+          492.73
+        ],
+        "end_bbox_xyxy": [
+          164.85,
+          440.09,
+          612.16,
+          121.43
+        ],
+        "entity_hint": "track_id=71"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000037_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000037_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 275.94,
+        "end_time": 320.59,
+        "object_type": "car",
+        "object_color_cn": "红",
+        "appearance_notes_cn": "路过并进入停车场边缘步行区",
+        "scene_zone_cn": "停车场边缘步行区",
+        "event_text_cn": "275.94-320.59秒，红色轿车在停车场边缘步行区路过并进入停车场边缘步行区。",
+        "keywords": [
+          "car",
+          "路过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          773.64,
+          279.64,
+          881.46,
+          731.72
+        ],
+        "end_bbox_xyxy": [
+          118.24,
+          135.99,
+          160.19,
+          443.73
+        ],
+        "entity_hint": "track_id=73"
+      },
+      {
+        "video_id": "VIRAT_S_000037_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2233.03,
+        "end_time": 2327.68,
+        "object_type": "bike",
+        "object_color_cn": "黑",
+        "appearance_notes_cn": "自行车骑行通过",
+        "scene_zone_cn": "停车位区域",
+        "event_text_cn": "2233.03-2327.68秒，黑色自行车在停车位区域自行车骑行通过。",
+        "keywords": [
+          "bike",
+          "骑行通过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          52.18,
+          420.37,
+          510.01,
+          330.39
+        ],
+        "end_bbox_xyxy": [
+          254.33,
+          134.79,
+          634.88,
+          166.15
+        ],
+        "entity_hint": "track_id=74"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000038_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000038_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 607.89,
+        "end_time": 903.02,
+        "object_type": "person",
+        "object_color_cn": "不确定",
+        "appearance_notes_cn": "行人在马路对侧停车位奔跑",
+        "scene_zone_cn": "马路对侧停车位",
+        "event_text_cn": "607.89-903.02秒，不确定色人在马路对侧停车位行人在马路对侧停车位奔跑。",
+        "keywords": [
+          "person",
+          "奔跑",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          142.37,
+          246.83,
+          107.83,
+          796.34
+        ],
+        "end_bbox_xyxy": [
+          86.24,
+          378.75,
+          464.58,
+          393.93
+        ],
+        "entity_hint": "track_id=75"
+      },
+      {
+        "video_id": "VIRAT_S_000038_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 655.04,
+        "end_time": 666.49,
+        "object_type": "car",
+        "object_color_cn": "黄",
+        "appearance_notes_cn": "静止停放，几乎无明显位移",
+        "scene_zone_cn": "马路对侧停车位",
+        "event_text_cn": "655.04-666.49秒，黄色轿车在马路对侧停车位静止停放，几乎无明显位移。",
+        "keywords": [
+          "car",
+          "静止停放",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          495.07,
+          96.67,
+          616.07,
+          514.83
+        ],
+        "end_bbox_xyxy": [
+          162.74,
+          245.89,
+          513.07,
+          251.82
+        ],
+        "entity_hint": "track_id=76"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000039_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000039_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 1266.56,
+        "end_time": 1494.42,
+        "object_type": "person",
+        "object_color_cn": "不确定",
+        "appearance_notes_cn": "行人在大楼入口短暂停留",
+        "scene_zone_cn": "大楼入口",
+        "event_text_cn": "1266.56-1494.42秒，不确定色人在大楼入口行人在大楼入口短暂停留。",
+        "keywords": [
+          "person",
+          "短暂停留",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          39.05,
+          321.98,
+          320.64,
+          643.72
+        ],
+        "end_bbox_xyxy": [
+          471.46,
+          500.4,
+          688.22,
+          623.17
+        ],
+        "entity_hint": "track_id=77"
+      },
+      {
+        "video_id": "VIRAT_S_000039_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2256.79,
+        "end_time": 2428.98,
+        "object_type": "bike",
+        "object_color_cn": "黄",
+        "appearance_notes_cn": "自行车骑行通过",
+        "scene_zone_cn": "道路中央",
+        "event_text_cn": "2256.79-2428.98秒，黄色自行车在道路中央自行车骑行通过。",
+        "keywords": [
+          "bike",
+          "骑行通过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          28.02,
+          213.07,
+          701.73,
+          524.2
+        ],
+        "end_bbox_xyxy": [
+          188.44,
+          522.62,
+          591.64,
+          610.43
+        ],
+        "entity_hint": "track_id=78"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000040_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000040_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 373.75,
+        "end_time": 551.62,
+        "object_type": "car",
+        "object_color_cn": "绿",
+        "appearance_notes_cn": "倒车并进入十字路口",
+        "scene_zone_cn": "十字路口",
+        "event_text_cn": "373.75-551.62秒，绿色轿车在十字路口倒车并进入十字路口。",
+        "keywords": [
+          "car",
+          "倒车",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          54.94,
+          307.76,
+          549.37,
+          217.54
+        ],
+        "end_bbox_xyxy": [
+          666.77,
+          199.17,
+          636.0,
+          668.94
+        ],
+        "entity_hint": "track_id=80"
+      },
+      {
+        "video_id": "VIRAT_S_000040_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 3402.73,
+        "end_time": 3500.47,
+        "object_type": "car",
+        "object_color_cn": "红",
+        "appearance_notes_cn": "静止停放，几乎无明显位移",
+        "scene_zone_cn": "停车场边缘步行区",
+        "event_text_cn": "3402.73-3500.47秒，红色轿车在停车场边缘步行区静止停放，几乎无明显位移。",
+        "keywords": [
+          "car",
+          "静止停放",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          648.62,
+          568.93,
+          639.16,
+          532.64
+        ],
+        "end_bbox_xyxy": [
+          572.57,
+          157.46,
+          998.03,
+          594.9
+        ],
+        "entity_hint": "track_id=79"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000041_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000041_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2154.66,
+        "end_time": 2185.6,
+        "object_type": "truck",
+        "object_color_cn": "蓝",
+        "appearance_notes_cn": "倒车并进入停车场入口附近",
+        "scene_zone_cn": "停车场入口附近",
+        "event_text_cn": "2154.66-2185.6秒，蓝色卡车在停车场入口附近倒车并进入停车场入口附近。",
+        "keywords": [
+          "truck",
+          "倒车",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          369.0,
+          487.75,
+          291.93,
+          567.1
+        ],
+        "end_bbox_xyxy": [
+          377.56,
+          410.19,
+          984.09,
+          272.55
+        ],
+        "entity_hint": "track_id=81"
+      },
+      {
+        "video_id": "VIRAT_S_000041_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2629.47,
+        "end_time": 2675.88,
+        "object_type": "bike",
+        "object_color_cn": "蓝",
+        "appearance_notes_cn": "自行车骑行通过",
+        "scene_zone_cn": "绿化带旁",
+        "event_text_cn": "2629.47-2675.88秒，蓝色自行车在绿化带旁自行车骑行通过。",
+        "keywords": [
+          "bike",
+          "骑行通过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          288.64,
+          504.23,
+          321.63,
+          612.64
+        ],
+        "end_bbox_xyxy": [
+          517.91,
+          269.92,
+          597.93,
+          717.86
+        ],
+        "entity_hint": "track_id=82"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000042_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000042_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2570.8,
+        "end_time": 2843.31,
+        "object_type": "truck",
+        "object_color_cn": "蓝",
+        "appearance_notes_cn": "缓慢驶出并进入道路中央",
+        "scene_zone_cn": "道路中央",
+        "event_text_cn": "2570.8-2843.31秒，蓝色卡车在道路中央缓慢驶出并进入道路中央。",
+        "keywords": [
+          "truck",
+          "缓慢驶出",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          482.79,
+          210.07,
+          122.99,
+          593.16
+        ],
+        "end_bbox_xyxy": [
+          272.03,
+          203.93,
+          981.98,
+          318.42
+        ],
+        "entity_hint": "track_id=84"
+      },
+      {
+        "video_id": "VIRAT_S_000042_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 3124.9,
+        "end_time": 3230.81,
+        "object_type": "bike",
+        "object_color_cn": "白",
+        "appearance_notes_cn": "自行车骑行通过",
+        "scene_zone_cn": "马路对侧停车位",
+        "event_text_cn": "3124.9-3230.81秒，白色自行车在马路对侧停车位自行车骑行通过。",
+        "keywords": [
+          "bike",
+          "骑行通过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          733.53,
+          184.06,
+          878.38,
+          396.47
+        ],
+        "end_bbox_xyxy": [
+          640.77,
+          400.13,
+          462.35,
+          276.46
+        ],
+        "entity_hint": "track_id=83"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000043_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000043_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 609.26,
+        "end_time": 689.74,
+        "object_type": "person",
+        "object_color_cn": "蓝",
+        "appearance_notes_cn": "行人在马路对侧停车位徘徊",
+        "scene_zone_cn": "马路对侧停车位",
+        "event_text_cn": "609.26-689.74秒，蓝色人在马路对侧停车位行人在马路对侧停车位徘徊。",
+        "keywords": [
+          "person",
+          "徘徊",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          680.72,
+          184.14,
+          875.18,
+          433.49
+        ],
+        "end_bbox_xyxy": [
+          78.78,
+          577.96,
+          223.09,
+          776.03
+        ],
+        "entity_hint": "track_id=86"
+      },
+      {
+        "video_id": "VIRAT_S_000043_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 726.79,
+        "end_time": 946.03,
+        "object_type": "bike",
+        "object_color_cn": "黄",
+        "appearance_notes_cn": "自行车骑行通过",
+        "scene_zone_cn": "十字路口",
+        "event_text_cn": "726.79-946.03秒，黄色自行车在十字路口自行车骑行通过。",
+        "keywords": [
+          "bike",
+          "骑行通过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          689.18,
+          290.94,
+          893.45,
+          262.96
+        ],
+        "end_bbox_xyxy": [
+          382.67,
+          13.14,
+          206.78,
+          629.75
+        ],
+        "entity_hint": "track_id=85"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000044_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000044_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 1483.99,
+        "end_time": 1777.54,
+        "object_type": "bike",
+        "object_color_cn": "红",
+        "appearance_notes_cn": "自行车骑行通过",
+        "scene_zone_cn": "大楼入口",
+        "event_text_cn": "1483.99-1777.54秒，红色自行车在大楼入口自行车骑行通过。",
+        "keywords": [
+          "bike",
+          "骑行通过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          91.3,
+          55.81,
+          681.27,
+          161.45
+        ],
+        "end_bbox_xyxy": [
+          342.86,
+          516.47,
+          819.54,
+          377.91
+        ],
+        "entity_hint": "track_id=88"
+      },
+      {
+        "video_id": "VIRAT_S_000044_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 1719.58,
+        "end_time": 1943.91,
+        "object_type": "truck",
+        "object_color_cn": "黄",
+        "appearance_notes_cn": "路过并进入停车场入口附近",
+        "scene_zone_cn": "停车场入口附近",
+        "event_text_cn": "1719.58-1943.91秒，黄色卡车在停车场入口附近路过并进入停车场入口附近。",
+        "keywords": [
+          "truck",
+          "路过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          564.12,
+          399.65,
+          172.31,
+          688.48
+        ],
+        "end_bbox_xyxy": [
+          336.54,
+          27.8,
+          468.11,
+          405.15
+        ],
+        "entity_hint": "track_id=87"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000045_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000045_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 253.33,
+        "end_time": 507.39,
+        "object_type": "person",
+        "object_color_cn": "黄",
+        "appearance_notes_cn": "行人在停车场入口附近徘徊",
+        "scene_zone_cn": "停车场入口附近",
+        "event_text_cn": "253.33-507.39秒，黄色人在停车场入口附近行人在停车场入口附近徘徊。",
+        "keywords": [
+          "person",
+          "徘徊",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          577.02,
+          565.53,
+          286.36,
+          266.46
+        ],
+        "end_bbox_xyxy": [
+          321.02,
+          99.83,
+          232.02,
+          358.69
+        ],
+        "entity_hint": "track_id=90"
+      },
+      {
+        "video_id": "VIRAT_S_000045_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2541.53,
+        "end_time": 2609.07,
+        "object_type": "bike",
+        "object_color_cn": "蓝",
+        "appearance_notes_cn": "自行车停放",
+        "scene_zone_cn": "十字路口",
+        "event_text_cn": "2541.53-2609.07秒，蓝色自行车在十字路口自行车停放。",
+        "keywords": [
+          "bike",
+          "停放",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          507.69,
+          22.18,
+          283.58,
+          179.81
+        ],
+        "end_bbox_xyxy": [
+          156.98,
+          494.46,
+          730.33,
+          373.86
+        ],
+        "entity_hint": "track_id=89"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000046_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000046_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 446.44,
+        "end_time": 521.64,
+        "object_type": "person",
+        "object_color_cn": "红",
+        "appearance_notes_cn": "行人在停车场入口附近徘徊",
+        "scene_zone_cn": "停车场入口附近",
+        "event_text_cn": "446.44-521.64秒，红色人在停车场入口附近行人在停车场入口附近徘徊。",
+        "keywords": [
+          "person",
+          "徘徊",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          379.07,
+          183.61,
+          703.84,
+          366.5
+        ],
+        "end_bbox_xyxy": [
+          193.94,
+          493.22,
+          374.49,
+          181.14
+        ],
+        "entity_hint": "track_id=91"
+      },
+      {
+        "video_id": "VIRAT_S_000046_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2519.0,
+        "end_time": 2605.16,
+        "object_type": "person",
+        "object_color_cn": "红",
+        "appearance_notes_cn": "行人在绿化带旁搬运物品",
+        "scene_zone_cn": "绿化带旁",
+        "event_text_cn": "2519.0-2605.16秒，红色人在绿化带旁行人在绿化带旁搬运物品。",
+        "keywords": [
+          "person",
+          "搬运物品",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          283.66,
+          229.21,
+          542.06,
+          742.2
+        ],
+        "end_bbox_xyxy": [
+          794.87,
+          308.31,
+          500.81,
+          349.44
+        ],
+        "entity_hint": "track_id=92"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000047_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000047_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 44.38,
+        "end_time": 96.7,
+        "object_type": "bike",
+        "object_color_cn": "红",
+        "appearance_notes_cn": "自行车停放",
+        "scene_zone_cn": "停车场入口附近",
+        "event_text_cn": "44.38-96.7秒，红色自行车在停车场入口附近自行车停放。",
+        "keywords": [
+          "bike",
+          "停放",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          761.24,
+          522.85,
+          165.86,
+          473.33
+        ],
+        "end_bbox_xyxy": [
+          781.4,
+          317.58,
+          353.81,
+          125.96
+        ],
+        "entity_hint": "track_id=94"
+      },
+      {
+        "video_id": "VIRAT_S_000047_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2363.96,
+        "end_time": 2422.93,
+        "object_type": "person",
+        "object_color_cn": "黄",
+        "appearance_notes_cn": "行人在绿化带旁快步走过",
+        "scene_zone_cn": "绿化带旁",
+        "event_text_cn": "2363.96-2422.93秒，黄色人在绿化带旁行人在绿化带旁快步走过。",
+        "keywords": [
+          "person",
+          "快步走过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          211.36,
+          19.52,
+          591.81,
+          174.7
+        ],
+        "end_bbox_xyxy": [
+          127.64,
+          339.81,
+          350.81,
+          558.52
+        ],
+        "entity_hint": "track_id=93"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000048_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000048_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 1027.91,
+        "end_time": 1314.15,
+        "object_type": "truck",
+        "object_color_cn": "银灰",
+        "appearance_notes_cn": "路过并进入道路中央",
+        "scene_zone_cn": "道路中央",
+        "event_text_cn": "1027.91-1314.15秒，银灰色卡车在道路中央路过并进入道路中央。",
+        "keywords": [
+          "truck",
+          "路过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          286.92,
+          555.68,
+          430.86,
+          631.06
+        ],
+        "end_bbox_xyxy": [
+          730.74,
+          275.04,
+          406.27,
+          174.66
+        ],
+        "entity_hint": "track_id=95"
+      },
+      {
+        "video_id": "VIRAT_S_000048_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 1190.02,
+        "end_time": 1230.4,
+        "object_type": "truck",
+        "object_color_cn": "蓝",
+        "appearance_notes_cn": "静止停放，几乎无明显位移",
+        "scene_zone_cn": "马路对侧停车位",
+        "event_text_cn": "1190.02-1230.4秒，蓝色卡车在马路对侧停车位静止停放，几乎无明显位移。",
+        "keywords": [
+          "truck",
+          "静止停放",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          15.58,
+          29.81,
+          468.61,
+          659.11
+        ],
+        "end_bbox_xyxy": [
+          427.99,
+          407.1,
+          333.69,
+          331.03
+        ],
+        "entity_hint": "track_id=96"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000049_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000049_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 1725.26,
+        "end_time": 1828.35,
+        "object_type": "bike",
+        "object_color_cn": "黄",
+        "appearance_notes_cn": "自行车骑行通过",
+        "scene_zone_cn": "大楼入口",
+        "event_text_cn": "1725.26-1828.35秒，黄色自行车在大楼入口自行车骑行通过。",
+        "keywords": [
+          "bike",
+          "骑行通过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          348.51,
+          388.93,
+          462.27,
+          379.92
+        ],
+        "end_bbox_xyxy": [
+          547.3,
+          161.32,
+          675.74,
+          766.44
+        ],
+        "entity_hint": "track_id=98"
+      },
+      {
+        "video_id": "VIRAT_S_000049_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2863.23,
+        "end_time": 3012.85,
+        "object_type": "person",
+        "object_color_cn": "红",
+        "appearance_notes_cn": "行人在马路对侧停车位快步走过",
+        "scene_zone_cn": "马路对侧停车位",
+        "event_text_cn": "2863.23-3012.85秒，红色人在马路对侧停车位行人在马路对侧停车位快步走过。",
+        "keywords": [
+          "person",
+          "快步走过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          770.96,
+          500.37,
+          321.19,
+          655.63
+        ],
+        "end_bbox_xyxy": [
+          281.31,
+          49.86,
+          108.38,
+          154.61
+        ],
+        "entity_hint": "track_id=97"
+      }
+    ]
+  },
+  {
+    "video_id": "VIRAT_S_000050_00_000000_000500.mp4",
+    "events": [
+      {
+        "video_id": "VIRAT_S_000050_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 2500.82,
+        "end_time": 2791.55,
+        "object_type": "person",
+        "object_color_cn": "不确定",
+        "appearance_notes_cn": "行人在停车场边缘步行区快步走过",
+        "scene_zone_cn": "停车场边缘步行区",
+        "event_text_cn": "2500.82-2791.55秒，不确定色人在停车场边缘步行区行人在停车场边缘步行区快步走过。",
+        "keywords": [
+          "person",
+          "快步走过",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          510.35,
+          555.41,
+          301.73,
+          144.35
+        ],
+        "end_bbox_xyxy": [
+          500.0,
+          396.54,
+          259.53,
+          399.11
+        ],
+        "entity_hint": "track_id=100"
+      },
+      {
+        "video_id": "VIRAT_S_000050_00_000000_000500.mp4",
+        "clip_start_sec": 0.0,
+        "clip_end_sec": 3600.0,
+        "start_time": 3346.85,
+        "end_time": 3457.35,
+        "object_type": "car",
+        "object_color_cn": "黄",
+        "appearance_notes_cn": "缓慢驶出并进入停车场入口附近",
+        "scene_zone_cn": "停车场入口附近",
+        "event_text_cn": "3346.85-3457.35秒，黄色轿车在停车场入口附近缓慢驶出并进入停车场入口附近。",
+        "keywords": [
+          "car",
+          "缓慢驶出",
+          "mock_large_data"
+        ],
+        "start_bbox_xyxy": [
+          733.33,
+          197.01,
+          588.64,
+          521.26
+        ],
+        "end_bbox_xyxy": [
+          504.57,
+          365.77,
+          251.44,
+          787.51
+        ],
+        "entity_hint": "track_id=99"
+      }
+    ]
+  }
+]
