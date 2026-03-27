@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Stage 2 Architecture – Indexing & Query Agent</title>
+<style>
+  body { margin: 0; background: #f0f2f5; font-family: 'Segoe UI', Arial, sans-serif; display: flex; justify-content: center; padding: 30px 0 60px; }
+  svg { display: block; }
+</style>
+</head>
+<body>
+<svg width="1020" height="1040" viewBox="0 0 1020 1040" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#555"/>
+    </marker>
+    <marker id="arrow-or" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrow-teal" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#0d9488"/>
+    </marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e11d48"/>
+    </marker>
+    <marker id="arrow-slate" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#475569"/>
+    </marker>
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#00000022"/>
+    </filter>
+  </defs>
+
+  <!-- Title -->
+  <rect x="0" y="0" width="1020" height="56" fill="#1e293b"/>
+  <text x="510" y="34" text-anchor="middle" font-size="20" font-weight="bold" fill="white">Stage 2 — Indexing &amp; LangGraph Query Agent</text>
+  <text x="510" y="50" text-anchor="middle" font-size="11" fill="#94a3b8">Refined Event JSON  →  Vector Store  →  Natural Language Query  →  Answer</text>
+
+  <!-- ─── INPUT FROM STAGE 1 ─────────────────────────────── -->
+  <rect x="310" y="74" width="400" height="44" rx="10" fill="#7c3aed" filter="url(#shadow)"/>
+  <text x="510" y="94" text-anchor="middle" font-size="12" font-weight="bold" fill="white">📄  Stage 1 Output:  *_refined_events.json</text>
+  <text x="510" y="111" text-anchor="middle" font-size="10.5" fill="#e9d5ff">LLM-enriched events  |  clip segments  |  pipeline meta</text>
+
+  <line x1="510" y1="118" x2="510" y2="140" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ═══════════════════════════════════════════════════════
+       PHASE A: INDEXING (offline)
+  ═══════════════════════════════════════════════════════ -->
+  <rect x="25" y="142" width="970" height="240" rx="14" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="55" y="164" font-size="12" font-weight="bold" fill="#92400e">Phase A — Offline Indexing Pipeline</text>
+
+  <!-- Document Builder -->
+  <rect x="45" y="173" width="200" height="94" rx="9" fill="white" stroke="#fcd34d" stroke-width="1.3" filter="url(#shadow)"/>
+  <rect x="45" y="173" width="200" height="26" rx="9" fill="#f59e0b"/>
+  <rect x="45" y="186" width="200" height="13" fill="#f59e0b"/>
+  <text x="145" y="191" text-anchor="middle" font-size="11" font-weight="bold" fill="white">document_builder.py</text>
+  <text x="145" y="210" text-anchor="middle" font-size="10.5" fill="#374151">Parse refined_events JSON</text>
+  <text x="145" y="226" text-anchor="middle" font-size="10.5" fill="#374151">Build text documents</text>
+  <text x="145" y="242" text-anchor="middle" font-size="10" fill="#6b7280">event_text_cn + keywords</text>
+  <text x="145" y="256" text-anchor="middle" font-size="10" fill="#6b7280">+ metadata fields</text>
+
+  <line x1="245" y1="220" x2="272" y2="220" stroke="#f59e0b" stroke-width="1.8" marker-end="url(#arrow-or)"/>
+
+  <!-- Embedder -->
+  <rect x="272" y="173" width="210" height="94" rx="9" fill="white" stroke="#fcd34d" stroke-width="1.3" filter="url(#shadow)"/>
+  <rect x="272" y="173" width="210" height="26" rx="9" fill="#f59e0b"/>
+  <rect x="272" y="186" width="210" height="13" fill="#f59e0b"/>
+  <text x="377" y="191" text-anchor="middle" font-size="11" font-weight="bold" fill="white">embedder.py</text>
+  <text x="377" y="210" text-anchor="middle" font-size="10.5" fill="#374151">Qwen text-embedding-v3</text>
+  <text x="377" y="226" text-anchor="middle" font-size="10.5" fill="#374151">DashScope API</text>
+  <text x="377" y="242" text-anchor="middle" font-size="10" fill="#1d4ed8" font-family="monospace">dim=1024  |  float32</text>
+  <text x="377" y="256" text-anchor="middle" font-size="10" fill="#6b7280">Batch embedding support</text>
+
+  <line x1="482" y1="220" x2="509" y2="220" stroke="#f59e0b" stroke-width="1.8" marker-end="url(#arrow-or)"/>
+
+  <!-- Graph Builder -->
+  <rect x="509" y="173" width="205" height="94" rx="9" fill="white" stroke="#fcd34d" stroke-width="1.3" filter="url(#shadow)"/>
+  <rect x="509" y="173" width="205" height="26" rx="9" fill="#f59e0b"/>
+  <rect x="509" y="186" width="205" height="13" fill="#f59e0b"/>
+  <text x="611" y="191" text-anchor="middle" font-size="11" font-weight="bold" fill="white">graph_builder.py</text>
+  <text x="611" y="210" text-anchor="middle" font-size="10.5" fill="#374151">Build knowledge graph</text>
+  <text x="611" y="226" text-anchor="middle" font-size="10.5" fill="#374151">Event nodes + relations</text>
+  <text x="611" y="242" text-anchor="middle" font-size="10" fill="#6b7280">temporal / spatial edges</text>
+  <text x="611" y="256" text-anchor="middle" font-size="10" fill="#6b7280">same-entity links</text>
+
+  <line x1="714" y1="220" x2="741" y2="220" stroke="#f59e0b" stroke-width="1.8" marker-end="url(#arrow-or)"/>
+
+  <!-- Store Manager -->
+  <rect x="741" y="173" width="230" height="94" rx="9" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.3" filter="url(#shadow)"/>
+  <rect x="741" y="173" width="230" height="26" rx="9" fill="#d97706"/>
+  <rect x="741" y="186" width="230" height="13" fill="#d97706"/>
+  <text x="856" y="191" text-anchor="middle" font-size="11" font-weight="bold" fill="white">store_manager.py</text>
+  <text x="856" y="210" text-anchor="middle" font-size="10.5" fill="#374151">SQLite + sqlite_vec</text>
+  <text x="856" y="226" text-anchor="middle" font-size="10" fill="#1d4ed8" font-family="monospace">episodic_memory.db</text>
+  <text x="856" y="242" text-anchor="middle" font-size="10" fill="#6b7280">episodic_events  (structured)</text>
+  <text x="856" y="258" text-anchor="middle" font-size="10" fill="#6b7280">episodic_events_vec  (vector)</text>
+
+  <!-- Arrow down from store to DB icon -->
+  <line x1="510" y1="267" x2="510" y2="310" stroke="#555" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#arrow)"/>
+
+  <!-- DB icon -->
+  <ellipse cx="510" cy="322" rx="90" ry="18" fill="#d97706"/>
+  <rect x="420" y="322" width="180" height="38" fill="#d97706"/>
+  <ellipse cx="510" cy="360" rx="90" ry="18" fill="#b45309"/>
+  <text x="510" y="347" text-anchor="middle" font-size="11" font-weight="bold" fill="white">episodic_memory.db</text>
+
+  <!-- ═══════════════════════════════════════════════════════
+       USER QUERY INPUT
+  ═══════════════════════════════════════════════════════ -->
+  <line x1="510" y1="378" x2="510" y2="400" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="330" y="400" width="360" height="44" rx="10" fill="#1e293b" filter="url(#shadow)"/>
+  <text x="510" y="419" text-anchor="middle" font-size="13" font-weight="bold" fill="white">💬  User Query  (Natural Language)</text>
+  <text x="510" y="436" text-anchor="middle" font-size="10.5" fill="#94a3b8">"Find white car entering parking lot after 10s"</text>
+
+  <line x1="510" y1="444" x2="510" y2="464" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ═══════════════════════════════════════════════════════
+       PHASE B: LANGGRAPH AGENT (online)
+  ═══════════════════════════════════════════════════════ -->
+  <rect x="25" y="466" width="970" height="460" rx="14" fill="#f0fdfa" stroke="#0d9488" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="55" y="488" font-size="12" font-weight="bold" fill="#134e4a">Phase B — LangGraph Query Agent  (online)</text>
+
+  <!-- PARSE node -->
+  <rect x="390" y="496" width="240" height="72" rx="9" fill="white" stroke="#5eead4" stroke-width="1.3" filter="url(#shadow)"/>
+  <rect x="390" y="496" width="240" height="24" rx="9" fill="#0d9488"/>
+  <rect x="390" y="507" width="240" height="12" fill="#0d9488"/>
+  <text x="510" y="512" text-anchor="middle" font-size="11" font-weight="bold" fill="white">Node: parse.py</text>
+  <text x="510" y="530" text-anchor="middle" font-size="10.5" fill="#374151">Extract intent, time range</text>
+  <text x="510" y="546" text-anchor="middle" font-size="10.5" fill="#374151">object type, scene zone</text>
+  <text x="510" y="560" text-anchor="middle" font-size="10" fill="#6b7280">→ structured QueryState</text>
+
+  <line x1="510" y1="568" x2="510" y2="588" stroke="#0d9488" stroke-width="1.8" marker-end="url(#arrow-teal)"/>
+
+  <!-- ROUTE node -->
+  <rect x="390" y="588" width="240" height="62" rx="9" fill="white" stroke="#5eead4" stroke-width="1.3" filter="url(#shadow)"/>
+  <rect x="390" y="588" width="240" height="24" rx="9" fill="#0d9488"/>
+  <rect x="390" y="599" width="240" height="12" fill="#0d9488"/>
+  <text x="510" y="604" text-anchor="middle" font-size="11" font-weight="bold" fill="white">Node: route.py</text>
+  <text x="510" y="622" text-anchor="middle" font-size="10.5" fill="#374151">Decide retrieval strategy</text>
+  <text x="510" y="638" text-anchor="middle" font-size="10" fill="#6b7280">vector / structured / graph / hybrid</text>
+
+  <!-- Fan-out arrows from ROUTE to retrieval methods -->
+  <line x1="390" y1="619" x2="280" y2="680" stroke="#0d9488" stroke-width="1.5" marker-end="url(#arrow-teal)"/>
+  <line x1="430" y1="650" x2="385" y2="680" stroke="#0d9488" stroke-width="1.5" marker-end="url(#arrow-teal)"/>
+  <line x1="510" y1="650" x2="510" y2="680" stroke="#0d9488" stroke-width="1.5" marker-end="url(#arrow-teal)"/>
+  <line x1="590" y1="650" x2="635" y2="680" stroke="#0d9488" stroke-width="1.5" marker-end="url(#arrow-teal)"/>
+  <line x1="630" y1="619" x2="740" y2="680" stroke="#0d9488" stroke-width="1.5" marker-end="url(#arrow-teal)"/>
+
+  <!-- RETRIEVAL METHODS (5 boxes) -->
+  <!-- 1. Vector Search -->
+  <rect x="45" y="680" width="200" height="98" rx="8" fill="white" stroke="#5eead4" stroke-width="1.2"/>
+  <text x="145" y="700" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#0f766e">Vector Search</text>
+  <text x="145" y="716" text-anchor="middle" font-size="10" fill="#374151">event_retriever.py</text>
+  <text x="145" y="731" text-anchor="middle" font-size="10" fill="#374151">Query → Qwen embed</text>
+  <text x="145" y="746" text-anchor="middle" font-size="10" fill="#374151">sqlite_vec KNN match</text>
+  <text x="145" y="762" text-anchor="middle" font-size="10" fill="#6b7280">cosine sim, top-k</text>
+  <text x="145" y="775" text-anchor="middle" font-size="10" fill="#6b7280">✅ implemented</text>
+
+  <!-- 2. Structured Filter -->
+  <rect x="264" y="680" width="188" height="98" rx="8" fill="white" stroke="#5eead4" stroke-width="1.2"/>
+  <text x="358" y="700" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#0f766e">Structured Filter</text>
+  <text x="358" y="716" text-anchor="middle" font-size="10" fill="#374151">event_retriever.py</text>
+  <text x="358" y="731" text-anchor="middle" font-size="10" fill="#374151">SQL WHERE clauses</text>
+  <text x="358" y="746" text-anchor="middle" font-size="10" fill="#374151">video_id, object_type</text>
+  <text x="358" y="761" text-anchor="middle" font-size="10" fill="#374151">scene_zone, time range</text>
+  <text x="358" y="775" text-anchor="middle" font-size="10" fill="#6b7280">✅ implemented</text>
+
+  <!-- 3. Hybrid Search -->
+  <rect x="466" y="680" width="188" height="98" rx="8" fill="#ccfbf1" stroke="#5eead4" stroke-width="1.2"/>
+  <text x="560" y="700" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#0f766e">Hybrid Search</text>
+  <text x="560" y="716" text-anchor="middle" font-size="10" fill="#374151">Vector + SQL combined</text>
+  <text x="560" y="731" text-anchor="middle" font-size="10" fill="#374151">embed MATCH +</text>
+  <text x="560" y="746" text-anchor="middle" font-size="10" fill="#374151">structured filters</text>
+  <text x="560" y="761" text-anchor="middle" font-size="10" fill="#374151">hybrid_event_search()</text>
+  <text x="560" y="775" text-anchor="middle" font-size="10" fill="#6b7280">✅ implemented</text>
+
+  <!-- 4. Graph Retrieval -->
+  <rect x="668" y="680" width="165" height="98" rx="8" fill="white" stroke="#5eead4" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <text x="750" y="700" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#0f766e">Graph Retrieval</text>
+  <text x="750" y="716" text-anchor="middle" font-size="10" fill="#374151">graph_retriever.py</text>
+  <text x="750" y="731" text-anchor="middle" font-size="10" fill="#374151">Traverse event graph</text>
+  <text x="750" y="746" text-anchor="middle" font-size="10" fill="#374151">temporal / entity</text>
+  <text x="750" y="761" text-anchor="middle" font-size="10" fill="#374151">relations</text>
+  <text x="750" y="775" text-anchor="middle" font-size="10" fill="#e11d48">⚙ planned</text>
+
+  <!-- 5. Multi-modal / Summary -->
+  <rect x="847" y="680" width="148" height="98" rx="8" fill="white" stroke="#5eead4" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <text x="921" y="700" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#0f766e">Summary /</text>
+  <text x="921" y="714" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#0f766e">Multi-modal</text>
+  <text x="921" y="730" text-anchor="middle" font-size="10" fill="#374151">summary_retriever</text>
+  <text x="921" y="745" text-anchor="middle" font-size="10" fill="#374151">multi_modal.py</text>
+  <text x="921" y="760" text-anchor="middle" font-size="10" fill="#374151">Frame-level query</text>
+  <text x="921" y="775" text-anchor="middle" font-size="10" fill="#e11d48">⚙ planned</text>
+
+  <!-- Fan-in arrows to FUSION -->
+  <line x1="145" y1="778" x2="280" y2="818" stroke="#475569" stroke-width="1.4" marker-end="url(#arrow-slate)"/>
+  <line x1="358" y1="778" x2="370" y2="818" stroke="#475569" stroke-width="1.4" marker-end="url(#arrow-slate)"/>
+  <line x1="560" y1="778" x2="510" y2="818" stroke="#475569" stroke-width="1.4" marker-end="url(#arrow-slate)"/>
+  <line x1="750" y1="778" x2="640" y2="818" stroke="#475569" stroke-width="1.4" marker-end="url(#arrow-slate)"/>
+  <line x1="921" y1="778" x2="740" y2="818" stroke="#475569" stroke-width="1.4" marker-end="url(#arrow-slate)"/>
+
+  <!-- FUSION + RERANK box -->
+  <rect x="280" y="818" width="460" height="64" rx="9" fill="white" stroke="#5eead4" stroke-width="1.3" filter="url(#shadow)"/>
+  <rect x="280" y="818" width="460" height="24" rx="9" fill="#0d9488"/>
+  <rect x="280" y="830" width="460" height="12" fill="#0d9488"/>
+  <text x="510" y="835" text-anchor="middle" font-size="11" font-weight="bold" fill="white">fusion.py  +  reranker.py</text>
+  <text x="510" y="852" text-anchor="middle" font-size="10.5" fill="#374151">Merge results from all retrievers  →  deduplicate  →  score fusion</text>
+  <text x="510" y="868" text-anchor="middle" font-size="10" fill="#6b7280">Re-rank by relevance score  |  top-K candidates selected</text>
+
+  <line x1="510" y1="882" x2="510" y2="902" stroke="#0d9488" stroke-width="1.8" marker-end="url(#arrow-teal)"/>
+
+  <!-- ANSWER NODE -->
+  <rect x="310" y="902" width="400" height="68" rx="9" fill="white" stroke="#5eead4" stroke-width="1.3" filter="url(#shadow)"/>
+  <rect x="310" y="902" width="400" height="24" rx="9" fill="#0d9488"/>
+  <rect x="310" y="914" width="400" height="12" fill="#0d9488"/>
+  <text x="510" y="919" text-anchor="middle" font-size="11" font-weight="bold" fill="white">Node: answer.py  (LLM Response Generation)</text>
+  <text x="510" y="937" text-anchor="middle" font-size="10.5" fill="#374151">Top-K events + original query → LLM prompt</text>
+  <text x="510" y="952" text-anchor="middle" font-size="10.5" fill="#374151">Tools: search / verify / playback / summarize</text>
+  <text x="510" y="966" text-anchor="middle" font-size="10" fill="#6b7280">Structured answer with timestamps &amp; evidence</text>
+
+  <!-- AGENT TOOLS (side panel) -->
+  <rect x="760" y="896" width="230" height="80" rx="8" fill="#f0fdf4" stroke="#86efac" stroke-width="1.2"/>
+  <text x="875" y="913" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#166534">Agent Tools</text>
+  <text x="875" y="929" text-anchor="middle" font-size="10" fill="#374151">🔍 search.py   ✅ verify.py</text>
+  <text x="875" y="945" text-anchor="middle" font-size="10" fill="#374151">▶ playback.py  📝 summarize.py</text>
+  <text x="875" y="960" text-anchor="middle" font-size="10" fill="#6b7280">Return clips / timestamps</text>
+  <line x1="760" y1="936" x2="710" y2="936" stroke="#86efac" stroke-width="1.3" stroke-dasharray="3,2" marker-end="url(#arrow)"/>
+
+  <!-- Final output -->
+  <line x1="510" y1="970" x2="510" y2="990" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="300" y="990" width="420" height="40" rx="10" fill="#1e293b" filter="url(#shadow)"/>
+  <text x="510" y="1008" text-anchor="middle" font-size="12" font-weight="bold" fill="white">✅  Answer  +  Relevant Event Clips &amp; Timestamps</text>
+  <text x="510" y="1024" text-anchor="middle" font-size="10.5" fill="#94a3b8">Returned to user with evidence and scene context</text>
+
+  <!-- Legend -->
+  <rect x="25" y="992" width="265" height="40" rx="8" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="40" y="1006" width="12" height="12" rx="2" fill="#f59e0b"/>
+  <text x="58" y="1016" font-size="10" fill="#374151">Indexing (offline)</text>
+  <rect x="130" y="1006" width="12" height="12" rx="2" fill="#0d9488"/>
+  <text x="148" y="1016" font-size="10" fill="#374151">Agent (online)</text>
+  <line x1="40" y1="1028" x2="52" y2="1028" stroke="#555" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="58" y="1031" font-size="10" fill="#374151">Planned / stub</text>
+  <line x1="140" y1="1028" x2="152" y2="1028" stroke="#555" stroke-width="1.5"/>
+  <text x="158" y="1031" font-size="10" fill="#374151">Implemented</text>
+</svg>
+</body>
+</html>
