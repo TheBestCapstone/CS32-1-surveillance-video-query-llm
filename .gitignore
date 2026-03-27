@@ -1,2 +1,4 @@
 .env
 docs/
+_models/
+_data/
