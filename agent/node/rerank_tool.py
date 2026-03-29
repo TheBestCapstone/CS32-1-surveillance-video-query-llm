@@ -52,6 +52,6 @@ def create_rerank_tool(reranker: SimpleRerankTool | None = None):
 
 
 if __name__ == "__main__":
-    tool = create_rerank_tool()
-    result = tool([{"event_id": 1, "_distance": 0.2}], ["进入"], [], top_k=5)
+    tool = SimpleRerankTool()
+    result = tool.rerank([{"event_id": 1, "_distance": 0.2}], ["进入"], [], top_k=5)
     print("rerank result:", result)
