@@ -87,11 +87,12 @@ def create_parse_node(llm: Any):
             raw_content = last_message
         user_text = content_to_text(raw_content)
         thread_id = str((config or {}).get("configurable", {}).get("thread_id", "default"))
-        memory_item = store.get(("capstone", "memory"), thread_id)
         memory_block = ""
-        if memory_item is not None and getattr(memory_item, "value", None) is not None:
-            memory_value = memory_item.value
-            memory_block = memory_value if isinstance(memory_value, str) else str(memory_value)
+        if store is not None:
+            memory_item = store.get(("capstone", "memory"), thread_id)
+            if memory_item is not None and getattr(memory_item, "value", None) is not None:
+                memory_value = memory_item.value
+                memory_block = memory_value if isinstance(memory_value, str) else str(memory_value)
         system_prompt = build_system_prompt(memory_block)
         structured_llm = llm.with_structured_output(ParsedQuestion)
         question = structured_llm.invoke(
@@ -108,7 +109,8 @@ def create_parse_node(llm: Any):
             payload = dict(question)
             payload_text = json.dumps(payload, ensure_ascii=False)
         meta_list, event_list = question_to_meta_and_event(payload)
-        store.put(("capstone", "parsed_question"), thread_id, payload)
+        if store is not None:
+            store.put(("capstone", "parsed_question"), thread_id, payload)
         return {
             "messages": [AIMessage(content=f"问题解析完成: {payload_text}")],
             "parsed_question": payload,

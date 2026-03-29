@@ -16,8 +16,15 @@ def create_rerank_node(reranker: SimpleRerankTool | None = None):
             return {"rerank_result": [], "thought": ""}
         try:
             actual_reranker = reranker or SimpleRerankTool()
+            merged_result = state.get("merged_result", [])
+            hybrid_result = state.get("hybrid_result", [])
+            sql_result = state.get("sql_result", [])
+            video_vect_result = state.get("video_vect_result", [])
+
+            source_results = merged_result or hybrid_result or sql_result or video_vect_result
+
             ranked = actual_reranker.rerank(
-                rows=state.get("sql_result", []),
+                rows=source_results,
                 event_list=state.get("event_list", []),
                 meta_list=state.get("meta_list", []),
                 top_k=5,
@@ -47,7 +54,7 @@ if __name__ == "__main__":
 
     node = create_rerank_node(reranker=FakeReranker())
     out = node(
-        {"sql_result": [{"event_id": 1}, {"event_id": 2}], "event_list": ["进入"], "meta_list": [], "tool_error": None},
+        {"hybrid_result": [{"event_id": 1}, {"event_id": 2}], "event_list": ["进入"], "meta_list": [], "tool_error": None},
         config={},
         store=None,
     )
