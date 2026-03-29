@@ -9,12 +9,14 @@ from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, START, StateGraph
 from langgraph.store.memory import InMemoryStore
 
-from node.answer_node import final_answer_node, final_error_node
-from node.parse_node import create_parse_node
-from node.route_node import error_router_node, route_by_error
-from node.rerank_node import create_rerank_node
-from node.sql_node import create_sql_search_node
+from node.answer_node import final_answer_node
+from node.hybrid_search_node import create_hybrid_search_node
+from node.preprocess import create_hybrid_preprocess_node, create_pure_sql_preprocess_node, create_video_vect_preprocess_node
+from node.pure_sql_node import create_pure_sql_node
+from node.reflection_node import create_reflection_node, route_after_reflection
+from node.tool_router_node import create_tool_router_node, route_by_tool_choice
 from node.types import AgentState
+from node.video_vect_node import create_video_vect_node
 
 
 def load_env() -> None:
@@ -50,14 +52,22 @@ def save_graph_structure(compiled_graph: Any, output_path: Path) -> None:
             "# Graph Structure\n\n"
             "```mermaid\n"
             "graph TD\n"
-            "    START --> start_tool\n"
-            "    start_tool --> sql_search_node\n"
-            "    sql_search_node --> rerank_retrieve_node\n"
-            "    rerank_retrieve_node --> error_router_node\n"
-            "    error_router_node -->|ok| final_answer_node\n"
-            "    error_router_node -->|error| final_error_node\n"
+            "    START --> tool_router\n"
+            "    tool_router -->|hybrid| hybrid_preprocess\n"
+            "    tool_router -->|sql| pure_sql_preprocess\n"
+            "    tool_router -->|video_vect| video_vect_preprocess\n"
+            "    tool_router -->|parallel| parallel_search\n"
+            "    hybrid_preprocess --> hybrid_search_node\n"
+            "    pure_sql_preprocess --> pure_sql_node\n"
+            "    video_vect_preprocess --> video_vect_node\n"
+            "    parallel_search --> parallel_merge_node\n"
+            "    hybrid_search_node --> reflection_node\n"
+            "    pure_sql_node --> reflection_node\n"
+            "    video_vect_node --> reflection_node\n"
+            "    parallel_merge_node --> reflection_node\n"
+            "    reflection_node -->|needs_retry| tool_router\n"
+            "    reflection_node -->|satisfied| final_answer_node\n"
             "    final_answer_node --> END\n"
-            "    final_error_node --> END\n"
             "```\n"
         )
     output_path.write_text(content, encoding="utf-8")
@@ -66,81 +76,186 @@ def save_graph_structure(compiled_graph: Any, output_path: Path) -> None:
 def create_graph():
     load_env()
     llm = build_llm()
-    parse_node = create_parse_node(llm=llm)
-    sql_search_node = create_sql_search_node()
-    rerank_node = create_rerank_node()
+
+    hybrid_preprocess = create_hybrid_preprocess_node(llm=llm)
+    pure_sql_preprocess = create_pure_sql_preprocess_node(llm=llm)
+    video_vect_preprocess = create_video_vect_preprocess_node(llm=llm)
+
+    tool_router = create_tool_router_node(llm=llm)
+    pure_sql_node = create_pure_sql_node()
+    hybrid_search_node = create_hybrid_search_node()
+    video_vect_node = create_video_vect_node()
+    reflection_node = create_reflection_node(llm=llm)
+
     builder = StateGraph(AgentState)
-    builder.add_node("start_tool", parse_node)
-    builder.add_node("sql_search_node", sql_search_node)
-    builder.add_node("rerank_retrieve_node", rerank_node)
-    builder.add_node("error_router_node", error_router_node)
+
+    builder.add_node("tool_router", tool_router)
+    builder.add_node("hybrid_preprocess", hybrid_preprocess)
+    builder.add_node("pure_sql_preprocess", pure_sql_preprocess)
+    builder.add_node("video_vect_preprocess", video_vect_preprocess)
+    builder.add_node("hybrid_search_node", hybrid_search_node)
+    builder.add_node("pure_sql_node", pure_sql_node)
+    builder.add_node("video_vect_node", video_vect_node)
+    builder.add_node("reflection_node", reflection_node)
     builder.add_node("final_answer_node", final_answer_node)
-    builder.add_node("final_error_node", final_error_node)
-    builder.add_edge(START, "start_tool")
-    builder.add_edge("start_tool", "sql_search_node")
-    builder.add_edge("sql_search_node", "error_router_node")
+
+    builder.add_edge(START, "tool_router")
+
     builder.add_conditional_edges(
-        "error_router_node",
-        route_by_error,
+        "tool_router",
+        route_by_tool_choice,
         {
-            "sql_search_node": "sql_search_node",
-            "rerank_retrieve_node": "rerank_retrieve_node",
-            "final_error_node": "final_error_node",
+            "hybrid_preprocess": "hybrid_preprocess",
+            "pure_sql_preprocess": "pure_sql_preprocess",
+            "video_vect_preprocess": "video_vect_preprocess",
+            "reflection_node": "reflection_node",
         },
     )
-    builder.add_edge("rerank_retrieve_node", "final_answer_node")
+
+    builder.add_edge("hybrid_preprocess", "hybrid_search_node")
+    builder.add_edge("pure_sql_preprocess", "pure_sql_node")
+    builder.add_edge("video_vect_preprocess", "video_vect_node")
+
+    builder.add_edge("hybrid_search_node", "reflection_node")
+    builder.add_edge("pure_sql_node", "reflection_node")
+    builder.add_edge("video_vect_node", "reflection_node")
+
+    builder.add_conditional_edges(
+        "reflection_node",
+        route_after_reflection,
+        {
+            "tool_router": "tool_router",
+            "final_answer_node": "final_answer_node",
+        },
+    )
+
     builder.add_edge("final_answer_node", END)
-    builder.add_edge("final_error_node", END)
+
     return builder.compile()
 
 
 def run_graph_self_test() -> None:
-    def fake_parse_node(state, config, store):
+    def fake_router(state, config, store):
         del state, config, store
-        return {"meta_list": [], "event_list": ["进入"], "tool_error": None, "sql_result": [], "rerank_result": [], "retry_count": 0}
+        mode = "hybrid"
+        return {
+            "tool_choice": {"mode": mode},
+            "is_parallel": False,
+        }
 
-    def fake_sql_node(state, config, store):
+    def fake_hybrid_preprocess(state, config, store):
         del state, config, store
         return {
-            "sql_result": [
-                {
-                    "event_id": 1,
-                    "video_id": "demo.mp4",
-                    "start_time": 10,
-                    "end_time": 20,
-                    "_distance": 0.2,
-                    "event_summary_cn": "红色目标进入画面",
-                }
-            ],
+            "parsed_question": {"event": "进入", "color": None},
+            "meta_list": [],
+            "event_list": ["进入"],
+        }
+
+    def fake_pure_sql_preprocess(state, config, store):
+        del state, config, store
+        return {
+            "parsed_question": {"color": None},
+            "meta_list": [],
+            "event_list": [],
+        }
+
+    def fake_video_vect_preprocess(state, config, store):
+        del state, config, store
+        return {
+            "parsed_question": {"event": None},
+            "meta_list": [],
+            "event_list": [],
+        }
+
+    def fake_hybrid(state, config, store):
+        del state, config, store
+        return {
+            "hybrid_result": [{"event_id": 1}],
             "tool_error": None,
         }
 
-    def fake_rerank_node(state, config, store):
-        del config, store
-        return {"rerank_result": state.get("sql_result", []), "thought": "ok"}
+    def fake_pure_sql(state, config, store):
+        del state, config, store
+        return {"sql_result": [], "tool_error": None}
+
+    def fake_video_vect(state, config, store):
+        del state, config, store
+        return {"video_vect_result": [], "tool_error": None}
+
+    def fake_reflection(state, config, store):
+        del state, config, store
+        return {
+            "reflection_result": {
+                "feedback": "查询质量满意",
+                "quality_score": 1.0,
+                "needs_retry": False,
+                "optimized": False,
+                "can_continue": False,
+            },
+        }
+
+    def fake_final_answer(state, config, store):
+        del state, config, store
+        return {"final_answer": "测试答案"}
+
+    def route_from_router(state):
+        tool_choice = state.get("tool_choice", {})
+        mode = tool_choice.get("mode", "none")
+        if mode == "parallel":
+            return "reflection_node"
+        elif mode in ("hybrid", "sql", "video_vect"):
+            return f"{mode}_preprocess"
+        else:
+            return "reflection_node"
 
     builder = StateGraph(AgentState)
-    builder.add_node("start_tool", fake_parse_node)
-    builder.add_node("sql_search_node", fake_sql_node)
-    builder.add_node("rerank_retrieve_node", fake_rerank_node)
-    builder.add_node("error_router_node", error_router_node)
-    builder.add_node("final_answer_node", final_answer_node)
-    builder.add_node("final_error_node", final_error_node)
-    builder.add_edge(START, "start_tool")
-    builder.add_edge("start_tool", "sql_search_node")
-    builder.add_edge("sql_search_node", "error_router_node")
+    builder.add_node("tool_router", fake_router)
+    builder.add_node("hybrid_preprocess", fake_hybrid_preprocess)
+    builder.add_node("pure_sql_preprocess", fake_pure_sql_preprocess)
+    builder.add_node("video_vect_preprocess", fake_video_vect_preprocess)
+    builder.add_node("hybrid_search_node", fake_hybrid)
+    builder.add_node("pure_sql_node", fake_pure_sql)
+    builder.add_node("video_vect_node", fake_video_vect)
+    builder.add_node("reflection_node", fake_reflection)
+    builder.add_node("final_answer_node", fake_final_answer)
+
+    builder.add_edge(START, "tool_router")
+
     builder.add_conditional_edges(
-        "error_router_node",
-        route_by_error,
+        "tool_router",
+        route_from_router,
         {
-            "sql_search_node": "sql_search_node",
-            "rerank_retrieve_node": "rerank_retrieve_node",
-            "final_error_node": "final_error_node",
+            "hybrid_preprocess": "hybrid_preprocess",
+            "pure_sql_preprocess": "pure_sql_preprocess",
+            "video_vect_preprocess": "video_vect_preprocess",
+            "reflection_node": "reflection_node",
         },
     )
-    builder.add_edge("rerank_retrieve_node", "final_answer_node")
+
+    builder.add_edge("hybrid_preprocess", "hybrid_search_node")
+    builder.add_edge("pure_sql_preprocess", "pure_sql_node")
+    builder.add_edge("video_vect_preprocess", "video_vect_node")
+
+    builder.add_edge("hybrid_search_node", "reflection_node")
+    builder.add_edge("pure_sql_node", "reflection_node")
+    builder.add_edge("video_vect_node", "reflection_node")
+
+    def route_reflection(state):
+        result = state.get("reflection_result", {})
+        if result.get("needs_retry"):
+            return "tool_router"
+        return "final_answer_node"
+
+    builder.add_conditional_edges(
+        "reflection_node",
+        route_reflection,
+        {
+            "tool_router": "tool_router",
+            "final_answer_node": "final_answer_node",
+        },
+    )
     builder.add_edge("final_answer_node", END)
-    builder.add_edge("final_error_node", END)
+
     graph = builder.compile(checkpointer=MemorySaver(), store=InMemoryStore())
     config = {"configurable": {"thread_id": "self-test", "user_id": "tester"}}
     list(graph.stream({"messages": [HumanMessage(content="test")]}, config, stream_mode="values"))

@@ -12,19 +12,52 @@ class ParsedQuestion(TypedDict):
     move: Optional[bool]
 
 
+class ToolChoice(TypedDict, total=False):
+    mode: str
+    sql_needed: bool
+    hybrid_needed: bool
+    video_vect_needed: bool
+    sub_queries: Dict[str, Any]
+
+
+class SearchResult(TypedDict):
+    source: str
+    rows: List[Dict[str, Any]]
+    error: Optional[str]
+
+
+class ReflectionResult(TypedDict, total=False):
+    feedback: Optional[str]
+    quality_score: float
+    needs_retry: bool
+    optimized: bool
+    can_continue: bool
+    errors: list[Any]
+
+
 class AgentState(TypedDict, total=False):
     messages: List[BaseMessage]
     user_query: str
     parsed_question: ParsedQuestion
+    tool_choice: ToolChoice
     event_list: List[str]
     meta_list: List[Dict[str, Any]]
     sql_result: List[Dict[str, Any]]
+    hybrid_result: List[Dict[str, Any]]
+    video_vect_result: List[Dict[str, Any]]
+    merged_result: List[Dict[str, Any]]
     rerank_result: List[Dict[str, Any]]
     tool_error: Optional[str]
     route: str
     retry_count: int
     thought: str
     final_answer: str
+    is_parallel: bool
+    parallel_queries: List[str]
+    reflection_result: ReflectionResult
+    syntax_valid: bool
+    syntax_error: Optional[str]
+    current_node: str
 
 
 def content_to_text(content: Any) -> str:
