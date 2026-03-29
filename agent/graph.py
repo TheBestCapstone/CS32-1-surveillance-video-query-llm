@@ -131,6 +131,10 @@ def create_graph():
 
     builder.add_edge("final_answer_node", END)
 
+    import os
+    # LangGraph CLI / API 会设置某些环境变量，或者我们在直接运行时手动提供 checkpointer
+    # 通常如果我们在独立脚本中，我们自己传 checkpointer；在 langgraph dev 中不需要。
+    # 更安全的做法是：让 create_graph 可以接受参数。
     return builder.compile()
 
 
@@ -271,9 +275,39 @@ if __name__ == "__main__":
     if "--self-test" in sys.argv:
         run_graph_self_test()
         raise SystemExit(0)
-    save_graph_structure(graph, Path(__file__).resolve().parent / "graph_structure.md")
+    
+    # 针对直接运行进行特殊处理：如果通过命令行直接运行，因为需要读取持久化状态(get_state)
+    # 所以需要重新编译包含内存持久化的图，而供 langgraph CLI 加载的变量依然是上面的无状态 graph
+    from langgraph.checkpoint.memory import MemorySaver
+    from langgraph.store.memory import InMemoryStore
+    
+    # 重建相同的图，但添加 checkpointer
+    builder = StateGraph(AgentState)
+    builder.add_node("tool_router", tool_router_node)
+    builder.add_node("hybrid_preprocess", hybrid_preprocess_node)
+    builder.add_node("pure_sql_preprocess", pure_sql_preprocess_node)
+    builder.add_node("video_vect_preprocess", video_vect_preprocess_node)
+    builder.add_node("hybrid_search_node", create_hybrid_search_node(tool=sql_search_tool))
+    builder.add_node("pure_sql_node", pure_sql_node)
+    builder.add_node("video_vect_node", video_vect_node)
+    builder.add_node("reflection_node", create_reflection_node(llm=llm, max_retries=3, callback=reflection_callback))
+    builder.add_node("final_answer_node", final_answer_node)
+    builder.add_edge(START, "tool_router")
+    builder.add_conditional_edges("tool_router", route_by_tool_choice, {"hybrid_preprocess": "hybrid_preprocess", "pure_sql_preprocess": "pure_sql_preprocess", "video_vect_preprocess": "video_vect_preprocess"})
+    builder.add_edge("hybrid_preprocess", "hybrid_search_node")
+    builder.add_edge("pure_sql_preprocess", "pure_sql_node")
+    builder.add_edge("video_vect_preprocess", "video_vect_node")
+    builder.add_edge("hybrid_search_node", "reflection_node")
+    builder.add_edge("pure_sql_node", "reflection_node")
+    builder.add_edge("video_vect_node", "reflection_node")
+    builder.add_conditional_edges("reflection_node", route_after_reflection, {"tool_router": "tool_router", "final_answer_node": "final_answer_node"})
+    builder.add_edge("final_answer_node", END)
+    
+    local_graph = builder.compile(checkpointer=MemorySaver(), store=InMemoryStore())
+    
+    save_graph_structure(local_graph, Path(__file__).resolve().parent / "graph_structure.md")
     config = {"configurable": {"thread_id": "1", "user_id": "Lance"}}
     input_messages = [HumanMessage(content="车进入镜头")]
-    for chunk in graph.stream({"messages": input_messages}, config, stream_mode="values"):
+    for chunk in local_graph.stream({"messages": input_messages}, config, stream_mode="values"):
         chunk["messages"][-1].pretty_print()
-    final_state = graph.get_state(config)
+    final_state = local_graph.get_state(config)
