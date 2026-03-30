@@ -1,5 +1,10 @@
 .env
 docs/
 data/
-meva_videos/
-agent/data/
+toos/
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.langgraph_api/
