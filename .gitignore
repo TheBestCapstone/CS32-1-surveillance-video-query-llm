@@ -1,2 +1,5 @@
 .env
 docs/
+data/
+meva_videos/
+agent/data/
