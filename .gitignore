@@ -1,5 +1,14 @@
 .env
 docs/
 _model/
+_models/
 _data/
 _pipeline_output/
+data/
+toos/
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.langgraph_api/
