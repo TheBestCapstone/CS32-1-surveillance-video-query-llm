@@ -12,3 +12,5 @@ __pycache__/
 *.pyo
 *.pyd
 .langgraph_api/
+agent/.langgraph_api/
+*.pckl
