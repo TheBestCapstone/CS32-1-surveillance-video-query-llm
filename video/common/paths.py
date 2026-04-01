@@ -14,3 +14,7 @@ def botsort_reid_config_path() -> Path:
 
 def pipeline_output_dir() -> Path:
     return repo_root() / "pipeline_output"
+
+
+def yolo_model_dir() -> Path:
+    return repo_root() / "_model"

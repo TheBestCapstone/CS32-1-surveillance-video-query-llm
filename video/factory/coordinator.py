@@ -74,7 +74,7 @@ def _add_video_cli_args(p: argparse.ArgumentParser) -> None:
         default="botsort_reid",
         help="botsort_reid | botsort | bytetrack | 某.yaml 路径",
     )
-    p.add_argument("--model", "-m", type=str, default="n", help="YOLO 权重")
+    p.add_argument("--model", "-m", type=str, default="11m", help="YOLO 权重（默认 yolo11m，存放于 _model/）")
     p.add_argument("--conf", type=float, default=0.25, help="检测置信度阈值")
     p.add_argument("--iou", type=float, default=0.25, help="检测 NMS IoU 阈值")
     p.add_argument("--save-video", action="store_true", help="输出带框+track_id 的标注视频")
@@ -137,6 +137,7 @@ def _add_refine_cli_args(p: argparse.ArgumentParser) -> None:
     p.add_argument("--merge-location-iou", type=float, default=0.9)
     p.add_argument("--merge-center-dist-px", type=float, default=30.0)
     p.add_argument("--merge-location-norm-diff", type=float, default=0.10)
+    p.add_argument("--min-event-duration-sec", type=float, default=1.0, help="过滤短事件：小于该时长(秒)不送入 LLM")
 
 
 def _run_refine_cli_namespace(args: argparse.Namespace) -> None:
@@ -153,6 +154,7 @@ def _run_refine_cli_namespace(args: argparse.Namespace) -> None:
         merge_location_iou_threshold=float(args.merge_location_iou),
         merge_center_dist_px=float(args.merge_center_dist_px),
         merge_location_norm_diff=float(args.merge_location_norm_diff),
+        min_event_duration_sec=float(args.min_event_duration_sec),
     )
     out_path = run_refine_events_from_files(args.events, args.clips, cfg)
     print(f"refined events saved to: {out_path}")

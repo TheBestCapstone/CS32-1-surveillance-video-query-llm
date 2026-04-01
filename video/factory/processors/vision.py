@@ -3,14 +3,17 @@
 对应 README 中 factory/processors/vision.py 职责。
 """
 
+import shutil
 from pathlib import Path
 
 import cv2
 from ultralytics import YOLO
 
-from video.common.paths import botsort_reid_config_path
+from video.common.paths import botsort_reid_config_path, yolo_model_dir
 
 _BOTSORT_REID_YAML = botsort_reid_config_path()
+_YOLO_MODEL_DIR = yolo_model_dir()
+_YOLO11M_LOCAL = _YOLO_MODEL_DIR / "yolo11m.pt"
 
 
 def resolve_tracker(tracker: str) -> tuple[str, str]:
@@ -45,8 +48,11 @@ def resolve_model(model: str) -> tuple[str, str]:
         "nano": "yolov8n.pt",
         "s": "yolov8s.pt",
         "small": "yolov8s.pt",
-        "m": "yolov8m.pt",
-        "medium": "yolov8m.pt",
+        "m": str(_YOLO11M_LOCAL),
+        "medium": str(_YOLO11M_LOCAL),
+        "11m": str(_YOLO11M_LOCAL),
+        "yolo11m": str(_YOLO11M_LOCAL),
+        "yolov11m": str(_YOLO11M_LOCAL),
         "l": "yolov8l.pt",
         "large": "yolov8l.pt",
         "x": "yolov8x.pt",
@@ -79,6 +85,16 @@ def run_yolo_track_on_video(
     cap.release()
 
     model_pt, _ = resolve_model(model_path)
+    if model_pt == str(_YOLO11M_LOCAL):
+        _YOLO_MODEL_DIR.mkdir(parents=True, exist_ok=True)
+        if not _YOLO11M_LOCAL.is_file():
+            # 先触发 ultralytics 下载，再把权重复制到仓库 _model 目录中，保证可复现。
+            downloaded = YOLO("yolo11m.pt")
+            src = Path(getattr(downloaded, "ckpt_path", "") or "")
+            if src.is_file():
+                shutil.copy2(src, _YOLO11M_LOCAL)
+            del downloaded
+        model_pt = str(_YOLO11M_LOCAL)
     model = YOLO(model_pt)
     tracker_cfg, tracker_name = resolve_tracker(tracker)
     writer: cv2.VideoWriter | None = None

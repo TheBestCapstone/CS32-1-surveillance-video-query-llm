@@ -7,11 +7,23 @@ from dataclasses import dataclass
 from typing import Any
 
 import cv2
+import numpy as np
 
 
 @dataclass
 class FrameSample:
     t_sec: float
+    jpg_base64: str
+
+
+@dataclass
+class PersonCrop:
+    """单张人物裁剪图（供 Re-ID 使用）。"""
+
+    t_sec: float
+    camera_id: str
+    track_id: int
+    image_array: np.ndarray
     jpg_base64: str
 
 
@@ -81,6 +93,71 @@ def _bbox_center_norm(xyxy: list[float], w: int, h: int) -> tuple[float, float]:
     return float(cx), float(cy)
 
 
+def extract_person_crops(
+    video_path: str,
+    track: dict[str, Any],
+    camera_id: str = "",
+    num_crops: int = 5,
+    resize: tuple[int, int] = (256, 128),
+    min_crop_hw: tuple[int, int] = (32, 16),
+) -> list[PersonCrop]:
+    """从轨迹的 time_xyxy 中均匀抽取 N 帧并按 bbox 裁剪，返回 Re-ID 标准尺寸的人物图。
+
+    Args:
+        resize: (height, width) — Re-ID 标准输入 256x128。
+    """
+    time_xyxy: list[tuple[float, list[float]]] = track.get("time_xyxy", [])
+    if not time_xyxy:
+        return []
+
+    n = min(num_crops, len(time_xyxy))
+    step = max(1, len(time_xyxy) // n)
+    indices = [i * step for i in range(n)]
+
+    cap = cv2.VideoCapture(video_path)
+    if not cap.isOpened():
+        raise FileNotFoundError(f"无法打开视频: {video_path}")
+    fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
+    vid_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    vid_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+
+    crops: list[PersonCrop] = []
+    track_id: int = track.get("track_id", -1)
+
+    for idx in indices:
+        t_sec, xyxy = time_xyxy[idx]
+        frame_no = int(round(t_sec * fps))
+        cap.set(cv2.CAP_PROP_POS_FRAMES, frame_no)
+        ok, frame = cap.read()
+        if not ok or frame is None:
+            continue
+
+        x1 = max(0, int(xyxy[0]))
+        y1 = max(0, int(xyxy[1]))
+        x2 = min(vid_w, int(xyxy[2]))
+        y2 = min(vid_h, int(xyxy[3]))
+        if x2 <= x1 or y2 <= y1:
+            continue
+        crop_h = y2 - y1
+        crop_w = x2 - x1
+        if crop_h < min_crop_hw[0] or crop_w < min_crop_hw[1]:
+            continue
+
+        crop_img = frame[y1:y2, x1:x2]
+        crop_resized = cv2.resize(crop_img, (resize[1], resize[0]), interpolation=cv2.INTER_LINEAR)
+
+        crops.append(PersonCrop(
+            t_sec=float(t_sec),
+            camera_id=camera_id,
+            track_id=track_id,
+            image_array=crop_resized,
+            jpg_base64=_encode_bgr_to_jpg_base64(crop_resized),
+        ))
+
+    cap.release()
+    return crops
+
+
 def enrich_events_with_normalized_location(raw_events: list[dict[str, Any]], w: int, h: int) -> list[dict[str, Any]]:
     """
     给 raw_events 补充归一化位置字段，供 LLM 做“按比例合并”的硬约束。
@@ -98,3 +175,50 @@ def enrich_events_with_normalized_location(raw_events: list[dict[str, Any]], w: 
                 e2[key.replace("_bbox_xyxy", "_center_norm")] = [cx, cy]
         out.append(e2)
     return out
+
+
+def crop_bgr_at_time_xyxy(
+    video_path: str,
+    t_sec: float,
+    xyxy: list[float],
+) -> np.ndarray | None:
+    """在指定时间点裁剪 bbox 区域，返回 BGR ndarray；失败返回 None。"""
+    cap = cv2.VideoCapture(video_path)
+    if not cap.isOpened():
+        return None
+    fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
+    vid_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT) or 0)
+    vid_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH) or 0)
+    frame_no = int(round(float(t_sec) * float(fps)))
+    cap.set(cv2.CAP_PROP_POS_FRAMES, frame_no)
+    ok, frame = cap.read()
+    cap.release()
+    if not ok or frame is None or vid_h <= 0 or vid_w <= 0:
+        return None
+    x1 = max(0, int(xyxy[0]))
+    y1 = max(0, int(xyxy[1]))
+    x2 = min(vid_w, int(xyxy[2]))
+    y2 = min(vid_h, int(xyxy[3]))
+    if x2 <= x1 or y2 <= y1:
+        return None
+    return frame[y1:y2, x1:x2]
+
+
+def coarse_color_cn_from_bgr(img_bgr: np.ndarray) -> str:
+    """非常粗的颜色分类，用于硬过滤（只在“明显不同”时阻止合并）。"""
+    if img_bgr.size == 0:
+        return "不确定"
+    b, g, r = [float(x) for x in img_bgr.reshape(-1, 3).mean(axis=0)]
+    mx = max(r, g, b)
+    mn = min(r, g, b)
+    if mx < 60:
+        return "黑"
+    if mx > 210 and (mx - mn) < 25:
+        return "白"
+    if (mx - mn) < 18 and mx > 120:
+        return "银灰"
+    if r > g + 40 and r > b + 40:
+        return "红"
+    if b > r + 40 and b > g + 40:
+        return "蓝"
+    return "深色"

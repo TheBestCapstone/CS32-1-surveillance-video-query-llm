@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Stage 1 Architecture</title>
+<style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #F0F4F8; padding: 28px; margin: 0; }
+  h1 { color: #1C2B4A; font-size: 19px; font-weight: 700; margin-bottom: 4px; }
+  .sub { color: #64748B; font-size: 12px; margin-bottom: 20px; }
+  .wrap { background: #fff; border-radius: 14px; box-shadow: 0 3px 16px rgba(0,0,0,0.09); padding: 24px; overflow-x: auto; }
+</style>
+</head>
+<body>
+<h1>Stage 1 — Vision &amp; Event Pipeline</h1>
+<p class="sub">COMP5703 CS32-1 · YOLOv8 → BoT-SORT+ReID → Track Aggregation → Event Slicing → LLM Refinement</p>
+<div class="wrap">
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1080" height="530"
+     viewBox="0 0 1080 530"
+     style="display:block;font-family:'Segoe UI',Arial,sans-serif;">
+
+  <!-- ░ Background -->
+  <rect width="1080" height="530" fill="#F8FAFC" rx="10"/>
+
+  <!-- ░ Title bar -->
+  <rect width="1080" height="44" fill="#1C2B4A" rx="10"/>
+  <rect y="32" width="1080" height="12" fill="#1C2B4A"/>
+  <text x="540" y="28" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">Stage 1 — Vision &amp; Event Pipeline Architecture</text>
+
+  <!-- ════════════════════════════════════════════
+       SECTION LABELS
+  ════════════════════════════════════════════ -->
+  <!-- vertical dividers -->
+  <line x1="158" y1="44" x2="158" y2="310" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4 3"/>
+  <line x1="880" y1="44" x2="880" y2="310" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4 3"/>
+
+  <text x="79"  y="60" text-anchor="middle" font-size="9" font-weight="700" fill="#94A3B8" letter-spacing="1">INPUT</text>
+  <text x="510" y="60" text-anchor="middle" font-size="9" font-weight="700" fill="#94A3B8" letter-spacing="1">CORE PIPELINE</text>
+  <text x="970" y="60" text-anchor="middle" font-size="9" font-weight="700" fill="#94A3B8" letter-spacing="1">OUTPUT</text>
+
+  <!-- ════════════════════════════════════════════
+       INPUT — Video File
+  ════════════════════════════════════════════ -->
+  <rect x="14" y="70" width="134" height="85" rx="8" fill="#fff" stroke="#0D9488" stroke-width="1.5"/>
+  <rect x="14" y="70" width="4"   height="85" rx="2" fill="#0D9488"/>
+  <text x="81" y="101" text-anchor="middle" font-size="20">🎥</text>
+  <text x="81" y="121" text-anchor="middle" font-size="12" font-weight="700" fill="#1C2B4A">Video File</text>
+  <text x="81" y="136" text-anchor="middle" font-size="10" fill="#64748B">.mp4 / .avi / …</text>
+  <text x="81" y="150" text-anchor="middle" font-size="10" fill="#64748B">+ camera_id (opt.)</text>
+
+  <!-- camera_id tag -->
+  <rect x="18" y="162" width="126" height="18" rx="5" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1"/>
+  <text x="81" y="175" text-anchor="middle" font-size="10" font-weight="600" fill="#92400E">camera_id optional</text>
+
+  <!-- arrow → YOLOv8 -->
+  <line x1="148" y1="112" x2="170" y2="112" stroke="#0D9488" stroke-width="2"/>
+  <polygon points="180,112 170,107 170,117" fill="#0D9488"/>
+
+  <!-- ════════════════════════════════════════════
+       STEP 1 — YOLOv8
+  ════════════════════════════════════════════ -->
+  <rect x="180" y="66" width="158" height="100" rx="8" fill="#CCFBF1" stroke="#0D9488" stroke-width="1.5"/>
+  <rect x="180" y="66" width="158" height="6"   rx="4" fill="#0D9488"/>
+  <text x="259" y="90"  text-anchor="middle" font-size="13" font-weight="700" fill="#0D9488">① YOLOv8</text>
+  <text x="259" y="107" text-anchor="middle" font-size="11" font-weight="600" fill="#1C2B4A">Object Detection</text>
+  <text x="259" y="122" text-anchor="middle" font-size="10" fill="#475569">yolov8n/s/m/l/x</text>
+  <text x="259" y="136" text-anchor="middle" font-size="10" fill="#475569">conf=0.25 · iou=0.45</text>
+  <text x="259" y="150" text-anchor="middle" font-size="10" fill="#475569">→ (frame, bbox, class)</text>
+
+  <!-- arrow → BoT-SORT -->
+  <line x1="338" y1="116" x2="358" y2="116" stroke="#0D9488" stroke-width="2"/>
+  <polygon points="368,116 358,111 358,121" fill="#0D9488"/>
+
+  <!-- ════════════════════════════════════════════
+       STEP 2 — BoT-SORT + ReID
+  ════════════════════════════════════════════ -->
+  <rect x="368" y="66" width="168" height="100" rx="8" fill="#CCFBF1" stroke="#0D9488" stroke-width="1.5"/>
+  <rect x="368" y="66" width="168" height="6"   rx="4" fill="#0D9488"/>
+  <text x="452" y="90"  text-anchor="middle" font-size="13" font-weight="700" fill="#0D9488">② BoT-SORT + ReID</text>
+  <text x="452" y="107" text-anchor="middle" font-size="11" font-weight="600" fill="#1C2B4A">Multi-Object Tracking</text>
+  <text x="452" y="122" text-anchor="middle" font-size="10" fill="#475569">tracker: botsort_reid</text>
+  <text x="452" y="136" text-anchor="middle" font-size="10" fill="#475569">output per frame:</text>
+  <text x="452" y="150" text-anchor="middle" font-size="10" fill="#475569">(track_id, class, conf, bbox)</text>
+
+  <!-- arrow → Aggregator -->
+  <line x1="536" y1="116" x2="556" y2="116" stroke="#0D9488" stroke-width="2"/>
+  <polygon points="566,116 556,111 556,121" fill="#0D9488"/>
+
+  <!-- ════════════════════════════════════════════
+       STEP 3 — Track Aggregation
+  ════════════════════════════════════════════ -->
+  <rect x="556" y="66" width="162" height="100" rx="8" fill="#CCFBF1" stroke="#0D9488" stroke-width="1.5"/>
+  <rect x="556" y="66" width="162" height="6"   rx="4" fill="#0D9488"/>
+  <text x="637" y="90"  text-anchor="middle" font-size="13" font-weight="700" fill="#0D9488">③ Track Aggregation</text>
+  <text x="637" y="107" text-anchor="middle" font-size="11" font-weight="600" fill="#1C2B4A">aggregate_tracks()</text>
+  <text x="637" y="122" text-anchor="middle" font-size="10" fill="#475569">group by track_id</text>
+  <text x="637" y="136" text-anchor="middle" font-size="10" fill="#475569">compute motion_score</text>
+  <text x="637" y="150" text-anchor="middle" font-size="10" fill="#475569">bbox history per track</text>
+
+  <!-- arrow → Slicer -->
+  <line x1="718" y1="116" x2="738" y2="116" stroke="#0D9488" stroke-width="2"/>
+  <polygon points="748,116 738,111 738,121" fill="#0D9488"/>
+
+  <!-- ════════════════════════════════════════════
+       STEP 4 — Event Slicer
+  ════════════════════════════════════════════ -->
+  <rect x="748" y="66" width="168" height="116" rx="8" fill="#CCFBF1" stroke="#0D9488" stroke-width="1.5"/>
+  <rect x="748" y="66" width="168" height="6"   rx="4" fill="#0D9488"/>
+  <text x="832" y="90"  text-anchor="middle" font-size="13" font-weight="700" fill="#0D9488">④ Event Slicer</text>
+  <text x="832" y="107" text-anchor="middle" font-size="11" font-weight="600" fill="#1C2B4A">slice_events()  · 4 types:</text>
+  <text x="832" y="122" text-anchor="middle" font-size="10" fill="#475569">· motion_segment</text>
+  <text x="832" y="136" text-anchor="middle" font-size="10" fill="#475569">· presence_after_motion</text>
+  <text x="832" y="150" text-anchor="middle" font-size="10" fill="#475569">· appearance / disappearance</text>
+  <text x="832" y="164" text-anchor="middle" font-size="10" fill="#475569">· presence_static</text>
+
+  <!-- ────────────────────────────────────────────
+       Arrow: Slicer right edge → events.json & clips.json
+  ──────────────────────────────────────────── -->
+  <!-- Slicer right-mid → go right to output column -->
+  <line x1="916" y1="116" x2="934" y2="116" stroke="#94A3B8" stroke-width="1.5"/>
+  <!-- fork line down for clips -->
+  <line x1="934" y1="100" x2="934" y2="210" stroke="#94A3B8" stroke-width="1.5"/>
+  <!-- to events.json -->
+  <line x1="934" y1="100" x2="952" y2="100" stroke="#94A3B8" stroke-width="1.5"/>
+  <polygon points="962,100 952,95 952,105" fill="#94A3B8"/>
+  <!-- to clips.json -->
+  <line x1="934" y1="170" x2="952" y2="170" stroke="#94A3B8" stroke-width="1.5"/>
+  <polygon points="962,170 952,165 952,175" fill="#94A3B8"/>
+
+  <!-- ────────────────────────────────────────────
+       Arrow: Slicer bottom → LLM Refinement (step 5)
+  ──────────────────────────────────────────── -->
+  <line x1="832" y1="182" x2="832" y2="202" stroke="#6366F1" stroke-width="2"/>
+  <polygon points="832,212 827,202 837,202" fill="#6366F1"/>
+
+  <!-- ════════════════════════════════════════════
+       STEP 5 — LLM Refinement (below slicer)
+  ════════════════════════════════════════════ -->
+  <rect x="748" y="212" width="168" height="118" rx="8" fill="#EDE9FE" stroke="#6366F1" stroke-width="1.5"/>
+  <rect x="748" y="212" width="168" height="6"   rx="4" fill="#6366F1"/>
+  <text x="832" y="234" text-anchor="middle" font-size="13" font-weight="700" fill="#6366F1">⑤ LLM Refinement</text>
+  <text x="832" y="251" text-anchor="middle" font-size="11" font-weight="600" fill="#1C2B4A">GPT-4o-mini (LangChain)</text>
+  <text x="832" y="267" text-anchor="middle" font-size="10" fill="#475569">mode: full</text>
+  <text x="832" y="281" text-anchor="middle" font-size="10" fill="#475569">entity dedup + scene narration</text>
+  <text x="832" y="295" text-anchor="middle" font-size="10" fill="#475569">mode: vector</text>
+  <text x="832" y="309" text-anchor="middle" font-size="10" fill="#475569">min-fields for embedding</text>
+  <text x="832" y="323" text-anchor="middle" font-size="10" font-weight="600" fill="#6366F1">→ structured JSON output</text>
+
+  <!-- Arrow: LLM right → refined_events.json -->
+  <line x1="916" y1="271" x2="952" y2="271" stroke="#6366F1" stroke-width="2"/>
+  <polygon points="962,271 952,266 952,276" fill="#6366F1"/>
+
+  <!-- ════════════════════════════════════════════
+       OUTPUTS (right column, x=962)
+  ════════════════════════════════════════════ -->
+  <!-- *_events.json -->
+  <rect x="962" y="75"  width="106" height="56" rx="7" fill="#fff" stroke="#0D9488" stroke-width="1.5"/>
+  <rect x="962" y="75"  width="4"   height="56" rx="2" fill="#0D9488"/>
+  <text x="1015" y="97"  text-anchor="middle" font-size="11" font-weight="700" fill="#1C2B4A">*_events.json</text>
+  <text x="1015" y="112" text-anchor="middle" font-size="10" fill="#475569">raw event list</text>
+  <text x="1015" y="125" text-anchor="middle" font-size="10" fill="#475569">+ meta / camera_id</text>
+
+  <!-- *_clips.json -->
+  <rect x="962" y="146" width="106" height="56" rx="7" fill="#fff" stroke="#0D9488" stroke-width="1.5"/>
+  <rect x="962" y="146" width="4"   height="56" rx="2" fill="#0D9488"/>
+  <text x="1015" y="168" text-anchor="middle" font-size="11" font-weight="700" fill="#1C2B4A">*_clips.json</text>
+  <text x="1015" y="183" text-anchor="middle" font-size="10" fill="#475569">motion clip segments</text>
+  <text x="1015" y="197" text-anchor="middle" font-size="10" fill="#475569">start_sec / end_sec</text>
+
+  <!-- *_refined_events.json -->
+  <rect x="962" y="246" width="106" height="60" rx="7" fill="#EDE9FE" stroke="#6366F1" stroke-width="1.5"/>
+  <rect x="962" y="246" width="4"   height="60" rx="2" fill="#6366F1"/>
+  <text x="1015" y="266" text-anchor="middle" font-size="10" font-weight="700" fill="#6366F1">*_refined</text>
+  <text x="1015" y="279" text-anchor="middle" font-size="10" font-weight="700" fill="#6366F1">_events.json</text>
+  <text x="1015" y="293" text-anchor="middle" font-size="10" fill="#475569">→ Stage 2 input</text>
+  <text x="1015" y="306" text-anchor="middle" font-size="10" font-weight="600" fill="#6366F1">⬇ indexed</text>
+
+  <!-- ════════════════════════════════════════════
+       MULTI-CAMERA EXTENSION (bottom band)
+  ════════════════════════════════════════════ -->
+  <rect x="14"  y="342" width="1052" height="160" rx="10" fill="#FFF7ED" stroke="#F59E0B" stroke-width="2"/>
+  <rect x="14"  y="342" width="1052" height="8"   rx="5"  fill="#F59E0B"/>
+  <text x="540" y="363" text-anchor="middle" font-size="12" font-weight="700" fill="#92400E">🔁  Multi-Camera Extension  —  camera_id propagated through run_pipeline()</text>
+
+  <!-- MC Sub-box 1: ReID Embedder -->
+  <rect x="28"  y="372" width="228" height="116" rx="8" fill="#fff" stroke="#F59E0B" stroke-width="1.5"/>
+  <rect x="28"  y="372" width="228" height="5"   rx="3" fill="#F59E0B"/>
+  <text x="142" y="391" text-anchor="middle" font-size="12" font-weight="700" fill="#92400E">ReID Embedder</text>
+  <text x="142" y="407" text-anchor="middle" font-size="10" font-weight="600" fill="#475569">reid_embedder.py</text>
+  <text x="142" y="421" text-anchor="middle" font-size="10" fill="#475569">Extract appearance embedding</text>
+  <text x="142" y="435" text-anchor="middle" font-size="10" fill="#475569">from person-crop bbox</text>
+  <text x="142" y="449" text-anchor="middle" font-size="10" fill="#475569">per tracked detection</text>
+  <text x="142" y="464" text-anchor="middle" font-size="10" font-weight="600" fill="#F59E0B">→ float32 appearance vector</text>
+  <text x="142" y="480" text-anchor="middle" font-size="9"  fill="#94A3B8">status: ✅ done</text>
+
+  <!-- arrow → Cross-Camera Matcher -->
+  <line x1="256" y1="430" x2="274" y2="430" stroke="#F59E0B" stroke-width="2"/>
+  <polygon points="284,430 274,425 274,435" fill="#F59E0B"/>
+
+  <!-- MC Sub-box 2: Cross-Camera Matcher -->
+  <rect x="284" y="372" width="228" height="116" rx="8" fill="#fff" stroke="#F59E0B" stroke-width="1.5"/>
+  <rect x="284" y="372" width="228" height="5"   rx="3" fill="#F59E0B"/>
+  <text x="398" y="391" text-anchor="middle" font-size="12" font-weight="700" fill="#92400E">Cross-Camera Matcher</text>
+  <text x="398" y="407" text-anchor="middle" font-size="10" font-weight="600" fill="#475569">cross_camera_matcher.py</text>
+  <text x="398" y="421" text-anchor="middle" font-size="10" fill="#475569">temporal similarity</text>
+  <text x="398" y="435" text-anchor="middle" font-size="10" fill="#475569">+ spatial proximity</text>
+  <text x="398" y="449" text-anchor="middle" font-size="10" fill="#475569">+ ReID cosine distance</text>
+  <text x="398" y="464" text-anchor="middle" font-size="10" font-weight="600" fill="#F59E0B">→ candidate match pairs</text>
+  <text x="398" y="480" text-anchor="middle" font-size="9"  fill="#94A3B8">status: 🔄 in progress</text>
+
+  <!-- arrow → VLM Verification -->
+  <line x1="512" y1="430" x2="530" y2="430" stroke="#F59E0B" stroke-width="2"/>
+  <polygon points="540,430 530,425 530,435" fill="#F59E0B"/>
+
+  <!-- MC Sub-box 3: VLM Verification -->
+  <rect x="540" y="372" width="228" height="116" rx="8" fill="#fff" stroke="#F59E0B" stroke-width="1.5"/>
+  <rect x="540" y="372" width="228" height="5"   rx="3" fill="#F59E0B"/>
+  <text x="654" y="391" text-anchor="middle" font-size="12" font-weight="700" fill="#92400E">VLM Person Verification</text>
+  <text x="654" y="407" text-anchor="middle" font-size="10" font-weight="600" fill="#475569">verify_person_match_with_llm()</text>
+  <text x="654" y="421" text-anchor="middle" font-size="10" fill="#475569">GPT-4o-mini visual comparison</text>
+  <text x="654" y="435" text-anchor="middle" font-size="10" fill="#475569">two person-crop images</text>
+  <text x="654" y="449" text-anchor="middle" font-size="10" fill="#475569">→ is_match + confidence</text>
+  <text x="654" y="464" text-anchor="middle" font-size="10" font-weight="600" fill="#F59E0B">+ reasoning string</text>
+  <text x="654" y="480" text-anchor="middle" font-size="9"  fill="#94A3B8">status: ✅ done</text>
+
+  <!-- arrow → MC Coordinator -->
+  <line x1="768" y1="430" x2="786" y2="430" stroke="#F59E0B" stroke-width="2"/>
+  <polygon points="796,430 786,425 786,435" fill="#F59E0B"/>
+
+  <!-- MC Sub-box 4: Multi-Camera Coordinator -->
+  <rect x="796" y="372" width="258" height="116" rx="8" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5"/>
+  <rect x="796" y="372" width="258" height="5"   rx="3" fill="#F59E0B"/>
+  <text x="925" y="391" text-anchor="middle" font-size="12" font-weight="700" fill="#92400E">Multi-Camera Coordinator</text>
+  <text x="925" y="407" text-anchor="middle" font-size="10" font-weight="600" fill="#475569">multi_camera_coordinator.py</text>
+  <text x="925" y="421" text-anchor="middle" font-size="10" fill="#475569">orchestrate per-camera pipelines</text>
+  <text x="925" y="435" text-anchor="middle" font-size="10" fill="#475569">merge verified cross-cam matches</text>
+  <text x="925" y="449" text-anchor="middle" font-size="10" fill="#475569">multi_camera.py schema</text>
+  <text x="925" y="464" text-anchor="middle" font-size="10" font-weight="600" fill="#F59E0B">→ unified event timeline</text>
+  <text x="925" y="480" text-anchor="middle" font-size="9"  fill="#94A3B8">status: 🔄 in progress</text>
+
+  <!-- dashed arrow from BoT-SORT down to MC band -->
+  <line x1="452" y1="166" x2="452" y2="342" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="5 3"/>
+  <polygon points="452,342 447,332 457,332" fill="#F59E0B"/>
+
+  <!-- ░ Legend -->
+  <rect x="0" y="508" width="1080" height="22" fill="#F1F5F9" rx="0"/>
+  <rect x="0" y="504" width="1080" height="4"  fill="#E2E8F0"/>
+  <rect x="20"  y="514" width="12" height="12" rx="3" fill="#0D9488"/>
+  <text x="38"  y="524" font-size="10" fill="#475569" font-family="Segoe UI,Arial,sans-serif">Stage 1 Core Pipeline</text>
+  <rect x="180" y="514" width="12" height="12" rx="3" fill="#6366F1"/>
+  <text x="198" y="524" font-size="10" fill="#475569" font-family="Segoe UI,Arial,sans-serif">LLM Refinement</text>
+  <rect x="320" y="514" width="12" height="12" rx="3" fill="#F59E0B"/>
+  <text x="338" y="524" font-size="10" fill="#475569" font-family="Segoe UI,Arial,sans-serif">Multi-Camera Extension</text>
+  <rect x="500" y="514" width="12" height="12" rx="3" fill="#94A3B8"/>
+  <text x="518" y="524" font-size="10" fill="#475569" font-family="Segoe UI,Arial,sans-serif">Data Flow  ────  dashed = triggers MC path</text>
+</svg>
+</div>
+</body>
+</html>

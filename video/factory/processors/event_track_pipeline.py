@@ -18,8 +18,8 @@ from video.factory.processors.vision import resolve_model, run_yolo_track_on_vid
 
 def run_pipeline(
     video_path: str,
-    model_path: str = "n",
-    conf: float = 0.25,
+    model_path: str = "11m",
+    conf: float = 0.5,
     iou: float = 0.45,
     motion_threshold: float = 5.0,
     min_clip_duration: float = 1.0,
@@ -30,6 +30,7 @@ def run_pipeline(
     tracker: str = "botsort_reid",
     save_annotated_video: bool = False,
     annotated_video_path: str | None = None,
+    camera_id: str | None = None,
 ) -> tuple[list[dict[str, Any]], list[dict[str, float]], dict[str, Any]]:
     """主流程：读视频 → YOLO 跟踪 → 轨迹聚合 → 事件切片。"""
     model_resolved, _ = resolve_model(model_path)
@@ -55,7 +56,7 @@ def run_pipeline(
         motion_segment_pad_sec=motion_segment_pad_sec,
     )
 
-    meta = {
+    meta: dict[str, Any] = {
         "video_path": str(Path(video_path).resolve()),
         "fps": fps,
         "total_frames": total_frames,
@@ -68,6 +69,12 @@ def run_pipeline(
         "conf": conf,
         "iou": iou,
     }
+
+    if camera_id is not None:
+        meta["camera_id"] = camera_id
+        for ev in events:
+            ev["camera_id"] = camera_id
+
     return events, clip_segments, meta
 
 

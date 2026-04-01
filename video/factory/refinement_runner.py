@@ -13,6 +13,7 @@ from video.common.frames import (
     sample_frames_uniform,
 )
 from video.core.models.event_refinement_llm import (
+    build_entities_with_hard_constraints,
     refine_events_with_llm,
     refine_vector_events_with_llm,
 )
@@ -30,6 +31,10 @@ class RefineEventsConfig:
     merge_location_iou_threshold: float = 0.9
     merge_center_dist_px: float = 30.0
     merge_location_norm_diff: float = 0.10
+    min_event_duration_sec: float = 1.0
+    # 修改一：实体合并硬约束（默认开启）
+    entity_merge_max_gap_sec: float = 300.0
+    entity_merge_min_llm_confidence: float = 0.75
 
 
 def run_refine_events_to_dict(
@@ -65,11 +70,15 @@ def run_refine_events_to_dict(
         clip = clip_segments[idx]
         clip_start = float(clip["start_sec"])
         clip_end = float(clip["end_sec"])
-        clip_events = [
-            e
-            for e in raw_events
-            if float(e.get("end_time", 0.0)) >= clip_start and float(e.get("start_time", 0.0)) <= clip_end
-        ]
+        clip_events = []
+        for e in raw_events:
+            s = float(e.get("start_time", 0.0))
+            t = float(e.get("end_time", 0.0))
+            if t < clip_start or s > clip_end:
+                continue
+            if (t - s) < float(cfg.min_event_duration_sec):
+                continue
+            clip_events.append(e)
         if not clip_events:
             continue
 
@@ -83,6 +92,13 @@ def run_refine_events_to_dict(
             raise RuntimeError(f"clip_index={idx} 未抽到任何帧，请检查 clip 时间段或视频路径")
 
         if cfg.mode == "full":
+            pre_entities = build_entities_with_hard_constraints(
+                video_path=video_path,
+                raw_events=clip_events,
+                model=cfg.model,
+                max_gap_sec=float(cfg.entity_merge_max_gap_sec),
+                min_llm_confidence=float(cfg.entity_merge_min_llm_confidence),
+            )
             refined_list_full.append(
                 refine_events_with_llm(
                     video_path=video_path,
@@ -95,6 +111,7 @@ def run_refine_events_to_dict(
                     merge_location_iou_threshold=float(cfg.merge_location_iou_threshold),
                     merge_center_dist_px=float(cfg.merge_center_dist_px),
                     merge_location_norm_diff=float(cfg.merge_location_norm_diff),
+                    pre_entities=pre_entities,
                 )
             )
         else:
