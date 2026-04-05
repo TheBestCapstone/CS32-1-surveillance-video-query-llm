@@ -1,5 +1,5 @@
-# BoT-SORT + ReID（本仓库对 Ultralytics 默认 botsort 的变体）
-# 参考: https://github.com/ultralytics/ultralytics/blob/main/ultralytics/cfg/trackers/botsort.yaml
+# BoT-SORT + ReID — this repo's variant of Ultralytics' default botsort config
+# Reference: https://github.com/ultralytics/ultralytics/blob/main/ultralytics/cfg/trackers/botsort.yaml
 
 tracker_type: botsort
 track_high_thresh: 0.25

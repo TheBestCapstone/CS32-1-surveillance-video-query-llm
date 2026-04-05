@@ -38,8 +38,8 @@ def resolve_tracker(tracker: str) -> tuple[str, str]:
 
 def resolve_model(model: str) -> tuple[str, str]:
     """
-    模型路径解析：支持简写 n/s/m/l/x 或任意 .pt / 自定义权重路径。
-    返回: (传给 YOLO() 的路径, 写入 meta 的展示名)。
+    Resolve model path: supports aliases n/s/m/l/x or any .pt / custom weight path.
+    Returns: (path passed to YOLO(), display name written to meta).
     """
     raw = model.strip()
     key = raw.lower()

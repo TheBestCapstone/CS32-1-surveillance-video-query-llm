@@ -1,5 +1,5 @@
 .env
 docs/
-_models/
+_model/
 _data/
 _pipeline_output/

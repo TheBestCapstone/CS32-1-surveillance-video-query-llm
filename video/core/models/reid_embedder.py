@@ -1,6 +1,6 @@
-"""行人 Re-ID 特征提取器。
+"""Pedestrian Re-ID feature extractor.
 
-默认使用 torchreid 的 OSNet x0_5（CNN，轻量高效）；若不可用则回退 torchvision MobileNetV2。
+Defaults to torchreid OSNet x0_5 (lightweight CNN); falls back to torchvision MobileNetV2 if unavailable.
 """
 
 from __future__ import annotations
@@ -26,10 +26,10 @@ except ImportError:
 
 
 class ReIDEmbedder:
-    """封装 Re-ID 推理，对外暴露 embed_crops / cosine_similarity。
+    """Wraps Re-ID inference; exposes embed_crops and cosine_similarity.
 
     backend:
-        "torchreid_osnet" — torchreid OSNet x0_5（默认）
+        "torchreid_osnet" — torchreid OSNet x0_5 (default)
         "torchvision"     — MobileNetV2 (ImageNet)
     """
 
@@ -94,7 +94,7 @@ class ReIDEmbedder:
         from torchvision.models import mobilenet_v2, MobileNet_V2_Weights
 
         base = mobilenet_v2(weights=MobileNet_V2_Weights.IMAGENET1K_V2)
-        # 去掉分类头，保留 features + global avg pool → 1280-d
+        # Drop classifier head; keep features + global avg pool → 1280-d
         model = torch.nn.Sequential(
             base.features,
             torch.nn.AdaptiveAvgPool2d((1, 1)),
@@ -110,7 +110,7 @@ class ReIDEmbedder:
     # ------------------------------------------------------------------
 
     def _preprocess(self, imgs: Sequence[np.ndarray]) -> torch.Tensor:
-        """BGR ndarray list -> (N, 3, H, W) float32 tensor (按照 backend 预处理)。"""
+        """BGR ndarray list -> (N, 3, H, W) float32 tensor (preprocessed per backend)."""
         tensors: list[torch.Tensor] = []
         h, w = self.input_size
         for img in imgs:
@@ -144,7 +144,7 @@ class ReIDEmbedder:
 
     @torch.no_grad()
     def embed_crops(self, crops: list[np.ndarray], batch_size: int = 64) -> np.ndarray:
-        """批量提取特征，返回 (N, dim) L2-归一化向量。"""
+        """Extract features in batches; returns L2-normalized vectors of shape (N, dim)."""
         if not crops:
             return np.empty((0, 0), dtype=np.float32)
 
@@ -160,5 +160,5 @@ class ReIDEmbedder:
 
     @staticmethod
     def cosine_similarity(feats_a: np.ndarray, feats_b: np.ndarray) -> np.ndarray:
-        """(Na, dim) x (Nb, dim) -> (Na, Nb) 余弦相似度矩阵。"""
+        """(Na, dim) x (Nb, dim) -> (Na, Nb) cosine similarity matrix."""
         return feats_a @ feats_b.T
