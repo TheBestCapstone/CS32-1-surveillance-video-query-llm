@@ -35,6 +35,15 @@ class ReflectionResult(TypedDict, total=False):
     errors: list[Any]
 
 
+class QueryQuadruple(TypedDict, total=False):
+    object: List[str]
+    color: List[str]
+    location: List[str]
+    event: str
+    confidence: float
+    source: str
+
+
 class AgentState(TypedDict, total=False):
     messages: List[BaseMessage]
     user_query: str
@@ -60,6 +69,11 @@ class AgentState(TypedDict, total=False):
     current_node: str
     cot_context: List[Dict[str, Any]]  # CoT 中间状态
     force_reset: bool                  # 强制重置状态标志
+    query_quadruple: QueryQuadruple
+    routing_metrics: Dict[str, Any]
+    search_config: Dict[str, Any]
+    sql_plan: Dict[str, Any]
+    metrics: Dict[str, Any]
 
 
 def content_to_text(content: Any) -> str:
@@ -162,6 +176,11 @@ class StateResetter:
         "syntax_error": None,
         "current_node": "",
         "cot_context": [],
+        "query_quadruple": {},
+        "routing_metrics": {},
+        "search_config": {},
+        "sql_plan": {},
+        "metrics": {},
     }
 
     @staticmethod
@@ -216,6 +235,44 @@ def question_to_meta_and_event(payload: dict[str, Any]) -> tuple[list[dict[str, 
     color = normalize_text_value(payload.get("color"))
     if color and color.lower() != "null":
         meta_list.append({"field": "object_color_cn", "op": "contains", "value": color})
+    object_value = payload.get("object")
+    object_candidates: list[str] = []
+    if isinstance(object_value, list):
+        object_candidates = [normalize_text_value(item) for item in object_value]
+    else:
+        object_candidates = [normalize_text_value(object_value)]
+    object_alias = {
+        "车": "car",
+        "车辆": "car",
+        "轿车": "car",
+        "汽车": "car",
+        "car": "car",
+        "卡车": "truck",
+        "货车": "truck",
+        "truck": "truck",
+        "人": "person",
+        "行人": "person",
+        "人员": "person",
+        "person": "person",
+        "自行车": "bike",
+        "单车": "bike",
+        "bike": "bike",
+        "摩托车": "motorcycle",
+        "机车": "motorcycle",
+        "motorcycle": "motorcycle",
+    }
+    object_tokens: list[str] = []
+    for item in object_candidates:
+        if not item or item.lower() == "null":
+            continue
+        normalized = object_alias.get(item.lower(), object_alias.get(item, item))
+        if normalized and normalized not in object_tokens:
+            object_tokens.append(normalized)
+    for token in object_tokens:
+        meta_list.append({"field": "object_type", "op": "contains", "value": token})
+    location = normalize_text_value(payload.get("location"))
+    if location and location.lower() != "null":
+        meta_list.append({"field": "scene_zone_cn", "op": "contains", "value": location})
     time_text = normalize_text_value(payload.get("time"))
     if time_text and time_text.lower() != "null":
         range_match = re.match(r"^\s*(\d+(?:\.\d+)?)\s*[-~到至]\s*(\d+(?:\.\d+)?)\s*$", time_text)
@@ -248,7 +305,11 @@ def question_to_meta_and_event(payload: dict[str, Any]) -> tuple[list[dict[str, 
 
 
 def default_db_path() -> Path:
-    return Path(__file__).resolve().parents[1] / "backup_legacy" / "src" / "agent" / "memory" / "episodic" / "lancedb"
+    return Path(__file__).resolve().parents[2] / "data" / "lancedb"
+
+
+def default_sqlite_db_path() -> Path:
+    return Path(__file__).resolve().parents[2] / "data" / "SQLite" / "episodic_events.sqlite"
 
 
 if __name__ == "__main__":

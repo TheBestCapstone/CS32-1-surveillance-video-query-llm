@@ -1,0 +1,126 @@
+    1: import unittest
+    1: import sys
+    1: from pathlib import Path
+       
+    1: sys.path.append(str(Path(__file__).resolve().parent))
+       
+    1: from node.tool_router_node import (
+           VIDEO_VECT_PLACEHOLDER,
+           ab_compare_routing,
+           classify_event_kind,
+           create_tool_router_node,
+           extract_query_triplet,
+           refactored_route_mode,
+           route_by_tool_choice,
+           route_from_preprocess,
+       )
+       
+       
+    2: class FakeLLMResponse:
+    1:     def __init__(self, content: str):
+    1:         self.content = content
+       
+       
+    2: class FakeLLM:
+    1:     def invoke(self, messages):
+    1:         text = str(messages[0].content)
+    1:         if "run" in text or "running" in text:
+    1:             return FakeLLMResponse("The target runs quickly across the road.")
+               if "appear" in text:
+                   return FakeLLMResponse("The target appears in the frame.")
+               return FakeLLMResponse("The target is active in the scene.")
+       
+       
+    2: class TestToolRouterRefactor(unittest.TestCase):
+    1:     def test_video_vect_is_permanently_disabled(self):
+    1:         router = create_tool_router_node()
+    1:         cases = [
+                   "Please do video semantic search",
+                   "What happened in this scene",
+                   "What targets are in the shot",
+                   "Help me run video_vect",
+               ]
+    5:         for q in cases:
+    4:             out = router({"user_query": q}, {}, None)
+    4:             self.assertNotEqual(out["tool_choice"]["mode"], "video_vect")
+    4:             self.assertFalse(out["tool_choice"]["video_vect_needed"])
+    4:             self.assertIn(VIDEO_VECT_PLACEHOLDER, out["thought"])
+       
+    1:     def test_triplet_extraction_22_scenarios(self):
+    1:         scenarios = [
+                   ("Did the red car appear", "car", "red", "generic"),
+                   ("Blue truck enters the frame", "truck", "blue", "generic"),
+                   ("White pedestrian running at the intersection", "person", "white", "concrete"),
+                   ("Does the black vehicle exist", "car", "black", "generic"),
+                   ("Green bicycle riding past", "bike", "green", "concrete"),
+                   ("Yellow motorcycle entering the parking lot", "motorcycle", "yellow", "concrete"),
+                   ("Is the silver car in the shot", "car", "silver", "generic"),
+                   ("Has a person ever appeared", "person", None, "generic"),
+                   ("Did the truck reverse and leave", "truck", None, "concrete"),
+                   ("Pedestrian crossing the road", "person", None, "concrete"),
+                   ("Vehicle appears", "car", None, "generic"),
+                   ("Is the target in the frame", None, None, "generic"),
+                   ("Is a blue person present", "person", "blue", "generic"),
+                   ("White truck parked on the roadside", "truck", "white", "concrete"),
+                   ("Did a bus appear", "bus", None, "generic"),
+                   ("Red car chasing pedestrian", "car", "red", "concrete"),
+                   ("Green bus entering the shot", "bus", "green", "generic"),
+                   ("Electric bike driving out the gate", "motorcycle", None, "concrete"),
+                   ("Does a silver sedan exist in the frame", "car", "silver", "generic"),
+                   ("People wandering at the entrance", "person", None, "concrete"),
+                   ("Did a yellow vehicle appear", "car", "yellow", "generic"),
+                   ("Black bike riding past", "bike", "black", "concrete"),
+               ]
+   23:         for query, exp_obj, exp_color, exp_kind in scenarios:
+   22:             t = extract_query_triplet(query, llm=None)
+   22:             self.assertEqual(t.object_type, exp_obj)
+   22:             self.assertEqual(t.color, exp_color)
+   22:             self.assertEqual(t.event_kind, exp_kind)
+   22:             self.assertTrue(t.event_semantic.endswith("。"))
+       
+    1:     def test_event_classification_boundaries(self):
+    1:         self.assertEqual(classify_event_kind("The target appears in the frame."), "generic")
+    1:         self.assertEqual(classify_event_kind("Does the target exist in the scene."), "generic")
+    1:         self.assertEqual(classify_event_kind("The target runs past the intersection."), "concrete")
+    1:         self.assertEqual(classify_event_kind("The target reverses out of the parking area."), "concrete")
+    1:         self.assertEqual(classify_event_kind("Is there a target."), "generic")
+       
+    1:     def test_router_dynamic_mode_rule(self):
+    1:         mode1, _ = refactored_route_mode("Did the red car appear")
+    1:         mode2, _ = refactored_route_mode("Did anyone enter the frame")
+    1:         mode3, _ = refactored_route_mode("Pedestrian running away")
+    1:         self.assertEqual(mode1, "pure_sql")
+    1:         self.assertEqual(mode2, "pure_sql")
+    1:         self.assertEqual(mode3, "hybrid_search")
+       
+    1:     def test_route_functions_never_send_video_vect(self):
+    1:         self.assertEqual(route_by_tool_choice({"tool_choice": {"mode": "video_vect"}}), "hybrid_preprocess")
+    1:         self.assertEqual(route_from_preprocess({"tool_choice": {"mode": "video_vect"}}), "hybrid_search_node")
+       
+    1:     def test_llm_semantic_rewrite_path(self):
+    1:         llm = FakeLLM()
+    1:         mode, triplet = refactored_route_mode("Did the red pedestrian run", llm=llm)
+    1:         self.assertEqual(mode, "hybrid_search")
+    1:         self.assertEqual(triplet.event_kind, "concrete")
+    1:         self.assertIn("run", triplet.event_semantic)
+       
+    1:     def test_ab_framework_metrics(self):
+    1:         samples = [
+    1:             {"query": "Did the red vehicle appear", "expected_mode": "pure_sql"},
+    1:             {"query": "Did anyone enter the frame", "expected_mode": "pure_sql"},
+    1:             {"query": "Pedestrian running across the intersection", "expected_mode": "hybrid_search"},
+    1:             {"query": "Truck reversing out", "expected_mode": "hybrid_search"},
+    1:             {"query": "Does the blue bicycle exist", "expected_mode": "pure_sql"},
+    1:             {"query": "Target chasing and leaving", "expected_mode": "hybrid_search"},
+               ]
+    1:         report = ab_compare_routing(samples, llm=None)
+    1:         self.assertEqual(report["total"], 6)
+    1:         self.assertIn("old_accuracy", report)
+    1:         self.assertIn("new_accuracy", report)
+    1:         self.assertIn("old_avg_latency_ms", report)
+    1:         self.assertIn("new_avg_latency_ms", report)
+    1:         self.assertGreaterEqual(report["new_accuracy"], report["old_accuracy"])
+       
+       
+    1: if __name__ == "__main__":
+           unittest.main()
