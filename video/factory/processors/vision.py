@@ -30,6 +30,17 @@ def _resolve_device(device: str) -> str:
 _BOTSORT_REID_YAML = botsort_reid_config_path()
 _YOLO_MODEL_DIR = yolo_model_dir()
 _YOLO11M_LOCAL = _YOLO_MODEL_DIR / "yolo11m.pt"
+DEFAULT_TARGET_CLASSES: list[str] = [
+    "person",
+    "car",
+    "bus",
+    "truck",
+    "motorcycle",
+    "bicycle",
+    "backpack",
+    "handbag",
+    "suitcase",
+]
 
 
 def resolve_tracker(tracker: str) -> tuple[str, str]:
@@ -86,6 +97,7 @@ def run_yolo_track_on_video(
     conf: float = 0.25,
     iou: float = 0.45,
     tracker: str = "botsort_reid",
+    target_classes: list[str] | None = None,
     save_annotated_video: bool = False,
     annotated_video_path: str | None = None,
 ):
@@ -113,6 +125,17 @@ def run_yolo_track_on_video(
         model_pt = str(_YOLO11M_LOCAL)
     model = YOLO(model_pt)
     tracker_cfg, tracker_name = resolve_tracker(tracker)
+    effective_classes = list(target_classes) if target_classes is not None else list(DEFAULT_TARGET_CLASSES)
+    classes_ids: list[int] | None = None
+    if effective_classes:
+        name_to_id = {str(v).lower(): int(k) for k, v in model.names.items()}
+        classes_ids = []
+        for c in effective_classes:
+            key = str(c).strip().lower()
+            if key in name_to_id:
+                classes_ids.append(name_to_id[key])
+        if not classes_ids:
+            raise ValueError(f"未匹配到任何目标类别: {effective_classes}")
     writer: cv2.VideoWriter | None = None
     if save_annotated_video:
         if annotated_video_path is None:
@@ -123,6 +146,7 @@ def run_yolo_track_on_video(
         source=video_path,
         conf=conf,
         iou=iou,
+        classes=classes_ids,
         persist=True,
         stream=True,
         verbose=False,

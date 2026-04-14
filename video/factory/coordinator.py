@@ -77,12 +77,19 @@ def _add_video_cli_args(p: argparse.ArgumentParser) -> None:
     p.add_argument("--model", "-m", type=str, default="11m", help="YOLO 权重（默认 yolo11m，存放于 _model/）")
     p.add_argument("--conf", type=float, default=0.25, help="检测置信度阈值")
     p.add_argument("--iou", type=float, default=0.25, help="检测 NMS IoU 阈值")
+    p.add_argument(
+        "--classes",
+        type=str,
+        default="person,car,bus,truck,motorcycle,bicycle,backpack,handbag,suitcase",
+        help="按类别过滤检测目标，逗号分隔（默认监控类别：person,car,bus,truck,motorcycle,bicycle,backpack,handbag,suitcase）",
+    )
     p.add_argument("--save-video", action="store_true", help="输出带框+track_id 的标注视频")
     p.add_argument("--save-video-path", type=str, default=None, help="标注视频输出路径")
 
 
 def _run_video_cli_namespace(args: argparse.Namespace) -> None:
     out = Path(args.out_dir) if args.out_dir else pipeline_output_dir()
+    target_classes = [x.strip() for x in args.classes.split(",") if x.strip()] if args.classes else None
     print(
         f"正在运行: {args.video} | 模型={args.model} conf={args.conf} iou={args.iou} | tracker={args.tracker}"
     )
@@ -97,6 +104,7 @@ def _run_video_cli_namespace(args: argparse.Namespace) -> None:
         min_clip_duration=1.0,
         max_static_duration=30.0,
         tracker=args.tracker,
+        target_classes=target_classes,
         save_annotated_video=bool(args.save_video),
         annotated_video_path=args.save_video_path,
     )

@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Any
 
 from video.factory.processors.analyzer import aggregate_tracks, slice_events
-from video.factory.processors.vision import resolve_model, run_yolo_track_on_video
+from video.factory.processors.vision import DEFAULT_TARGET_CLASSES, resolve_model, run_yolo_track_on_video
 
 
 def run_pipeline(
@@ -28,18 +28,21 @@ def run_pipeline(
     motion_window_sum_threshold: float = 20.0,
     motion_segment_pad_sec: float = 0.8,
     tracker: str = "botsort_reid",
+    target_classes: list[str] | None = None,
     save_annotated_video: bool = False,
     annotated_video_path: str | None = None,
     camera_id: str | None = None,
 ) -> tuple[list[dict[str, Any]], list[dict[str, float]], dict[str, Any]]:
     """主流程：读视频 → YOLO 跟踪 → 轨迹聚合 → 事件切片。"""
     model_resolved, _ = resolve_model(model_path)
+    effective_target_classes = list(target_classes) if target_classes is not None else list(DEFAULT_TARGET_CLASSES)
     fps, total_frames, frame_detections, tracker_label = run_yolo_track_on_video(
         video_path,
         model_path=model_resolved,
         conf=conf,
         iou=iou,
         tracker=tracker,
+        target_classes=effective_target_classes,
         save_annotated_video=save_annotated_video,
         annotated_video_path=annotated_video_path,
     )
@@ -66,6 +69,7 @@ def run_pipeline(
         "tracker": tracker_label,
         "model": model_resolved,
         "model_input": model_path.strip(),
+        "target_classes": effective_target_classes,
         "conf": conf,
         "iou": iou,
     }
