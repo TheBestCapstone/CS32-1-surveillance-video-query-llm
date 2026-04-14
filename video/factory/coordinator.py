@@ -130,7 +130,14 @@ def _add_refine_cli_args(p: argparse.ArgumentParser) -> None:
         help="full=大结构；vector=上线最小检索事件(默认)",
     )
     p.add_argument("--clip-index", type=int, default=None, help="仅处理某一个 clip 段")
-    p.add_argument("--num-frames", type=int, default=12, help="每段 clip 抽帧数量")
+    p.add_argument("--num-frames", type=int, default=0,
+                   help="固定抽帧数（0=自适应，按 --frames-per-sec 计算）")
+    p.add_argument("--frames-per-sec", type=float, default=0.1,
+                   help="自适应模式：每秒抽几帧（默认0.1=每10秒1帧）")
+    p.add_argument("--min-frames", type=int, default=6,
+                   help="自适应模式：最少帧数（默认6）")
+    p.add_argument("--max-frames", type=int, default=48,
+                   help="自适应模式：最多帧数（默认48，控制LLM费用）")
     p.add_argument("--model", type=str, default="gpt-5.4-mini", help="OpenAI 多模态模型名")
     p.add_argument("--temperature", type=float, default=0.1)
     p.add_argument("--max-time-adjust-sec", type=float, default=0.5)
@@ -148,6 +155,9 @@ def _run_refine_cli_namespace(args: argparse.Namespace) -> None:
         mode=args.mode,
         clip_index=args.clip_index,
         num_frames=int(args.num_frames),
+        frames_per_sec=float(args.frames_per_sec),
+        min_frames=int(args.min_frames),
+        max_frames=int(args.max_frames),
         model=args.model,
         temperature=float(args.temperature),
         max_time_adjust_sec=float(args.max_time_adjust_sec),

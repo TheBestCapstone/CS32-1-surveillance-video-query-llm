@@ -6,10 +6,26 @@
 import shutil
 from pathlib import Path
 
+import torch
 import cv2
 from ultralytics import YOLO
 
 from video.common.paths import botsort_reid_config_path, yolo_model_dir
+
+
+def _resolve_device(device: str) -> str:
+    """运行时检测设备可用性，macOS 版本号解析 bug 时自动降级到 CPU。"""
+    if device == "mps":
+        try:
+            if torch.backends.mps.is_available() and torch.backends.mps.is_built():
+                torch.zeros(1).to("mps")
+                return "mps"
+        except Exception:
+            pass
+        return "cpu"
+    if device.startswith("cuda") and not torch.cuda.is_available():
+        return "cpu"
+    return device
 
 _BOTSORT_REID_YAML = botsort_reid_config_path()
 _YOLO_MODEL_DIR = yolo_model_dir()
@@ -111,7 +127,7 @@ def run_yolo_track_on_video(
         stream=True,
         verbose=False,
         tracker=tracker_cfg,
-        device="mps",
+        device=_resolve_device("mps"),
     )
 
     frame_detections: list[list[tuple[int | None, str, float, list[float]]]] = []

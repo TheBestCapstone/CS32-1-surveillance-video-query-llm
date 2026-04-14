@@ -24,7 +24,12 @@ from video.core.schema.refined_event_llm import RefinedAllClipsPayload, RefinedE
 class RefineEventsConfig:
     mode: Literal["full", "vector"] = "vector"
     clip_index: int | None = None
-    num_frames: int = 12
+    # 弹性抽帧：优先使用 frames_per_sec 按时长自动计算帧数
+    # 若显式设置 num_frames（>0），则退化为固定帧数模式（向后兼容）
+    num_frames: int = 0            # 0 = 使用自适应模式
+    frames_per_sec: float = 0.1   # 自适应模式：每秒抽几帧（默认每10秒1帧）
+    min_frames: int = 6            # 自适应模式：最少帧数
+    max_frames: int = 48           # 自适应模式：最多帧数（控 LLM token 开销）
     model: str = "gpt-5.4-mini"
     temperature: float = 0.1
     max_time_adjust_sec: float = 0.5
@@ -32,9 +37,17 @@ class RefineEventsConfig:
     merge_center_dist_px: float = 30.0
     merge_location_norm_diff: float = 0.10
     min_event_duration_sec: float = 1.0
-    # 修改一：实体合并硬约束（默认开启）
+    # 实体合并硬约束（默认开启）
     entity_merge_max_gap_sec: float = 300.0
     entity_merge_min_llm_confidence: float = 0.75
+
+    def compute_num_frames(self, clip_duration_sec: float) -> int:
+        """根据 clip 时长自适应计算抽帧数。"""
+        if self.num_frames > 0:
+            # 显式指定了固定帧数，直接返回（向后兼容）
+            return int(self.num_frames)
+        adaptive = round(clip_duration_sec * self.frames_per_sec)
+        return max(self.min_frames, min(self.max_frames, adaptive))
 
 
 def run_refine_events_to_dict(
@@ -82,11 +95,13 @@ def run_refine_events_to_dict(
         if not clip_events:
             continue
 
+        clip_duration = clip_end - clip_start
+        n_frames = cfg.compute_num_frames(clip_duration)
         frames = sample_frames_uniform(
             video_path=video_path,
             start_sec=clip_start,
             end_sec=clip_end,
-            num_frames=int(cfg.num_frames),
+            num_frames=n_frames,
         )
         if not frames:
             raise RuntimeError(f"clip_index={idx} 未抽到任何帧，请检查 clip 时间段或视频路径")

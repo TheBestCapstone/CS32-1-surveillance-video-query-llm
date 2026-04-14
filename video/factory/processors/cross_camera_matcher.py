@@ -121,22 +121,44 @@ def _greedy_assign(
     scored: list[tuple[CameraResult, dict, CameraResult, dict, float]],
     threshold: float,
 ) -> list[tuple[str, int, str, int, float]]:
-    """贪心分配：按相似度降序，每条轨迹只匹配一次。
+    """多路合并分配：收集所有超过阈值的配对，送入后续 Union-Find 合并。
+
+    与原贪心方式的区别：不再限制每条轨迹只能配一次。
+    这样当同一人同时出现在 3 个（或更多）摄像头时，
+    cam1↔cam2、cam1↔cam3、cam2↔cam3 三对都会被保留，
+    Union-Find 会把它们合并为同一个 GlobalEntity。
+
+    同一摄像头对（cam_a, cam_b）内，同一条轨迹仍只取最高分的那一对，
+    避免在同一组摄像头内产生一对多的错误匹配。
 
     返回 list of (cam_id_a, track_id_a, cam_id_b, track_id_b, score)。
     """
-    used: set[tuple[str, int]] = set()
-    assignments: list[tuple[str, int, str, int, float]] = []
+    # best_for_cam_pair[(cam_a, tid_a, cam_b)] = 当前最优 (tid_b, score)
+    # 保证同一摄像头对内每条轨迹只配最佳对手
+    best: dict[tuple[str, int, str], tuple[int, float]] = {}
     for cam_i, ti, cam_j, tj, score in scored:
         if score < threshold:
             break
-        key_i = (cam_i.camera_id, ti["track_id"])
-        key_j = (cam_j.camera_id, tj["track_id"])
-        if key_i in used or key_j in used:
+        cid_i, tid_i = cam_i.camera_id, ti["track_id"]
+        cid_j, tid_j = cam_j.camera_id, tj["track_id"]
+        key_ij = (cid_i, tid_i, cid_j)
+        key_ji = (cid_j, tid_j, cid_i)
+        prev_ij = best.get(key_ij)
+        if prev_ij is None or score > prev_ij[1]:
+            best[key_ij] = (tid_j, score)
+        prev_ji = best.get(key_ji)
+        if prev_ji is None or score > prev_ji[1]:
+            best[key_ji] = (tid_i, score)
+
+    # 去重：(cam_a, tid_a, cam_b, tid_b) 与 (cam_b, tid_b, cam_a, tid_a) 是同一对
+    seen: set[frozenset[tuple[str, int]]] = set()
+    assignments: list[tuple[str, int, str, int, float]] = []
+    for (cid_a, tid_a, cid_b), (tid_b, score) in best.items():
+        pair_key = frozenset([(cid_a, tid_a), (cid_b, tid_b)])
+        if pair_key in seen:
             continue
-        used.add(key_i)
-        used.add(key_j)
-        assignments.append((cam_i.camera_id, ti["track_id"], cam_j.camera_id, tj["track_id"], score))
+        seen.add(pair_key)
+        assignments.append((cid_a, tid_a, cid_b, tid_b, score))
     return assignments
 
 
