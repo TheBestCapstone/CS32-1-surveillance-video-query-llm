@@ -1,1 +1,1 @@
-"""离线视频理解：processors、精炼与编排（coordinator）。"""
+"""Offline video understanding: processors, refinement, and coordinator orchestration."""

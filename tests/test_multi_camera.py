@@ -1,4 +1,4 @@
-"""跨摄像头匹配核心逻辑的单元测试（纯 mock，不需要 YOLO / OpenCV / FastReID）。"""
+"""Unit tests for cross-camera matching (mocked; no YOLO / OpenCV / FastReID)."""
 
 from __future__ import annotations
 
@@ -176,7 +176,7 @@ class TestGreedyAssign(unittest.TestCase):
         self.assertEqual(len(assignments), 0)
 
     def test_no_duplicate_assignment(self):
-        """同一轨迹只能匹配一次。"""
+        """Each track keeps only the best opponent within a camera pair."""
         cam1 = _make_cam("c1", [_make_track(1, "person", 0, 10)])
         cam2 = _make_cam("c2", [
             _make_track(2, "person", 5, 15),
@@ -207,7 +207,7 @@ class TestGlobalEntityBuilding(unittest.TestCase):
         self.assertEqual(entities[0].appearances[1].camera_id, "c2")
 
     def test_transitive_merge_three_cameras(self):
-        """c1-1 ↔ c2-2, c2-2 ↔ c3-3 → 应合并为一个实体。"""
+        """c1-1 ↔ c2-2, c2-2 ↔ c3-3 → one merged entity."""
         cam1 = _make_cam("c1", [_make_track(1, "person", 0, 10)])
         cam2 = _make_cam("c2", [_make_track(2, "person", 12, 20)])
         cam3 = _make_cam("c3", [_make_track(3, "person", 22, 30)])

@@ -1,6 +1,6 @@
 """
-检测与跟踪：YOLO + Ultralytics track（BoT-SORT / ByteTrack 等）。
-对应 README 中 factory/processors/vision.py 职责。
+Detection and tracking: YOLO + Ultralytics track (BoT-SORT / ByteTrack, etc.).
+See README for factory/processors/vision.py responsibilities.
 """
 
 import shutil
@@ -14,7 +14,7 @@ from video.common.paths import botsort_reid_config_path, yolo_model_dir
 
 
 def _resolve_device(device: str) -> str:
-    """运行时检测设备可用性，macOS 版本号解析 bug 时自动降级到 CPU。"""
+    """Pick a runtime device; fall back to CPU when MPS/CUDA is unusable."""
     if device == "mps":
         try:
             if torch.backends.mps.is_available() and torch.backends.mps.is_built():
@@ -45,17 +45,17 @@ DEFAULT_TARGET_CLASSES: list[str] = [
 
 def resolve_tracker(tracker: str) -> tuple[str, str]:
     """
-    将简短名称解析为 Ultralytics 可用的 tracker 路径/内置名。
-    返回: (传给 model.track 的 tracker 参数, 人类可读名称)。
+    Resolve a short name to an Ultralytics tracker path or built-in name.
+    Returns: (tracker argument for model.track, human-readable label).
     """
     t = tracker.strip().lower()
     if t in ("bytetrack", "byte", "bt"):
         return "bytetrack.yaml", "ByteTrack"
     if t in ("botsort", "bot", "botsort_noreid"):
-        return "botsort.yaml", "BoT-SORT(官方默认, with_reid=False)"
+        return "botsort.yaml", "BoT-SORT(official default, with_reid=False)"
     if t in ("botsort_reid", "bot_reid", "default", "botsort+reid"):
         if not _BOTSORT_REID_YAML.is_file():
-            return "botsort.yaml", "BoT-SORT(fallback: 未找到 config/trackers/botsort_reid.yaml)"
+            return "botsort.yaml", "BoT-SORT(fallback: config/trackers/botsort_reid.yaml missing)"
         return str(_BOTSORT_REID_YAML), "BoT-SORT+ReID(config/trackers/botsort_reid.yaml)"
     p = Path(tracker)
     if p.is_file():
@@ -102,12 +102,12 @@ def run_yolo_track_on_video(
     annotated_video_path: str | None = None,
 ):
     """
-    对视频跑 YOLO + 跟踪（默认 BoT-SORT+ReID），逐帧收集检测结果。
-    返回: (fps, 总帧数, 逐帧检测列表, tracker_name)。
+    Run YOLO + tracking on video (default BoT-SORT+ReID); collect per-frame detections.
+    Returns: (fps, total_frames, per-frame detections, tracker_name).
     """
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
-        raise FileNotFoundError(f"无法打开视频: {video_path}")
+        raise FileNotFoundError(f"Cannot open video: {video_path}")
     fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT) or 0)
     cap.release()
@@ -116,7 +116,7 @@ def run_yolo_track_on_video(
     if model_pt == str(_YOLO11M_LOCAL):
         _YOLO_MODEL_DIR.mkdir(parents=True, exist_ok=True)
         if not _YOLO11M_LOCAL.is_file():
-            # 先触发 ultralytics 下载，再把权重复制到仓库 _model 目录中，保证可复现。
+            # Trigger ultralytics download, then copy weights into repo _model for reproducibility.
             downloaded = YOLO("yolo11m.pt")
             src = Path(getattr(downloaded, "ckpt_path", "") or "")
             if src.is_file():
@@ -135,7 +135,7 @@ def run_yolo_track_on_video(
             if key in name_to_id:
                 classes_ids.append(name_to_id[key])
         if not classes_ids:
-            raise ValueError(f"未匹配到任何目标类别: {effective_classes}")
+            raise ValueError(f"No matching target classes: {effective_classes}")
     writer: cv2.VideoWriter | None = None
     if save_annotated_video:
         if annotated_video_path is None:

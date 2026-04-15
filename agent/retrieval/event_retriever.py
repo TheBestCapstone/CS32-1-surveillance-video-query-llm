@@ -19,14 +19,14 @@ class EventRetriever:
 
     def _get_db_connection(self):
         db = sqlite3.connect(self.db_path)
-        db.row_factory = sqlite3.Row  # 返回字典格式
+        db.row_factory = sqlite3.Row  # rows as dict-like
         db.enable_load_extension(True)
         sqlite_vec.load(db)
         db.enable_load_extension(False)
         return db
 
     def get_event_detail(self, event_id: int) -> Optional[Dict[str, Any]]:
-        """按 event_id 获取完整事件详情"""
+        """Fetch full event row by event_id."""
         db = self._get_db_connection()
         cursor = db.cursor()
         
@@ -46,7 +46,7 @@ class EventRetriever:
                           min_duration: float = None,
                           start_time_after: float = None,
                           limit: int = 10) -> List[Dict[str, Any]]:
-        """纯结构化字段检索 (不使用向量)"""
+        """Structured field search (no vector index)."""
         db = self._get_db_connection()
         cursor = db.cursor()
         
@@ -87,21 +87,17 @@ class EventRetriever:
                             start_time_after: float = None,
                             end_time_before: float = None) -> List[Dict[str, Any]]:
         """
-        混合检索：同时做 SQLite 条件过滤 和 向量相似检索
+        Hybrid search: SQLite filters + sqlite-vec similarity.
         """
-        # 1. 对查询文本进行 embedding
         try:
             query_vector = get_qwen_embedding(query_text)
         except Exception as e:
-            print(f"获取 Query Embedding 失败: {e}")
+            print(f"Failed to embed query: {e}")
             return []
 
         db = self._get_db_connection()
         cursor = db.cursor()
 
-        # 2. 构建查询 SQL (结合 vec0 虚拟表和普通表)
-        # 使用 vec_distance_L2 或者通过 match 查询
-        
         base_query = """
             SELECT 
                 e.event_id,
@@ -118,7 +114,6 @@ class EventRetriever:
         
         params = [serialize_f32(query_vector), top_k]
         
-        # 增加结构化过滤条件
         if video_id:
             base_query += " AND e.video_id = ?"
             params.append(video_id)
@@ -139,7 +134,6 @@ class EventRetriever:
             base_query += " AND e.end_time <= ?"
             params.append(end_time_before)
             
-        # 排序
         base_query += " ORDER BY v.distance ASC"
         
         cursor.execute(base_query, params)
@@ -159,19 +153,19 @@ if __name__ == "__main__":
         pass
         
     if not os.environ.get("DASHSCOPE_API_KEY"):
-        print("测试需要设置 DASHSCOPE_API_KEY")
+        print("Tests require DASHSCOPE_API_KEY")
     else:
         retriever = EventRetriever()
         
-        print("🔍 测试 get_event_detail (event_id=1):")
+        print("Test get_event_detail (event_id=1):")
         detail = retriever.get_event_detail(1)
         if detail:
-            print(f"成功获取: {detail.get('event_summary_cn')}")
+            print(f"Fetched: {detail.get('event_summary_cn')}")
         else:
-            print("未找到事件，可能数据库为空。")
+            print("No row found (database may be empty).")
             
-        print("\n🔍 测试 hybrid_event_search ('寻找停放的汽车'):")
-        results = retriever.hybrid_event_search("寻找停放的汽车", top_k=3)
+        print("\nTest hybrid_event_search ('find a parked car'):")
+        results = retriever.hybrid_event_search("find a parked car", top_k=3)
         for idx, res in enumerate(results):
-            print(f"[{idx+1}] ID: {res['event_id']}, 视频: {res['video_id']}, 距离: {res['distance']:.4f}")
-            print(f"    摘要: {res['event_summary_cn']}")
+            print(f"[{idx+1}] ID: {res['event_id']}, video: {res['video_id']}, distance: {res['distance']:.4f}")
+            print(f"    summary: {res['event_summary_cn']}")

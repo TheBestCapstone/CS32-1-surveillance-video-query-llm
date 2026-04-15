@@ -1,4 +1,4 @@
-"""跨摄像头人物匹配：时间过滤 → Re-ID embedding 召回 → 匈牙利算法全局分配。"""
+"""Cross-camera person matching: time filtering → Re-ID embedding → global assignment (greedy + Union-Find)."""
 
 from __future__ import annotations
 
@@ -27,12 +27,12 @@ logger = logging.getLogger(__name__)
 # ------------------------------------------------------------------
 
 def _time_overlap(a_start: float, a_end: float, b_start: float, b_end: float) -> float:
-    """两段时间区间的重叠长度（秒），无重叠返回 0。"""
+    """Overlap length (seconds) of two intervals; 0 if none."""
     return max(0.0, min(a_end, b_end) - max(a_start, b_start))
 
 
 def _time_gap(a_start: float, a_end: float, b_start: float, b_end: float) -> float:
-    """两段时间区间之间的间隔（秒），重叠时返回 0。"""
+    """Gap (seconds) between two intervals; 0 if overlapping."""
     if _time_overlap(a_start, a_end, b_start, b_end) > 0:
         return 0.0
     return min(abs(b_start - a_end), abs(a_start - b_end))
@@ -43,7 +43,7 @@ def passes_time_constraint(
     track_b: dict[str, Any],
     config: CrossCameraConfig,
 ) -> bool:
-    """根据 max_transition_sec / min_overlap_sec 判断两条轨迹是否满足时间约束。"""
+    """Whether two tracks satisfy time constraints from max_transition_sec / min_overlap_sec."""
     a_s, a_e = track_a["start_time"], track_a["end_time"]
     b_s, b_e = track_b["start_time"], track_b["end_time"]
 
@@ -67,7 +67,7 @@ def build_candidate_pairs(
     per_camera: list[CameraResult],
     config: CrossCameraConfig,
 ) -> list[tuple[CameraResult, dict[str, Any], CameraResult, dict[str, Any]]]:
-    """枚举所有通过时间约束的跨摄像头 (person) 轨迹对。"""
+    """Enumerate all cross-camera (person) track pairs that pass time filtering."""
     pairs: list[tuple[CameraResult, dict, CameraResult, dict]] = []
     for cam_i, cam_j in itertools.combinations(per_camera, 2):
         tracks_i = _person_tracks(cam_i) if config.person_only else cam_i.tracks
@@ -88,7 +88,7 @@ def score_candidate_pairs(
     embedder: ReIDEmbedder,
     config: CrossCameraConfig,
 ) -> list[tuple[CameraResult, dict, CameraResult, dict, float]]:
-    """跨摄综合评分：0.7*cosine + 0.3*time_window_score。"""
+    """Cross-camera score: 0.7*cosine + 0.3*time_window_score."""
     def _time_window_score(gap_sec: float) -> float:
         if gap_sec <= 30.0:
             return 1.0
@@ -121,20 +121,18 @@ def _greedy_assign(
     scored: list[tuple[CameraResult, dict, CameraResult, dict, float]],
     threshold: float,
 ) -> list[tuple[str, int, str, int, float]]:
-    """多路合并分配：收集所有超过阈值的配对，送入后续 Union-Find 合并。
+    """Multi-way merge: keep pairs above threshold for Union-Find.
 
-    与原贪心方式的区别：不再限制每条轨迹只能配一次。
-    这样当同一人同时出现在 3 个（或更多）摄像头时，
-    cam1↔cam2、cam1↔cam3、cam2↔cam3 三对都会被保留，
-    Union-Find 会把它们合并为同一个 GlobalEntity。
+    Unlike one-to-one greedy matching, a track may appear in multiple high-score pairs.
+    When one person appears on 3+ cameras, pairs cam1↔cam2, cam1↔cam3, cam2↔cam3 can all be kept;
+    Union-Find merges them into one GlobalEntity.
 
-    同一摄像头对（cam_a, cam_b）内，同一条轨迹仍只取最高分的那一对，
-    避免在同一组摄像头内产生一对多的错误匹配。
+    Within a camera pair (cam_a, cam_b), each track keeps only its best opponent
+    to reduce many-to-one errors inside that pair.
 
-    返回 list of (cam_id_a, track_id_a, cam_id_b, track_id_b, score)。
+    Returns list of (cam_id_a, track_id_a, cam_id_b, track_id_b, score).
     """
-    # best_for_cam_pair[(cam_a, tid_a, cam_b)] = 当前最优 (tid_b, score)
-    # 保证同一摄像头对内每条轨迹只配最佳对手
+    # best_for_cam_pair[(cam_a, tid_a, cam_b)] = best (tid_b, score) for that directed triple
     best: dict[tuple[str, int, str], tuple[int, float]] = {}
     for cam_i, ti, cam_j, tj, score in scored:
         if score < threshold:
@@ -150,7 +148,7 @@ def _greedy_assign(
         if prev_ji is None or score > prev_ji[1]:
             best[key_ji] = (tid_i, score)
 
-    # 去重：(cam_a, tid_a, cam_b, tid_b) 与 (cam_b, tid_b, cam_a, tid_a) 是同一对
+    # Dedup undirected pairs
     seen: set[frozenset[tuple[str, int]]] = set()
     assignments: list[tuple[str, int, str, int, float]] = []
     for (cid_a, tid_a, cid_b), (tid_b, score) in best.items():
@@ -166,7 +164,7 @@ def _build_global_entities(
     assignments: list[tuple[str, int, str, int, float]],
     per_camera: list[CameraResult],
 ) -> list[GlobalEntity]:
-    """将两两配对结果合并成全局实体（Union-Find）。"""
+    """Merge pairwise assignments into global entities (Union-Find)."""
     parent: dict[tuple[str, int], tuple[str, int]] = {}
 
     def find(x: tuple[str, int]) -> tuple[str, int]:
@@ -239,21 +237,21 @@ def match_across_cameras(
     embedder: ReIDEmbedder,
     llm_verify_fn: Callable[..., MatchVerification] | None = None,
 ) -> list[GlobalEntity]:
-    """跨摄像头匹配主函数。
+    """Cross-camera matching entrypoint.
 
-    1. 枚举通过时间约束的候选对
-    2. Re-ID 余弦相似度打分
-    3. (可选) top-K 送 LLM 二次确认
-    4. 贪心全局分配 → 合并为 GlobalEntity
+    1. Candidate pairs under time constraints
+    2. Re-ID cosine scoring
+    3. (Optional) top-K LLM verification on borderline cosine
+    4. Greedy assignment → GlobalEntity list
     """
     pairs = build_candidate_pairs(per_camera, config)
-    logger.info("候选对数: %d (时间过滤后)", len(pairs))
+    logger.info("Candidate pairs after time filter: %d", len(pairs))
 
     scored = score_candidate_pairs(pairs, embedder, config)
-    logger.info("有效得分对数: %d", len(scored))
+    logger.info("Scored pairs: %d", len(scored))
 
     if llm_verify_fn is not None and config.llm_verify_top_k > 0:
-        # 仅对边界 case 触发 VLM：cosine in [min,max]
+        # VLM only for borderline cosine in [min, max]
         border_cases: list[tuple[CameraResult, dict, CameraResult, dict, float]] = []
         for item in scored:
             cam_i, ti, cam_j, tj, score = item
@@ -291,6 +289,6 @@ def match_across_cameras(
         scored = sorted(verified + remaining, key=lambda x: x[4], reverse=True)
 
     assignments = _greedy_assign(scored, config.cross_camera_min_score)
-    logger.info("匹配分配数: %d", len(assignments))
+    logger.info("Assignments: %d", len(assignments))
 
     return _build_global_entities(assignments, per_camera)

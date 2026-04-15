@@ -1,4 +1,4 @@
-"""多摄像头跨镜人物追踪的数据结构定义。"""
+"""Data structures for multi-camera cross-view person tracking."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ import numpy as np
 
 @dataclass
 class PersonCrop:
-    """单张人物裁剪图。"""
+    """Single person crop image."""
 
     t_sec: float
     camera_id: str
@@ -21,7 +21,7 @@ class PersonCrop:
 
 @dataclass
 class CameraAppearance:
-    """某全局实体在某摄像头中的一次出现记录。"""
+    """One appearance of a global entity on a camera."""
 
     camera_id: str
     track_id: int
@@ -32,7 +32,7 @@ class CameraAppearance:
 
 @dataclass
 class GlobalEntity:
-    """跨摄像头合并后的全局实体（同一个人）。"""
+    """Merged global entity across cameras (same person)."""
 
     global_entity_id: str
     appearances: list[CameraAppearance] = field(default_factory=list)
@@ -40,7 +40,7 @@ class GlobalEntity:
 
 @dataclass
 class CameraResult:
-    """单路摄像头经过 Stage-1 处理后的完整结果。"""
+    """Full Stage-1 result for one camera."""
 
     camera_id: str
     video_path: str
@@ -54,26 +54,26 @@ class CameraResult:
 
 @dataclass
 class CrossCameraConfig:
-    """跨摄像头匹配超参数。"""
+    """Hyperparameters for cross-camera matching."""
 
     max_transition_sec: float = 30.0
     min_overlap_sec: float = 0.0
     embedding_threshold: float = 0.65
     llm_verify_top_k: int = 3
     person_only: bool = True
-    # 同摄像头碎片拼接
+    # Same-camera fragment stitching
     same_camera_max_gap_sec: float = 3.0
     same_camera_reid_threshold: float = 0.80
-    # 跨摄像头综合打分阈值
+    # Cross-camera combined score threshold
     cross_camera_min_score: float = 0.65
-    # 只对边界相似度触发 VLM
+    # Trigger VLM only for borderline cosine
     llm_verify_cosine_min: float = 0.65
     llm_verify_cosine_max: float = 0.80
 
 
 @dataclass
 class MatchVerification:
-    """LLM 二次确认结果。"""
+    """Optional LLM verification result."""
 
     is_match: bool
     confidence: float
@@ -82,7 +82,7 @@ class MatchVerification:
 
 @dataclass
 class MultiCameraOutput:
-    """多摄像头管线最终输出。"""
+    """Final multi-camera pipeline output."""
 
     cameras: dict[str, str]
     config: CrossCameraConfig

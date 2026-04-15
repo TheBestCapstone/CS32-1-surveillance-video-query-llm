@@ -1,4 +1,4 @@
-"""视频抽帧、分辨率与事件 bbox 归一化（OpenCV，供精炼或其它模块复用）。"""
+"""Video frame sampling, resolution, and event bbox normalization (OpenCV; shared by refinement and other modules)."""
 
 from __future__ import annotations
 
@@ -18,7 +18,7 @@ class FrameSample:
 
 @dataclass
 class PersonCrop:
-    """单张人物裁剪图（供 Re-ID 使用）。"""
+    """Single person crop image (for Re-ID)."""
 
     t_sec: float
     camera_id: str
@@ -30,7 +30,7 @@ class PersonCrop:
 def _encode_bgr_to_jpg_base64(img_bgr, quality: int = 85) -> str:
     ok, buf = cv2.imencode(".jpg", img_bgr, [int(cv2.IMWRITE_JPEG_QUALITY), int(quality)])
     if not ok:
-        raise RuntimeError("JPEG 编码失败")
+        raise RuntimeError("JPEG encoding failed")
     return base64.b64encode(buf.tobytes()).decode("utf-8")
 
 
@@ -41,10 +41,10 @@ def sample_frames_uniform(
     num_frames: int = 12,
     resize_width: int = 768,
 ) -> list[FrameSample]:
-    """在 [start_sec, end_sec] 区间均匀抽帧，并把每帧编码成 base64 JPEG。"""
+    """Uniformly sample frames in [start_sec, end_sec] and encode each as base64 JPEG."""
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
-        raise FileNotFoundError(f"无法打开视频: {video_path}")
+        raise FileNotFoundError(f"Cannot open video: {video_path}")
 
     fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
     duration = max(0.0, end_sec - start_sec)
@@ -77,12 +77,12 @@ def sample_frames_uniform(
 def get_video_size(video_path: str) -> tuple[int, int]:
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
-        raise FileNotFoundError(f"无法打开视频: {video_path}")
+        raise FileNotFoundError(f"Cannot open video: {video_path}")
     w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH) or 0)
     h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT) or 0)
     cap.release()
     if w <= 0 or h <= 0:
-        raise RuntimeError("无法读取视频分辨率")
+        raise RuntimeError("Cannot read video resolution")
     return w, h
 
 
@@ -101,10 +101,10 @@ def extract_person_crops(
     resize: tuple[int, int] = (256, 128),
     min_crop_hw: tuple[int, int] = (32, 16),
 ) -> list[PersonCrop]:
-    """从轨迹的 time_xyxy 中均匀抽取 N 帧并按 bbox 裁剪，返回 Re-ID 标准尺寸的人物图。
+    """Sample N frames uniformly from track time_xyxy, crop by bbox, resize to Re-ID input size.
 
     Args:
-        resize: (height, width) — Re-ID 标准输入 256x128。
+        resize: (height, width) — typical Re-ID input 256x128.
     """
     time_xyxy: list[tuple[float, list[float]]] = track.get("time_xyxy", [])
     if not time_xyxy:
@@ -116,7 +116,7 @@ def extract_person_crops(
 
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
-        raise FileNotFoundError(f"无法打开视频: {video_path}")
+        raise FileNotFoundError(f"Cannot open video: {video_path}")
     fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
     vid_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     vid_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
@@ -160,8 +160,8 @@ def extract_person_crops(
 
 def enrich_events_with_normalized_location(raw_events: list[dict[str, Any]], w: int, h: int) -> list[dict[str, Any]]:
     """
-    给 raw_events 补充归一化位置字段，供 LLM 做“按比例合并”的硬约束。
-    输出字段（若 bbox 存在）：start_center_norm / end_center_norm / start_bbox_norm / end_bbox_norm
+    Add normalized location fields to raw_events for LLM merge constraints by relative scale.
+    When bbox exists: start_center_norm / end_center_norm / start_bbox_norm / end_bbox_norm
     """
     out: list[dict[str, Any]] = []
     for e in raw_events:
@@ -182,7 +182,7 @@ def crop_bgr_at_time_xyxy(
     t_sec: float,
     xyxy: list[float],
 ) -> np.ndarray | None:
-    """在指定时间点裁剪 bbox 区域，返回 BGR ndarray；失败返回 None。"""
+    """Crop bbox region at time t_sec; return BGR ndarray or None on failure."""
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
         return None
@@ -204,21 +204,25 @@ def crop_bgr_at_time_xyxy(
     return frame[y1:y2, x1:x2]
 
 
-def coarse_color_cn_from_bgr(img_bgr: np.ndarray) -> str:
-    """非常粗的颜色分类，用于硬过滤（只在“明显不同”时阻止合并）。"""
+def coarse_color_label_from_bgr(img_bgr: np.ndarray) -> str:
+    """Very coarse color bucket for hard filtering (only blocks merge when clearly different)."""
     if img_bgr.size == 0:
-        return "不确定"
+        return "unknown"
     b, g, r = [float(x) for x in img_bgr.reshape(-1, 3).mean(axis=0)]
     mx = max(r, g, b)
     mn = min(r, g, b)
     if mx < 60:
-        return "黑"
+        return "black"
     if mx > 210 and (mx - mn) < 25:
-        return "白"
+        return "white"
     if (mx - mn) < 18 and mx > 120:
-        return "银灰"
+        return "silver_gray"
     if r > g + 40 and r > b + 40:
-        return "红"
+        return "red"
     if b > r + 40 and b > g + 40:
-        return "蓝"
-    return "深色"
+        return "blue"
+    return "dark"
+
+
+# Backward-compatible name (values are now English labels).
+coarse_color_cn_from_bgr = coarse_color_label_from_bgr

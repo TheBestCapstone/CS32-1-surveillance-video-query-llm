@@ -1,30 +1,28 @@
-# 跨摄像头人物匹配默认参数
-# 对应 video.core.schema.multi_camera.CrossCameraConfig
+# Default cross-camera person matching parameters
+# Maps to video.core.schema.multi_camera.CrossCameraConfig
 
-# 两条轨迹之间允许的最大时间间隔（秒）
-# 超过此值则认为不可能是同一人的连续出现
+# Max time gap (seconds) between two trajectories to still treat as same person across cameras
 max_transition_sec: 30.0
 
-# 视野重叠场景下，两条轨迹同时可见的最短时间（秒）
-# 0 表示只要有任意重叠即可
+# Min overlap (seconds) when both trajectories are visible; 0 = any overlap counts
 min_overlap_sec: 0.0
 
-# Re-ID 余弦相似度门槛，低于此值直接排除
+# Re-ID cosine threshold; below this, discard pair
 embedding_threshold: 0.65
 
-# 对 Re-ID 得分最高的前 K 对候选送 VLM 做二次确认
+# Top-K Re-ID pairs sent to VLM for secondary verification
 llm_verify_top_k: 3
 
-# 是否只匹配 class_name == "person" 的轨迹
+# Only match trajectories with class_name == "person"
 person_only: true
 
-# 同摄像头碎片轨迹拼接（不同 track_id 但时间连续）
+# Same-camera fragment stitching (different track_id but time-contiguous)
 same_camera_max_gap_sec: 3.0
 same_camera_reid_threshold: 0.80
 
-# 跨摄像头综合匹配最低阈值（0.7*cosine + 0.3*time_window_score）
+# Min cross-camera combined score (0.7*cosine + 0.3*time_window_score)
 cross_camera_min_score: 0.65
 
-# 仅对边界 cosine 区间触发 VLM 二次确认
+# VLM verification only for borderline cosine range
 llm_verify_cosine_min: 0.65
 llm_verify_cosine_max: 0.80

@@ -1,8 +1,8 @@
 """
-编排入口：串联 vision（检测跟踪）与 analyzer（事件切片），并写 JSON。
-详细算法见 vision.py / analyzer.py。
+Pipeline entry: chains vision (detect+track) and analyzer (event slicing), writes JSON.
+See vision.py / analyzer.py for algorithms.
 
-命令行请用：video.factory.coordinator.cli_run_video_events 或
+CLI: video.factory.coordinator.cli_run_video_events or
 python -m video.factory.coordinator video ...
 """
 
@@ -33,7 +33,7 @@ def run_pipeline(
     annotated_video_path: str | None = None,
     camera_id: str | None = None,
 ) -> tuple[list[dict[str, Any]], list[dict[str, float]], dict[str, Any]]:
-    """主流程：读视频 → YOLO 跟踪 → 轨迹聚合 → 事件切片。"""
+    """Main path: video → YOLO track → aggregate tracks → slice events."""
     model_resolved, _ = resolve_model(model_path)
     effective_target_classes = list(target_classes) if target_classes is not None else list(DEFAULT_TARGET_CLASSES)
     fps, total_frames, frame_detections, tracker_label = run_yolo_track_on_video(
@@ -89,7 +89,7 @@ def save_pipeline_output(
     out_dir: str | Path,
     base_name: str | None = None,
 ) -> tuple[Path, Path]:
-    """将事件列表与 clip 时间段写入 JSON。返回 (events 路径, clips 路径)。"""
+    """Write events and clip segments to JSON. Returns (events path, clips path)."""
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     if base_name is None:

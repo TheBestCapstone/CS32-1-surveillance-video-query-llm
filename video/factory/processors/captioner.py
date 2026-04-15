@@ -33,10 +33,10 @@ class MinimalQwenVLCaptioner:
 
     def _sample_segment_frames(self, cap, fps: int, start_frame_idx: int):
         """
-        与前面的 LaViLa 复现保持一致：
-        - 每 2 秒一个 segment
-        - 每个 segment 取 4 帧
-        - 其余帧跳过
+        Match prior LaViLa-style sampling:
+        - one segment every 2 seconds
+        - 4 frames per segment
+        - skip the rest within the segment window
         """
         frames = []
         sampled_indices = []
@@ -79,7 +79,7 @@ class MinimalQwenVLCaptioner:
 
     def _generate_caption_from_frames(self, frames):
         """
-        把一个 segment 的多帧一起喂给 Qwen-VL。
+        Feed multiple frames from one segment to Qwen-VL together.
         """
         content = [
             {

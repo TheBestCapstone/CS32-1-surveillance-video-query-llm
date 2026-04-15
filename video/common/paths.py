@@ -1,10 +1,10 @@
-"""仓库根目录与约定路径（config、默认输出目录等）。"""
+"""Repository root and conventional paths (config, default output dirs, etc.)."""
 
 from pathlib import Path
 
 
 def repo_root() -> Path:
-    """本文件位于 video/common/paths.py，向上两级为仓库根。"""
+    """This file is video/common/paths.py; two levels up is the repo root."""
     return Path(__file__).resolve().parents[2]
 
 

@@ -1,4 +1,4 @@
-"""事件 / Clip / LLM 输出等结构化协议。"""
+"""Structured protocols for events, clips, and LLM outputs."""
 
 from video.core.schema.refined_event_llm import (
     RefinedAllClipsPayload,

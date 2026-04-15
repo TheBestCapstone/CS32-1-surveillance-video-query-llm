@@ -1,4 +1,4 @@
-"""多摄像头跨镜追踪编排：逐路跟踪 → 人物裁剪+Re-ID → 跨镜匹配 → 合并输出。"""
+"""Multi-camera cross-view orchestration: per-camera track → crops+Re-ID → match → merge."""
 
 from __future__ import annotations
 
@@ -38,9 +38,9 @@ def _stitch_same_camera_fragments(
     config: CrossCameraConfig,
 ) -> None:
     """
-    同摄像头优先规则：
-    - 相同 track_id 自然视为同目标（原生 tracker 语义）
-    - 仅对不同 track_id 且 gap<=3s 的 person 轨迹用 ReID 做碎片拼接（sim>=0.80）
+    Same-camera rules:
+    - Same track_id is one target (native tracker semantics).
+    - For different person track_ids with small gap, stitch with Re-ID if sim >= threshold.
     """
     person_tracks = [t for t in camera_result.tracks if t.get("class_name") == "person"]
     parent: dict[int, int] = {}
@@ -111,7 +111,7 @@ def _stitch_same_camera_fragments(
 
 
 def _load_config_yaml(path: str | Path) -> CrossCameraConfig:
-    """从 YAML 文件读取 CrossCameraConfig 字段。"""
+    """Load CrossCameraConfig fields from a YAML file."""
     import yaml
 
     with open(path, encoding="utf-8") as f:
@@ -129,9 +129,9 @@ def _process_single_camera(
     num_crops: int = 5,
     **pipeline_kwargs: Any,
 ) -> CameraResult:
-    """Stage-1: 单路摄像头检测跟踪 + 人物裁剪 + Re-ID 特征提取。
+    """Stage-1: detect+track one stream, extract person crops and Re-ID embeddings.
 
-    直接调用 vision / analyzer 低层函数，一次跟踪即可同时获取 tracks 和 events。
+    Uses vision/analyzer primitives; one track pass yields tracks and events.
     """
     model_path = pipeline_kwargs.get("model_path", "n")
     model_resolved, _ = resolve_model(model_path)
@@ -206,12 +206,12 @@ def run_multi_camera_pipeline(
     llm_model: str = "gpt-4o-mini",
     **pipeline_kwargs: Any,
 ) -> MultiCameraOutput:
-    """多摄像头跨镜追踪主入口。
+    """Main entry for multi-camera cross-view tracking.
 
     Args:
         camera_videos: {"cam1": "/path/cam1.mp4", "cam2": "/path/cam2.mp4", ...}
-        config: 跨摄像头匹配超参数，None 时使用默认值。
-        embedder: Re-ID 模型实例。None 时根据 reid_* 参数新建。
+        config: Cross-camera hyperparameters; defaults if None.
+        embedder: Re-ID model; created from reid_* if None.
     """
     if config is None:
         config = CrossCameraConfig()
@@ -222,7 +222,7 @@ def run_multi_camera_pipeline(
             device=reid_device,
         )
 
-    # Stage 1: 逐路处理
+    # Stage 1: per camera
     per_camera: list[CameraResult] = []
     for cam_id, vpath in camera_videos.items():
         logger.info("Processing camera %s: %s", cam_id, vpath)
@@ -232,7 +232,7 @@ def run_multi_camera_pipeline(
         _stitch_same_camera_fragments(result, config)
         per_camera.append(result)
 
-    # Stage 2: 跨摄像头匹配
+    # Stage 2: cross-camera match
     llm_verify_fn = None
     if use_llm_verify:
         from video.core.models.event_refinement_llm import verify_person_match_with_llm
@@ -241,7 +241,7 @@ def run_multi_camera_pipeline(
 
     global_entities = match_across_cameras(per_camera, config, embedder, llm_verify_fn)
 
-    # Stage 3: 合并事件
+    # Stage 3: merge events
     entity_lookup = _build_entity_lookup(global_entities)
     merged_events = _merge_events(per_camera, entity_lookup)
 
@@ -257,7 +257,7 @@ def run_multi_camera_pipeline(
 def _build_entity_lookup(
     entities: list[GlobalEntity],
 ) -> dict[tuple[str, int], str]:
-    """(camera_id, track_id) → global_entity_id 映射。"""
+    """Map (camera_id, track_id) → global_entity_id."""
     lookup: dict[tuple[str, int], str] = {}
     for ent in entities:
         for app in ent.appearances:
@@ -269,7 +269,7 @@ def _merge_events(
     per_camera: list[CameraResult],
     entity_lookup: dict[tuple[str, int], str],
 ) -> list[dict[str, Any]]:
-    """合并所有摄像头事件，注入 global_entity_id（若有匹配）。"""
+    """Merge events from all cameras; add global_entity_id when matched."""
     merged: list[dict[str, Any]] = []
     for cam in per_camera:
         for ev in cam.events:
@@ -291,7 +291,7 @@ def _merge_events(
 # ------------------------------------------------------------------
 
 def multi_camera_output_to_dict(output: MultiCameraOutput) -> dict[str, Any]:
-    """将 MultiCameraOutput 序列化为 JSON-compatible dict。"""
+    """Serialize MultiCameraOutput to a JSON-compatible dict."""
     return {
         "meta": {
             "cameras": output.cameras,
@@ -312,7 +312,7 @@ def save_multi_camera_output(
     output: MultiCameraOutput,
     out_path: str | Path,
 ) -> Path:
-    """将多摄像头结果写入 JSON 文件。"""
+    """Write multi-camera result to a JSON file."""
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     payload = multi_camera_output_to_dict(output)

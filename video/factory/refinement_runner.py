@@ -1,4 +1,4 @@
-"""读取 pipeline 产出的 JSON + 视频抽帧，调用 LLM 精炼；支持仅返回 dict（入库）或写文件。"""
+"""Load pipeline JSON + sample frames and call LLM refinement; supports in-memory dict or file output."""
 
 from __future__ import annotations
 
@@ -24,12 +24,12 @@ from video.core.schema.refined_event_llm import RefinedAllClipsPayload, RefinedE
 class RefineEventsConfig:
     mode: Literal["full", "vector"] = "vector"
     clip_index: int | None = None
-    # 弹性抽帧：优先使用 frames_per_sec 按时长自动计算帧数
-    # 若显式设置 num_frames（>0），则退化为固定帧数模式（向后兼容）
-    num_frames: int = 0            # 0 = 使用自适应模式
-    frames_per_sec: float = 0.1   # 自适应模式：每秒抽几帧（默认每10秒1帧）
-    min_frames: int = 6            # 自适应模式：最少帧数
-    max_frames: int = 48           # 自适应模式：最多帧数（控 LLM token 开销）
+    # Adaptive sampling: prefer frames_per_sec from clip duration
+    # If num_frames > 0, use fixed count (backward compatible)
+    num_frames: int = 0            # 0 = adaptive
+    frames_per_sec: float = 0.1   # adaptive: frames per second (default ~1 frame / 10s)
+    min_frames: int = 6
+    max_frames: int = 48           # cap LLM token cost
     model: str = "gpt-5.4-mini"
     temperature: float = 0.1
     max_time_adjust_sec: float = 0.5
@@ -37,14 +37,14 @@ class RefineEventsConfig:
     merge_center_dist_px: float = 30.0
     merge_location_norm_diff: float = 0.10
     min_event_duration_sec: float = 1.0
-    # 实体合并硬约束（默认开启）
+    # Entity merge hard constraints (on by default)
     entity_merge_max_gap_sec: float = 300.0
     entity_merge_min_llm_confidence: float = 0.75
 
     def compute_num_frames(self, clip_duration_sec: float) -> int:
-        """根据 clip 时长自适应计算抽帧数。"""
+        """Compute sample count from clip duration."""
         if self.num_frames > 0:
-            # 显式指定了固定帧数，直接返回（向后兼容）
+            # fixed count (backward compatible)
             return int(self.num_frames)
         adaptive = round(clip_duration_sec * self.frames_per_sec)
         return max(self.min_frames, min(self.max_frames, adaptive))
@@ -56,9 +56,9 @@ def run_refine_events_to_dict(
     config: RefineEventsConfig | None = None,
 ) -> dict[str, Any]:
     """
-    在内存中执行精炼，返回与写盘 JSON 内容一致的 dict（可直接 json.dumps 入库）。
+    Run refinement in memory; returns the same dict shape as written JSON (ready for json.dumps).
 
-    events_data / clips_data 结构与 *_events.json、*_clips.json 相同。
+    events_data / clips_data match *_events.json and *_clips.json.
     """
     cfg = config or RefineEventsConfig()
     video_path = events_data["meta"]["video_path"]
@@ -67,13 +67,13 @@ def run_refine_events_to_dict(
 
     clip_segments = clips_data.get("clip_segments", [])
     if not isinstance(clip_segments, list) or not clip_segments:
-        raise RuntimeError("clips.json 中没有 clip_segments")
+        raise RuntimeError("clips.json has no clip_segments")
 
     if cfg.clip_index is None:
         indices = list(range(len(clip_segments)))
     else:
         if cfg.clip_index < 0 or cfg.clip_index >= len(clip_segments):
-            raise ValueError(f"clip_index 超出范围：{cfg.clip_index} (0~{len(clip_segments)-1})")
+            raise ValueError(f"clip_index out of range: {cfg.clip_index} (valid 0..{len(clip_segments)-1})")
         indices = [int(cfg.clip_index)]
 
     refined_list_full: list[RefinedEventsPayload] = []
@@ -104,7 +104,7 @@ def run_refine_events_to_dict(
             num_frames=n_frames,
         )
         if not frames:
-            raise RuntimeError(f"clip_index={idx} 未抽到任何帧，请检查 clip 时间段或视频路径")
+            raise RuntimeError(f"clip_index={idx}: no frames sampled; check clip range or video path")
 
         if cfg.mode == "full":
             pre_entities = build_entities_with_hard_constraints(
@@ -164,7 +164,7 @@ def run_refine_events_from_files(
     clips_path: str | Path,
     config: RefineEventsConfig | None = None,
 ) -> Path:
-    """对 *_events.json + *_clips.json 执行精炼，写入文件并返回路径。"""
+    """Refine *_events.json + *_clips.json; write output and return path."""
     cfg = config or RefineEventsConfig()
     events_path = Path(events_path)
     clips_path = Path(clips_path)

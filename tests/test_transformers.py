@@ -21,7 +21,7 @@ messages = [
                 "type": "image",
                 "image": "https://modelscope.oss-cn-beijing.aliyuncs.com/resource/qwen.png",
             },
-            {"type": "text", "text": "描述一下这张图片。"},
+            {"type": "text", "text": "Describe this image."},
         ],
     }
 ]

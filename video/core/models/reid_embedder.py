@@ -26,25 +26,22 @@ except ImportError:
 
 
 def _resolve_device(device: str) -> str:
-    """运行时检测设备是否真正可用，不可用时自动降级到 CPU。
+    """Resolve device at runtime; fall back to CPU when unavailable.
 
-    torch 对 macOS 26.x 等新版本的 MPS 可用性字符串解析有 bug，
-    导致即使硬件支持也会报错。用 torch.backends.mps.is_available()
-    做运行时实际检测，比依赖版本字符串更可靠。
+    torch may mis-report MPS on newer macOS; we probe with a small tensor when device is mps.
     """
     if device == "mps":
         try:
             if torch.backends.mps.is_available() and torch.backends.mps.is_built():
-                # 用一个小张量实际测试 MPS 是否可以运行
                 torch.zeros(1).to("mps")
                 return "mps"
         except Exception:
             pass
-        logger.warning("MPS 不可用，自动降级到 CPU")
+        logger.warning("MPS unavailable; falling back to CPU")
         return "cpu"
     if device.startswith("cuda"):
         if not torch.cuda.is_available():
-            logger.warning("CUDA 不可用，自动降级到 CPU")
+            logger.warning("CUDA unavailable; falling back to CPU")
             return "cpu"
     return device
 

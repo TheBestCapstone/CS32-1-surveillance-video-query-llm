@@ -1,9 +1,9 @@
 """
-离线流水线编排：视频 → 事件/clip JSON → LLM 精炼。
+Offline pipeline orchestration: video → event/clip JSON → optional LLM refinement.
 
-- 程序内调用：run_video_to_events、run_refine_events
-- 入库 / JSON：video.factory.pipeline_outputs（或本模块 re-export）中 video_events_as_json_dicts、refined_events_as_dict 等
-- 命令行：cli_run_video_events、cli_run_refine_events，或 python -m video.factory.coordinator video|refine ...
+- In-process: run_video_to_events, run_refine_events
+- Persistence / JSON: video.factory.pipeline_outputs (video_events_as_json_dicts, refined_events_as_dict, etc.)
+- CLI: cli_run_video_events, cli_run_refine_events, or python -m video.factory.coordinator video|refine ...
 """
 
 from __future__ import annotations
@@ -15,13 +15,6 @@ from pathlib import Path
 from typing import Any, Sequence
 
 from video.common.paths import pipeline_output_dir
-from video.factory.pipeline_outputs import (
-    refined_events_as_dict,
-    refined_events_as_json_str,
-    refined_events_from_json_files_as_dict,
-    video_events_as_json_dicts,
-    video_events_as_json_strings,
-)
 from video.factory.processors.event_track_pipeline import run_pipeline, save_pipeline_output
 from video.factory.refinement_runner import RefineEventsConfig, run_refine_events_from_files
 
@@ -38,10 +31,10 @@ def run_video_to_events(
     tuple[Path, Path] | None,
 ]:
     """
-    跑完整跟踪+事件切片。save=True 时写入 *_events.json / *_clips.json；
-    out_dir 缺省则使用仓库根下 pipeline_output/。
+    Run full tracking + event segmentation. When save=True, writes *_events.json / *_clips.json;
+    default out_dir is repo root pipeline_output/.
 
-    返回: (events, clip_segments, meta, saved_paths 或 None)
+    Returns: (events, clip_segments, meta, saved_paths or None)
     """
     events, clip_segments, meta = run_pipeline(video_path, **run_kwargs)
     saved: tuple[Path, Path] | None = None
@@ -56,42 +49,42 @@ def run_refine_events(
     clips_json: str | Path,
     config: RefineEventsConfig | None = None,
 ) -> Path:
-    """对 pipeline 产物做 LLM 精炼，返回输出 JSON 路径。"""
+    """LLM-refine pipeline JSON; returns path to output JSON."""
     return run_refine_events_from_files(events_json, clips_json, config)
 
 
 def _add_video_cli_args(p: argparse.ArgumentParser) -> None:
-    p.add_argument("video", nargs="?", default="VIRAT_S_000200_00_000100_000171.mp4", help="视频路径")
+    p.add_argument("video", nargs="?", default="VIRAT_S_000200_00_000100_000171.mp4", help="Path to input video")
     p.add_argument(
         "--out-dir",
         type=str,
         default=None,
-        help="输出目录（默认：仓库根下 pipeline_output/）",
+        help="Output directory (default: pipeline_output/ under repo root)",
     )
     p.add_argument(
         "--tracker",
         type=str,
         default="botsort_reid",
-        help="botsort_reid | botsort | bytetrack | 某.yaml 路径",
+        help="botsort_reid | botsort | bytetrack | path to a .yaml tracker config",
     )
-    p.add_argument("--model", "-m", type=str, default="11m", help="YOLO 权重（默认 yolo11m，存放于 _model/）")
-    p.add_argument("--conf", type=float, default=0.25, help="检测置信度阈值")
-    p.add_argument("--iou", type=float, default=0.25, help="检测 NMS IoU 阈值")
+    p.add_argument("--model", "-m", type=str, default="11m", help="YOLO weights (default yolo11m in _model/)")
+    p.add_argument("--conf", type=float, default=0.25, help="Detection confidence threshold")
+    p.add_argument("--iou", type=float, default=0.25, help="Detection NMS IoU threshold")
     p.add_argument(
         "--classes",
         type=str,
         default="person,car,bus,truck,motorcycle,bicycle,backpack,handbag,suitcase",
-        help="按类别过滤检测目标，逗号分隔（默认监控类别：person,car,bus,truck,motorcycle,bicycle,backpack,handbag,suitcase）",
+        help="Comma-separated class filter (default surveillance set: person,car,bus,truck,motorcycle,bicycle,backpack,handbag,suitcase)",
     )
-    p.add_argument("--save-video", action="store_true", help="输出带框+track_id 的标注视频")
-    p.add_argument("--save-video-path", type=str, default=None, help="标注视频输出路径")
+    p.add_argument("--save-video", action="store_true", help="Write annotated video with boxes + track_id")
+    p.add_argument("--save-video-path", type=str, default=None, help="Output path for annotated video")
 
 
 def _run_video_cli_namespace(args: argparse.Namespace) -> None:
     out = Path(args.out_dir) if args.out_dir else pipeline_output_dir()
     target_classes = [x.strip() for x in args.classes.split(",") if x.strip()] if args.classes else None
     print(
-        f"正在运行: {args.video} | 模型={args.model} conf={args.conf} iou={args.iou} | tracker={args.tracker}"
+        f"Running: {args.video} | model={args.model} conf={args.conf} iou={args.iou} | tracker={args.tracker}"
     )
     events, clip_segments, meta, paths = run_video_to_events(
         args.video,
@@ -110,49 +103,49 @@ def _run_video_cli_namespace(args: argparse.Namespace) -> None:
     )
     assert paths is not None
     events_path, clips_path = paths
-    print(f"元信息: {json.dumps(meta, ensure_ascii=False, indent=2)}")
-    print(f"事件已保存: {events_path}，共 {len(events)} 条")
-    print(f"Clip 段已保存: {clips_path}，共 {len(clip_segments)} 段")
-    print("\n前 3 条事件:")
+    print(f"Meta: {json.dumps(meta, ensure_ascii=False, indent=2)}")
+    print(f"Events saved: {events_path} ({len(events)} rows)")
+    print(f"Clip segments saved: {clips_path} ({len(clip_segments)} segments)")
+    print("\nFirst 3 events:")
     print(json.dumps(events[:3], ensure_ascii=False, indent=2))
-    print("\n前 5 段 clip (start_sec, end_sec):")
+    print("\nFirst 5 clip segments (start_sec, end_sec):")
     print(json.dumps(clip_segments[:5], ensure_ascii=False, indent=2))
 
 
 def cli_run_video_events(argv: Sequence[str] | None = None) -> None:
-    """命令行：等价于原 pipeline_video_events.py（参数与以前一致，并支持 --out-dir）。"""
-    parser = argparse.ArgumentParser(description="视频 → YOLO+跟踪 → 事件与 clip 时间段")
+    """CLI: same as legacy pipeline_video_events.py (plus --out-dir)."""
+    parser = argparse.ArgumentParser(description="Video → YOLO+track → events + clip time ranges")
     _add_video_cli_args(parser)
     args = parser.parse_args(list(argv) if argv is not None else None)
     _run_video_cli_namespace(args)
 
 
 def _add_refine_cli_args(p: argparse.ArgumentParser) -> None:
-    p.add_argument("--events", required=True, help="*_events.json 路径")
-    p.add_argument("--clips", required=True, help="*_clips.json 路径")
+    p.add_argument("--events", required=True, help="Path to *_events.json")
+    p.add_argument("--clips", required=True, help="Path to *_clips.json")
     p.add_argument(
         "--mode",
         type=str,
         default="vector",
         choices=["full", "vector"],
-        help="full=大结构；vector=上线最小检索事件(默认)",
+        help="full=rich structure; vector=minimal retrieval events (default)",
     )
-    p.add_argument("--clip-index", type=int, default=None, help="仅处理某一个 clip 段")
+    p.add_argument("--clip-index", type=int, default=None, help="Process only one clip segment index")
     p.add_argument("--num-frames", type=int, default=0,
-                   help="固定抽帧数（0=自适应，按 --frames-per-sec 计算）")
+                   help="Fixed frame count (0=adaptive via --frames-per-sec)")
     p.add_argument("--frames-per-sec", type=float, default=0.1,
-                   help="自适应模式：每秒抽几帧（默认0.1=每10秒1帧）")
+                   help="Adaptive: frames per second (default 0.1 ≈ one frame per 10s)")
     p.add_argument("--min-frames", type=int, default=6,
-                   help="自适应模式：最少帧数（默认6）")
+                   help="Adaptive: minimum frames (default 6)")
     p.add_argument("--max-frames", type=int, default=48,
-                   help="自适应模式：最多帧数（默认48，控制LLM费用）")
-    p.add_argument("--model", type=str, default="gpt-5.4-mini", help="OpenAI 多模态模型名")
+                   help="Adaptive: maximum frames (default 48; caps LLM cost)")
+    p.add_argument("--model", type=str, default="gpt-5.4-mini", help="OpenAI multimodal model name")
     p.add_argument("--temperature", type=float, default=0.1)
     p.add_argument("--max-time-adjust-sec", type=float, default=0.5)
     p.add_argument("--merge-location-iou", type=float, default=0.9)
     p.add_argument("--merge-center-dist-px", type=float, default=30.0)
     p.add_argument("--merge-location-norm-diff", type=float, default=0.10)
-    p.add_argument("--min-event-duration-sec", type=float, default=1.0, help="过滤短事件：小于该时长(秒)不送入 LLM")
+    p.add_argument("--min-event-duration-sec", type=float, default=1.0, help="Drop events shorter than this (seconds) before LLM")
 
 
 def _run_refine_cli_namespace(args: argparse.Namespace) -> None:
@@ -179,21 +172,21 @@ def _run_refine_cli_namespace(args: argparse.Namespace) -> None:
 
 
 def cli_run_refine_events(argv: Sequence[str] | None = None) -> None:
-    """命令行：等价于原 langchain_refine_events.py（会先 load_dotenv）。"""
-    parser = argparse.ArgumentParser(description="LangChain + ChatGPT 多模态纠错/细化 events")
+    """CLI: same as legacy langchain_refine_events.py (loads dotenv first)."""
+    parser = argparse.ArgumentParser(description="LangChain + ChatGPT multimodal refinement for events")
     _add_refine_cli_args(parser)
     args = parser.parse_args(list(argv) if argv is not None else None)
     _run_refine_cli_namespace(args)
 
 
 def main(argv: Sequence[str] | None = None) -> None:
-    """统一入口：python -m video.factory.coordinator video ... | refine ..."""
+    """Entry: python -m video.factory.coordinator video ... | refine ..."""
     argv = list(sys.argv[1:] if argv is None else argv)
-    parser = argparse.ArgumentParser(description="离线视频流水线：video（跟踪+事件）或 refine（LLM）")
+    parser = argparse.ArgumentParser(description="Offline video pipeline: video (track+events) or refine (LLM)")
     sub = parser.add_subparsers(dest="cmd", required=True)
-    p_v = sub.add_parser("video", help="YOLO+跟踪 → 事件与 clips JSON")
+    p_v = sub.add_parser("video", help="YOLO+track → events + clips JSON")
     _add_video_cli_args(p_v)
-    p_r = sub.add_parser("refine", help="精炼 *_events.json + *_clips.json")
+    p_r = sub.add_parser("refine", help="Refine *_events.json + *_clips.json")
     _add_refine_cli_args(p_r)
     args = parser.parse_args(argv)
     if args.cmd == "video":
