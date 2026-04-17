@@ -189,7 +189,7 @@ def build_entities_with_hard_constraints(
                 entity_id=f"{cls}_{idx}",
                 class_name=cls,
                 local_track_ids=sorted(members),
-                appearance={"color_cn": tracks[members[0]].coarse_color, "color_confidence": 0.5},
+                appearance={"color": tracks[members[0]].coarse_color, "color_confidence": 0.5},
                 location={},
                 notes="Entities merged via hard-rule filtering + LLM YES/NO.",
             )
@@ -231,7 +231,7 @@ def refine_events_with_llm(
         "For each event explanation, describe both how the subject moves and which scene sub-region it is in "
         "(e.g. passing mid-right on the road, entering the parking entrance, walking on the sidewalk near the exit). "
         "Most important: preserve pipeline temporal information; do not change times without strong evidence. "
-        "Use English for all free-text string values. Output must strictly match the given JSON schema (including *_cn key names where present)."
+        "Use English for all free-text string values. Output must strictly match the given JSON schema."
     )
 
     user_text = (
@@ -259,12 +259,12 @@ def refine_events_with_llm(
         f"       Exception only if frames show near-identical appearance (color + salient features) and continuous time; explain in notes.\n"
         "     - Stationary cars: merge broken track_ids only if same fixed slot, bbox stable over time, same color.\n"
         "     - Persons: merge cautiously only when clothing, body shape, and position continuity all agree.\n"
-        "   - Each entity location must include: scene_zone, region_text, movement_in_scene_cn (one English sentence; legacy key name).\n"
-        "   - Each entity must include appearance (at least color_cn + color_confidence) in English.\n"
+        "   - Each entity location must include: scene_zone, region_text, movement_in_scene (one English sentence).\n"
+        "   - Each entity must include appearance (at least color + color_confidence) in English.\n"
         "2) refined_events:\n"
         "   - Bind events to entity_id (optionally keep one representative track_id).\n"
-        "   - details must include movement_scene_narrative_cn: one English sentence for motion + sub-region (entrance/exit/mid-road right/slot, etc.).\n"
-        "   - location must include: scene_zone, start_scene_cn, end_scene_cn, movement_scene_cn (English strings); "
+        "   - details must include movement_scene_narrative: one English sentence for motion + sub-region (entrance/exit/mid-road right/slot, etc.).\n"
+        "   - location must include: scene_zone, start_scene, end_scene, movement_scene (English strings); "
         "keep start_bbox_xyxy/end_bbox_xyxy from raw_events when present and relate them to the scene.\n"
         "3) Temporal correction (hard rules):\n"
         f"   - Treat raw_events start_time/end_time as a strong prior.\n"
@@ -328,8 +328,8 @@ def refine_vector_events_with_llm(
         + "\n\n"
         "Output rules:\n"
         "- JSON only; must match the schema.\n"
-        "- event_text_cn: English sentence with time range + subject (with color) + action + scene region (entrance/exit/road right/parking/sidewalk); field name is legacy.\n"
-        "- object_color_cn: prefer white/black/silver_gray/red/blue/dark/unknown (English; legacy field name).\n"
+        "- event_text: English sentence with time range + subject (with color) + action + scene region (entrance/exit/road right/parking/sidewalk).\n"
+        "- object_color: prefer white/black/silver_gray/red/blue/dark/unknown (English coarse bucket).\n"
         "- keywords: short retrieval tokens (English), e.g. driving_in/parking/road_right/entrance/sidewalk.\n"
         f"{parser.get_format_instructions()}"
     )

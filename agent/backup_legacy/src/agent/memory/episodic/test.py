@@ -2,135 +2,123 @@ import os
 import sys
 from pathlib import Path
 
-# 添加项目根目录到 Python Path
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent.parent
 sys.path.append(str(BASE_DIR))
 
 from src.retrieval.event_retriever import EventRetriever
 
+
 def run_tests():
-    # 尝试加载 .env
     try:
         from dotenv import load_dotenv
+
         load_dotenv(BASE_DIR / ".env")
     except Exception:
         pass
-        
-    # 确保环境变量存在
+
     if not os.environ.get("DASHSCOPE_API_KEY"):
-        print("❌ 错误：请先设置环境变量 DASHSCOPE_API_KEY")
-        print("执行: export DASHSCOPE_API_KEY='你的百炼API_KEY'")
+        print("Error: set DASHSCOPE_API_KEY (Dashscope / Qwen embedding).")
+        print("Example: export DASHSCOPE_API_KEY='your_key'")
         return
 
-    print("✅ 环境变量检查通过，初始化检索器...")
+    print("DASHSCOPE_API_KEY OK; building retriever...")
     retriever = EventRetriever()
 
-    # =================================================================
-    # 场景 1: 纯结构化数据检索测试 (不经过大模型，极快)
-    # =================================================================
-    print("\n" + "="*50)
-    print("场景 1: 纯结构化数据检索测试 (Structured Search)")
-    print("="*50)
-    
-    # 1.1 找出停留时间超过 100 秒的事件
-    print("\n--- 1.1 查找长时间事件 (duration >= 100) ---")
+    print("\n" + "=" * 50)
+    print("Scenario 1: structured search (no LLM)")
+    print("=" * 50)
+
+    print("\n--- 1.1 Long events (duration >= 100) ---")
     long_events = retriever.structured_search(min_duration=100.0, limit=3)
     for res in long_events:
-        print(f"ID: {res['event_id']:<5} | 时长: {res['duration']:.1f}s | 摘要: {res['event_summary_cn']}")
+        print(
+            f"ID: {res['event_id']:<5} | duration: {res['duration']:.1f}s | summary: {res['event_summary']}"
+        )
 
-    # 1.2 在特定场景 (十字路口) 找卡车
-    print("\n--- 1.2 组合条件查找 (scene_zone='十字路口', object_type='truck') ---")
-    truck_events = retriever.structured_search(scene_zone_cn="十字路口", object_type="truck", limit=3)
+    print("\n--- 1.2 scene_zone=intersection, object_type=truck ---")
+    truck_events = retriever.structured_search(scene_zone="intersection", object_type="truck", limit=3)
     for res in truck_events:
-        print(f"ID: {res['event_id']:<5} | 场景: {res['scene_zone_cn']} | 摘要: {res['event_summary_cn']}")
+        print(
+            f"ID: {res['event_id']:<5} | scene_zone: {res['scene_zone']} | summary: {res['event_summary']}"
+        )
 
-    # 1.3 指定视频、指定时间点之后的事件
-    print("\n--- 1.3 时间轴查找 (video_id='VIRAT_S_000001_00_000000_000500.mp4', start_time >= 1000) ---")
+    print("\n--- 1.3 Timeline (video_id fixed, start_time >= 1000) ---")
     timeline_events = retriever.structured_search(
-        video_id="VIRAT_S_000001_00_000000_000500.mp4", 
-        start_time_after=1000.0, 
-        limit=3
+        video_id="VIRAT_S_000001_00_000000_000500.mp4",
+        start_time_after=1000.0,
+        limit=3,
     )
     for res in timeline_events:
-        print(f"ID: {res['event_id']:<5} | 发生时间: {res['start_time']}s | 摘要: {res['event_summary_cn']}")
+        print(
+            f"ID: {res['event_id']:<5} | start_time: {res['start_time']}s | summary: {res['event_summary']}"
+        )
 
+    print("\n" + "=" * 50)
+    print("Scenario 2: semantic vector search")
+    print("=" * 50)
 
-    # =================================================================
-    # 场景 2: 纯向量语义检索测试 (跨模态意图匹配)
-    # =================================================================
-    print("\n" + "="*50)
-    print("场景 2: 纯向量语义检索测试 (Semantic Search)")
-    print("="*50)
-    
-    query_1 = "寻找停放的绿色的汽车"
-    print(f"\n--- 查询词: '{query_1}' ---")
+    query_1 = "find a parked green car"
+    print(f"\n--- query: '{query_1}' ---")
     results = retriever.hybrid_event_search(query_1, top_k=3)
     for idx, res in enumerate(results):
-        print(f"[{idx+1}] 距离: {res['distance']:.4f} | 视频: {res['video_id']}")
-        print(f"    摘要: {res['event_summary_cn']}")
+        print(f"[{idx+1}] distance: {res['distance']:.4f} | video: {res['video_id']}")
+        print(f"    summary: {res['event_summary']}")
 
+    print("\n" + "=" * 50)
+    print("Scenario 3: hybrid search (filters + vector)")
+    print("=" * 50)
 
-    # =================================================================
-    # 场景 3: 混合检索测试 (SQL结构化过滤 + Vector相似度排序)
-    # =================================================================
-    print("\n" + "="*50)
-    print("场景 3: 复杂条件混合检索测试 (Hybrid Search)")
-    print("="*50)
-    
-    # 3.1 在特定视频里，寻找“奔跑”的“人”
-    query_2 = "有人在跑得很急"
+    query_2 = "person running urgently"
     vid_filter = "VIRAT_S_000006_00_000000_000500.mp4"
-    print(f"\n--- 3.1 视频级定位 ---")
-    print(f"查询词: '{query_2}'")
-    print(f"过滤条件: object_type='person', video_id='{vid_filter}'")
-    
+    print("\n--- 3.1 Video-scoped hybrid ---")
+    print(f"query: '{query_2}'")
+    print(f"filters: object_type=person, video_id={vid_filter}")
+
     results = retriever.hybrid_event_search(
-        query_2, 
-        top_k=3, 
+        query_2,
+        top_k=3,
         object_type="person",
-        video_id=vid_filter
+        video_id=vid_filter,
     )
     for idx, res in enumerate(results):
-        print(f"[{idx+1}] 距离: {res['distance']:.4f} | ID: {res['event_id']}")
-        print(f"    摘要: {res['event_summary_cn']}")
+        print(f"[{idx+1}] distance: {res['distance']:.4f} | ID: {res['event_id']}")
+        print(f"    summary: {res['event_summary']}")
 
-    # 3.2 在“停车场入口”区域，寻找“红色”的“异常徘徊行为”
-    # 注意：我们这里故意用比较模糊的查询词 "一直走来走去"，配合结构化限定区域
-    query_3 = "一直走来走去"
-    zone_filter = "停车场入口附近"
-    print(f"\n--- 3.2 区域级行为分析 ---")
-    print(f"查询词: '{query_3}'")
-    print(f"过滤条件: scene_zone_cn='{zone_filter}'")
-    
+    query_3 = "walking back and forth"
+    zone_filter = "parking_entrance"
+    print("\n--- 3.2 Zone-scoped hybrid ---")
+    print(f"query: '{query_3}'")
+    print(f"filters: scene_zone={zone_filter}")
+
     results = retriever.hybrid_event_search(
-        query_3, 
-        top_k=3, 
-        scene_zone_cn=zone_filter
+        query_3,
+        top_k=3,
+        scene_zone=zone_filter,
     )
     for idx, res in enumerate(results):
-        print(f"[{idx+1}] 距离: {res['distance']:.4f} | ID: {res['event_id']}")
-        print(f"    摘要: {res['event_summary_cn']}")
+        print(f"[{idx+1}] distance: {res['distance']:.4f} | ID: {res['event_id']}")
+        print(f"    summary: {res['event_summary']}")
 
-    # 3.3 结合时间窗口的向量检索
-    query_4 = "有人骑自行车经过"
+    query_4 = "someone riding a bicycle past"
     vid_time_filter = "VIRAT_S_000001_00_000000_000500.mp4"
     start_t = 500.0
     end_t = 1500.0
-    print(f"\n--- 3.3 时间窗口级语义检索 ---")
-    print(f"查询词: '{query_4}'")
-    print(f"过滤条件: video_id='{vid_time_filter}', 时间区间: {start_t}s - {end_t}s")
-    
+    print("\n--- 3.3 Time-window hybrid ---")
+    print(f"query: '{query_4}'")
+    print(f"filters: video_id={vid_time_filter}, time in [{start_t}, {end_t}]s")
+
     results = retriever.hybrid_event_search(
-        query_4, 
-        top_k=3, 
+        query_4,
+        top_k=3,
         video_id=vid_time_filter,
         start_time_after=start_t,
-        end_time_before=end_t
+        end_time_before=end_t,
     )
     for idx, res in enumerate(results):
-        print(f"[{idx+1}] 距离: {res['distance']:.4f} | ID: {res['event_id']}")
-        print(f"    发生时间: {res['start_time']}s - {res['end_time']}s")
-        print(f"    摘要: {res['event_summary_cn']}")
+        print(f"[{idx+1}] distance: {res['distance']:.4f} | ID: {res['event_id']}")
+        print(f"    time: {res['start_time']}s - {res['end_time']}s")
+        print(f"    summary: {res['event_summary']}")
+
 
 if __name__ == "__main__":
     run_tests()

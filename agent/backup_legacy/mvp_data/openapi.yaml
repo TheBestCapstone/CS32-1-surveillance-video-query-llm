@@ -6,17 +6,17 @@ info:
 paths:
   /api/v1/video/events:
     get:
-      summary: 获取视频事件列表
-      description: 根据提供的参数返回视频中的事件列表
+      summary: List video events
+      description: Return event rows for an optional video_id filter
       parameters:
         - in: query
           name: video_id
           schema:
             type: string
-          description: 视频 ID，例如 VIRAT_S_000200_00_000100_000171.mp4
+          description: Video id, e.g. VIRAT_S_000200_00_000100_000171.mp4
       responses:
         '200':
-          description: 成功返回事件数据
+          description: Success response with event payload
           content:
             application/json:
               schema:
@@ -41,13 +41,13 @@ paths:
                           type: number
                         object_type:
                           type: string
-                        object_color_cn:
+                        object_color:
                           type: string
-                        appearance_notes_cn:
+                        appearance_notes:
                           type: string
-                        scene_zone_cn:
+                        scene_zone:
                           type: string
-                        event_text_cn:
+                        event_text:
                           type: string
                         keywords:
                           type: array

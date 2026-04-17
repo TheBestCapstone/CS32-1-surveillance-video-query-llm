@@ -225,4 +225,4 @@ def coarse_color_label_from_bgr(img_bgr: np.ndarray) -> str:
 
 
 # Backward-compatible name (values are now English labels).
-coarse_color_cn_from_bgr = coarse_color_label_from_bgr
+coarse_color_from_bgr = coarse_color_label_from_bgr

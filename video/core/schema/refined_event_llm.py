@@ -20,11 +20,10 @@ class RefinedEntity(BaseModel):
         default_factory=dict,
         description=(
             "Appearance cues to avoid bad merges. Suggested keys:\n"
-            "- color_cn: coarse color in English (e.g. white/black/silver_gray/red/blue/dark/unknown); "
-            "field name keeps _cn for schema compatibility.\n"
+            "- color: coarse color in English (e.g. white/black/silver_gray/red/blue/dark/unknown).\n"
             "- color_confidence: 0~1\n"
-            "- vehicle_type_cn: sedan/SUV/truck/van/unknown (cars only); English values.\n"
-            "- distinctive_marks_cn: salient traits (roof rack, stickers, tint, clothing color, etc.); English.\n"
+            "- vehicle_type: sedan/SUV/truck/van/unknown (cars only); English values.\n"
+            "- distinctive_marks: salient traits (roof rack, stickers, tint, clothing color, etc.); English.\n"
         ),
     )
     location: dict[str, Any] = Field(
@@ -33,7 +32,7 @@ class RefinedEntity(BaseModel):
             "Location + scene semantics; include sub-region and motion relative to scene, e.g.:\n"
             "- scene_zone: entrance|exit|road|road_right|road_left|road_center|parking|parking_slot|sidewalk|far_background\n"
             "- region_text: short English phrase, e.g. inner side of parking entrance, right lane mid-frame\n"
-            "- movement_in_scene_cn: one English sentence for how it moves and where (legacy key name)\n"
+            "- movement_in_scene: one English sentence for how it moves and where\n"
             "- representative_bbox_xyxy / representative_time_sec\n"
         ),
     )
@@ -52,7 +51,7 @@ class RefinedEvent(BaseModel):
     details: dict[str, Any] = Field(
         default_factory=dict,
         description=(
-            "Action details; must include movement_scene_narrative_cn: one English sentence for motion + "
+            "Action details; must include movement_scene_narrative: one English sentence for motion + "
             "where in the scene (entrance/exit/mid-road right/parking slot, etc.); aligns with location."
         ),
     )
@@ -65,8 +64,8 @@ class RefinedEvent(BaseModel):
         description=(
             "Per-event location + scene (aligned with bbox). Suggested keys:\n"
             "- scene_zone: same enum as above\n"
-            "- start_scene_cn / end_scene_cn: English sub-region at start/end (legacy key names)\n"
-            "- movement_scene_cn: one English sentence summarizing motion + scene in this event\n"
+            "- start_scene / end_scene: English sub-region at start/end\n"
+            "- movement_scene: one English sentence summarizing motion + scene in this event\n"
             "- start_bbox_xyxy/end_bbox_xyxy (reuse from raw if present)\n"
         ),
     )
@@ -79,9 +78,9 @@ class RefinedEventsPayload(BaseModel):
         default_factory=dict,
         description=(
             "Whole-clip scene understanding (global first, then events). Suggested keys:\n"
-            "- overview_cn: 1~3 English sentences (where lot/road/building/entrances roughly are; legacy key)\n"
-            "- layout_cn: English: left/center/right, far/mid/near — what is road/slots/sidewalk, etc.\n"
-            "- entrance_exit_guess_cn: English guess where vehicle/pedestrian entrances, exits, main paths are\n"
+            "- overview: 1~3 English sentences (where lot/road/building/entrances roughly are)\n"
+            "- layout: English: left/center/right, far/mid/near — what is road/slots/sidewalk, etc.\n"
+            "- entrance_exit_guess: English guess where vehicle/pedestrian entrances, exits, main paths are\n"
             "- landmarks: optional list, e.g. street light, crosswalk, gate, trees\n"
         ),
     )
@@ -111,10 +110,10 @@ class VectorEvent(BaseModel):
     start_time: float
     end_time: float
     object_type: str
-    object_color_cn: str
-    appearance_notes_cn: str
-    scene_zone_cn: str
-    event_text_cn: str
+    object_color: str
+    appearance_notes: str
+    scene_zone: str
+    event_text: str
     keywords: list[str]
     start_bbox_xyxy: list[float] | None = None
     end_bbox_xyxy: list[float] | None = None

@@ -42,7 +42,7 @@ class EventRetriever:
     def structured_search(self, 
                           video_id: str = None, 
                           object_type: str = None,
-                          scene_zone_cn: str = None,
+                          scene_zone: str = None,
                           min_duration: float = None,
                           start_time_after: float = None,
                           limit: int = 10) -> List[Dict[str, Any]]:
@@ -59,9 +59,9 @@ class EventRetriever:
         if object_type:
             query += " AND object_type = ?"
             params.append(object_type)
-        if scene_zone_cn:
-            query += " AND scene_zone_cn = ?"
-            params.append(scene_zone_cn)
+        if scene_zone:
+            query += " AND scene_zone = ?"
+            params.append(scene_zone)
         if min_duration is not None:
             query += " AND duration >= ?"
             params.append(min_duration)
@@ -83,7 +83,7 @@ class EventRetriever:
                             top_k: int = 5,
                             video_id: str = None,
                             object_type: str = None,
-                            scene_zone_cn: str = None,
+                            scene_zone: str = None,
                             start_time_after: float = None,
                             end_time_before: float = None) -> List[Dict[str, Any]]:
         """
@@ -104,7 +104,7 @@ class EventRetriever:
                 e.video_id,
                 e.start_time,
                 e.end_time,
-                e.event_summary_cn,
+                e.event_summary,
                 v.distance
             FROM episodic_events_vec v
             JOIN episodic_events e ON v.rowid = e.event_id
@@ -122,9 +122,9 @@ class EventRetriever:
             base_query += " AND e.object_type = ?"
             params.append(object_type)
             
-        if scene_zone_cn:
-            base_query += " AND e.scene_zone_cn = ?"
-            params.append(scene_zone_cn)
+        if scene_zone:
+            base_query += " AND e.scene_zone = ?"
+            params.append(scene_zone)
             
         if start_time_after is not None:
             base_query += " AND e.start_time >= ?"
@@ -160,7 +160,7 @@ if __name__ == "__main__":
         print("Test get_event_detail (event_id=1):")
         detail = retriever.get_event_detail(1)
         if detail:
-            print(f"Fetched: {detail.get('event_summary_cn')}")
+            print(f"Fetched: {detail.get('event_summary')}")
         else:
             print("No row found (database may be empty).")
             
@@ -168,4 +168,4 @@ if __name__ == "__main__":
         results = retriever.hybrid_event_search("find a parked car", top_k=3)
         for idx, res in enumerate(results):
             print(f"[{idx+1}] ID: {res['event_id']}, video: {res['video_id']}, distance: {res['distance']:.4f}")
-            print(f"    summary: {res['event_summary_cn']}")
+            print(f"    summary: {res['event_summary']}")
