@@ -1,4 +1,4 @@
-"""视频抽帧、分辨率与事件 bbox 归一化（OpenCV，供精炼或其它模块复用）。"""
+"""Video frame sampling, resolution, and event bbox normalization (OpenCV; shared by refinement and other modules)."""
 
 from __future__ import annotations
 
@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from typing import Any
 
 import cv2
+import numpy as np
 
 
 @dataclass
@@ -15,10 +16,21 @@ class FrameSample:
     jpg_base64: str
 
 
+@dataclass
+class PersonCrop:
+    """Single person crop image (for Re-ID)."""
+
+    t_sec: float
+    camera_id: str
+    track_id: int
+    image_array: np.ndarray
+    jpg_base64: str
+
+
 def _encode_bgr_to_jpg_base64(img_bgr, quality: int = 85) -> str:
     ok, buf = cv2.imencode(".jpg", img_bgr, [int(cv2.IMWRITE_JPEG_QUALITY), int(quality)])
     if not ok:
-        raise RuntimeError("JPEG 编码失败")
+        raise RuntimeError("JPEG encoding failed")
     return base64.b64encode(buf.tobytes()).decode("utf-8")
 
 
@@ -29,10 +41,10 @@ def sample_frames_uniform(
     num_frames: int = 12,
     resize_width: int = 768,
 ) -> list[FrameSample]:
-    """在 [start_sec, end_sec] 区间均匀抽帧，并把每帧编码成 base64 JPEG。"""
+    """Uniformly sample frames in [start_sec, end_sec] and encode each as base64 JPEG."""
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
-        raise FileNotFoundError(f"无法打开视频: {video_path}")
+        raise FileNotFoundError(f"Cannot open video: {video_path}")
 
     fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
     duration = max(0.0, end_sec - start_sec)
@@ -65,12 +77,12 @@ def sample_frames_uniform(
 def get_video_size(video_path: str) -> tuple[int, int]:
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
-        raise FileNotFoundError(f"无法打开视频: {video_path}")
+        raise FileNotFoundError(f"Cannot open video: {video_path}")
     w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH) or 0)
     h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT) or 0)
     cap.release()
     if w <= 0 or h <= 0:
-        raise RuntimeError("无法读取视频分辨率")
+        raise RuntimeError("Cannot read video resolution")
     return w, h
 
 
@@ -81,10 +93,75 @@ def _bbox_center_norm(xyxy: list[float], w: int, h: int) -> tuple[float, float]:
     return float(cx), float(cy)
 
 
+def extract_person_crops(
+    video_path: str,
+    track: dict[str, Any],
+    camera_id: str = "",
+    num_crops: int = 5,
+    resize: tuple[int, int] = (256, 128),
+    min_crop_hw: tuple[int, int] = (32, 16),
+) -> list[PersonCrop]:
+    """Sample N frames uniformly from track time_xyxy, crop by bbox, resize to Re-ID input size.
+
+    Args:
+        resize: (height, width) — typical Re-ID input 256x128.
+    """
+    time_xyxy: list[tuple[float, list[float]]] = track.get("time_xyxy", [])
+    if not time_xyxy:
+        return []
+
+    n = min(num_crops, len(time_xyxy))
+    step = max(1, len(time_xyxy) // n)
+    indices = [i * step for i in range(n)]
+
+    cap = cv2.VideoCapture(video_path)
+    if not cap.isOpened():
+        raise FileNotFoundError(f"Cannot open video: {video_path}")
+    fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
+    vid_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    vid_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+
+    crops: list[PersonCrop] = []
+    track_id: int = track.get("track_id", -1)
+
+    for idx in indices:
+        t_sec, xyxy = time_xyxy[idx]
+        frame_no = int(round(t_sec * fps))
+        cap.set(cv2.CAP_PROP_POS_FRAMES, frame_no)
+        ok, frame = cap.read()
+        if not ok or frame is None:
+            continue
+
+        x1 = max(0, int(xyxy[0]))
+        y1 = max(0, int(xyxy[1]))
+        x2 = min(vid_w, int(xyxy[2]))
+        y2 = min(vid_h, int(xyxy[3]))
+        if x2 <= x1 or y2 <= y1:
+            continue
+        crop_h = y2 - y1
+        crop_w = x2 - x1
+        if crop_h < min_crop_hw[0] or crop_w < min_crop_hw[1]:
+            continue
+
+        crop_img = frame[y1:y2, x1:x2]
+        crop_resized = cv2.resize(crop_img, (resize[1], resize[0]), interpolation=cv2.INTER_LINEAR)
+
+        crops.append(PersonCrop(
+            t_sec=float(t_sec),
+            camera_id=camera_id,
+            track_id=track_id,
+            image_array=crop_resized,
+            jpg_base64=_encode_bgr_to_jpg_base64(crop_resized),
+        ))
+
+    cap.release()
+    return crops
+
+
 def enrich_events_with_normalized_location(raw_events: list[dict[str, Any]], w: int, h: int) -> list[dict[str, Any]]:
     """
-    给 raw_events 补充归一化位置字段，供 LLM 做“按比例合并”的硬约束。
-    输出字段（若 bbox 存在）：start_center_norm / end_center_norm / start_bbox_norm / end_bbox_norm
+    Add normalized location fields to raw_events for LLM merge constraints by relative scale.
+    When bbox exists: start_center_norm / end_center_norm / start_bbox_norm / end_bbox_norm
     """
     out: list[dict[str, Any]] = []
     for e in raw_events:
@@ -98,3 +175,54 @@ def enrich_events_with_normalized_location(raw_events: list[dict[str, Any]], w: 
                 e2[key.replace("_bbox_xyxy", "_center_norm")] = [cx, cy]
         out.append(e2)
     return out
+
+
+def crop_bgr_at_time_xyxy(
+    video_path: str,
+    t_sec: float,
+    xyxy: list[float],
+) -> np.ndarray | None:
+    """Crop bbox region at time t_sec; return BGR ndarray or None on failure."""
+    cap = cv2.VideoCapture(video_path)
+    if not cap.isOpened():
+        return None
+    fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
+    vid_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT) or 0)
+    vid_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH) or 0)
+    frame_no = int(round(float(t_sec) * float(fps)))
+    cap.set(cv2.CAP_PROP_POS_FRAMES, frame_no)
+    ok, frame = cap.read()
+    cap.release()
+    if not ok or frame is None or vid_h <= 0 or vid_w <= 0:
+        return None
+    x1 = max(0, int(xyxy[0]))
+    y1 = max(0, int(xyxy[1]))
+    x2 = min(vid_w, int(xyxy[2]))
+    y2 = min(vid_h, int(xyxy[3]))
+    if x2 <= x1 or y2 <= y1:
+        return None
+    return frame[y1:y2, x1:x2]
+
+
+def coarse_color_label_from_bgr(img_bgr: np.ndarray) -> str:
+    """Very coarse color bucket for hard filtering (only blocks merge when clearly different)."""
+    if img_bgr.size == 0:
+        return "unknown"
+    b, g, r = [float(x) for x in img_bgr.reshape(-1, 3).mean(axis=0)]
+    mx = max(r, g, b)
+    mn = min(r, g, b)
+    if mx < 60:
+        return "black"
+    if mx > 210 and (mx - mn) < 25:
+        return "white"
+    if (mx - mn) < 18 and mx > 120:
+        return "silver_gray"
+    if r > g + 40 and r > b + 40:
+        return "red"
+    if b > r + 40 and b > g + 40:
+        return "blue"
+    return "dark"
+
+
+# Backward-compatible name (values are now English labels).
+coarse_color_from_bgr = coarse_color_label_from_bgr

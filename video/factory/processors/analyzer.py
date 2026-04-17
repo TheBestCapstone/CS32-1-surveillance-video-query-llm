@@ -1,6 +1,6 @@
 """
-轨迹聚合与事件切片（不依赖 YOLO，仅处理逐帧检测序列）。
-对应 README 中 factory/processors/analyzer.py 职责。
+Track aggregation and event slicing (no YOLO; consumes per-frame detection lists).
+See README for factory/processors/analyzer.py responsibilities.
 """
 
 from __future__ import annotations
@@ -18,8 +18,8 @@ def aggregate_tracks(
     frame_detections: list[list[tuple[int | None, str, float, list[float]]]],
 ) -> list[dict[str, Any]]:
     """
-    把逐帧检测按 track_id 聚合成一条条轨迹。
-    每条轨迹包含: track_id, class_name, start/end_time, motion_score 等。
+    Aggregate per-frame detections by track_id into tracks.
+    Each track has track_id, class_name, start/end_time, motion_score, etc.
     """
     tracks_raw: dict[int, list[tuple[int, float, float, float, str, float, list[float]]]] = {}
     for frame_idx, dets in enumerate(frame_detections):
@@ -158,7 +158,7 @@ def slice_events(
     motion_window_sum_threshold: float = 20.0,
     motion_segment_pad_sec: float = 0.8,
 ):
-    """根据轨迹生成事件与 clip 段。"""
+    """Build events and clip segments from tracks."""
     events: list[dict[str, Any]] = []
     clip_segments: list[dict[str, float]] = []
 

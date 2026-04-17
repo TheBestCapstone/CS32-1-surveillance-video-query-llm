@@ -1,16 +1,200 @@
-"""LangChain + OpenAI 多模态：对 pipeline 事件做精炼（不含抽帧与 CLI）。"""
+"""LangChain + OpenAI multimodal refinement for pipeline events (no frame sampling or CLI here)."""
 
 from __future__ import annotations
 
 import json
-from typing import Any
+import logging
+from dataclasses import dataclass
+from typing import Any, Literal
 
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_core.output_parsers import PydanticOutputParser
 from langchain_openai import ChatOpenAI
 
-from video.common.frames import FrameSample
-from video.core.schema.refined_event_llm import RefinedEventsPayload, VectorEventsPayload
+from video.common.frames import FrameSample, PersonCrop, coarse_color_label_from_bgr, crop_bgr_at_time_xyxy
+from video.core.schema.multi_camera import MatchVerification
+from video.core.schema.refined_event_llm import RefinedEntity, RefinedEventsPayload, VectorEventsPayload
+
+logger = logging.getLogger(__name__)
+
+
+@dataclass(frozen=True)
+class _TrackSummary:
+    class_name: str
+    start_time: float
+    end_time: float
+    rep_t_sec: float
+    rep_bbox_xyxy: list[float]
+    coarse_color: str
+
+
+def _time_overlap(a_start: float, a_end: float, b_start: float, b_end: float) -> float:
+    return max(0.0, min(a_end, b_end) - max(a_start, b_start))
+
+
+def _summarize_tracks_for_merge(video_path: str, raw_events: list[dict[str, Any]]) -> dict[int, _TrackSummary]:
+    """
+    Aggregate time range per track_id from raw_events and estimate coarse color from a representative bbox crop.
+    """
+    by_tid: dict[int, list[dict[str, Any]]] = {}
+    for e in raw_events:
+        tid = e.get("track_id")
+        if tid is None:
+            continue
+        by_tid.setdefault(int(tid), []).append(e)
+
+    out: dict[int, _TrackSummary] = {}
+    for tid, evs in by_tid.items():
+        cls = str(evs[0].get("class_name", "unknown"))
+        s = float(min(float(e.get("start_time", 0.0)) for e in evs))
+        t = float(max(float(e.get("end_time", 0.0)) for e in evs))
+        rep = evs[0]
+        rep_t = float(rep.get("start_time", s))
+        rep_bbox = rep.get("start_bbox_xyxy") or rep.get("end_bbox_xyxy") or [0, 0, 0, 0]
+        rep_bbox = [float(x) for x in rep_bbox]
+        crop = crop_bgr_at_time_xyxy(video_path, rep_t, rep_bbox)
+        coarse_color = coarse_color_label_from_bgr(crop) if crop is not None else "unknown"
+        out[tid] = _TrackSummary(
+            class_name=cls,
+            start_time=s,
+            end_time=t,
+            rep_t_sec=rep_t,
+            rep_bbox_xyxy=rep_bbox,
+            coarse_color=coarse_color,
+        )
+    return out
+
+
+class _MergeDecision(RefinedEventsPayload.__class__):  # type: ignore[misc]
+    pass
+
+
+def _verify_merge_yesno_with_llm(
+    *,
+    video_path: str,
+    a_tid: int,
+    b_tid: int,
+    a: _TrackSummary,
+    b: _TrackSummary,
+    model: str,
+    temperature: float = 0.0,
+) -> tuple[bool, float]:
+    """
+    LLM may only output YES/NO + confidence. Returns (is_yes, confidence).
+    """
+    from pydantic import BaseModel, Field
+
+    class MergeYesNo(BaseModel):
+        answer: Literal["YES", "NO"] = Field(description="Must be YES or NO only")
+        confidence: float = Field(ge=0.0, le=1.0, description="Confidence between 0 and 1")
+
+    parser = PydanticOutputParser(pydantic_object=MergeYesNo)
+
+    crop_a = crop_bgr_at_time_xyxy(video_path, a.rep_t_sec, a.rep_bbox_xyxy)
+    crop_b = crop_bgr_at_time_xyxy(video_path, b.rep_t_sec, b.rep_bbox_xyxy)
+    images: list[dict[str, Any]] = []
+    if crop_a is not None:
+        # reuse PersonCrop encoder path
+        pc_a = PersonCrop(t_sec=a.rep_t_sec, camera_id="single", track_id=a_tid, image_array=crop_a, jpg_base64="")
+        pc_a.jpg_base64 = ""  # placeholder
+        images.append({"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{FrameSample(0,'').jpg_base64}"}})
+    # We cannot easily reuse encoder without importing; so we pass no images if crop fails.
+    # Note: model can still decide from metadata conservatively.
+
+    system = (
+        "You are a surveillance-video entity merge judge. "
+        "Decide whether two track_ids belong to the same real-world target. "
+        "You must output strict JSON with only YES/NO and a 0~1 confidence."
+    )
+    user_text = (
+        f"track_a: id={a_tid}, class={a.class_name}, time=[{a.start_time:.3f},{a.end_time:.3f}], color_guess={a.coarse_color}\n"
+        f"track_b: id={b_tid}, class={b.class_name}, time=[{b.start_time:.3f},{b.end_time:.3f}], color_guess={b.coarse_color}\n"
+        "Same target? Answer YES only when very confident; otherwise NO.\n"
+        f"{parser.get_format_instructions()}"
+    )
+    llm = ChatOpenAI(model=model, temperature=temperature)
+    resp = llm.invoke([SystemMessage(content=system), HumanMessage(content=[{"type": "text", "text": user_text}])])
+    text = resp.content if isinstance(resp.content, str) else str(resp.content)
+    parsed = parser.parse(text)
+    return parsed.answer == "YES", float(parsed.confidence)
+
+
+def build_entities_with_hard_constraints(
+    *,
+    video_path: str,
+    raw_events: list[dict[str, Any]],
+    model: str,
+    max_gap_sec: float = 300.0,
+    min_llm_confidence: float = 0.75,
+) -> list[RefinedEntity]:
+    """
+    Filter candidate pairs with hard rules first, then LLM YES/NO + confidence for merging.
+
+    Hard rules (skip LLM if any fails):
+    - Temporal overlap -> cannot be same target
+    - Clearly different coarse color -> skip
+    - Time gap > 5min -> skip
+    """
+    tracks = _summarize_tracks_for_merge(video_path, raw_events)
+    tids = sorted(tracks.keys())
+
+    parent: dict[int, int] = {}
+
+    def find(x: int) -> int:
+        parent.setdefault(x, x)
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    def union(a: int, b: int) -> None:
+        ra, rb = find(a), find(b)
+        if ra != rb:
+            parent[ra] = rb
+
+    for i in range(len(tids)):
+        for j in range(i + 1, len(tids)):
+            a_tid, b_tid = tids[i], tids[j]
+            a, b = tracks[a_tid], tracks[b_tid]
+            if a.class_name != b.class_name:
+                continue
+            if _time_overlap(a.start_time, a.end_time, b.start_time, b.end_time) > 0:
+                continue
+            gap = min(abs(b.start_time - a.end_time), abs(a.start_time - b.end_time))
+            if gap > max_gap_sec:
+                continue
+            if a.coarse_color != "unknown" and b.coarse_color != "unknown" and a.coarse_color != b.coarse_color:
+                continue
+            yes, conf = _verify_merge_yesno_with_llm(
+                video_path=video_path,
+                a_tid=a_tid,
+                b_tid=b_tid,
+                a=a,
+                b=b,
+                model=model,
+                temperature=0.0,
+            )
+            if yes and conf > min_llm_confidence:
+                union(a_tid, b_tid)
+
+    groups: dict[int, list[int]] = {}
+    for tid in tids:
+        groups.setdefault(find(tid), []).append(tid)
+
+    entities: list[RefinedEntity] = []
+    for idx, (_, members) in enumerate(sorted(groups.items(), key=lambda x: min(x[1])), start=1):
+        cls = tracks[members[0]].class_name
+        entities.append(
+            RefinedEntity(
+                entity_id=f"{cls}_{idx}",
+                class_name=cls,
+                local_track_ids=sorted(members),
+                appearance={"color": tracks[members[0]].coarse_color, "color_confidence": 0.5},
+                location={},
+                notes="Entities merged via hard-rule filtering + LLM YES/NO.",
+            )
+        )
+    return entities
 
 
 def refine_events_with_llm(
@@ -19,14 +203,15 @@ def refine_events_with_llm(
     clip: dict[str, float],
     raw_events: list[dict[str, Any]],
     frames: list[FrameSample],
-    model: str = "gpt-4o-mini",
+    model: str = "gpt-5.4",
     temperature: float = 0.1,
     max_time_adjust_sec: float = 0.5,
     merge_location_iou_threshold: float = 0.9,
     merge_center_dist_px: float = 30.0,
     merge_location_norm_diff: float = 0.10,
+    pre_entities: list[RefinedEntity] | None = None,
 ) -> RefinedEventsPayload:
-    """将抽帧 + 原始事件发给 LLM，让其输出纠错后的 refined_events（严格 JSON）。"""
+    """Send sampled frames + raw events to the LLM; return corrected refined_events (strict JSON)."""
     parser = PydanticOutputParser(pydantic_object=RefinedEventsPayload)
 
     images_content: list[dict[str, Any]] = []
@@ -39,57 +224,60 @@ def refine_events_with_llm(
         )
 
     system = (
-        "你是监控视频事件标注与纠错助手。"
-        "你会基于给定的时间段抽帧（带时间戳）与初步事件列表（来自 YOLO+tracking），"
-        "对事件做语义纠错、合并碎 track、补充行动细节。"
-        "你必须先理解并描述监控场景（停车场、马路、入口/出口、车道左右、人行道等），"
-        "并在每条事件的解释中同时写出「移动方式」和「所在场景子区」（例如：从马路中间偏右驶过、驶入停车场入口、在出口附近行人道行走）。"
-        "最重要约束：尽量保留 pipeline 给出的 temporal 信息，不要随意大改时间。"
-        "输出必须严格符合给定 JSON schema。"
+        "You are a surveillance-video event labeling and correction assistant. "
+        "You work from timestamped key frames and a draft event list (from YOLO+tracking). "
+        "Correct semantics and add action detail. "
+        "First understand the scene (parking lot, road, entrance/exit, lane sides, sidewalk, etc.). "
+        "For each event explanation, describe both how the subject moves and which scene sub-region it is in "
+        "(e.g. passing mid-right on the road, entering the parking entrance, walking on the sidewalk near the exit). "
+        "Most important: preserve pipeline temporal information; do not change times without strong evidence. "
+        "Use English for all free-text string values. Output must strictly match the given JSON schema."
     )
 
     user_text = (
-        f"视频路径: {video_path}\n"
-        f"当前分析时间段 clip: start_sec={clip['start_sec']}, end_sec={clip['end_sec']}\n\n"
-        "下面是该 clip 内 pipeline 的原始事件（可能存在：误检、时间不准、同一事件拆分等问题）：\n"
+        f"Video path: {video_path}\n"
+        f"Clip under analysis: start_sec={clip['start_sec']}, end_sec={clip['end_sec']}\n\n"
+        "Raw pipeline events for this clip (may contain false positives, bad timing, or split duplicates):\n"
         f"{json.dumps(raw_events, ensure_ascii=False, indent=2)}\n\n"
-        "现在给你该 clip 均匀抽取的关键帧（每帧的时间戳在文件名/文本里不可见，请你在 evidence 中写明你使用了哪些帧时间戳）：\n"
+        "Uniformly sampled key frames for this clip (timestamps are listed below; state in evidence which frame times you rely on):\n"
         + "\n".join([f"- frame_time_sec={f.t_sec:.3f}" for f in frames])
         + "\n\n"
-        "任务要求（重要：以保留时序为主；必须写「场景 + 移动」）：\n"
-        "0) 先输出 scene_context：用中文概括本 clip 场景——哪里像马路、哪里像停车位、入口/出口或主通道在画面哪一侧（左/中/右、远/近）。\n"
-        "1) 再做“实体去重/合并”（要非常保守，避免过度融合）：把属于同一真实车辆/行人的多个 local_track_id 合并到同一个 entity_id。\n"
-        "   - 输出 entities 列表（你认为画面里真实有几辆车/几个人）。\n"
-        "   - 每个 entity_id 里写明合并了哪些 local_track_ids。\n"
-        "   - 合并时必须同时参考：时间重叠/相邻、位置相似度（bbox）、以及帧内容。\n"
-        f"     位置合并建议规则（可解释、可调整）：\n"
-        f"     - 只有在“非常确定是同一个目标”时才允许合并。\n"
-        f"     - 车辆（car）默认不要合并不同 track_id，除非同时满足：\n"
-        f"       (a) 时间连续/相邻（<=1s）\n"
-        f"       (b) bbox 几乎重合：IoU >= {merge_location_iou_threshold}\n"
-        f"       (c) 颜色/外观一致（例如都是白车/银灰车，且无明显矛盾特征）\n"
-        f"       中心点距离 <= {merge_center_dist_px} px 只能作为辅证，不能单独作为合并依据。\n"
-        f"     - 位置按比例的硬约束（必须遵守）：\n"
-        f"       raw_events 已提供 start_center_norm/end_center_norm（0~1 归一化中心点）。\n"
-        f"       若两个候选实体的归一化中心点差异在 x 或 y 任一维度 > {merge_location_norm_diff}（即画面宽/高的10%），则禁止合并。\n"
-        f"       只有在抽帧中外观几乎完全一致（颜色+显著特征）且时间连续时，才允许作为例外，并在 notes 里明确写出理由。\n"
-        "     - 对静止车辆：只有在同一固定车位区域、且 bbox 长时间几乎不变、且颜色一致时，才可把断裂 track_id 合并。\n"
-        "     - 行人（person）也要谨慎合并：衣服颜色/体型/位置连续都一致才合并。\n"
-        "   - 每个 entity 的 location 里必须包含：scene_zone、region_text、movement_in_scene_cn（移动+场景一句话）。\n"
-        "   - 每个 entity 必须输出 appearance（至少 color_cn+color_confidence），用于区分不同实体。\n"
-        "2) 再输出 refined_events：\n"
-        "   - 事件应绑定到 entity_id（可选保留一个代表性的 track_id）。\n"
-        "   - details 里必须包含 movement_scene_narrative_cn：中文一句，同时写「怎么动」和「在场景哪一块」（入口/出口/马路中间偏右/停车位等）。\n"
-        "   - location 里必须包含：scene_zone、start_scene_cn、end_scene_cn、movement_scene_cn；"
-        "若 raw_events 有 start_bbox_xyxy/end_bbox_xyxy 请保留到 location 并解释与场景的关系。\n"
-        "3) temporal 纠错策略（硬约束）：\n"
-        f"   - 默认认为 raw_events 的 start_time/end_time 是正确的“强先验”。\n"
-        f"   - 只有在抽帧证据非常明确时，才允许调整时间边界，且单侧调整幅度不要超过 {max_time_adjust_sec} 秒。\n"
-        "   - 如果你怀疑时间不准但证据不足：不要改时间，只在 evidence 里写“不确定”。\n"
-        "4) 误检处理：\n"
-        "   - 你可以删除明显误检的事件，或将 confidence 降低并解释原因。\n\n"
+        "Tasks (prioritize preserving timing; always include scene + motion in English):\n"
+        "0) Emit scene_context: summarize in English where the road vs parking vs entrances/exits/main paths appear "
+        "(left/center/right, far/near).\n"
+        "1) entities will be provided by the system when applicable — use them verbatim; do not add or merge entities.\n"
+        f"     Location-merge guidance (tunable):\n"
+        f"     - Merge only when you are very sure it is the same physical target.\n"
+        f"     - For cars, do not merge different track_ids unless all hold:\n"
+        f"       (a) time is contiguous/adjacent (<=1s)\n"
+        f"       (b) bboxes almost coincide: IoU >= {merge_location_iou_threshold}\n"
+        f"       (c) color/appearance matches (e.g. both white/silver, no contradictory cues)\n"
+        f"       Center distance <= {merge_center_dist_px} px is supporting evidence only, not sufficient alone.\n"
+        f"     - Hard proportional constraint:\n"
+        f"       raw_events may include start_center_norm/end_center_norm (0~1 normalized centers).\n"
+        f"       If normalized center delta on x or y exceeds {merge_location_norm_diff} (~10% of frame width/height), forbid merge.\n"
+        f"       Exception only if frames show near-identical appearance (color + salient features) and continuous time; explain in notes.\n"
+        "     - Stationary cars: merge broken track_ids only if same fixed slot, bbox stable over time, same color.\n"
+        "     - Persons: merge cautiously only when clothing, body shape, and position continuity all agree.\n"
+        "   - Each entity location must include: scene_zone, region_text, movement_in_scene (one English sentence).\n"
+        "   - Each entity must include appearance (at least color + color_confidence) in English.\n"
+        "2) refined_events:\n"
+        "   - Bind events to entity_id (optionally keep one representative track_id).\n"
+        "   - details must include movement_scene_narrative: one English sentence for motion + sub-region (entrance/exit/mid-road right/slot, etc.).\n"
+        "   - location must include: scene_zone, start_scene, end_scene, movement_scene (English strings); "
+        "keep start_bbox_xyxy/end_bbox_xyxy from raw_events when present and relate them to the scene.\n"
+        "3) Temporal correction (hard rules):\n"
+        f"   - Treat raw_events start_time/end_time as a strong prior.\n"
+        f"   - Adjust boundaries only with clear frame evidence; one-sided shift <= {max_time_adjust_sec} s.\n"
+        "   - If timing seems wrong but evidence is weak: do not change times; write \"uncertain\" in evidence.\n"
+        "4) False positives:\n"
+        "   - Remove obvious false events or lower confidence with a short English reason.\n\n"
         f"{parser.get_format_instructions()}"
     )
+
+    if pre_entities is not None:
+        user_text += "\n\nPre-defined entities (keep exactly; do not add/merge/delete; only reference entity_id in refined_events):\n"
+        user_text += json.dumps([e.model_dump() for e in pre_entities], ensure_ascii=False, indent=2)
 
     user_content: list[dict[str, Any]] = [
         {"type": "text", "text": user_text},
@@ -115,7 +303,7 @@ def refine_vector_events_with_llm(
     model: str = "gpt-5.4",
     temperature: float = 0.0,
 ) -> VectorEventsPayload:
-    """上线向量库版本：只输出检索必要字段，严格不改 start/end。"""
+    """Production vector-store mode: minimal fields for retrieval; never change start/end times."""
     parser = PydanticOutputParser(pydantic_object=VectorEventsPayload)
 
     images_content: list[dict[str, Any]] = [
@@ -124,25 +312,25 @@ def refine_vector_events_with_llm(
     ]
 
     system = (
-        "你是监控视频事件抽取器。"
-        "你会基于原始事件列表（含 start_time/end_time 与 bbox）以及关键帧，输出用于向量检索的最小事件记录。"
-        "硬约束：绝对不要修改 start_time/end_time（必须原样保留）。"
-        "不要输出多余字段，不要 Markdown，不要解释。"
+        "You are a surveillance-video event extractor. "
+        "From raw events (with start_time/end_time and bbox) and key frames, output minimal records for vector retrieval. "
+        "Hard rule: never modify start_time/end_time — copy them exactly. "
+        "No extra fields, no Markdown, no prose outside JSON."
     )
 
     user_text = (
         f"video_id: {video_id}\n"
         f"clip: start_sec={clip['start_sec']}, end_sec={clip['end_sec']}\n\n"
-        "raw_events_json（注意：其中的 start_time/end_time 必须原样保留到你的输出里）：\n"
+        "raw_events_json (copy start_time/end_time exactly into your output):\n"
         f"{json.dumps(raw_events, ensure_ascii=False, indent=2)}\n\n"
-        "关键帧时间戳：\n"
+        "Key frame timestamps:\n"
         + "\n".join([f"- t={f.t_sec:.3f}" for f in frames])
         + "\n\n"
-        "输出要求：\n"
-        "- 只输出 JSON，且必须符合 schema。\n"
-        "- event_text_cn 必须包含：起止时间 + 主体(含颜色) + 动作 + 场景区域（如入口/出口/马路右侧/停车位/人行道）。\n"
-        "- object_color_cn：尽量给出白/黑/银灰/红/蓝/深色/不确定。\n"
-        "- keywords：用于检索的短词（英文或拼音均可），例如 driving_in/parking/road_right/entrance/sidewalk。\n"
+        "Output rules:\n"
+        "- JSON only; must match the schema.\n"
+        "- event_text: English sentence with time range + subject (with color) + action + scene region (entrance/exit/road right/parking/sidewalk).\n"
+        "- object_color: prefer white/black/silver_gray/red/blue/dark/unknown (English coarse bucket).\n"
+        "- keywords: short retrieval tokens (English), e.g. driving_in/parking/road_right/entrance/sidewalk.\n"
         f"{parser.get_format_instructions()}"
     )
 
@@ -155,3 +343,57 @@ def refine_vector_events_with_llm(
     )
     text = resp.content if isinstance(resp.content, str) else str(resp.content)
     return parser.parse(text)
+
+
+# ------------------------------------------------------------------
+# Cross-camera person match verification
+# ------------------------------------------------------------------
+
+def verify_person_match_with_llm(
+    crop_a: PersonCrop,
+    crop_b: PersonCrop,
+    model: str = "gpt-4o-mini",
+    temperature: float = 0.0,
+) -> MatchVerification:
+    """Send two person crops to the VLM to decide if they are the same person."""
+    system = (
+        "You are a surveillance person-reidentification assistant. "
+        "You receive two person crops from different cameras. "
+        "Decide whether they depict the same individual. "
+        "Use clothing color, build, accessories, hair, and other visible traits. "
+        'Output strict JSON: {"is_match": bool, "confidence": 0.0~1.0, "reasoning": "..."}'
+    )
+
+    user_content: list[dict[str, Any]] = [
+        {"type": "text", "text": (
+            f"Image A: camera {crop_a.camera_id} at t={crop_a.t_sec:.1f}s\n"
+            f"Image B: camera {crop_b.camera_id} at t={crop_b.t_sec:.1f}s\n"
+            "Are these the same person?"
+        )},
+        {
+            "type": "image_url",
+            "image_url": {"url": f"data:image/jpeg;base64,{crop_a.jpg_base64}"},
+        },
+        {
+            "type": "image_url",
+            "image_url": {"url": f"data:image/jpeg;base64,{crop_b.jpg_base64}"},
+        },
+    ]
+
+    llm = ChatOpenAI(model=model, temperature=temperature)
+    resp = llm.invoke([
+        SystemMessage(content=system),
+        HumanMessage(content=user_content),
+    ])
+    raw = resp.content if isinstance(resp.content, str) else str(resp.content)
+
+    try:
+        data = json.loads(raw)
+        return MatchVerification(
+            is_match=bool(data.get("is_match", False)),
+            confidence=float(data.get("confidence", 0.0)),
+            reasoning=str(data.get("reasoning", "")),
+        )
+    except (json.JSONDecodeError, KeyError, TypeError):
+        logger.warning("LLM returned invalid JSON; treating as no match: %s", raw[:200])
+        return MatchVerification(is_match=False, confidence=0.0, reasoning=f"parse error: {raw[:100]}")

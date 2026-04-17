@@ -1,12 +1,12 @@
 """
-测试/本地跑精炼时的便捷入口。
+Convenience entry to run refinement locally.
 
-在仓库根执行（路径换成你的 pipeline 产物）:
+From repo root (adjust paths to your pipeline outputs):
   python tests/langchain_refine_events.py \\
     --events pipeline_output/xxx_events.json \\
     --clips pipeline_output/xxx_clips.json
 
-需设置 OPENAI_API_KEY；可先在本目录放 .env。
+Set OPENAI_API_KEY; you can use a .env in this folder.
 """
 
 from video.factory.coordinator import cli_run_refine_events

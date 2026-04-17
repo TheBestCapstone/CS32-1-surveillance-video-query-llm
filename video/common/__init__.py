@@ -1,4 +1,4 @@
-"""路径、抽帧等视频侧通用工具（无业务编排）。"""
+"""Paths, frame sampling, and other shared video utilities (no orchestration)."""
 
 from video.common.paths import botsort_reid_config_path, pipeline_output_dir, repo_root
 

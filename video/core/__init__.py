@@ -1,1 +1,1 @@
-"""底层模型封装（YOLO/LLM 等）与 schema。"""
+"""Low-level model wrappers (YOLO/LLM, etc.) and schemas."""

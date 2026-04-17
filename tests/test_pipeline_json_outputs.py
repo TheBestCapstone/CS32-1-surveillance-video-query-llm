@@ -1,10 +1,10 @@
 """
-视频流水线 JSON 输出 API 的单元测试。
+Unit tests for video pipeline JSON output helpers.
 
-- video_events_*：通过 _run_pipeline 注入 mock，无需 cv2/YOLO
-- refined_*：若已安装 pydantic、langchain、cv2，则 mock LLM 后执行；否则跳过
+- video_events_*: inject _run_pipeline mock; no cv2/YOLO required
+- refined_*: run with mocked LLM when pydantic, langchain, cv2 are installed; else skip
 
-在仓库根目录运行:
+From repo root:
   python -m unittest tests.test_pipeline_json_outputs -v
 """
 
@@ -84,7 +84,7 @@ class TestVideoEventsJsonDicts(unittest.TestCase):
 
 @unittest.skipUnless(
     _refine_stack_available(),
-    "精炼测试需要: pydantic, langchain_core, langchain_openai, cv2",
+    "Refine tests require: pydantic, langchain_core, langchain_openai, cv2",
 )
 class TestRefinedEventsJson(unittest.TestCase):
     @patch("video.factory.refinement_runner.refine_vector_events_with_llm")
@@ -114,10 +114,10 @@ class TestRefinedEventsJson(unittest.TestCase):
                     start_time=0.0,
                     end_time=1.0,
                     object_type="car",
-                    object_color_cn="黑",
-                    appearance_notes_cn="",
-                    scene_zone_cn="road",
-                    event_text_cn="车辆在路口",
+                    object_color="black",
+                    appearance_notes="",
+                    scene_zone="road",
+                    event_text="Black car at the intersection",
                     keywords=["car", "road"],
                 )
             ],
@@ -147,7 +147,7 @@ class TestRefinedEventsJson(unittest.TestCase):
         json.dumps(out, ensure_ascii=False)
 
         s = refined_events_as_json_str(events_document, clips_document, cfg, indent=None)
-        self.assertIn("车辆在路口", s)
+        self.assertIn("intersection", s)
 
     @patch("video.factory.refinement_runner.refine_vector_events_with_llm")
     @patch("video.factory.refinement_runner.sample_frames_uniform")
