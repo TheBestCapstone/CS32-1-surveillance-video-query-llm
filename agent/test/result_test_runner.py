@@ -33,6 +33,11 @@ class CaseEval:
     thought: str | None
     current_node: str | None
     sql_debug: dict[str, Any] | None
+    routing_metrics: dict[str, Any] | None
+    search_config: dict[str, Any] | None
+    sql_plan: dict[str, Any] | None
+    summary_result: dict[str, Any] | None
+    node_trace: list[str]
 
     @property
     def status(self) -> str:
@@ -49,8 +54,22 @@ def _json_block(data: Any) -> str:
     return "```json\n" + json.dumps(data, ensure_ascii=False, indent=2) + "\n```\n"
 
 
+def _safe_rate(numerator: int, denominator: int) -> float:
+    return round(numerator / denominator, 4) if denominator else 0.0
+
+
+def _select_final_rows(final_state: dict[str, Any]) -> list[dict[str, Any]]:
+    if "rerank_result" in final_state:
+        return list(final_state.get("rerank_result") or [])
+    if "merged_result" in final_state:
+        return list(final_state.get("merged_result") or [])
+    if "hybrid_result" in final_state:
+        return list(final_state.get("hybrid_result") or [])
+    return list(final_state.get("sql_result") or [])
+
+
 def _top5_view(final_state: dict[str, Any]) -> list[dict[str, Any]]:
-    rows = final_state.get("rerank_result") or final_state.get("hybrid_result") or final_state.get("sql_result") or []
+    rows = _select_final_rows(final_state)
     return [
         {
             "video_id": item.get("video_id"),
@@ -60,26 +79,30 @@ def _top5_view(final_state: dict[str, Any]) -> list[dict[str, Any]]:
     ]
 
 
-def _collect_mock_data_profile() -> dict[str, Any]:
-    mock_file = ROOT_DIR / "agent" / "mock_data" / "data" / "video_events_mock_en.json"
-    if not mock_file.exists():
+def _collect_basketball_data_profile() -> dict[str, Any]:
+    seed_files = [
+        ROOT_DIR / "data" / "basketball_output" / "basketball_1_events_vector_flat.json",
+        ROOT_DIR / "data" / "basketball_output" / "basketball_2_events_vector_flat.json",
+    ]
+    existing = [p for p in seed_files if p.exists()]
+    if not existing:
         return {"exists": False}
-    data = json.loads(mock_file.read_text(encoding="utf-8"))
-    videos = data if isinstance(data, list) else [data]
+
     object_types: set[str] = set()
     colors: set[str] = set()
     zones: set[str] = set()
     event_count = 0
-    for video in videos:
-        events = video.get("events", []) if isinstance(video, dict) else []
+    for file_path in existing:
+        data = json.loads(file_path.read_text(encoding="utf-8"))
+        events = data.get("events", []) if isinstance(data, dict) else []
         event_count += len(events)
-        for event in events[:1000]:
+        for event in events:
             object_types.add(str(event.get("object_type", "")).strip())
-            colors.add(str(event.get("object_color_en", "")).strip())
-            zones.add(str(event.get("scene_zone_en", "")).strip())
+            colors.add(str(event.get("object_color", "")).strip())
+            zones.add(str(event.get("scene_zone", "")).strip())
     return {
         "exists": True,
-        "video_count": len(videos),
+        "video_count": len(existing),
         "event_count": event_count,
         "object_types_sample": sorted([x for x in object_types if x])[:20],
         "colors_sample": sorted([x for x in colors if x])[:20],
@@ -98,7 +121,7 @@ def run_result_tests(
 
     cases = json.loads(cases_file.read_text(encoding="utf-8"))
     graph = graph_module.create_graph()
-    mock_profile = _collect_mock_data_profile()
+    mock_profile = _collect_basketball_data_profile()
 
     evaluations: list[CaseEval] = []
     for idx, case in enumerate(cases, start=1):
@@ -115,11 +138,14 @@ def run_result_tests(
         config = {"configurable": {"thread_id": f"result-case-{idx}", "user_id": "tester"}}
         last_chunk: dict[str, Any] = {}
         error = None
+        node_trace: list[str] = []
         t0 = time.perf_counter()
         try:
             for chunk in graph.stream({"messages": [HumanMessage(content=question)]}, config, stream_mode="values"):
                 if "current_node" in chunk:
                     print(f"  -> At node: {chunk['current_node']}")
+                    if not node_trace or node_trace[-1] != chunk["current_node"]:
+                        node_trace.append(chunk["current_node"])
                 last_chunk = chunk
         except Exception as exc:
             error = str(exc)
@@ -132,6 +158,10 @@ def run_result_tests(
         thought = last_chunk.get("thought")
         current_node = last_chunk.get("current_node")
         sql_debug = last_chunk.get("sql_debug")
+        routing_metrics = last_chunk.get("routing_metrics") if isinstance(last_chunk.get("routing_metrics"), dict) else {}
+        search_config = last_chunk.get("search_config") if isinstance(last_chunk.get("search_config"), dict) else {}
+        sql_plan = last_chunk.get("sql_plan") if isinstance(last_chunk.get("sql_plan"), dict) else {}
+        summary_result = last_chunk.get("summary_result") if isinstance(last_chunk.get("summary_result"), dict) else {}
 
         assertions: list[dict[str, Any]] = []
         assertions.append({
@@ -155,6 +185,28 @@ def run_result_tests(
             "expected": None,
             "severity": "soft",
         })
+        assertions.append({
+            "name": "trace_has_required_nodes",
+            "passed": all(node in node_trace for node in ["self_query_node", "final_answer_node", "summary_node"]),
+            "actual": node_trace,
+            "expected": ["self_query_node", "final_answer_node", "summary_node"],
+            "severity": "soft",
+        })
+        assertions.append({
+            "name": "routing_metrics_present",
+            "passed": bool(routing_metrics),
+            "actual": routing_metrics,
+            "expected": "non-empty routing_metrics",
+            "severity": "soft",
+        })
+        if len(top5) > 0:
+            assertions.append({
+                "name": "citation_present",
+                "passed": isinstance(model_answer, str) and "Sources:" in model_answer,
+                "actual": model_answer,
+                "expected": "final answer contains Sources:",
+                "severity": "soft",
+            })
         assertions.append({
             "name": "min_results",
             "passed": len(top5) >= min_results,
@@ -187,6 +239,11 @@ def run_result_tests(
                 thought=thought,
                 current_node=current_node,
                 sql_debug=sql_debug,
+                routing_metrics=routing_metrics,
+                search_config=search_config,
+                sql_plan=sql_plan,
+                summary_result=summary_result,
+                node_trace=node_trace,
             )
         )
 
@@ -213,6 +270,9 @@ def run_result_tests(
         "tool_error": 0,
         "insufficient_results": 0,
         "top_field_missing": 0,
+        "trace_gap": 0,
+        "routing_metrics_missing": 0,
+        "citation_missing": 0,
     }
     for item in evaluations:
         for assertion in item.assertions:
@@ -229,16 +289,29 @@ def run_result_tests(
                 failure_categories["insufficient_results"] += 1
             elif name.startswith("top_field_"):
                 failure_categories["top_field_missing"] += 1
+            elif name == "trace_has_required_nodes":
+                failure_categories["trace_gap"] += 1
+            elif name == "routing_metrics_present":
+                failure_categories["routing_metrics_missing"] += 1
+            elif name == "citation_present":
+                failure_categories["citation_missing"] += 1
     summary["failure_categories"] = failure_categories
+    summary["metrics_summary"] = {
+        "citation_coverage_rate": _safe_rate(sum(1 for item in evaluations if item.top5 and isinstance(item.model_answer, str) and "Sources:" in item.model_answer), sum(1 for item in evaluations if item.top5)),
+        "trace_coverage_rate": _safe_rate(sum(1 for item in evaluations if all(node in item.node_trace for node in ["self_query_node", "final_answer_node", "summary_node"])), total_count),
+        "routing_metrics_coverage_rate": _safe_rate(sum(1 for item in evaluations if item.routing_metrics), total_count),
+    }
 
     md_lines: list[str] = []
     md_lines.append("# Graph Result Test Report\n")
     md_lines.append(f"- Generated At: `{time.strftime('%Y-%m-%d %H:%M:%S')}`\n")
     md_lines.append(f"- Cases File: `{cases_file}`\n")
-    md_lines.append("- Mock Data Profile:\n")
+    md_lines.append("- Basketball Data Profile:\n")
     md_lines.append(_json_block(mock_profile))
     md_lines.append("- Summary:\n")
     md_lines.append(_json_block(summary))
+    md_lines.append("- Metrics Summary:\n")
+    md_lines.append(_json_block(summary["metrics_summary"]))
 
     for item in evaluations:
         md_lines.append(f"\n## {item.case_id}\n")
@@ -251,6 +324,14 @@ def run_result_tests(
         md_lines.append(f"- 错误: `{item.error}`\n")
         md_lines.append(f"- 工具错误: `{item.tool_error}`\n")
         md_lines.append(f"- 结果: `{item.status}`\n")
+        md_lines.append("- Node Trace:\n")
+        md_lines.append(_json_block(item.node_trace))
+        md_lines.append("- Routing Metrics:\n")
+        md_lines.append(_json_block(item.routing_metrics))
+        md_lines.append("- Search Config:\n")
+        md_lines.append(_json_block(item.search_config))
+        md_lines.append("- SQL Plan:\n")
+        md_lines.append(_json_block(item.sql_plan))
         md_lines.append("- 断言明细:\n")
         md_lines.append(_json_block(item.assertions))
         md_lines.append("- Top1-Top5:\n")
@@ -282,6 +363,11 @@ def run_result_tests(
                         "status": item.status,
                         "thought": item.thought,
                         "sql_debug": item.sql_debug,
+                        "routing_metrics": item.routing_metrics,
+                        "search_config": item.search_config,
+                        "sql_plan": item.sql_plan,
+                        "summary_result": item.summary_result,
+                        "node_trace": item.node_trace,
                     }
                     for item in evaluations
                 ],
