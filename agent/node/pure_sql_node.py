@@ -1,80 +1,54 @@
-import time
 from typing import Any
-
 from langchain_core.messages import AIMessage
 from langchain_core.runnables import RunnableConfig
 from langgraph.store.base import BaseStore
+from .types import AgentState, InputValidator
+from sub_agents.pure_sql_agent import run_pure_sql_sub_agent
+import time
 
-from .reflection_tool import do_reflection
-from .rerank_tool import SimpleRerankTool
-from .types import AgentState
-
-
-def create_pure_sql_node():
-    reranker = SimpleRerankTool()
-
+def create_pure_sql_node(llm=None, **kwargs):
     def pure_sql_node(state: AgentState, config: RunnableConfig, store: BaseStore) -> dict[str, Any]:
+        del config, store
+        
+        # Extract original user query
+        user_query = InputValidator.extract_latest_query(state)
+        
+        # If it's a reflection retry, use optimized query
+        reflection_result = state.get("reflection_result", {})
+        if reflection_result.get("needs_retry", False) and state.get("retry_count", 0) > 0:
+            user_query = state.get("optimized_query", user_query)
+            
         current_retry = int(state.get("retry_count", 0) or 0)
-        max_retries = 3
-
-        for attempt in range(max_retries - current_retry):
-            try:
-                sql_result = []
-
-                reflection_result = do_reflection(
-                    rows=sql_result,
-                    event_list=state.get("event_list", []),
-                    meta_list=state.get("meta_list", []),
-                )
-
-                reranked = reranker.rerank(
-                    rows=sql_result,
-                    event_list=state.get("event_list", []),
-                    meta_list=state.get("meta_list", []),
-                    top_k=5,
-                )
-
-                thought = f"Pure SQL检索完成: {len(sql_result)}条结果, 反思评分={reflection_result.get('quality_score')}"
-
-                return {
-                    "sql_result": sql_result,
-                    "rerank_result": reranked,
-                    "reflection_result": reflection_result,
-                    "tool_error": None,
-                    "retry_count": current_retry,
-                    "current_node": "pure_sql_node",
-                    "thought": thought,
-                    "messages": [AIMessage(content=f"纯SQL检索完成，命中 {len(sql_result)} 条")],
-                }
-
-            except Exception as exc:
-                if attempt < max_retries - current_retry - 1:
-                    time.sleep(1)
-                    continue
-                return {
-                    "sql_result": [],
-                    "rerank_result": [],
-                    "reflection_result": {"feedback": f"检索失败: {exc}", "quality_score": 0.0, "needs_retry": True},
-                    "tool_error": f"纯SQL检索失败: {exc}",
-                    "retry_count": current_retry + 1,
-                    "current_node": "pure_sql_node",
-                    "messages": [AIMessage(content=f"纯SQL检索失败: {exc}")],
-                }
-
-        return {
-            "sql_result": [],
-            "rerank_result": [],
-            "reflection_result": {"feedback": "已达到最大重试次数", "quality_score": 0.0, "needs_retry": False},
-            "tool_error": "纯SQL检索失败: 超过最大重试次数",
-            "retry_count": current_retry + 1,
-            "current_node": "pure_sql_node",
-            "messages": [AIMessage(content="纯SQL检索失败: 超过最大重试次数")],
-        }
+        
+        start = time.perf_counter()
+        print(f"[DEBUG] pure_sql_node user_query: {user_query}")
+        try:
+            summary, raw_rows = run_pure_sql_sub_agent(user_query, llm)
+            duration = time.perf_counter() - start
+            
+            return {
+                "sql_result": raw_rows,
+                "rerank_result": raw_rows,
+                "reflection_result": {"feedback": "Retrieval successful", "quality_score": 1.0, "needs_retry": False},
+                "tool_error": None,
+                "retry_count": current_retry,
+                "current_node": "pure_sql_node",
+                "sql_debug": {
+                    "duration": duration,
+                    "agent_summary": summary
+                },
+                "messages": [AIMessage(content=f"SQL Sub-Agent retrieval complete. Summary:\n{summary}")],
+            }
+        except Exception as exc:
+            return {
+                "sql_result": [],
+                "rerank_result": [],
+                "reflection_result": {"feedback": f"Sub-Agent execution failed: {exc}", "quality_score": 0.0, "needs_retry": True},
+                "tool_error": f"Pure SQL Sub-Agent retrieval failed: {exc}",
+                "retry_count": current_retry,
+                "current_node": "pure_sql_node",
+                "sql_debug": {"last_error": str(exc)},
+                "messages": [AIMessage(content=f"Pure SQL Sub-Agent retrieval failed: {exc}")],
+            }
 
     return pure_sql_node
-
-
-if __name__ == "__main__":
-    node = create_pure_sql_node()
-    out = node({"meta_list": [], "event_list": [], "retry_count": 0}, config={}, store=None)
-    print("sql result:", out["reflection_result"])

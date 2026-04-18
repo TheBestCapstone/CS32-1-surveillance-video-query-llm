@@ -227,7 +227,7 @@ class SQLVideoSearchTool:
 
 
 if __name__ == "__main__":
-    db_path = Path("/home/yangxp/Capstone/agent/backup_legacy/src/agent/memory/episodic/lancedb")
+    db_path = Path("/home/yangxp/Capstone/data/lancedb")
     tool = SQLVideoSearchTool(db_path=db_path)
 
     metadata_filters = [

@@ -9,18 +9,30 @@ from .types import AgentState
 
 def final_answer_node(state: AgentState, config: RunnableConfig, store: BaseStore) -> dict[str, Any]:
     del config, store
-    rows = state.get("rerank_result", [])
+    rows = state.get("rerank_result") or state.get("hybrid_result") or state.get("sql_result") or []
+    
+    agent_summary = ""
+    if state.get("sql_debug") and isinstance(state.get("sql_debug"), dict):
+        agent_summary = state["sql_debug"].get("agent_summary", "")
+    elif state.get("search_explain"):
+        agent_summary = state.get("search_explain", "")
+        
     if not rows:
-        final_answer = "未检索到匹配结果。你可以补充更具体的颜色、时间或动作描述。"
+        final_answer = agent_summary if agent_summary else "No matching results found. You can add more specific descriptions like colors or actions."
         return {"final_answer": final_answer, "messages": [AIMessage(content=final_answer)]}
+        
     parts: list[str] = []
-    for idx, row in enumerate(rows[:3], start=1):
+    if agent_summary:
+        parts.append(agent_summary + "\n\nDetailed results:")
+    else:
+        parts.append("Retrieval complete. Most relevant results:")
+        
+    for idx, row in enumerate(rows[:5], start=1):
         parts.append(
             f"[{idx}] event_id={row.get('event_id')} | video={row.get('video_id')} | "
-            f"time={row.get('start_time')}-{row.get('end_time')} | "
-            f"distance={row.get('_distance')} | summary={row.get('event_summary_cn')}"
+            f"distance={row.get('_distance', 'N/A')} | summary={row.get('event_summary_en', row.get('event_text_cn', 'N/A'))}"
         )
-    final_answer = "检索完成，最相关结果如下：\n" + "\n".join(parts)
+    final_answer = "\n".join(parts)
     return {"final_answer": final_answer, "messages": [AIMessage(content=final_answer)]}
 
 

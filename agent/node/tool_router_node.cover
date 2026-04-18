@@ -1,0 +1,718 @@
+    1: import json
+    1: import logging
+    1: import os
+    1: from typing import Any, Dict, List, Optional, TypedDict
+       
+    1: from langchain_core.messages import AIMessage, HumanMessage
+    1: from langchain_core.runnables import RunnableConfig
+    1: from langgraph.store.base import BaseStore
+       
+    1: from node.cot_engine import (
+           CoTContext,
+           CoTEngine,
+           CoTStep,
+           ConditionalStep,
+           ParallelBranch,
+           ParallelExecutionStep,
+           SequentialCoTStep,
+           StepResult,
+           StepStatus,
+           create_cot_engine,
+           log_context,
+       )
+    1: from node.types import AgentState, ToolChoice, InputValidator, StateResetter
+       
+    1: logger = logging.getLogger(__name__)
+       
+       
+    1: TOOL_DESCRIPTIONS = {
+    1:     "hybrid_search": {
+    1:         "name": "hybrid_search",
+    1:         "description": "结合向量检索和SQL元数据过滤的混合搜索",
+    1:         "input": "event_list(事件关键词列表), meta_list(元数据过滤条件)",
+    1:         "output": "检索结果列表，包含event_id, video_id, _distance, event_summary等字段",
+    1:         "scenarios": "用户查询包含进入、离开、移动、停止、出现等事件描述，同时可能有颜色、时间等条件",
+    1:         "keywords": ["车", "人", "目标", "物体", "进入", "离开", "移动", "停止", "出现"],
+           },
+    1:     "pure_sql": {
+    1:         "name": "pure_sql",
+    1:         "description": "基于元数据条件的纯SQL结构化查询",
+    1:         "input": "meta_list(元数据过滤条件，如颜色、时间范围、运动状态等)",
+    1:         "output": "符合条件的结果列表",
+    1:         "scenarios": "用户查询主要是结构化的条件筛选，如红色车辆、上午9点到10点、静止的目标",
+    1:         "keywords": ["红色", "蓝色", "白色", "黑色", "上午", "下午", "今天", "静止"],
+           },
+    1:     "video_vect": {
+    1:         "name": "video_vect",
+    1:         "description": "基于语义理解的视频内容向量检索",
+    1:         "input": "event_list(事件关键词)",
+    1:         "output": "语义相关的视频片段列表",
+    1:         "scenarios": "用户查询需要理解视频内容的语义，如车辆驶入、行人横穿、物体遗落",
+    1:         "keywords": ["视频", "画面", "镜头", "语义", "理解"],
+           },
+    1:     "parallel_search": {
+    1:         "name": "parallel_search",
+    1:         "description": "同时执行多个检索工具并合并结果",
+    1:         "input": "多个子查询任务",
+    1:         "output": "合并后的去重排序结果",
+    1:         "scenarios": "复杂查询需要多种检索方式协同，如既需要向量检索又需要SQL过滤",
+    1:         "keywords": [],
+           },
+       }
+       
+       
+    2: class ToolCandidate(TypedDict):
+    1:     tool_name: str
+    1:     score: float
+    1:     matched_keywords: List[str]
+    1:     confidence: float
+    1:     reasoning: str
+       
+       
+    2: class ToolRanking(TypedDict):
+    1:     ranked_tools: List[ToolCandidate]
+    1:     top_choice: str
+    1:     fallback_choice: str
+    1:     needs_parallel: bool
+    1:     parallel_modes: List[str]
+       
+       
+    2: class IntentUnderstanding(TypedDict):
+    1:     query_type: str
+    1:     intent_summary: str
+    1:     extracted_entities: Dict[str, List[str]]
+    1:     confidence: float
+       
+       
+    1: def _step_intent_understanding(ctx: CoTContext) -> IntentUnderstanding:
+           user_query = ctx.original_input if isinstance(ctx.original_input, str) else ctx.original_input.get("user_query", "")
+           query_lower = user_query.lower()
+       
+           entity_map: Dict[str, List[str]] = {
+               "color": [],
+               "time": [],
+               "motion": [],
+               "object": [],
+               "event": [],
+           }
+       
+           color_kws = ["红", "蓝", "白", "黑", "银", "灰", "黄", "绿", "橙", "紫", "粉"]
+           for kw in color_kws:
+               if kw in query_lower:
+                   entity_map["color"].append(kw)
+       
+           time_kws = ["今天", "昨天", "上午", "下午", "时间", "点", "时", "日"]
+           for kw in time_kws:
+               if kw in query_lower:
+                   entity_map["time"].append(kw)
+       
+           motion_kws = ["静止", "运动", "移动", "停止"]
+           for kw in motion_kws:
+               if kw in query_lower:
+                   entity_map["motion"].append(kw)
+       
+           event_kws = ["进入", "离开", "出现", "消失", "驶入", "横穿", "停止"]
+           for kw in event_kws:
+               if kw in query_lower:
+                   entity_map["event"].append(kw)
+       
+           obj_kws = ["车", "人", "行人", "车辆", "自行车", "摩托车"]
+           for kw in obj_kws:
+               if kw in query_lower:
+                   entity_map["object"].append(kw)
+       
+           query_type = "semantic"
+           if entity_map["color"] or entity_map["time"] or entity_map["motion"]:
+               query_type = "structured"
+           if entity_map["event"] and (entity_map["color"] or entity_map["time"]):
+               query_type = "hybrid"
+       
+           return IntentUnderstanding(
+               query_type=query_type,
+               intent_summary=f"用户查询类型={query_type}, 提取到颜色={len(entity_map['color'])}, 时间={len(entity_map['time'])}, 事件={len(entity_map['event'])}",
+               extracted_entities=entity_map,
+               confidence=0.85,
+           )
+       
+       
+    1: def _step_candidate_recall(ctx: CoTContext) -> List[Dict[str, Any]]:
+           intent: IntentUnderstanding = ctx.get_intermediate("intent_understanding")
+           if not intent:
+               intent = _step_intent_understanding(ctx)
+       
+           query_type = intent["query_type"]
+           entities = intent["extracted_entities"]
+       
+           candidates: List[Dict[str, Any]] = []
+       
+           if query_type in ("semantic", "hybrid"):
+               candidates.append({
+                   "tool_name": "hybrid_search",
+                   "matched_keywords": entities.get("event", []) + entities.get("object", []),
+                   "reasoning": f"查询类型={query_type}，包含事件/语义描述，适用混合搜索",
+               })
+       
+           if query_type in ("structured", "hybrid"):
+               candidates.append({
+                   "tool_name": "pure_sql",
+                   "matched_keywords": entities.get("color", []) + entities.get("time", []) + entities.get("motion", []),
+                   "reasoning": f"查询类型={query_type}，包含结构化条件，适用SQL过滤",
+               })
+       
+           if query_type == "semantic" and not candidates:
+               candidates.append({
+                   "tool_name": "video_vect",
+                   "matched_keywords": [],
+                   "reasoning": "纯语义查询，使用视频向量检索",
+               })
+       
+           if not candidates:
+               candidates.append({
+                   "tool_name": "hybrid_search",
+                   "matched_keywords": [],
+                   "reasoning": "默认使用混合搜索",
+               })
+       
+           return candidates
+       
+       
+    1: def _step_capability_matching(ctx: CoTContext) -> List[ToolCandidate]:
+           candidates: List[Dict[str, Any]] = ctx.get_intermediate("candidate_recall")
+           if not candidates:
+               candidates = _step_candidate_recall(ctx)
+       
+           matched: List[ToolCandidate] = []
+           for candidate in candidates:
+               tool_name = candidate["tool_name"]
+               tool_desc = TOOL_DESCRIPTIONS.get(tool_name, {})
+               keywords = tool_desc.get("keywords", [])
+               matched_kws = candidate.get("matched_keywords", [])
+       
+               keyword_score = len(matched_kws) / max(len(keywords), 1) if keywords else 0.0
+               base_score = 0.5
+       
+               score = min(base_score + keyword_score * 0.5, 1.0)
+               confidence = score
+       
+               matched.append(ToolCandidate(
+                   tool_name=tool_name,
+                   score=score,
+                   matched_keywords=matched_kws,
+                   confidence=confidence,
+                   reasoning=candidate.get("reasoning", ""),
+               ))
+       
+           return matched
+       
+       
+    1: def _step_confidence_evaluation(ctx: CoTContext) -> Dict[str, Any]:
+           candidates: List[ToolCandidate] = ctx.get_intermediate("capability_matching")
+           if not candidates:
+               candidates = _step_capability_matching(ctx)
+       
+           sorted_candidates = sorted(candidates, key=lambda x: x["score"], reverse=True)
+       
+           needs_parallel = len(sorted_candidates) > 1 and sorted_candidates[0]["score"] < 0.8
+       
+           parallel_modes = []
+           if needs_parallel:
+               for c in sorted_candidates[1:3]:
+                   if c["score"] > 0.3:
+                       parallel_modes.append(c["tool_name"])
+       
+           return {
+               "ranked_tools": sorted_candidates,
+               "top_choice": sorted_candidates[0]["tool_name"] if sorted_candidates else "hybrid_search",
+               "fallback_choice": "hybrid_search",
+               "needs_parallel": needs_parallel,
+               "parallel_modes": parallel_modes,
+               "top_confidence": sorted_candidates[0]["confidence"] if sorted_candidates else 0.0,
+           }
+       
+       
+    1: def _step_final_decision(ctx: CoTContext) -> ToolChoice:
+           ranking: Dict[str, Any] = ctx.get_intermediate("confidence_evaluation")
+           if not ranking:
+               ranking = _step_confidence_evaluation(ctx)
+       
+           top_choice = ranking.get("top_choice", "hybrid_search")
+           needs_parallel = ranking.get("needs_parallel", False)
+           parallel_modes = ranking.get("parallel_modes", [])
+       
+           sql_needed = top_choice == "pure_sql" or "pure_sql" in parallel_modes
+           hybrid_needed = top_choice == "hybrid_search" or "hybrid_search" in parallel_modes
+           video_vect_needed = top_choice == "video_vect" or "video_vect" in parallel_modes
+       
+           sub_queries: Dict[str, Any] = {}
+           if hybrid_needed:
+               sub_queries["hybrid"] = {}
+           if sql_needed:
+               sub_queries["sql"] = {}
+           if video_vect_needed:
+               sub_queries["video_vect"] = {}
+       
+           mode = "parallel" if needs_parallel else top_choice
+       
+           return ToolChoice(
+               mode=mode,
+               sql_needed=sql_needed,
+               hybrid_needed=hybrid_needed,
+               video_vect_needed=video_vect_needed,
+               sub_queries=sub_queries,
+           )
+       
+       
+    1: def _create_llm_based_decision_step(llm: Any) -> CoTStep:
+           def llm_decision(ctx: CoTContext) -> Dict[str, Any]:
+               user_query = ctx.original_input if isinstance(ctx.original_input, str) else ctx.original_input.get("user_query", "")
+       
+               prompt = f"""你是一个智能工具路由助手。根据用户查询判断需要使用的工具类型。
+       
+       可用工具：hybrid_search, pure_sql, video_vect, parallel_search
+       
+       用户查询：{user_query}
+       
+       请输出JSON格式的决策：
+       {{"mode": "工具名", "reason": "理由", "confidence": 0.0-1.0}}"""
+       
+               try:
+                   response = llm.invoke([HumanMessage(content=prompt)])
+                   raw_content = response.content if hasattr(response, "content") else str(response)
+       
+                   try:
+                       decision = json.loads(raw_content)
+                       return {
+                           "llm_decision": decision,
+                           "raw_response": raw_content,
+                           "success": True,
+                       }
+                   except json.JSONDecodeError:
+                       return {
+                           "llm_decision": {"mode": "hybrid_search", "reason": "JSON解析失败", "confidence": 0.3},
+                           "raw_response": raw_content,
+                           "success": False,
+                       }
+               except Exception as e:
+                   logger.warning(f"[ToolRouter CoT] LLM决策失败: {e}")
+                   return {
+                       "llm_decision": {"mode": "hybrid_search", "reason": str(e), "confidence": 0.0},
+                       "raw_response": None,
+                       "success": False,
+                       "error": str(e),
+                   }
+       
+           return SequentialCoTStep("llm_decision", llm_decision, "LLM辅助决策")
+       
+       
+    1: def create_cot_tool_router_engine(llm: Any = None) -> CoTEngine:
+           engine = CoTEngine("ToolRouter")
+       
+           intent_step = SequentialCoTStep("intent_understanding", _step_intent_understanding, "意图理解")
+           recall_step = SequentialCoTStep("candidate_recall", _step_candidate_recall, "候选召回")
+           match_step = SequentialCoTStep("capability_matching", _step_capability_matching, "能力匹配")
+           eval_step = SequentialCoTStep("confidence_evaluation", _step_confidence_evaluation, "置信度评估")
+           decision_step = SequentialCoTStep("final_decision", _step_final_decision, "最终决策")
+       
+           engine.add_step(intent_step)
+           engine.add_step(recall_step)
+           engine.add_step(match_step)
+           engine.add_step(eval_step)
+           engine.add_step(decision_step)
+       
+           if llm is not None:
+               llm_step = _create_llm_based_decision_step(llm)
+               engine.add_step(llm_step)
+       
+           return engine
+       
+       
+    1: def create_tool_router_node(llm: Any = None):
+           cot_engine = create_cot_tool_router_engine(llm)
+       
+           def tool_router_node(state: AgentState, config: RunnableConfig, store: BaseStore) -> dict[str, Any]:
+               del store
+       
+               # 检测并重置状态 (如果是新查询)
+               is_new = StateResetter.is_new_query(state)
+               user_query = InputValidator.extract_latest_query(state)
+               
+               reset_updates = {}
+               if is_new:
+                   logger.info(f"[ToolRouter CoT] 检测到新查询，重置历史临时状态。新查询: {user_query[:30]}")
+                   reset_updates = StateResetter.reset_ephemeral_state(state, user_query)
+               
+               if not user_query:
+                   logger.warning("[ToolRouter CoT] 获取到的查询为空，使用防御性回退。")
+                   user_query = "未知查询"
+       
+               logger.info(f"[ToolRouter CoT] 开始推理, query={user_query[:50]}")
+       
+               try:
+                   ctx = cot_engine.execute({"user_query": user_query})
+       
+                   if ctx.status == StepStatus.FAILED:
+                       logger.warning(f"[ToolRouter CoT] 推理失败，使用默认路由: {ctx.metadata.get('error')}")
+                       final_choice = _fallback_routing(user_query)
+                   else:
+                       final_choice = ctx.get_intermediate("final_decision")
+                       if not final_choice:
+                           final_choice = _fallback_routing(user_query)
+       
+                   mode = final_choice.get("mode", "hybrid") if isinstance(final_choice, dict) else final_choice.get("mode", "hybrid")
+                   if isinstance(final_choice, dict) and "mode" not in final_choice:
+                       mode = "hybrid"
+       
+               except Exception as exc:
+                   logger.error(f"[ToolRouter CoT] 异常: {exc}", exc_info=True)
+                   mode = "hybrid"
+                   final_choice = _fallback_routing(user_query)
+       
+               if not mode or mode == "none":
+                   mode = "hybrid"
+       
+               sql_needed = mode in ("pure_sql", "parallel")
+               hybrid_needed = mode in ("hybrid_search", "hybrid", "parallel")
+               video_vect_needed = mode == "video_vect"
+       
+               sub_queries: dict[str, Any] = {}
+               if hybrid_needed:
+                   sub_queries["hybrid"] = {}
+               if sql_needed:
+                   sub_queries["sql"] = {}
+               if video_vect_needed:
+                   sub_queries["video_vect"] = {}
+       
+               parallel_needed = mode == "parallel"
+       
+               tool_choice: ToolChoice = {
+                   "mode": mode if mode != "hybrid" else "hybrid_search",
+                   "sql_needed": sql_needed,
+                   "hybrid_needed": hybrid_needed,
+                   "video_vect_needed": video_vect_needed,
+                   "sub_queries": sub_queries,
+               }
+       
+               thought = f"工具路由决策(CoT): mode={tool_choice['mode']}, sql={sql_needed}, hybrid={hybrid_needed}, video={video_vect_needed}"
+               if ctx.metadata.get("chain"):
+                   thought += f", 推理链={ctx.metadata['chain']}"
+       
+               logger.info(f"[ToolRouter CoT] 决策完成: {thought}")
+       
+               return {
+                   **reset_updates,
+                   "tool_choice": tool_choice,
+                   "user_query": user_query,
+                   "is_parallel": parallel_needed,
+                   "parallel_queries": list(sub_queries.keys()) if parallel_needed else [],
+                   "thought": thought,
+                   "messages": [AIMessage(content=f"工具路由完成(CoT): {tool_choice['mode']}")],
+                   "cot_context": ctx.get_full_chain() if "ctx" in dir() else [],
+               }
+       
+           return tool_router_node
+       
+       
+    1: def _fallback_routing(user_query: str) -> Dict[str, Any]:
+           query_lower = user_query.lower()
+       
+           if any(kw in query_lower for kw in ["车", "人", "进入", "离开", "移动"]):
+               return {"mode": "hybrid_search", "reason": "fallback: 包含事件关键词", "confidence": 0.5}
+           elif any(kw in query_lower for kw in ["红色", "蓝色", "白色", "黑色", "上午", "今天"]):
+               return {"mode": "pure_sql", "reason": "fallback: 包含结构化条件", "confidence": 0.5}
+           elif any(kw in query_lower for kw in ["视频", "画面"]):
+               return {"mode": "video_vect", "reason": "fallback: 包含视频语义关键词", "confidence": 0.5}
+           else:
+               return {"mode": "hybrid_search", "reason": "fallback: 默认混合搜索", "confidence": 0.5}
+       
+       
+    1: def route_by_tool_choice(state: AgentState) -> str:
+           tool_choice = state.get("tool_choice", {})
+           mode = tool_choice.get("mode", "none")
+       
+           if mode == "hybrid_search":
+               return "hybrid_preprocess"
+           elif mode == "parallel":
+               return "hybrid_preprocess"
+           elif mode in ("pure_sql", "sql"):
+               return "pure_sql_preprocess"
+           elif mode == "video_vect":
+               return "video_vect_preprocess"
+           else:
+               return "hybrid_preprocess"
+       
+       
+    1: def route_from_preprocess(state: AgentState) -> str:
+           tool_choice = state.get("tool_choice", {})
+           mode = tool_choice.get("mode", "none")
+       
+           if mode == "parallel":
+               return "hybrid_search_node"
+           elif mode == "hybrid_search":
+               return "hybrid_search_node"
+           elif mode in ("pure_sql", "sql"):
+               return "pure_sql_node"
+           elif mode == "video_vect":
+               return "video_vect_node"
+           else:
+               return "hybrid_search_node"
+       
+       
+    1: if __name__ == "__main__":
+           import logging
+           logging.basicConfig(level=logging.INFO, format='%(name)s - %(levelname)s - %(message)s')
+       
+           print("\n=== Test: CoT Tool Router ===")
+           router = create_tool_router_node()
+           out = router({"user_query": "车进入镜头", "parsed_question": {}}, {}, None)
+           print(f"mode: {out['tool_choice']['mode']}")
+           print(f"thought: {out['thought']}")
+           assert out["tool_choice"]["mode"] == "hybrid_search"
+       
+           print("\n=== Test: CoT Tool Router with color/time ===")
+           out2 = router({"user_query": "红色车辆今天上午进入镜头", "parsed_question": {}}, {}, None)
+           print(f"mode: {out2['tool_choice']['mode']}")
+           print(f"is_parallel: {out2['is_parallel']}")
+       
+       
+    1: from dataclasses import dataclass
+    1: from pathlib import Path
+    1: import re
+    1: import time
+       
+       
+    1: def _load_tool_router_rules() -> dict[str, Any]:
+    1:     rules_path = Path(__file__).resolve().parent / "tool_router_rules.json"
+    2:     with open(rules_path, "r", encoding="utf-8") as f:
+    1:         return json.load(f)
+       
+       
+    1: ROUTER_RULES = _load_tool_router_rules()
+    1: VIDEO_VECT_PLACEHOLDER = str(ROUTER_RULES.get("video_vect_status", "video_vect_placeholder_disabled"))
+    7: OBJECT_SYNONYMS = {str(k): list(v) for k, v in ROUTER_RULES.get("object_synonyms", {}).items()}
+    9: COLOR_SYNONYMS = {str(k): list(v) for k, v in ROUTER_RULES.get("color_synonyms", {}).items()}
+   12: GENERIC_EVENT_TERMS = set(str(x) for x in ROUTER_RULES.get("generic_event_terms", []))
+   18: CONCRETE_EVENT_TERMS = set(str(x) for x in ROUTER_RULES.get("concrete_event_terms", []))
+    9: BASELINE_SQL_TERMS = [str(x) for x in ROUTER_RULES.get("baseline_sql_terms", [])]
+    6: BASELINE_HYBRID_TERMS = [str(x) for x in ROUTER_RULES.get("baseline_hybrid_terms", [])]
+       
+       
+    3: @dataclass
+    2: class QueryTriplet:
+    1:     object_type: str | None
+    1:     color: str | None
+    1:     event_semantic: str
+    1:     event_kind: str
+       
+       
+    1: def _match_first_keyword(query: str, mapping: dict[str, list[str]]) -> str | None:
+   72:     best: tuple[int, int, str] | None = None
+  576:     for canonical, words in mapping.items():
+ 1764:         for w in words:
+ 1260:             idx = query.find(w)
+ 1260:             if idx < 0:
+ 1167:                 continue
+   93:             key = (idx, -len(w), canonical)
+   93:             if best is None or key < best:
+   91:                 best = key
+   72:     return best[2] if best is not None else None
+       
+       
+    1: def _remove_known_tokens(query: str) -> str:
+   35:     out = query
+   35:     tokens: set[str] = set()
+  245:     for words in OBJECT_SYNONYMS.values():
+ 1015:         tokens.update(str(w) for w in words)
+  315:     for words in COLOR_SYNONYMS.values():
+ 1190:         tokens.update(str(w) for w in words)
+ 1260:     for token in sorted(tokens, key=len, reverse=True):
+ 1225:         out = out.replace(token, " ")
+   35:     out = re.sub(r"\s+", " ", out).strip()
+   35:     return out if out else query.strip()
+       
+       
+    1: def _heuristic_event_semantic(query: str) -> str:
+   35:     text = _remove_known_tokens(query)
+   35:     text = text.replace("吗", "").replace("呢", "").replace("？", "").replace("?", "").strip()
+   35:     if not text:
+               return "目标出现于画面中。"
+   35:     if not text.endswith("。"):
+   35:         text = f"{text}。"
+   35:     return text
+       
+       
+    1: def _llm_event_semantic(llm: Any, query: str) -> str:
+    1:     prompt = (
+    2:         "你是视频检索事件标准化助手。"
+               "请忽略对象类别和颜色，把用户问题改写成简洁陈述句。"
+               "不要包含颜色词与对象词，只保留行为/事件语义。"
+               "只输出一句中文陈述句。\n"
+    1:         f"用户问题：{query}"
+           )
+    1:     response = llm.invoke([HumanMessage(content=prompt)])
+    1:     content = response.content if hasattr(response, "content") else str(response)
+    1:     if isinstance(content, list):
+               content = "\n".join(str(x) for x in content)
+    1:     text = str(content).strip()
+    1:     if not text:
+               return _heuristic_event_semantic(query)
+    1:     if not text.endswith("。"):
+               text = f"{text}。"
+    1:     return text
+       
+       
+    1: def classify_event_kind(event_semantic: str) -> str:
+   41:     s = event_semantic.replace("。", "")
+  573:     if any(term in s for term in CONCRETE_EVENT_TERMS):
+   18:         return "concrete"
+  184:     if any(term in s for term in GENERIC_EVENT_TERMS):
+   18:         return "generic"
+    5:     if re.search(r"是否|有无|在不在|有没有", s):
+    2:         return "generic"
+    3:     return "concrete"
+       
+       
+    1: def extract_query_triplet(user_query: str, llm: Any = None) -> QueryTriplet:
+   36:     query = (user_query or "").strip()
+   36:     object_type = _match_first_keyword(query, OBJECT_SYNONYMS)
+   36:     color = _match_first_keyword(query, COLOR_SYNONYMS)
+   36:     if llm is not None:
+    1:         try:
+    1:             event_semantic = _llm_event_semantic(llm, query)
+               except Exception:
+                   event_semantic = _heuristic_event_semantic(query)
+           else:
+   35:         event_semantic = _heuristic_event_semantic(query)
+   36:     event_kind = classify_event_kind(event_semantic)
+   72:     return QueryTriplet(
+   36:         object_type=object_type,
+   36:         color=color,
+   36:         event_semantic=event_semantic,
+   36:         event_kind=event_kind,
+           )
+       
+       
+    1: def baseline_route_mode(user_query: str) -> str:
+    6:     q = (user_query or "").lower()
+   45:     if any(kw in q for kw in BASELINE_SQL_TERMS):
+    2:         return "pure_sql"
+   13:     if any(kw in q for kw in BASELINE_HYBRID_TERMS):
+    4:         return "hybrid_search"
+           return "hybrid_search"
+       
+       
+    1: def refactored_route_mode(user_query: str, llm: Any = None) -> tuple[str, QueryTriplet]:
+   14:     triplet = extract_query_triplet(user_query, llm=llm)
+   14:     mode = "pure_sql" if triplet.event_kind == "generic" else "hybrid_search"
+   14:     return mode, triplet
+       
+       
+    1: def ab_compare_routing(samples: list[dict[str, Any]], llm: Any = None) -> dict[str, Any]:
+    1:     old_correct = 0
+    1:     new_correct = 0
+    1:     old_latency = 0.0
+    1:     new_latency = 0.0
+    1:     details: list[dict[str, Any]] = []
+    7:     for item in samples:
+    6:         query = str(item.get("query", ""))
+    6:         expected = str(item.get("expected_mode", "hybrid_search"))
+    6:         t0 = time.perf_counter()
+    6:         old_mode = baseline_route_mode(query)
+    6:         old_latency += time.perf_counter() - t0
+    6:         t1 = time.perf_counter()
+    6:         new_mode, triplet = refactored_route_mode(query, llm=llm)
+    6:         new_latency += time.perf_counter() - t1
+    6:         old_correct += 1 if old_mode == expected else 0
+    6:         new_correct += 1 if new_mode == expected else 0
+   12:         details.append(
+    6:             {
+    6:                 "query": query,
+    6:                 "expected_mode": expected,
+    6:                 "old_mode": old_mode,
+    6:                 "new_mode": new_mode,
+    6:                 "triplet": {
+    6:                     "object_type": triplet.object_type,
+    6:                     "color": triplet.color,
+    6:                     "event_semantic": triplet.event_semantic,
+    6:                     "event_kind": triplet.event_kind,
+                       },
+                   }
+               )
+    1:     total = max(len(samples), 1)
+    1:     return {
+    1:         "total": len(samples),
+    1:         "old_accuracy": old_correct / total,
+    1:         "new_accuracy": new_correct / total,
+    1:         "old_avg_latency_ms": old_latency * 1000 / total,
+    1:         "new_avg_latency_ms": new_latency * 1000 / total,
+    1:         "improved_cases": new_correct - old_correct,
+    1:         "details": details,
+           }
+       
+       
+    1: def create_tool_router_node(llm: Any = None):
+    1:     def tool_router_node(state: AgentState, config: RunnableConfig, store: BaseStore) -> dict[str, Any]:
+    4:         del config, store
+    4:         is_new = StateResetter.is_new_query(state)
+    4:         user_query = InputValidator.extract_latest_query(state)
+    4:         reset_updates: dict[str, Any] = {}
+    4:         if is_new:
+                   reset_updates = StateResetter.reset_ephemeral_state(state, user_query)
+    4:         if not user_query:
+                   user_query = "未知查询"
+    4:         mode, triplet = refactored_route_mode(user_query, llm=llm)
+    4:         tool_choice: ToolChoice = {
+    4:             "mode": mode,
+    4:             "sql_needed": mode in ("pure_sql", "parallel"),
+    4:             "hybrid_needed": mode in ("hybrid_search", "parallel", "hybrid"),
+    4:             "video_vect_needed": False,
+    4:             "sub_queries": {"sql": {}} if mode == "pure_sql" else {"hybrid": {}},
+               }
+    4:         parsed_question = dict(state.get("parsed_question", {}))
+    8:         parsed_question.update({
+    4:             "event": triplet.event_semantic,
+    4:             "color": triplet.color,
+    4:             "object_type": triplet.object_type,
+    4:             "event_kind": triplet.event_kind,
+               })
+    4:         thought = (
+    8:             f"tool_router_refactor: mode={mode}, video_vect={VIDEO_VECT_PLACEHOLDER}, "
+    4:             f"triplet(object={triplet.object_type}, color={triplet.color}, kind={triplet.event_kind})"
+               )
+   12:         return {
+    4:             **reset_updates,
+    4:             "tool_choice": tool_choice,
+    4:             "user_query": user_query,
+    4:             "parsed_question": parsed_question,
+    4:             "is_parallel": False,
+    4:             "parallel_queries": [],
+    4:             "thought": thought,
+    4:             "messages": [AIMessage(content=f"工具路由完成: {mode}")],
+    4:             "cot_context": [],
+               }
+    1:     return tool_router_node
+       
+       
+    1: def _fallback_routing(user_query: str) -> Dict[str, Any]:
+           mode, triplet = refactored_route_mode(user_query, llm=None)
+           return {
+               "mode": mode,
+               "reason": f"fallback_refactor:{triplet.event_kind}",
+               "confidence": 0.6,
+               "video_vect_status": VIDEO_VECT_PLACEHOLDER,
+           }
+       
+       
+    1: def route_by_tool_choice(state: AgentState) -> str:
+    1:     tool_choice = state.get("tool_choice", {})
+    1:     mode = tool_choice.get("mode", "hybrid_search")
+    1:     if mode in ("pure_sql", "sql"):
+               return "pure_sql_preprocess"
+    1:     return "hybrid_preprocess"
+       
+       
+    1: def route_from_preprocess(state: AgentState) -> str:
+    1:     tool_choice = state.get("tool_choice", {})
+    1:     mode = tool_choice.get("mode", "hybrid_search")
+    1:     if mode in ("pure_sql", "sql"):
+               return "pure_sql_node"
+    1:     return "hybrid_search_node"
