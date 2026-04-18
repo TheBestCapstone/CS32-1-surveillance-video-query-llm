@@ -16,32 +16,28 @@ logger = logging.getLogger(__name__)
 TOOL_DESCRIPTIONS = {
     "hybrid_search": {
         "name": "hybrid_search",
-        "description": "地点驱动的混合检索，联合结构化过滤与向量相似度排序",
-        "input": "四元组(object,color,location,event) + meta_list + event_list",
-        "output": "检索结果列表，包含event_id, video_id, _distance, event_summary等字段",
-        "scenarios": "当四元组中 location 非空时优先触发",
+        "description": "Location-driven hybrid search combining structured filtering and vector similarity ranking",
+        "input": "Quadruple(object, color, location, event) + meta_list + event_list",
+        "output": "List of retrieval results containing event_id, video_id, _distance, event_summary_en, etc.",
+        "scenarios": "Triggered preferentially when the quadruple's location is not empty",
         "keywords": [],
     },
     "pure_sql": {
         "name": "pure_sql",
-        "description": "无地点条件时的结构化过滤检索",
-        "input": "四元组(object,color,event) + meta_list",
-        "output": "符合条件的结果列表",
-        "scenarios": "当四元组中 location 为空时优先触发",
-        "keywords": [],
-    },
-    "video_vect": {
-        "name": "video_vect",
-        "description": "可插拔视频语义检索占位接口",
-        "input": "event_list(语义事件表达)",
-        "output": "语义相关的视频片段列表",
-        "scenarios": "可按配置独立启用，不影响主路由",
+        "description": "Structured filtering search when there is no location condition",
+        "input": "Quadruple(object, color, event) + meta_list",
+        "output": "List of results meeting the conditions",
+        "scenarios": "Triggered preferentially when the quadruple's location is empty",
         "keywords": [],
     },
 }
 
 
 class QueryQuadruple(TypedDict):
+    """
+    Extracted components from the user's query: object, color, location, and event description.
+    Note: Time-related queries are intentionally ignored and unsupported.
+    """
     object: List[str]
     color: List[str]
     location: List[str]
@@ -54,8 +50,7 @@ def _router_config() -> Dict[str, Any]:
     return {
         "mode_with_location": os.getenv("TOOL_ROUTER_MODE_WITH_LOCATION", "hybrid_search"),
         "mode_without_location": os.getenv("TOOL_ROUTER_MODE_WITHOUT_LOCATION", "pure_sql"),
-        "video_vect_mode": os.getenv("TOOL_ROUTER_VIDEO_VECT_MODE", "video_vect"),
-        "force_parallel": os.getenv("TOOL_ROUTER_FORCE_PARALLEL", "false").lower() in {"1", "true", "yes"},
+        "structured_priority_threshold": int(os.getenv("TOOL_ROUTER_STRUCTURED_PRIORITY_THRESHOLD", "2")), # Hit rate priority: prioritize pure_sql when structured signals reach threshold
     }
 
 
@@ -133,7 +128,7 @@ def _extract_quadruple_with_llm(
     if hasattr(actual_llm, "with_structured_output"):
         structured_llm = actual_llm.with_structured_output(TOOL_ROUTER_QUADRUPLE_OUTPUT_SCHEMA)
         result = structured_llm.invoke(
-            [SystemMessage(content="请严格输出结构化四元组JSON。"), HumanMessage(content=prompt)],
+            [SystemMessage(content="Please strictly output the structured quadruple JSON. Note: Time logic is unsupported."), HumanMessage(content=prompt)],
             config=config,
         )
         if hasattr(result, "model_dump"):
@@ -143,8 +138,12 @@ def _extract_quadruple_with_llm(
         else:
             payload = dict(result)
         return _normalize_quadruple_payload(payload, user_query)
-    raw = actual_llm.invoke([HumanMessage(content=prompt)], config=config)
+    raw = actual_llm.invoke(
+        [SystemMessage(content="Please strictly output the structured quadruple JSON. Note: Time logic is unsupported."), HumanMessage(content=prompt)],
+        config=config,
+    )
     text = raw.content if hasattr(raw, "content") else str(raw)
+    text = text.replace("```json", "").replace("```", "").strip()
     payload = json.loads(text)
     return _normalize_quadruple_payload(payload, user_query)
 
@@ -162,14 +161,14 @@ def _step_parse_quadruple_factory(llm: Any, run_config: RunnableConfig):
                 config=run_config,
             )
             logger.info(
-                "[ToolRouter] quadruple解析成功 source=%s confidence=%.2f location=%s",
+                "[ToolRouter] quadruple parsing successful source=%s confidence=%.2f location=%s",
                 quadruple.get("source"),
                 quadruple.get("confidence", 0.0),
                 quadruple.get("location", []),
             )
             return quadruple
         except Exception as exc:
-            logger.warning("[ToolRouter] quadruple解析失败，进入降级: %s", exc)
+            logger.warning("[ToolRouter] quadruple parsing failed, entering fallback: %s", exc)
             return _fallback_quadruple(user_query=user_query, parsed_hint=parsed_hint if isinstance(parsed_hint, dict) else {})
 
     return _step_parse_quadruple
@@ -178,26 +177,54 @@ def _step_parse_quadruple_factory(llm: Any, run_config: RunnableConfig):
 def _step_route_decision_factory(router_cfg: Dict[str, Any]):
     def _step_route_decision(ctx: CoTContext) -> ToolChoice:
         quadruple: QueryQuadruple = ctx.get_intermediate("query_quadruple") or _fallback_quadruple("")
-        has_location = bool(quadruple.get("location"))
-        mode = router_cfg["mode_with_location"] if has_location else router_cfg["mode_without_location"]
-        if mode not in {"hybrid_search", "pure_sql", "video_vect", "parallel", "hybrid", "sql"}:
-            mode = "hybrid_search"
-        sql_needed = mode in {"pure_sql", "sql", "parallel"}
-        hybrid_needed = mode in {"hybrid_search", "hybrid", "parallel"}
-        video_vect_needed = mode in {router_cfg["video_vect_mode"], "video_vect"}
+        object_count = len(quadruple.get("object", []))
+        color_count = len(quadruple.get("color", []))
+        location_count = len(quadruple.get("location", []))
+        event_text = str(quadruple.get("event", "")).strip()
+
+        structured_score = 0
+        reason_codes: list[str] = []
+        if object_count > 0:
+            structured_score += 1
+            reason_codes.append("HAS_OBJECT")
+        if color_count > 0:
+            structured_score += 1
+            reason_codes.append("HAS_COLOR")
+        if location_count > 0:
+            structured_score += 1
+            reason_codes.append("HAS_LOCATION")
+        if any(token in event_text for token in ["morning", "afternoon", "today", ":", "-", "to", "until"]):
+            structured_score += 1
+            reason_codes.append("HAS_TIME")
+
+        has_complex_event = any(
+            token in event_text.lower()
+            for token in ["first", "then", "after", "before", "while", "and", "simultaneously"]
+        )
+        if has_complex_event:
+            reason_codes.append("COMPLEX_EVENT")
+
+        if structured_score >= int(router_cfg.get("structured_priority_threshold", 2)) and not has_complex_event and location_count == 0:
+            mode = "pure_sql"
+            reason_codes.append("STRUCTURED_PRIORITY")
+        else:
+            mode = "hybrid_search" if location_count > 0 or has_complex_event else "pure_sql"
+            reason_codes.append("SEMANTIC_PRIORITY" if mode == "hybrid_search" else "DEFAULT_SQL")
+
+        sql_needed = mode in {"pure_sql", "sql"}
+        hybrid_needed = mode in {"hybrid_search", "hybrid"}
         sub_queries: Dict[str, Any] = {}
         if hybrid_needed:
             sub_queries["hybrid"] = {}
         if sql_needed:
             sub_queries["sql"] = {}
-        if video_vect_needed:
-            sub_queries["video_vect"] = {}
         return ToolChoice(
-            mode="parallel" if router_cfg["force_parallel"] else mode,
+            mode=mode,
             sql_needed=sql_needed,
             hybrid_needed=hybrid_needed,
-            video_vect_needed=video_vect_needed,
             sub_queries=sub_queries,
+            route_reason_codes=reason_codes,
+            route_confidence=min(1.0, 0.45 + 0.12 * structured_score + (0.08 if has_complex_event else 0.0)),
         )
 
     return _step_route_decision
@@ -206,8 +233,8 @@ def _step_route_decision_factory(router_cfg: Dict[str, Any]):
 def create_cot_tool_router_engine(llm: Any = None, run_config: RunnableConfig | None = None) -> CoTEngine:
     cfg = _router_config()
     engine = CoTEngine("ToolRouterV2")
-    engine.add_step(SequentialCoTStep("query_quadruple", _step_parse_quadruple_factory(llm, run_config or {}), "四元组解析"))
-    engine.add_step(SequentialCoTStep("final_decision", _step_route_decision_factory(cfg), "路由决策"))
+    engine.add_step(SequentialCoTStep("query_quadruple", _step_parse_quadruple_factory(llm, run_config or {}), "Quadruple Parsing"))
+    engine.add_step(SequentialCoTStep("final_decision", _step_route_decision_factory(cfg), "Route Decision"))
     return engine
 
 
@@ -217,31 +244,66 @@ def create_tool_router_node(llm: Any = None):
         is_new = StateResetter.is_new_query(state)
         user_query = InputValidator.extract_latest_query(state)
         reset_updates: Dict[str, Any] = {}
-        if is_new:
+        
+        # Check if returning from reflection retry
+        reflection_result = state.get("reflection_result", {})
+        is_retry_from_reflection = reflection_result.get("needs_retry", False) and state.get("retry_count", 0) > 0
+
+        if is_new and not is_retry_from_reflection:
             reset_updates = StateResetter.reset_ephemeral_state(state, user_query)
         if not user_query:
-            user_query = "未知查询"
+            user_query = "Unknown Query"
+            
         cot_engine = create_cot_tool_router_engine(llm=llm, run_config=config)
-        ctx = cot_engine.execute({"user_query": user_query, "parsed_question": state.get("parsed_question", {})})
-        if ctx.status == StepStatus.FAILED:
-            quadruple = _fallback_quadruple(user_query, state.get("parsed_question", {}))
-            fallback_mode = _router_config()["mode_without_location"]
-            tool_choice = ToolChoice(
-                mode=fallback_mode,
-                sql_needed=fallback_mode in {"pure_sql", "sql"},
-                hybrid_needed=fallback_mode in {"hybrid_search", "hybrid"},
-                video_vect_needed=fallback_mode == "video_vect",
-                sub_queries={"sql": {}} if fallback_mode in {"pure_sql", "sql"} else {"hybrid": {}},
+        
+        # If it is a reflection retry, directly use the optimized conditions, skip quadruple extraction
+        if is_retry_from_reflection:
+            logger.info("[ToolRouter] Detected reflection retry, skipping quadruple extraction and using optimized conditions")
+            parsed_hint = state.get("parsed_question", {})
+            quadruple = QueryQuadruple(
+                object=[parsed_hint.get("object")] if parsed_hint.get("object") else [],
+                color=[parsed_hint.get("color")] if parsed_hint.get("color") else [],
+                location=[parsed_hint.get("location")] if parsed_hint.get("location") else [],
+                event=parsed_hint.get("event", user_query),
+                confidence=0.9,
+                source="reflection_optimized"
             )
+            # Inject into ctx manually
+            ctx = CoTContext(original_input={"user_query": user_query, "parsed_question": parsed_hint})
+            if hasattr(ctx, "set_intermediate"):
+                ctx.set_intermediate("query_quadruple", quadruple)
+            else:
+                ctx._intermediates["query_quadruple"] = quadruple
+                
+            # Execute routing decision only
+            decision_step = _step_route_decision_factory(_router_config())
+            tool_choice = decision_step(ctx)
+            
+            if hasattr(ctx, "set_intermediate"):
+                ctx.set_intermediate("final_decision", tool_choice)
+            else:
+                ctx.intermediates["final_decision"] = tool_choice
+                
+            ctx.status = getattr(StepStatus, "SUCCESS", "success")
         else:
-            quadruple = ctx.get_intermediate("query_quadruple") or _fallback_quadruple(user_query, state.get("parsed_question", {}))
-            tool_choice = ctx.get_intermediate("final_decision") or ToolChoice(
-                mode="hybrid_search",
-                sql_needed=False,
-                hybrid_needed=True,
-                video_vect_needed=False,
-                sub_queries={"hybrid": {}},
-            )
+            ctx = cot_engine.execute({"user_query": user_query, "parsed_question": state.get("parsed_question", {})})
+            if ctx.status == StepStatus.FAILED:
+                quadruple = _fallback_quadruple(user_query, state.get("parsed_question", {}))
+                fallback_mode = _router_config()["mode_without_location"]
+                tool_choice = ToolChoice(
+                    mode=fallback_mode,
+                    sql_needed=fallback_mode in {"pure_sql", "sql"},
+                    hybrid_needed=fallback_mode in {"hybrid_search", "hybrid"},
+                    sub_queries={"sql": {}} if fallback_mode in {"pure_sql", "sql"} else {"hybrid": {}},
+                )
+            else:
+                quadruple = ctx.get_intermediate("query_quadruple") or _fallback_quadruple(user_query, state.get("parsed_question", {}))
+                tool_choice = ctx.get_intermediate("final_decision") or ToolChoice(
+                    mode="hybrid_search",
+                    sql_needed=False,
+                    hybrid_needed=True,
+                    sub_queries={"hybrid": {}},
+                )
         parsed_hint = state.get("parsed_question", {})
         first_object = quadruple.get("object", [""])[0] if quadruple.get("object") else ""
         first_color = quadruple.get("color", [""])[0] if quadruple.get("color") else ""
@@ -255,12 +317,13 @@ def create_tool_router_node(llm: Any = None):
             "move": parsed_hint.get("move") if isinstance(parsed_hint, dict) else None,
         }
         meta_list, event_list = question_to_meta_and_event(parsed_question)
-        parallel_needed = tool_choice.get("mode") == "parallel"
         routing_metrics = {
             "quadruple_confidence": quadruple.get("confidence", 0.0),
             "location_detected": bool(quadruple.get("location")),
             "route_mode": tool_choice.get("mode", "hybrid_search"),
             "quadruple_source": quadruple.get("source", "unknown"),
+            "route_reason_codes": tool_choice.get("route_reason_codes", []),
+            "route_confidence": tool_choice.get("route_confidence", 0.0),
         }
         existing_search_config = state.get("search_config", {}) if isinstance(state.get("search_config", {}), dict) else {}
         existing_sql_plan = state.get("sql_plan", {}) if isinstance(state.get("sql_plan", {}), dict) else {}
@@ -274,10 +337,10 @@ def create_tool_router_node(llm: Any = None):
             "table": existing_sql_plan.get("table", "episodic_events"),
             "fields": existing_sql_plan.get(
                 "fields",
-                ["event_id", "video_id", "camera_id", "track_id", "start_time", "end_time", "object_type", "object_color_cn"],
+                ["event_id", "video_id", "camera_id", "track_id", "object_type", "object_color_en", "scene_zone_en", "appearance_notes_en", "event_summary_en"],
             ),
             "where": existing_sql_plan.get("where", []),
-            "order_by": existing_sql_plan.get("order_by", "start_time ASC"),
+            "order_by": existing_sql_plan.get("order_by", "event_id ASC"),
             "limit": existing_sql_plan.get("limit", 80),
         }
         thought = (
@@ -296,10 +359,8 @@ def create_tool_router_node(llm: Any = None):
             "routing_metrics": routing_metrics,
             "search_config": search_config,
             "sql_plan": sql_plan,
-            "is_parallel": parallel_needed,
-            "parallel_queries": list(tool_choice.get("sub_queries", {}).keys()) if parallel_needed else [],
             "thought": thought,
-            "messages": [AIMessage(content=f"工具路由完成(V2): {tool_choice.get('mode', 'hybrid_search')}")],
+            "messages": [AIMessage(content=f"Tool routing complete (V2): {tool_choice.get('mode', 'hybrid_search')}")],
             "cot_context": ctx.get_full_chain(),
         }
 
@@ -309,28 +370,20 @@ def create_tool_router_node(llm: Any = None):
 def route_by_tool_choice(state: AgentState) -> str:
     tool_choice = state.get("tool_choice", {})
     mode = tool_choice.get("mode", "none")
-    if mode == "parallel":
-        return "parallel_search_node"
     if mode in {"hybrid_search", "hybrid"}:
         return "hybrid_search_node"
     if mode in {"pure_sql", "sql"}:
         return "pure_sql_node"
-    if mode == "video_vect":
-        return "video_vect_node"
     return "hybrid_search_node"
 
 
 def deprecated_route_from_preprocess(state: AgentState) -> str:
     tool_choice = state.get("tool_choice", {})
     mode = tool_choice.get("mode", "none")
-    if mode == "parallel":
-        return "parallel_search_node"
     if mode in {"hybrid_search", "hybrid"}:
         return "hybrid_search_node"
     if mode in {"pure_sql", "sql"}:
         return "pure_sql_node"
-    if mode == "video_vect":
-        return "video_vect_node"
     return "hybrid_search_node"
 
 

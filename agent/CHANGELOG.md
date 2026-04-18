@@ -30,8 +30,9 @@
 - 路由结果节点名变更：
   - `hybrid_preprocess` -> `hybrid_search_node`
   - `pure_sql_preprocess` -> `pure_sql_node`
-  - `video_vect_preprocess` -> `video_vect_node`
-  - `parallel` -> `parallel_search_node`
+- 功能开关收敛：
+  - `parallel` 已完全关闭
+  - `video_vect` 已完全关闭
 - 需要在 router 输出或调用前补充：
   - `state.search_config`
   - `state.sql_plan`

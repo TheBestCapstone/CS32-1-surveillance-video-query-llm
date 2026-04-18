@@ -63,8 +63,6 @@ def _build_router_to_hybrid_graph(llm):
     builder.add_node("tool_router", router_node)
     builder.add_node("hybrid_search_node", hybrid_node)
     builder.add_node("pure_sql_node", passthrough)
-    builder.add_node("video_vect_node", passthrough)
-    builder.add_node("parallel_search_node", passthrough)
     builder.add_edge(START, "tool_router")
     builder.add_conditional_edges(
         "tool_router",
@@ -72,14 +70,10 @@ def _build_router_to_hybrid_graph(llm):
         {
             "hybrid_search_node": "hybrid_search_node",
             "pure_sql_node": "pure_sql_node",
-            "video_vect_node": "video_vect_node",
-            "parallel_search_node": "parallel_search_node",
         },
     )
     builder.add_edge("hybrid_search_node", END)
     builder.add_edge("pure_sql_node", END)
-    builder.add_edge("video_vect_node", END)
-    builder.add_edge("parallel_search_node", END)
     return builder.compile(checkpointer=MemorySaver(), store=InMemoryStore())
 
 
@@ -88,7 +82,7 @@ class TestHybridNode(unittest.TestCase):
     def _state_base() -> dict:
         return {
             "user_query": "查询车辆事件",
-            "tool_choice": {"mode": "hybrid_search", "hybrid_needed": True, "sql_needed": False, "video_vect_needed": False, "sub_queries": {"hybrid": {}}},
+            "tool_choice": {"mode": "hybrid_search", "hybrid_needed": True, "sql_needed": False, "sub_queries": {"hybrid": {}}},
             "parsed_question": {"event": "车辆进入画面", "color": "", "location": "", "object": "车辆", "time": None, "move": None},
             "query_quadruple": {"object": ["车辆"], "color": [], "location": [], "event": "车辆进入画面", "confidence": 0.9, "source": "test"},
             "meta_list": [],
@@ -181,16 +175,14 @@ class TestHybridNode(unittest.TestCase):
         env_backup = {
             "TOOL_ROUTER_MODE_WITH_LOCATION": os.getenv("TOOL_ROUTER_MODE_WITH_LOCATION"),
             "TOOL_ROUTER_MODE_WITHOUT_LOCATION": os.getenv("TOOL_ROUTER_MODE_WITHOUT_LOCATION"),
-            "TOOL_ROUTER_FORCE_PARALLEL": os.getenv("TOOL_ROUTER_FORCE_PARALLEL"),
         }
         os.environ["TOOL_ROUTER_MODE_WITH_LOCATION"] = "hybrid_search"
         os.environ["TOOL_ROUTER_MODE_WITHOUT_LOCATION"] = "pure_sql"
-        os.environ.pop("TOOL_ROUTER_FORCE_PARALLEL", None)
         try:
             graph = _build_router_to_hybrid_graph(_build_real_llm())
             config = {"configurable": {"thread_id": "router-to-hybrid"}}
             initial_state = {
-                "messages": [HumanMessage(content="停车场里的车辆进入情况")],
+                "messages": [HumanMessage(content="停车场里的车辆先进入再离开")],
                 "meta_list": [{"field": "object_type", "op": "contains", "value": "car"}],
             }
             list(graph.stream(initial_state, config, stream_mode="values"))
@@ -224,11 +216,9 @@ def run_manual_case() -> None:
     env_backup = {
         "TOOL_ROUTER_MODE_WITH_LOCATION": os.getenv("TOOL_ROUTER_MODE_WITH_LOCATION"),
         "TOOL_ROUTER_MODE_WITHOUT_LOCATION": os.getenv("TOOL_ROUTER_MODE_WITHOUT_LOCATION"),
-        "TOOL_ROUTER_FORCE_PARALLEL": os.getenv("TOOL_ROUTER_FORCE_PARALLEL"),
     }
     os.environ["TOOL_ROUTER_MODE_WITH_LOCATION"] = "hybrid_search"
     os.environ["TOOL_ROUTER_MODE_WITHOUT_LOCATION"] = "pure_sql"
-    os.environ.pop("TOOL_ROUTER_FORCE_PARALLEL", None)
     try:
         graph = _build_router_to_hybrid_graph(_build_real_llm())
         query = MANUAL_CASE["query"]

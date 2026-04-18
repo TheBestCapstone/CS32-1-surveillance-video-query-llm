@@ -18,7 +18,7 @@ from node.types import AgentState
 ROUTER_TEST_CASES = {
     "hybrid_location": "Where is the blue car in the parking lot",
     "sql_no_location": "A person enters the frame",
-    "parallel_mode": "Parallel test question",
+    "complex_event": "Find targets that first enter then leave the frame",
 }
 
 
@@ -58,14 +58,6 @@ def _build_router_test_graph(fake_llm):
         del config, store
         return {"route": "pure_sql_node", "tool_choice": state.get("tool_choice", {})}
 
-    def video_vect_node(state, config, store):
-        del config, store
-        return {"route": "video_vect_node", "tool_choice": state.get("tool_choice", {})}
-
-    def parallel_search_node(state, config, store):
-        del config, store
-        return {"route": "parallel_search_node", "tool_choice": state.get("tool_choice", {})}
-
     def final_answer_node(state, config, store):
         del config, store
         return {"final_answer": state.get("route", "none")}
@@ -74,8 +66,6 @@ def _build_router_test_graph(fake_llm):
     builder.add_node("tool_router", router_node)
     builder.add_node("hybrid_search_node", hybrid_search_node)
     builder.add_node("pure_sql_node", pure_sql_node)
-    builder.add_node("video_vect_node", video_vect_node)
-    builder.add_node("parallel_search_node", parallel_search_node)
     builder.add_node("final_answer_node", final_answer_node)
 
     builder.add_edge(START, "tool_router")
@@ -85,14 +75,10 @@ def _build_router_test_graph(fake_llm):
         {
             "hybrid_search_node": "hybrid_search_node",
             "pure_sql_node": "pure_sql_node",
-            "video_vect_node": "video_vect_node",
-            "parallel_search_node": "parallel_search_node",
         },
     )
     builder.add_edge("hybrid_search_node", "final_answer_node")
     builder.add_edge("pure_sql_node", "final_answer_node")
-    builder.add_edge("video_vect_node", "final_answer_node")
-    builder.add_edge("parallel_search_node", "final_answer_node")
     builder.add_edge("final_answer_node", END)
 
     return builder.compile(checkpointer=MemorySaver(), store=InMemoryStore())
@@ -103,11 +89,9 @@ class TestRouterWithGraph(unittest.TestCase):
         self.env_backup = {
             "TOOL_ROUTER_MODE_WITH_LOCATION": os.getenv("TOOL_ROUTER_MODE_WITH_LOCATION"),
             "TOOL_ROUTER_MODE_WITHOUT_LOCATION": os.getenv("TOOL_ROUTER_MODE_WITHOUT_LOCATION"),
-            "TOOL_ROUTER_FORCE_PARALLEL": os.getenv("TOOL_ROUTER_FORCE_PARALLEL"),
         }
         os.environ["TOOL_ROUTER_MODE_WITH_LOCATION"] = "hybrid_search"
         os.environ["TOOL_ROUTER_MODE_WITHOUT_LOCATION"] = "pure_sql"
-        os.environ.pop("TOOL_ROUTER_FORCE_PARALLEL", None)
 
     def tearDown(self):
         for key, value in self.env_backup.items():
@@ -116,7 +100,7 @@ class TestRouterWithGraph(unittest.TestCase):
             else:
                 os.environ[key] = value
 
-    def test_router_goes_hybrid_when_location_detected(self):
+    def test_router_structured_priority_prefers_sql_when_location_detected(self):
         llm = _FakeLLM(
             {
                 "object": ["car"],
@@ -131,8 +115,8 @@ class TestRouterWithGraph(unittest.TestCase):
         query = ROUTER_TEST_CASES["hybrid_location"]
         list(graph.stream({"messages": [HumanMessage(content=query)]}, config, stream_mode="values"))
         final_state = graph.get_state(config)
-        _print_current_node("hybrid", final_state)
-        self.assertEqual(final_state.values.get("final_answer"), "hybrid_search_node")
+        _print_current_node("location_structured", final_state)
+        self.assertEqual(final_state.values.get("final_answer"), "pure_sql_node")
 
     def test_router_goes_sql_when_location_missing(self):
         llm = _FakeLLM(
@@ -152,25 +136,24 @@ class TestRouterWithGraph(unittest.TestCase):
         _print_current_node("sql", final_state)
         self.assertEqual(final_state.values.get("final_answer"), "pure_sql_node")
 
-    def test_router_parallel_routes_parallel_node(self):
-        os.environ["TOOL_ROUTER_FORCE_PARALLEL"] = "true"
+    def test_router_complex_event_prefers_hybrid(self):
         llm = _FakeLLM(
             {
-                "object": ["car"],
-                "color": ["blue"],
-                "location": ["parking lot"],
-                "event": "Blue car enters the parking lot",
+                "object": ["person"],
+                "color": [],
+                "location": [],
+                "event": "A person first enters then leaves the frame",
                 "confidence": 0.95,
             }
         )
         graph = _build_router_test_graph(llm)
-        config = {"configurable": {"thread_id": "router-parallel"}}
-        query = ROUTER_TEST_CASES["parallel_mode"]
+        config = {"configurable": {"thread_id": "router-complex"}}
+        query = ROUTER_TEST_CASES["complex_event"]
         list(graph.stream({"messages": [HumanMessage(content=query)]}, config, stream_mode="values"))
         final_state = graph.get_state(config)
-        _print_current_node("parallel", final_state)
-        self.assertEqual(final_state.values.get("final_answer"), "parallel_search_node")
-        self.assertEqual(final_state.values.get("tool_choice", {}).get("mode"), "parallel")
+        _print_current_node("complex", final_state)
+        self.assertEqual(final_state.values.get("final_answer"), "hybrid_search_node")
+        self.assertEqual(final_state.values.get("tool_choice", {}).get("mode"), "hybrid_search")
 
 
 if __name__ == "__main__":

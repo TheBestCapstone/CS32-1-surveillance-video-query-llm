@@ -1,0 +1,229 @@
+INFO:numexpr.utils:NumExpr defaulting to 8 threads.
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:node.cot_engine:[ToolRouterV2] Executing step: query_quadruple
+DEBUG:openai._base_client:Request options: {'method': 'post', 'url': '/chat/completions', 'headers': {'X-Stainless-Helper-Method': 'chat.completions.parse', 'X-Stainless-Raw-Response': 'true'}, 'files': None, 'idempotency_key': 'stainless-python-retry-b74bd83f-46b1-4a55-9fd2-c204b689e5a8', 'post_parser': <function Completions.parse.<locals>.parser at 0x71b0478a4cc0>, 'content': None, 'json_data': {'messages': [{'content': 'Please strictly output the structured quadruple JSON. Note: Time logic is unsupported.', 'role': 'system'}, {'content': '你是视频检索路由前置解析器。请把用户问题拆解为四元组并输出 JSON。四元组字段：object(对象列表), color(颜色列表), location(地点列表), event(改写后的陈述句)。要求：保持原意、不补充未提及信息、地点字段尽量标准化。\n\n用户问题: Did you see any car in the database?', 'role': 'user'}], 'model': 'qwen3-max', 'response_format': {'type': 'json_schema', 'json_schema': {'name': 'tool_router_quadruple', 'strict': False, 'schema': {'type': 'object', 'properties': {'object': {'type': 'array', 'items': {'type': 'string'}}, 'color': {'type': 'array', 'items': {'type': 'string'}}, 'location': {'type': 'array', 'items': {'type': 'string'}}, 'event': {'type': 'string'}, 'confidence': {'type': 'number'}}, 'required': ['object', 'color', 'location', 'event', 'confidence']}}}, 'stream': False, 'temperature': 1.0}}
+DEBUG:openai._base_client:Sending HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions
+DEBUG:httpcore.connection:connect_tcp.started host='dashscope.aliyuncs.com' port=443 local_address=None timeout=None socket_options=None
+DEBUG:httpcore.connection:connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x71b0476d8050>
+DEBUG:httpcore.connection:start_tls.started ssl_context=<ssl.SSLContext object at 0x71b04c13be30> server_hostname='dashscope.aliyuncs.com' timeout=None
+DEBUG:httpcore.connection:start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x71b0477eb4d0>
+DEBUG:httpcore.http11:send_request_headers.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:send_request_headers.complete
+DEBUG:httpcore.http11:send_request_body.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:send_request_body.complete
+DEBUG:httpcore.http11:receive_response_headers.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'vary', b'Origin,Access-Control-Request-Method,Access-Control-Request-Headers, Accept-Encoding'), (b'x-request-id', b'7266a508-520d-9b6b-a8e5-485312d424c1'), (b'x-dashscope-call-gateway', b'true'), (b'content-type', b'application/json'), (b'req-cost-time', b'1658'), (b'req-arrive-time', b'1776167437292'), (b'resp-start-time', b'1776167438950'), (b'x-envoy-upstream-service-time', b'1658'), (b'content-encoding', b'gzip'), (b'date', b'Tue, 14 Apr 2026 11:50:38 GMT'), (b'server', b'istio-envoy'), (b'transfer-encoding', b'chunked')])
+INFO:httpx:HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+DEBUG:httpcore.http11:receive_response_body.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:receive_response_body.complete
+DEBUG:httpcore.http11:response_closed.started
+DEBUG:httpcore.http11:response_closed.complete
+DEBUG:openai._base_client:HTTP Response: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "200 OK" Headers({'vary': 'Origin,Access-Control-Request-Method,Access-Control-Request-Headers, Accept-Encoding', 'x-request-id': '7266a508-520d-9b6b-a8e5-485312d424c1', 'x-dashscope-call-gateway': 'true', 'content-type': 'application/json', 'req-cost-time': '1658', 'req-arrive-time': '1776167437292', 'resp-start-time': '1776167438950', 'x-envoy-upstream-service-time': '1658', 'content-encoding': 'gzip', 'date': 'Tue, 14 Apr 2026 11:50:38 GMT', 'server': 'istio-envoy', 'transfer-encoding': 'chunked'})
+DEBUG:openai._base_client:request_id: 7266a508-520d-9b6b-a8e5-485312d424c1
+INFO:node.tool_router_node:[ToolRouter] quadruple parsing successful source=llm confidence=0.95 location=['database']
+INFO:node.cot_engine:[ToolRouterV2] Executing step: final_decision
+INFO:node.tool_router_node:[ToolRouter] ToolRouterV2: mode=pure_sql, location=['database'], confidence=0.95
+DEBUG:openai._base_client:Request options: {'method': 'post', 'url': '/chat/completions', 'headers': {'X-Stainless-Raw-Response': 'true'}, 'files': None, 'idempotency_key': 'stainless-python-retry-d2b4db90-ccd6-4d18-bd5e-752a248cbd9b', 'content': None, 'json_data': {'messages': [{'content': '\nYou are an advanced SQL database query assistant responsible for answering user questions directly from the SQLite database.\nYour task is to convert natural language queries into correct SQL queries and return the results.\n\n【CRITICAL INSTRUCTIONS】\n1. The current model/system DOES NOT support time-dimension queries (e.g., "last week", "10 seconds", "long time", "morning"). Ignore any time-related constraints in the user\'s prompt.\n2. Your query results will be processed by downstream systems. Therefore, when using `execute_dynamic_sql`, you MUST include at least `video_id` and `event_summary_en` in the SELECT clause (or use `*`), so the downstream system can read the event description.\n3. Even for simple queries (like COUNT), do not just query a single field. You must bring complete event information.\n4. `object_type` is stored in English (e.g., car, person).\n\n【AVAILABLE TOOLS】\n1. `inspect_database_schema`: Get the column names and types of a table (default is episodic_events). Call this first if you don\'t know the schema.\n2. `inspect_column_enum_values`: Check specific values in a column (solves synonym/fuzzy matching problems, e.g., checking what colors or zones actually exist in the database).\n3. `execute_dynamic_sql`: Execute dynamically generated SQL SELECT queries and return results.\n\n【WORKFLOW】\n1. Analyze the user\'s intent.\n2. Call `inspect_database_schema` to sniff column names.\n3. If the query involves specific colors, object types (e.g., car/truck), or zones that might be inaccurate, you MUST call `inspect_column_enum_values` for enum value calibration.\n4. Use `execute_dynamic_sql` to execute the query. Ensure the SELECT clause contains `video_id` and `event_summary_en`.\n5. If execution fails (e.g., `no such column: type`), capture the error log, re-analyze the schema, and call the execution tool again to fix the error!\n6. In your final message, summarize the query results using natural language in English. Do NOT return large chunks of JSON.\n', 'role': 'system'}, {'content': '', 'role': 'user'}], 'model': 'qwen3-max', 'stream': False, 'temperature': 1.0, 'tools': [{'type': 'function', 'function': {'name': 'inspect_database_schema', 'description': 'Inspect the schema of a specific table in the SQLite database.\nReturns the column names and their data types.', 'parameters': {'properties': {'table_name': {'default': 'episodic_events', 'type': 'string'}}, 'type': 'object'}}}, {'type': 'function', 'function': {'name': 'inspect_column_enum_values', 'description': 'Inspect the distinct values present in a specific column.\nUseful for checking exact terms (e.g., what colors or zones actually exist in the database).', 'parameters': {'properties': {'column_name': {'type': 'string'}, 'table_name': {'default': 'episodic_events', 'type': 'string'}}, 'required': ['column_name'], 'type': 'object'}}}, {'type': 'function', 'function': {'name': 'execute_dynamic_sql', 'description': 'Execute a dynamically generated SQL SELECT query and return the results.\nWARNING: Always include video_id and event_summary_en in the SELECT clause. Time queries are NOT supported.', 'parameters': {'properties': {'sql_query': {'type': 'string'}}, 'required': ['sql_query'], 'type': 'object'}}}]}}
+DEBUG:openai._base_client:Sending HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions
+DEBUG:httpcore.http11:send_request_headers.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:send_request_headers.complete
+DEBUG:httpcore.http11:send_request_body.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:send_request_body.complete
+DEBUG:httpcore.http11:receive_response_headers.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:receive_response_headers.failed exception=KeyboardInterrupt()
+DEBUG:httpcore.http11:response_closed.started
+DEBUG:httpcore.http11:response_closed.complete
+Starting debug run...
+Traceback (most recent call last):
+  File "/home/yangxp/Capstone/debug_test_timeout.py", line 14, in <module>
+    runner.run_result_tests()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/yangxp/Capstone/agent/test/result_test_runner.py", line 116, in run_result_tests
+    for chunk in graph.stream({"messages": [HumanMessage(content=question)]}, config, stream_mode="values"):
+                 ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/langgraph/pregel/main.py", line 2725, in stream
+    for _ in runner.tick(
+             ~~~~~~~~~~~^
+        [t for t in loop.tasks.values() if not t.writes],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        schedule_task=loop.accept_push,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/langgraph/pregel/_runner.py", line 167, in tick
+    run_with_retry(
+    ~~~~~~~~~~~~~~^
+        t,
+        ^^
+    ...<10 lines>...
+        },
+        ^^
+    )
+    ^
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/langgraph/pregel/_retry.py", line 96, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/langgraph/_internal/_runnable.py", line 656, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/langgraph/_internal/_runnable.py", line 400, in invoke
+    ret = self.func(*args, **kwargs)
+  File "/home/yangxp/Capstone/agent/node/pure_sql_node.py", line 31, in pure_sql_node
+    summary, raw_rows = run_pure_sql_sub_agent(user_query, llm)
+                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/yangxp/Capstone/agent/sub_agents/pure_sql_agent.py", line 35, in run_pure_sql_sub_agent
+    response = agent.invoke({"messages": messages})
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/langgraph/pregel/main.py", line 3292, in invoke
+    for chunk in self.stream(
+                 ~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<10 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    ):
+    ^
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/langgraph/pregel/main.py", line 2725, in stream
+    for _ in runner.tick(
+             ~~~~~~~~~~~^
+        [t for t in loop.tasks.values() if not t.writes],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        schedule_task=loop.accept_push,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/langgraph/pregel/_runner.py", line 167, in tick
+    run_with_retry(
+    ~~~~~~~~~~~~~~^
+        t,
+        ^^
+    ...<10 lines>...
+        },
+        ^^
+    )
+    ^
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/langgraph/pregel/_retry.py", line 96, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/langgraph/_internal/_runnable.py", line 656, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/langgraph/_internal/_runnable.py", line 393, in invoke
+    ret = context.run(self.func, *args, **kwargs)
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/langgraph/prebuilt/chat_agent_executor.py", line 679, in call_model
+    response = cast(AIMessage, static_model.invoke(model_input, config))  # type: ignore[union-attr]
+                               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/langchain_core/runnables/base.py", line 3157, in invoke
+    input_ = context.run(step.invoke, input_, config)
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/langchain_core/runnables/base.py", line 5695, in invoke
+    return self.bound.invoke(
+           ~~~~~~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+        self._merge_configs(config),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        **{**self.kwargs, **kwargs},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 454, in invoke
+    self.generate_prompt(
+    ~~~~~~~~~~~~~~~~~~~~^
+        [self._convert_input(input)],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    ).generations[0][0],
+    ^
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 1201, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 1010, in generate
+    self._generate_with_cache(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        m,
+        ^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 1313, in _generate_with_cache
+    result = self._generate(
+        messages, stop=stop, run_manager=run_manager, **kwargs
+    )
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/langchain_openai/chat_models/base.py", line 1483, in _generate
+    raw_response = self.client.with_raw_response.create(**payload)
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/openai/_legacy_response.py", line 367, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ~~~~^^^^^^^^^^^^^^^^^
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/openai/resources/chat/completions/completions.py", line 1211, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<47 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/openai/_base_client.py", line 1005, in request
+    response = self._client.send(
+        request,
+        stream=stream or self._should_stream_response_body(request=request),
+        **kwargs,
+    )
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/httpcore/_sync/connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/httpcore/_sync/http11.py", line 136, in handle_request
+    raise exc
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/httpcore/_sync/http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/httpcore/_sync/http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/httpcore/_sync/http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+        self.READ_NUM_BYTES, timeout=timeout
+    )
+  File "/home/yangxp/anaconda3/lib/python3.13/site-packages/httpcore/_backends/sync.py", line 128, in read
+    return self._sock.recv(max_bytes)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/yangxp/anaconda3/lib/python3.13/ssl.py", line 1285, in recv
+    return self.read(buflen)
+           ~~~~~~~~~^^^^^^^^
+  File "/home/yangxp/anaconda3/lib/python3.13/ssl.py", line 1140, in read
+    return self._sslobj.read(len)
+           ~~~~~~~~~~~~~~~~~^^^^^
+KeyboardInterrupt

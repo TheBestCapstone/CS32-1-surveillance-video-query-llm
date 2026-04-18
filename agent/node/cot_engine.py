@@ -82,6 +82,9 @@ class CoTContext:
 
     def get_intermediate(self, step_name: str) -> Optional[Any]:
         return self.intermediate_results.get(step_name)
+        
+    def set_intermediate(self, key: str, value: Any) -> None:
+        self.intermediate_results[key] = value
 
     def get_full_chain(self) -> List[Dict[str, Any]]:
         return [r.to_dict() for r in self.step_history]

@@ -88,6 +88,18 @@ class StrategyValidation(TypedDict):
     warnings: List[str]
 
 
+class RouteRuleViolation(TypedDict):
+    rule_id: str
+    conflict_type: str
+    detail: str
+    suggestion: str
+
+
+class RouteRuleValidation(TypedDict):
+    is_valid: bool
+    violations: List[RouteRuleViolation]
+
+
 def _step_result_review(ctx: CoTContext) -> Dict[str, Any]:
     state = ctx.original_input if isinstance(ctx.original_input, dict) else {}
     user_query = state.get("user_query", "")
@@ -96,7 +108,6 @@ def _step_result_review(ctx: CoTContext) -> Dict[str, Any]:
     search_result = (
         state.get("hybrid_result")
         or state.get("sql_result")
-        or state.get("video_vect_result")
         or state.get("merged_result")
         or []
     )
@@ -118,12 +129,33 @@ def _step_error_location(ctx: CoTContext) -> List[ErrorType]:
     errors: List[ErrorType] = []
     parsed_question = review.get("parsed_question", {})
     result_count = review.get("result_count", 0)
+    
+    state = ctx.original_input if isinstance(ctx.original_input, dict) else {}
+    sql_debug = state.get("sql_debug", {})
+
+    if sql_debug.get("last_error"):
+        errors.append(ErrorType(
+            category="sql_execution_error",
+            sub_category="runtime",
+            description=f"SQL execution failed: {sql_debug.get('last_error')}",
+            severity="high",
+        ))
+        
+    skipped_filters = sql_debug.get("skipped_filters", [])
+    if skipped_filters:
+        skipped_fields = [list(f.keys())[0] for f in skipped_filters]
+        errors.append(ErrorType(
+            category="invalid_filter",
+            sub_category="field_not_found",
+            description=f"Query contains invalid filter fields: {skipped_fields}",
+            severity="medium",
+        ))
 
     if result_count == 0:
         errors.append(ErrorType(
             category="empty_result",
             sub_category="no_data",
-            description="检索结果为空",
+            description="Empty retrieval result",
             severity="high",
         ))
 
@@ -131,7 +163,7 @@ def _step_error_location(ctx: CoTContext) -> List[ErrorType]:
         errors.append(ErrorType(
             category="missing_event",
             sub_category="field_missing",
-            description="缺少事件类型描述",
+            description="Missing event type description",
             severity="high",
         ))
 
@@ -139,7 +171,7 @@ def _step_error_location(ctx: CoTContext) -> List[ErrorType]:
         errors.append(ErrorType(
             category="too_few_results",
             sub_category="insufficient",
-            description=f"检索结果过少({result_count}条)，可能查询条件过于严格",
+            description=f"Too few results ({result_count}), query conditions might be too strict",
             severity="medium",
         ))
 
@@ -147,7 +179,7 @@ def _step_error_location(ctx: CoTContext) -> List[ErrorType]:
         errors.append(ErrorType(
             category="too_many_results",
             sub_category="excessive",
-            description=f"检索结果过多({result_count}条)，可能查询条件过于宽松",
+            description=f"Too many results ({result_count}), query conditions might be too loose",
             severity="medium",
         ))
 
@@ -163,43 +195,54 @@ def _step_root_cause_analysis(ctx: CoTContext) -> List[RootCauseAnalysis]:
 
     for error in errors:
         category = error.get("category", "")
+        
+        state = ctx.original_input if isinstance(ctx.original_input, dict) else {}
+        if state.get("current_node", "") in ("pure_sql_node", "hybrid_search_node"):
+            # If sub-agent has completed execution, no need for the main graph to intervene
+            root_causes.append(RootCauseAnalysis(
+                root_cause="Sub-agent completed autonomous retrieval, no main graph intervention needed",
+                affected_fields=[],
+                severity="low",
+                recommendation="Stop optimization",
+            ))
+            continue
         severity = error.get("severity", "medium")
 
         if category == "empty_result":
             root_causes.append(RootCauseAnalysis(
-                root_cause="查询条件无法匹配任何结果",
+                root_cause="Query conditions cannot match any results",
                 affected_fields=["event", "meta_list"],
                 severity=severity,
-                recommendation="放宽查询条件或补充更多关键词",
+                recommendation="Relax query conditions or add more keywords",
             ))
         elif category == "missing_event":
             root_causes.append(RootCauseAnalysis(
-                root_cause="缺少核心事件描述，检索无明确目标",
+                root_cause="Missing core event description, retrieval lacks clear target",
                 affected_fields=["event"],
                 severity=severity,
-                recommendation="补充事件类型，如进入、离开、出现等",
+                recommendation="Supplement event type, such as enter, leave, appear, etc.",
             ))
         elif category == "too_few_results":
             root_causes.append(RootCauseAnalysis(
-                root_cause="查询条件过于严格",
+                root_cause="Query conditions are too strict",
                 affected_fields=["meta_list"],
                 severity=severity,
-                recommendation="放宽时间、颜色等过滤条件",
+                recommendation="Relax time, color, and other filtering conditions",
             ))
         elif category == "too_many_results":
             root_causes.append(RootCauseAnalysis(
-                root_cause="查询条件过于宽松",
+                root_cause="Query conditions are too loose",
                 affected_fields=["meta_list"],
                 severity=severity,
-                recommendation="添加更精确的过滤条件",
+                recommendation="Add more precise filtering conditions",
             ))
 
     if not root_causes:
         root_causes.append(RootCauseAnalysis(
-            root_cause="无明显问题",
+            root_cause="No obvious issues",
             affected_fields=[],
             severity="low",
-            recommendation="保持当前查询",
+            recommendation="Keep current query",
         ))
 
     return root_causes
@@ -220,7 +263,7 @@ def _step_quality_scoring(ctx: CoTContext) -> QualityScore:
     clarity = 1.0
 
     if not review.get("user_query") or not review.get("user_query", "").strip():
-        issues.append("用户查询为空")
+        issues.append("User query is empty")
         completeness = 0.0
         clarity = 0.0
 
@@ -229,7 +272,7 @@ def _step_quality_scoring(ctx: CoTContext) -> QualityScore:
 
     result_count = review.get("result_count", 0)
     if result_count == 0:
-        issues.append("检索结果为空")
+        issues.append("Retrieval result is empty")
         completeness = 0.3
     elif result_count < 3:
         completeness = 0.5
@@ -237,7 +280,7 @@ def _step_quality_scoring(ctx: CoTContext) -> QualityScore:
         completeness = 0.7
 
     if completeness < 0.5:
-        issues.append("查询完整性不足，需要优化")
+        issues.append("Query completeness is insufficient, optimization needed")
 
     overall = (completeness + clarity) / 2.0
 
@@ -259,6 +302,17 @@ def _step_strategy_generation(ctx: CoTContext) -> List[OptimizationStrategy]:
         root_causes = _step_root_cause_analysis(ctx)
 
     strategies: List[OptimizationStrategy] = []
+    
+    state = ctx.original_input if isinstance(ctx.original_input, dict) else {}
+    if state.get("current_node", "") in ("pure_sql_node", "hybrid_search_node"):
+        # If sub-agent has completed execution, it has performed its internal autonomous retry. The main graph does not need to generate strategies or retry.
+        strategies.append(OptimizationStrategy(
+            strategy_name="unoptimizable",
+            changes={"unoptimizable": True},
+            expected_improvement="Sub-agent completed autonomous retrieval, no main graph intervention needed",
+            risk_level="none",
+        ))
+        return strategies
 
     for error in errors:
         category = error.get("category", "")
@@ -266,37 +320,75 @@ def _step_strategy_generation(ctx: CoTContext) -> List[OptimizationStrategy]:
         if category == "missing_event":
             strategies.append(OptimizationStrategy(
                 strategy_name="supplement_event",
-                changes={"event": "出现"},
-                expected_improvement="补充事件描述后能更准确检索",
+                changes={"event": "appear"},
+                expected_improvement="Better retrieval with supplemented event description",
                 risk_level="low",
             ))
         elif category == "too_few_results":
-            strategies.append(OptimizationStrategy(
-                strategy_name="relax_conditions",
-                changes={"remove_time_filter": True},
-                expected_improvement="放宽条件后结果数量增加",
-                risk_level="medium",
-            ))
+            state = ctx.original_input if isinstance(ctx.original_input, dict) else {}
+            if state.get("current_node", "") in ("pure_sql_node", "hybrid_search_node"):
+                strategies.append(OptimizationStrategy(
+                    strategy_name="unoptimizable",
+                    changes={"unoptimizable": True},
+                    expected_improvement="Sub-agent completed autonomous retrieval, few results is normal, no retry",
+                    risk_level="none",
+                ))
+            else:
+                strategies.append(OptimizationStrategy(
+                    strategy_name="relax_conditions",
+                    changes={"remove_time_filter": True},
+                    expected_improvement="More results after relaxing conditions",
+                    risk_level="medium",
+                ))
         elif category == "too_many_results":
+            state = ctx.original_input if isinstance(ctx.original_input, dict) else {}
+            if state.get("current_node", "") in ("pure_sql_node", "hybrid_search_node"):
+                strategies.append(OptimizationStrategy(
+                    strategy_name="unoptimizable",
+                    changes={"unoptimizable": True},
+                    expected_improvement="Sub-agent completed autonomous retrieval, many results is normal, no retry",
+                    risk_level="none",
+                ))
+            else:
+                strategies.append(OptimizationStrategy(
+                    strategy_name="tighten_conditions",
+                    changes={"add_color_filter": True},
+                    expected_improvement="More relevant results with precise conditions",
+                    risk_level="medium",
+                ))
+        elif category == "invalid_filter":
             strategies.append(OptimizationStrategy(
-                strategy_name="tighten_conditions",
-                changes={"add_color_filter": True},
-                expected_improvement="精确条件后结果更相关",
-                risk_level="medium",
+                strategy_name="remove_invalid_field",
+                changes={"remove_strict_filters": True},
+                expected_improvement="Remove unsupported field filtering",
+                risk_level="low",
             ))
         elif category == "empty_result":
-            strategies.append(OptimizationStrategy(
-                strategy_name="generalize_query",
-                changes={"event": "出现", "remove_strict_filters": True},
-                expected_improvement="泛化查询以获得结果",
-                risk_level="high",
-            ))
+            state = ctx.original_input if isinstance(ctx.original_input, dict) else {}
+            current_node = state.get("current_node", "")
+            parsed = state.get("parsed_question", {})
+            
+            # Dynamic check: if sub-agent completed with empty results, or conditions are minimal, determine as unoptimizable
+            if current_node in ("pure_sql_node", "hybrid_search_node") or (not parsed.get("color") and not parsed.get("location") and not parsed.get("time")):
+                strategies.append(OptimizationStrategy(
+                    strategy_name="unoptimizable",
+                    changes={"unoptimizable": True},
+                    expected_improvement="Sub-agent completed autonomous retrieval or conditions are minimal, target likely does not exist, stop blind retries",
+                    risk_level="none",
+                ))
+            else:
+                strategies.append(OptimizationStrategy(
+                    strategy_name="generalize_query",
+                    changes={"remove_strict_filters": True, "remove_color": True, "remove_location": True},
+                    expected_improvement="Generalize query to get results",
+                    risk_level="medium",
+                ))
 
     if not strategies:
         strategies.append(OptimizationStrategy(
             strategy_name="no_change",
             changes={},
-            expected_improvement="无需优化",
+            expected_improvement="No optimization needed",
             risk_level="none",
         ))
 
@@ -313,7 +405,7 @@ def _step_strategy_validation(ctx: CoTContext) -> StrategyValidation:
 
     for strategy in strategies:
         if strategy.get("risk_level") == "high":
-            warnings.append(f"策略 {strategy['strategy_name']} 风险较高")
+            warnings.append(f"Strategy {strategy['strategy_name']} has high risk")
         validated_changes.update(strategy.get("changes", {}))
 
     return StrategyValidation(
@@ -332,6 +424,73 @@ def _step_quality_evaluation(ctx: CoTContext) -> bool:
     return needs_optimization
 
 
+def _step_route_rule_validation(ctx: CoTContext) -> RouteRuleValidation:
+    state = ctx.original_input if isinstance(ctx.original_input, dict) else {}
+    tool_choice = state.get("tool_choice", {}) if isinstance(state.get("tool_choice", {}), dict) else {}
+    mode = tool_choice.get("mode", "")
+    sql_needed = bool(tool_choice.get("sql_needed", False))
+    hybrid_needed = bool(tool_choice.get("hybrid_needed", False))
+    sub_queries = tool_choice.get("sub_queries", {}) if isinstance(tool_choice.get("sub_queries", {}), dict) else {}
+    retry_count = int(state.get("retry_count", 0) or 0)
+    max_retries = int(ctx.metadata.get("max_retries", DEFAULT_MAX_RETRIES))
+    search_cfg = state.get("search_config", {}) if isinstance(state.get("search_config", {}), dict) else {}
+    candidate_limit = int(search_cfg.get("candidate_limit", 80) or 80)
+
+    violations: List[RouteRuleViolation] = []
+    allowed_modes = {"hybrid_search", "pure_sql"}
+    if mode not in allowed_modes:
+        violations.append(RouteRuleViolation(
+            rule_id="RR-001",
+            conflict_type="unreachable_node",
+            detail=f"mode={mode} not in allowed set {sorted(allowed_modes)}",
+            suggestion="Restrict route output to hybrid_search or pure_sql.",
+        ))
+    if sql_needed and hybrid_needed:
+        violations.append(RouteRuleViolation(
+            rule_id="RR-002",
+            conflict_type="logic_conflict",
+            detail="sql_needed and hybrid_needed are both True.",
+            suggestion="Structured priority scenarios should only enable pure_sql; semantic priority scenarios should only enable hybrid_search.",
+        ))
+    if mode == "pure_sql" and not sql_needed:
+        violations.append(RouteRuleViolation(
+            rule_id="RR-003",
+            conflict_type="logic_conflict",
+            detail="mode=pure_sql but sql_needed=False.",
+            suggestion="Keep mode consistent with needed flags.",
+        ))
+    if mode == "hybrid_search" and not hybrid_needed:
+        violations.append(RouteRuleViolation(
+            rule_id="RR-004",
+            conflict_type="logic_conflict",
+            detail="mode=hybrid_search but hybrid_needed=False.",
+            suggestion="Keep mode consistent with needed flags.",
+        ))
+    if set(sub_queries.keys()) - {"sql", "hybrid"}:
+        violations.append(RouteRuleViolation(
+            rule_id="RR-005",
+            conflict_type="unreachable_node",
+            detail=f"sub_queries has invalid keys: {list(set(sub_queries.keys()) - {'sql', 'hybrid'})}",
+            suggestion="Only keep sql/hybrid sub-query keys.",
+        ))
+    if retry_count > max_retries:
+        violations.append(RouteRuleViolation(
+            rule_id="RR-006",
+            conflict_type="dead_loop",
+            detail=f"retry_count={retry_count} exceeds max_retries={max_retries}",
+            suggestion="Force terminate retry loop in route_after_reflection.",
+        ))
+    if mode == "hybrid_search" and candidate_limit > 200:
+        violations.append(RouteRuleViolation(
+            rule_id="RR-007",
+            conflict_type="performance_bottleneck",
+            detail=f"candidate_limit={candidate_limit} is too high, may cause latency spikes.",
+            suggestion="Keep candidate_limit between 80~200, and tune based on hit rate.",
+        ))
+
+    return RouteRuleValidation(is_valid=len(violations) == 0, violations=violations)
+
+
 def _step_final_decision(ctx: CoTContext) -> Dict[str, Any]:
     needs_optimization: bool = ctx.get_intermediate("quality_evaluation")
     if not isinstance(needs_optimization, bool):
@@ -340,6 +499,20 @@ def _step_final_decision(ctx: CoTContext) -> Dict[str, Any]:
     errors: List[ErrorType] = ctx.get_intermediate("error_location")
     score: QualityScore = ctx.get_intermediate("quality_scoring")
     strategies: List[OptimizationStrategy] = ctx.get_intermediate("strategy_generation")
+    route_validation: RouteRuleValidation = ctx.get_intermediate("route_rule_validation")
+
+    if route_validation and not route_validation.get("is_valid", True):
+        return {
+            "decision": "validation_failed",
+            "feedback": "Route rule validation failed, proceeding to next stage is prohibited",
+            "needs_retry": False,
+            "can_continue": False,
+            "validation_failed": True,
+            "violations": route_validation.get("violations", []),
+            "quality_score": score.get("overall", 0.0) if score else 0.0,
+            "errors": errors or [],
+            "strategies": [],
+        }
 
     current_retry = ctx.original_input.get("retry_count", 0) if isinstance(ctx.original_input, dict) else 0
     max_retries = ctx.metadata.get("max_retries", DEFAULT_MAX_RETRIES)
@@ -347,7 +520,7 @@ def _step_final_decision(ctx: CoTContext) -> Dict[str, Any]:
     if current_retry >= max_retries:
         return {
             "decision": "max_retries_reached",
-            "feedback": f"已达到最大优化次数({max_retries})，停止迭代",
+            "feedback": f"Maximum optimization iterations ({max_retries}) reached, stopping iteration",
             "needs_retry": False,
             "can_continue": False,
             "quality_score": score.get("overall", 0.0) if score else 0.0,
@@ -358,7 +531,7 @@ def _step_final_decision(ctx: CoTContext) -> Dict[str, Any]:
     if not needs_optimization:
         return {
             "decision": "satisfactory",
-            "feedback": "查询质量满意",
+            "feedback": "Query quality is satisfactory",
             "needs_retry": False,
             "can_continue": False,
             "quality_score": score.get("overall", 0.0) if score else 0.0,
@@ -372,18 +545,39 @@ def _step_final_decision(ctx: CoTContext) -> Dict[str, Any]:
 
     if validated and validated.get("is_valid"):
         changes = validated.get("validated_changes", {})
+        
+        # Handle unoptimizable cases
+        if changes.get("unoptimizable"):
+            return {
+                "decision": "unoptimizable",
+                "feedback": "Current query conditions have been simplified to the limit, target highly likely does not exist, stopping retry",
+                "needs_retry": False,
+                "can_continue": False,
+                "quality_score": score.get("overall", 0.0) if score else 0.0,
+                "errors": errors or [],
+                "strategies": strategies or [],
+            }
+
         if "event" in changes:
             optimized_parsed["event"] = changes["event"]
             optimized_query = f"{optimized_query} {changes['event']}"
         if changes.get("remove_time_filter"):
             optimized_parsed.pop("time", None)
-            optimized_query += "（已放宽时间条件）"
+            optimized_query += " (Relaxed time condition)"
+        if changes.get("remove_color"):
+            optimized_parsed.pop("color", None)
+            optimized_query += " (Removed color condition)"
+        if changes.get("remove_location"):
+            optimized_parsed.pop("location", None)
+            optimized_query += " (Removed location condition)"
+        if changes.get("remove_strict_filters"):
+            optimized_query += " (Relaxed filtering conditions)"
         if changes.get("add_color_filter"):
-            optimized_query += "（需更精确条件）"
+            optimized_query += " (Requires more precise conditions)"
 
     return {
         "decision": "retry",
-        "feedback": f"发现问题({len(errors)}项)，正在优化查询",
+        "feedback": f"Found issues ({len(errors)} items), optimizing query",
         "needs_retry": True,
         "can_continue": True,
         "quality_score": score.get("overall", 0.0) if score else 0.0,
@@ -398,14 +592,15 @@ def create_cot_reflection_engine(max_retries: int = DEFAULT_MAX_RETRIES, callbac
     engine = CoTEngine("Reflection")
     engine.metadata["max_retries"] = max_retries
 
-    review_step = SequentialCoTStep("result_review", _step_result_review, "结果复盘")
-    location_step = SequentialCoTStep("error_location", _step_error_location, "错误定位")
-    root_cause_step = SequentialCoTStep("root_cause_analysis", _step_root_cause_analysis, "根因分析")
-    scoring_step = SequentialCoTStep("quality_scoring", _step_quality_scoring, "质量评分")
-    strategy_step = SequentialCoTStep("strategy_generation", _step_strategy_generation, "策略生成")
-    validation_step = SequentialCoTStep("strategy_validation", _step_strategy_validation, "策略验证")
-    eval_step = SequentialCoTStep("quality_evaluation", _step_quality_evaluation, "质量评估")
-    decision_step = SequentialCoTStep("final_decision", _step_final_decision, "最终决策")
+    review_step = SequentialCoTStep("result_review", _step_result_review, "Result Review")
+    location_step = SequentialCoTStep("error_location", _step_error_location, "Error Location")
+    root_cause_step = SequentialCoTStep("root_cause_analysis", _step_root_cause_analysis, "Root Cause Analysis")
+    scoring_step = SequentialCoTStep("quality_scoring", _step_quality_scoring, "Quality Scoring")
+    strategy_step = SequentialCoTStep("strategy_generation", _step_strategy_generation, "Strategy Generation")
+    validation_step = SequentialCoTStep("strategy_validation", _step_strategy_validation, "Strategy Validation")
+    eval_step = SequentialCoTStep("quality_evaluation", _step_quality_evaluation, "Quality Evaluation")
+    route_validation_step = SequentialCoTStep("route_rule_validation", _step_route_rule_validation, "Route Rule Validation")
+    decision_step = SequentialCoTStep("final_decision", _step_final_decision, "Final Decision")
 
     engine.add_step(review_step)
     engine.add_step(location_step)
@@ -414,6 +609,7 @@ def create_cot_reflection_engine(max_retries: int = DEFAULT_MAX_RETRIES, callbac
     engine.add_step(strategy_step)
     engine.add_step(validation_step)
     engine.add_step(eval_step)
+    engine.add_step(route_validation_step)
     engine.add_step(decision_step)
 
     return engine
@@ -432,7 +628,7 @@ def create_reflection_node(
         del config, store
 
         current_retry = int(state.get("retry_count", 0) or 0)
-        logger.info(f"[Reflection CoT] 第{current_retry + 1}次反思开始, 当前重试次数={current_retry}/{max_retries}")
+        logger.info(f"[Reflection CoT] Starting reflection #{current_retry + 1}, current_retry={current_retry}/{max_retries}")
 
         try:
             if current_retry >= max_retries:
@@ -441,7 +637,7 @@ def create_reflection_node(
             ctx = cot_engine.execute(state, max_duration_ms=10000.0)
 
             if ctx.status == StepStatus.FAILED:
-                logger.warning(f"[Reflection CoT] 推理失败: {ctx.metadata.get('error')}")
+                logger.warning(f"[Reflection CoT] Inference failed: {ctx.metadata.get('error')}")
                 return _handle_exception(state, current_retry, Exception(ctx.metadata.get("error", "Unknown")), actual_callback)
 
             decision = ctx.get_intermediate("final_decision")
@@ -450,6 +646,9 @@ def create_reflection_node(
 
             if decision.get("decision") == "max_retries_reached":
                 return _handle_max_retries(state, current_retry, max_retries, actual_callback)
+
+            if decision.get("decision") == "validation_failed":
+                return _handle_validation_failed(state, current_retry, decision)
 
             if decision.get("needs_retry") and decision.get("can_continue"):
                 return _handle_retry_coT(state, current_retry, decision, ctx, max_retries, retry_delay, actual_callback)
@@ -463,14 +662,14 @@ def create_reflection_node(
 
 
 def _handle_max_retries(state: Dict[str, Any], current_retry: int, max_retries: int, callback: ReflectionCallback) -> dict[str, Any]:
-    logger.warning(f"[Reflection CoT] 达到最大重试次数 {max_retries}，停止优化")
+    logger.warning(f"[Reflection CoT] Reached maximum retries {max_retries}, stopping optimization")
     callback.handle_max_retries(state)
 
-    thought = f"反思评估(CoT): 已达到最大重试次数({current_retry}/{max_retries})，停止优化，启用降级策略"
+    thought = f"Reflection Assessment (CoT): Reached maximum retries ({current_retry}/{max_retries}), stopping optimization, enabling fallback strategy"
 
     return {
         "reflection_result": {
-            "feedback": f"已达到最大优化次数({max_retries})，停止迭代",
+            "feedback": f"Reached maximum optimization iterations ({max_retries}), stopping iteration",
             "quality_score": 0.0,
             "needs_retry": False,
             "optimized": False,
@@ -482,12 +681,12 @@ def _handle_max_retries(state: Dict[str, Any], current_retry: int, max_retries: 
         },
         "retry_count": current_retry,
         "thought": thought,
-        "messages": [AIMessage(content="反思: 达到最大重试次数，启用降级策略")],
+        "messages": [AIMessage(content="Reflection: Reached maximum retries, enabling fallback strategy")],
     }
 
 
 def _handle_retry_coT(state: Dict[str, Any], current_retry: int, decision: Dict[str, Any], ctx, max_retries: int, retry_delay: float, callback: ReflectionCallback) -> dict[str, Any]:
-    logger.info(f"[Reflection CoT] 检测到需要优化，触发重试机制")
+    logger.info(f"[Reflection CoT] Optimization needed detected, triggering retry mechanism")
 
     if retry_delay > 0:
         time.sleep(retry_delay)
@@ -498,17 +697,17 @@ def _handle_retry_coT(state: Dict[str, Any], current_retry: int, decision: Dict[
     optimized_parsed = decision.get("optimized_parsed", state.get("parsed_question", {}))
 
     thought = (
-        f"反思评估(CoT): quality={decision.get('quality_score', 0.0)}, "
-        f"errors={len(decision.get('errors', []))}, 需要优化=True, "
-        f"优化查询={optimized_query[:30]}..., "
-        f"重试次数={current_retry + 1}/{max_retries}"
+        f"Reflection Assessment (CoT): quality={decision.get('quality_score', 0.0)}, "
+        f"errors={len(decision.get('errors', []))}, needs_optimization=True, "
+        f"optimized_query={optimized_query[:30]}..., "
+        f"retry_count={current_retry + 1}/{max_retries}"
     )
 
-    logger.info(f"[Reflection CoT] 重试 {current_retry + 1}/{max_retries}: {optimized_query}")
+    logger.info(f"[Reflection CoT] Retry {current_retry + 1}/{max_retries}: {optimized_query}")
 
     return {
         "reflection_result": {
-            "feedback": f"发现问题({len(decision.get('errors', []))}项)，正在优化查询",
+            "feedback": f"Found issues ({len(decision.get('errors', []))} items), optimizing query",
             "quality_score": decision.get("quality_score", 0.0),
             "needs_retry": True,
             "optimized": True,
@@ -523,23 +722,23 @@ def _handle_retry_coT(state: Dict[str, Any], current_retry: int, decision: Dict[
         "parsed_question": optimized_parsed,
         "retry_count": current_retry + 1,
         "thought": thought,
-        "messages": [AIMessage(content=f"反思: {', '.join(e.get('description', '') for e in decision.get('errors', []))}，正在优化...")],
+        "messages": [AIMessage(content=f"Reflection: {', '.join(e.get('description', '') for e in decision.get('errors', []))}, optimizing...")],
     }
 
 
 def _handle_success_coT(state: Dict[str, Any], current_retry: int, decision: Dict[str, Any], ctx, callback: ReflectionCallback) -> dict[str, Any]:
-    logger.info(f"[Reflection CoT] 查询质量满意，输出结果")
+    logger.info(f"[Reflection CoT] Query quality satisfactory, outputting results")
     callback.handle_success(state)
 
     thought = (
-        f"反思评估(CoT): quality={decision.get('quality_score', 0.0)}, "
-        f"errors={len(decision.get('errors', []))}, 查询质量满意, "
-        f"总重试次数={current_retry}"
+        f"Reflection Assessment (CoT): quality={decision.get('quality_score', 0.0)}, "
+        f"errors={len(decision.get('errors', []))}, query quality satisfactory, "
+        f"total_retries={current_retry}"
     )
 
     return {
         "reflection_result": {
-            "feedback": "查询质量满意",
+            "feedback": "Query quality satisfactory",
             "quality_score": decision.get("quality_score", 0.0),
             "needs_retry": False,
             "optimized": False,
@@ -551,19 +750,42 @@ def _handle_success_coT(state: Dict[str, Any], current_retry: int, decision: Dic
             "cot_chain": ctx.get_full_chain() if hasattr(ctx, "get_full_chain") else [],
         },
         "thought": thought,
-        "messages": [AIMessage(content=f"反思完成: 查询质量评分={decision.get('quality_score', 0.0)}, 重试={current_retry}次")],
+        "messages": [AIMessage(content=f"Reflection Complete: Query quality score={decision.get('quality_score', 0.0)}, retries={current_retry}")],
+    }
+
+
+def _handle_validation_failed(state: Dict[str, Any], current_retry: int, decision: Dict[str, Any]) -> dict[str, Any]:
+    violations = decision.get("violations", [])
+    details = "; ".join([f"{item.get('rule_id')}:{item.get('conflict_type')}" for item in violations]) or "unknown"
+    thought = f"Reflection Assessment (CoT): Route rule validation failed, {details}"
+    return {
+        "reflection_result": {
+            "feedback": decision.get("feedback", "Route rule validation failed"),
+            "quality_score": decision.get("quality_score", 0.0),
+            "needs_retry": False,
+            "optimized": False,
+            "can_continue": False,
+            "validation_failed": True,
+            "violations": violations,
+            "retry_count": current_retry,
+            "errors": decision.get("errors", []),
+            "cot_chain": [],
+        },
+        "tool_error": "Route rule validation failed",
+        "thought": thought,
+        "messages": [AIMessage(content=f"Reflection Validation Failed: {details}")],
     }
 
 
 def _handle_exception(state: Dict[str, Any], current_retry: int, exc: Exception, callback: ReflectionCallback) -> dict[str, Any]:
-    logger.error(f"[Reflection CoT] 反思过程发生异常: {exc}", exc_info=True)
+    logger.error(f"[Reflection CoT] Exception occurred during reflection: {exc}", exc_info=True)
     callback.handle_error(exc, state)
 
-    thought = f"反思评估(CoT): 发生异常={exc}，启用降级策略"
+    thought = f"Reflection Assessment (CoT): Exception occurred={exc}, enabling fallback strategy"
 
     return {
         "reflection_result": {
-            "feedback": f"反思过程发生错误: {exc}",
+            "feedback": f"Error occurred during reflection: {exc}",
             "quality_score": 0.0,
             "needs_retry": False,
             "optimized": False,
@@ -577,12 +799,15 @@ def _handle_exception(state: Dict[str, Any], current_retry: int, exc: Exception,
         "tool_error": str(exc),
         "retry_count": current_retry,
         "thought": thought,
-        "messages": [AIMessage(content=f"反思异常: {exc}，启用降级策略")],
+        "messages": [AIMessage(content=f"Reflection Exception: {exc}, enabling fallback strategy")],
     }
 
 
 def route_after_reflection(state: AgentState) -> str:
     reflection_result = state.get("reflection_result", {})
+
+    if reflection_result.get("validation_failed"):
+        return "final_answer_node"
 
     if reflection_result.get("error_occurred"):
         return "final_answer_node"
@@ -610,22 +835,22 @@ def create_reflection_callback(
 
     if on_retry_log:
         def log_retry(state, retry_count):
-            logger.info(f"[Callback] 重试触发, retry_count={retry_count}")
+            logger.info(f"[Callback] Retry triggered, retry_count={retry_count}")
         callbacks["on_retry"] = log_retry
 
     if on_max_retries_log:
         def log_max_retries(state):
-            logger.warning(f"[Callback] 达到最大重试次数")
+            logger.warning(f"[Callback] Reached maximum retries")
         callbacks["on_max_retries"] = log_max_retries
 
     if on_error_log:
         def log_error(exc, state):
-            logger.error(f"[Callback] 反思异常: {exc}")
+            logger.error(f"[Callback] Reflection exception: {exc}")
         callbacks["on_error"] = log_error
 
     if on_success_log:
         def log_success(state):
-            logger.info(f"[Callback] 反思成功")
+            logger.info(f"[Callback] Reflection successful")
         callbacks["on_success"] = log_success
 
     return ReflectionCallback(**callbacks)

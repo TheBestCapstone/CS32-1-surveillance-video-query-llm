@@ -1,62 +1,25 @@
-# Capstone Project Structure
+# Video Event Retrieval Agent
 
-```text
-Capstone/
-├── README.md
-├── data/                         # 外挂数据库
-│   ├── raw/
-│   └── annotations/
-├── config/
-│   ├── trackers/
-│   ├── models/
-│   └── retrieval/
-├── video/
-│   ├── core/                     # 底层模型封装与统一数据协议
-│   │   ├── models/               # YOLO / embedding / LLM / VLM 封装
-│   │   └── schema/               # Event / Track / Clip / Query / Evidence
-│   │
-│   ├── ingestion/                # 视频 / JSON 输入适配
-│   │   ├── video_loader.py
-│   │   └── json_loader.py
-│   │
-│   ├── factory/                  # 离线视频理解流水线协调层
-│   │   ├── processors/
-│   │   │   ├── vision.py         # 检测、跟踪、基础视觉特征
-│   │   │   ├── captioner.py      # 可选：片段描述 / 多模态描述
-│   │   │   └── analyzer.py       # 事件抽取、动作逻辑判定
-│   │   └── coordinator.py        # Video -> Event/Clip/Metadata 编排
-│   │
-│   ├── indexing/                 # 知识构建与索引持久化
-│   │   ├── document_builder.py   # Event doc / Summary doc 构造
-│   │   ├── embedder.py           # Text / Image embedding
-│   │   ├── graph_builder.py      # 时序 / 实体 / 关系图构建
-│   │   └── store_manager.py      # vector / graph / metadata 一致性写入
-│   │
-│   └── common/                   # 通用配置、日志、路径、工具函数
-│
-├── agent/                        # LangGraph 编排层（必须保留）
-│   ├── state.py                  # 全局状态 / 上下文 / 中间结果
-│   ├── graph.py                  # 主决策图
-│   ├── nodes/                    # parse / route / retrieve / answer
-│   ├── tools/                    # 搜索、核查、回放、总结等 Tool 封装
-│   │
-│   ├── retrieval/                # 纯检索层
-│   │   ├── event_retriever.py    # 事件级向量检索
-│   │   ├── summary_retriever.py  # 时间窗/全局摘要检索
-│   │   ├── graph_retriever.py    # 图关系检索
-│   │   ├── metadata_filter.py    # 结构化过滤
-│   │   ├── multi_modal.py        # 跨模态匹配
-│   │   ├── reranker.py           # 召回结果精排
-│   │   └── fusion.py             # 多路证据融合
-│   │
-│   └── common/                   # 通用配置、日志、路径、工具函数
-│
-├── outputs/
-│   ├── video_understanding/      # events.json / clips.json / tracked.mp4
-│   ├── indexing/                 # docs / embeddings / 中间索引产物
-│   ├── vector_store/
-│   ├── graph_store/
-│   └── cache/
-├── scripts/
-├── docs/
-└── tests/
+This project implements a multi-agent system for querying video events using both structured metadata (SQLite) and semantic vector search (LanceDB).
+
+## System Architecture
+- **Master Router**: Routes queries to appropriate sub-agents based on the presence of location or structured features.
+- **Pure SQL Sub-Agent**: Handles metadata-heavy queries autonomously.
+- **Hybrid Search Sub-Agent**: Handles location-based and semantic queries autonomously.
+
+## Important Limitations (Explicit Disclaimer)
+**⚠️ TIME-DIMENSION QUERIES ARE NOT SUPPORTED**
+
+The current models and database schema have been explicitly designed to **exclude** time-based filtering and sorting logic. 
+- You cannot query for events happening at a specific time (e.g., "morning", "14:00", "last 10 seconds").
+- You cannot filter events based on duration (e.g., "stationary for a long time").
+- You cannot sort events chronologically.
+
+The system will intentionally ignore time-related constraints in natural language prompts to focus purely on objects, colors, locations, and semantic actions.
+
+## Testing
+Run the English test suite (20 comprehensive cases covering CRUD, boundary, and exception scenarios) via:
+```bash
+python agent/test/result_test_runner.py
+```
+Check `result.md` for the latest detailed test report.

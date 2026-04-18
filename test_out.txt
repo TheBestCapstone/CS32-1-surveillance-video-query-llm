@@ -1,0 +1,32 @@
+[Reflection CoT] 达到最大重试次数 3，停止优化
+[Reflection CoT] 达到最大重试次数 3，停止优化
+[Reflection CoT] 达到最大重试次数 3，停止优化
+[Reflection CoT] 达到最大重试次数 3，停止优化
+[Reflection CoT] 达到最大重试次数 3，停止优化
+[Reflection CoT] 达到最大重试次数 3，停止优化
+[Reflection CoT] 达到最大重试次数 3，停止优化
+[Reflection CoT] 达到最大重试次数 3，停止优化
+[Reflection CoT] 达到最大重试次数 3，停止优化
+[Reflection CoT] 达到最大重试次数 3，停止优化
+{
+  "summary": {
+    "total": 10,
+    "passed": 3,
+    "soft_failed": 7,
+    "failed": 0,
+    "pass_rate": 0.3,
+    "soft_fail_rate": 0.7,
+    "hard_fail_rate": 0.0,
+    "avg_ms": 30606.38,
+    "p95_ms": 36619.1,
+    "failure_categories": {
+      "runtime_exception": 0,
+      "route_mismatch": 0,
+      "tool_error": 0,
+      "insufficient_results": 0,
+      "top_field_missing": 14
+    }
+  },
+  "result_md": "/home/yangxp/Capstone/result.md",
+  "result_json": "/home/yangxp/Capstone/result_report.json"
+}

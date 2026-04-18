@@ -1,9 +1,13 @@
 import os
+import sys
 import unittest
+from pathlib import Path
 
-from node.parallel_search_node import ParallelSearchPlaceholderProvider, create_parallel_search_node
+AGENT_DIR = Path(__file__).resolve().parent
+if str(AGENT_DIR) not in sys.path:
+    sys.path.insert(0, str(AGENT_DIR))
+
 from node.tool_router_node import create_tool_router_node, route_by_tool_choice
-from node.video_vect_node import VideoVectPlaceholderProvider, create_video_vect_node
 
 
 class _FakeStructuredLLM:
@@ -38,7 +42,6 @@ class TestToolRouterNode(unittest.TestCase):
         self._env_backup = {
             "TOOL_ROUTER_MODE_WITH_LOCATION": os.getenv("TOOL_ROUTER_MODE_WITH_LOCATION"),
             "TOOL_ROUTER_MODE_WITHOUT_LOCATION": os.getenv("TOOL_ROUTER_MODE_WITHOUT_LOCATION"),
-            "TOOL_ROUTER_FORCE_PARALLEL": os.getenv("TOOL_ROUTER_FORCE_PARALLEL"),
         }
         os.environ["TOOL_ROUTER_MODE_WITH_LOCATION"] = "hybrid_search"
         os.environ["TOOL_ROUTER_MODE_WITHOUT_LOCATION"] = "pure_sql"
@@ -50,7 +53,7 @@ class TestToolRouterNode(unittest.TestCase):
             else:
                 os.environ[key] = value
 
-    def test_route_to_hybrid_when_location_exists(self):
+    def test_route_to_sql_when_location_exists_but_structured(self):
         llm = _FakeLLM(
             payload={
                 "object": ["car"],
@@ -62,8 +65,23 @@ class TestToolRouterNode(unittest.TestCase):
         )
         router = create_tool_router_node(llm=llm)
         out = router({"user_query": "Where is that blue car in the park parking lot"}, {}, None)
-        self.assertEqual(out["tool_choice"]["mode"], "hybrid_search")
+        self.assertEqual(out["tool_choice"]["mode"], "pure_sql")
         self.assertTrue(out["query_quadruple"]["location"])
+        self.assertTrue(out["tool_choice"]["sql_needed"])
+
+    def test_route_to_hybrid_when_complex_event(self):
+        llm = _FakeLLM(
+            payload={
+                "object": ["car"],
+                "color": [],
+                "location": ["parking lot"],
+                "event": "Car first enters then leaves the parking lot",
+                "confidence": 0.88,
+            }
+        )
+        router = create_tool_router_node(llm=llm)
+        out = router({"user_query": "Car first enters then leaves in the parking lot"}, {}, None)
+        self.assertEqual(out["tool_choice"]["mode"], "hybrid_search")
         self.assertTrue(out["tool_choice"]["hybrid_needed"])
 
     def test_route_to_sql_when_location_missing(self):
@@ -88,8 +106,7 @@ class TestToolRouterNode(unittest.TestCase):
         self.assertIn("query_quadruple", out)
         self.assertIn(out["tool_choice"]["mode"], {"hybrid_search", "pure_sql"})
 
-    def test_parallel_mode_routes_to_parallel_placeholder(self):
-        os.environ["TOOL_ROUTER_FORCE_PARALLEL"] = "true"
+    def test_legacy_parallel_mode_is_unreachable(self):
         router = create_tool_router_node(
             llm=_FakeLLM(
                 payload={
@@ -102,24 +119,14 @@ class TestToolRouterNode(unittest.TestCase):
             )
         )
         out = router({"user_query": "The blue car in the parking lot"}, {}, None)
-        self.assertEqual(out["tool_choice"]["mode"], "parallel")
-        self.assertEqual(route_by_tool_choice({"tool_choice": out["tool_choice"]}), "parallel_search_node")
+        self.assertEqual(out["tool_choice"]["mode"], "pure_sql")
+        self.assertEqual(route_by_tool_choice({"tool_choice": out["tool_choice"]}), "pure_sql_node")
 
 
-class TestVideoVectPlaceholder(unittest.TestCase):
-    def test_video_vect_placeholder_compatible(self):
-        node = create_video_vect_node(provider=VideoVectPlaceholderProvider())
-        out = node({"meta_list": [], "event_list": [], "retry_count": 0}, config={}, store=None)
-        self.assertIn("video_vect_result", out)
-        self.assertEqual(out["video_vect_result"], [])
-
-
-class TestParallelPlaceholder(unittest.TestCase):
-    def test_parallel_placeholder_compatible(self):
-        node = create_parallel_search_node(provider=ParallelSearchPlaceholderProvider())
-        out = node({"meta_list": [], "event_list": [], "retry_count": 0}, config={}, store=None)
-        self.assertIn("merged_result", out)
-        self.assertEqual(out["merged_result"], [])
+class TestRouteTargets(unittest.TestCase):
+    def test_removed_targets_unreachable(self):
+        self.assertEqual(route_by_tool_choice({"tool_choice": {"mode": "video_vect"}}), "hybrid_search_node")
+        self.assertEqual(route_by_tool_choice({"tool_choice": {"mode": "parallel"}}), "hybrid_search_node")
 
 
 if __name__ == "__main__":
