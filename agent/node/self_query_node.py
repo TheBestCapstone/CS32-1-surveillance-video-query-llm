@@ -1,0 +1,164 @@
+import json
+import re
+from typing import Any
+
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
+from langchain_core.runnables import RunnableConfig
+from langgraph.store.base import BaseStore
+
+from .types import AgentState, InputValidator, StateResetter
+
+SELF_QUERY_OUTPUT_SCHEMA = {
+    "title": "self_query_rewrite",
+    "type": "object",
+    "properties": {
+        "rewritten_query": {"type": "string"},
+        "user_need": {"type": "string"},
+        "intent_label": {"type": "string", "enum": ["structured", "semantic", "mixed"]},
+        "retrieval_focus": {"type": "string", "enum": ["structured", "semantic", "mixed"]},
+        "key_constraints": {"type": "array", "items": {"type": "string"}},
+        "ambiguities": {"type": "array", "items": {"type": "string"}},
+        "reasoning_summary": {"type": "string"},
+        "confidence": {"type": "number"},
+    },
+    "required": [
+        "rewritten_query",
+        "user_need",
+        "intent_label",
+        "retrieval_focus",
+        "key_constraints",
+        "ambiguities",
+        "reasoning_summary",
+        "confidence",
+    ],
+}
+
+
+def _fallback_self_query(raw_query: str) -> dict[str, Any]:
+    return {
+        "rewritten_query": raw_query,
+        "user_need": "Find relevant basketball retrieval results from the user's request.",
+        "intent_label": "mixed",
+        "retrieval_focus": "mixed",
+        "key_constraints": [],
+        "ambiguities": [],
+        "reasoning_summary": "Fallback to the original query because self-query preprocessing was unavailable.",
+        "confidence": 0.35,
+    }
+
+
+def _normalize_query_text(raw_query: str) -> str:
+    text = InputValidator.sanitize_query(raw_query)
+    text = re.sub(r"\s+", " ", text)
+    text = re.sub(r"^[\W_]+|[\W_]+$", "", text)
+    return text.strip()
+
+
+def _fast_path_self_query(raw_query: str) -> dict[str, Any] | None:
+    normalized = _normalize_query_text(raw_query)
+    if not normalized:
+        return _fallback_self_query(raw_query)
+
+    low = normalized.lower()
+    tokens = re.findall(r"[a-z0-9_]+", low)
+    structured_markers = [
+        "did you see",
+        "are there",
+        "show me",
+        "how many",
+        "list",
+        "person",
+        "car",
+        "dark",
+        "parking",
+        "database",
+    ]
+    semantic_markers = [
+        "near",
+        "around",
+        "similar",
+        "moving",
+        "left bleachers",
+        "sidewalk",
+    ]
+    if len(tokens) <= 12 or any(marker in low for marker in structured_markers + semantic_markers):
+        if any(marker in low for marker in semantic_markers):
+            intent = "semantic"
+        elif any(marker in low for marker in structured_markers) or len(tokens) <= 2:
+            intent = "structured"
+        else:
+            intent = "mixed"
+        return {
+            "rewritten_query": normalized,
+            "user_need": f"Retrieve basketball video results that satisfy: {normalized}",
+            "intent_label": intent,
+            "retrieval_focus": intent,
+            "key_constraints": [token for token in tokens[:6]],
+            "ambiguities": [],
+            "reasoning_summary": "Fast-path preprocessing kept the original meaning and only normalized surface noise.",
+            "confidence": 0.8,
+        }
+    return None
+
+
+def create_self_query_node(llm: Any = None):
+    def self_query_node(state: AgentState, config: RunnableConfig, store: BaseStore) -> dict[str, Any]:
+        del store
+        raw_query = InputValidator.extract_latest_query(state)
+        reset_updates = {}
+        if StateResetter.is_new_query(state):
+            reset_updates = StateResetter.reset_ephemeral_state(state, raw_query)
+
+        fast_path = _fast_path_self_query(raw_query)
+        if fast_path is not None:
+            result = fast_path
+        elif not raw_query:
+            result = _fallback_self_query(raw_query)
+        else:
+            prompt = (
+                "You are a self-query planner for a basketball video retrieval agent. "
+                "Analyze the user's request without answering it. "
+                "If the query is already clear, keep the rewrite very close to the original wording. "
+                "Do not broaden the scope, and do not replace important domain terms with loose synonyms. "
+                "Preserve object/color/location/action phrases exactly whenever possible. "
+                "Produce a retrieval-friendly rewrite that preserves the original meaning, "
+                "highlights constraints, clarifies the user's real need, and gives a short high-level reasoning summary. "
+                "Do not invent facts. Keep the rewritten query concise and faithful to the user intent."
+                f"\n\nUser query: {raw_query}"
+            )
+            try:
+                if hasattr(llm, "with_structured_output"):
+                    model = llm.with_structured_output(SELF_QUERY_OUTPUT_SCHEMA)
+                    response = model.invoke(
+                        [SystemMessage(content="Return valid JSON only."), HumanMessage(content=prompt)],
+                        config=config,
+                    )
+                    result = response.model_dump() if hasattr(response, "model_dump") else dict(response)
+                else:
+                    raw = llm.invoke(
+                        [SystemMessage(content="Return valid JSON only."), HumanMessage(content=prompt)],
+                        config=config,
+                    )
+                    payload = raw.content if hasattr(raw, "content") else str(raw)
+                    payload = payload.replace("```json", "").replace("```", "").strip()
+                    result = json.loads(payload)
+            except Exception:
+                result = _fallback_self_query(raw_query)
+
+        rewritten_query = _normalize_query_text(result.get("rewritten_query", raw_query)) or _normalize_query_text(raw_query)
+        return {
+            **reset_updates,
+            "original_user_query": raw_query,
+            "user_query": raw_query,
+            "rewritten_query": rewritten_query,
+            "self_query_result": {
+                **result,
+                "rewritten_query": rewritten_query,
+                "original_user_query": raw_query,
+            },
+            "current_node": "self_query_node",
+            "thought": f"SelfQuery: focus={result.get('retrieval_focus', 'mixed')}, intent={result.get('intent_label', 'mixed')}",
+            "messages": [AIMessage(content=f"Self-query rewrite complete: {rewritten_query}")],
+        }
+
+    return self_query_node

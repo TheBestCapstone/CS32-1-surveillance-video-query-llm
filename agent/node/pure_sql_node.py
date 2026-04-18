@@ -2,16 +2,17 @@ from typing import Any
 from langchain_core.messages import AIMessage
 from langchain_core.runnables import RunnableConfig
 from langgraph.store.base import BaseStore
+
+from agents.pure_sql.sub_agent import run_pure_sql_sub_agent
+from .retrieval_contracts import build_routing_metrics, build_search_config, infer_sql_plan, normalize_sql_rows
 from .types import AgentState, InputValidator
-from sub_agents.pure_sql_agent import run_pure_sql_sub_agent
 import time
 
 def create_pure_sql_node(llm=None, **kwargs):
     def pure_sql_node(state: AgentState, config: RunnableConfig, store: BaseStore) -> dict[str, Any]:
         del config, store
         
-        # Extract original user query
-        user_query = InputValidator.extract_latest_query(state)
+        user_query = InputValidator.resolve_active_query(state)
         
         # If it's a reflection retry, use optimized query
         reflection_result = state.get("reflection_result", {})
@@ -25,14 +26,26 @@ def create_pure_sql_node(llm=None, **kwargs):
         try:
             summary, raw_rows = run_pure_sql_sub_agent(user_query, llm)
             duration = time.perf_counter() - start
+            normalized_rows = normalize_sql_rows(raw_rows)
+            search_config = build_search_config(state.get("search_config", {}))
+            sql_plan = infer_sql_plan(user_query, search_config)
             
             return {
-                "sql_result": raw_rows,
-                "rerank_result": raw_rows,
+                "sql_result": normalized_rows,
+                "rerank_result": normalized_rows,
                 "reflection_result": {"feedback": "Retrieval successful", "quality_score": 1.0, "needs_retry": False},
                 "tool_error": None,
                 "retry_count": current_retry,
                 "current_node": "pure_sql_node",
+                "routing_metrics": build_routing_metrics(
+                    execution_mode="legacy_router",
+                    label="structured",
+                    query=user_query,
+                    sql_rows_count=len(normalized_rows),
+                    hybrid_rows_count=0,
+                ),
+                "search_config": search_config,
+                "sql_plan": sql_plan,
                 "sql_debug": {
                     "duration": duration,
                     "agent_summary": summary

@@ -7,9 +7,19 @@ from langgraph.store.base import BaseStore
 from .types import AgentState
 
 
+def _select_final_rows(state: AgentState) -> list[dict[str, Any]]:
+    if "rerank_result" in state:
+        return list(state.get("rerank_result") or [])
+    if "merged_result" in state:
+        return list(state.get("merged_result") or [])
+    if "hybrid_result" in state:
+        return list(state.get("hybrid_result") or [])
+    return list(state.get("sql_result") or [])
+
+
 def final_answer_node(state: AgentState, config: RunnableConfig, store: BaseStore) -> dict[str, Any]:
     del config, store
-    rows = state.get("rerank_result") or state.get("hybrid_result") or state.get("sql_result") or []
+    rows = _select_final_rows(state)
     
     agent_summary = ""
     if state.get("sql_debug") and isinstance(state.get("sql_debug"), dict):
@@ -19,7 +29,12 @@ def final_answer_node(state: AgentState, config: RunnableConfig, store: BaseStor
         
     if not rows:
         final_answer = agent_summary if agent_summary else "No matching results found. You can add more specific descriptions like colors or actions."
-        return {"final_answer": final_answer, "messages": [AIMessage(content=final_answer)]}
+        return {
+            "raw_final_answer": final_answer,
+            "final_answer": final_answer,
+            "current_node": "final_answer_node",
+            "messages": [AIMessage(content=final_answer)],
+        }
         
     parts: list[str] = []
     if agent_summary:
@@ -33,7 +48,12 @@ def final_answer_node(state: AgentState, config: RunnableConfig, store: BaseStor
             f"distance={row.get('_distance', 'N/A')} | summary={row.get('event_summary_en', row.get('event_text_cn', 'N/A'))}"
         )
     final_answer = "\n".join(parts)
-    return {"final_answer": final_answer, "messages": [AIMessage(content=final_answer)]}
+    return {
+        "raw_final_answer": final_answer,
+        "final_answer": final_answer,
+        "current_node": "final_answer_node",
+        "messages": [AIMessage(content=final_answer)],
+    }
 
 
 def final_error_node(state: AgentState, config: RunnableConfig, store: BaseStore) -> dict[str, Any]:

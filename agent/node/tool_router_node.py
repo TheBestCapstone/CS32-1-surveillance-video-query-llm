@@ -8,8 +8,13 @@ from langchain_core.runnables import RunnableConfig
 from langgraph.store.base import BaseStore
 
 from node.cot_engine import CoTContext, CoTEngine, SequentialCoTStep, StepStatus
-from node.router_prompts import TOOL_ROUTER_QUADRUPLE_OUTPUT_SCHEMA, build_tool_router_quadruple_prompt
-from node.types import AgentState, InputValidator, StateResetter, ToolChoice, question_to_meta_and_event
+from node.router_prompts import (
+    TOOL_ROUTER_DECISION_OUTPUT_SCHEMA,
+    TOOL_ROUTER_QUADRUPLE_OUTPUT_SCHEMA,
+    build_tool_router_decision_prompt,
+    build_tool_router_quadruple_prompt,
+)
+from node.types import AgentState, InputValidator, ToolChoice, question_to_meta_and_event
 
 logger = logging.getLogger(__name__)
 
@@ -44,14 +49,6 @@ class QueryQuadruple(TypedDict):
     event: str
     confidence: float
     source: str
-
-
-def _router_config() -> Dict[str, Any]:
-    return {
-        "mode_with_location": os.getenv("TOOL_ROUTER_MODE_WITH_LOCATION", "hybrid_search"),
-        "mode_without_location": os.getenv("TOOL_ROUTER_MODE_WITHOUT_LOCATION", "pure_sql"),
-        "structured_priority_threshold": int(os.getenv("TOOL_ROUTER_STRUCTURED_PRIORITY_THRESHOLD", "2")), # Hit rate priority: prioritize pure_sql when structured signals reach threshold
-    }
 
 
 def _unique_list(items: List[str]) -> List[str]:
@@ -113,6 +110,7 @@ def _extract_quadruple_with_llm(
     user_query: str,
     parsed_hint: Dict[str, Any],
     config: RunnableConfig,
+    init_prompt_text: str = "",
 ) -> QueryQuadruple:
     actual_llm = llm
     if actual_llm is None:
@@ -125,6 +123,13 @@ def _extract_quadruple_with_llm(
             base_url=os.getenv("DASHSCOPE_URL"),
         )
     prompt = build_tool_router_quadruple_prompt(user_query=user_query, parsed_hint=parsed_hint)
+    if init_prompt_text:
+        prompt = (
+            "Initialization context (from init/agent_init_prompt.md):\n"
+            f"{init_prompt_text}\n\n"
+            "Now parse the user query into quadruple.\n"
+            f"{prompt}"
+        )
     if hasattr(actual_llm, "with_structured_output"):
         structured_llm = actual_llm.with_structured_output(TOOL_ROUTER_QUADRUPLE_OUTPUT_SCHEMA)
         result = structured_llm.invoke(
@@ -148,7 +153,7 @@ def _extract_quadruple_with_llm(
     return _normalize_quadruple_payload(payload, user_query)
 
 
-def _step_parse_quadruple_factory(llm: Any, run_config: RunnableConfig):
+def _step_parse_quadruple_factory(llm: Any, run_config: RunnableConfig, init_prompt_text: str = ""):
     def _step_parse_quadruple(ctx: CoTContext) -> QueryQuadruple:
         input_data = ctx.original_input if isinstance(ctx.original_input, dict) else {}
         user_query = str(input_data.get("user_query", ""))
@@ -159,6 +164,7 @@ def _step_parse_quadruple_factory(llm: Any, run_config: RunnableConfig):
                 user_query=user_query,
                 parsed_hint=parsed_hint if isinstance(parsed_hint, dict) else {},
                 config=run_config,
+                init_prompt_text=init_prompt_text,
             )
             logger.info(
                 "[ToolRouter] quadruple parsing successful source=%s confidence=%.2f location=%s",
@@ -174,87 +180,145 @@ def _step_parse_quadruple_factory(llm: Any, run_config: RunnableConfig):
     return _step_parse_quadruple
 
 
-def _step_route_decision_factory(router_cfg: Dict[str, Any]):
+def _fallback_tool_choice(mode: str = "hybrid_search", reason_codes: List[str] | None = None) -> ToolChoice:
+    normalized_mode = "pure_sql" if mode in {"pure_sql", "sql"} else "hybrid_search"
+    sql_needed = normalized_mode == "pure_sql"
+    return ToolChoice(
+        mode=normalized_mode,
+        sql_needed=sql_needed,
+        hybrid_needed=not sql_needed,
+        sub_queries={"sql": {}} if sql_needed else {"hybrid": {}},
+        route_reason_codes=reason_codes or ["FALLBACK_ROUTE"],
+        route_confidence=0.3,
+    )
+
+
+def _normalize_route_payload(payload: Dict[str, Any]) -> ToolChoice:
+    mode = str(payload.get("mode", "hybrid_search")).strip().lower()
+    normalized_mode = "pure_sql" if mode in {"pure_sql", "sql"} else "hybrid_search"
+    reason_codes_raw = payload.get("reason_codes", [])
+    if not isinstance(reason_codes_raw, list):
+        reason_codes_raw = [reason_codes_raw]
+    reason_codes = [str(item).strip() for item in reason_codes_raw if str(item).strip()]
+    try:
+        route_confidence = float(payload.get("confidence", 0.5))
+    except Exception:
+        route_confidence = 0.5
+    route_confidence = max(0.0, min(1.0, route_confidence))
+    return _fallback_tool_choice(
+        mode=normalized_mode,
+        reason_codes=reason_codes or ["LLM_ROUTE"],
+    ) | {"route_confidence": route_confidence}
+
+
+def _decide_route_with_llm(
+    llm: Any,
+    user_query: str,
+    quadruple: QueryQuadruple,
+    parsed_hint: Dict[str, Any],
+    config: RunnableConfig,
+    init_prompt_text: str = "",
+) -> ToolChoice:
+    actual_llm = llm
+    if actual_llm is None:
+        from langchain_openai import ChatOpenAI
+
+        actual_llm = ChatOpenAI(
+            model_name=os.getenv("DASHSCOPE_CHAT_MODEL", "qwen3-max"),
+            temperature=0.0,
+            api_key=os.getenv("DASHSCOPE_API_KEY"),
+            base_url=os.getenv("DASHSCOPE_URL"),
+        )
+    prompt = build_tool_router_decision_prompt(user_query=user_query, quadruple=quadruple, parsed_hint=parsed_hint)
+    if init_prompt_text:
+        prompt = (
+            "Initialization context (from init/agent_init_prompt.md):\n"
+            f"{init_prompt_text}\n\n"
+            "Now decide route mode.\n"
+            f"{prompt}"
+        )
+    if hasattr(actual_llm, "with_structured_output"):
+        structured_llm = actual_llm.with_structured_output(TOOL_ROUTER_DECISION_OUTPUT_SCHEMA)
+        result = structured_llm.invoke(
+            [SystemMessage(content="Please strictly output the route decision JSON."), HumanMessage(content=prompt)],
+            config=config,
+        )
+        if hasattr(result, "model_dump"):
+            payload = result.model_dump()
+        elif isinstance(result, dict):
+            payload = result
+        else:
+            payload = dict(result)
+        return _normalize_route_payload(payload)
+    raw = actual_llm.invoke(
+        [SystemMessage(content="Please strictly output the route decision JSON."), HumanMessage(content=prompt)],
+        config=config,
+    )
+    text = raw.content if hasattr(raw, "content") else str(raw)
+    text = text.replace("```json", "").replace("```", "").strip()
+    payload = json.loads(text)
+    return _normalize_route_payload(payload)
+
+
+def _step_route_decision_factory(llm: Any, run_config: RunnableConfig, init_prompt_text: str = ""):
     def _step_route_decision(ctx: CoTContext) -> ToolChoice:
         quadruple: QueryQuadruple = ctx.get_intermediate("query_quadruple") or _fallback_quadruple("")
-        object_count = len(quadruple.get("object", []))
-        color_count = len(quadruple.get("color", []))
-        location_count = len(quadruple.get("location", []))
-        event_text = str(quadruple.get("event", "")).strip()
-
-        structured_score = 0
-        reason_codes: list[str] = []
-        if object_count > 0:
-            structured_score += 1
-            reason_codes.append("HAS_OBJECT")
-        if color_count > 0:
-            structured_score += 1
-            reason_codes.append("HAS_COLOR")
-        if location_count > 0:
-            structured_score += 1
-            reason_codes.append("HAS_LOCATION")
-        if any(token in event_text for token in ["morning", "afternoon", "today", ":", "-", "to", "until"]):
-            structured_score += 1
-            reason_codes.append("HAS_TIME")
-
-        has_complex_event = any(
-            token in event_text.lower()
-            for token in ["first", "then", "after", "before", "while", "and", "simultaneously"]
-        )
-        if has_complex_event:
-            reason_codes.append("COMPLEX_EVENT")
-
-        if structured_score >= int(router_cfg.get("structured_priority_threshold", 2)) and not has_complex_event and location_count == 0:
-            mode = "pure_sql"
-            reason_codes.append("STRUCTURED_PRIORITY")
-        else:
-            mode = "hybrid_search" if location_count > 0 or has_complex_event else "pure_sql"
-            reason_codes.append("SEMANTIC_PRIORITY" if mode == "hybrid_search" else "DEFAULT_SQL")
-
-        sql_needed = mode in {"pure_sql", "sql"}
-        hybrid_needed = mode in {"hybrid_search", "hybrid"}
-        sub_queries: Dict[str, Any] = {}
-        if hybrid_needed:
-            sub_queries["hybrid"] = {}
-        if sql_needed:
-            sub_queries["sql"] = {}
-        return ToolChoice(
-            mode=mode,
-            sql_needed=sql_needed,
-            hybrid_needed=hybrid_needed,
-            sub_queries=sub_queries,
-            route_reason_codes=reason_codes,
-            route_confidence=min(1.0, 0.45 + 0.12 * structured_score + (0.08 if has_complex_event else 0.0)),
-        )
+        input_data = ctx.original_input if isinstance(ctx.original_input, dict) else {}
+        user_query = str(input_data.get("user_query", ""))
+        parsed_hint = input_data.get("parsed_question", {})
+        try:
+            return _decide_route_with_llm(
+                llm=llm,
+                user_query=user_query,
+                quadruple=quadruple,
+                parsed_hint=parsed_hint if isinstance(parsed_hint, dict) else {},
+                config=run_config,
+                init_prompt_text=init_prompt_text,
+            )
+        except Exception as exc:
+            logger.warning("[ToolRouter] route decision failed, entering fallback: %s", exc)
+            fallback_mode = os.getenv("TOOL_ROUTER_FALLBACK_MODE", "hybrid_search")
+            return _fallback_tool_choice(mode=fallback_mode, reason_codes=["ROUTE_LLM_FAILED"])
 
     return _step_route_decision
 
 
-def create_cot_tool_router_engine(llm: Any = None, run_config: RunnableConfig | None = None) -> CoTEngine:
-    cfg = _router_config()
+def create_cot_tool_router_engine(
+    llm: Any = None,
+    run_config: RunnableConfig | None = None,
+    init_prompt_text: str = "",
+) -> CoTEngine:
     engine = CoTEngine("ToolRouterV2")
-    engine.add_step(SequentialCoTStep("query_quadruple", _step_parse_quadruple_factory(llm, run_config or {}), "Quadruple Parsing"))
-    engine.add_step(SequentialCoTStep("final_decision", _step_route_decision_factory(cfg), "Route Decision"))
+    engine.add_step(
+        SequentialCoTStep(
+            "query_quadruple",
+            _step_parse_quadruple_factory(llm, run_config or {}, init_prompt_text=init_prompt_text),
+            "Quadruple Parsing",
+        )
+    )
+    engine.add_step(
+        SequentialCoTStep(
+            "final_decision",
+            _step_route_decision_factory(llm, run_config or {}, init_prompt_text=init_prompt_text),
+            "Route Decision",
+        )
+    )
     return engine
 
 
-def create_tool_router_node(llm: Any = None):
+def create_tool_router_node(llm: Any = None, init_prompt_text: str = ""):
     def tool_router_node(state: AgentState, config: RunnableConfig, store: BaseStore) -> dict[str, Any]:
         del store
-        is_new = StateResetter.is_new_query(state)
-        user_query = InputValidator.extract_latest_query(state)
-        reset_updates: Dict[str, Any] = {}
+        user_query = InputValidator.resolve_active_query(state)
         
         # Check if returning from reflection retry
         reflection_result = state.get("reflection_result", {})
         is_retry_from_reflection = reflection_result.get("needs_retry", False) and state.get("retry_count", 0) > 0
 
-        if is_new and not is_retry_from_reflection:
-            reset_updates = StateResetter.reset_ephemeral_state(state, user_query)
         if not user_query:
             user_query = "Unknown Query"
             
-        cot_engine = create_cot_tool_router_engine(llm=llm, run_config=config)
+        cot_engine = create_cot_tool_router_engine(llm=llm, run_config=config, init_prompt_text=init_prompt_text)
         
         # If it is a reflection retry, directly use the optimized conditions, skip quadruple extraction
         if is_retry_from_reflection:
@@ -276,7 +340,7 @@ def create_tool_router_node(llm: Any = None):
                 ctx._intermediates["query_quadruple"] = quadruple
                 
             # Execute routing decision only
-            decision_step = _step_route_decision_factory(_router_config())
+            decision_step = _step_route_decision_factory(llm, config, init_prompt_text=init_prompt_text)
             tool_choice = decision_step(ctx)
             
             if hasattr(ctx, "set_intermediate"):
@@ -289,21 +353,11 @@ def create_tool_router_node(llm: Any = None):
             ctx = cot_engine.execute({"user_query": user_query, "parsed_question": state.get("parsed_question", {})})
             if ctx.status == StepStatus.FAILED:
                 quadruple = _fallback_quadruple(user_query, state.get("parsed_question", {}))
-                fallback_mode = _router_config()["mode_without_location"]
-                tool_choice = ToolChoice(
-                    mode=fallback_mode,
-                    sql_needed=fallback_mode in {"pure_sql", "sql"},
-                    hybrid_needed=fallback_mode in {"hybrid_search", "hybrid"},
-                    sub_queries={"sql": {}} if fallback_mode in {"pure_sql", "sql"} else {"hybrid": {}},
-                )
+                fallback_mode = os.getenv("TOOL_ROUTER_FALLBACK_MODE", "hybrid_search")
+                tool_choice = _fallback_tool_choice(mode=fallback_mode, reason_codes=["ROUTER_COT_FAILED"])
             else:
                 quadruple = ctx.get_intermediate("query_quadruple") or _fallback_quadruple(user_query, state.get("parsed_question", {}))
-                tool_choice = ctx.get_intermediate("final_decision") or ToolChoice(
-                    mode="hybrid_search",
-                    sql_needed=False,
-                    hybrid_needed=True,
-                    sub_queries={"hybrid": {}},
-                )
+                tool_choice = ctx.get_intermediate("final_decision") or _fallback_tool_choice(mode="hybrid_search")
         parsed_hint = state.get("parsed_question", {})
         first_object = quadruple.get("object", [""])[0] if quadruple.get("object") else ""
         first_color = quadruple.get("color", [""])[0] if quadruple.get("color") else ""
@@ -349,9 +403,7 @@ def create_tool_router_node(llm: Any = None):
         )
         logger.info("[ToolRouter] %s", thought)
         return {
-            **reset_updates,
             "tool_choice": tool_choice,
-            "user_query": user_query,
             "parsed_question": parsed_question,
             "meta_list": meta_list,
             "event_list": event_list if event_list else [quadruple.get("event", user_query)],

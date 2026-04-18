@@ -1,76 +1,14 @@
-import os
-from pathlib import Path
-
 from langchain_core.messages import HumanMessage
-from langchain_openai import ChatOpenAI
-from langgraph.graph import END, START, StateGraph
 
-from node.answer_node import final_answer_node
-from node.hybrid_search_node import create_hybrid_search_node
-from node.pure_sql_node import create_pure_sql_node
-from node.reflection_node import create_reflection_node, route_after_reflection
-from node.tool_router_node import create_tool_router_node, route_by_tool_choice
-from node.types import AgentState
-
-
-def load_env() -> None:
-    env_file = Path(__file__).resolve().parents[1] / ".env"
-    if env_file.exists():
-        for line in env_file.read_text(encoding="utf-8").splitlines():
-            line = line.strip()
-            if not line or line.startswith("#") or "=" not in line:
-                continue
-            key, value = line.split("=", 1)
-            os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
-    if not os.getenv("OPENAI_API_KEY") and os.getenv("DASHSCOPE_API_KEY"):
-        os.environ["OPENAI_API_KEY"] = os.getenv("DASHSCOPE_API_KEY")
-    if not os.getenv("OPENAI_BASE_URL") and os.getenv("DASHSCOPE_URL"):
-        os.environ["OPENAI_BASE_URL"] = os.getenv("DASHSCOPE_URL")
-
-
-def build_llm() -> ChatOpenAI:
-    return ChatOpenAI(
-        model_name="qwen3-max",
-        temperature=0.0,
-        api_key=os.getenv("DASHSCOPE_API_KEY"),
-        base_url=os.getenv("DASHSCOPE_URL"),
-    )
+from core.runtime import build_default_llm, load_env, load_init_prompt
+from graph_builder import build_graph
 
 
 def create_graph():
     load_env()
-    llm = build_llm()
-
-    tool_router = create_tool_router_node(llm=llm)
-    hybrid_search_node = create_hybrid_search_node(llm=llm)
-    pure_sql_node = create_pure_sql_node(llm=llm)
-    reflection_node = create_reflection_node(llm=llm)
-
-    builder = StateGraph(AgentState)
-    builder.add_node("tool_router", tool_router)
-    builder.add_node("hybrid_search_node", hybrid_search_node)
-    builder.add_node("pure_sql_node", pure_sql_node)
-    builder.add_node("reflection_node", reflection_node)
-    builder.add_node("final_answer_node", final_answer_node)
-
-    builder.add_edge(START, "tool_router")
-    builder.add_conditional_edges(
-        "tool_router",
-        route_by_tool_choice,
-        {
-            "hybrid_search_node": "hybrid_search_node",
-            "pure_sql_node": "pure_sql_node",
-        },
-    )
-    builder.add_edge("hybrid_search_node", "reflection_node")
-    builder.add_edge("pure_sql_node", "reflection_node")
-    builder.add_conditional_edges(
-        "reflection_node",
-        route_after_reflection,
-        {"tool_router": "tool_router", "final_answer_node": "final_answer_node"},
-    )
-    builder.add_edge("final_answer_node", END)
-    return builder.compile()
+    llm = build_default_llm()
+    init_prompt_text = load_init_prompt()
+    return build_graph(llm, init_prompt_text=init_prompt_text)
 
 
 graph = create_graph()

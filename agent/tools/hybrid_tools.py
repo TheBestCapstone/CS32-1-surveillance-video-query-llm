@@ -1,10 +1,9 @@
-from typing import List, Dict, Any, Optional
+from typing import Any
 from langchain_core.tools import tool
-from tools.db_access import LanceDBGateway
-from node.types import default_db_path
+from tools.db_access import ChromaGateway
 import sqlite3
-from node.types import default_sqlite_db_path
 import json
+from node.types import default_chroma_collection, default_chroma_path, default_sqlite_db_path
 
 @tool
 def get_temporal_anchor(event_description: str) -> str:
@@ -25,10 +24,14 @@ def get_temporal_anchor(event_description: str) -> str:
         if not keywords:
             keywords = [event_description]
             
-        where_clauses = " OR ".join(["event_text_cn LIKE ?"] * len(keywords))
+        where_clauses = " OR ".join(["COALESCE(event_text_en, event_summary_en, '') LIKE ?"] * len(keywords))
         params = [f"%{k}%" for k in keywords]
         
-        sql = f"SELECT video_id, start_time, end_time, event_text_cn FROM episodic_events WHERE {where_clauses} LIMIT 3"
+        sql = (
+            f"SELECT video_id, start_time, end_time, "
+            f"COALESCE(event_text_en, event_summary_en) AS event_text "
+            f"FROM episodic_events WHERE {where_clauses} LIMIT 3"
+        )
         cursor.execute(sql, params)
         rows = cursor.fetchall()
         conn.close()
@@ -54,38 +57,43 @@ def dynamic_weighted_vector_search(query: str, filters: dict, alpha: float = 0.5
              Increase alpha (e.g., 0.8) if the query focuses more on semantic actions; decrease alpha (e.g., 0.2) if it focuses more on specific attributes.
     - limit: Number of results to return
     """
-    db_path = default_db_path()
+    db_path = default_chroma_path()
+    collection = default_chroma_collection()
     try:
-        gateway = LanceDBGateway(db_path)
-        # 将 filters 字典转换为元组列表
+        gateway = ChromaGateway(db_path=db_path, collection_name=collection)
         meta_list = [{"key": k, "value": v} for k, v in filters.items()]
-        
-        # 为了演示，这里的底层接口暂时只接受 query，我们需要将 alpha 逻辑应用。
-        # 假定底层支持或我们通过逻辑模拟：如果 alpha 很高，我们放宽元数据；如果很低，我们强制元数据。
-        # 这里演示调用现有接口，并在日志中打印出策略。
-        rows = gateway.search_table(
-            "episodic_events",
-            metadata_filters=meta_list if alpha < 0.8 else [], # alpha很高时放宽过滤
-            event_queries=[query] if query else [],
-            limit=limit * 2
+
+        rows = gateway.search(
+            query=query,
+            metadata_filters=meta_list if alpha < 0.8 else [],
+            alpha=alpha,
+            limit=limit,
         )
-        
+
         if not rows:
-            return f"使用权重 alpha={alpha} 未检索到结果。可以尝试放宽 filters 或调整 alpha。"
-            
-        # 简单模拟重排截断
-        result_rows = rows[:limit]
-        
-        # 格式化输出
+            return (
+                f"Hybrid search returned no results on Chroma "
+                f"(collection={collection}, alpha={alpha}). Try relaxing filters or adjusting alpha."
+            )
+
         output = [
             {
+                "event_id": r.get("event_id"),
                 "video_id": r.get("video_id"),
-                "event_text": r.get("event_text_cn"),
+                "track_id": r.get("track_id"),
+                "event_text": r.get("event_text") or r.get("event_summary_en"),
                 "start_time": r.get("start_time"),
-                "distance": r.get("distance", 0.0)
-            } for r in result_rows
+                "end_time": r.get("end_time"),
+                "object_type": r.get("object_type"),
+                "object_color_en": r.get("object_color_en"),
+                "scene_zone_en": r.get("scene_zone_en"),
+                "distance": r.get("_distance", 0.0),
+                "hybrid_score": r.get("_hybrid_score", 0.0),
+                "bm25": r.get("_bm25", 0.0),
+            }
+            for r in rows
         ]
-        
-        return f"Hybrid search successful (weight strategy alpha={alpha}):\n{json.dumps(output, ensure_ascii=False, indent=2)}"
+
+        return f"Hybrid search successful on Chroma (alpha={alpha}):\n{json.dumps(output, ensure_ascii=False, indent=2)}"
     except Exception as e:
-        return f"Hybrid search failed: {str(e)}"
+        return f"Hybrid search failed on Chroma: {str(e)}"
