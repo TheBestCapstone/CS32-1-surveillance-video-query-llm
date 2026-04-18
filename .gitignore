@@ -14,3 +14,5 @@ __pycache__/
 .langgraph_api/
 agent/.langgraph_api/
 *.pckl
+video_data/
+agent/_删除的文件/
