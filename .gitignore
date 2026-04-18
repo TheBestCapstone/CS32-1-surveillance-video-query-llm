@@ -14,5 +14,7 @@ __pycache__/
 .langgraph_api/
 agent/.langgraph_api/
 *.pckl
+agent/init/agent_init_profile.json
+yolov8n.pt
 video_data/
 agent/_删除的文件/
