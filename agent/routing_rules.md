@@ -1,47 +1,65 @@
-# Routing Rules (Default, Hit-Rate First)
+# Routing Rules
 
-## Supported Modes
+## Default Runtime Semantics
 
-- `hybrid_search`
-- `pure_sql`
+The default runtime mode is `parallel_fusion`, not hard single-path routing.
 
-`parallel` and `video_vect` are disabled and unreachable.
+- Both retrieval paths run:
+  - `pure_sql`
+  - `hybrid`
+- Query classification outputs:
+  - `structured`
+  - `semantic`
+  - `mixed`
+- The label is used to bias fusion weights, not to disable one branch.
 
-## Rule Set
+## Default Graph Contracts
 
-### RR-BASE-001: Structured Priority
+- `self_query_node` runs before all retrieval nodes.
+- `query_classification_node` produces `classification_result`.
+- `parallel_retrieval_fusion_node` produces:
+  - `sql_result`
+  - `hybrid_result`
+  - `merged_result`
+  - `rerank_result`
+  - `sql_debug.fusion_meta`
+- `final_answer_node` produces a grounded draft answer.
+- `summary_node` produces the final user-facing answer and appends minimal citations.
 
-- Structured score counts:
-  - object detected: +1
-  - color detected: +1
-  - location detected: +1
-  - explicit time phrase detected: +1
-- If `structured_score >= 2` and event is not complex, route to `pure_sql`.
+## Legacy Router Rules
 
-### RR-BASE-002: Semantic Priority
+The following hard route-selection rules apply only when
+`AGENT_EXECUTION_MODE=legacy_router`.
 
-- If event is complex (e.g. "先...再...", "进入后离开"), route to `hybrid_search`.
-- If location exists and semantic complexity exists, route to `hybrid_search`.
+- Supported legacy route modes:
+  - `hybrid_search`
+  - `pure_sql`
+- `parallel` and `video_vect` are disabled and unreachable.
 
-### RR-BASE-003: Safe Default
+### RR-LEGACY-001: Structured Priority
 
-- Otherwise route to `pure_sql`.
+- Structured evidence pushes routing toward `pure_sql`.
 
-## Output Contracts
+### RR-LEGACY-002: Semantic Priority
+
+- Complex semantics or stronger semantic constraints push routing toward `hybrid_search`.
+
+### RR-LEGACY-003: Safe Default
+
+- If the LLM route decision cannot be trusted, fallback is controlled by environment configuration.
+
+## Legacy Output Contracts
 
 - `tool_choice.mode` in `{hybrid_search, pure_sql}`
-- `tool_choice.sql_needed/hybrid_needed` must be consistent with mode
+- `tool_choice.sql_needed/hybrid_needed` must match `mode`
 - `tool_choice.sub_queries` keys only from `{sql, hybrid}`
-- `routing_metrics` contains:
-  - `route_reason_codes`
-  - `route_confidence`
+- `routing_metrics` should include route confidence and reason codes when available
 
-## Reflection Mandatory Validation
+## Validation Notes
 
-Before reflection final decision:
-
-- mode validity
-- needed flag consistency
-- sub-query key validity
-- retry upper bound
-- performance guardrail (`candidate_limit <= 200` for hybrid)
+- `reflection_node` validation is mainly meaningful in `legacy_router`.
+- In the default graph, reliability comes from:
+  - dual-path execution
+  - branch timeout handling
+  - degradation fallback
+  - fusion guardrails such as `structured_zero_guardrail`

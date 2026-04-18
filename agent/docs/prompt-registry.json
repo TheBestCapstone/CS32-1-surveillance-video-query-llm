@@ -1,0 +1,74 @@
+[
+  {
+    "prompt_id": "init.global_context",
+    "version": "v1",
+    "source_file": "agent/init/agent_init_prompt.md",
+    "entry_symbol": "agent_init_prompt",
+    "category": "init",
+    "user_visible": false,
+    "notes": "Global runtime background prompt loaded at graph build time."
+  },
+  {
+    "prompt_id": "router.quadruple_extract",
+    "version": "v1",
+    "source_file": "agent/node/router_prompts.py",
+    "entry_symbol": "build_tool_router_quadruple_prompt",
+    "category": "routing",
+    "user_visible": false,
+    "notes": "Legacy router quadruple extraction prompt."
+  },
+  {
+    "prompt_id": "router.route_decision",
+    "version": "v1",
+    "source_file": "agent/node/router_prompts.py",
+    "entry_symbol": "build_tool_router_decision_prompt",
+    "category": "routing",
+    "user_visible": false,
+    "notes": "Legacy router mode decision prompt."
+  },
+  {
+    "prompt_id": "rewrite.self_query",
+    "version": "v1",
+    "source_file": "agent/node/self_query_node.py",
+    "entry_symbol": "create_self_query_node",
+    "category": "rewrite",
+    "user_visible": false,
+    "notes": "Conservative rewrite prompt used when fast path is not taken."
+  },
+  {
+    "prompt_id": "classification.query_label",
+    "version": "v1",
+    "source_file": "agent/agents/shared/query_classifier.py",
+    "entry_symbol": "classify_query",
+    "category": "classification",
+    "user_visible": false,
+    "notes": "Structured/semantic/mixed classification prompt."
+  },
+  {
+    "prompt_id": "summary.final_answer",
+    "version": "v1",
+    "source_file": "agent/node/summary_node.py",
+    "entry_symbol": "create_summary_node",
+    "category": "summary",
+    "user_visible": true,
+    "notes": "Final English natural-language answer summarizer."
+  },
+  {
+    "prompt_id": "subagent.pure_sql.react",
+    "version": "v1",
+    "source_file": "agent/agents/pure_sql/sub_agent.py",
+    "entry_symbol": "run_pure_sql_sub_agent",
+    "category": "subagent",
+    "user_visible": false,
+    "notes": "Pure SQL ReAct sub-agent prompt context."
+  },
+  {
+    "prompt_id": "subagent.hybrid.react",
+    "version": "v1",
+    "source_file": "agent/agents/hybrid_search/sub_agent.py",
+    "entry_symbol": "run_hybrid_sub_agent",
+    "category": "subagent",
+    "user_visible": false,
+    "notes": "Hybrid search ReAct sub-agent prompt context."
+  }
+]

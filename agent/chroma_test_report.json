@@ -1,0 +1,1153 @@
+{
+  "embedding_model_test": {
+    "model": "text-embedding-v3",
+    "dimension": 1024,
+    "status": "ok"
+  },
+  "collection": "basketball_tracks",
+  "chroma_path": "/home/yangxp/Capstone/data/chroma/basketball_tracks",
+  "record_count": 26,
+  "source_event_count": 27,
+  "chunking_strategy_detected": "track-level aggregation (record id = video_id_entity_hint)",
+  "missing_provenance_ids": [],
+  "per_record_provenance": [
+    {
+      "id": "basketball_1.mp4_track_1",
+      "source_event_count": 1,
+      "source_start_min": 0.0,
+      "source_end_max": 61.208333333333336
+    },
+    {
+      "id": "basketball_1.mp4_track_2",
+      "source_event_count": 1,
+      "source_start_min": 0.0,
+      "source_end_max": 16.083333333333332
+    },
+    {
+      "id": "basketball_1.mp4_track_3",
+      "source_event_count": 1,
+      "source_start_min": 0.0,
+      "source_end_max": 12.041666666666666
+    },
+    {
+      "id": "basketball_1.mp4_track_4",
+      "source_event_count": 1,
+      "source_start_min": 0.0,
+      "source_end_max": 143.125
+    },
+    {
+      "id": "basketball_1.mp4_track_6",
+      "source_event_count": 1,
+      "source_start_min": 0.0,
+      "source_end_max": 17.458333333333332
+    },
+    {
+      "id": "basketball_1.mp4_track_7",
+      "source_event_count": 1,
+      "source_start_min": 0.0,
+      "source_end_max": 17.625
+    },
+    {
+      "id": "basketball_1.mp4_track_8",
+      "source_event_count": 1,
+      "source_start_min": 0.0,
+      "source_end_max": 4.958333333333333
+    },
+    {
+      "id": "basketball_1.mp4_track_9",
+      "source_event_count": 1,
+      "source_start_min": 0.0,
+      "source_end_max": 270.2916666666667
+    },
+    {
+      "id": "basketball_1.mp4_track_11",
+      "source_event_count": 1,
+      "source_start_min": 11.5,
+      "source_end_max": 91.75
+    },
+    {
+      "id": "basketball_1.mp4_track_13",
+      "source_event_count": 1,
+      "source_start_min": 17.0,
+      "source_end_max": 18.166666666666668
+    },
+    {
+      "id": "basketball_1.mp4_track_19",
+      "source_event_count": 1,
+      "source_start_min": 18.625,
+      "source_end_max": 87.375
+    },
+    {
+      "id": "basketball_1.mp4_track_24",
+      "source_event_count": 1,
+      "source_start_min": 25.625,
+      "source_end_max": 28.458333333333332
+    },
+    {
+      "id": "basketball_1.mp4_track_26",
+      "source_event_count": 1,
+      "source_start_min": 29.417,
+      "source_end_max": 46.75
+    },
+    {
+      "id": "basketball_1.mp4_track_28",
+      "source_event_count": 1,
+      "source_start_min": 35.041666666666664,
+      "source_end_max": 48.041666666666664
+    },
+    {
+      "id": "basketball_1.mp4_track_29",
+      "source_event_count": 1,
+      "source_start_min": 43.791666666666664,
+      "source_end_max": 125.70833333333333
+    },
+    {
+      "id": "basketball_1.mp4_track_30",
+      "source_event_count": 1,
+      "source_start_min": 47.75,
+      "source_end_max": 48.833333333333336
+    },
+    {
+      "id": "basketball_1.mp4_track_31",
+      "source_event_count": 1,
+      "source_start_min": 47.958333333333336,
+      "source_end_max": 133.875
+    },
+    {
+      "id": "basketball_1.mp4_track_32",
+      "source_event_count": 1,
+      "source_start_min": 52.875,
+      "source_end_max": 58.208333333333336
+    },
+    {
+      "id": "basketball_1.mp4_track_35",
+      "source_event_count": 1,
+      "source_start_min": 61.75,
+      "source_end_max": 62.916666666666664
+    },
+    {
+      "id": "basketball_1.mp4_track_36",
+      "source_event_count": 1,
+      "source_start_min": 62.375,
+      "source_end_max": 64.0
+    },
+    {
+      "id": "basketball_1.mp4_track_39",
+      "source_event_count": 1,
+      "source_start_min": 77.29166666666667,
+      "source_end_max": 78.54166666666667
+    },
+    {
+      "id": "basketball_2.mp4_track_id_1",
+      "source_event_count": 1,
+      "source_start_min": 0.0,
+      "source_end_max": 30.84
+    },
+    {
+      "id": "basketball_2.mp4_track_id_2",
+      "source_event_count": 2,
+      "source_start_min": 40.6,
+      "source_end_max": 51.0
+    },
+    {
+      "id": "basketball_2.mp4_track_id_3",
+      "source_event_count": 1,
+      "source_start_min": 41.5,
+      "source_end_max": 46.85
+    },
+    {
+      "id": "basketball_2.mp4_track_id_4",
+      "source_event_count": 1,
+      "source_start_min": 46.15,
+      "source_end_max": 50.45
+    },
+    {
+      "id": "basketball_2.mp4_track_id_5",
+      "source_event_count": 1,
+      "source_start_min": 0.0,
+      "source_end_max": 9.96
+    }
+  ],
+  "retrieval_tests": [
+    {
+      "lang": "zh",
+      "query": "场边站立不动的人",
+      "cosine_top5": [
+        {
+          "id": "basketball_1.mp4_track_24",
+          "distance": 0.27020323276519775,
+          "doc": "Little motion; standing near the left-center court edge. Located in sidewalk. From 25.6s to 28.5s, a person with unknown color remains mostly still near the lef",
+          "meta": {
+            "end_time": 28.458333333333332,
+            "object_type": "person",
+            "entity_hint": "track_24",
+            "start_time": 25.625,
+            "keywords": "court_edge,idle,left_center,standing",
+            "object_color": "unknown",
+            "video_id": "basketball_1.mp4",
+            "scene_zone": "sidewalk"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_36",
+          "distance": 0.2718851566314697,
+          "doc": "Little motion; standing near the left-center court edge. Located in sidewalk. From 62.4s to 64.0s, a person with unknown color remains mostly still near the lef",
+          "meta": {
+            "object_color": "unknown",
+            "start_time": 62.375,
+            "entity_hint": "track_36",
+            "scene_zone": "sidewalk",
+            "end_time": 64.0,
+            "keywords": "court_edge,idle,left_center,standing",
+            "video_id": "basketball_1.mp4",
+            "object_type": "person"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_29",
+          "distance": 0.2765113115310669,
+          "doc": "Little motion; standing near the left side of the court. Located in sidewalk. From 43.8s to 125.7s, a person with unknown color remains mostly still near the le",
+          "meta": {
+            "object_color": "unknown",
+            "end_time": 125.70833333333331,
+            "video_id": "basketball_1.mp4",
+            "object_type": "person",
+            "start_time": 43.791666666666664,
+            "entity_hint": "track_29",
+            "keywords": "court,idle,left_side,standing",
+            "scene_zone": "sidewalk"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_32",
+          "distance": 0.27726298570632935,
+          "doc": "Little motion; standing near the left-center court edge. Located in sidewalk. From 52.9s to 58.2s, a person with unknown color remains mostly still near the lef",
+          "meta": {
+            "video_id": "basketball_1.mp4",
+            "entity_hint": "track_32",
+            "end_time": 58.208333333333336,
+            "scene_zone": "sidewalk",
+            "object_type": "person",
+            "object_color": "unknown",
+            "keywords": "court_edge,idle,left_center,standing",
+            "start_time": 52.875
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_4",
+          "distance": 0.2820788025856018,
+          "doc": "Little motion; standing near the lower-left court/bench area. Located in parking. From 0.0s to 143.1s, a person with unknown color stays mostly still near the l",
+          "meta": {
+            "keywords": "court_edge,idle,lower_left,standing",
+            "object_type": "person",
+            "object_color": "unknown",
+            "start_time": 0.0,
+            "scene_zone": "parking",
+            "video_id": "basketball_1.mp4",
+            "end_time": 143.125,
+            "entity_hint": "track_4"
+          }
+        }
+      ],
+      "bm25_top5": [
+        {
+          "id": "basketball_1.mp4_track_1",
+          "bm25": 0.0,
+          "doc": "Little motion; standing near the left baseline/bench area. Located in sidewalk. From 0.0s to 61.2s, a person with unknown color stays mostly still near the left",
+          "meta": {
+            "end_time": 61.208333333333336,
+            "object_color": "unknown",
+            "object_type": "person",
+            "video_id": "basketball_1.mp4",
+            "keywords": "bench_area,idle,left_side,standing",
+            "start_time": 0.0,
+            "scene_zone": "sidewalk",
+            "entity_hint": "track_1"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_2",
+          "bm25": 0.0,
+          "doc": "Little motion; standing near the left-center baseline area. Located in sidewalk. From 0.0s to 16.1s, a person with unknown color remains mostly still near the l",
+          "meta": {
+            "entity_hint": "track_2",
+            "scene_zone": "sidewalk",
+            "video_id": "basketball_1.mp4",
+            "keywords": "baseline,idle,left_center,standing",
+            "object_type": "person",
+            "start_time": 0.0,
+            "end_time": 16.083333333333332,
+            "object_color": "unknown"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_3",
+          "bm25": 0.0,
+          "doc": "Little motion; standing near the left-center baseline area. Located in sidewalk. From 0.0s to 12.0s, a person with unknown color remains mostly still near the l",
+          "meta": {
+            "end_time": 12.041666666666666,
+            "keywords": "baseline,idle,left_center,standing",
+            "entity_hint": "track_3",
+            "object_color": "unknown",
+            "scene_zone": "sidewalk",
+            "object_type": "person",
+            "start_time": 0.0,
+            "video_id": "basketball_1.mp4"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_4",
+          "bm25": 0.0,
+          "doc": "Little motion; standing near the lower-left court/bench area. Located in parking. From 0.0s to 143.1s, a person with unknown color stays mostly still near the l",
+          "meta": {
+            "object_type": "person",
+            "scene_zone": "parking",
+            "object_color": "unknown",
+            "video_id": "basketball_1.mp4",
+            "entity_hint": "track_4",
+            "keywords": "court_edge,idle,lower_left,standing",
+            "end_time": 143.125,
+            "start_time": 0.0
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_6",
+          "bm25": 0.0,
+          "doc": "Little motion; standing near the left-center baseline area. Located in sidewalk. From 0.0s to 17.5s, a person with unknown color remains mostly still near the l",
+          "meta": {
+            "keywords": "baseline,idle,left_center,standing",
+            "video_id": "basketball_1.mp4",
+            "object_color": "unknown",
+            "end_time": 17.458333333333332,
+            "scene_zone": "sidewalk",
+            "start_time": 0.0,
+            "entity_hint": "track_6",
+            "object_type": "person"
+          }
+        }
+      ],
+      "hybrid_top5": [
+        {
+          "id": "basketball_1.mp4_track_24",
+          "hybrid_score": 0.6,
+          "cosine_sim_est": 0.729797,
+          "bm25": 0.0,
+          "doc": "Little motion; standing near the left-center court edge. Located in sidewalk. From 25.6s to 28.5s, a person with unknown color remains mostly still near the lef",
+          "meta": {
+            "object_type": "person",
+            "entity_hint": "track_24",
+            "keywords": "court_edge,idle,left_center,standing",
+            "start_time": 25.625,
+            "scene_zone": "sidewalk",
+            "object_color": "unknown",
+            "video_id": "basketball_1.mp4",
+            "end_time": 28.458333333333332
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_36",
+          "hybrid_score": 0.57956,
+          "cosine_sim_est": 0.728115,
+          "bm25": 0.0,
+          "doc": "Little motion; standing near the left-center court edge. Located in sidewalk. From 62.4s to 64.0s, a person with unknown color remains mostly still near the lef",
+          "meta": {
+            "object_type": "person",
+            "end_time": 64.0,
+            "video_id": "basketball_1.mp4",
+            "scene_zone": "sidewalk",
+            "object_color": "unknown",
+            "keywords": "court_edge,idle,left_center,standing",
+            "start_time": 62.375,
+            "entity_hint": "track_36"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_29",
+          "hybrid_score": 0.523341,
+          "cosine_sim_est": 0.723489,
+          "bm25": 0.0,
+          "doc": "Little motion; standing near the left side of the court. Located in sidewalk. From 43.8s to 125.7s, a person with unknown color remains mostly still near the le",
+          "meta": {
+            "keywords": "court,idle,left_side,standing",
+            "entity_hint": "track_29",
+            "scene_zone": "sidewalk",
+            "start_time": 43.791666666666664,
+            "video_id": "basketball_1.mp4",
+            "object_color": "unknown",
+            "object_type": "person",
+            "end_time": 125.70833333333331
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_32",
+          "hybrid_score": 0.514206,
+          "cosine_sim_est": 0.722737,
+          "bm25": 0.0,
+          "doc": "Little motion; standing near the left-center court edge. Located in sidewalk. From 52.9s to 58.2s, a person with unknown color remains mostly still near the lef",
+          "meta": {
+            "keywords": "court_edge,idle,left_center,standing",
+            "video_id": "basketball_1.mp4",
+            "entity_hint": "track_32",
+            "start_time": 52.875,
+            "end_time": 58.208333333333336,
+            "object_color": "unknown",
+            "scene_zone": "sidewalk",
+            "object_type": "person"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_4",
+          "hybrid_score": 0.455682,
+          "cosine_sim_est": 0.717921,
+          "bm25": 0.0,
+          "doc": "Little motion; standing near the lower-left court/bench area. Located in parking. From 0.0s to 143.1s, a person with unknown color stays mostly still near the l",
+          "meta": {
+            "end_time": 143.125,
+            "object_color": "unknown",
+            "keywords": "court_edge,idle,lower_left,standing",
+            "scene_zone": "parking",
+            "entity_hint": "track_4",
+            "start_time": 0.0,
+            "object_type": "person",
+            "video_id": "basketball_1.mp4"
+          }
+        }
+      ]
+    },
+    {
+      "lang": "zh",
+      "query": "快速移动的目标",
+      "cosine_top5": [
+        {
+          "id": "basketball_1.mp4_track_26",
+          "distance": 0.4718893766403198,
+          "doc": "Significant movement; moving in from the right side of the court. Located in road_right. From 29.4s to 46.8s, a person with unknown color moves in from the righ",
+          "meta": {
+            "keywords": "driving_in,movement,road_right,walking",
+            "entity_hint": "track_26",
+            "end_time": 46.75,
+            "start_time": 29.417,
+            "video_id": "basketball_1.mp4",
+            "scene_zone": "road_right",
+            "object_color": "unknown",
+            "object_type": "person"
+          }
+        },
+        {
+          "id": "basketball_2.mp4_track_id_2",
+          "distance": 0.5039889812469482,
+          "doc": "moving across the court near center-right; moving near center court Located in court center-right. From 40.60s to 44.90s, a dark-clothed person moves across the",
+          "meta": {
+            "scene_zone": "court center-right",
+            "end_time": 51.0,
+            "entity_hint": "track_id_2",
+            "object_color": "dark",
+            "start_time": 40.6,
+            "keywords": "center,center_right,court,indoor,movement,person",
+            "video_id": "basketball_2.mp4",
+            "object_type": "person"
+          }
+        },
+        {
+          "id": "basketball_2.mp4_track_id_4",
+          "distance": 0.504499077796936,
+          "doc": "moving near upper-middle court Located in court upper-middle. From 46.15s to 50.45s, a dark-clothed person moves near the upper-middle court area.",
+          "meta": {
+            "object_type": "person",
+            "keywords": "court,indoor,movement,person,upper_middle",
+            "start_time": 46.15,
+            "end_time": 50.45,
+            "video_id": "basketball_2.mp4",
+            "scene_zone": "court upper-middle",
+            "entity_hint": "track_id_4",
+            "object_color": "dark"
+          }
+        },
+        {
+          "id": "basketball_2.mp4_track_id_3",
+          "distance": 0.5050923824310303,
+          "doc": "moving near the left-center court area Located in court left-center. From 41.50s to 46.85s, a dark-clothed person moves near the left-center court area.",
+          "meta": {
+            "keywords": "court,indoor,left_center,movement,person",
+            "video_id": "basketball_2.mp4",
+            "entity_hint": "track_id_3",
+            "scene_zone": "court left-center",
+            "start_time": 41.5,
+            "object_type": "person",
+            "end_time": 46.85,
+            "object_color": "dark"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_19",
+          "distance": 0.538886308670044,
+          "doc": "Little motion; standing near the right-center baseline area. Located in road_right. From 18.6s to 87.4s, a person with unknown color remains mostly still near t",
+          "meta": {
+            "video_id": "basketball_1.mp4",
+            "keywords": "baseline,idle,right_center,standing",
+            "end_time": 87.375,
+            "object_type": "person",
+            "entity_hint": "track_19",
+            "object_color": "unknown",
+            "start_time": 18.625,
+            "scene_zone": "road_right"
+          }
+        }
+      ],
+      "bm25_top5": [
+        {
+          "id": "basketball_1.mp4_track_1",
+          "bm25": 0.0,
+          "doc": "Little motion; standing near the left baseline/bench area. Located in sidewalk. From 0.0s to 61.2s, a person with unknown color stays mostly still near the left",
+          "meta": {
+            "end_time": 61.208333333333336,
+            "object_color": "unknown",
+            "object_type": "person",
+            "video_id": "basketball_1.mp4",
+            "keywords": "bench_area,idle,left_side,standing",
+            "start_time": 0.0,
+            "scene_zone": "sidewalk",
+            "entity_hint": "track_1"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_2",
+          "bm25": 0.0,
+          "doc": "Little motion; standing near the left-center baseline area. Located in sidewalk. From 0.0s to 16.1s, a person with unknown color remains mostly still near the l",
+          "meta": {
+            "entity_hint": "track_2",
+            "scene_zone": "sidewalk",
+            "video_id": "basketball_1.mp4",
+            "keywords": "baseline,idle,left_center,standing",
+            "object_type": "person",
+            "start_time": 0.0,
+            "end_time": 16.083333333333332,
+            "object_color": "unknown"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_3",
+          "bm25": 0.0,
+          "doc": "Little motion; standing near the left-center baseline area. Located in sidewalk. From 0.0s to 12.0s, a person with unknown color remains mostly still near the l",
+          "meta": {
+            "end_time": 12.041666666666666,
+            "keywords": "baseline,idle,left_center,standing",
+            "entity_hint": "track_3",
+            "object_color": "unknown",
+            "scene_zone": "sidewalk",
+            "object_type": "person",
+            "start_time": 0.0,
+            "video_id": "basketball_1.mp4"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_4",
+          "bm25": 0.0,
+          "doc": "Little motion; standing near the lower-left court/bench area. Located in parking. From 0.0s to 143.1s, a person with unknown color stays mostly still near the l",
+          "meta": {
+            "object_type": "person",
+            "scene_zone": "parking",
+            "object_color": "unknown",
+            "video_id": "basketball_1.mp4",
+            "entity_hint": "track_4",
+            "keywords": "court_edge,idle,lower_left,standing",
+            "end_time": 143.125,
+            "start_time": 0.0
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_6",
+          "bm25": 0.0,
+          "doc": "Little motion; standing near the left-center baseline area. Located in sidewalk. From 0.0s to 17.5s, a person with unknown color remains mostly still near the l",
+          "meta": {
+            "keywords": "baseline,idle,left_center,standing",
+            "video_id": "basketball_1.mp4",
+            "object_color": "unknown",
+            "end_time": 17.458333333333332,
+            "scene_zone": "sidewalk",
+            "start_time": 0.0,
+            "entity_hint": "track_6",
+            "object_type": "person"
+          }
+        }
+      ],
+      "hybrid_top5": [
+        {
+          "id": "basketball_1.mp4_track_26",
+          "hybrid_score": 0.6,
+          "cosine_sim_est": 0.528111,
+          "bm25": 0.0,
+          "doc": "Significant movement; moving in from the right side of the court. Located in road_right. From 29.4s to 46.8s, a person with unknown color moves in from the righ",
+          "meta": {
+            "object_type": "person",
+            "start_time": 29.417,
+            "scene_zone": "road_right",
+            "video_id": "basketball_1.mp4",
+            "object_color": "unknown",
+            "entity_hint": "track_26",
+            "keywords": "driving_in,movement,road_right,walking",
+            "end_time": 46.75
+          }
+        },
+        {
+          "id": "basketball_2.mp4_track_id_2",
+          "hybrid_score": 0.390502,
+          "cosine_sim_est": 0.496011,
+          "bm25": 0.0,
+          "doc": "moving across the court near center-right; moving near center court Located in court center-right. From 40.60s to 44.90s, a dark-clothed person moves across the",
+          "meta": {
+            "end_time": 51.0,
+            "entity_hint": "track_id_2",
+            "object_color": "dark",
+            "start_time": 40.6,
+            "keywords": "center,center_right,court,indoor,movement,person",
+            "video_id": "basketball_2.mp4",
+            "scene_zone": "court center-right",
+            "object_type": "person"
+          }
+        },
+        {
+          "id": "basketball_2.mp4_track_id_4",
+          "hybrid_score": 0.387173,
+          "cosine_sim_est": 0.495501,
+          "bm25": 0.0,
+          "doc": "moving near upper-middle court Located in court upper-middle. From 46.15s to 50.45s, a dark-clothed person moves near the upper-middle court area.",
+          "meta": {
+            "keywords": "court,indoor,movement,person,upper_middle",
+            "object_type": "person",
+            "end_time": 50.45,
+            "scene_zone": "court upper-middle",
+            "object_color": "dark",
+            "start_time": 46.15,
+            "entity_hint": "track_id_4",
+            "video_id": "basketball_2.mp4"
+          }
+        },
+        {
+          "id": "basketball_2.mp4_track_id_3",
+          "hybrid_score": 0.383301,
+          "cosine_sim_est": 0.494908,
+          "bm25": 0.0,
+          "doc": "moving near the left-center court area Located in court left-center. From 41.50s to 46.85s, a dark-clothed person moves near the left-center court area.",
+          "meta": {
+            "video_id": "basketball_2.mp4",
+            "object_type": "person",
+            "object_color": "dark",
+            "end_time": 46.85,
+            "scene_zone": "court left-center",
+            "keywords": "court,indoor,left_center,movement,person",
+            "start_time": 41.5,
+            "entity_hint": "track_id_3"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_19",
+          "hybrid_score": 0.162745,
+          "cosine_sim_est": 0.461114,
+          "bm25": 0.0,
+          "doc": "Little motion; standing near the right-center baseline area. Located in road_right. From 18.6s to 87.4s, a person with unknown color remains mostly still near t",
+          "meta": {
+            "object_color": "unknown",
+            "video_id": "basketball_1.mp4",
+            "keywords": "baseline,idle,right_center,standing",
+            "scene_zone": "road_right",
+            "object_type": "person",
+            "end_time": 87.375,
+            "start_time": 18.625,
+            "entity_hint": "track_19"
+          }
+        }
+      ]
+    },
+    {
+      "lang": "en",
+      "query": "person standing still near baseline",
+      "cosine_top5": [
+        {
+          "id": "basketball_1.mp4_track_11",
+          "distance": 0.21014022827148438,
+          "doc": "Little motion; standing near the left-center baseline area. Located in sidewalk. From 11.5s to 91.8s, a person with unknown color remains mostly still near the ",
+          "meta": {
+            "entity_hint": "track_11",
+            "object_type": "person",
+            "end_time": 91.75,
+            "video_id": "basketball_1.mp4",
+            "keywords": "baseline,idle,left_center,standing",
+            "scene_zone": "sidewalk",
+            "object_color": "unknown",
+            "start_time": 11.5
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_9",
+          "distance": 0.21059644222259521,
+          "doc": "Little motion; standing near the center-left baseline area. Located in parking. From 0.0s to 270.3s, a person with unknown color stays mostly still near the cen",
+          "meta": {
+            "keywords": "baseline,center_left,idle,standing",
+            "scene_zone": "parking",
+            "object_type": "person",
+            "end_time": 270.2916666666667,
+            "start_time": 0.0,
+            "entity_hint": "track_9",
+            "video_id": "basketball_1.mp4",
+            "object_color": "unknown"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_3",
+          "distance": 0.21721220016479492,
+          "doc": "Little motion; standing near the left-center baseline area. Located in sidewalk. From 0.0s to 12.0s, a person with unknown color remains mostly still near the l",
+          "meta": {
+            "scene_zone": "sidewalk",
+            "keywords": "baseline,idle,left_center,standing",
+            "end_time": 12.041666666666666,
+            "object_color": "unknown",
+            "object_type": "person",
+            "start_time": 0.0,
+            "video_id": "basketball_1.mp4",
+            "entity_hint": "track_3"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_7",
+          "distance": 0.21927040815353394,
+          "doc": "Little motion; standing near the left-center baseline area. Located in sidewalk. From 0.0s to 17.6s, a person with unknown color remains mostly still near the l",
+          "meta": {
+            "object_type": "person",
+            "object_color": "unknown",
+            "end_time": 17.625,
+            "keywords": "baseline,idle,left_center,standing",
+            "entity_hint": "track_7",
+            "scene_zone": "sidewalk",
+            "start_time": 0.0,
+            "video_id": "basketball_1.mp4"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_6",
+          "distance": 0.2208021879196167,
+          "doc": "Little motion; standing near the left-center baseline area. Located in sidewalk. From 0.0s to 17.5s, a person with unknown color remains mostly still near the l",
+          "meta": {
+            "entity_hint": "track_6",
+            "scene_zone": "sidewalk",
+            "video_id": "basketball_1.mp4",
+            "object_type": "person",
+            "object_color": "unknown",
+            "start_time": 0.0,
+            "end_time": 17.458333333333332,
+            "keywords": "baseline,idle,left_center,standing"
+          }
+        }
+      ],
+      "bm25_top5": [
+        {
+          "id": "basketball_1.mp4_track_1",
+          "bm25": 2.064815,
+          "doc": "Little motion; standing near the left baseline/bench area. Located in sidewalk. From 0.0s to 61.2s, a person with unknown color stays mostly still near the left",
+          "meta": {
+            "end_time": 61.208333333333336,
+            "object_color": "unknown",
+            "object_type": "person",
+            "video_id": "basketball_1.mp4",
+            "keywords": "bench_area,idle,left_side,standing",
+            "start_time": 0.0,
+            "scene_zone": "sidewalk",
+            "entity_hint": "track_1"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_2",
+          "bm25": 2.064815,
+          "doc": "Little motion; standing near the left-center baseline area. Located in sidewalk. From 0.0s to 16.1s, a person with unknown color remains mostly still near the l",
+          "meta": {
+            "entity_hint": "track_2",
+            "scene_zone": "sidewalk",
+            "video_id": "basketball_1.mp4",
+            "keywords": "baseline,idle,left_center,standing",
+            "object_type": "person",
+            "start_time": 0.0,
+            "end_time": 16.083333333333332,
+            "object_color": "unknown"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_3",
+          "bm25": 2.064815,
+          "doc": "Little motion; standing near the left-center baseline area. Located in sidewalk. From 0.0s to 12.0s, a person with unknown color remains mostly still near the l",
+          "meta": {
+            "end_time": 12.041666666666666,
+            "keywords": "baseline,idle,left_center,standing",
+            "entity_hint": "track_3",
+            "object_color": "unknown",
+            "scene_zone": "sidewalk",
+            "object_type": "person",
+            "start_time": 0.0,
+            "video_id": "basketball_1.mp4"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_6",
+          "bm25": 2.064815,
+          "doc": "Little motion; standing near the left-center baseline area. Located in sidewalk. From 0.0s to 17.5s, a person with unknown color remains mostly still near the l",
+          "meta": {
+            "keywords": "baseline,idle,left_center,standing",
+            "video_id": "basketball_1.mp4",
+            "object_color": "unknown",
+            "end_time": 17.458333333333332,
+            "scene_zone": "sidewalk",
+            "start_time": 0.0,
+            "entity_hint": "track_6",
+            "object_type": "person"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_7",
+          "bm25": 2.064815,
+          "doc": "Little motion; standing near the left-center baseline area. Located in sidewalk. From 0.0s to 17.6s, a person with unknown color remains mostly still near the l",
+          "meta": {
+            "object_type": "person",
+            "object_color": "unknown",
+            "end_time": 17.625,
+            "video_id": "basketball_1.mp4",
+            "keywords": "baseline,idle,left_center,standing",
+            "scene_zone": "sidewalk",
+            "entity_hint": "track_7",
+            "start_time": 0.0
+          }
+        }
+      ],
+      "hybrid_top5": [
+        {
+          "id": "basketball_1.mp4_track_11",
+          "hybrid_score": 1.0,
+          "cosine_sim_est": 0.78986,
+          "bm25": 2.064815,
+          "doc": "Little motion; standing near the left-center baseline area. Located in sidewalk. From 11.5s to 91.8s, a person with unknown color remains mostly still near the ",
+          "meta": {
+            "end_time": 91.75,
+            "scene_zone": "sidewalk",
+            "object_color": "unknown",
+            "entity_hint": "track_11",
+            "object_type": "person",
+            "keywords": "baseline,idle,left_center,standing",
+            "start_time": 11.5,
+            "video_id": "basketball_1.mp4"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_9",
+          "hybrid_score": 0.997885,
+          "cosine_sim_est": 0.789404,
+          "bm25": 2.064815,
+          "doc": "Little motion; standing near the center-left baseline area. Located in parking. From 0.0s to 270.3s, a person with unknown color stays mostly still near the cen",
+          "meta": {
+            "video_id": "basketball_1.mp4",
+            "end_time": 270.2916666666667,
+            "scene_zone": "parking",
+            "keywords": "baseline,center_left,idle,standing",
+            "entity_hint": "track_9",
+            "object_color": "unknown",
+            "start_time": 0.0,
+            "object_type": "person"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_3",
+          "hybrid_score": 0.967218,
+          "cosine_sim_est": 0.782788,
+          "bm25": 2.064815,
+          "doc": "Little motion; standing near the left-center baseline area. Located in sidewalk. From 0.0s to 12.0s, a person with unknown color remains mostly still near the l",
+          "meta": {
+            "keywords": "baseline,idle,left_center,standing",
+            "scene_zone": "sidewalk",
+            "object_type": "person",
+            "object_color": "unknown",
+            "start_time": 0.0,
+            "end_time": 12.041666666666666,
+            "entity_hint": "track_3",
+            "video_id": "basketball_1.mp4"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_7",
+          "hybrid_score": 0.957677,
+          "cosine_sim_est": 0.78073,
+          "bm25": 2.064815,
+          "doc": "Little motion; standing near the left-center baseline area. Located in sidewalk. From 0.0s to 17.6s, a person with unknown color remains mostly still near the l",
+          "meta": {
+            "start_time": 0.0,
+            "object_color": "unknown",
+            "object_type": "person",
+            "scene_zone": "sidewalk",
+            "entity_hint": "track_7",
+            "keywords": "baseline,idle,left_center,standing",
+            "end_time": 17.625,
+            "video_id": "basketball_1.mp4"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_6",
+          "hybrid_score": 0.950576,
+          "cosine_sim_est": 0.779198,
+          "bm25": 2.064815,
+          "doc": "Little motion; standing near the left-center baseline area. Located in sidewalk. From 0.0s to 17.5s, a person with unknown color remains mostly still near the l",
+          "meta": {
+            "object_type": "person",
+            "object_color": "unknown",
+            "keywords": "baseline,idle,left_center,standing",
+            "end_time": 17.458333333333332,
+            "entity_hint": "track_6",
+            "scene_zone": "sidewalk",
+            "video_id": "basketball_1.mp4",
+            "start_time": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "lang": "en",
+      "query": "fast moving target",
+      "cosine_top5": [
+        {
+          "id": "basketball_1.mp4_track_26",
+          "distance": 0.4735311269760132,
+          "doc": "Significant movement; moving in from the right side of the court. Located in road_right. From 29.4s to 46.8s, a person with unknown color moves in from the righ",
+          "meta": {
+            "end_time": 46.75,
+            "scene_zone": "road_right",
+            "object_type": "person",
+            "keywords": "driving_in,movement,road_right,walking",
+            "video_id": "basketball_1.mp4",
+            "entity_hint": "track_26",
+            "object_color": "unknown",
+            "start_time": 29.417
+          }
+        },
+        {
+          "id": "basketball_2.mp4_track_id_3",
+          "distance": 0.4940323829650879,
+          "doc": "moving near the left-center court area Located in court left-center. From 41.50s to 46.85s, a dark-clothed person moves near the left-center court area.",
+          "meta": {
+            "object_type": "person",
+            "scene_zone": "court left-center",
+            "object_color": "dark",
+            "keywords": "court,indoor,left_center,movement,person",
+            "end_time": 46.85,
+            "entity_hint": "track_id_3",
+            "start_time": 41.5,
+            "video_id": "basketball_2.mp4"
+          }
+        },
+        {
+          "id": "basketball_2.mp4_track_id_4",
+          "distance": 0.4952288269996643,
+          "doc": "moving near upper-middle court Located in court upper-middle. From 46.15s to 50.45s, a dark-clothed person moves near the upper-middle court area.",
+          "meta": {
+            "end_time": 50.45,
+            "object_type": "person",
+            "object_color": "dark",
+            "video_id": "basketball_2.mp4",
+            "start_time": 46.15,
+            "scene_zone": "court upper-middle",
+            "entity_hint": "track_id_4",
+            "keywords": "court,indoor,movement,person,upper_middle"
+          }
+        },
+        {
+          "id": "basketball_2.mp4_track_id_2",
+          "distance": 0.49933767318725586,
+          "doc": "moving across the court near center-right; moving near center court Located in court center-right. From 40.60s to 44.90s, a dark-clothed person moves across the",
+          "meta": {
+            "start_time": 40.6,
+            "object_type": "person",
+            "object_color": "dark",
+            "end_time": 51.0,
+            "video_id": "basketball_2.mp4",
+            "keywords": "center,center_right,court,indoor,movement,person",
+            "entity_hint": "track_id_2",
+            "scene_zone": "court center-right"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_39",
+          "distance": 0.5308207273483276,
+          "doc": "Little motion; standing near the right edge of the court. Located in road_right. From 77.3s to 78.5s, a person with unknown color remains mostly still near the ",
+          "meta": {
+            "object_color": "unknown",
+            "keywords": "court,idle,right_edge,standing",
+            "object_type": "person",
+            "end_time": 78.54166666666667,
+            "video_id": "basketball_1.mp4",
+            "scene_zone": "road_right",
+            "entity_hint": "track_39",
+            "start_time": 77.29166666666667
+          }
+        }
+      ],
+      "bm25_top5": [
+        {
+          "id": "basketball_2.mp4_track_id_2",
+          "bm25": 2.204883,
+          "doc": "moving across the court near center-right; moving near center court Located in court center-right. From 40.60s to 44.90s, a dark-clothed person moves across the",
+          "meta": {
+            "video_id": "basketball_2.mp4",
+            "entity_hint": "track_id_2",
+            "end_time": 51.0,
+            "start_time": 40.6,
+            "object_color": "dark",
+            "keywords": "center,center_right,court,indoor,movement,person",
+            "object_type": "person",
+            "scene_zone": "court center-right"
+          }
+        },
+        {
+          "id": "basketball_2.mp4_track_id_4",
+          "bm25": 1.943161,
+          "doc": "moving near upper-middle court Located in court upper-middle. From 46.15s to 50.45s, a dark-clothed person moves near the upper-middle court area.",
+          "meta": {
+            "scene_zone": "court upper-middle",
+            "object_color": "dark",
+            "entity_hint": "track_id_4",
+            "object_type": "person",
+            "video_id": "basketball_2.mp4",
+            "end_time": 50.45,
+            "start_time": 46.15,
+            "keywords": "court,indoor,movement,person,upper_middle"
+          }
+        },
+        {
+          "id": "basketball_2.mp4_track_id_3",
+          "bm25": 1.886764,
+          "doc": "moving near the left-center court area Located in court left-center. From 41.50s to 46.85s, a dark-clothed person moves near the left-center court area.",
+          "meta": {
+            "keywords": "court,indoor,left_center,movement,person",
+            "end_time": 46.85,
+            "object_type": "person",
+            "start_time": 41.5,
+            "object_color": "dark",
+            "scene_zone": "court left-center",
+            "entity_hint": "track_id_3",
+            "video_id": "basketball_2.mp4"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_26",
+          "bm25": 1.759126,
+          "doc": "Significant movement; moving in from the right side of the court. Located in road_right. From 29.4s to 46.8s, a person with unknown color moves in from the righ",
+          "meta": {
+            "video_id": "basketball_1.mp4",
+            "object_color": "unknown",
+            "scene_zone": "road_right",
+            "start_time": 29.417,
+            "keywords": "driving_in,movement,road_right,walking",
+            "end_time": 46.75,
+            "object_type": "person",
+            "entity_hint": "track_26"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_1",
+          "bm25": 0.0,
+          "doc": "Little motion; standing near the left baseline/bench area. Located in sidewalk. From 0.0s to 61.2s, a person with unknown color stays mostly still near the left",
+          "meta": {
+            "end_time": 61.208333333333336,
+            "object_color": "unknown",
+            "object_type": "person",
+            "video_id": "basketball_1.mp4",
+            "keywords": "bench_area,idle,left_side,standing",
+            "start_time": 0.0,
+            "scene_zone": "sidewalk",
+            "entity_hint": "track_1"
+          }
+        }
+      ],
+      "hybrid_top5": [
+        {
+          "id": "basketball_1.mp4_track_26",
+          "hybrid_score": 0.919133,
+          "cosine_sim_est": 0.526469,
+          "bm25": 1.759126,
+          "doc": "Significant movement; moving in from the right side of the court. Located in road_right. From 29.4s to 46.8s, a person with unknown color moves in from the righ",
+          "meta": {
+            "object_type": "person",
+            "video_id": "basketball_1.mp4",
+            "scene_zone": "road_right",
+            "start_time": 29.417,
+            "end_time": 46.75,
+            "object_color": "unknown",
+            "entity_hint": "track_26",
+            "keywords": "driving_in,movement,road_right,walking"
+          }
+        },
+        {
+          "id": "basketball_2.mp4_track_id_2",
+          "hybrid_score": 0.817076,
+          "cosine_sim_est": 0.500662,
+          "bm25": 2.204883,
+          "doc": "moving across the court near center-right; moving near center court Located in court center-right. From 40.60s to 44.90s, a dark-clothed person moves across the",
+          "meta": {
+            "entity_hint": "track_id_2",
+            "video_id": "basketball_2.mp4",
+            "object_color": "dark",
+            "start_time": 40.6,
+            "object_type": "person",
+            "end_time": 51.0,
+            "scene_zone": "court center-right",
+            "keywords": "center,center_right,court,indoor,movement,person"
+          }
+        },
+        {
+          "id": "basketball_2.mp4_track_id_4",
+          "hybrid_score": 0.79872,
+          "cosine_sim_est": 0.504771,
+          "bm25": 1.943161,
+          "doc": "moving near upper-middle court Located in court upper-middle. From 46.15s to 50.45s, a dark-clothed person moves near the upper-middle court area.",
+          "meta": {
+            "entity_hint": "track_id_4",
+            "object_color": "dark",
+            "end_time": 50.45,
+            "start_time": 46.15,
+            "scene_zone": "court upper-middle",
+            "object_type": "person",
+            "keywords": "court,indoor,movement,person,upper_middle",
+            "video_id": "basketball_2.mp4"
+          }
+        },
+        {
+          "id": "basketball_2.mp4_track_id_3",
+          "hybrid_score": 0.79697,
+          "cosine_sim_est": 0.505968,
+          "bm25": 1.886764,
+          "doc": "moving near the left-center court area Located in court left-center. From 41.50s to 46.85s, a dark-clothed person moves near the left-center court area.",
+          "meta": {
+            "end_time": 46.85,
+            "entity_hint": "track_id_3",
+            "start_time": 41.5,
+            "video_id": "basketball_2.mp4",
+            "scene_zone": "court left-center",
+            "object_color": "dark",
+            "object_type": "person",
+            "keywords": "court,indoor,left_center,movement,person"
+          }
+        },
+        {
+          "id": "basketball_1.mp4_track_39",
+          "hybrid_score": 0.193915,
+          "cosine_sim_est": 0.469179,
+          "bm25": 0.0,
+          "doc": "Little motion; standing near the right edge of the court. Located in road_right. From 77.3s to 78.5s, a person with unknown color remains mostly still near the ",
+          "meta": {
+            "entity_hint": "track_39",
+            "scene_zone": "road_right",
+            "end_time": 78.54166666666667,
+            "object_type": "person",
+            "keywords": "court,idle,right_edge,standing",
+            "start_time": 77.29166666666667,
+            "object_color": "unknown",
+            "video_id": "basketball_1.mp4"
+          }
+        }
+      ]
+    }
+  ]
+}
