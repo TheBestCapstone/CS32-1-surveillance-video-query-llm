@@ -1,4 +1,12 @@
-"""Cross-camera person matching: time filtering → Re-ID embedding → global assignment (greedy + Union-Find)."""
+"""Cross-camera person matching: time filtering → Re-ID embedding → global assignment (greedy + Union-Find).
+
+Scoring formula (with topology prior injected):
+  score = topology_weight_reid  * cosine_similarity
+        + topology_weight_topo  * topology_score(cam_a, cam_b, Δt)
+
+Without a topology prior the system falls back to the legacy heuristic:
+  score = 0.70 * cosine + 0.30 * time_window_score(Δt)
+"""
 
 from __future__ import annotations
 
@@ -18,6 +26,7 @@ from video.core.schema.multi_camera import (
 
 if TYPE_CHECKING:
     from video.core.models.reid_embedder import ReIDEmbedder
+    from video.core.models.camera_topology import CameraTopologyPrior
 
 logger = logging.getLogger(__name__)
 
@@ -85,11 +94,37 @@ def build_candidate_pairs(
 
 def score_candidate_pairs(
     pairs: list[tuple[CameraResult, dict, CameraResult, dict]],
-    embedder: ReIDEmbedder,
+    embedder: "ReIDEmbedder",
     config: CrossCameraConfig,
+    topology_prior: "CameraTopologyPrior | None" = None,
 ) -> list[tuple[CameraResult, dict, CameraResult, dict, float]]:
-    """Cross-camera score: 0.7*cosine + 0.3*time_window_score."""
-    def _time_window_score(gap_sec: float) -> float:
+    """Cross-camera score combining Re-ID cosine with temporal topology.
+
+    With *topology_prior* injected (recommended)::
+
+        score = config.topology_weight_reid * cosine
+              + config.topology_weight_topo * topology_score(cam_a, cam_b, Δt)
+
+    Legacy fallback (no topology prior)::
+
+        score = 0.70 * cosine + 0.30 * time_window_score(Δt)
+
+    Parameters
+    ----------
+    pairs:
+        Candidate pairs from :func:`build_candidate_pairs`.
+    embedder:
+        Re-ID model (used only to verify embedding availability; embeddings
+        are pre-computed and stored in ``CameraResult.person_embeddings``).
+    config:
+        Matching hyper-parameters, including ``topology_weight_*`` fields.
+    topology_prior:
+        Optional :class:`~video.core.models.camera_topology.CameraTopologyPrior`.
+        When provided, replaces the hardcoded time-window heuristic with a
+        learned per-pair transit-time distribution.
+    """
+
+    def _legacy_time_window_score(gap_sec: float) -> float:
         if gap_sec <= 30.0:
             return 1.0
         if gap_sec <= 120.0:
@@ -105,9 +140,25 @@ def score_candidate_pairs(
         if emb_i is None or emb_j is None:
             continue
         cosine = float(emb_i @ emb_j)
-        gap = _time_gap(float(ti["start_time"]), float(ti["end_time"]), float(tj["start_time"]), float(tj["end_time"]))
-        tw = _time_window_score(gap)
-        score = 0.7 * cosine + 0.3 * tw
+        gap = _time_gap(
+            float(ti["start_time"]), float(ti["end_time"]),
+            float(tj["start_time"]), float(tj["end_time"]),
+        )
+
+        if topology_prior is not None:
+            # Topology-aware scoring: directed A→B and B→A, take the best
+            topo_ab = topology_prior.score(cam_i.camera_id, cam_j.camera_id, gap)
+            topo_ba = topology_prior.score(cam_j.camera_id, cam_i.camera_id, gap)
+            topo_score = max(topo_ab, topo_ba)
+            score = (
+                config.topology_weight_reid * cosine
+                + config.topology_weight_topo * topo_score
+            )
+        else:
+            # Legacy fallback
+            tw = _legacy_time_window_score(gap)
+            score = 0.70 * cosine + 0.30 * tw
+
         scored.append((cam_i, ti, cam_j, tj, score))
     scored.sort(key=lambda x: x[4], reverse=True)
     return scored
@@ -234,20 +285,22 @@ def _build_global_entities(
 def match_across_cameras(
     per_camera: list[CameraResult],
     config: CrossCameraConfig,
-    embedder: ReIDEmbedder,
+    embedder: "ReIDEmbedder",
     llm_verify_fn: Callable[..., MatchVerification] | None = None,
+    topology_prior: "CameraTopologyPrior | None" = None,
 ) -> list[GlobalEntity]:
     """Cross-camera matching entrypoint.
 
     1. Candidate pairs under time constraints
-    2. Re-ID cosine scoring
+    2. Re-ID cosine + topology scoring
     3. (Optional) top-K LLM verification on borderline cosine
     4. Greedy assignment → GlobalEntity list
+    5. Online topology update: feed confirmed match transit times back to prior
     """
     pairs = build_candidate_pairs(per_camera, config)
     logger.info("Candidate pairs after time filter: %d", len(pairs))
 
-    scored = score_candidate_pairs(pairs, embedder, config)
+    scored = score_candidate_pairs(pairs, embedder, config, topology_prior=topology_prior)
     logger.info("Scored pairs: %d", len(scored))
 
     if llm_verify_fn is not None and config.llm_verify_top_k > 0:
@@ -290,5 +343,40 @@ def match_across_cameras(
 
     assignments = _greedy_assign(scored, config.cross_camera_min_score)
     logger.info("Assignments: %d", len(assignments))
+
+    # ------------------------------------------------------------------ #
+    # Online topology prior update                                         #
+    # Feed confirmed match transit times back into the prior so subsequent #
+    # videos benefit from accumulated real-world transit statistics.       #
+    # ------------------------------------------------------------------ #
+    if topology_prior is not None and assignments:
+        track_lookup: dict[tuple[str, int], dict[str, Any]] = {
+            (cam.camera_id, t["track_id"]): t
+            for cam in per_camera
+            for t in cam.tracks
+        }
+        new_transitions: list[tuple[str, str, float]] = []
+        for cam_a, tid_a, cam_b, tid_b, score in assignments:
+            t_a = track_lookup.get((cam_a, tid_a))
+            t_b = track_lookup.get((cam_b, tid_b))
+            if t_a is None or t_b is None:
+                continue
+            # Direction: earlier track → later track
+            end_a = float(t_a["end_time"])
+            start_b = float(t_b["start_time"])
+            end_b = float(t_b["end_time"])
+            start_a = float(t_a["start_time"])
+            if end_a <= start_b:
+                delta_t = start_b - end_a
+                new_transitions.append((cam_a, cam_b, delta_t))
+            elif end_b <= start_a:
+                delta_t = start_a - end_b
+                new_transitions.append((cam_b, cam_a, delta_t))
+            # Overlapping tracks: skip (same-time, not a transit)
+        if new_transitions:
+            topology_prior.observe_batch(new_transitions)
+            logger.info(
+                "Topology prior updated with %d new transitions.", len(new_transitions)
+            )
 
     return _build_global_entities(assignments, per_camera)

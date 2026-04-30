@@ -204,6 +204,7 @@ def run_multi_camera_pipeline(
     num_crops: int = 5,
     use_llm_verify: bool = False,
     llm_model: str = "gpt-4o-mini",
+    topology_prior_path: str | None = None,
     **pipeline_kwargs: Any,
 ) -> MultiCameraOutput:
     """Main entry for multi-camera cross-view tracking.
@@ -212,7 +213,12 @@ def run_multi_camera_pipeline(
         camera_videos: {"cam1": "/path/cam1.mp4", "cam2": "/path/cam2.mp4", ...}
         config: Cross-camera hyperparameters; defaults if None.
         embedder: Re-ID model; created from reid_* if None.
+        topology_prior_path: Path to a saved :class:`CameraTopologyPrior` JSON.
+            If the file exists it is loaded; if None a fresh prior is initialised
+            from the camera list and updated online during this run.
     """
+    from video.core.models.camera_topology import CameraTopologyPrior
+
     if config is None:
         config = CrossCameraConfig()
     if embedder is None:
@@ -220,6 +226,20 @@ def run_multi_camera_pipeline(
             config_file=reid_config_file,
             weights=reid_weights,
             device=reid_device,
+        )
+
+    # Load or initialise topology prior
+    camera_ids = list(camera_videos.keys())
+    if topology_prior_path and Path(topology_prior_path).exists():
+        topology_prior = CameraTopologyPrior.load(topology_prior_path)
+        logger.info("Loaded topology prior from %s", topology_prior_path)
+    else:
+        topology_prior = CameraTopologyPrior(
+            cameras=camera_ids,
+            max_transit_sec=config.max_transition_sec * 10,  # generous upper bound
+        )
+        logger.info(
+            "Initialised fresh topology prior for cameras: %s", camera_ids
         )
 
     # Stage 1: per camera
@@ -232,14 +252,22 @@ def run_multi_camera_pipeline(
         _stitch_same_camera_fragments(result, config)
         per_camera.append(result)
 
-    # Stage 2: cross-camera match
+    # Stage 2: cross-camera match (with topology prior)
     llm_verify_fn = None
     if use_llm_verify:
         from video.core.models.event_refinement_llm import verify_person_match_with_llm
         from functools import partial
         llm_verify_fn = partial(verify_person_match_with_llm, model=llm_model)
 
-    global_entities = match_across_cameras(per_camera, config, embedder, llm_verify_fn)
+    global_entities = match_across_cameras(
+        per_camera, config, embedder, llm_verify_fn,
+        topology_prior=topology_prior,
+    )
+
+    # Persist updated topology prior for future runs
+    if topology_prior_path:
+        topology_prior.save(topology_prior_path)
+        logger.info("Topology prior persisted to %s", topology_prior_path)
 
     # Stage 3: merge events
     entity_lookup = _build_entity_lookup(global_entities)

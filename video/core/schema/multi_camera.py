@@ -69,6 +69,13 @@ class CrossCameraConfig:
     # Trigger VLM only for borderline cosine
     llm_verify_cosine_min: float = 0.65
     llm_verify_cosine_max: float = 0.80
+    # Camera topology prior weights.
+    # When a CameraTopologyPrior is injected the combined score becomes:
+    #   topology_weight_reid  * cosine
+    # + topology_weight_topo  * topology_score(cam_a, cam_b, delta_t)
+    # (must sum to ≤ 1.0; remainder is ignored)
+    topology_weight_reid: float = 0.55
+    topology_weight_topo: float = 0.45
 
 
 @dataclass
