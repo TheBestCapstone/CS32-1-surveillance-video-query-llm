@@ -151,7 +151,7 @@ def run_yolo_track_on_video(
         stream=True,
         verbose=False,
         tracker=tracker_cfg,
-        device=_resolve_device("mps"),
+        device=_resolve_device("cuda" if torch.cuda.is_available() else "mps"),
     )
 
     frame_detections: list[list[tuple[int | None, str, float, list[float]]]] = []

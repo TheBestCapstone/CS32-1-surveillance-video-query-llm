@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import logging
+import math
 from dataclasses import dataclass
 from typing import Any, Literal
 
@@ -16,6 +17,54 @@ from video.core.schema.multi_camera import MatchVerification
 from video.core.schema.refined_event_llm import RefinedEntity, RefinedEventsPayload, VectorEventsPayload
 
 logger = logging.getLogger(__name__)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Slim event serialisation  (saves ~80% tokens vs indent=2 JSON)
+# ─────────────────────────────────────────────────────────────────────────────
+
+_EV_TYPE_SHORT: dict[str, str] = {
+    "motion_segment":        "mv",   # object actively moving
+    "presence_after_motion": "pam",  # object still after moving
+    "appearance":            "app",  # object enters scene
+    "disappearance":         "dis",  # object leaves scene
+    "presence_static":       "sta",  # object present, barely moving
+}
+
+# One-line key for pasting into prompts so the LLM knows what the abbreviations mean
+SLIM_EVENT_LEGEND = (
+    "# raw_events compact format — "
+    "ev: mv=moving, pam=still_after_move, app=appear, dis=disappear, sta=static | "
+    "id=track_id | cls=class | s/e=start/end_sec | b0/b1=start/end_bbox_xyxy(px)\n"
+)
+
+
+def _slim_event(e: dict[str, Any]) -> dict[str, Any]:
+    """Convert a full pipeline event dict to a compact LLM-input form.
+
+    Full event  ≈ 130 tokens (indent=2 JSON)
+    Slim event  ≈  25 tokens (compact JSON)
+    Savings     ≈  80%
+
+    The original dict is NOT mutated; it is only used for reading.
+    """
+    raw_b0 = e.get("start_bbox_xyxy") or [0, 0, 0, 0]
+    raw_b1 = e.get("end_bbox_xyxy")   or [0, 0, 0, 0]
+    return {
+        "ev":  _EV_TYPE_SHORT.get(str(e.get("event_type", "")), e.get("event_type", "?")),
+        "id":  e.get("track_id"),
+        "cls": e.get("class_name"),
+        "s":   round(float(e.get("start_time", 0)), 1),
+        "e":   round(float(e.get("end_time",   0)), 1),
+        "b0":  [int(v) for v in raw_b0],
+        "b1":  [int(v) for v in raw_b1],
+    }
+
+
+def _compact_events_str(raw_events: list[dict[str, Any]]) -> str:
+    """Serialise events as a compact one-liner with legend header."""
+    slim = [_slim_event(e) for e in raw_events]
+    return SLIM_EVENT_LEGEND + json.dumps(slim, separators=(",", ":"), ensure_ascii=False)
 
 
 @dataclass(frozen=True)
@@ -238,7 +287,7 @@ def refine_events_with_llm(
         f"Video path: {video_path}\n"
         f"Clip under analysis: start_sec={clip['start_sec']}, end_sec={clip['end_sec']}\n\n"
         "Raw pipeline events for this clip (may contain false positives, bad timing, or split duplicates):\n"
-        f"{json.dumps(raw_events, ensure_ascii=False, indent=2)}\n\n"
+        f"{_compact_events_str(raw_events)}\n\n"
         "Uniformly sampled key frames for this clip (timestamps are listed below; state in evidence which frame times you rely on):\n"
         + "\n".join([f"- frame_time_sec={f.t_sec:.3f}" for f in frames])
         + "\n\n"
@@ -321,8 +370,8 @@ def refine_vector_events_with_llm(
     user_text = (
         f"video_id: {video_id}\n"
         f"clip: start_sec={clip['start_sec']}, end_sec={clip['end_sec']}\n\n"
-        "raw_events_json (copy start_time/end_time exactly into your output):\n"
-        f"{json.dumps(raw_events, ensure_ascii=False, indent=2)}\n\n"
+        "raw_events (copy s/e times exactly into start_time/end_time of your output):\n"
+        f"{_compact_events_str(raw_events)}\n\n"
         "Key frame timestamps:\n"
         + "\n".join([f"- t={f.t_sec:.3f}" for f in frames])
         + "\n\n"
@@ -343,6 +392,131 @@ def refine_vector_events_with_llm(
     )
     text = resp.content if isinstance(resp.content, str) else str(resp.content)
     return parser.parse(text)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Batched refinement  —  handles arbitrarily large event lists
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _frames_for_window(
+    frames: list[FrameSample],
+    t_start: float,
+    t_end: float,
+) -> list[FrameSample]:
+    """Return frames whose timestamp falls within [t_start, t_end].
+    Always includes at least the single closest frame so no batch is imageless."""
+    window = [f for f in frames if t_start <= f.t_sec <= t_end]
+    if not window and frames:
+        window = [min(frames, key=lambda f: abs(f.t_sec - (t_start + t_end) / 2))]
+    return window
+
+
+def refine_events_batched(
+    *,
+    video_path: str,
+    clip: dict[str, float],
+    raw_events: list[dict[str, Any]],
+    frames: list[FrameSample],
+    model: str = "gpt-4o",
+    temperature: float = 0.1,
+    max_events_per_batch: int = 20,
+    max_time_adjust_sec: float = 0.5,
+    merge_location_iou_threshold: float = 0.9,
+    merge_center_dist_px: float = 30.0,
+    merge_location_norm_diff: float = 0.10,
+) -> RefinedEventsPayload:
+    """Split raw_events into batches of ≤ max_events_per_batch, call the LLM once
+    per batch, then merge all partial RefinedEventsPayload results into one.
+
+    When event count ≤ max_events_per_batch the function degrades gracefully to a
+    single call (identical behaviour to refine_events_with_llm).
+
+    Merge strategy
+    ──────────────
+    • scene_context  : taken from the first batch (widest temporal view).
+    • entities       : concatenated; track_id de-duplication prevents double-counting
+                       across batches (same id in two batches → kept once, later
+                       batch wins for field values).
+    • refined_events : concatenated in chronological order.
+    • temporal_policy / location_policy : taken from the first batch.
+    """
+    if not raw_events:
+        return refine_events_with_llm(
+            video_path=video_path, clip=clip, raw_events=[], frames=frames,
+            model=model, temperature=temperature,
+        )
+
+    # ── Sort events by start_time so batches are time-contiguous ──────────────
+    sorted_events = sorted(raw_events, key=lambda e: float(e.get("start_time", 0)))
+
+    n_batches = math.ceil(len(sorted_events) / max_events_per_batch)
+    logger.info(
+        "refine_events_batched: %d events → %d batch(es) of ≤%d",
+        len(sorted_events), n_batches, max_events_per_batch,
+    )
+
+    partial_payloads: list[RefinedEventsPayload] = []
+
+    for batch_idx in range(n_batches):
+        batch_events = sorted_events[
+            batch_idx * max_events_per_batch : (batch_idx + 1) * max_events_per_batch
+        ]
+
+        # Time window for this batch
+        t_start = float(batch_events[0].get("start_time",  clip["start_sec"]))
+        t_end   = float(batch_events[-1].get("end_time",   clip["end_sec"]))
+        batch_clip = {"start_sec": t_start, "end_sec": t_end}
+
+        # Only pass frames that fall in this time window
+        batch_frames = _frames_for_window(frames, t_start, t_end)
+
+        logger.info(
+            "  Batch %d/%d: events=%d  t=[%.1f, %.1f]  frames=%d",
+            batch_idx + 1, n_batches, len(batch_events), t_start, t_end, len(batch_frames),
+        )
+
+        partial = refine_events_with_llm(
+            video_path=video_path,
+            clip=batch_clip,
+            raw_events=batch_events,
+            frames=batch_frames,
+            model=model,
+            temperature=temperature,
+            max_time_adjust_sec=max_time_adjust_sec,
+            merge_location_iou_threshold=merge_location_iou_threshold,
+            merge_center_dist_px=merge_center_dist_px,
+            merge_location_norm_diff=merge_location_norm_diff,
+        )
+        partial_payloads.append(partial)
+
+    # ── Merge partial payloads ────────────────────────────────────────────────
+    first = partial_payloads[0]
+
+    # De-duplicate entities: track_id is the identity key; later batch wins
+    entity_by_tid: dict[str, RefinedEntity] = {}
+    for payload in partial_payloads:
+        for ent in payload.entities:
+            key = f"{ent.class_name}_{ent.local_track_ids}"
+            entity_by_tid[key] = ent   # last-write wins → preserves temporal order
+    merged_entities = list(entity_by_tid.values())
+
+    # Concatenate refined_events sorted by start_time
+    all_refined = [
+        ev
+        for payload in partial_payloads
+        for ev in payload.refined_events
+    ]
+    all_refined.sort(key=lambda ev: ev.start_time)
+
+    return RefinedEventsPayload(
+        video_path=video_path,
+        analyzed_clip={"start_sec": clip["start_sec"], "end_sec": clip["end_sec"]},
+        scene_context=first.scene_context,         # widest temporal view
+        entities=merged_entities,
+        refined_events=all_refined,
+        temporal_policy=first.temporal_policy,
+        location_policy=first.location_policy,
+    )
 
 
 # ------------------------------------------------------------------

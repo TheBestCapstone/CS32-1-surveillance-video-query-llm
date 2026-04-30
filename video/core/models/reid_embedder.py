@@ -97,17 +97,22 @@ class ReIDEmbedder:
             return self._load_torchreid_osnet(device)
         return self._load_torchvision(device)
 
-    @staticmethod
-    def _load_torchreid_osnet(device: str) -> torch.nn.Module:
+    # osnet_x0_5  — lightweight  (~1.6M params, faster)
+    # osnet_x0_75 — balanced     (~2.4M params)
+    # osnet_x1_0  — full-size    (~2.2M params, best accuracy)
+    _OSNET_VARIANT: str = "osnet_x1_0"
+
+    @classmethod
+    def _load_torchreid_osnet(cls, device: str) -> torch.nn.Module:
         model = _torchreid_models.build_model(
-            name="osnet_x0_5",
+            name=cls._OSNET_VARIANT,
             num_classes=1000,
             pretrained=True,
             use_gpu=False,
         )
         model.to(device)
         model.eval()
-        logger.info("torchreid OSNet x0_5 loaded")
+        logger.info("torchreid %s loaded", cls._OSNET_VARIANT)
         return model
 
     @staticmethod

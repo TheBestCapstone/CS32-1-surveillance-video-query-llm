@@ -1,20 +1,58 @@
+# ─── secrets / env ──────────────────────────────────────────────────────────
 .env
-docs/
+.env.*
+
+# ─── large data & model artifacts (NOT versioned) ───────────────────────────
+_data/
 _model/
 _models/
-_data/
-_pipeline_output/
 data/
+video_data/
 toos/
-# Python
+yolov8n.pt
+*.pth
+*.pt
+*.onnx
+*.pckl
+
+# ─── pipeline / experiment outputs (regenerated, not source) ────────────────
+_pipeline_output/
+outputs/
+logs/
+sanity/
+results/
+docs/
+
+# Root-level scratch result files
+/result_*.json
+/result_*.log
+/_check_videos.py
+/make_progress_doc*.py
+/capstone_progress_report*.docx
+/pipeline_flowchart.md
+/result.md
+
+# ─── Python ─────────────────────────────────────────────────────────────────
 __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# ─── tooling / IDE ──────────────────────────────────────────────────────────
 .langgraph_api/
 agent/.langgraph_api/
-*.pckl
 agent/init/agent_init_profile.json
-yolov8n.pt
-video_data/
 agent/_删除的文件/
+.idea/
+.vscode/
+.DS_Store
+
+# ─── temp / build ───────────────────────────────────────────────────────────
+*.tmp
+*.bak
+*.swp
+build/
+dist/
