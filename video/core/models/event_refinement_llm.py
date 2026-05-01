@@ -351,8 +351,13 @@ def refine_vector_events_with_llm(
     frames: list[FrameSample],
     model: str = "gpt-5.4",
     temperature: float = 0.0,
+    cross_camera_context: str | None = None,
 ) -> VectorEventsPayload:
-    """Production vector-store mode: minimal fields for retrieval; never change start/end times."""
+    """Production vector-store mode: minimal fields for retrieval; never change start/end times.
+
+    cross_camera_context: optional pre-formatted string describing how global entities
+    move across cameras (injected into prompt when provided by multi-camera pipeline).
+    """
     parser = PydanticOutputParser(pydantic_object=VectorEventsPayload)
 
     images_content: list[dict[str, Any]] = [
@@ -367,6 +372,14 @@ def refine_vector_events_with_llm(
         "No extra fields, no Markdown, no prose outside JSON."
     )
 
+    cross_cam_block = (
+        f"\n[cross-camera entity trajectories]\n{cross_camera_context}\n"
+        "Use these trajectories to enrich event_text with cross-camera movement "
+        "(e.g. 'entity_003 entered from cam1 3s ago'). "
+        "Only reference entities whose track_id appears in the raw_events above.\n"
+        if cross_camera_context else ""
+    )
+
     user_text = (
         f"video_id: {video_id}\n"
         f"clip: start_sec={clip['start_sec']}, end_sec={clip['end_sec']}\n\n"
@@ -374,8 +387,8 @@ def refine_vector_events_with_llm(
         f"{_compact_events_str(raw_events)}\n\n"
         "Key frame timestamps:\n"
         + "\n".join([f"- t={f.t_sec:.3f}" for f in frames])
-        + "\n\n"
-        "Output rules:\n"
+        + cross_cam_block
+        + "\nOutput rules:\n"
         "- JSON only; must match the schema.\n"
         "- event_text: English sentence with time range + subject (with color) + action + scene region (entrance/exit/road right/parking/sidewalk).\n"
         "- object_color: prefer white/black/silver_gray/red/blue/dark/unknown (English coarse bucket).\n"
