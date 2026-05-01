@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import logging
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Literal
@@ -18,6 +19,8 @@ from video.core.models.event_refinement_llm import (
     refine_vector_events_with_llm,
 )
 from video.core.schema.refined_event_llm import RefinedAllClipsPayload, RefinedEventsPayload, VectorEventsPayload
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -157,6 +160,172 @@ def run_refine_events_to_dict(
         "video_id": Path(video_path).name,
         "events": flat_events,
     }
+
+
+def _build_cross_camera_context(output: Any) -> str | None:
+    """
+    Build a compact cross-camera trajectory string for the VLM prompt.
+
+    Example output line:
+        entity_003 (person): cam1 12.3s–18.7s → cam2 22.1s–30.4s (transit ≈3.4s)
+
+    Returns None when there are no multi-camera entities (single-camera case).
+    """
+    from video.core.schema.multi_camera import GlobalEntity
+
+    entities: list[GlobalEntity] = getattr(output, "global_entities", [])
+    if not entities:
+        return None
+
+    lines: list[str] = []
+    for ent in entities:
+        apps = sorted(ent.appearances, key=lambda a: a.start_time)
+        if not apps:
+            continue
+
+        # Determine object class from the first appearance's camera events
+        # (best-effort; falls back to "entity")
+        obj_class = "entity"
+        per_camera: list[Any] = getattr(output, "per_camera", [])
+        cam_map = {cr.camera_id: cr for cr in per_camera}
+        first_app = apps[0]
+        cam_result = cam_map.get(first_app.camera_id)
+        if cam_result:
+            for t in cam_result.tracks:
+                if t.get("track_id") == first_app.track_id:
+                    obj_class = str(t.get("class_name", "entity"))
+                    break
+
+        # Build per-camera segments
+        segments: list[str] = []
+        for app in apps:
+            segments.append(
+                f"{app.camera_id} {app.start_time:.1f}s–{app.end_time:.1f}s"
+            )
+
+        # Annotate inter-camera transit gaps
+        parts: list[str] = [segments[0]]
+        for i in range(1, len(apps)):
+            gap = apps[i].start_time - apps[i - 1].end_time
+            arrow = f" → (transit ≈{gap:.1f}s) " if gap > 0 else " → "
+            parts.append(arrow + segments[i])
+
+        lines.append(f"{ent.global_entity_id} ({obj_class}): {''.join(parts)}")
+
+    return "\n".join(lines) if lines else None
+
+
+def refine_multi_camera_output(
+    output: Any,
+    config: RefineEventsConfig | None = None,
+) -> dict[str, Any]:
+    """
+    Run VLM refinement on a :class:`~video.core.schema.multi_camera.MultiCameraOutput`.
+
+    Granularity: **camera × clip** (same as the single-camera path).
+    A cross-camera context string derived from ``output.global_entities`` is injected
+    into every VLM call so the model can reference cross-camera entity trajectories.
+
+    Args:
+        output: A :class:`MultiCameraOutput` produced by
+            :func:`~video.factory.multi_camera_coordinator.run_multi_camera_pipeline`.
+        config: Refinement hyper-parameters; :class:`RefineEventsConfig` defaults if *None*.
+
+    Returns:
+        A dict keyed by ``camera_id``; each value has the same shape as
+        :func:`run_refine_events_to_dict` in ``"vector"`` mode::
+
+            {
+                "cam1": {"video_id": "cam1.mp4", "events": [...]},
+                "cam2": {"video_id": "cam2.mp4", "events": [...]},
+            }
+    """
+    cfg = config or RefineEventsConfig()
+    cross_ctx = _build_cross_camera_context(output)
+
+    if cross_ctx:
+        logger.debug(
+            "Cross-camera context (%d entities):\n%s",
+            len(getattr(output, "global_entities", [])),
+            cross_ctx,
+        )
+
+    results: dict[str, Any] = {}
+
+    for camera_result in output.per_camera:
+        cam_id = camera_result.camera_id
+        video_path = camera_result.video_path
+        vw, vh = get_video_size(video_path)
+
+        # All merged_events that belong to this camera (already have camera_id set)
+        cam_events_raw = [
+            ev for ev in output.merged_events
+            if ev.get("camera_id") == cam_id
+        ]
+        raw_events = enrich_events_with_normalized_location(cam_events_raw, vw, vh)
+
+        clip_segments: list[dict[str, float]] = camera_result.clips
+        if not clip_segments:
+            logger.warning("Camera %s has no clip_segments; skipping VLM refinement", cam_id)
+            results[cam_id] = {"video_id": Path(video_path).name, "events": []}
+            continue
+
+        refined_list_vector: list[VectorEventsPayload] = []
+
+        for clip in clip_segments:
+            clip_start = float(clip["start_sec"])
+            clip_end = float(clip["end_sec"])
+
+            clip_events = [
+                e for e in raw_events
+                if not (float(e.get("end_time", 0.0)) < clip_start
+                        or float(e.get("start_time", 0.0)) > clip_end)
+                and (float(e.get("end_time", 0.0)) - float(e.get("start_time", 0.0)))
+                    >= cfg.min_event_duration_sec
+            ]
+            if not clip_events:
+                continue
+
+            clip_duration = clip_end - clip_start
+            n_frames = cfg.compute_num_frames(clip_duration)
+            frames = sample_frames_uniform(
+                video_path=video_path,
+                start_sec=clip_start,
+                end_sec=clip_end,
+                num_frames=n_frames,
+            )
+            if not frames:
+                logger.warning(
+                    "Camera %s clip %.1f-%.1f: no frames sampled; skipping",
+                    cam_id, clip_start, clip_end,
+                )
+                continue
+
+            refined_list_vector.append(
+                refine_vector_events_with_llm(
+                    video_id=Path(video_path).name,
+                    clip={"start_sec": clip_start, "end_sec": clip_end},
+                    raw_events=clip_events,
+                    frames=frames,
+                    model=cfg.model,
+                    temperature=float(cfg.temperature),
+                    cross_camera_context=cross_ctx,
+                )
+            )
+
+        flat_events: list[dict[str, Any]] = []
+        for ve in refined_list_vector:
+            for ev in ve.events:
+                d = ev.model_dump()
+                d["camera_id"] = cam_id
+                flat_events.append(d)
+
+        results[cam_id] = {
+            "video_id": Path(video_path).name,
+            "events": flat_events,
+        }
+
+    return results
 
 
 def run_refine_events_from_files(
