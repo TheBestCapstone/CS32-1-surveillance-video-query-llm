@@ -1,0 +1,104 @@
+{
+  "video_id": "RoadAccidents116_x264",
+  "duration": 20.18,
+  "events": [
+    {
+      "video_id": "RoadAccidents116_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 20.18,
+      "start_time": 0.0,
+      "end_time": 7.5,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Many cars are driving on the road, two people are walking on the road.",
+      "scene_zone": "road",
+      "event_text": "From 0.0s to 7.5s, many cars are driving on the road, two people are walking on the road.",
+      "keywords": [
+        "many",
+        "cars",
+        "driving",
+        "road",
+        "two",
+        "people"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "RoadAccidents116_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 20.18,
+      "start_time": 0.0,
+      "end_time": 10.5,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car turns right at the intersection.",
+      "scene_zone": "road",
+      "event_text": "From 0.0s to 10.5s, a black car turns right at the intersection.",
+      "keywords": [
+        "black",
+        "car",
+        "turns",
+        "right",
+        "intersection"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "RoadAccidents116_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 20.18,
+      "start_time": 10.5,
+      "end_time": 16.5,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; The black car drove onto the sidewalk, hit a pedestrian and drove away.",
+      "scene_zone": "unknown",
+      "event_text": "From 10.5s to 16.5s, the black car drove onto the sidewalk, hit a pedestrian and drove away.",
+      "keywords": [
+        "black",
+        "car",
+        "drove",
+        "onto",
+        "sidewalk",
+        "hit"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    }
+  ]
+}

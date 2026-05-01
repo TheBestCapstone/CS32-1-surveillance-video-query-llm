@@ -1,0 +1,468 @@
+{
+  "video_id": "Normal_Videos620_x264",
+  "duration": 298.96,
+  "events": [
+    {
+      "video_id": "Normal_Videos620_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 298.96,
+      "start_time": 0.0,
+      "end_time": 5.1,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The picture is at the checkout counter in the supermarket. The cashier in the center of the picture is serving customers.",
+      "scene_zone": "store",
+      "event_text": "From 0.0s to 5.1s, the picture is at the checkout counter in the supermarket. The cashier in the center of the picture is serving customers.",
+      "keywords": [
+        "picture",
+        "checkout",
+        "counter",
+        "supermarket",
+        "cashier",
+        "center"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos620_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 298.96,
+      "start_time": 0.0,
+      "end_time": 7.3,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man wearing a dark blue shirt and pants in the picture left the picture with a white plastic bag.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 7.3s, the man wearing a dark blue shirt and pants in the picture left the picture with a white plastic bag.",
+      "keywords": [
+        "man",
+        "wearing",
+        "dark",
+        "blue",
+        "shirt",
+        "pants"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos620_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 298.96,
+      "start_time": 0.0,
+      "end_time": 14.3,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man with a red hat and a white coat on the right enters the screen, and the man in blue leaves the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 14.3s, a man with a red hat and a white coat on the right enters the screen, and the man in blue leaves the screen.",
+      "keywords": [
+        "man",
+        "red",
+        "hat",
+        "white",
+        "coat",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos620_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 298.96,
+      "start_time": 16.2,
+      "end_time": 34.2,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; A man pushing a shopping cart in the lower right corner of the screen walked to the checkout counter below. The man in a white shirt and black pants left the screen and walked to the top of the screen.",
+      "scene_zone": "store",
+      "event_text": "From 16.2s to 34.2s, a man pushing a shopping cart in the lower right corner of the screen walked to the checkout counter below. The man in a white shirt and black pants left the screen and walked to the top of the screen.",
+      "keywords": [
+        "man",
+        "pushing",
+        "shopping",
+        "cart",
+        "lower",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos620_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 298.96,
+      "start_time": 35.5,
+      "end_time": 68.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The waiter below is checking out and the man pays.",
+      "scene_zone": "unknown",
+      "event_text": "From 35.5s to 68.1s, the waiter below is checking out and the man pays.",
+      "keywords": [
+        "waiter",
+        "below",
+        "checking",
+        "out",
+        "man",
+        "pays"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos620_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 298.96,
+      "start_time": 68.5,
+      "end_time": 139.2,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in a red shirt and black pants on the left side of the screen walked to the top of the screen, stayed for a while, walked to the center and turned to the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 68.5s to 139.2s, a man in a red shirt and black pants on the left side of the screen walked to the top of the screen, stayed for a while, walked to the center and turned to the right side of the screen.",
+      "keywords": [
+        "man",
+        "red",
+        "shirt",
+        "black",
+        "pants",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos620_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 298.96,
+      "start_time": 74.4,
+      "end_time": 86.1,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A woman pushing a cart in the lower right corner of the screen walked to the checkout counter at the bottom of the screen, and a man in white in the center walked to the checkout counter.",
+      "scene_zone": "store",
+      "event_text": "From 74.4s to 86.1s, a woman pushing a cart in the lower right corner of the screen walked to the checkout counter at the bottom of the screen, and a man in white in the center walked to the checkout counter.",
+      "keywords": [
+        "woman",
+        "pushing",
+        "cart",
+        "lower",
+        "right",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos620_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 298.96,
+      "start_time": 96.2,
+      "end_time": 169.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in white in the lower left corner pushed the cart to the upper left corner of the screen, looked for something in the cabinet, then walked to the lower left corner of the screen and left.",
+      "scene_zone": "unknown",
+      "event_text": "From 96.2s to 169.2s, the man in white in the lower left corner pushed the cart to the upper left corner of the screen, looked for something in the cabinet, then walked to the lower left corner of the screen and left.",
+      "keywords": [
+        "man",
+        "white",
+        "lower",
+        "left",
+        "corner",
+        "pushed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Normal_Videos620_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 298.96,
+      "start_time": 134.3,
+      "end_time": 156.1,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in the red hat and white shirt in the lower left corner returned to the checkout counter in the middle, handed the things in his hand to the cashier, shook hands with the man behind him, took the white plastic bag on the checkout counter and left.",
+      "scene_zone": "store",
+      "event_text": "From 134.3s to 156.1s, the man in the red hat and white shirt in the lower left corner returned to the checkout counter in the middle, handed the things in his hand to the cashier, shook hands with the man behind him, took the white plastic bag on the checkout counter and left.",
+      "keywords": [
+        "man",
+        "red",
+        "hat",
+        "white",
+        "shirt",
+        "lower"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Normal_Videos620_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 298.96,
+      "start_time": 180.1,
+      "end_time": 186.2,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in white clothes and yellow trousers in the center of the screen left the left side of the screen with a plastic bag.",
+      "scene_zone": "unknown",
+      "event_text": "From 180.1s to 186.2s, the man in white clothes and yellow trousers in the center of the screen left the left side of the screen with a plastic bag.",
+      "keywords": [
+        "man",
+        "white",
+        "clothes",
+        "yellow",
+        "trousers",
+        "center"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Normal_Videos620_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 298.96,
+      "start_time": 228.0,
+      "end_time": 270.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black woman in blue walked past the right side of the screen, and walked to the top of the screen with the central attendant.",
+      "scene_zone": "unknown",
+      "event_text": "From 228.0s to 270.1s, a black woman in blue walked past the right side of the screen, and walked to the top of the screen with the central attendant.",
+      "keywords": [
+        "black",
+        "woman",
+        "blue",
+        "walked",
+        "past",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Normal_Videos620_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 298.96,
+      "start_time": 234.0,
+      "end_time": 240.1,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Another cashier walked to the right side of the screen,.",
+      "scene_zone": "unknown",
+      "event_text": "From 234.0s to 240.1s, another cashier walked to the right side of the screen,.",
+      "keywords": [
+        "another",
+        "cashier",
+        "walked",
+        "right",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Normal_Videos620_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 298.96,
+      "start_time": 228.0,
+      "end_time": 270.1,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; The woman in white clothes and black pants below collected the goods, put them in the shopping cart, pushed the cart and left.",
+      "scene_zone": "unknown",
+      "event_text": "From 228.0s to 270.1s, the woman in white clothes and black pants below collected the goods, put them in the shopping cart, pushed the cart and left.",
+      "keywords": [
+        "woman",
+        "white",
+        "clothes",
+        "black",
+        "pants",
+        "below"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Normal_Videos620_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 298.96,
+      "start_time": 270.5,
+      "end_time": 296.2,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Low activity; The woman in blue top and jeans at the top of the screen and the cashier return to the checkout counter in the center of the screen, the cashier at the back walks up, and the waiter in the lower right corner is packing the blue shopping basket.",
+      "scene_zone": "store",
+      "event_text": "From 270.5s to 296.2s, the woman in blue top and jeans at the top of the screen and the cashier return to the checkout counter in the center of the screen, the cashier at the back walks up, and the waiter in the lower right corner is packing the blue shopping basket.",
+      "keywords": [
+        "woman",
+        "blue",
+        "top",
+        "jeans",
+        "screen",
+        "cashier"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    }
+  ]
+}

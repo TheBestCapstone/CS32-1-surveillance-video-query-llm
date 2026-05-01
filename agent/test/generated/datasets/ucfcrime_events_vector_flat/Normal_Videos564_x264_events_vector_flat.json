@@ -1,0 +1,699 @@
+{
+  "video_id": "Normal_Videos564_x264",
+  "duration": 509.3,
+  "events": [
+    {
+      "video_id": "Normal_Videos564_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 509.3,
+      "start_time": 5.2,
+      "end_time": 25.5,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The person wearing a black vest below the gambling table is talking to the person wearing red clothes on the left side of the gambling table.",
+      "scene_zone": "room",
+      "event_text": "From 5.2s to 25.5s, the person wearing a black vest below the gambling table is talking to the person wearing red clothes on the left side of the gambling table.",
+      "keywords": [
+        "person",
+        "wearing",
+        "black",
+        "vest",
+        "below",
+        "gambling"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos564_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 509.3,
+      "start_time": 26.7,
+      "end_time": 33.6,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A woman walks from left to right from the gambling table. The man in red is playing with the chips in his hand.",
+      "scene_zone": "room",
+      "event_text": "From 26.7s to 33.6s, a woman walks from left to right from the gambling table. The man in red is playing with the chips in his hand.",
+      "keywords": [
+        "woman",
+        "walks",
+        "left",
+        "right",
+        "gambling",
+        "table"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos564_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 509.3,
+      "start_time": 34.5,
+      "end_time": 48.4,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The man in red puts the chips in his hand on the gambling table.",
+      "scene_zone": "room",
+      "event_text": "From 34.5s to 48.4s, the man in red puts the chips in his hand on the gambling table.",
+      "keywords": [
+        "man",
+        "red",
+        "puts",
+        "chips",
+        "hand",
+        "gambling"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos564_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 509.3,
+      "start_time": 49.4,
+      "end_time": 72.3,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in black vest is dealing the cards, and the man in red clothes puts down the chips on the gambling table again.",
+      "scene_zone": "room",
+      "event_text": "From 49.4s to 72.3s, the man in black vest is dealing the cards, and the man in red clothes puts down the chips on the gambling table again.",
+      "keywords": [
+        "man",
+        "black",
+        "vest",
+        "dealing",
+        "cards",
+        "red"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos564_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 509.3,
+      "start_time": 77.5,
+      "end_time": 87.7,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in red threw the chips on the gambling table away, and then threw the chips in his hand at the man in the black vest. After doing this, he disappeared from the left side of the gambling table.",
+      "scene_zone": "room",
+      "event_text": "From 77.5s to 87.7s, the man in red threw the chips on the gambling table away, and then threw the chips in his hand at the man in the black vest. After doing this, he disappeared from the left side of the gambling table.",
+      "keywords": [
+        "man",
+        "red",
+        "threw",
+        "chips",
+        "gambling",
+        "table"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos564_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 509.3,
+      "start_time": 91.7,
+      "end_time": 110.2,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The man in red walked out from the left side of the gaming table, sat back down, and placed chips on the gaming table.",
+      "scene_zone": "room",
+      "event_text": "From 91.7s to 110.2s, the man in red walked out from the left side of the gaming table, sat back down, and placed chips on the gaming table.",
+      "keywords": [
+        "man",
+        "red",
+        "walked",
+        "out",
+        "left",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos564_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 509.3,
+      "start_time": 116.4,
+      "end_time": 138.7,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in black vest began to deal the cards, and the man in red clothes put some chips on the gambling table.",
+      "scene_zone": "room",
+      "event_text": "From 116.4s to 138.7s, the man in black vest began to deal the cards, and the man in red clothes put some chips on the gambling table.",
+      "keywords": [
+        "man",
+        "black",
+        "vest",
+        "began",
+        "deal",
+        "cards"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos564_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 509.3,
+      "start_time": 139.5,
+      "end_time": 149.8,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in red knocked over a black card box on the left side of the gaming table and scattered the cards inside on the gaming table.",
+      "scene_zone": "room",
+      "event_text": "From 139.5s to 149.8s, the man in red knocked over a black card box on the left side of the gaming table and scattered the cards inside on the gaming table.",
+      "keywords": [
+        "man",
+        "red",
+        "knocked",
+        "black",
+        "card",
+        "box"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Normal_Videos564_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 509.3,
+      "start_time": 151.4,
+      "end_time": 218.6,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in black vest organized the playing cards on the table and placed them on the right side of the gaming table.",
+      "scene_zone": "room",
+      "event_text": "From 151.4s to 218.6s, the man in black vest organized the playing cards on the table and placed them on the right side of the gaming table.",
+      "keywords": [
+        "man",
+        "black",
+        "vest",
+        "organized",
+        "playing",
+        "cards"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Normal_Videos564_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 509.3,
+      "start_time": 224.7,
+      "end_time": 244.6,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The man in red put his hands on the table with excitement and a man in suit stood behind the gaming table and shouted.",
+      "scene_zone": "room",
+      "event_text": "From 224.7s to 244.6s, the man in red put his hands on the table with excitement and a man in suit stood behind the gaming table and shouted.",
+      "keywords": [
+        "man",
+        "red",
+        "put",
+        "hands",
+        "table",
+        "excitement"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Normal_Videos564_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 509.3,
+      "start_time": 245.9,
+      "end_time": 276.8,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in a black suit disappeared from behind the gaming table. The man in red picks up the chips on the gambling table.",
+      "scene_zone": "room",
+      "event_text": "From 245.9s to 276.8s, the man in a black suit disappeared from behind the gaming table. The man in red picks up the chips on the gambling table.",
+      "keywords": [
+        "man",
+        "black",
+        "suit",
+        "disappeared",
+        "behind",
+        "gaming"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Normal_Videos564_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 509.3,
+      "start_time": 278.5,
+      "end_time": 304.6,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; On the red gambling table, the hand of the man in red holds some chips in the middle of the gambling table.",
+      "scene_zone": "room",
+      "event_text": "From 278.5s to 304.6s, on the red gambling table, the hand of the man in red holds some chips in the middle of the gambling table.",
+      "keywords": [
+        "red",
+        "gambling",
+        "table",
+        "hand",
+        "man",
+        "holds"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Normal_Videos564_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 509.3,
+      "start_time": 305.7,
+      "end_time": 325.9,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in red put the chips he was holding into his pants pocket, picked up the black jacket from the seat and put it on.",
+      "scene_zone": "unknown",
+      "event_text": "From 305.7s to 325.9s, the man in red put the chips he was holding into his pants pocket, picked up the black jacket from the seat and put it on.",
+      "keywords": [
+        "man",
+        "red",
+        "put",
+        "chips",
+        "holding",
+        "pants"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Normal_Videos564_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 509.3,
+      "start_time": 326.4,
+      "end_time": 367.7,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The man in red clothes was sitting on the stool at the gaming table on the far left, suddenly leaning forward and leaning on the gaming table.",
+      "scene_zone": "room",
+      "event_text": "From 326.4s to 367.7s, the man in red clothes was sitting on the stool at the gaming table on the far left, suddenly leaning forward and leaning on the gaming table.",
+      "keywords": [
+        "man",
+        "red",
+        "clothes",
+        "sitting",
+        "stool",
+        "gaming"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Normal_Videos564_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 509.3,
+      "start_time": 368.6,
+      "end_time": 400.3,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The man in red clothes grabbed the chips from the chip box in the middle of the gambling table. At this time, a man in a shirt walked from the bottom of the gambling table to the right of the man in red to block him.",
+      "scene_zone": "room",
+      "event_text": "From 368.6s to 400.3s, the man in red clothes grabbed the chips from the chip box in the middle of the gambling table. At this time, a man in a shirt walked from the bottom of the gambling table to the right of the man in red to block him.",
+      "keywords": [
+        "man",
+        "red",
+        "clothes",
+        "grabbed",
+        "chips",
+        "chip"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    },
+    {
+      "video_id": "Normal_Videos564_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 509.3,
+      "start_time": 401.8,
+      "end_time": 428.2,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Regardless of the dissuasion, the man in red put the chips into his pocket, put on a black jacket, and walked to the corner on the right side of the gaming table. The man in the shirt followed him.",
+      "scene_zone": "room",
+      "event_text": "From 401.8s to 428.2s, regardless of the dissuasion, the man in red put the chips into his pocket, put on a black jacket, and walked to the corner on the right side of the gaming table. The man in the shirt followed him.",
+      "keywords": [
+        "regardless",
+        "dissuasion",
+        "man",
+        "red",
+        "put",
+        "chips"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_16"
+    },
+    {
+      "video_id": "Normal_Videos564_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 509.3,
+      "start_time": 430.4,
+      "end_time": 437.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A bald man walked out of the slot machine, and a man in a suit walked out of the left corner of the slot machine.",
+      "scene_zone": "unknown",
+      "event_text": "From 430.4s to 437.6s, a bald man walked out of the slot machine, and a man in a suit walked out of the left corner of the slot machine.",
+      "keywords": [
+        "bald",
+        "man",
+        "walked",
+        "out",
+        "slot",
+        "machine"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_17"
+    },
+    {
+      "video_id": "Normal_Videos564_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 509.3,
+      "start_time": 438.2,
+      "end_time": 447.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; After the bald man and the man in a suit talked to each other, the bald man turned the corner to the left of the slot machine, and the man in the suit walked under the slot machine.",
+      "scene_zone": "unknown",
+      "event_text": "From 438.2s to 447.9s, after the bald man and the man in a suit talked to each other, the bald man turned the corner to the left of the slot machine, and the man in the suit walked under the slot machine.",
+      "keywords": [
+        "bald",
+        "man",
+        "suit",
+        "talked",
+        "each",
+        "other"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_18"
+    },
+    {
+      "video_id": "Normal_Videos564_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 509.3,
+      "start_time": 448.7,
+      "end_time": 463.0,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The man in red clothes walked out of the corner on the left side of the slot machine and walked under the slot machine. He turned left and entered the corridor to talk to the man in a suit. Two men in shirts followed him.",
+      "scene_zone": "unknown",
+      "event_text": "From 448.7s to 463.0s, the man in red clothes walked out of the corner on the left side of the slot machine and walked under the slot machine. He turned left and entered the corridor to talk to the man in a suit. Two men in shirts followed him.",
+      "keywords": [
+        "man",
+        "red",
+        "clothes",
+        "walked",
+        "out",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_19"
+    },
+    {
+      "video_id": "Normal_Videos564_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 509.3,
+      "start_time": 464.8,
+      "end_time": 490.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The three people in the stairwell walked to the left, and the man in the suit walked back while talking on the phone.",
+      "scene_zone": "unknown",
+      "event_text": "From 464.8s to 490.2s, the three people in the stairwell walked to the left, and the man in the suit walked back while talking on the phone.",
+      "keywords": [
+        "three",
+        "people",
+        "stairwell",
+        "walked",
+        "left",
+        "man"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_20"
+    },
+    {
+      "video_id": "Normal_Videos564_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 509.3,
+      "start_time": 492.5,
+      "end_time": 509.0,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The man in red clothes and two men in shirts walked out of the hall.",
+      "scene_zone": "unknown",
+      "event_text": "From 492.5s to 509.0s, the man in red clothes and two men in shirts walked out of the hall.",
+      "keywords": [
+        "man",
+        "red",
+        "clothes",
+        "two",
+        "men",
+        "shirts"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_21"
+    }
+  ]
+}

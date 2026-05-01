@@ -1,0 +1,270 @@
+{
+  "video_id": "Normal_Videos549_x264",
+  "duration": 308.8,
+  "events": [
+    {
+      "video_id": "Normal_Videos549_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 308.8,
+      "start_time": 10.0,
+      "end_time": 16.2,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; The video screen is black and white. A car on the road on the left side of the video appears from the top of the video and then disappears from the bottom of the video. There is a white jeep parked in the middle of the video.",
+      "scene_zone": "road",
+      "event_text": "From 10.0s to 16.2s, the video screen is black and white. A car on the road on the left side of the video appears from the top of the video and then disappears from the bottom of the video. There is a white jeep parked in the middle of the video.",
+      "keywords": [
+        "video",
+        "screen",
+        "black",
+        "white",
+        "car",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos549_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 308.8,
+      "start_time": 25.1,
+      "end_time": 37.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A car drives into the road on the left side of the video from below the video and disappears from the top of the video.",
+      "scene_zone": "road",
+      "event_text": "From 25.1s to 37.1s, a car drives into the road on the left side of the video from below the video and disappears from the top of the video.",
+      "keywords": [
+        "car",
+        "drives",
+        "road",
+        "left",
+        "side",
+        "video"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos549_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 308.8,
+      "start_time": 45.0,
+      "end_time": 51.6,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A door on the right side of the video was blown open by the wind and then closed again.",
+      "scene_zone": "room",
+      "event_text": "From 45.0s to 51.6s, a door on the right side of the video was blown open by the wind and then closed again.",
+      "keywords": [
+        "door",
+        "right",
+        "side",
+        "video",
+        "blown",
+        "open"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos549_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 308.8,
+      "start_time": 52.3,
+      "end_time": 67.5,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A car on the road on the left side of the video appears from the bottom of the video and leaves from the top of the video.",
+      "scene_zone": "road",
+      "event_text": "From 52.3s to 67.5s, a car on the road on the left side of the video appears from the bottom of the video and leaves from the top of the video.",
+      "keywords": [
+        "car",
+        "road",
+        "left",
+        "side",
+        "video",
+        "appears"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos549_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 308.8,
+      "start_time": 71.2,
+      "end_time": 80.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A car on the road on the left side of the video appears from below the video and leaves from the top of the video. The door on the right side of the video is blown open again, and many leaves fly in front of the camera.",
+      "scene_zone": "road",
+      "event_text": "From 71.2s to 80.2s, a car on the road on the left side of the video appears from below the video and leaves from the top of the video. The door on the right side of the video is blown open again, and many leaves fly in front of the camera.",
+      "keywords": [
+        "car",
+        "road",
+        "left",
+        "side",
+        "video",
+        "appears"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos549_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 308.8,
+      "start_time": 87.5,
+      "end_time": 104.1,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; Many windows in the video were blown off by the strong wind, and one fell on the roof of the white jeep. It rained heavily in the video.",
+      "scene_zone": "unknown",
+      "event_text": "From 87.5s to 104.1s, many windows in the video were blown off by the strong wind, and one fell on the roof of the white jeep. It rained heavily in the video.",
+      "keywords": [
+        "many",
+        "windows",
+        "video",
+        "blown",
+        "off",
+        "strong"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos549_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 308.8,
+      "start_time": 167.5,
+      "end_time": 269.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A car appears on the left side of the video, and there is a lot of rainwater flowing through the lens.",
+      "scene_zone": "unknown",
+      "event_text": "From 167.5s to 269.1s, a car appears on the left side of the video, and there is a lot of rainwater flowing through the lens.",
+      "keywords": [
+        "car",
+        "appears",
+        "left",
+        "side",
+        "video",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos549_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 308.8,
+      "start_time": 269.2,
+      "end_time": 298.4,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; After the car on the left side of the video turns right, go straight to the bottom of the video.",
+      "scene_zone": "unknown",
+      "event_text": "From 269.2s to 298.4s, after the car on the left side of the video turns right, go straight to the bottom of the video.",
+      "keywords": [
+        "car",
+        "left",
+        "side",
+        "video",
+        "turns",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    }
+  ]
+}

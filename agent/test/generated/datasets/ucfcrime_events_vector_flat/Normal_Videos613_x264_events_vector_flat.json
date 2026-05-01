@@ -1,0 +1,204 @@
+{
+  "video_id": "Normal_Videos613_x264",
+  "duration": 198.0,
+  "events": [
+    {
+      "video_id": "Normal_Videos613_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 198.0,
+      "start_time": 0.0,
+      "end_time": 7.5,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; In an office, a woman in blue above walks to the left and then leaves the camera's field of view.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 7.5s, in an office, a woman in blue above walks to the left and then leaves the camera's field of view.",
+      "keywords": [
+        "office",
+        "woman",
+        "blue",
+        "above",
+        "walks",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos613_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 198.0,
+      "start_time": 7.5,
+      "end_time": 52.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; Two men on the left are working at the work station. The man in black on the inside holds his head in his hands, and a woman in white on the right is walking towards the upper left corner.",
+      "scene_zone": "unknown",
+      "event_text": "From 7.5s to 52.1s, two men on the left are working at the work station. The man in black on the inside holds his head in his hands, and a woman in white on the right is walking towards the upper left corner.",
+      "keywords": [
+        "two",
+        "men",
+        "left",
+        "working",
+        "work",
+        "station"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos613_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 198.0,
+      "start_time": 52.1,
+      "end_time": 80.3,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in black on the inside kept typing on the keyboard with both hands. The man in plaid and purple came in from the right and returned to their respective workstations.",
+      "scene_zone": "unknown",
+      "event_text": "From 52.1s to 80.3s, the man in black on the inside kept typing on the keyboard with both hands. The man in plaid and purple came in from the right and returned to their respective workstations.",
+      "keywords": [
+        "man",
+        "black",
+        "inside",
+        "kept",
+        "typing",
+        "keyboard"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos613_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 198.0,
+      "start_time": 80.3,
+      "end_time": 116.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The man in plaid clothes took out his mobile phone to play with it, then put it down and looked around.",
+      "scene_zone": "unknown",
+      "event_text": "From 80.3s to 116.0s, the man in plaid clothes took out his mobile phone to play with it, then put it down and looked around.",
+      "keywords": [
+        "man",
+        "plaid",
+        "clothes",
+        "took",
+        "out",
+        "mobile"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos613_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 198.0,
+      "start_time": 116.0,
+      "end_time": 139.2,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "Observed event; A woman in pink clothes enters the office, and then the man in plaid clothes leaves the view of the camera. The woman in pink clothes puts the items in her hands at the man in plaid clothes.",
+      "scene_zone": "unknown",
+      "event_text": "From 116.0s to 139.2s, a woman in pink clothes enters the office, and then the man in plaid clothes leaves the view of the camera. The woman in pink clothes puts the items in her hands at the man in plaid clothes.",
+      "keywords": [
+        "woman",
+        "pink",
+        "clothes",
+        "enters",
+        "office",
+        "man"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos613_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 198.0,
+      "start_time": 139.2,
+      "end_time": 197.0,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "Observed event; The woman in pink handed the item to the man in purple, and then gave it to the two men in the lower left corner. The man in purple handed the item to the woman in pink, and the woman in pink left the office.",
+      "scene_zone": "unknown",
+      "event_text": "From 139.2s to 197.0s, the woman in pink handed the item to the man in purple, and then gave it to the two men in the lower left corner. The man in purple handed the item to the woman in pink, and the woman in pink left the office.",
+      "keywords": [
+        "woman",
+        "pink",
+        "handed",
+        "item",
+        "man",
+        "purple"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    }
+  ]
+}

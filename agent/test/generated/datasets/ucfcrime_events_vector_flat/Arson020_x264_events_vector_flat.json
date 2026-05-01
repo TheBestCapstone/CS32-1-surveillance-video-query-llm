@@ -1,0 +1,136 @@
+{
+  "video_id": "Arson020_x264",
+  "duration": 80.95,
+  "events": [
+    {
+      "video_id": "Arson020_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 80.95,
+      "start_time": 5.0,
+      "end_time": 10.6,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A car drove to the side of the road and stopped, and there was a white car parked on the side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 5.0s to 10.6s, a car drove to the side of the road and stopped, and there was a white car parked on the side of the road.",
+      "keywords": [
+        "car",
+        "drove",
+        "side",
+        "road",
+        "stopped",
+        "white"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Arson020_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 80.95,
+      "start_time": 38.0,
+      "end_time": 45.4,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The car on the roadside got off the front row and the two came to the car next to it.",
+      "scene_zone": "road",
+      "event_text": "From 38.0s to 45.4s, the car on the roadside got off the front row and the two came to the car next to it.",
+      "keywords": [
+        "car",
+        "roadside",
+        "got",
+        "off",
+        "front",
+        "row"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Arson020_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 80.95,
+      "start_time": 46.6,
+      "end_time": 54.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; The two men broke the front glass of another car and threw fire into the car, which started to burn from the inside.",
+      "scene_zone": "unknown",
+      "event_text": "From 46.6s to 54.0s, the two men broke the front glass of another car and threw fire into the car, which started to burn from the inside.",
+      "keywords": [
+        "two",
+        "men",
+        "broke",
+        "front",
+        "glass",
+        "another"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Arson020_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 80.95,
+      "start_time": 54.7,
+      "end_time": 79.7,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; Continuous and violent burning in the car.",
+      "scene_zone": "unknown",
+      "event_text": "From 54.7s to 79.7s, continuous and violent burning in the car.",
+      "keywords": [
+        "continuous",
+        "violent",
+        "burning",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    }
+  ]
+}

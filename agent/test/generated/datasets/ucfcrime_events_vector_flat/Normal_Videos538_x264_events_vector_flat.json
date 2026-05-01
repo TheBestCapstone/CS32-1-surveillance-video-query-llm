@@ -1,0 +1,137 @@
+{
+  "video_id": "Normal_Videos538_x264",
+  "duration": 33.77,
+  "events": [
+    {
+      "video_id": "Normal_Videos538_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 33.77,
+      "start_time": 0.0,
+      "end_time": 11.2,
+      "object_type": "car",
+      "object_color": "silver",
+      "appearance_notes": "Observed event; A silver car in the lower left corner of the screen stopped at the red wall.",
+      "scene_zone": "room",
+      "event_text": "From 0.0s to 11.2s, a silver car in the lower left corner of the screen stopped at the red wall.",
+      "keywords": [
+        "silver",
+        "car",
+        "lower",
+        "left",
+        "corner",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos538_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 33.77,
+      "start_time": 14.0,
+      "end_time": 19.2,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The picture shows a blue car passing by.",
+      "scene_zone": "unknown",
+      "event_text": "From 14.0s to 19.2s, the picture shows a blue car passing by.",
+      "keywords": [
+        "picture",
+        "shows",
+        "blue",
+        "car",
+        "passing"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos538_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 33.77,
+      "start_time": 21.0,
+      "end_time": 33.2,
+      "object_type": "car",
+      "object_color": "silver",
+      "appearance_notes": "Observed event; A man in black clothes and black pants got out of the silver car, closed the door and left.",
+      "scene_zone": "room",
+      "event_text": "From 21.0s to 33.2s, a man in black clothes and black pants got out of the silver car, closed the door and left.",
+      "keywords": [
+        "man",
+        "black",
+        "clothes",
+        "pants",
+        "got",
+        "out"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos538_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 33.77,
+      "start_time": 0.0,
+      "end_time": 33.2,
+      "object_type": "unknown",
+      "object_color": "black",
+      "appearance_notes": "Observed event; In the lower right corner of the screen, there is a large black trampoline in the middle of the grass in a backyard.",
+      "scene_zone": "yard",
+      "event_text": "From 0.0s to 33.2s, in the lower right corner of the screen, there is a large black trampoline in the middle of the grass in a backyard.",
+      "keywords": [
+        "lower",
+        "right",
+        "corner",
+        "screen",
+        "large",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    }
+  ]
+}

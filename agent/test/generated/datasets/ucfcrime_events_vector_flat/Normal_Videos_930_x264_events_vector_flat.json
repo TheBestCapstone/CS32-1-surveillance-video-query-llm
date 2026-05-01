@@ -1,0 +1,160 @@
+{
+  "video_id": "Normal_Videos_930_x264",
+  "duration": 106.3,
+  "events": [
+    {
+      "video_id": "Normal_Videos_930_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 106.3,
+      "start_time": 0.0,
+      "end_time": 2.6,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Someone is walking in the distance.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 2.6s, someone is walking in the distance.",
+      "keywords": [
+        "someone",
+        "walking",
+        "distance"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos_930_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 106.3,
+      "start_time": 3.8,
+      "end_time": 6.5,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The fish in the tank are swimming.",
+      "scene_zone": "unknown",
+      "event_text": "From 3.8s to 6.5s, the fish in the tank are swimming.",
+      "keywords": [
+        "fish",
+        "tank",
+        "swimming"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos_930_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 106.3,
+      "start_time": 6.1,
+      "end_time": 13.1,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man in white came into the camera.",
+      "scene_zone": "unknown",
+      "event_text": "From 6.1s to 13.1s, a man in white came into the camera.",
+      "keywords": [
+        "man",
+        "white",
+        "came",
+        "camera"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos_930_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 106.3,
+      "start_time": 8.3,
+      "end_time": 14.5,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in white goes to the fish tank to have a look.",
+      "scene_zone": "unknown",
+      "event_text": "From 8.3s to 14.5s, the man in white goes to the fish tank to have a look.",
+      "keywords": [
+        "man",
+        "white",
+        "goes",
+        "fish",
+        "tank",
+        "have"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos_930_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 106.3,
+      "start_time": 11.4,
+      "end_time": 21.4,
+      "object_type": "person",
+      "object_color": "purple",
+      "appearance_notes": "Observed event; The man in purple is on the phone.",
+      "scene_zone": "unknown",
+      "event_text": "From 11.4s to 21.4s, the man in purple is on the phone.",
+      "keywords": [
+        "man",
+        "purple",
+        "phone"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    }
+  ]
+}

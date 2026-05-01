@@ -1,0 +1,137 @@
+{
+  "video_id": "RoadAccidents136_x264",
+  "duration": 96.2,
+  "events": [
+    {
+      "video_id": "RoadAccidents136_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 96.2,
+      "start_time": 1.8,
+      "end_time": 15.5,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; When a person was crossing the road at a fork in the road, a white car knocked over a van, and the van was thrown under a tree.",
+      "scene_zone": "road",
+      "event_text": "From 1.8s to 15.5s, when a person was crossing the road at a fork in the road, a white car knocked over a van, and the van was thrown under a tree.",
+      "keywords": [
+        "when",
+        "person",
+        "crossing",
+        "road",
+        "fork",
+        "white"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "RoadAccidents136_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 96.2,
+      "start_time": 15.5,
+      "end_time": 30.5,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black clothes is wandering on the sidewalk.",
+      "scene_zone": "unknown",
+      "event_text": "From 15.5s to 30.5s, a man in black clothes is wandering on the sidewalk.",
+      "keywords": [
+        "man",
+        "black",
+        "clothes",
+        "wandering",
+        "sidewalk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "RoadAccidents136_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 96.2,
+      "start_time": 30.5,
+      "end_time": 45.8,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A van driver got out of the car, and passers-by came to the two cars that had the accident.",
+      "scene_zone": "unknown",
+      "event_text": "From 30.5s to 45.8s, a van driver got out of the car, and passers-by came to the two cars that had the accident.",
+      "keywords": [
+        "van",
+        "driver",
+        "got",
+        "out",
+        "car",
+        "passers"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "RoadAccidents136_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 96.2,
+      "start_time": 45.8,
+      "end_time": 51.4,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; People look at the two cars involved in the accident.",
+      "scene_zone": "unknown",
+      "event_text": "From 45.8s to 51.4s, people look at the two cars involved in the accident.",
+      "keywords": [
+        "people",
+        "look",
+        "two",
+        "cars",
+        "involved",
+        "accident"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    }
+  ]
+}

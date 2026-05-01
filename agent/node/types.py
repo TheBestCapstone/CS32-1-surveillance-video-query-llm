@@ -3,7 +3,8 @@ from typing import Any, Dict, List, Optional, TypedDict
 
 from langchain_core.messages import BaseMessage, HumanMessage
 from db.config import (
-    get_graph_chroma_collection,
+    get_graph_chroma_child_collection,
+    get_graph_chroma_parent_collection,
     get_graph_chroma_path,
     get_graph_lancedb_path,
     get_graph_sqlite_db_path,
@@ -324,7 +325,11 @@ def default_chroma_path() -> Path:
 
 
 def default_chroma_collection() -> str:
-    return get_graph_chroma_collection()
+    return get_graph_chroma_child_collection()
+
+
+def default_chroma_parent_collection() -> str:
+    return get_graph_chroma_parent_collection()
 
 
 if __name__ == "__main__":

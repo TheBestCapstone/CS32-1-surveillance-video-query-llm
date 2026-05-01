@@ -1,0 +1,402 @@
+{
+  "video_id": "Normal_Videos537_x264",
+  "duration": 135.97,
+  "events": [
+    {
+      "video_id": "Normal_Videos537_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 135.97,
+      "start_time": 0.0,
+      "end_time": 5.4,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; At night, the scene is at an intersection. There are many vehicles driving on the road. The indicator light above changes from yellow to red.",
+      "scene_zone": "road",
+      "event_text": "From 0.0s to 5.4s, at night, the scene is at an intersection. There are many vehicles driving on the road. The indicator light above changes from yellow to red.",
+      "keywords": [
+        "night",
+        "scene",
+        "intersection",
+        "many",
+        "vehicles",
+        "driving"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos537_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 135.97,
+      "start_time": 11.1,
+      "end_time": 21.3,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; During the day, many black vehicles are driving on the road in the picture, and the indicator lights turn red.",
+      "scene_zone": "road",
+      "event_text": "From 11.1s to 21.3s, during the day, many black vehicles are driving on the road in the picture, and the indicator lights turn red.",
+      "keywords": [
+        "during",
+        "day",
+        "many",
+        "black",
+        "vehicles",
+        "driving"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos537_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 135.97,
+      "start_time": 22.0,
+      "end_time": 31.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; At night, the indicator light above a white car passed by turned from yellow to red, and two cars passed by on the road.",
+      "scene_zone": "road",
+      "event_text": "From 22.0s to 31.2s, at night, the indicator light above a white car passed by turned from yellow to red, and two cars passed by on the road.",
+      "keywords": [
+        "night",
+        "indicator",
+        "light",
+        "above",
+        "white",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos537_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 135.97,
+      "start_time": 31.3,
+      "end_time": 42.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; During the day, the scene is at another intersection with many vehicles driving on the road and turning.",
+      "scene_zone": "road",
+      "event_text": "From 31.3s to 42.1s, during the day, the scene is at another intersection with many vehicles driving on the road and turning.",
+      "keywords": [
+        "during",
+        "day",
+        "scene",
+        "another",
+        "intersection",
+        "many"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos537_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 135.97,
+      "start_time": 42.3,
+      "end_time": 53.1,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; At dusk, several motor vehicles passed by on a wide road, and a yellow school bus appeared in the lower left corner.",
+      "scene_zone": "road",
+      "event_text": "From 42.3s to 53.1s, at dusk, several motor vehicles passed by on a wide road, and a yellow school bus appeared in the lower left corner.",
+      "keywords": [
+        "dusk",
+        "several",
+        "motor",
+        "vehicles",
+        "passed",
+        "wide"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos537_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 135.97,
+      "start_time": 53.2,
+      "end_time": 62.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The vehicle in the picture is turning right, and many vehicles are passing by on the road.",
+      "scene_zone": "road",
+      "event_text": "From 53.2s to 62.3s, the vehicle in the picture is turning right, and many vehicles are passing by on the road.",
+      "keywords": [
+        "vehicle",
+        "picture",
+        "turning",
+        "right",
+        "many",
+        "vehicles"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos537_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 135.97,
+      "start_time": 62.5,
+      "end_time": 73.3,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Three red cars drive past the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 62.5s to 73.3s, three red cars drive past the screen.",
+      "keywords": [
+        "three",
+        "red",
+        "cars",
+        "drive",
+        "past",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos537_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 135.97,
+      "start_time": 73.4,
+      "end_time": 83.4,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Low activity; A car turns right at the intersection, and all the vehicles in the picture are waiting for the red light.",
+      "scene_zone": "road",
+      "event_text": "From 73.4s to 83.4s, a car turns right at the intersection, and all the vehicles in the picture are waiting for the red light.",
+      "keywords": [
+        "car",
+        "turns",
+        "right",
+        "intersection",
+        "all",
+        "vehicles"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Normal_Videos537_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 135.97,
+      "start_time": 83.5,
+      "end_time": 95.1,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Low activity; A pickup truck at the top of the screen turns to the right side of the screen, and a black pickup truck and a blue car at the bottom are waiting for the red light.",
+      "scene_zone": "unknown",
+      "event_text": "From 83.5s to 95.1s, a pickup truck at the top of the screen turns to the right side of the screen, and a black pickup truck and a blue car at the bottom are waiting for the red light.",
+      "keywords": [
+        "pickup",
+        "truck",
+        "top",
+        "screen",
+        "turns",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Normal_Videos537_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 135.97,
+      "start_time": 95.4,
+      "end_time": 107.0,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; At night, there is a yellow warning sign in the lower right corner, and there are scattered vehicles passing by.",
+      "scene_zone": "unknown",
+      "event_text": "From 95.4s to 107.0s, at night, there is a yellow warning sign in the lower right corner, and there are scattered vehicles passing by.",
+      "keywords": [
+        "night",
+        "yellow",
+        "warning",
+        "sign",
+        "lower",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Normal_Videos537_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 135.97,
+      "start_time": 107.1,
+      "end_time": 121.3,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The picture is a red light, and several cars have stopped at the intersection.",
+      "scene_zone": "road",
+      "event_text": "From 107.1s to 121.3s, the picture is a red light, and several cars have stopped at the intersection.",
+      "keywords": [
+        "picture",
+        "red",
+        "light",
+        "several",
+        "cars",
+        "have"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Normal_Videos537_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 135.97,
+      "start_time": 121.4,
+      "end_time": 135.5,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; During the day, there are vehicles driving on the road in all four directions in the screen.",
+      "scene_zone": "road",
+      "event_text": "From 121.4s to 135.5s, during the day, there are vehicles driving on the road in all four directions in the screen.",
+      "keywords": [
+        "during",
+        "day",
+        "vehicles",
+        "driving",
+        "road",
+        "all"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    }
+  ]
+}

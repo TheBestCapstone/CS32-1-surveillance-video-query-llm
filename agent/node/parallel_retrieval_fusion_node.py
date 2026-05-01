@@ -20,6 +20,7 @@ from .retrieval_contracts import (
     infer_sql_plan,
     normalize_hybrid_rows,
     normalize_sql_rows,
+    project_rows_to_parent_context,
 )
 from .types import AgentState, InputValidator
 from .types import default_sqlite_db_path
@@ -204,6 +205,7 @@ def create_parallel_retrieval_fusion_node(llm=None, **kwargs):
         if sql_error:
             fusion_meta["degraded"] = True
 
+        parent_rows = project_rows_to_parent_context(fused, limit=fused_limit)
         duration = time.perf_counter() - start
         routing_metrics = build_routing_metrics(
             execution_mode="parallel_fusion",
@@ -218,12 +220,12 @@ def create_parallel_retrieval_fusion_node(llm=None, **kwargs):
             "sql_result": sql_rows,
             "hybrid_result": hybrid_rows,
             "merged_result": fused,
-            "rerank_result": fused,
+            "rerank_result": parent_rows,
             "tool_error": None,
             "current_node": "parallel_retrieval_fusion_node",
             "search_explain": (
                 "Parallel retrieval completed. "
-                f"label={label}, sql_rows={len(sql_rows)}, hybrid_rows={len(hybrid_rows)}, fused_rows={len(fused)}"
+                f"label={label}, sql_rows={len(sql_rows)}, hybrid_rows={len(hybrid_rows)}, fused_rows={len(fused)}, parent_rows={len(parent_rows)}"
             ),
             "routing_metrics": routing_metrics,
             "search_config": search_config,
@@ -235,6 +237,7 @@ def create_parallel_retrieval_fusion_node(llm=None, **kwargs):
                 "sql_error": sql_error,
                 "hybrid_error": hybrid_error,
                 "fusion_meta": fusion_meta,
+                "parent_rows_count": len(parent_rows),
             },
             "messages": [
                 AIMessage(

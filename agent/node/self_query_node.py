@@ -2,6 +2,12 @@ import json
 import re
 from typing import Any
 
+from lightingRL.prompt_registry import (
+    SELF_QUERY_SYSTEM_PROMPT_KEY,
+    SELF_QUERY_USER_PROMPT_KEY,
+    get_prompt_template,
+    render_prompt,
+)
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langchain_core.runnables import RunnableConfig
 from langgraph.store.base import BaseStore
@@ -115,28 +121,19 @@ def create_self_query_node(llm: Any = None):
         elif not raw_query:
             result = _fallback_self_query(raw_query)
         else:
-            prompt = (
-                "You are a self-query planner for a basketball video retrieval agent. "
-                "Analyze the user's request without answering it. "
-                "If the query is already clear, keep the rewrite very close to the original wording. "
-                "Do not broaden the scope, and do not replace important domain terms with loose synonyms. "
-                "Preserve object/color/location/action phrases exactly whenever possible. "
-                "Produce a retrieval-friendly rewrite that preserves the original meaning, "
-                "highlights constraints, clarifies the user's real need, and gives a short high-level reasoning summary. "
-                "Do not invent facts. Keep the rewritten query concise and faithful to the user intent."
-                f"\n\nUser query: {raw_query}"
-            )
+            prompt = render_prompt(SELF_QUERY_USER_PROMPT_KEY, raw_query=raw_query)
+            system_prompt = get_prompt_template(SELF_QUERY_SYSTEM_PROMPT_KEY)
             try:
                 if hasattr(llm, "with_structured_output"):
                     model = llm.with_structured_output(SELF_QUERY_OUTPUT_SCHEMA)
                     response = model.invoke(
-                        [SystemMessage(content="Return valid JSON only."), HumanMessage(content=prompt)],
+                        [SystemMessage(content=system_prompt), HumanMessage(content=prompt)],
                         config=config,
                     )
                     result = response.model_dump() if hasattr(response, "model_dump") else dict(response)
                 else:
                     raw = llm.invoke(
-                        [SystemMessage(content="Return valid JSON only."), HumanMessage(content=prompt)],
+                        [SystemMessage(content=system_prompt), HumanMessage(content=prompt)],
                         config=config,
                     )
                     payload = raw.content if hasattr(raw, "content") else str(raw)

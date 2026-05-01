@@ -1,0 +1,138 @@
+{
+  "video_id": "Normal_Videos589_x264",
+  "duration": 174.71,
+  "events": [
+    {
+      "video_id": "Normal_Videos589_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 174.71,
+      "start_time": 0.0,
+      "end_time": 7.3,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; Several vehicles passed by the road, and a man in white walked along the intersection to the vicinity of the building and then walked downwards out of the camera's view.",
+      "scene_zone": "road",
+      "event_text": "From 0.0s to 7.3s, several vehicles passed by the road, and a man in white walked along the intersection to the vicinity of the building and then walked downwards out of the camera's view.",
+      "keywords": [
+        "several",
+        "vehicles",
+        "passed",
+        "road",
+        "man",
+        "white"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos589_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 174.71,
+      "start_time": 68.2,
+      "end_time": 78.1,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A pedestrian in the upper left corner crosses the road and leaves the camera field of view.",
+      "scene_zone": "road",
+      "event_text": "From 68.2s to 78.1s, a pedestrian in the upper left corner crosses the road and leaves the camera field of view.",
+      "keywords": [
+        "pedestrian",
+        "upper",
+        "left",
+        "corner",
+        "crosses",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos589_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 174.71,
+      "start_time": 78.1,
+      "end_time": 121.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several vehicles pass by the road, and another pedestrian crosses the road in the upper left corner and leaves the camera field of view.",
+      "scene_zone": "road",
+      "event_text": "From 78.1s to 121.2s, several vehicles pass by the road, and another pedestrian crosses the road in the upper left corner and leaves the camera field of view.",
+      "keywords": [
+        "several",
+        "vehicles",
+        "pass",
+        "road",
+        "another",
+        "pedestrian"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos589_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 174.71,
+      "start_time": 121.2,
+      "end_time": 146.5,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A woman in white walked along the intersection and walked next to the building, then walked down and out of the camera's field of view.",
+      "scene_zone": "road",
+      "event_text": "From 121.2s to 146.5s, a woman in white walked along the intersection and walked next to the building, then walked down and out of the camera's field of view.",
+      "keywords": [
+        "woman",
+        "white",
+        "walked",
+        "along",
+        "intersection",
+        "building"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    }
+  ]
+}

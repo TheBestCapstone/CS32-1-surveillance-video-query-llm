@@ -1,0 +1,260 @@
+{
+  "video_id": "Burglary072_x264",
+  "duration": 84.83,
+  "events": [
+    {
+      "video_id": "Burglary072_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 84.83,
+      "start_time": 2.4,
+      "end_time": 4.8,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car drove directly to the glass door of the room,.",
+      "scene_zone": "room",
+      "event_text": "From 2.4s to 4.8s, a black car drove directly to the glass door of the room,.",
+      "keywords": [
+        "black",
+        "car",
+        "drove",
+        "directly",
+        "glass",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Burglary072_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 84.83,
+      "start_time": 4.4,
+      "end_time": 6.8,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The black car smashed it into pieces.",
+      "scene_zone": "unknown",
+      "event_text": "From 4.4s to 6.8s, the black car smashed it into pieces.",
+      "keywords": [
+        "black",
+        "car",
+        "smashed",
+        "pieces"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Burglary072_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 84.83,
+      "start_time": 8.1,
+      "end_time": 12.1,
+      "object_type": "unknown",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Two men in black ran into the room,.",
+      "scene_zone": "room",
+      "event_text": "From 8.1s to 12.1s, two men in black ran into the room,.",
+      "keywords": [
+        "two",
+        "men",
+        "black",
+        "ran",
+        "room"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Burglary072_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 84.83,
+      "start_time": 8.1,
+      "end_time": 12.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The car backed away.",
+      "scene_zone": "unknown",
+      "event_text": "From 8.1s to 12.1s, the car backed away.",
+      "keywords": [
+        "car",
+        "backed",
+        "away"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Burglary072_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 84.83,
+      "start_time": 19.3,
+      "end_time": 21.9,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Another man in black came from near the car and ran into the room.",
+      "scene_zone": "room",
+      "event_text": "From 19.3s to 21.9s, another man in black came from near the car and ran into the room.",
+      "keywords": [
+        "another",
+        "man",
+        "black",
+        "came",
+        "near",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Burglary072_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 84.83,
+      "start_time": 68.2,
+      "end_time": 76.3,
+      "object_type": "unknown",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Three men in black ran out of the room one after another.",
+      "scene_zone": "room",
+      "event_text": "From 68.2s to 76.3s, three men in black ran out of the room one after another.",
+      "keywords": [
+        "three",
+        "men",
+        "black",
+        "ran",
+        "out",
+        "room"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Burglary072_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 84.83,
+      "start_time": 73.2,
+      "end_time": 80.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Three people ran into the car,.",
+      "scene_zone": "unknown",
+      "event_text": "From 73.2s to 80.3s, three people ran into the car,.",
+      "keywords": [
+        "three",
+        "people",
+        "ran",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Burglary072_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 84.83,
+      "start_time": 81.2,
+      "end_time": 84.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Three people drove away.",
+      "scene_zone": "unknown",
+      "event_text": "From 81.2s to 84.3s, three people drove away.",
+      "keywords": [
+        "three",
+        "people",
+        "drove",
+        "away"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    }
+  ]
+}

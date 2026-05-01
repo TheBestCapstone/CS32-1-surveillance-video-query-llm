@@ -1,0 +1,171 @@
+{
+  "video_id": "Normal_Videos575_x264",
+  "duration": 122.56,
+  "events": [
+    {
+      "video_id": "Normal_Videos575_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 122.56,
+      "start_time": 0.0,
+      "end_time": 13.4,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Low activity; In the picture, a black car is parked on the side of the road. Many vehicles pass by on the right side. In the upper left corner of the road, there is a woman wearing a red hat, a black coat and jeans, and a man wearing black clothes and black pants.",
+      "scene_zone": "road",
+      "event_text": "From 0.0s to 13.4s, in the picture, a black car is parked on the side of the road. Many vehicles pass by on the right side. In the upper left corner of the road, there is a woman wearing a red hat, a black coat and jeans, and a man wearing black clothes and black pants.",
+      "keywords": [
+        "picture",
+        "black",
+        "car",
+        "parked",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos575_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 122.56,
+      "start_time": 5.0,
+      "end_time": 13.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A woman in a brown top and jeans walks past in the lower left corner.",
+      "scene_zone": "unknown",
+      "event_text": "From 5.0s to 13.4s, a woman in a brown top and jeans walks past in the lower left corner.",
+      "keywords": [
+        "woman",
+        "brown",
+        "top",
+        "jeans",
+        "walks",
+        "past"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos575_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 122.56,
+      "start_time": 13.5,
+      "end_time": 38.2,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Low activity; Many vehicles passed by the upper right corner of the road, and the owner of the red car was looking everywhere.",
+      "scene_zone": "road",
+      "event_text": "From 13.5s to 38.2s, many vehicles passed by the upper right corner of the road, and the owner of the red car was looking everywhere.",
+      "keywords": [
+        "many",
+        "vehicles",
+        "passed",
+        "upper",
+        "right",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos575_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 122.56,
+      "start_time": 65.5,
+      "end_time": 73.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There are many people walking on the sidewalk on the left side of the road, and many vehicles above the road drive to the lower right corner.",
+      "scene_zone": "road",
+      "event_text": "From 65.5s to 73.3s, there are many people walking on the sidewalk on the left side of the road, and many vehicles above the road drive to the lower right corner.",
+      "keywords": [
+        "many",
+        "people",
+        "walking",
+        "sidewalk",
+        "left",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos575_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 122.56,
+      "start_time": 78.1,
+      "end_time": 105.5,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The camera moves, a man in black clothes and black trousers and a woman in black clothes and black trousers on the left side of the sidewalk walk toward the bottom of the screen, followed by a man in black clothes and a blue A man in a plaid shirt and a man in an orange shirt and blue pants.",
+      "scene_zone": "unknown",
+      "event_text": "From 78.1s to 105.5s, the camera moves, a man in black clothes and black trousers and a woman in black clothes and black trousers on the left side of the sidewalk walk toward the bottom of the screen, followed by a man in black clothes and a blue A man in a plaid shirt and a man in an orange shirt and blue pants.",
+      "keywords": [
+        "camera",
+        "moves",
+        "man",
+        "black",
+        "clothes",
+        "trousers"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    }
+  ]
+}

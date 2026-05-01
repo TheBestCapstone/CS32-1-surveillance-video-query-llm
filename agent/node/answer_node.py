@@ -43,10 +43,17 @@ def final_answer_node(state: AgentState, config: RunnableConfig, store: BaseStor
         parts.append("Retrieval complete. Most relevant results:")
         
     for idx, row in enumerate(rows[:5], start=1):
-        parts.append(
-            f"[{idx}] event_id={row.get('event_id')} | video={row.get('video_id')} | "
-            f"distance={row.get('_distance', 'N/A')} | summary={row.get('event_summary_en', row.get('event_text_cn', 'N/A'))}"
-        )
+        is_parent = str(row.get("_record_level") or "").lower() == "parent"
+        if is_parent:
+            parts.append(
+                f"[{idx}] video={row.get('video_id')} | child_hits={row.get('_parent_hit_count', 0)} | "
+                f"time={row.get('start_time')}-{row.get('end_time')} | summary={row.get('event_summary_en', row.get('event_text_en', 'N/A'))}"
+            )
+        else:
+            parts.append(
+                f"[{idx}] event_id={row.get('event_id')} | video={row.get('video_id')} | "
+                f"distance={row.get('_distance', 'N/A')} | summary={row.get('event_summary_en', row.get('event_text_cn', 'N/A'))}"
+            )
     final_answer = "\n".join(parts)
     return {
         "raw_final_answer": final_answer,

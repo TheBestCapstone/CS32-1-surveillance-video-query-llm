@@ -1,0 +1,301 @@
+{
+  "video_id": "Arson025_x264",
+  "duration": 176.1,
+  "events": [
+    {
+      "video_id": "Arson025_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 176.1,
+      "start_time": 0.9,
+      "end_time": 9.8,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Low activity; A man rode a bicycle to a black car parked on the roadside.",
+      "scene_zone": "road",
+      "event_text": "From 0.9s to 9.8s, a man rode a bicycle to a black car parked on the roadside.",
+      "keywords": [
+        "man",
+        "rode",
+        "bicycle",
+        "black",
+        "car",
+        "parked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Arson025_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 176.1,
+      "start_time": 25.1,
+      "end_time": 34.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Man pours gasoline on the car window.",
+      "scene_zone": "unknown",
+      "event_text": "From 25.1s to 34.3s, man pours gasoline on the car window.",
+      "keywords": [
+        "man",
+        "pours",
+        "gasoline",
+        "car",
+        "window"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Arson025_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 176.1,
+      "start_time": 34.0,
+      "end_time": 45.9,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; The man lit the fire, the car started to burn, and the man left on his bicycle again.",
+      "scene_zone": "unknown",
+      "event_text": "From 34.0s to 45.9s, the man lit the fire, the car started to burn, and the man left on his bicycle again.",
+      "keywords": [
+        "man",
+        "lit",
+        "fire",
+        "car",
+        "started",
+        "burn"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Arson025_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 176.1,
+      "start_time": 70.2,
+      "end_time": 80.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The two people came to the car and used water cannons to put out the fire, but the fire was not extinguished.",
+      "scene_zone": "unknown",
+      "event_text": "From 70.2s to 80.3s, the two people came to the car and used water cannons to put out the fire, but the fire was not extinguished.",
+      "keywords": [
+        "two",
+        "people",
+        "came",
+        "car",
+        "used",
+        "water"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Arson025_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 176.1,
+      "start_time": 90.1,
+      "end_time": 100.7,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; A man ran to the driver's seat of the car next to the burning car and drove the other car away.",
+      "scene_zone": "unknown",
+      "event_text": "From 90.1s to 100.7s, a man ran to the driver's seat of the car next to the burning car and drove the other car away.",
+      "keywords": [
+        "man",
+        "ran",
+        "driver",
+        "seat",
+        "car",
+        "burning"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Arson025_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 176.1,
+      "start_time": 130.6,
+      "end_time": 134.9,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; A fire truck came and parked next to the burning black car.",
+      "scene_zone": "unknown",
+      "event_text": "From 130.6s to 134.9s, a fire truck came and parked next to the burning black car.",
+      "keywords": [
+        "fire",
+        "truck",
+        "came",
+        "parked",
+        "burning",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Arson025_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 176.1,
+      "start_time": 135.2,
+      "end_time": 140.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; A fire truck came down with two firefighters holding water pipes.",
+      "scene_zone": "unknown",
+      "event_text": "From 135.2s to 140.0s, a fire truck came down with two firefighters holding water pipes.",
+      "keywords": [
+        "fire",
+        "truck",
+        "came",
+        "down",
+        "two",
+        "firefighters"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Arson025_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 176.1,
+      "start_time": 140.1,
+      "end_time": 152.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; Firefighter walks towards the burning car.",
+      "scene_zone": "unknown",
+      "event_text": "From 140.1s to 152.0s, firefighter walks towards the burning car.",
+      "keywords": [
+        "firefighter",
+        "walks",
+        "towards",
+        "burning",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Arson025_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 176.1,
+      "start_time": 160.0,
+      "end_time": 176.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; Three firefighters got out of the car and put out the fire with water guns.",
+      "scene_zone": "unknown",
+      "event_text": "From 160.0s to 176.1s, three firefighters got out of the car and put out the fire with water guns.",
+      "keywords": [
+        "three",
+        "firefighters",
+        "got",
+        "out",
+        "car",
+        "put"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    }
+  ]
+}

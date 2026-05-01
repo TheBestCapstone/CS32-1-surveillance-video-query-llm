@@ -1,0 +1,39 @@
+{
+  "video_id": "Explosion021_x264",
+  "duration": 26.24,
+  "events": [
+    {
+      "video_id": "Explosion021_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 26.24,
+      "start_time": 0.0,
+      "end_time": 13.8,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; There was a sudden explosion at the gas station. After a burst of white light and sparks, many things fell from above.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 13.8s, there was a sudden explosion at the gas station. After a burst of white light and sparks, many things fell from above.",
+      "keywords": [
+        "sudden",
+        "explosion",
+        "gas",
+        "station",
+        "burst",
+        "white"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    }
+  ]
+}

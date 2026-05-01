@@ -1,0 +1,70 @@
+{
+  "video_id": "Explosion010_x264",
+  "duration": 83.27,
+  "events": [
+    {
+      "video_id": "Explosion010_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 83.27,
+      "start_time": 3.1,
+      "end_time": 48.1,
+      "object_type": "unknown",
+      "object_color": "red",
+      "appearance_notes": "Observed event; An explosion occurred in the distance, accompanied by a large amount of smoke and fire.",
+      "scene_zone": "unknown",
+      "event_text": "From 3.1s to 48.1s, an explosion occurred in the distance, accompanied by a large amount of smoke and fire.",
+      "keywords": [
+        "explosion",
+        "occurred",
+        "distance",
+        "accompanied",
+        "large",
+        "amount"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Explosion010_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 83.27,
+      "start_time": 48.8,
+      "end_time": 79.3,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There is a fire in the distance with a lot of smoke.",
+      "scene_zone": "unknown",
+      "event_text": "From 48.8s to 79.3s, there is a fire in the distance with a lot of smoke.",
+      "keywords": [
+        "fire",
+        "distance",
+        "lot",
+        "smoke"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    }
+  ]
+}

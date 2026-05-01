@@ -1,0 +1,268 @@
+{
+  "video_id": "Robbery099_x264",
+  "duration": 53.57,
+  "events": [
+    {
+      "video_id": "Robbery099_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 53.57,
+      "start_time": 2.3,
+      "end_time": 5.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man passed by the glass counter, and two other men passed by behind the glass counter.",
+      "scene_zone": "store",
+      "event_text": "From 2.3s to 5.8s, a man passed by the glass counter, and two other men passed by behind the glass counter.",
+      "keywords": [
+        "man",
+        "passed",
+        "glass",
+        "counter",
+        "two",
+        "other"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Robbery099_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 53.57,
+      "start_time": 5.8,
+      "end_time": 9.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two men threatened each other with guns, while the other man pointed his finger.",
+      "scene_zone": "unknown",
+      "event_text": "From 5.8s to 9.7s, two men threatened each other with guns, while the other man pointed his finger.",
+      "keywords": [
+        "two",
+        "men",
+        "threatened",
+        "each",
+        "other",
+        "guns"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Robbery099_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 53.57,
+      "start_time": 9.7,
+      "end_time": 26.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two men kept threatening each other with guns, while the other man was leaning against the door to observe the situation.",
+      "scene_zone": "room",
+      "event_text": "From 9.7s to 26.0s, two men kept threatening each other with guns, while the other man was leaning against the door to observe the situation.",
+      "keywords": [
+        "two",
+        "men",
+        "kept",
+        "threatening",
+        "each",
+        "other"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Robbery099_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 53.57,
+      "start_time": 26.7,
+      "end_time": 32.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man retreated to the door with a gun in hand and ran forward fiercely.",
+      "scene_zone": "room",
+      "event_text": "From 26.7s to 32.3s, the man retreated to the door with a gun in hand and ran forward fiercely.",
+      "keywords": [
+        "man",
+        "retreated",
+        "door",
+        "gun",
+        "hand",
+        "ran"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Robbery099_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 53.57,
+      "start_time": 35.1,
+      "end_time": 38.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man in the house leaned forward to check the situation, and then ran back quickly.",
+      "scene_zone": "unknown",
+      "event_text": "From 35.1s to 38.0s, the man in the house leaned forward to check the situation, and then ran back quickly.",
+      "keywords": [
+        "man",
+        "house",
+        "leaned",
+        "forward",
+        "check",
+        "situation"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Robbery099_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 53.57,
+      "start_time": 39.5,
+      "end_time": 43.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man with the gun quickly ran back into the house.",
+      "scene_zone": "unknown",
+      "event_text": "From 39.5s to 43.8s, the man with the gun quickly ran back into the house.",
+      "keywords": [
+        "man",
+        "gun",
+        "quickly",
+        "ran",
+        "back",
+        "house"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Robbery099_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 53.57,
+      "start_time": 46.6,
+      "end_time": 47.9,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man appeared and quickly retreated.",
+      "scene_zone": "unknown",
+      "event_text": "From 46.6s to 47.9s, a man appeared and quickly retreated.",
+      "keywords": [
+        "man",
+        "appeared",
+        "quickly",
+        "retreated"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Robbery099_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 53.57,
+      "start_time": 49.2,
+      "end_time": 53.2,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man went out and bent down to pick up something and then entered the house.",
+      "scene_zone": "unknown",
+      "event_text": "From 49.2s to 53.2s, a man went out and bent down to pick up something and then entered the house.",
+      "keywords": [
+        "man",
+        "went",
+        "out",
+        "bent",
+        "down",
+        "pick"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    }
+  ]
+}

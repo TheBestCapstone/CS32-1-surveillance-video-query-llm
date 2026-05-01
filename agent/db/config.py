@@ -6,7 +6,9 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_SQLITE_PATH = PROJECT_ROOT / "data" / "SQLite" / "episodic_events.sqlite"
 DEFAULT_LANCEDB_PATH = PROJECT_ROOT / "data" / "lancedb"
 DEFAULT_CHROMA_PATH = PROJECT_ROOT / "data" / "chroma" / "basketball_tracks"
-DEFAULT_CHROMA_COLLECTION = "basketball_tracks"
+DEFAULT_CHROMA_CHILD_COLLECTION = "basketball_tracks"
+DEFAULT_CHROMA_PARENT_COLLECTION = "basketball_tracks_parent"
+DEFAULT_CHROMA_COLLECTION = DEFAULT_CHROMA_CHILD_COLLECTION
 DEFAULT_ENV_FILE = PROJECT_ROOT / ".env"
 
 
@@ -36,6 +38,20 @@ def get_graph_chroma_collection() -> str:
     if raw:
         return raw
     return DEFAULT_CHROMA_COLLECTION
+
+
+def get_graph_chroma_child_collection() -> str:
+    raw = os.getenv("AGENT_CHROMA_CHILD_COLLECTION", "").strip()
+    if raw:
+        return raw
+    return get_graph_chroma_collection()
+
+
+def get_graph_chroma_parent_collection() -> str:
+    raw = os.getenv("AGENT_CHROMA_PARENT_COLLECTION", "").strip()
+    if raw:
+        return raw
+    return DEFAULT_CHROMA_PARENT_COLLECTION
 
 
 def persist_env_value(key: str, value: str, env_file: Path | None = None) -> Path:

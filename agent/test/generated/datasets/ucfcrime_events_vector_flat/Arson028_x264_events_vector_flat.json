@@ -1,0 +1,170 @@
+{
+  "video_id": "Arson028_x264",
+  "duration": 80.3,
+  "events": [
+    {
+      "video_id": "Arson028_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 80.3,
+      "start_time": 3.2,
+      "end_time": 7.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A car stopped in front of the gate of a house.",
+      "scene_zone": "unknown",
+      "event_text": "From 3.2s to 7.1s, a car stopped in front of the gate of a house.",
+      "keywords": [
+        "car",
+        "stopped",
+        "front",
+        "gate",
+        "house"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Arson028_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 80.3,
+      "start_time": 14.0,
+      "end_time": 20.9,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man dressed in white got out of the driver’s seat of the car and walked over.",
+      "scene_zone": "unknown",
+      "event_text": "From 14.0s to 20.9s, a man dressed in white got out of the driver’s seat of the car and walked over.",
+      "keywords": [
+        "man",
+        "dressed",
+        "white",
+        "got",
+        "out",
+        "driver"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Arson028_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 80.3,
+      "start_time": 29.8,
+      "end_time": 30.3,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in white clothes ran back to the driver’s seat and drove away.",
+      "scene_zone": "unknown",
+      "event_text": "From 29.8s to 30.3s, the man in white clothes ran back to the driver’s seat and drove away.",
+      "keywords": [
+        "man",
+        "white",
+        "clothes",
+        "ran",
+        "back",
+        "driver"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Arson028_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 80.3,
+      "start_time": 47.3,
+      "end_time": 55.4,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man got out of the driver’s seat of a black car on the roadside and came to the door and lit the door on fire.",
+      "scene_zone": "road",
+      "event_text": "From 47.3s to 55.4s, a man got out of the driver’s seat of a black car on the roadside and came to the door and lit the door on fire.",
+      "keywords": [
+        "man",
+        "got",
+        "out",
+        "driver",
+        "seat",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Arson028_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 80.3,
+      "start_time": 56.3,
+      "end_time": 79.4,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; The fire in front of the door has been burning fiercely.",
+      "scene_zone": "room",
+      "event_text": "From 56.3s to 79.4s, the fire in front of the door has been burning fiercely.",
+      "keywords": [
+        "fire",
+        "front",
+        "door",
+        "has",
+        "been",
+        "burning"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    }
+  ]
+}

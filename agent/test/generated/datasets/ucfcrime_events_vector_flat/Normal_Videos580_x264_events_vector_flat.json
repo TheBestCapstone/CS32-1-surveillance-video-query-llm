@@ -1,0 +1,301 @@
+{
+  "video_id": "Normal_Videos580_x264",
+  "duration": 120.0,
+  "events": [
+    {
+      "video_id": "Normal_Videos580_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 120.0,
+      "start_time": 0.0,
+      "end_time": 5.4,
+      "object_type": "car",
+      "object_color": "silver",
+      "appearance_notes": "High activity; The camera shows a parking lot on the left side of the road and a white housing area in the distance. A silver car enters the road on the right side of the road and drives past the left side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 0.0s to 5.4s, the camera shows a parking lot on the left side of the road and a white housing area in the distance. A silver car enters the road on the right side of the road and drives past the left side of the road.",
+      "keywords": [
+        "camera",
+        "shows",
+        "parking",
+        "lot",
+        "left",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos580_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 120.0,
+      "start_time": 13.3,
+      "end_time": 17.0,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A blue car enters on the left side of the road and drives to the right.",
+      "scene_zone": "road",
+      "event_text": "From 13.3s to 17.0s, a blue car enters on the left side of the road and drives to the right.",
+      "keywords": [
+        "blue",
+        "car",
+        "enters",
+        "left",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos580_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 120.0,
+      "start_time": 17.4,
+      "end_time": 20.5,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A red car enters the right side of the road and exits on the left.",
+      "scene_zone": "road",
+      "event_text": "From 17.4s to 20.5s, a red car enters the right side of the road and exits on the left.",
+      "keywords": [
+        "red",
+        "car",
+        "enters",
+        "right",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos580_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 120.0,
+      "start_time": 21.1,
+      "end_time": 24.5,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A box truck with a white body and blue patterns drove into the right side of the road and drove to the left side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 21.1s to 24.5s, a box truck with a white body and blue patterns drove into the right side of the road and drove to the left side of the road.",
+      "keywords": [
+        "box",
+        "truck",
+        "white",
+        "body",
+        "blue",
+        "patterns"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos580_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 120.0,
+      "start_time": 35.3,
+      "end_time": 59.4,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man in a white shirt and shorts on the left side of the road walked into the screen and walked to the right side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 35.3s to 59.4s, a man in a white shirt and shorts on the left side of the road walked into the screen and walked to the right side of the road.",
+      "keywords": [
+        "man",
+        "white",
+        "shirt",
+        "shorts",
+        "left",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos580_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 120.0,
+      "start_time": 60.1,
+      "end_time": 63.2,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; There is a red STOP sign on the left side of the road, with a white building above it, and a black car driving past from left to right.",
+      "scene_zone": "road",
+      "event_text": "From 60.1s to 63.2s, there is a red STOP sign on the left side of the road, with a white building above it, and a black car driving past from left to right.",
+      "keywords": [
+        "red",
+        "stop",
+        "sign",
+        "left",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos580_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 120.0,
+      "start_time": 68.5,
+      "end_time": 70.3,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car on the right is driving to the left.",
+      "scene_zone": "unknown",
+      "event_text": "From 68.5s to 70.3s, a black car on the right is driving to the left.",
+      "keywords": [
+        "black",
+        "car",
+        "right",
+        "driving",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos580_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 120.0,
+      "start_time": 99.5,
+      "end_time": 100.3,
+      "object_type": "unknown",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white van on the right passes by to the left.",
+      "scene_zone": "unknown",
+      "event_text": "From 99.5s to 100.3s, a white van on the right passes by to the left.",
+      "keywords": [
+        "white",
+        "van",
+        "right",
+        "passes",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Normal_Videos580_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 120.0,
+      "start_time": 105.5,
+      "end_time": 115.3,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A silver-white car and a silver-gray car drove past to the left.",
+      "scene_zone": "unknown",
+      "event_text": "From 105.5s to 115.3s, a silver-white car and a silver-gray car drove past to the left.",
+      "keywords": [
+        "silver",
+        "white",
+        "car",
+        "gray",
+        "drove",
+        "past"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    }
+  ]
+}

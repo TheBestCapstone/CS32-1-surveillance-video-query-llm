@@ -1,0 +1,72 @@
+{
+  "video_id": "Assault036_x264",
+  "duration": 30.49,
+  "events": [
+    {
+      "video_id": "Assault036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 30.49,
+      "start_time": 1.4,
+      "end_time": 3.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; Two men were standing in the middle of the road. Suddenly, one man punched the other man in the face.",
+      "scene_zone": "road",
+      "event_text": "From 1.4s to 3.4s, two men were standing in the middle of the road. Suddenly, one man punched the other man in the face.",
+      "keywords": [
+        "two",
+        "men",
+        "standing",
+        "middle",
+        "road",
+        "suddenly"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Assault036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 30.49,
+      "start_time": 4.8,
+      "end_time": 29.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; The beaten man tried to break free and escape, but was chased by another man and continued to be beaten.",
+      "scene_zone": "unknown",
+      "event_text": "From 4.8s to 29.1s, the beaten man tried to break free and escape, but was chased by another man and continued to be beaten.",
+      "keywords": [
+        "beaten",
+        "man",
+        "tried",
+        "break",
+        "free",
+        "escape"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    }
+  ]
+}

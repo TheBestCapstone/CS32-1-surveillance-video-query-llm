@@ -1,0 +1,685 @@
+{
+  "video_id": "Arrest049_x264",
+  "duration": 393.35,
+  "events": [
+    {
+      "video_id": "Arrest049_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 393.35,
+      "start_time": 0.0,
+      "end_time": 15.5,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black is riding a bicycle.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 15.5s, a man in black is riding a bicycle.",
+      "keywords": [
+        "man",
+        "black",
+        "riding",
+        "bicycle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Arrest049_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 393.35,
+      "start_time": 15.5,
+      "end_time": 24.3,
+      "object_type": "police",
+      "object_color": "silver",
+      "appearance_notes": "Low activity; A man on a bicycle stopped on the side of the road. There were two people standing next to him. There was a silver police car parked on the road.",
+      "scene_zone": "road",
+      "event_text": "From 15.5s to 24.3s, a man on a bicycle stopped on the side of the road. There were two people standing next to him. There was a silver police car parked on the road.",
+      "keywords": [
+        "man",
+        "bicycle",
+        "stopped",
+        "side",
+        "road",
+        "two"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Arrest049_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 393.35,
+      "start_time": 24.3,
+      "end_time": 31.1,
+      "object_type": "police",
+      "object_color": "green",
+      "appearance_notes": "Observed event; A man in a green police uniform walked up to the man in black and communicated with the man.",
+      "scene_zone": "unknown",
+      "event_text": "From 24.3s to 31.1s, a man in a green police uniform walked up to the man in black and communicated with the man.",
+      "keywords": [
+        "man",
+        "green",
+        "police",
+        "uniform",
+        "walked",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Arrest049_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 393.35,
+      "start_time": 31.1,
+      "end_time": 44.0,
+      "object_type": "police",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man got off the bicycle, walked aside with the man in police uniform, and leaned the bicycle against the street light.",
+      "scene_zone": "road",
+      "event_text": "From 31.1s to 44.0s, the man got off the bicycle, walked aside with the man in police uniform, and leaned the bicycle against the street light.",
+      "keywords": [
+        "man",
+        "got",
+        "off",
+        "bicycle",
+        "walked",
+        "aside"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Arrest049_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 393.35,
+      "start_time": 44.0,
+      "end_time": 99.9,
+      "object_type": "police",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in police uniform searched the man in black.",
+      "scene_zone": "unknown",
+      "event_text": "From 44.0s to 99.9s, the man in police uniform searched the man in black.",
+      "keywords": [
+        "man",
+        "police",
+        "uniform",
+        "searched",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Arrest049_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 393.35,
+      "start_time": 99.9,
+      "end_time": 151.3,
+      "object_type": "police",
+      "object_color": "black",
+      "appearance_notes": "High activity; The man in black wanted to run to the road, but the man in police uniform caught his clothes, and then the two struggled together.",
+      "scene_zone": "road",
+      "event_text": "From 99.9s to 151.3s, the man in black wanted to run to the road, but the man in police uniform caught his clothes, and then the two struggled together.",
+      "keywords": [
+        "man",
+        "black",
+        "wanted",
+        "run",
+        "road",
+        "but"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Arrest049_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 393.35,
+      "start_time": 117.6,
+      "end_time": 121.4,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A blue car passed by.",
+      "scene_zone": "unknown",
+      "event_text": "From 117.6s to 121.4s, a blue car passed by.",
+      "keywords": [
+        "blue",
+        "car",
+        "passed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Arrest049_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 393.35,
+      "start_time": 147.3,
+      "end_time": 168.0,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in blue ran over and pressed on the man in black, then controlled the man and his clothes were torn off.",
+      "scene_zone": "unknown",
+      "event_text": "From 147.3s to 168.0s, a man in blue ran over and pressed on the man in black, then controlled the man and his clothes were torn off.",
+      "keywords": [
+        "man",
+        "blue",
+        "ran",
+        "pressed",
+        "black",
+        "controlled"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Arrest049_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 393.35,
+      "start_time": 152.7,
+      "end_time": 216.4,
+      "object_type": "person",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; A blond woman came and stood beside him.",
+      "scene_zone": "unknown",
+      "event_text": "From 152.7s to 216.4s, a blond woman came and stood beside him.",
+      "keywords": [
+        "blond",
+        "woman",
+        "came",
+        "stood",
+        "beside",
+        "him"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Arrest049_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 393.35,
+      "start_time": 182.0,
+      "end_time": 211.0,
+      "object_type": "police",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in police uniform puts handcuffs on the man in black.",
+      "scene_zone": "unknown",
+      "event_text": "From 182.0s to 211.0s, the man in police uniform puts handcuffs on the man in black.",
+      "keywords": [
+        "man",
+        "police",
+        "uniform",
+        "puts",
+        "handcuffs",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Arrest049_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 393.35,
+      "start_time": 211.0,
+      "end_time": 218.9,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The man in blue stood up.",
+      "scene_zone": "unknown",
+      "event_text": "From 211.0s to 218.9s, the man in blue stood up.",
+      "keywords": [
+        "man",
+        "blue",
+        "stood"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Arrest049_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 393.35,
+      "start_time": 221.1,
+      "end_time": 271.8,
+      "object_type": "police",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man in police uniform ran over and took the handcuffed man to the back of the police car and opened the door to let the man in.",
+      "scene_zone": "room",
+      "event_text": "From 221.1s to 271.8s, a man in police uniform ran over and took the handcuffed man to the back of the police car and opened the door to let the man in.",
+      "keywords": [
+        "man",
+        "police",
+        "uniform",
+        "ran",
+        "took",
+        "handcuffed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Arrest049_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 393.35,
+      "start_time": 267.8,
+      "end_time": 342.7,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Multiple vehicles passed by.",
+      "scene_zone": "unknown",
+      "event_text": "From 267.8s to 342.7s, multiple vehicles passed by.",
+      "keywords": [
+        "multiple",
+        "vehicles",
+        "passed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Arrest049_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 393.35,
+      "start_time": 257.7,
+      "end_time": 273.5,
+      "object_type": "police",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two men in police uniforms walked behind the police car one after another.",
+      "scene_zone": "unknown",
+      "event_text": "From 257.7s to 273.5s, two men in police uniforms walked behind the police car one after another.",
+      "keywords": [
+        "two",
+        "men",
+        "police",
+        "uniforms",
+        "walked",
+        "behind"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Arrest049_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 393.35,
+      "start_time": 276.3,
+      "end_time": 306.8,
+      "object_type": "police",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; The blond woman came over to talk to a man in police uniform.",
+      "scene_zone": "unknown",
+      "event_text": "From 276.3s to 306.8s, the blond woman came over to talk to a man in police uniform.",
+      "keywords": [
+        "blond",
+        "woman",
+        "came",
+        "talk",
+        "man",
+        "police"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    },
+    {
+      "video_id": "Arrest049_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 393.35,
+      "start_time": 293.7,
+      "end_time": 301.3,
+      "object_type": "police",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A woman in police uniform came over holding a piece of clothing and left.",
+      "scene_zone": "unknown",
+      "event_text": "From 293.7s to 301.3s, a woman in police uniform came over holding a piece of clothing and left.",
+      "keywords": [
+        "woman",
+        "police",
+        "uniform",
+        "came",
+        "holding",
+        "piece"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_16"
+    },
+    {
+      "video_id": "Arrest049_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 393.35,
+      "start_time": 306.8,
+      "end_time": 316.0,
+      "object_type": "police",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; The blond woman and the man in police uniform left.",
+      "scene_zone": "unknown",
+      "event_text": "From 306.8s to 316.0s, the blond woman and the man in police uniform left.",
+      "keywords": [
+        "blond",
+        "woman",
+        "man",
+        "police",
+        "uniform",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_17"
+    },
+    {
+      "video_id": "Arrest049_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 393.35,
+      "start_time": 317.5,
+      "end_time": 323.1,
+      "object_type": "police",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A woman in police uniform came over holding a piece of clothing.",
+      "scene_zone": "unknown",
+      "event_text": "From 317.5s to 323.1s, a woman in police uniform came over holding a piece of clothing.",
+      "keywords": [
+        "woman",
+        "police",
+        "uniform",
+        "came",
+        "holding",
+        "piece"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_18"
+    },
+    {
+      "video_id": "Arrest049_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 393.35,
+      "start_time": 333.0,
+      "end_time": 346.9,
+      "object_type": "police",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man in police uniform got into the car, the woman in police uniform put her clothes on the car, and the other man in police uniform left.",
+      "scene_zone": "unknown",
+      "event_text": "From 333.0s to 346.9s, a man in police uniform got into the car, the woman in police uniform put her clothes on the car, and the other man in police uniform left.",
+      "keywords": [
+        "man",
+        "police",
+        "uniform",
+        "got",
+        "car",
+        "woman"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_19"
+    },
+    {
+      "video_id": "Arrest049_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 393.35,
+      "start_time": 357.3,
+      "end_time": 361.3,
+      "object_type": "police",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white police car left.",
+      "scene_zone": "unknown",
+      "event_text": "From 357.3s to 361.3s, a white police car left.",
+      "keywords": [
+        "white",
+        "police",
+        "car",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_20"
+    },
+    {
+      "video_id": "Arrest049_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 393.35,
+      "start_time": 372.7,
+      "end_time": 393.3,
+      "object_type": "police",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man in police uniform and a woman in police uniform were talking on the roadside.",
+      "scene_zone": "road",
+      "event_text": "From 372.7s to 393.3s, a man in police uniform and a woman in police uniform were talking on the roadside.",
+      "keywords": [
+        "man",
+        "police",
+        "uniform",
+        "woman",
+        "talking",
+        "roadside"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_21"
+    }
+  ]
+}

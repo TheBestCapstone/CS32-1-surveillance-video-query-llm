@@ -1,0 +1,134 @@
+{
+  "video_id": "Burglary070_x264",
+  "duration": 26.63,
+  "events": [
+    {
+      "video_id": "Burglary070_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 26.63,
+      "start_time": 1.5,
+      "end_time": 4.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man wearing a helmet smashed down the glass door outside a small store.",
+      "scene_zone": "room",
+      "event_text": "From 1.5s to 4.3s, a man wearing a helmet smashed down the glass door outside a small store.",
+      "keywords": [
+        "man",
+        "wearing",
+        "helmet",
+        "smashed",
+        "down",
+        "glass"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Burglary070_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 26.63,
+      "start_time": 4.5,
+      "end_time": 7.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man broke in.",
+      "scene_zone": "unknown",
+      "event_text": "From 4.5s to 7.3s, the man broke in.",
+      "keywords": [
+        "man",
+        "broke"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Burglary070_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 26.63,
+      "start_time": 10.2,
+      "end_time": 14.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There are three to four people, holding multiple shopping bags full of things in their hands,.",
+      "scene_zone": "unknown",
+      "event_text": "From 10.2s to 14.4s, there are three to four people, holding multiple shopping bags full of things in their hands,.",
+      "keywords": [
+        "three",
+        "four",
+        "people",
+        "holding",
+        "multiple",
+        "shopping"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Burglary070_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 26.63,
+      "start_time": 14.2,
+      "end_time": 24.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several people passed through the room and finally ran out of the shop.",
+      "scene_zone": "room",
+      "event_text": "From 14.2s to 24.4s, several people passed through the room and finally ran out of the shop.",
+      "keywords": [
+        "several",
+        "people",
+        "passed",
+        "through",
+        "room",
+        "finally"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    }
+  ]
+}

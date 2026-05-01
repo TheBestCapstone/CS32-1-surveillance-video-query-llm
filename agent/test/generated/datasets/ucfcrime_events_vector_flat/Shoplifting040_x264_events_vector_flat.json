@@ -1,0 +1,1517 @@
+{
+  "video_id": "Shoplifting040_x264",
+  "duration": 907.05,
+  "events": [
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 1.3,
+      "end_time": 16.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; In a shopping mall, a bunch of people are buying clothes. Four women are inside and three women are on the shelves outside.",
+      "scene_zone": "unknown",
+      "event_text": "From 1.3s to 16.5s, in a shopping mall, a bunch of people are buying clothes. Four women are inside and three women are on the shelves outside.",
+      "keywords": [
+        "shopping",
+        "mall",
+        "bunch",
+        "people",
+        "buying",
+        "clothes"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 19.4,
+      "end_time": 27.0,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; A piece of clothing fell off the shelf next to it and was picked up by a woman with black hair and white short sleeves.",
+      "scene_zone": "unknown",
+      "event_text": "From 19.4s to 27.0s, a piece of clothing fell off the shelf next to it and was picked up by a woman with black hair and white short sleeves.",
+      "keywords": [
+        "piece",
+        "clothing",
+        "fell",
+        "off",
+        "shelf",
+        "picked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 24.4,
+      "end_time": 29.0,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; Woman in white coat touches the clothes hanging on the wall.",
+      "scene_zone": "room",
+      "event_text": "From 24.4s to 29.0s, woman in white coat touches the clothes hanging on the wall.",
+      "keywords": [
+        "woman",
+        "white",
+        "coat",
+        "touches",
+        "clothes",
+        "hanging"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 25.4,
+      "end_time": 29.0,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A woman in a blue top came in.",
+      "scene_zone": "unknown",
+      "event_text": "From 25.4s to 29.0s, a woman in a blue top came in.",
+      "keywords": [
+        "woman",
+        "blue",
+        "top",
+        "came"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 29.5,
+      "end_time": 38.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A woman wearing floral short-sleeves came in, and a woman with a shoulder bag went out.",
+      "scene_zone": "unknown",
+      "event_text": "From 29.5s to 38.6s, a woman wearing floral short-sleeves came in, and a woman with a shoulder bag went out.",
+      "keywords": [
+        "woman",
+        "wearing",
+        "floral",
+        "short",
+        "sleeves",
+        "came"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 42.5,
+      "end_time": 69.9,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The woman with black hair and white short sleeves took two pieces of clothing and put them into the bag of the woman in the floral top and went out.",
+      "scene_zone": "unknown",
+      "event_text": "From 42.5s to 69.9s, the woman with black hair and white short sleeves took two pieces of clothing and put them into the bag of the woman in the floral top and went out.",
+      "keywords": [
+        "woman",
+        "black",
+        "hair",
+        "white",
+        "short",
+        "sleeves"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 72.5,
+      "end_time": 85.7,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The women next to the shelves are all out.",
+      "scene_zone": "unknown",
+      "event_text": "From 72.5s to 85.7s, the women next to the shelves are all out.",
+      "keywords": [
+        "women",
+        "shelves",
+        "all",
+        "out"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 88.8,
+      "end_time": 107.1,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Four women are talking around a place inside.",
+      "scene_zone": "unknown",
+      "event_text": "From 88.8s to 107.1s, four women are talking around a place inside.",
+      "keywords": [
+        "four",
+        "women",
+        "talking",
+        "around",
+        "place",
+        "inside"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 107.1,
+      "end_time": 136.6,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The woman with black hair and white short sleeves hangs the clothes on the shelf and then puts the clothes back and forth.",
+      "scene_zone": "unknown",
+      "event_text": "From 107.1s to 136.6s, the woman with black hair and white short sleeves hangs the clothes on the shelf and then puts the clothes back and forth.",
+      "keywords": [
+        "woman",
+        "black",
+        "hair",
+        "white",
+        "short",
+        "sleeves"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 138.2,
+      "end_time": 163.8,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; A woman with a backpack came over. The woman with black hair and white short sleeves put the clothes into her bag, and then the woman left.",
+      "scene_zone": "unknown",
+      "event_text": "From 138.2s to 163.8s, a woman with a backpack came over. The woman with black hair and white short sleeves put the clothes into her bag, and then the woman left.",
+      "keywords": [
+        "woman",
+        "backpack",
+        "came",
+        "black",
+        "hair",
+        "white"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 170.0,
+      "end_time": 189.0,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The woman with black hair and white short sleeves took a piece of clothing in one hand and looked at it, then put it back and started to pull off other clothes.",
+      "scene_zone": "unknown",
+      "event_text": "From 170.0s to 189.0s, the woman with black hair and white short sleeves took a piece of clothing in one hand and looked at it, then put it back and started to pull off other clothes.",
+      "keywords": [
+        "woman",
+        "black",
+        "hair",
+        "white",
+        "short",
+        "sleeves"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 189.0,
+      "end_time": 214.9,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; A woman in a white top and black pants takes a piece of clothing to check out at the counter.",
+      "scene_zone": "store",
+      "event_text": "From 189.0s to 214.9s, a woman in a white top and black pants takes a piece of clothing to check out at the counter.",
+      "keywords": [
+        "woman",
+        "white",
+        "top",
+        "black",
+        "pants",
+        "takes"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 220.7,
+      "end_time": 232.7,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The woman with black hair and white short sleeves walked around and looked at the clothes in front of the shelf.",
+      "scene_zone": "unknown",
+      "event_text": "From 220.7s to 232.7s, the woman with black hair and white short sleeves walked around and looked at the clothes in front of the shelf.",
+      "keywords": [
+        "woman",
+        "black",
+        "hair",
+        "white",
+        "short",
+        "sleeves"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 220.7,
+      "end_time": 233.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A woman with tied hair came in and walked to the table where the sunglasses were placed.",
+      "scene_zone": "room",
+      "event_text": "From 220.7s to 233.7s, a woman with tied hair came in and walked to the table where the sunglasses were placed.",
+      "keywords": [
+        "woman",
+        "tied",
+        "hair",
+        "came",
+        "walked",
+        "table"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 237.3,
+      "end_time": 250.7,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; Two women came over, one went to touch the clothes hanging on the wall, and the other looked at the clothes on the shelf next to the shelf.",
+      "scene_zone": "room",
+      "event_text": "From 237.3s to 250.7s, two women came over, one went to touch the clothes hanging on the wall, and the other looked at the clothes on the shelf next to the shelf.",
+      "keywords": [
+        "two",
+        "women",
+        "came",
+        "one",
+        "went",
+        "touch"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 251.8,
+      "end_time": 258.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The woman in the white top and black pants hung the clothes in her hand on the shelf, and the woman with her hair tied up walked to the side of the shelf.",
+      "scene_zone": "unknown",
+      "event_text": "From 251.8s to 258.1s, the woman in the white top and black pants hung the clothes in her hand on the shelf, and the woman with her hair tied up walked to the side of the shelf.",
+      "keywords": [
+        "woman",
+        "white",
+        "top",
+        "black",
+        "pants",
+        "hung"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_16"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 260.0,
+      "end_time": 273.7,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The woman leaning against the wall left. The woman with black hair and white short sleeves pointed to the right. The two women opposite her looked in the direction she pointed.",
+      "scene_zone": "room",
+      "event_text": "From 260.0s to 273.7s, the woman leaning against the wall left. The woman with black hair and white short sleeves pointed to the right. The two women opposite her looked in the direction she pointed.",
+      "keywords": [
+        "woman",
+        "leaning",
+        "against",
+        "wall",
+        "left",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_17"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 277.9,
+      "end_time": 291.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman with tied hair walked away.",
+      "scene_zone": "unknown",
+      "event_text": "From 277.9s to 291.6s, the woman with tied hair walked away.",
+      "keywords": [
+        "woman",
+        "tied",
+        "hair",
+        "walked",
+        "away"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_18"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 274.9,
+      "end_time": 299.6,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; A woman in stripes came over. She opened her black bag. The woman with black hair and white short sleeves put the clothes into her bag and left.",
+      "scene_zone": "unknown",
+      "event_text": "From 274.9s to 299.6s, a woman in stripes came over. She opened her black bag. The woman with black hair and white short sleeves put the clothes into her bag and left.",
+      "keywords": [
+        "woman",
+        "stripes",
+        "came",
+        "she",
+        "opened",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_19"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 301.4,
+      "end_time": 316.9,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The woman with black hair and white short sleeves left, and a woman followed her holding a pole to hold up clothes.",
+      "scene_zone": "unknown",
+      "event_text": "From 301.4s to 316.9s, the woman with black hair and white short sleeves left, and a woman followed her holding a pole to hold up clothes.",
+      "keywords": [
+        "woman",
+        "black",
+        "hair",
+        "white",
+        "short",
+        "sleeves"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_20"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 318.7,
+      "end_time": 338.7,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The woman with black hair and white short sleeves hung the clothes on the shelf, and then started to fiddle with the clothes on the shelf.",
+      "scene_zone": "unknown",
+      "event_text": "From 318.7s to 338.7s, the woman with black hair and white short sleeves hung the clothes on the shelf, and then started to fiddle with the clothes on the shelf.",
+      "keywords": [
+        "woman",
+        "black",
+        "hair",
+        "white",
+        "short",
+        "sleeves"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_21"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 340.3,
+      "end_time": 355.2,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The woman with black hair and white short sleeves put the clothes into the bag of the woman wearing a patterned top and left.",
+      "scene_zone": "unknown",
+      "event_text": "From 340.3s to 355.2s, the woman with black hair and white short sleeves put the clothes into the bag of the woman wearing a patterned top and left.",
+      "keywords": [
+        "woman",
+        "black",
+        "hair",
+        "white",
+        "short",
+        "sleeves"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_22"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 355.9,
+      "end_time": 363.6,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The woman with black hair and white short sleeves walked away.",
+      "scene_zone": "unknown",
+      "event_text": "From 355.9s to 363.6s, the woman with black hair and white short sleeves walked away.",
+      "keywords": [
+        "woman",
+        "black",
+        "hair",
+        "white",
+        "short",
+        "sleeves"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_23"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 355.9,
+      "end_time": 376.6,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A woman carrying a red bag came over, and then a woman walked in front of the woman.",
+      "scene_zone": "unknown",
+      "event_text": "From 355.9s to 376.6s, a woman carrying a red bag came over, and then a woman walked in front of the woman.",
+      "keywords": [
+        "woman",
+        "carrying",
+        "red",
+        "bag",
+        "came",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_24"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 364.8,
+      "end_time": 390.0,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Low activity; The woman carrying a red bag looked at a pair of shorts and then put them down.",
+      "scene_zone": "unknown",
+      "event_text": "From 364.8s to 390.0s, the woman carrying a red bag looked at a pair of shorts and then put them down.",
+      "keywords": [
+        "woman",
+        "carrying",
+        "red",
+        "bag",
+        "looked",
+        "pair"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_25"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 388.8,
+      "end_time": 396.0,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The woman with black hair and white short sleeves hung the clothes in her hands on the shelf.",
+      "scene_zone": "unknown",
+      "event_text": "From 388.8s to 396.0s, the woman with black hair and white short sleeves hung the clothes in her hands on the shelf.",
+      "keywords": [
+        "woman",
+        "black",
+        "hair",
+        "white",
+        "short",
+        "sleeves"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_26"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 398.8,
+      "end_time": 439.1,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The three women in front of the shelves walked away and then came back and continued to look through the clothes.",
+      "scene_zone": "unknown",
+      "event_text": "From 398.8s to 439.1s, the three women in front of the shelves walked away and then came back and continued to look through the clothes.",
+      "keywords": [
+        "three",
+        "women",
+        "front",
+        "shelves",
+        "walked",
+        "away"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_27"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 437.1,
+      "end_time": 451.7,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The woman with black hair and white short sleeves put the clothes into the bag of the woman wearing a patterned top and left.",
+      "scene_zone": "unknown",
+      "event_text": "From 437.1s to 451.7s, the woman with black hair and white short sleeves put the clothes into the bag of the woman wearing a patterned top and left.",
+      "keywords": [
+        "woman",
+        "black",
+        "hair",
+        "white",
+        "short",
+        "sleeves"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_28"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 447.7,
+      "end_time": 461.2,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "High activity; The woman in the blue top pushed the shelf, then walked around in a circle and left with the woman next to her.",
+      "scene_zone": "unknown",
+      "event_text": "From 447.7s to 461.2s, the woman in the blue top pushed the shelf, then walked around in a circle and left with the woman next to her.",
+      "keywords": [
+        "woman",
+        "blue",
+        "top",
+        "pushed",
+        "shelf",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_29"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 466.0,
+      "end_time": 473.8,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The woman in the blue top walked to the counter.",
+      "scene_zone": "store",
+      "event_text": "From 466.0s to 473.8s, the woman in the blue top walked to the counter.",
+      "keywords": [
+        "woman",
+        "blue",
+        "top",
+        "walked",
+        "counter"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_30"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 473.8,
+      "end_time": 502.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There was a woman in front of the counter holding clothes and placing them on the shelf. Then she signaled to the woman in front of the counter and left. The woman followed.",
+      "scene_zone": "store",
+      "event_text": "From 473.8s to 502.5s, there was a woman in front of the counter holding clothes and placing them on the shelf. Then she signaled to the woman in front of the counter and left. The woman followed.",
+      "keywords": [
+        "woman",
+        "front",
+        "counter",
+        "holding",
+        "clothes",
+        "placing"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_31"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 530.3,
+      "end_time": 539.4,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The woman in the blue top walked to the counter, followed by a man.",
+      "scene_zone": "store",
+      "event_text": "From 530.3s to 539.4s, the woman in the blue top walked to the counter, followed by a man.",
+      "keywords": [
+        "woman",
+        "blue",
+        "top",
+        "walked",
+        "counter",
+        "followed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_32"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 539.4,
+      "end_time": 578.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man and woman at the counter are talking and moving around from time to time.",
+      "scene_zone": "store",
+      "event_text": "From 539.4s to 578.8s, the man and woman at the counter are talking and moving around from time to time.",
+      "keywords": [
+        "man",
+        "woman",
+        "counter",
+        "talking",
+        "moving",
+        "around"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_33"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 539.4,
+      "end_time": 581.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man wiped his face with paper and left.",
+      "scene_zone": "unknown",
+      "event_text": "From 539.4s to 581.8s, the man wiped his face with paper and left.",
+      "keywords": [
+        "man",
+        "wiped",
+        "face",
+        "paper",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_34"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 586.0,
+      "end_time": 603.3,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The woman in the blue top took two steps outside, returned to the counter, and then walked out again.",
+      "scene_zone": "store",
+      "event_text": "From 586.0s to 603.3s, the woman in the blue top took two steps outside, returned to the counter, and then walked out again.",
+      "keywords": [
+        "woman",
+        "blue",
+        "top",
+        "took",
+        "two",
+        "steps"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_35"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 643.9,
+      "end_time": 675.1,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Low activity; A woman carrying a black bag is looking through clothes.",
+      "scene_zone": "unknown",
+      "event_text": "From 643.9s to 675.1s, a woman carrying a black bag is looking through clothes.",
+      "keywords": [
+        "woman",
+        "carrying",
+        "black",
+        "bag",
+        "looking",
+        "through"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_36"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 675.1,
+      "end_time": 697.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; A man walked to the counter, took a piece of paper and left; the woman was still looking at the clothes.",
+      "scene_zone": "store",
+      "event_text": "From 675.1s to 697.8s, a man walked to the counter, took a piece of paper and left; the woman was still looking at the clothes.",
+      "keywords": [
+        "man",
+        "walked",
+        "counter",
+        "took",
+        "piece",
+        "paper"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_37"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 697.8,
+      "end_time": 748.9,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Low activity; The woman in a blue top and carrying a black bag is looking at the clothes on the left and right.",
+      "scene_zone": "unknown",
+      "event_text": "From 697.8s to 748.9s, the woman in a blue top and carrying a black bag is looking at the clothes on the left and right.",
+      "keywords": [
+        "woman",
+        "blue",
+        "top",
+        "carrying",
+        "black",
+        "bag"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_38"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 751.4,
+      "end_time": 771.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; A woman wearing a sling took her child to the sunglasses. The child walked in by himself, and the woman kept looking at the sunglasses.",
+      "scene_zone": "unknown",
+      "event_text": "From 751.4s to 771.9s, a woman wearing a sling took her child to the sunglasses. The child walked in by himself, and the woman kept looking at the sunglasses.",
+      "keywords": [
+        "woman",
+        "wearing",
+        "sling",
+        "took",
+        "child",
+        "sunglasses"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_39"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 775.9,
+      "end_time": 794.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The woman looked at it for a while and walked to the clothes shelf and looked through it.",
+      "scene_zone": "unknown",
+      "event_text": "From 775.9s to 794.9s, the woman looked at it for a while and walked to the clothes shelf and looked through it.",
+      "keywords": [
+        "woman",
+        "looked",
+        "while",
+        "walked",
+        "clothes",
+        "shelf"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_40"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 797.2,
+      "end_time": 814.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The woman wearing suspenders continues to look through the clothes on the shelf.",
+      "scene_zone": "unknown",
+      "event_text": "From 797.2s to 814.1s, the woman wearing suspenders continues to look through the clothes on the shelf.",
+      "keywords": [
+        "woman",
+        "wearing",
+        "suspenders",
+        "continues",
+        "look",
+        "through"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_41"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 814.1,
+      "end_time": 825.7,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The woman in a blue top walked to the counter, followed by a woman in a white top and black pants outside the counter.",
+      "scene_zone": "store",
+      "event_text": "From 814.1s to 825.7s, the woman in a blue top walked to the counter, followed by a woman in a white top and black pants outside the counter.",
+      "keywords": [
+        "woman",
+        "blue",
+        "top",
+        "walked",
+        "counter",
+        "followed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_42"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 816.1,
+      "end_time": 825.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman wearing a suspender also followed, and another man passed behind her.",
+      "scene_zone": "unknown",
+      "event_text": "From 816.1s to 825.7s, the woman wearing a suspender also followed, and another man passed behind her.",
+      "keywords": [
+        "woman",
+        "wearing",
+        "suspender",
+        "also",
+        "followed",
+        "another"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_43"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 828.3,
+      "end_time": 840.3,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The man and the woman in the blue shirt walked to the shelf to talk, and the woman straightened the shelf.",
+      "scene_zone": "unknown",
+      "event_text": "From 828.3s to 840.3s, the man and the woman in the blue shirt walked to the shelf to talk, and the woman straightened the shelf.",
+      "keywords": [
+        "man",
+        "woman",
+        "blue",
+        "shirt",
+        "walked",
+        "shelf"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_44"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 840.3,
+      "end_time": 878.9,
+      "object_type": "police",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A policeman came in and talked to the woman in the blue shirt. The man and the woman in the blue shirt went through the bag together and showed it to the police.",
+      "scene_zone": "unknown",
+      "event_text": "From 840.3s to 878.9s, a policeman came in and talked to the woman in the blue shirt. The man and the woman in the blue shirt went through the bag together and showed it to the police.",
+      "keywords": [
+        "policeman",
+        "came",
+        "talked",
+        "woman",
+        "blue",
+        "shirt"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_45"
+    },
+    {
+      "video_id": "Shoplifting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 907.05,
+      "start_time": 880.8,
+      "end_time": 907.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man placed the clothes he took out on the shelf and continued to rummage through the bag; the woman leaned on the shelf and talked.",
+      "scene_zone": "unknown",
+      "event_text": "From 880.8s to 907.0s, the man placed the clothes he took out on the shelf and continued to rummage through the bag; the woman leaned on the shelf and talked.",
+      "keywords": [
+        "man",
+        "placed",
+        "clothes",
+        "took",
+        "out",
+        "shelf"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_46"
+    }
+  ]
+}

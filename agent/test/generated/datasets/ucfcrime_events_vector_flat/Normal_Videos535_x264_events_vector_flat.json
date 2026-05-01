@@ -1,0 +1,270 @@
+{
+  "video_id": "Normal_Videos535_x264",
+  "duration": 121.47,
+  "events": [
+    {
+      "video_id": "Normal_Videos535_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 121.47,
+      "start_time": 0.0,
+      "end_time": 8.2,
+      "object_type": "unknown",
+      "object_color": "white",
+      "appearance_notes": "High activity; There is a white tall building on the left side of the picture with a yellow sign in the middle, a telephone pole on the right side, and a red building below.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 8.2s, there is a white tall building on the left side of the picture with a yellow sign in the middle, a telephone pole on the right side, and a red building below.",
+      "keywords": [
+        "white",
+        "tall",
+        "building",
+        "left",
+        "side",
+        "picture"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos535_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 121.47,
+      "start_time": 8.5,
+      "end_time": 14.3,
+      "object_type": "unknown",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The screen starts to zoom, there is a big yellow sign on the left with red words, and there are several trees in the distance on the right.",
+      "scene_zone": "unknown",
+      "event_text": "From 8.5s to 14.3s, the screen starts to zoom, there is a big yellow sign on the left with red words, and there are several trees in the distance on the right.",
+      "keywords": [
+        "screen",
+        "starts",
+        "zoom",
+        "big",
+        "yellow",
+        "sign"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos535_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 121.47,
+      "start_time": 22.1,
+      "end_time": 33.2,
+      "object_type": "unknown",
+      "object_color": "white",
+      "appearance_notes": "High activity; Screen zoom, there is a white tall building on the left with a yellow sign in the middle, a telephone pole on the right, and a red building below.",
+      "scene_zone": "unknown",
+      "event_text": "From 22.1s to 33.2s, screen zoom, there is a white tall building on the left with a yellow sign in the middle, a telephone pole on the right, and a red building below.",
+      "keywords": [
+        "screen",
+        "zoom",
+        "white",
+        "tall",
+        "building",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos535_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 121.47,
+      "start_time": 33.4,
+      "end_time": 47.3,
+      "object_type": "unknown",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; At the top of the screen, the yellow sign stayed briefly, then the camera turned right, shifted to the left and zoomed in.",
+      "scene_zone": "unknown",
+      "event_text": "From 33.4s to 47.3s, at the top of the screen, the yellow sign stayed briefly, then the camera turned right, shifted to the left and zoomed in.",
+      "keywords": [
+        "top",
+        "screen",
+        "yellow",
+        "sign",
+        "stayed",
+        "briefly"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos535_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 121.47,
+      "start_time": 47.4,
+      "end_time": 64.5,
+      "object_type": "car",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; The picture turns to the right. The picture shows a yellow car with red headlights. The license plate number is 557. The driver's door of the yellow vehicle is open. The picture is zoomed out.",
+      "scene_zone": "room",
+      "event_text": "From 47.4s to 64.5s, the picture turns to the right. The picture shows a yellow car with red headlights. The license plate number is 557. The driver's door of the yellow vehicle is open. The picture is zoomed out.",
+      "keywords": [
+        "picture",
+        "turns",
+        "right",
+        "shows",
+        "yellow",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos535_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 121.47,
+      "start_time": 66.3,
+      "end_time": 76.1,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The right side of the picture is a row of red brick walls, the left side is a road, there are many vehicles driving on the road, and there is a telephone pole in the center. The picture is enlarged later.",
+      "scene_zone": "road",
+      "event_text": "From 66.3s to 76.1s, the right side of the picture is a row of red brick walls, the left side is a road, there are many vehicles driving on the road, and there is a telephone pole in the center. The picture is enlarged later.",
+      "keywords": [
+        "right",
+        "side",
+        "picture",
+        "row",
+        "red",
+        "brick"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos535_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 121.47,
+      "start_time": 78.1,
+      "end_time": 98.1,
+      "object_type": "car",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; Turn the screen left and right and zoom in on the yellow overpass. There is a bus and several cars driving at the bottom of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 78.1s to 98.1s, turn the screen left and right and zoom in on the yellow overpass. There is a bus and several cars driving at the bottom of the screen.",
+      "keywords": [
+        "turn",
+        "screen",
+        "left",
+        "right",
+        "zoom",
+        "yellow"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos535_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 121.47,
+      "start_time": 98.1,
+      "end_time": 120.3,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Turn right, zoom in on the windshield of a bus, then shrink back to the initial screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 98.1s to 120.3s, turn right, zoom in on the windshield of a bus, then shrink back to the initial screen.",
+      "keywords": [
+        "turn",
+        "right",
+        "zoom",
+        "windshield",
+        "bus",
+        "shrink"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    }
+  ]
+}

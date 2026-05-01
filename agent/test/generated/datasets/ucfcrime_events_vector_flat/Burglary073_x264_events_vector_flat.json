@@ -1,0 +1,296 @@
+{
+  "video_id": "Burglary073_x264",
+  "duration": 92.4,
+  "events": [
+    {
+      "video_id": "Burglary073_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 92.4,
+      "start_time": 0.8,
+      "end_time": 13.1,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; An African-American teenager wearing a dark T-shirt and light pants walked towards the room from a distance.",
+      "scene_zone": "room",
+      "event_text": "From 0.8s to 13.1s, an African-American teenager wearing a dark T-shirt and light pants walked towards the room from a distance.",
+      "keywords": [
+        "african",
+        "american",
+        "teenager",
+        "wearing",
+        "dark",
+        "shirt"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Burglary073_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 92.4,
+      "start_time": 13.8,
+      "end_time": 25.1,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The boy is wandering in front of the door,.",
+      "scene_zone": "room",
+      "event_text": "From 13.8s to 25.1s, the boy is wandering in front of the door,.",
+      "keywords": [
+        "boy",
+        "wandering",
+        "front",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Burglary073_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 92.4,
+      "start_time": 25.8,
+      "end_time": 40.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The young man looked inside.",
+      "scene_zone": "unknown",
+      "event_text": "From 25.8s to 40.1s, the young man looked inside.",
+      "keywords": [
+        "young",
+        "man",
+        "looked",
+        "inside"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Burglary073_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 92.4,
+      "start_time": 41.2,
+      "end_time": 44.3,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The boy turned around twice in front of the door and then hid under the window and looked towards the door.",
+      "scene_zone": "room",
+      "event_text": "From 41.2s to 44.3s, the boy turned around twice in front of the door and then hid under the window and looked towards the door.",
+      "keywords": [
+        "boy",
+        "turned",
+        "around",
+        "twice",
+        "front",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Burglary073_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 92.4,
+      "start_time": 63.2,
+      "end_time": 77.0,
+      "object_type": "dog",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A dog rushed out and bit the boy, and the boy tried to break free.",
+      "scene_zone": "unknown",
+      "event_text": "From 63.2s to 77.0s, a dog rushed out and bit the boy, and the boy tried to break free.",
+      "keywords": [
+        "dog",
+        "rushed",
+        "out",
+        "bit",
+        "boy",
+        "tried"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Burglary073_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 92.4,
+      "start_time": 66.2,
+      "end_time": 77.0,
+      "object_type": "dog",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; The yellow dog chases and bites.",
+      "scene_zone": "unknown",
+      "event_text": "From 66.2s to 77.0s, the yellow dog chases and bites.",
+      "keywords": [
+        "yellow",
+        "dog",
+        "chases",
+        "bites"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Burglary073_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 92.4,
+      "start_time": 77.7,
+      "end_time": 80.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There are two more puppies running from two directions.",
+      "scene_zone": "unknown",
+      "event_text": "From 77.7s to 80.0s, there are two more puppies running from two directions.",
+      "keywords": [
+        "two",
+        "more",
+        "puppies",
+        "running",
+        "directions"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Burglary073_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 92.4,
+      "start_time": 80.7,
+      "end_time": 92.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The teenager tried to escape and ran to the top of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 80.7s to 92.0s, the teenager tried to escape and ran to the top of the screen.",
+      "keywords": [
+        "teenager",
+        "tried",
+        "escape",
+        "ran",
+        "top",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Burglary073_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 92.4,
+      "start_time": 80.7,
+      "end_time": 91.4,
+      "object_type": "dog",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The big dog chased after him all the way to the top.",
+      "scene_zone": "unknown",
+      "event_text": "From 80.7s to 91.4s, the big dog chased after him all the way to the top.",
+      "keywords": [
+        "big",
+        "dog",
+        "chased",
+        "him",
+        "all",
+        "way"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    }
+  ]
+}

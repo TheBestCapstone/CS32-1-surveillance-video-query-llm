@@ -1,0 +1,303 @@
+{
+  "video_id": "Normal_Videos629_x264",
+  "duration": 149.56,
+  "events": [
+    {
+      "video_id": "Normal_Videos629_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 149.56,
+      "start_time": 0.0,
+      "end_time": 19.5,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The picture is on a road, with an orange sanitation truck on the left parked in the lower left corner.",
+      "scene_zone": "road",
+      "event_text": "From 0.0s to 19.5s, the picture is on a road, with an orange sanitation truck on the left parked in the lower left corner.",
+      "keywords": [
+        "picture",
+        "road",
+        "orange",
+        "sanitation",
+        "truck",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos629_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 149.56,
+      "start_time": 20.3,
+      "end_time": 42.1,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A silver car and a black car on the left drive to the lower right corner of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 20.3s to 42.1s, a silver car and a black car on the left drive to the lower right corner of the screen.",
+      "keywords": [
+        "silver",
+        "car",
+        "black",
+        "left",
+        "drive",
+        "lower"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos629_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 149.56,
+      "start_time": 45.2,
+      "end_time": 56.2,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The orange sanitation truck in the lower left corner leaves, and an orange road vehicle and a black vehicle enter on the left.",
+      "scene_zone": "road",
+      "event_text": "From 45.2s to 56.2s, the orange sanitation truck in the lower left corner leaves, and an orange road vehicle and a black vehicle enter on the left.",
+      "keywords": [
+        "orange",
+        "sanitation",
+        "truck",
+        "lower",
+        "left",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos629_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 149.56,
+      "start_time": 57.1,
+      "end_time": 72.1,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; Black and white picture, a two-segment sightseeing cable car enters the right side of the picture and drives to the left side of the picture.",
+      "scene_zone": "unknown",
+      "event_text": "From 57.1s to 72.1s, black and white picture, a two-segment sightseeing cable car enters the right side of the picture and drives to the left side of the picture.",
+      "keywords": [
+        "black",
+        "white",
+        "picture",
+        "two",
+        "segment",
+        "sightseeing"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos629_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 149.56,
+      "start_time": 80.3,
+      "end_time": 85.4,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A small car drives past on the left side of the screen with small lights on the roof.",
+      "scene_zone": "unknown",
+      "event_text": "From 80.3s to 85.4s, a small car drives past on the left side of the screen with small lights on the roof.",
+      "keywords": [
+        "small",
+        "car",
+        "drives",
+        "past",
+        "left",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos629_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 149.56,
+      "start_time": 89.5,
+      "end_time": 94.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A car passed by on the left side of the screen and drove to the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 89.5s to 94.3s, a car passed by on the left side of the screen and drove to the right side of the screen.",
+      "keywords": [
+        "car",
+        "passed",
+        "left",
+        "side",
+        "screen",
+        "drove"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos629_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 149.56,
+      "start_time": 106.4,
+      "end_time": 127.4,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; During the day, a garbage truck with a white roof and flashing yellow lights drives past on the left side of the screen. It stops in the lower right corner and then exits the screen. A cable car behind it passes by on the right side.",
+      "scene_zone": "unknown",
+      "event_text": "From 106.4s to 127.4s, during the day, a garbage truck with a white roof and flashing yellow lights drives past on the left side of the screen. It stops in the lower right corner and then exits the screen. A cable car behind it passes by on the right side.",
+      "keywords": [
+        "during",
+        "day",
+        "garbage",
+        "truck",
+        "white",
+        "roof"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos629_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 149.56,
+      "start_time": 125.5,
+      "end_time": 149.1,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white vehicle pulling a small trailer passes by on the right side of the screen, and a green car drives to the lower right corner of the screen on the left.",
+      "scene_zone": "unknown",
+      "event_text": "From 125.5s to 149.1s, a white vehicle pulling a small trailer passes by on the right side of the screen, and a green car drives to the lower right corner of the screen on the left.",
+      "keywords": [
+        "white",
+        "vehicle",
+        "pulling",
+        "small",
+        "trailer",
+        "passes"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Normal_Videos629_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 149.56,
+      "start_time": 133.5,
+      "end_time": 149.1,
+      "object_type": "car",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; A yellow taxi on the left drives to the lower right corner of the screen, followed by many vehicles.",
+      "scene_zone": "unknown",
+      "event_text": "From 133.5s to 149.1s, a yellow taxi on the left drives to the lower right corner of the screen, followed by many vehicles.",
+      "keywords": [
+        "yellow",
+        "taxi",
+        "left",
+        "drives",
+        "lower",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    }
+  ]
+}

@@ -1,0 +1,543 @@
+{
+  "video_id": "Robbery090_x264",
+  "duration": 223.87,
+  "events": [
+    {
+      "video_id": "Robbery090_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 223.87,
+      "start_time": 0.0,
+      "end_time": 6.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man passed by.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 6.5s, a man passed by.",
+      "keywords": [
+        "man",
+        "passed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Robbery090_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 223.87,
+      "start_time": 6.5,
+      "end_time": 16.8,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man behind him entered the room, took off his hat and walked to the corner.",
+      "scene_zone": "room",
+      "event_text": "From 6.5s to 16.8s, a man behind him entered the room, took off his hat and walked to the corner.",
+      "keywords": [
+        "man",
+        "behind",
+        "him",
+        "entered",
+        "room",
+        "took"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Robbery090_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 223.87,
+      "start_time": 24.8,
+      "end_time": 29.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The door opened and two robbers rushed into the house and knocked the two people inside to the ground.",
+      "scene_zone": "room",
+      "event_text": "From 24.8s to 29.5s, the door opened and two robbers rushed into the house and knocked the two people inside to the ground.",
+      "keywords": [
+        "door",
+        "opened",
+        "two",
+        "robbers",
+        "rushed",
+        "house"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Robbery090_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 223.87,
+      "start_time": 29.5,
+      "end_time": 40.3,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The two smashed the glass again, and then a robber jumped into the house.",
+      "scene_zone": "unknown",
+      "event_text": "From 29.5s to 40.3s, the two smashed the glass again, and then a robber jumped into the house.",
+      "keywords": [
+        "two",
+        "smashed",
+        "glass",
+        "again",
+        "robber",
+        "jumped"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Robbery090_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 223.87,
+      "start_time": 40.3,
+      "end_time": 59.4,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; Another robber waited a moment and jumped in.",
+      "scene_zone": "unknown",
+      "event_text": "From 40.3s to 59.4s, another robber waited a moment and jumped in.",
+      "keywords": [
+        "another",
+        "robber",
+        "waited",
+        "moment",
+        "jumped"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Robbery090_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 223.87,
+      "start_time": 59.4,
+      "end_time": 68.1,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A robber jumped out of the window.",
+      "scene_zone": "unknown",
+      "event_text": "From 59.4s to 68.1s, a robber jumped out of the window.",
+      "keywords": [
+        "robber",
+        "jumped",
+        "out",
+        "window"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Robbery090_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 223.87,
+      "start_time": 70.2,
+      "end_time": 73.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The robber who jumped out of the window took the bag handed by his accomplice, and then his accomplice also jumped out.",
+      "scene_zone": "unknown",
+      "event_text": "From 70.2s to 73.0s, the robber who jumped out of the window took the bag handed by his accomplice, and then his accomplice also jumped out.",
+      "keywords": [
+        "robber",
+        "who",
+        "jumped",
+        "out",
+        "window",
+        "took"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Robbery090_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 223.87,
+      "start_time": 71.2,
+      "end_time": 76.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The two escaped.",
+      "scene_zone": "unknown",
+      "event_text": "From 71.2s to 76.0s, the two escaped.",
+      "keywords": [
+        "two",
+        "escaped"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Robbery090_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 223.87,
+      "start_time": 96.0,
+      "end_time": 113.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Six people walked out of the house.",
+      "scene_zone": "unknown",
+      "event_text": "From 96.0s to 113.2s, six people walked out of the house.",
+      "keywords": [
+        "six",
+        "people",
+        "walked",
+        "out",
+        "house"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Robbery090_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 223.87,
+      "start_time": 113.2,
+      "end_time": 119.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several people walked out of the house.",
+      "scene_zone": "unknown",
+      "event_text": "From 113.2s to 119.0s, several people walked out of the house.",
+      "keywords": [
+        "several",
+        "people",
+        "walked",
+        "out",
+        "house"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Robbery090_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 223.87,
+      "start_time": 120.0,
+      "end_time": 125.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several people go back.",
+      "scene_zone": "unknown",
+      "event_text": "From 120.0s to 125.0s, several people go back.",
+      "keywords": [
+        "several",
+        "people",
+        "back"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Robbery090_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 223.87,
+      "start_time": 143.0,
+      "end_time": 152.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man walked to the door carrying something.",
+      "scene_zone": "room",
+      "event_text": "From 143.0s to 152.1s, a man walked to the door carrying something.",
+      "keywords": [
+        "man",
+        "walked",
+        "door",
+        "carrying",
+        "something"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Robbery090_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 223.87,
+      "start_time": 152.1,
+      "end_time": 160.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man walked by.",
+      "scene_zone": "unknown",
+      "event_text": "From 152.1s to 160.9s, a man walked by.",
+      "keywords": [
+        "man",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Robbery090_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 223.87,
+      "start_time": 160.9,
+      "end_time": 179.2,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two men are back.",
+      "scene_zone": "unknown",
+      "event_text": "From 160.9s to 179.2s, two men are back.",
+      "keywords": [
+        "two",
+        "men",
+        "back"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Robbery090_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 223.87,
+      "start_time": 179.2,
+      "end_time": 192.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man and a woman walked to the broken window to check the exchange.",
+      "scene_zone": "unknown",
+      "event_text": "From 179.2s to 192.1s, a man and a woman walked to the broken window to check the exchange.",
+      "keywords": [
+        "man",
+        "woman",
+        "walked",
+        "broken",
+        "window",
+        "check"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    },
+    {
+      "video_id": "Robbery090_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 223.87,
+      "start_time": 192.1,
+      "end_time": 205.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The two left, and another man came to the window to check.",
+      "scene_zone": "unknown",
+      "event_text": "From 192.1s to 205.6s, the two left, and another man came to the window to check.",
+      "keywords": [
+        "two",
+        "left",
+        "another",
+        "man",
+        "came",
+        "window"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_16"
+    },
+    {
+      "video_id": "Robbery090_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 223.87,
+      "start_time": 205.6,
+      "end_time": 217.2,
+      "object_type": "police",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A policeman entered the house and several people described the situation.",
+      "scene_zone": "bedside",
+      "event_text": "From 205.6s to 217.2s, a policeman entered the house and several people described the situation.",
+      "keywords": [
+        "policeman",
+        "entered",
+        "house",
+        "several",
+        "people",
+        "described"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_17"
+    }
+  ]
+}

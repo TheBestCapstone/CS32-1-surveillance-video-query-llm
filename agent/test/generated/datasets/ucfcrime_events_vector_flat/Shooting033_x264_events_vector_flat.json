@@ -1,0 +1,270 @@
+{
+  "video_id": "Shooting033_x264",
+  "duration": 121.05,
+  "events": [
+    {
+      "video_id": "Shooting033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 121.05,
+      "start_time": 0.0,
+      "end_time": 13.4,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; A white off-road vehicle reversed, and a black car drove behind the white off-road vehicle.",
+      "scene_zone": "road",
+      "event_text": "From 0.0s to 13.4s, a white off-road vehicle reversed, and a black car drove behind the white off-road vehicle.",
+      "keywords": [
+        "white",
+        "off",
+        "road",
+        "vehicle",
+        "reversed",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Shooting033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 121.05,
+      "start_time": 13.4,
+      "end_time": 31.1,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car drove past quickly and then drove away.",
+      "scene_zone": "unknown",
+      "event_text": "From 13.4s to 31.1s, a black car drove past quickly and then drove away.",
+      "keywords": [
+        "black",
+        "car",
+        "drove",
+        "past",
+        "quickly",
+        "away"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Shooting033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 121.05,
+      "start_time": 31.1,
+      "end_time": 52.5,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man stood at the door, a woman got out of the car, and two men riding models rode over quickly.",
+      "scene_zone": "room",
+      "event_text": "From 31.1s to 52.5s, a man stood at the door, a woman got out of the car, and two men riding models rode over quickly.",
+      "keywords": [
+        "man",
+        "stood",
+        "door",
+        "woman",
+        "got",
+        "out"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Shooting033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 121.05,
+      "start_time": 52.5,
+      "end_time": 71.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man got off the motorcycle and grabbed the woman's things, then dragged the woman down and ran away.",
+      "scene_zone": "bedside",
+      "event_text": "From 52.5s to 71.6s, a man got off the motorcycle and grabbed the woman's things, then dragged the woman down and ran away.",
+      "keywords": [
+        "man",
+        "got",
+        "off",
+        "motorcycle",
+        "grabbed",
+        "woman"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Shooting033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 121.05,
+      "start_time": 71.6,
+      "end_time": 79.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The man looked at the woman and then ran out. The woman was lying on the ground.",
+      "scene_zone": "unknown",
+      "event_text": "From 71.6s to 79.5s, the man looked at the woman and then ran out. The woman was lying on the ground.",
+      "keywords": [
+        "man",
+        "looked",
+        "woman",
+        "ran",
+        "out",
+        "lying"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Shooting033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 121.05,
+      "start_time": 79.5,
+      "end_time": 88.0,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car drove across the road and drove away.",
+      "scene_zone": "road",
+      "event_text": "From 79.5s to 88.0s, a white car drove across the road and drove away.",
+      "keywords": [
+        "white",
+        "car",
+        "drove",
+        "across",
+        "road",
+        "away"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Shooting033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 121.05,
+      "start_time": 88.0,
+      "end_time": 112.3,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A woman in white clothes is running next to the woman, and a man in white clothes is standing next to the woman.",
+      "scene_zone": "unknown",
+      "event_text": "From 88.0s to 112.3s, a woman in white clothes is running next to the woman, and a man in white clothes is standing next to the woman.",
+      "keywords": [
+        "woman",
+        "white",
+        "clothes",
+        "running",
+        "man",
+        "standing"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Shooting033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 121.05,
+      "start_time": 112.3,
+      "end_time": 119.2,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man in white clothes goes to a woman in white clothes lying on the ground.",
+      "scene_zone": "unknown",
+      "event_text": "From 112.3s to 119.2s, a man in white clothes goes to a woman in white clothes lying on the ground.",
+      "keywords": [
+        "man",
+        "white",
+        "clothes",
+        "goes",
+        "woman",
+        "lying"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    }
+  ]
+}

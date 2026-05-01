@@ -1,0 +1,2202 @@
+{
+  "video_id": "Fighting041_x264",
+  "duration": 1054.78,
+  "events": [
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 4.0,
+      "end_time": 9.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man left with a drink in his hand.",
+      "scene_zone": "unknown",
+      "event_text": "From 4.0s to 9.7s, a man left with a drink in his hand.",
+      "keywords": [
+        "man",
+        "left",
+        "drink",
+        "hand"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 10.7,
+      "end_time": 23.1,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There are two figures in the distance of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 10.7s to 23.1s, there are two figures in the distance of the screen.",
+      "keywords": [
+        "two",
+        "figures",
+        "distance",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 20.1,
+      "end_time": 32.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man and a woman leave after shopping.",
+      "scene_zone": "unknown",
+      "event_text": "From 20.1s to 32.6s, a man and a woman leave after shopping.",
+      "keywords": [
+        "man",
+        "woman",
+        "leave",
+        "shopping"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 30.6,
+      "end_time": 40.3,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two men wandering on the shelf.",
+      "scene_zone": "unknown",
+      "event_text": "From 30.6s to 40.3s, two men wandering on the shelf.",
+      "keywords": [
+        "two",
+        "men",
+        "wandering",
+        "shelf"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 40.3,
+      "end_time": 55.4,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The two of them continued to wander around the shelves.",
+      "scene_zone": "unknown",
+      "event_text": "From 40.3s to 55.4s, the two of them continued to wander around the shelves.",
+      "keywords": [
+        "two",
+        "continued",
+        "wander",
+        "around",
+        "shelves"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 62.4,
+      "end_time": 68.8,
+      "object_type": "person",
+      "object_color": "green",
+      "appearance_notes": "Observed event; A man in green passes by.",
+      "scene_zone": "unknown",
+      "event_text": "From 62.4s to 68.8s, a man in green passes by.",
+      "keywords": [
+        "man",
+        "green",
+        "passes"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 68.8,
+      "end_time": 73.9,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The man in green stood next to the shelf and suddenly disappeared.",
+      "scene_zone": "unknown",
+      "event_text": "From 68.8s to 73.9s, the man in green stood next to the shelf and suddenly disappeared.",
+      "keywords": [
+        "man",
+        "green",
+        "stood",
+        "shelf",
+        "suddenly",
+        "disappeared"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 87.9,
+      "end_time": 98.5,
+      "object_type": "person",
+      "object_color": "green",
+      "appearance_notes": "Observed event; A man in green walked by.",
+      "scene_zone": "unknown",
+      "event_text": "From 87.9s to 98.5s, a man in green walked by.",
+      "keywords": [
+        "man",
+        "green",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 98.0,
+      "end_time": 105.3,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in red enters and passes by a woman in black.",
+      "scene_zone": "unknown",
+      "event_text": "From 98.0s to 105.3s, the man in red enters and passes by a woman in black.",
+      "keywords": [
+        "man",
+        "red",
+        "enters",
+        "passes",
+        "woman",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 105.3,
+      "end_time": 114.6,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man in gray clothes entered and walked to the shelf.",
+      "scene_zone": "unknown",
+      "event_text": "From 105.3s to 114.6s, a man in gray clothes entered and walked to the shelf.",
+      "keywords": [
+        "man",
+        "gray",
+        "clothes",
+        "entered",
+        "walked",
+        "shelf"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 114.6,
+      "end_time": 131.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; Several people standing together.",
+      "scene_zone": "unknown",
+      "event_text": "From 114.6s to 131.4s, several people standing together.",
+      "keywords": [
+        "several",
+        "people",
+        "standing",
+        "together"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 131.4,
+      "end_time": 142.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man and a woman leave.",
+      "scene_zone": "unknown",
+      "event_text": "From 131.4s to 142.6s, a man and a woman leave.",
+      "keywords": [
+        "man",
+        "woman",
+        "leave"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 142.6,
+      "end_time": 155.6,
+      "object_type": "person",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; The man in gray leaves.",
+      "scene_zone": "unknown",
+      "event_text": "From 142.6s to 155.6s, the man in gray leaves.",
+      "keywords": [
+        "man",
+        "gray",
+        "leaves"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 163.6,
+      "end_time": 169.3,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The man in red leaves.",
+      "scene_zone": "unknown",
+      "event_text": "From 163.6s to 169.3s, the man in red leaves.",
+      "keywords": [
+        "man",
+        "red",
+        "leaves"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 170.3,
+      "end_time": 180.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man in a hat took something and left.",
+      "scene_zone": "unknown",
+      "event_text": "From 170.3s to 180.1s, a man in a hat took something and left.",
+      "keywords": [
+        "man",
+        "hat",
+        "took",
+        "something",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 188.1,
+      "end_time": 194.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A person leaves with something.",
+      "scene_zone": "unknown",
+      "event_text": "From 188.1s to 194.5s, a person leaves with something.",
+      "keywords": [
+        "person",
+        "leaves",
+        "something"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_16"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 192.1,
+      "end_time": 202.5,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Three people then entered.",
+      "scene_zone": "unknown",
+      "event_text": "From 192.1s to 202.5s, three people then entered.",
+      "keywords": [
+        "three",
+        "people",
+        "entered"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_17"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 202.5,
+      "end_time": 219.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two more people followed in.",
+      "scene_zone": "unknown",
+      "event_text": "From 202.5s to 219.7s, two more people followed in.",
+      "keywords": [
+        "two",
+        "more",
+        "people",
+        "followed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_18"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 228.2,
+      "end_time": 241.5,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Two women entered, and one woman opened the cabinet on the right shelf and took out something.",
+      "scene_zone": "unknown",
+      "event_text": "From 228.2s to 241.5s, two women entered, and one woman opened the cabinet on the right shelf and took out something.",
+      "keywords": [
+        "two",
+        "women",
+        "entered",
+        "one",
+        "woman",
+        "opened"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_19"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 241.5,
+      "end_time": 255.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two women followed a new man.",
+      "scene_zone": "unknown",
+      "event_text": "From 241.5s to 255.4s, two women followed a new man.",
+      "keywords": [
+        "two",
+        "women",
+        "followed",
+        "new",
+        "man"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_20"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 255.4,
+      "end_time": 273.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black enters.",
+      "scene_zone": "unknown",
+      "event_text": "From 255.4s to 273.1s, a man in black enters.",
+      "keywords": [
+        "man",
+        "black",
+        "enters"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_21"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 273.1,
+      "end_time": 289.7,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Two men entered, a man collided with a man and had a conflict.",
+      "scene_zone": "unknown",
+      "event_text": "From 273.1s to 289.7s, two men entered, a man collided with a man and had a conflict.",
+      "keywords": [
+        "two",
+        "men",
+        "entered",
+        "man",
+        "collided",
+        "had"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_22"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 289.7,
+      "end_time": 299.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two people communicated, and a man observed next to them.",
+      "scene_zone": "unknown",
+      "event_text": "From 289.7s to 299.3s, two people communicated, and a man observed next to them.",
+      "keywords": [
+        "two",
+        "people",
+        "communicated",
+        "man",
+        "observed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_23"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 299.3,
+      "end_time": 307.6,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several women leave.",
+      "scene_zone": "unknown",
+      "event_text": "From 299.3s to 307.6s, several women leave.",
+      "keywords": [
+        "several",
+        "women",
+        "leave"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_24"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 306.8,
+      "end_time": 314.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Three men talking around a woman.",
+      "scene_zone": "unknown",
+      "event_text": "From 306.8s to 314.2s, three men talking around a woman.",
+      "keywords": [
+        "three",
+        "men",
+        "talking",
+        "around",
+        "woman"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_25"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 314.2,
+      "end_time": 320.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man left and two people talked with the woman.",
+      "scene_zone": "unknown",
+      "event_text": "From 314.2s to 320.5s, a man left and two people talked with the woman.",
+      "keywords": [
+        "man",
+        "left",
+        "two",
+        "people",
+        "talked",
+        "woman"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_26"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 320.5,
+      "end_time": 332.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man walks behind a woman.",
+      "scene_zone": "unknown",
+      "event_text": "From 320.5s to 332.2s, a man walks behind a woman.",
+      "keywords": [
+        "man",
+        "walks",
+        "behind",
+        "woman"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_27"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 341.7,
+      "end_time": 350.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man walks deep into the shelf, and a woman enters.",
+      "scene_zone": "unknown",
+      "event_text": "From 341.7s to 350.4s, a man walks deep into the shelf, and a woman enters.",
+      "keywords": [
+        "man",
+        "walks",
+        "deep",
+        "shelf",
+        "woman",
+        "enters"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_28"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 350.4,
+      "end_time": 361.7,
+      "object_type": "unknown",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Three men wandered to the door to check something.",
+      "scene_zone": "room",
+      "event_text": "From 350.4s to 361.7s, three men wandered to the door to check something.",
+      "keywords": [
+        "three",
+        "men",
+        "wandered",
+        "door",
+        "check",
+        "something"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_29"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 361.7,
+      "end_time": 370.4,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; Two men hugged each other under the watchers, and passers-by passed by.",
+      "scene_zone": "unknown",
+      "event_text": "From 361.7s to 370.4s, two men hugged each other under the watchers, and passers-by passed by.",
+      "keywords": [
+        "two",
+        "men",
+        "hugged",
+        "each",
+        "other",
+        "watchers"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_30"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 370.4,
+      "end_time": 384.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two men communicate, one man stretches out his arm to hug the other.",
+      "scene_zone": "unknown",
+      "event_text": "From 370.4s to 384.4s, two men communicate, one man stretches out his arm to hug the other.",
+      "keywords": [
+        "two",
+        "men",
+        "communicate",
+        "one",
+        "man",
+        "stretches"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_31"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 384.4,
+      "end_time": 400.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several people gather around to communicate.",
+      "scene_zone": "unknown",
+      "event_text": "From 384.4s to 400.1s, several people gather around to communicate.",
+      "keywords": [
+        "several",
+        "people",
+        "gather",
+        "around",
+        "communicate"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_32"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 400.1,
+      "end_time": 415.8,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A few people wandered away.",
+      "scene_zone": "unknown",
+      "event_text": "From 400.1s to 415.8s, a few people wandered away.",
+      "keywords": [
+        "few",
+        "people",
+        "wandered",
+        "away"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_33"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 415.8,
+      "end_time": 424.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The two men hugged each other and separated.",
+      "scene_zone": "unknown",
+      "event_text": "From 415.8s to 424.0s, the two men hugged each other and separated.",
+      "keywords": [
+        "two",
+        "men",
+        "hugged",
+        "each",
+        "other",
+        "separated"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_34"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 424.0,
+      "end_time": 435.7,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; Several men were standing and shaking in the store.",
+      "scene_zone": "store",
+      "event_text": "From 424.0s to 435.7s, several men were standing and shaking in the store.",
+      "keywords": [
+        "several",
+        "men",
+        "standing",
+        "shaking",
+        "store"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_35"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 435.7,
+      "end_time": 453.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A few more men came to greet several people in the store.",
+      "scene_zone": "store",
+      "event_text": "From 435.7s to 453.9s, a few more men came to greet several people in the store.",
+      "keywords": [
+        "few",
+        "more",
+        "men",
+        "came",
+        "greet",
+        "several"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_36"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 453.9,
+      "end_time": 464.2,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The two men hugged and walked to the shelf.",
+      "scene_zone": "unknown",
+      "event_text": "From 453.9s to 464.2s, the two men hugged and walked to the shelf.",
+      "keywords": [
+        "two",
+        "men",
+        "hugged",
+        "walked",
+        "shelf"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_37"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 464.2,
+      "end_time": 482.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several people were communicating in the shelf.",
+      "scene_zone": "unknown",
+      "event_text": "From 464.2s to 482.7s, several people were communicating in the shelf.",
+      "keywords": [
+        "several",
+        "people",
+        "communicating",
+        "shelf"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_38"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 482.7,
+      "end_time": 494.9,
+      "object_type": "unknown",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Everyone gathered in the upper left corner of the screen, which is the supermarket checkout area.",
+      "scene_zone": "store",
+      "event_text": "From 482.7s to 494.9s, everyone gathered in the upper left corner of the screen, which is the supermarket checkout area.",
+      "keywords": [
+        "everyone",
+        "gathered",
+        "upper",
+        "left",
+        "corner",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_39"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 494.9,
+      "end_time": 507.6,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The two of them walked to the shelf.",
+      "scene_zone": "unknown",
+      "event_text": "From 494.9s to 507.6s, the two of them walked to the shelf.",
+      "keywords": [
+        "two",
+        "walked",
+        "shelf"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_40"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 507.6,
+      "end_time": 515.9,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two women leave.",
+      "scene_zone": "unknown",
+      "event_text": "From 507.6s to 515.9s, two women leave.",
+      "keywords": [
+        "two",
+        "women",
+        "leave"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_41"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 515.9,
+      "end_time": 524.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man leaves.",
+      "scene_zone": "unknown",
+      "event_text": "From 515.9s to 524.9s, a man leaves.",
+      "keywords": [
+        "man",
+        "leaves"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_42"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 524.9,
+      "end_time": 537.5,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several men are wandering and communicating.",
+      "scene_zone": "unknown",
+      "event_text": "From 524.9s to 537.5s, several men are wandering and communicating.",
+      "keywords": [
+        "several",
+        "men",
+        "wandering",
+        "communicating"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_43"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 548.2,
+      "end_time": 563.1,
+      "object_type": "person",
+      "object_color": "green",
+      "appearance_notes": "Low activity; A man in green enters and stands next to the shelf.",
+      "scene_zone": "unknown",
+      "event_text": "From 548.2s to 563.1s, a man in green enters and stands next to the shelf.",
+      "keywords": [
+        "man",
+        "green",
+        "enters",
+        "stands",
+        "shelf"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_44"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 563.1,
+      "end_time": 570.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man stood at the door and clapped his hands.",
+      "scene_zone": "room",
+      "event_text": "From 563.1s to 570.8s, a man stood at the door and clapped his hands.",
+      "keywords": [
+        "man",
+        "stood",
+        "door",
+        "clapped",
+        "hands"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_45"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 570.8,
+      "end_time": 582.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man chatting with the man at the door.",
+      "scene_zone": "room",
+      "event_text": "From 570.8s to 582.4s, a man chatting with the man at the door.",
+      "keywords": [
+        "man",
+        "chatting",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_46"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 582.4,
+      "end_time": 593.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man in the hat raised his arms and spoke to the man at the door.",
+      "scene_zone": "room",
+      "event_text": "From 582.4s to 593.0s, the man in the hat raised his arms and spoke to the man at the door.",
+      "keywords": [
+        "man",
+        "hat",
+        "raised",
+        "arms",
+        "spoke",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_47"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 593.0,
+      "end_time": 607.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The three of them were not moving at the door, and the counter was crowded with people.",
+      "scene_zone": "room",
+      "event_text": "From 593.0s to 607.6s, the three of them were not moving at the door, and the counter was crowded with people.",
+      "keywords": [
+        "three",
+        "not",
+        "moving",
+        "door",
+        "counter",
+        "crowded"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_48"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 608.4,
+      "end_time": 618.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man walked to the door and four people communicated together.",
+      "scene_zone": "room",
+      "event_text": "From 608.4s to 618.8s, a man walked to the door and four people communicated together.",
+      "keywords": [
+        "man",
+        "walked",
+        "door",
+        "four",
+        "people",
+        "communicated"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_49"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 618.8,
+      "end_time": 629.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several people suddenly pointed in one direction.",
+      "scene_zone": "unknown",
+      "event_text": "From 618.8s to 629.3s, several people suddenly pointed in one direction.",
+      "keywords": [
+        "several",
+        "people",
+        "suddenly",
+        "pointed",
+        "one",
+        "direction"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_50"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 629.3,
+      "end_time": 638.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Suddenly everyone ran away.",
+      "scene_zone": "unknown",
+      "event_text": "From 629.3s to 638.0s, suddenly everyone ran away.",
+      "keywords": [
+        "suddenly",
+        "everyone",
+        "ran",
+        "away"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_51"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 638.0,
+      "end_time": 650.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; People keep running out one after another.",
+      "scene_zone": "unknown",
+      "event_text": "From 638.0s to 650.8s, people keep running out one after another.",
+      "keywords": [
+        "people",
+        "keep",
+        "running",
+        "out",
+        "one",
+        "another"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_52"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 650.8,
+      "end_time": 662.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man is wandering around a man lying on the ground.",
+      "scene_zone": "unknown",
+      "event_text": "From 650.8s to 662.3s, a man is wandering around a man lying on the ground.",
+      "keywords": [
+        "man",
+        "wandering",
+        "around",
+        "lying",
+        "ground"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_53"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 662.3,
+      "end_time": 679.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man grabbed the man’s arm on the ground.",
+      "scene_zone": "bedside",
+      "event_text": "From 662.3s to 679.0s, the man grabbed the man’s arm on the ground.",
+      "keywords": [
+        "man",
+        "grabbed",
+        "arm",
+        "ground"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_54"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 679.0,
+      "end_time": 686.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man held the shelf and went out.",
+      "scene_zone": "unknown",
+      "event_text": "From 679.0s to 686.0s, a man held the shelf and went out.",
+      "keywords": [
+        "man",
+        "held",
+        "shelf",
+        "went",
+        "out"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_55"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 686.0,
+      "end_time": 697.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man on the ground raised his head to check the situation and then lay down on the ground.",
+      "scene_zone": "unknown",
+      "event_text": "From 686.0s to 697.7s, the man on the ground raised his head to check the situation and then lay down on the ground.",
+      "keywords": [
+        "man",
+        "ground",
+        "raised",
+        "head",
+        "check",
+        "situation"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_56"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 698.0,
+      "end_time": 706.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The two people passed by and left, and the man lay down completely.",
+      "scene_zone": "unknown",
+      "event_text": "From 698.0s to 706.2s, the two people passed by and left, and the man lay down completely.",
+      "keywords": [
+        "two",
+        "people",
+        "passed",
+        "left",
+        "man",
+        "lay"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_57"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 706.2,
+      "end_time": 721.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; After the two men went out, the man continued to fall to the ground and struggled.",
+      "scene_zone": "unknown",
+      "event_text": "From 706.2s to 721.5s, after the two men went out, the man continued to fall to the ground and struggled.",
+      "keywords": [
+        "two",
+        "men",
+        "went",
+        "out",
+        "man",
+        "continued"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_58"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 721.5,
+      "end_time": 737.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man was motionless and the light was turned off.",
+      "scene_zone": "unknown",
+      "event_text": "From 721.5s to 737.8s, the man was motionless and the light was turned off.",
+      "keywords": [
+        "man",
+        "motionless",
+        "light",
+        "turned",
+        "off"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_59"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 737.8,
+      "end_time": 756.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The door opened and a man came in with a phone call.",
+      "scene_zone": "room",
+      "event_text": "From 737.8s to 756.9s, the door opened and a man came in with a phone call.",
+      "keywords": [
+        "door",
+        "opened",
+        "man",
+        "came",
+        "phone",
+        "call"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_60"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 756.9,
+      "end_time": 785.1,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two men passed by the door and then went out.",
+      "scene_zone": "room",
+      "event_text": "From 756.9s to 785.1s, two men passed by the door and then went out.",
+      "keywords": [
+        "two",
+        "men",
+        "passed",
+        "door",
+        "went",
+        "out"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_61"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 785.1,
+      "end_time": 802.3,
+      "object_type": "police",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Three police officers entered to check on the man who fell to the ground.",
+      "scene_zone": "unknown",
+      "event_text": "From 785.1s to 802.3s, three police officers entered to check on the man who fell to the ground.",
+      "keywords": [
+        "three",
+        "police",
+        "officers",
+        "entered",
+        "check",
+        "man"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_62"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 802.3,
+      "end_time": 815.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman bent over to check the man's condition.",
+      "scene_zone": "unknown",
+      "event_text": "From 802.3s to 815.5s, the woman bent over to check the man's condition.",
+      "keywords": [
+        "woman",
+        "bent",
+        "check",
+        "man",
+        "condition"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_63"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 815.5,
+      "end_time": 834.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Another man came in to check the environment and the man’s condition.",
+      "scene_zone": "unknown",
+      "event_text": "From 815.5s to 834.4s, another man came in to check the environment and the man’s condition.",
+      "keywords": [
+        "another",
+        "man",
+        "came",
+        "check",
+        "environment",
+        "condition"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_64"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 889.6,
+      "end_time": 921.1,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The doctor enters for emergency treatment and removes the shelves.",
+      "scene_zone": "unknown",
+      "event_text": "From 889.6s to 921.1s, the doctor enters for emergency treatment and removes the shelves.",
+      "keywords": [
+        "doctor",
+        "enters",
+        "emergency",
+        "treatment",
+        "removes",
+        "shelves"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_65"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 921.1,
+      "end_time": 940.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Doctors continue to rescue the fallen man.",
+      "scene_zone": "unknown",
+      "event_text": "From 921.1s to 940.5s, doctors continue to rescue the fallen man.",
+      "keywords": [
+        "doctors",
+        "continue",
+        "rescue",
+        "fallen",
+        "man"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_66"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 940.5,
+      "end_time": 957.6,
+      "object_type": "car",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; A man came in carrying a yellow shelf.",
+      "scene_zone": "unknown",
+      "event_text": "From 940.5s to 957.6s, a man came in carrying a yellow shelf.",
+      "keywords": [
+        "man",
+        "came",
+        "carrying",
+        "yellow",
+        "shelf"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_67"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 957.6,
+      "end_time": 992.9,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; A man pushed a cart through the door.",
+      "scene_zone": "room",
+      "event_text": "From 957.6s to 992.9s, a man pushed a cart through the door.",
+      "keywords": [
+        "man",
+        "pushed",
+        "cart",
+        "through",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_68"
+    },
+    {
+      "video_id": "Fighting041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1054.78,
+      "start_time": 992.9,
+      "end_time": 1054.0,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Everyone gathered around the injured man for treatment.",
+      "scene_zone": "unknown",
+      "event_text": "From 992.9s to 1054.0s, everyone gathered around the injured man for treatment.",
+      "keywords": [
+        "everyone",
+        "gathered",
+        "around",
+        "injured",
+        "man",
+        "treatment"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_69"
+    }
+  ]
+}

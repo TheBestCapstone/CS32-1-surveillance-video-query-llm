@@ -1,0 +1,1185 @@
+{
+  "video_id": "Shoplifting034_x264",
+  "duration": 397.9,
+  "events": [
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 23.7,
+      "end_time": 32.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The door opened and a woman in a floral skirt walked forward, followed by an old man closing the door.",
+      "scene_zone": "room",
+      "event_text": "From 23.7s to 32.8s, the door opened and a woman in a floral skirt walked forward, followed by an old man closing the door.",
+      "keywords": [
+        "door",
+        "opened",
+        "woman",
+        "floral",
+        "skirt",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 33.3,
+      "end_time": 40.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The woman walked to the door, the old man went out, and the woman looked outside the door.",
+      "scene_zone": "room",
+      "event_text": "From 33.3s to 40.9s, the woman walked to the door, the old man went out, and the woman looked outside the door.",
+      "keywords": [
+        "woman",
+        "walked",
+        "door",
+        "old",
+        "man",
+        "went"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 42.4,
+      "end_time": 50.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman kept talking to the door, then closed the door and turned around.",
+      "scene_zone": "room",
+      "event_text": "From 42.4s to 50.1s, the woman kept talking to the door, then closed the door and turned around.",
+      "keywords": [
+        "woman",
+        "kept",
+        "talking",
+        "door",
+        "closed",
+        "turned"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 53.0,
+      "end_time": 59.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman walked in, and a bald man came in behind. He put on sunglasses after entering.",
+      "scene_zone": "unknown",
+      "event_text": "From 53.0s to 59.2s, the woman walked in, and a bald man came in behind. He put on sunglasses after entering.",
+      "keywords": [
+        "woman",
+        "walked",
+        "bald",
+        "man",
+        "came",
+        "behind"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 59.9,
+      "end_time": 67.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The man and the woman looked at the things on the wall, and then walked to the side of the man.",
+      "scene_zone": "room",
+      "event_text": "From 59.9s to 67.9s, the man and the woman looked at the things on the wall, and then walked to the side of the man.",
+      "keywords": [
+        "man",
+        "woman",
+        "looked",
+        "things",
+        "wall",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 68.5,
+      "end_time": 74.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The man took a few steps and passed the woman. The woman pointed to something on the wall, and the two continued to watch.",
+      "scene_zone": "room",
+      "event_text": "From 68.5s to 74.1s, the man took a few steps and passed the woman. The woman pointed to something on the wall, and the two continued to watch.",
+      "keywords": [
+        "man",
+        "took",
+        "few",
+        "steps",
+        "passed",
+        "woman"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 74.7,
+      "end_time": 84.2,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The man wearing a peaked cap entered and walked to the back of the counter.",
+      "scene_zone": "store",
+      "event_text": "From 74.7s to 84.2s, the man wearing a peaked cap entered and walked to the back of the counter.",
+      "keywords": [
+        "man",
+        "wearing",
+        "peaked",
+        "cap",
+        "entered",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 77.0,
+      "end_time": 85.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The woman waved her hand, the waiter at the counter came over, and the two started talking.",
+      "scene_zone": "store",
+      "event_text": "From 77.0s to 85.5s, the woman waved her hand, the waiter at the counter came over, and the two started talking.",
+      "keywords": [
+        "woman",
+        "waved",
+        "hand",
+        "waiter",
+        "counter",
+        "came"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 88.1,
+      "end_time": 99.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The woman looked back and continued talking to the waiter, and the waiter pointed.",
+      "scene_zone": "unknown",
+      "event_text": "From 88.1s to 99.3s, the woman looked back and continued talking to the waiter, and the waiter pointed.",
+      "keywords": [
+        "woman",
+        "looked",
+        "back",
+        "continued",
+        "talking",
+        "waiter"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 93.3,
+      "end_time": 101.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The bald man turned his head and looked at it and then walked to the counter.",
+      "scene_zone": "store",
+      "event_text": "From 93.3s to 101.9s, the bald man turned his head and looked at it and then walked to the counter.",
+      "keywords": [
+        "bald",
+        "man",
+        "turned",
+        "head",
+        "looked",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 104.2,
+      "end_time": 117.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The woman approached the counter and touched something on the table, then put her hand on the counter. The bald man looked closer and touched it.",
+      "scene_zone": "room",
+      "event_text": "From 104.2s to 117.4s, the woman approached the counter and touched something on the table, then put her hand on the counter. The bald man looked closer and touched it.",
+      "keywords": [
+        "woman",
+        "approached",
+        "counter",
+        "touched",
+        "something",
+        "table"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 123.4,
+      "end_time": 132.4,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "Low activity; The bald man pointed at the goods on the counter. The woman took a look, then touched the pink thing, and the man pointed.",
+      "scene_zone": "store",
+      "event_text": "From 123.4s to 132.4s, the bald man pointed at the goods on the counter. The woman took a look, then touched the pink thing, and the man pointed.",
+      "keywords": [
+        "bald",
+        "man",
+        "pointed",
+        "goods",
+        "counter",
+        "woman"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 133.2,
+      "end_time": 142.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man put his hands on the glass counter, and the woman stood sideways with one hand on it; then the man pointed in the direction of the wall.",
+      "scene_zone": "room",
+      "event_text": "From 133.2s to 142.1s, the man put his hands on the glass counter, and the woman stood sideways with one hand on it; then the man pointed in the direction of the wall.",
+      "keywords": [
+        "man",
+        "put",
+        "hands",
+        "glass",
+        "counter",
+        "woman"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 144.8,
+      "end_time": 161.7,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "Observed event; The man picked up the pink cylindrical thing on the glass counter and held it in front of him, sprayed it on his wrist, and then sniffed it.",
+      "scene_zone": "store",
+      "event_text": "From 144.8s to 161.7s, the man picked up the pink cylindrical thing on the glass counter and held it in front of him, sprayed it on his wrist, and then sniffed it.",
+      "keywords": [
+        "man",
+        "picked",
+        "pink",
+        "cylindrical",
+        "thing",
+        "glass"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 162.5,
+      "end_time": 172.8,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man took down a white cylindrical object from the glass counter, tried to put it into his clothes, and then put it back again.",
+      "scene_zone": "store",
+      "event_text": "From 162.5s to 172.8s, the man took down a white cylindrical object from the glass counter, tried to put it into his clothes, and then put it back again.",
+      "keywords": [
+        "man",
+        "took",
+        "down",
+        "white",
+        "cylindrical",
+        "object"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 172.5,
+      "end_time": 175.8,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; After looking around, the man put the white cylinder into his pants.",
+      "scene_zone": "unknown",
+      "event_text": "From 172.5s to 175.8s, after looking around, the man put the white cylinder into his pants.",
+      "keywords": [
+        "looking",
+        "around",
+        "man",
+        "put",
+        "white",
+        "cylinder"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_16"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 166.9,
+      "end_time": 174.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman walked around the man and walked to the end.",
+      "scene_zone": "unknown",
+      "event_text": "From 166.9s to 174.0s, the woman walked around the man and walked to the end.",
+      "keywords": [
+        "woman",
+        "walked",
+        "around",
+        "man",
+        "end"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_17"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 176.5,
+      "end_time": 183.9,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man touched a white standing object on the glass counter, and then put it down again.",
+      "scene_zone": "store",
+      "event_text": "From 176.5s to 183.9s, the man touched a white standing object on the glass counter, and then put it down again.",
+      "keywords": [
+        "man",
+        "touched",
+        "white",
+        "standing",
+        "object",
+        "glass"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_18"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 186.9,
+      "end_time": 192.2,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man put the white standing object on the counter into his pants.",
+      "scene_zone": "store",
+      "event_text": "From 186.9s to 192.2s, the man put the white standing object on the counter into his pants.",
+      "keywords": [
+        "man",
+        "put",
+        "white",
+        "standing",
+        "object",
+        "counter"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_19"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 193.7,
+      "end_time": 201.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man turned around, made a call and walked inside.",
+      "scene_zone": "unknown",
+      "event_text": "From 193.7s to 201.3s, the man turned around, made a call and walked inside.",
+      "keywords": [
+        "man",
+        "turned",
+        "around",
+        "made",
+        "call",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_20"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 201.9,
+      "end_time": 207.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man walked out while talking on the phone, and the woman followed him.",
+      "scene_zone": "unknown",
+      "event_text": "From 201.9s to 207.5s, the man walked out while talking on the phone, and the woman followed him.",
+      "keywords": [
+        "man",
+        "walked",
+        "out",
+        "while",
+        "talking",
+        "phone"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_21"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 207.9,
+      "end_time": 209.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Woman holds her hands on the glass counter.",
+      "scene_zone": "store",
+      "event_text": "From 207.9s to 209.9s, woman holds her hands on the glass counter.",
+      "keywords": [
+        "woman",
+        "holds",
+        "hands",
+        "glass",
+        "counter"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_22"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 209.9,
+      "end_time": 220.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man also walked aside and showed the woman what he took from the glass counter while talking on the phone.",
+      "scene_zone": "store",
+      "event_text": "From 209.9s to 220.9s, the man also walked aside and showed the woman what he took from the glass counter while talking on the phone.",
+      "keywords": [
+        "man",
+        "also",
+        "walked",
+        "aside",
+        "showed",
+        "woman"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_23"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 216.9,
+      "end_time": 221.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man handed the thing to the woman, and the woman put it in the bag.",
+      "scene_zone": "unknown",
+      "event_text": "From 216.9s to 221.3s, the man handed the thing to the woman, and the woman put it in the bag.",
+      "keywords": [
+        "man",
+        "handed",
+        "thing",
+        "woman",
+        "put",
+        "bag"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_24"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 221.7,
+      "end_time": 223.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man took something from the counter and put it in his pocket.",
+      "scene_zone": "store",
+      "event_text": "From 221.7s to 223.7s, the man took something from the counter and put it in his pocket.",
+      "keywords": [
+        "man",
+        "took",
+        "something",
+        "counter",
+        "put",
+        "pocket"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_25"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 225.7,
+      "end_time": 229.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Woman walks to the door.",
+      "scene_zone": "room",
+      "event_text": "From 225.7s to 229.7s, woman walks to the door.",
+      "keywords": [
+        "woman",
+        "walks",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_26"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 229.7,
+      "end_time": 234.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Both of them faced the door, and the man hung up the phone.",
+      "scene_zone": "room",
+      "event_text": "From 229.7s to 234.7s, both of them faced the door, and the man hung up the phone.",
+      "keywords": [
+        "both",
+        "faced",
+        "door",
+        "man",
+        "hung",
+        "phone"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_27"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 236.5,
+      "end_time": 240.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman walked out, and the man turned around and went inside to continue answering the phone.",
+      "scene_zone": "unknown",
+      "event_text": "From 236.5s to 240.0s, the woman walked out, and the man turned around and went inside to continue answering the phone.",
+      "keywords": [
+        "woman",
+        "walked",
+        "out",
+        "man",
+        "turned",
+        "around"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_28"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 240.5,
+      "end_time": 245.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man turns back to face the woman.",
+      "scene_zone": "unknown",
+      "event_text": "From 240.5s to 245.6s, the man turns back to face the woman.",
+      "keywords": [
+        "man",
+        "turns",
+        "back",
+        "face",
+        "woman"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_29"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 245.5,
+      "end_time": 249.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman puts a box between her legs behind her back.",
+      "scene_zone": "unknown",
+      "event_text": "From 245.5s to 249.6s, the woman puts a box between her legs behind her back.",
+      "keywords": [
+        "woman",
+        "puts",
+        "box",
+        "between",
+        "legs",
+        "behind"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_30"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 249.7,
+      "end_time": 265.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman pulled a box of things on the glass counter, then flipped through the things on the right, folded it, and touched the things next to it.",
+      "scene_zone": "store",
+      "event_text": "From 249.7s to 265.2s, the woman pulled a box of things on the glass counter, then flipped through the things on the right, folded it, and touched the things next to it.",
+      "keywords": [
+        "woman",
+        "pulled",
+        "box",
+        "things",
+        "glass",
+        "counter"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_31"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 266.6,
+      "end_time": 281.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman took a large bag to the right, then took off the bag she was carrying and put them together, and put the two bags on her shoulders.",
+      "scene_zone": "unknown",
+      "event_text": "From 266.6s to 281.3s, the woman took a large bag to the right, then took off the bag she was carrying and put them together, and put the two bags on her shoulders.",
+      "keywords": [
+        "woman",
+        "took",
+        "large",
+        "bag",
+        "right",
+        "off"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_32"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 281.1,
+      "end_time": 283.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman pointed at the counter.",
+      "scene_zone": "store",
+      "event_text": "From 281.1s to 283.2s, the woman pointed at the counter.",
+      "keywords": [
+        "woman",
+        "pointed",
+        "counter"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_33"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 282.1,
+      "end_time": 287.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The man looked around while talking on the phone.",
+      "scene_zone": "unknown",
+      "event_text": "From 282.1s to 287.2s, the man looked around while talking on the phone.",
+      "keywords": [
+        "man",
+        "looked",
+        "around",
+        "while",
+        "talking",
+        "phone"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_34"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 287.1,
+      "end_time": 302.2,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The two said a few words, then opened the door and went out.",
+      "scene_zone": "room",
+      "event_text": "From 287.1s to 302.2s, the two said a few words, then opened the door and went out.",
+      "keywords": [
+        "two",
+        "said",
+        "few",
+        "words",
+        "opened",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_35"
+    },
+    {
+      "video_id": "Shoplifting034_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 397.9,
+      "start_time": 357.5,
+      "end_time": 367.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man in the house came out, opened the door and left.",
+      "scene_zone": "room",
+      "event_text": "From 357.5s to 367.3s, the man in the house came out, opened the door and left.",
+      "keywords": [
+        "man",
+        "house",
+        "came",
+        "out",
+        "opened",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_36"
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "video_id": "Explosion015_x264",
+  "duration": 29.37,
+  "events": [
+    {
+      "video_id": "Explosion015_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 29.37,
+      "start_time": 0.0,
+      "end_time": 7.4,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car is still driving with a fire in the back.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 7.4s, a white car is still driving with a fire in the back.",
+      "keywords": [
+        "white",
+        "car",
+        "still",
+        "driving",
+        "fire",
+        "back"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Explosion015_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 29.37,
+      "start_time": 5.6,
+      "end_time": 8.1,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car passed by.",
+      "scene_zone": "unknown",
+      "event_text": "From 5.6s to 8.1s, a black car passed by.",
+      "keywords": [
+        "black",
+        "car",
+        "passed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Explosion015_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 29.37,
+      "start_time": 12.2,
+      "end_time": 18.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A person ran away.",
+      "scene_zone": "unknown",
+      "event_text": "From 12.2s to 18.2s, a person ran away.",
+      "keywords": [
+        "person",
+        "ran",
+        "away"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    }
+  ]
+}

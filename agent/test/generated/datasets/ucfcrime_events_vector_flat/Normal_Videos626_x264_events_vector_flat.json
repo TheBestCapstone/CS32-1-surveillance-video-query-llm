@@ -1,0 +1,303 @@
+{
+  "video_id": "Normal_Videos626_x264",
+  "duration": 299.75,
+  "events": [
+    {
+      "video_id": "Normal_Videos626_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.75,
+      "start_time": 18.1,
+      "end_time": 30.2,
+      "object_type": "unknown",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The screen moves to the iron stairs, with a red billboard on the wall of the shopping mall in the distance.",
+      "scene_zone": "room",
+      "event_text": "From 18.1s to 30.2s, the screen moves to the iron stairs, with a red billboard on the wall of the shopping mall in the distance.",
+      "keywords": [
+        "screen",
+        "moves",
+        "iron",
+        "stairs",
+        "red",
+        "billboard"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos626_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.75,
+      "start_time": 44.2,
+      "end_time": 63.3,
+      "object_type": "unknown",
+      "object_color": "black",
+      "appearance_notes": "Observed event; There is a black minivan in the upper right corner of the screen. The screen is zoomed out, and a yellow school bus is passing by on the left and right.",
+      "scene_zone": "unknown",
+      "event_text": "From 44.2s to 63.3s, there is a black minivan in the upper right corner of the screen. The screen is zoomed out, and a yellow school bus is passing by on the left and right.",
+      "keywords": [
+        "black",
+        "minivan",
+        "upper",
+        "right",
+        "corner",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos626_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.75,
+      "start_time": 73.1,
+      "end_time": 102.5,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The picture is placed in the center of the picture. There is a black car. A silver car passes by on the left. During this period, many cars pass in front of the camera. The picture zooms in to the license plate of the black car.",
+      "scene_zone": "unknown",
+      "event_text": "From 73.1s to 102.5s, the picture is placed in the center of the picture. There is a black car. A silver car passes by on the left. During this period, many cars pass in front of the camera. The picture zooms in to the license plate of the black car.",
+      "keywords": [
+        "picture",
+        "placed",
+        "center",
+        "black",
+        "car",
+        "silver"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos626_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.75,
+      "start_time": 103.4,
+      "end_time": 141.1,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The screen zooms out. A large silver car drives to the parking space behind the red car in the center of the screen, then reverses into the lower left corner.",
+      "scene_zone": "unknown",
+      "event_text": "From 103.4s to 141.1s, the screen zooms out. A large silver car drives to the parking space behind the red car in the center of the screen, then reverses into the lower left corner.",
+      "keywords": [
+        "screen",
+        "zooms",
+        "out",
+        "large",
+        "silver",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos626_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.75,
+      "start_time": 144.5,
+      "end_time": 171.4,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A green truck passes by on the left side of the screen. A man and a woman walk by on the right side. A black vehicle on the right turns around and reverses. During this period, the black vehicle drives past the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 144.5s to 171.4s, a green truck passes by on the left side of the screen. A man and a woman walk by on the right side. A black vehicle on the right turns around and reverses. During this period, the black vehicle drives past the screen.",
+      "keywords": [
+        "green",
+        "truck",
+        "passes",
+        "left",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos626_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.75,
+      "start_time": 144.5,
+      "end_time": 171.4,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A man in a gray shirt carrying something and a man in a blue shirt carrying a yellow bag walked past the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 144.5s to 171.4s, a man in a gray shirt carrying something and a man in a blue shirt carrying a yellow bag walked past the screen.",
+      "keywords": [
+        "man",
+        "gray",
+        "shirt",
+        "carrying",
+        "something",
+        "blue"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos626_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.75,
+      "start_time": 185.5,
+      "end_time": 201.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; There is a white car in the center of the screen, surrounded by grass and trees.",
+      "scene_zone": "unknown",
+      "event_text": "From 185.5s to 201.2s, there is a white car in the center of the screen, surrounded by grass and trees.",
+      "keywords": [
+        "white",
+        "car",
+        "center",
+        "screen",
+        "surrounded",
+        "grass"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos626_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.75,
+      "start_time": 216.3,
+      "end_time": 235.1,
+      "object_type": "unknown",
+      "object_color": "white",
+      "appearance_notes": "High activity; The picture shows two women walking to the right, with a white bus passing behind them.",
+      "scene_zone": "unknown",
+      "event_text": "From 216.3s to 235.1s, the picture shows two women walking to the right, with a white bus passing behind them.",
+      "keywords": [
+        "picture",
+        "shows",
+        "two",
+        "women",
+        "walking",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Normal_Videos626_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.75,
+      "start_time": 272.5,
+      "end_time": 295.3,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The screen is constantly rotating. A yellow box truck on the right side of the screen drives past the left side of the screen. Two yellow taxis and a white bus drive past in the screen. past the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 272.5s to 295.3s, the screen is constantly rotating. A yellow box truck on the right side of the screen drives past the left side of the screen. Two yellow taxis and a white bus drive past in the screen. past the right side of the screen.",
+      "keywords": [
+        "screen",
+        "constantly",
+        "rotating",
+        "yellow",
+        "box",
+        "truck"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    }
+  ]
+}

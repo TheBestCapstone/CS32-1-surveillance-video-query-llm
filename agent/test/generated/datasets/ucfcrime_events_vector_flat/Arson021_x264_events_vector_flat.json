@@ -1,0 +1,138 @@
+{
+  "video_id": "Arson021_x264",
+  "duration": 48.07,
+  "events": [
+    {
+      "video_id": "Arson021_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 48.07,
+      "start_time": 4.3,
+      "end_time": 10.5,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black rode a bicycle to the door of a house.",
+      "scene_zone": "room",
+      "event_text": "From 4.3s to 10.5s, a man in black rode a bicycle to the door of a house.",
+      "keywords": [
+        "man",
+        "black",
+        "rode",
+        "bicycle",
+        "door",
+        "house"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Arson021_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 48.07,
+      "start_time": 10.1,
+      "end_time": 26.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man had his hands close to the door and didn’t know what he was doing.",
+      "scene_zone": "room",
+      "event_text": "From 10.1s to 26.9s, the man had his hands close to the door and didn’t know what he was doing.",
+      "keywords": [
+        "man",
+        "had",
+        "hands",
+        "close",
+        "door",
+        "didn"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Arson021_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 48.07,
+      "start_time": 30.8,
+      "end_time": 36.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man lit a fire at the door and left on his bicycle. The door started to catch fire.",
+      "scene_zone": "room",
+      "event_text": "From 30.8s to 36.5s, the man lit a fire at the door and left on his bicycle. The door started to catch fire.",
+      "keywords": [
+        "man",
+        "lit",
+        "fire",
+        "door",
+        "left",
+        "bicycle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Arson021_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 48.07,
+      "start_time": 36.8,
+      "end_time": 47.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; The gate began to burn violently, and the man rode away.",
+      "scene_zone": "unknown",
+      "event_text": "From 36.8s to 47.5s, the gate began to burn violently, and the man rode away.",
+      "keywords": [
+        "gate",
+        "began",
+        "burn",
+        "violently",
+        "man",
+        "rode"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    }
+  ]
+}

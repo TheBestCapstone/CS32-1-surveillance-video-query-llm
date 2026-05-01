@@ -1,0 +1,547 @@
+{
+  "video_id": "Burglary079_x264",
+  "duration": 495.13,
+  "events": [
+    {
+      "video_id": "Burglary079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 495.13,
+      "start_time": 18.1,
+      "end_time": 30.3,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car drove up to the house and stopped.",
+      "scene_zone": "unknown",
+      "event_text": "From 18.1s to 30.3s, a black car drove up to the house and stopped.",
+      "keywords": [
+        "black",
+        "car",
+        "drove",
+        "house",
+        "stopped"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Burglary079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 495.13,
+      "start_time": 93.0,
+      "end_time": 100.0,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; An African-American man wearing white clothing and a baseball cap got out of the car.",
+      "scene_zone": "unknown",
+      "event_text": "From 93.0s to 100.0s, an African-American man wearing white clothing and a baseball cap got out of the car.",
+      "keywords": [
+        "african",
+        "american",
+        "man",
+        "wearing",
+        "white",
+        "clothing"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Burglary079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 495.13,
+      "start_time": 103.0,
+      "end_time": 110.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man turned to the trunk of the car and wanted to open the trunk, but stopped again.",
+      "scene_zone": "unknown",
+      "event_text": "From 103.0s to 110.0s, the man turned to the trunk of the car and wanted to open the trunk, but stopped again.",
+      "keywords": [
+        "man",
+        "turned",
+        "trunk",
+        "car",
+        "wanted",
+        "open"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Burglary079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 495.13,
+      "start_time": 113.0,
+      "end_time": 115.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man is hiding behind the car,.",
+      "scene_zone": "unknown",
+      "event_text": "From 113.0s to 115.0s, the man is hiding behind the car,.",
+      "keywords": [
+        "man",
+        "hiding",
+        "behind",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Burglary079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 495.13,
+      "start_time": 115.0,
+      "end_time": 120.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; Look around and observe.",
+      "scene_zone": "unknown",
+      "event_text": "From 115.0s to 120.0s, look around and observe.",
+      "keywords": [
+        "look",
+        "around",
+        "observe"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Burglary079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 495.13,
+      "start_time": 120.4,
+      "end_time": 132.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man squatted behind the trunk to hide.",
+      "scene_zone": "unknown",
+      "event_text": "From 120.4s to 132.8s, the man squatted behind the trunk to hide.",
+      "keywords": [
+        "man",
+        "squatted",
+        "behind",
+        "trunk",
+        "hide"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Burglary079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 495.13,
+      "start_time": 132.4,
+      "end_time": 138.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man then opened the trunk,.",
+      "scene_zone": "unknown",
+      "event_text": "From 132.4s to 138.8s, the man then opened the trunk,.",
+      "keywords": [
+        "man",
+        "opened",
+        "trunk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Burglary079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 495.13,
+      "start_time": 138.4,
+      "end_time": 140.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man closed it immediately.",
+      "scene_zone": "unknown",
+      "event_text": "From 138.4s to 140.8s, the man closed it immediately.",
+      "keywords": [
+        "man",
+        "closed",
+        "immediately"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Burglary079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 495.13,
+      "start_time": 141.2,
+      "end_time": 163.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man went around to the back door of the car and talked to the people inside.",
+      "scene_zone": "room",
+      "event_text": "From 141.2s to 163.1s, the man went around to the back door of the car and talked to the people inside.",
+      "keywords": [
+        "man",
+        "went",
+        "around",
+        "back",
+        "door",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Burglary079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 495.13,
+      "start_time": 163.2,
+      "end_time": 181.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man then returned to the back of the trunk.",
+      "scene_zone": "unknown",
+      "event_text": "From 163.2s to 181.1s, the man then returned to the back of the trunk.",
+      "keywords": [
+        "man",
+        "returned",
+        "back",
+        "trunk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Burglary079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 495.13,
+      "start_time": 181.2,
+      "end_time": 193.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man ducked and ducked.",
+      "scene_zone": "unknown",
+      "event_text": "From 181.2s to 193.1s, the man ducked and ducked.",
+      "keywords": [
+        "man",
+        "ducked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Burglary079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 495.13,
+      "start_time": 194.9,
+      "end_time": 200.7,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The man left the trunk and entered the car.",
+      "scene_zone": "unknown",
+      "event_text": "From 194.9s to 200.7s, the man left the trunk and entered the car.",
+      "keywords": [
+        "man",
+        "left",
+        "trunk",
+        "entered",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Burglary079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 495.13,
+      "start_time": 254.4,
+      "end_time": 255.8,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; Two men in white got out of the car, and one of them ran towards the door.",
+      "scene_zone": "room",
+      "event_text": "From 254.4s to 255.8s, two men in white got out of the car, and one of them ran towards the door.",
+      "keywords": [
+        "two",
+        "men",
+        "white",
+        "got",
+        "out",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Burglary079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 495.13,
+      "start_time": 254.4,
+      "end_time": 255.8,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; Another person opened the trunk, and there were several men in white hiding in the trunk.",
+      "scene_zone": "unknown",
+      "event_text": "From 254.4s to 255.8s, another person opened the trunk, and there were several men in white hiding in the trunk.",
+      "keywords": [
+        "another",
+        "person",
+        "opened",
+        "trunk",
+        "several",
+        "men"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Burglary079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 495.13,
+      "start_time": 256.1,
+      "end_time": 350.4,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A total of five people gathered around the door and cooperated to pry it open.",
+      "scene_zone": "room",
+      "event_text": "From 256.1s to 350.4s, a total of five people gathered around the door and cooperated to pry it open.",
+      "keywords": [
+        "total",
+        "five",
+        "people",
+        "gathered",
+        "around",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    },
+    {
+      "video_id": "Burglary079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 495.13,
+      "start_time": 351.9,
+      "end_time": 358.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Five people got into the house one after another.",
+      "scene_zone": "unknown",
+      "event_text": "From 351.9s to 358.0s, five people got into the house one after another.",
+      "keywords": [
+        "five",
+        "people",
+        "got",
+        "house",
+        "one",
+        "another"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_16"
+    },
+    {
+      "video_id": "Burglary079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 495.13,
+      "start_time": 435.3,
+      "end_time": 458.6,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Five people came out of the door one after another, got into the car and drove away.",
+      "scene_zone": "room",
+      "event_text": "From 435.3s to 458.6s, five people came out of the door one after another, got into the car and drove away.",
+      "keywords": [
+        "five",
+        "people",
+        "came",
+        "out",
+        "door",
+        "one"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_17"
+    }
+  ]
+}

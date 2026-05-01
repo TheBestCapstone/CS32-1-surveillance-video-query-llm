@@ -1,0 +1,336 @@
+{
+  "video_id": "Explosion029_x264",
+  "duration": 80.33,
+  "events": [
+    {
+      "video_id": "Explosion029_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 80.33,
+      "start_time": 0.0,
+      "end_time": 5.8,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Low activity; A black car is coming from the right. It is parked to the right of the yellow pillar. Next to the yellow pillar is the oil storage tank of the gas station.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 5.8s, a black car is coming from the right. It is parked to the right of the yellow pillar. Next to the yellow pillar is the oil storage tank of the gas station.",
+      "keywords": [
+        "black",
+        "car",
+        "coming",
+        "right",
+        "parked",
+        "yellow"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Explosion029_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 80.33,
+      "start_time": 6.1,
+      "end_time": 10.3,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; A yellow-haired woman wearing a blue top opened the door of the black car. The woman walked to the yellow pillar, and a white car passed in front of the black car from left to right.",
+      "scene_zone": "room",
+      "event_text": "From 6.1s to 10.3s, a yellow-haired woman wearing a blue top opened the door of the black car. The woman walked to the yellow pillar, and a white car passed in front of the black car from left to right.",
+      "keywords": [
+        "yellow",
+        "haired",
+        "woman",
+        "wearing",
+        "blue",
+        "top"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Explosion029_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 80.33,
+      "start_time": 10.3,
+      "end_time": 14.4,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The yellow-haired woman operates the machine at the gas station.",
+      "scene_zone": "unknown",
+      "event_text": "From 10.3s to 14.4s, the yellow-haired woman operates the machine at the gas station.",
+      "keywords": [
+        "yellow",
+        "haired",
+        "woman",
+        "operates",
+        "machine",
+        "gas"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Explosion029_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 80.33,
+      "start_time": 14.4,
+      "end_time": 19.5,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The yellow-haired woman walked to the black car and unscrewed the gas nozzle on the car.",
+      "scene_zone": "unknown",
+      "event_text": "From 14.4s to 19.5s, the yellow-haired woman walked to the black car and unscrewed the gas nozzle on the car.",
+      "keywords": [
+        "yellow",
+        "haired",
+        "woman",
+        "walked",
+        "black",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Explosion029_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 80.33,
+      "start_time": 21.6,
+      "end_time": 37.4,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The yellow-haired woman picked up the oil gun on the oil storage tank, and then she pressed the machine at the gas station several times.",
+      "scene_zone": "unknown",
+      "event_text": "From 21.6s to 37.4s, the yellow-haired woman picked up the oil gun on the oil storage tank, and then she pressed the machine at the gas station several times.",
+      "keywords": [
+        "yellow",
+        "haired",
+        "woman",
+        "picked",
+        "oil",
+        "gun"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Explosion029_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 80.33,
+      "start_time": 37.4,
+      "end_time": 45.8,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The yellow-haired woman walked to the side of the black car and put the oil gun into the car's fuel port.",
+      "scene_zone": "unknown",
+      "event_text": "From 37.4s to 45.8s, the yellow-haired woman walked to the side of the black car and put the oil gun into the car's fuel port.",
+      "keywords": [
+        "yellow",
+        "haired",
+        "woman",
+        "walked",
+        "side",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Explosion029_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 80.33,
+      "start_time": 45.8,
+      "end_time": 59.3,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The yellow-haired woman got into the driver's seat of the car.",
+      "scene_zone": "unknown",
+      "event_text": "From 45.8s to 59.3s, the yellow-haired woman got into the driver's seat of the car.",
+      "keywords": [
+        "yellow",
+        "haired",
+        "woman",
+        "got",
+        "driver",
+        "seat"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Explosion029_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 80.33,
+      "start_time": 61.5,
+      "end_time": 68.1,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The yellow-haired woman touched the oil gun, and the oil gun suddenly exploded and caught fire.",
+      "scene_zone": "unknown",
+      "event_text": "From 61.5s to 68.1s, the yellow-haired woman touched the oil gun, and the oil gun suddenly exploded and caught fire.",
+      "keywords": [
+        "yellow",
+        "haired",
+        "woman",
+        "touched",
+        "oil",
+        "gun"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Explosion029_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 80.33,
+      "start_time": 68.1,
+      "end_time": 71.6,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The yellow-haired woman took the oil gun out of the car. The fire intensity decreased, but there was still a flame at the mouth of the oil gun.",
+      "scene_zone": "unknown",
+      "event_text": "From 68.1s to 71.6s, the yellow-haired woman took the oil gun out of the car. The fire intensity decreased, but there was still a flame at the mouth of the oil gun.",
+      "keywords": [
+        "yellow",
+        "haired",
+        "woman",
+        "took",
+        "oil",
+        "gun"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Explosion029_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 80.33,
+      "start_time": 71.6,
+      "end_time": 80.0,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The yellow-haired woman threw the oil gun on the ground, and there was a flame at the muzzle of the oil gun.",
+      "scene_zone": "unknown",
+      "event_text": "From 71.6s to 80.0s, the yellow-haired woman threw the oil gun on the ground, and there was a flame at the muzzle of the oil gun.",
+      "keywords": [
+        "yellow",
+        "haired",
+        "woman",
+        "threw",
+        "oil",
+        "gun"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    }
+  ]
+}

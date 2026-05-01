@@ -1,0 +1,399 @@
+{
+  "video_id": "Vandalism041_x264",
+  "duration": 162.31,
+  "events": [
+    {
+      "video_id": "Vandalism041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 162.31,
+      "start_time": 0.0,
+      "end_time": 15.0,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Seven people were walking on the street. A woman in black pointed at a black object, and then the man in gray rode on the black object.",
+      "scene_zone": "road",
+      "event_text": "From 0.0s to 15.0s, seven people were walking on the street. A woman in black pointed at a black object, and then the man in gray rode on the black object.",
+      "keywords": [
+        "seven",
+        "people",
+        "walking",
+        "street",
+        "woman",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Vandalism041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 162.31,
+      "start_time": 15.0,
+      "end_time": 32.4,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in gray comes down from the black object, a man is waving an object.",
+      "scene_zone": "unknown",
+      "event_text": "From 15.0s to 32.4s, the man in gray comes down from the black object, a man is waving an object.",
+      "keywords": [
+        "man",
+        "gray",
+        "comes",
+        "down",
+        "black",
+        "object"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Vandalism041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 162.31,
+      "start_time": 32.4,
+      "end_time": 51.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Three people passed by and seven people walked forward along the sidewalk.",
+      "scene_zone": "unknown",
+      "event_text": "From 32.4s to 51.6s, three people passed by and seven people walked forward along the sidewalk.",
+      "keywords": [
+        "three",
+        "people",
+        "passed",
+        "seven",
+        "walked",
+        "forward"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Vandalism041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 162.31,
+      "start_time": 51.6,
+      "end_time": 70.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Seven people stopped in the middle of the sidewalk.",
+      "scene_zone": "unknown",
+      "event_text": "From 51.6s to 70.3s, seven people stopped in the middle of the sidewalk.",
+      "keywords": [
+        "seven",
+        "people",
+        "stopped",
+        "middle",
+        "sidewalk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Vandalism041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 162.31,
+      "start_time": 70.3,
+      "end_time": 83.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A group of people took photos and walked forward.",
+      "scene_zone": "unknown",
+      "event_text": "From 70.3s to 83.0s, a group of people took photos and walked forward.",
+      "keywords": [
+        "group",
+        "people",
+        "took",
+        "photos",
+        "walked",
+        "forward"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Vandalism041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 162.31,
+      "start_time": 70.3,
+      "end_time": 97.9,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black carrying a bag was tinkering behind a pillar.",
+      "scene_zone": "unknown",
+      "event_text": "From 70.3s to 97.9s, a man in black carrying a bag was tinkering behind a pillar.",
+      "keywords": [
+        "man",
+        "black",
+        "carrying",
+        "bag",
+        "tinkering",
+        "behind"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Vandalism041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 162.31,
+      "start_time": 85.3,
+      "end_time": 97.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two people walked forward along the sidewalk,.",
+      "scene_zone": "unknown",
+      "event_text": "From 85.3s to 97.9s, two people walked forward along the sidewalk,.",
+      "keywords": [
+        "two",
+        "people",
+        "walked",
+        "forward",
+        "along",
+        "sidewalk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Vandalism041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 162.31,
+      "start_time": 97.9,
+      "end_time": 122.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two people walked forward side by side,.",
+      "scene_zone": "unknown",
+      "event_text": "From 97.9s to 122.0s, two people walked forward side by side,.",
+      "keywords": [
+        "two",
+        "people",
+        "walked",
+        "forward",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Vandalism041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 162.31,
+      "start_time": 97.9,
+      "end_time": 122.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There is a group of seven people moving slowly on the sidewalk,.",
+      "scene_zone": "unknown",
+      "event_text": "From 97.9s to 122.0s, there is a group of seven people moving slowly on the sidewalk,.",
+      "keywords": [
+        "group",
+        "seven",
+        "people",
+        "moving",
+        "slowly",
+        "sidewalk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Vandalism041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 162.31,
+      "start_time": 112.9,
+      "end_time": 125.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Man carrying a bag moves forward on a bicycle.",
+      "scene_zone": "unknown",
+      "event_text": "From 112.9s to 125.0s, man carrying a bag moves forward on a bicycle.",
+      "keywords": [
+        "man",
+        "carrying",
+        "bag",
+        "moves",
+        "forward",
+        "bicycle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Vandalism041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 162.31,
+      "start_time": 122.0,
+      "end_time": 125.7,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man in red riding a bicycle passed by,.",
+      "scene_zone": "unknown",
+      "event_text": "From 122.0s to 125.7s, a man in red riding a bicycle passed by,.",
+      "keywords": [
+        "man",
+        "red",
+        "riding",
+        "bicycle",
+        "passed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Vandalism041_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 162.31,
+      "start_time": 127.7,
+      "end_time": 161.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A group of seven people moved forward on the sidewalk, and three people were walking on the road.",
+      "scene_zone": "road",
+      "event_text": "From 127.7s to 161.9s, a group of seven people moved forward on the sidewalk, and three people were walking on the road.",
+      "keywords": [
+        "group",
+        "seven",
+        "people",
+        "moved",
+        "forward",
+        "sidewalk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    }
+  ]
+}

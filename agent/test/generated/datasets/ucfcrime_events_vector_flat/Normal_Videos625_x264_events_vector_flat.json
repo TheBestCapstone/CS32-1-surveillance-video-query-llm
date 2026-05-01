@@ -1,0 +1,171 @@
+{
+  "video_id": "Normal_Videos625_x264",
+  "duration": 106.98,
+  "events": [
+    {
+      "video_id": "Normal_Videos625_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 106.98,
+      "start_time": 0.0,
+      "end_time": 18.5,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Low activity; A brown SUV and a motorcycle are coming from the left side of the screen, waiting for the red light in the center of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 18.5s, a brown SUV and a motorcycle are coming from the left side of the screen, waiting for the red light in the center of the screen.",
+      "keywords": [
+        "brown",
+        "suv",
+        "motorcycle",
+        "coming",
+        "left",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos625_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 106.98,
+      "start_time": 30.5,
+      "end_time": 35.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A truck with a white front and gray cabin came from the left side of the screen and stopped behind the SUV.",
+      "scene_zone": "unknown",
+      "event_text": "From 30.5s to 35.2s, a truck with a white front and gray cabin came from the left side of the screen and stopped behind the SUV.",
+      "keywords": [
+        "truck",
+        "white",
+        "front",
+        "gray",
+        "cabin",
+        "came"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos625_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 106.98,
+      "start_time": 0.2,
+      "end_time": 32.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Multiple cars and buses are passing horizontally at the top of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.2s to 32.1s, multiple cars and buses are passing horizontally at the top of the screen.",
+      "keywords": [
+        "multiple",
+        "cars",
+        "buses",
+        "passing",
+        "horizontally",
+        "top"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos625_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 106.98,
+      "start_time": 38.1,
+      "end_time": 82.5,
+      "object_type": "car",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; Many vehicles are driving at the top of the screen, several yellow taxis and several buses passing by.",
+      "scene_zone": "unknown",
+      "event_text": "From 38.1s to 82.5s, many vehicles are driving at the top of the screen, several yellow taxis and several buses passing by.",
+      "keywords": [
+        "many",
+        "vehicles",
+        "driving",
+        "top",
+        "screen",
+        "several"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos625_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 106.98,
+      "start_time": 89.4,
+      "end_time": 103.1,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The SUV and large truck waiting for the traffic light in the center of the screen start to drive. The silver large truck and the white small truck behind it turn right.",
+      "scene_zone": "unknown",
+      "event_text": "From 89.4s to 103.1s, the SUV and large truck waiting for the traffic light in the center of the screen start to drive. The silver large truck and the white small truck behind it turn right.",
+      "keywords": [
+        "suv",
+        "large",
+        "truck",
+        "waiting",
+        "traffic",
+        "light"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    }
+  ]
+}

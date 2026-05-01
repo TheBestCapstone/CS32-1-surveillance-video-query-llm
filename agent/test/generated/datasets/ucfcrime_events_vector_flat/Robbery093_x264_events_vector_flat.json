@@ -1,0 +1,204 @@
+{
+  "video_id": "Robbery093_x264",
+  "duration": 39.03,
+  "events": [
+    {
+      "video_id": "Robbery093_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 39.03,
+      "start_time": 0.0,
+      "end_time": 4.0,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man entered the house, and next to him a child stood next to a chair and read a tablet.",
+      "scene_zone": "room",
+      "event_text": "From 0.0s to 4.0s, a man entered the house, and next to him a child stood next to a chair and read a tablet.",
+      "keywords": [
+        "man",
+        "entered",
+        "house",
+        "him",
+        "child",
+        "stood"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Robbery093_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 39.03,
+      "start_time": 8.1,
+      "end_time": 11.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; A woman leaned on the counter, and the child looked up at the man with a tablet.",
+      "scene_zone": "room",
+      "event_text": "From 8.1s to 11.8s, a woman leaned on the counter, and the child looked up at the man with a tablet.",
+      "keywords": [
+        "woman",
+        "leaned",
+        "counter",
+        "child",
+        "looked",
+        "man"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Robbery093_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 39.03,
+      "start_time": 13.3,
+      "end_time": 16.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man snatched the child’s tablet and ran away quickly.",
+      "scene_zone": "room",
+      "event_text": "From 13.3s to 16.4s, the man snatched the child’s tablet and ran away quickly.",
+      "keywords": [
+        "man",
+        "snatched",
+        "child",
+        "tablet",
+        "ran",
+        "away"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Robbery093_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 39.03,
+      "start_time": 16.4,
+      "end_time": 20.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman trotted open the door to check the situation.",
+      "scene_zone": "room",
+      "event_text": "From 16.4s to 20.0s, the woman trotted open the door to check the situation.",
+      "keywords": [
+        "woman",
+        "trotted",
+        "open",
+        "door",
+        "check",
+        "situation"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Robbery093_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 39.03,
+      "start_time": 20.0,
+      "end_time": 28.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man came in and snatched the child’s mobile phone.",
+      "scene_zone": "unknown",
+      "event_text": "From 20.0s to 28.1s, the man came in and snatched the child’s mobile phone.",
+      "keywords": [
+        "man",
+        "came",
+        "snatched",
+        "child",
+        "mobile",
+        "phone"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Robbery093_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 39.03,
+      "start_time": 28.1,
+      "end_time": 37.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; When the door was opened, three people went out to chase the man.",
+      "scene_zone": "room",
+      "event_text": "From 28.1s to 37.3s, when the door was opened, three people went out to chase the man.",
+      "keywords": [
+        "when",
+        "door",
+        "opened",
+        "three",
+        "people",
+        "went"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    }
+  ]
+}

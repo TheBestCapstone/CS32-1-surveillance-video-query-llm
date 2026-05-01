@@ -1,0 +1,88 @@
+{
+  "cases": [
+    {
+      "case_id": "PART1_0002",
+      "video_id": "Abuse037_x264",
+      "question": "Is there a clip of a car running over a black dog on the road?",
+      "reference_answer": "Yes. The relevant clip is in Abuse037_x264, around 0:00:06 - 0:00:22.",
+      "response": "No matching results found. You can add more specific descriptions like colors or actions.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.0,
+          "context_recall": 0.0
+        },
+        "generation": {
+          "answer_relevancy": 0.0,
+          "factual_correctness": 0.0,
+          "faithfulness": 0.0
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "PART1_0003",
+      "video_id": "Abuse037_x264",
+      "question": "A vehicle injured an animal on the road, and other animals approached the injured one afterward.",
+      "reference_answer": "Yes. The relevant clip is in Abuse037_x264, around 0:00:30 - 0:00:43.",
+      "response": "In one video, a black car hits two puppies on a busy road, and afterward, one puppy stays in the road while the other moves to the side. In another, a white car strikes a black dog, and later, other dogs—including a gray one—approach the injured animal, with one even pulling its tail before leaving. Both scenes show animals reacting to a fellow dog hurt by a vehicle.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.5,
+          "context_recall": 1.0
+        },
+        "generation": {
+          "answer_relevancy": 0.731,
+          "factual_correctness": 0.0,
+          "faithfulness": 1.0
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.6462
+        }
+      }
+    },
+    {
+      "case_id": "PART1_0004",
+      "video_id": "Abuse037_x264",
+      "question": "An animal bent down to pull the tail of a motionless object on the ground, then left after a moment.",
+      "reference_answer": "No matching clip is expected.",
+      "response": "In one video, a gray dog pulls the tail of another dog that had just been hit by a car, then stays briefly before leaving. Another video shows puppies involved in a similar roadside incident with vehicles, but no tail-pulling behavior is described there.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.0,
+          "context_recall": 0.0
+        },
+        "generation": {
+          "answer_relevancy": 0.5415,
+          "factual_correctness": 0.0,
+          "faithfulness": 1.0
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.3083
+        }
+      }
+    },
+    {
+      "case_id": "PART1_0005",
+      "video_id": "Abuse038_x264",
+      "question": "Is there a clip of two puppies being hit by a car and rolling on the road?",
+      "reference_answer": "Yes. The relevant clip is in Abuse038_x264, around 0:00:09 - 0:00:13.",
+      "response": "Yes, there is a clip (Abuse038_x264) showing two puppies on a road being hit by a black car. After the impact, both puppies roll on the road—one leaves the roadway, and the other briefly stays in the middle before running to the side. The incident occurs amid traffic and bystanders.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 1.0,
+          "context_recall": 1.0
+        },
+        "generation": {
+          "answer_relevancy": 0.7178,
+          "factual_correctness": 0.0,
+          "faithfulness": 1.0
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.7436
+        }
+      }
+    }
+  ]
+}

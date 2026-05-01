@@ -1,0 +1,432 @@
+{
+  "video_id": "Shooting036_x264",
+  "duration": 127.72,
+  "events": [
+    {
+      "video_id": "Shooting036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 127.72,
+      "start_time": 0.0,
+      "end_time": 5.2,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; There are several people in a house. There is a masked man in white clothes outside the glass door of the house.",
+      "scene_zone": "room",
+      "event_text": "From 0.0s to 5.2s, there are several people in a house. There is a masked man in white clothes outside the glass door of the house.",
+      "keywords": [
+        "several",
+        "people",
+        "house",
+        "masked",
+        "man",
+        "white"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Shooting036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 127.72,
+      "start_time": 5.2,
+      "end_time": 7.5,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in white outside the house opened the glass door.",
+      "scene_zone": "room",
+      "event_text": "From 5.2s to 7.5s, the man in white outside the house opened the glass door.",
+      "keywords": [
+        "man",
+        "white",
+        "outside",
+        "house",
+        "opened",
+        "glass"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Shooting036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 127.72,
+      "start_time": 5.2,
+      "end_time": 6.1,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man wearing a white hat came outside the house, and the two entered the house.",
+      "scene_zone": "unknown",
+      "event_text": "From 5.2s to 6.1s, a man wearing a white hat came outside the house, and the two entered the house.",
+      "keywords": [
+        "man",
+        "wearing",
+        "white",
+        "hat",
+        "came",
+        "outside"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Shooting036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 127.72,
+      "start_time": 5.2,
+      "end_time": 7.2,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in white raised the pistol in his hand.",
+      "scene_zone": "unknown",
+      "event_text": "From 5.2s to 7.2s, the man in white raised the pistol in his hand.",
+      "keywords": [
+        "man",
+        "white",
+        "raised",
+        "pistol",
+        "hand"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Shooting036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 127.72,
+      "start_time": 8.0,
+      "end_time": 29.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; A fight broke out at the door of the room, and several people in the house were lying on the ground.",
+      "scene_zone": "room",
+      "event_text": "From 8.0s to 29.2s, a fight broke out at the door of the room, and several people in the house were lying on the ground.",
+      "keywords": [
+        "fight",
+        "broke",
+        "out",
+        "door",
+        "room",
+        "several"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Shooting036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 127.72,
+      "start_time": 29.2,
+      "end_time": 64.6,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in red wearing a black helmet entered the room and stood at the counter.",
+      "scene_zone": "room",
+      "event_text": "From 29.2s to 64.6s, a man in red wearing a black helmet entered the room and stood at the counter.",
+      "keywords": [
+        "man",
+        "red",
+        "wearing",
+        "black",
+        "helmet",
+        "entered"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Shooting036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 127.72,
+      "start_time": 42.4,
+      "end_time": 48.3,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black wearing a black helmet enters the house.",
+      "scene_zone": "unknown",
+      "event_text": "From 42.4s to 48.3s, a man in black wearing a black helmet enters the house.",
+      "keywords": [
+        "man",
+        "black",
+        "wearing",
+        "helmet",
+        "enters",
+        "house"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Shooting036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 127.72,
+      "start_time": 48.4,
+      "end_time": 53.7,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The man in black wearing a black helmet waved to the man on the ground and then beat the man on the ground.",
+      "scene_zone": "unknown",
+      "event_text": "From 48.4s to 53.7s, the man in black wearing a black helmet waved to the man on the ground and then beat the man on the ground.",
+      "keywords": [
+        "man",
+        "black",
+        "wearing",
+        "helmet",
+        "waved",
+        "ground"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Shooting036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 127.72,
+      "start_time": 57.2,
+      "end_time": 64.6,
+      "object_type": "unknown",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Three men wearing turbans entered the room and walked to the counter.",
+      "scene_zone": "room",
+      "event_text": "From 57.2s to 64.6s, three men wearing turbans entered the room and walked to the counter.",
+      "keywords": [
+        "three",
+        "men",
+        "wearing",
+        "turbans",
+        "entered",
+        "room"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Shooting036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 127.72,
+      "start_time": 64.2,
+      "end_time": 109.6,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in turban and the man in black pick up things on the ground.",
+      "scene_zone": "unknown",
+      "event_text": "From 64.2s to 109.6s, the man in turban and the man in black pick up things on the ground.",
+      "keywords": [
+        "man",
+        "turban",
+        "black",
+        "pick",
+        "things",
+        "ground"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Shooting036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 127.72,
+      "start_time": 109.6,
+      "end_time": 125.5,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several men in the house left.",
+      "scene_zone": "unknown",
+      "event_text": "From 109.6s to 125.5s, several men in the house left.",
+      "keywords": [
+        "several",
+        "men",
+        "house",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Shooting036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 127.72,
+      "start_time": 114.6,
+      "end_time": 124.5,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The man in red pulled the TV off the wall and left.",
+      "scene_zone": "room",
+      "event_text": "From 114.6s to 124.5s, the man in red pulled the TV off the wall and left.",
+      "keywords": [
+        "man",
+        "red",
+        "pulled",
+        "off",
+        "wall",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Shooting036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 127.72,
+      "start_time": 120.6,
+      "end_time": 126.0,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in black pulled the wire from the wall and left.",
+      "scene_zone": "room",
+      "event_text": "From 120.6s to 126.0s, the man in black pulled the wire from the wall and left.",
+      "keywords": [
+        "man",
+        "black",
+        "pulled",
+        "wire",
+        "wall",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    }
+  ]
+}

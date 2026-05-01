@@ -1,0 +1,384 @@
+{
+  "video_id": "Burglary071_x264",
+  "duration": 119.47,
+  "events": [
+    {
+      "video_id": "Burglary071_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 119.47,
+      "start_time": 6.8,
+      "end_time": 8.8,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man with clothes on his head opened the door and entered the room.",
+      "scene_zone": "room",
+      "event_text": "From 6.8s to 8.8s, a man with clothes on his head opened the door and entered the room.",
+      "keywords": [
+        "man",
+        "clothes",
+        "head",
+        "opened",
+        "door",
+        "entered"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Burglary071_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 119.47,
+      "start_time": 8.8,
+      "end_time": 10.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man came directly to the counter and squatted in front of the small cabinet next to the counter.",
+      "scene_zone": "store",
+      "event_text": "From 8.8s to 10.8s, the man came directly to the counter and squatted in front of the small cabinet next to the counter.",
+      "keywords": [
+        "man",
+        "came",
+        "directly",
+        "counter",
+        "squatted",
+        "front"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Burglary071_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 119.47,
+      "start_time": 5.1,
+      "end_time": 19.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man failed to search.",
+      "scene_zone": "unknown",
+      "event_text": "From 5.1s to 19.2s, the man failed to search.",
+      "keywords": [
+        "man",
+        "failed",
+        "search"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Burglary071_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 119.47,
+      "start_time": 19.1,
+      "end_time": 29.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The man looked back again.",
+      "scene_zone": "unknown",
+      "event_text": "From 19.1s to 29.2s, the man looked back again.",
+      "keywords": [
+        "man",
+        "looked",
+        "back",
+        "again"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Burglary071_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 119.47,
+      "start_time": 31.7,
+      "end_time": 55.4,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man turned around to the two white cabinets on the back.",
+      "scene_zone": "unknown",
+      "event_text": "From 31.7s to 55.4s, the man turned around to the two white cabinets on the back.",
+      "keywords": [
+        "man",
+        "turned",
+        "around",
+        "two",
+        "white",
+        "cabinets"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Burglary071_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 119.47,
+      "start_time": 55.7,
+      "end_time": 65.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The man looked inside and picked up some things and put them into his pants pocket.",
+      "scene_zone": "unknown",
+      "event_text": "From 55.7s to 65.4s, the man looked inside and picked up some things and put them into his pants pocket.",
+      "keywords": [
+        "man",
+        "looked",
+        "inside",
+        "picked",
+        "some",
+        "things"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Burglary071_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 119.47,
+      "start_time": 66.6,
+      "end_time": 70.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man turned around again,.",
+      "scene_zone": "unknown",
+      "event_text": "From 66.6s to 70.7s, the man turned around again,.",
+      "keywords": [
+        "man",
+        "turned",
+        "around",
+        "again"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Burglary071_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 119.47,
+      "start_time": 70.6,
+      "end_time": 75.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man is checking at the counter,.",
+      "scene_zone": "store",
+      "event_text": "From 70.6s to 75.7s, the man is checking at the counter,.",
+      "keywords": [
+        "man",
+        "checking",
+        "counter"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Burglary071_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 119.47,
+      "start_time": 76.6,
+      "end_time": 80.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man then came to the wall.",
+      "scene_zone": "room",
+      "event_text": "From 76.6s to 80.7s, the man then came to the wall.",
+      "keywords": [
+        "man",
+        "came",
+        "wall"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Burglary071_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 119.47,
+      "start_time": 86.6,
+      "end_time": 90.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man searched for items in the inner part of the room again.",
+      "scene_zone": "room",
+      "event_text": "From 86.6s to 90.5s, the man searched for items in the inner part of the room again.",
+      "keywords": [
+        "man",
+        "searched",
+        "items",
+        "inner",
+        "part",
+        "room"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Burglary071_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 119.47,
+      "start_time": 90.6,
+      "end_time": 96.5,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Touched the alarm and the alarm sounded.",
+      "scene_zone": "unknown",
+      "event_text": "From 90.6s to 96.5s, touched the alarm and the alarm sounded.",
+      "keywords": [
+        "touched",
+        "alarm",
+        "sounded"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Burglary071_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 119.47,
+      "start_time": 96.4,
+      "end_time": 98.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man fled the room in a hurry.",
+      "scene_zone": "room",
+      "event_text": "From 96.4s to 98.6s, the man fled the room in a hurry.",
+      "keywords": [
+        "man",
+        "fled",
+        "room",
+        "hurry"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    }
+  ]
+}

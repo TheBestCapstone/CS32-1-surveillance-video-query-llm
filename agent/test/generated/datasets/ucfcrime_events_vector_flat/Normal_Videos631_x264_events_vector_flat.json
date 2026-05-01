@@ -1,0 +1,237 @@
+{
+  "video_id": "Normal_Videos631_x264",
+  "duration": 226.37,
+  "events": [
+    {
+      "video_id": "Normal_Videos631_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 226.37,
+      "start_time": 0.0,
+      "end_time": 8.5,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Low activity; The picture is an indoor exhibition hall. In the center of the picture, a man in a blue shirt and black pants is looking at something.",
+      "scene_zone": "room",
+      "event_text": "From 0.0s to 8.5s, the picture is an indoor exhibition hall. In the center of the picture, a man in a blue shirt and black pants is looking at something.",
+      "keywords": [
+        "picture",
+        "indoor",
+        "exhibition",
+        "hall",
+        "center",
+        "man"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos631_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 226.37,
+      "start_time": 9.2,
+      "end_time": 16.0,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black is on the phone in the lower right corner of the screen and walks to the left side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 9.2s to 16.0s, a man in black is on the phone in the lower right corner of the screen and walks to the left side of the screen.",
+      "keywords": [
+        "man",
+        "black",
+        "phone",
+        "lower",
+        "right",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos631_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 226.37,
+      "start_time": 118.2,
+      "end_time": 149.3,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; In the lower right corner of the screen, a man in black clothes and black trousers carrying a black schoolbag holding a courier box walked to the white counter in the center of the screen, placed the courier box on it, sorted the backpack, and then on the right side of the screen The lower corner left.",
+      "scene_zone": "store",
+      "event_text": "From 118.2s to 149.3s, in the lower right corner of the screen, a man in black clothes and black trousers carrying a black schoolbag holding a courier box walked to the white counter in the center of the screen, placed the courier box on it, sorted the backpack, and then on the right side of the screen The lower corner left.",
+      "keywords": [
+        "lower",
+        "right",
+        "corner",
+        "screen",
+        "man",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos631_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 226.37,
+      "start_time": 127.5,
+      "end_time": 167.3,
+      "object_type": "unknown",
+      "object_color": "white",
+      "appearance_notes": "High activity; In the lower right corner of the screen, a cleaning staff with a white shirt and brown pants holding a green vacuum cleaner walked to the top of the screen. After a short pause, he walked to the upper right corner of the screen, placed the vacuum cleaner in the upper right corner and left the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 127.5s to 167.3s, in the lower right corner of the screen, a cleaning staff with a white shirt and brown pants holding a green vacuum cleaner walked to the top of the screen. After a short pause, he walked to the upper right corner of the screen, placed the vacuum cleaner in the upper right corner and left the screen.",
+      "keywords": [
+        "lower",
+        "right",
+        "corner",
+        "screen",
+        "cleaning",
+        "staff"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos631_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 226.37,
+      "start_time": 171.2,
+      "end_time": 226.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; In the lower right corner of the screen, a man in black clothes and black trousers, a man in a white shirt and black trousers, and a woman in green plaid clothes walked to the counter in the center of the screen and looked at the things in the counter. Two men chatting at the counter.",
+      "scene_zone": "store",
+      "event_text": "From 171.2s to 226.1s, in the lower right corner of the screen, a man in black clothes and black trousers, a man in a white shirt and black trousers, and a woman in green plaid clothes walked to the counter in the center of the screen and looked at the things in the counter. Two men chatting at the counter.",
+      "keywords": [
+        "lower",
+        "right",
+        "corner",
+        "screen",
+        "man",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos631_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 226.37,
+      "start_time": 186.0,
+      "end_time": 196.3,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; In the lower right corner of the screen, a man wearing glasses in white clothes and black pants and a woman wearing glasses in white clothes and black skirts walked by and walked to the counter to talk to the woman in green clothes.",
+      "scene_zone": "store",
+      "event_text": "From 186.0s to 196.3s, in the lower right corner of the screen, a man wearing glasses in white clothes and black pants and a woman wearing glasses in white clothes and black skirts walked by and walked to the counter to talk to the woman in green clothes.",
+      "keywords": [
+        "lower",
+        "right",
+        "corner",
+        "screen",
+        "man",
+        "wearing"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos631_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 226.37,
+      "start_time": 196.4,
+      "end_time": 212.5,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; Two people in white shirts and black pants in the center of the screen walked to the lower right corner of the screen and left the screen, and the woman in a green plaid shirt walked to the upper right corner of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 196.4s to 212.5s, two people in white shirts and black pants in the center of the screen walked to the lower right corner of the screen and left the screen, and the woman in a green plaid shirt walked to the upper right corner of the screen.",
+      "keywords": [
+        "two",
+        "people",
+        "white",
+        "shirts",
+        "black",
+        "pants"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    }
+  ]
+}

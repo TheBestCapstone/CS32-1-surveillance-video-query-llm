@@ -1,0 +1,29 @@
+{
+  "xlsx_path": "/home/yangxp/Capstone/agent/test/agent_test.xlsx",
+  "normalized_json_path": "/home/yangxp/Capstone/agent/test/generated/agent_test_normalized.json",
+  "sqlite_path": "/home/yangxp/Capstone/agent/test/generated/agent_test_eval.sqlite",
+  "retrieval_view_path": "/home/yangxp/Capstone/agent/test/generated/agent_test_retrieval_eval.json",
+  "e2e_view_path": "/home/yangxp/Capstone/agent/test/generated/agent_test_e2e_eval.json",
+  "generation_view_path": "/home/yangxp/Capstone/agent/test/generated/agent_test_generation_eval.json",
+  "total_cases": 632,
+  "per_sheet_counts": {
+    "Part1": 312,
+    "Part3": 8,
+    "Part4": 156,
+    "Part5": 156
+  },
+  "answer_label_counts": {
+    "yes": 424,
+    "no": 47,
+    "unknown": 161
+  },
+  "difficulty_counts": {
+    "easy": 112,
+    "medium": 109,
+    "hard": 108,
+    "unknown": 303
+  },
+  "retrieval_ready_count": 632,
+  "e2e_ready_count": 471,
+  "generation_ready_count": 471
+}

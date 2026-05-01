@@ -1,0 +1,105 @@
+{
+  "video_id": "Shooting040_x264",
+  "duration": 28.7,
+  "events": [
+    {
+      "video_id": "Shooting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 28.7,
+      "start_time": 0.0,
+      "end_time": 15.1,
+      "object_type": "police",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car was surrounded by several police officers and a man wearing short sleeves.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 15.1s, a black car was surrounded by several police officers and a man wearing short sleeves.",
+      "keywords": [
+        "black",
+        "car",
+        "surrounded",
+        "several",
+        "police",
+        "officers"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Shooting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 28.7,
+      "start_time": 15.1,
+      "end_time": 18.7,
+      "object_type": "police",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The short-sleeved man pulled out a gun and shot the policeman in front of him, then ran away.",
+      "scene_zone": "unknown",
+      "event_text": "From 15.1s to 18.7s, the short-sleeved man pulled out a gun and shot the policeman in front of him, then ran away.",
+      "keywords": [
+        "short",
+        "sleeved",
+        "man",
+        "pulled",
+        "out",
+        "gun"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Shooting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 28.7,
+      "start_time": 17.6,
+      "end_time": 20.4,
+      "object_type": "police",
+      "object_color": "black",
+      "appearance_notes": "Low activity; The policeman standing next to the black car raised his gun and shot in the direction of the short-sleeved man's escape.",
+      "scene_zone": "unknown",
+      "event_text": "From 17.6s to 20.4s, the policeman standing next to the black car raised his gun and shot in the direction of the short-sleeved man's escape.",
+      "keywords": [
+        "policeman",
+        "standing",
+        "black",
+        "car",
+        "raised",
+        "gun"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    }
+  ]
+}

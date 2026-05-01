@@ -1,0 +1,171 @@
+{
+  "video_id": "Abuse037_x264",
+  "duration": 59.88,
+  "events": [
+    {
+      "video_id": "Abuse037_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 59.88,
+      "start_time": 1.2,
+      "end_time": 8.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car with double flashes slowly appeared on the screen, crushing the black dog walking in the middle of the road.",
+      "scene_zone": "road",
+      "event_text": "From 1.2s to 8.2s, a white car with double flashes slowly appeared on the screen, crushing the black dog walking in the middle of the road.",
+      "keywords": [
+        "white",
+        "car",
+        "double",
+        "flashes",
+        "slowly",
+        "appeared"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Abuse037_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 59.88,
+      "start_time": 8.4,
+      "end_time": 25.3,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The white car was driving in the middle of the road, and several dogs ran onto the road.",
+      "scene_zone": "road",
+      "event_text": "From 8.4s to 25.3s, the white car was driving in the middle of the road, and several dogs ran onto the road.",
+      "keywords": [
+        "white",
+        "car",
+        "driving",
+        "middle",
+        "road",
+        "several"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Abuse037_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 59.88,
+      "start_time": 25.3,
+      "end_time": 48.5,
+      "object_type": "dog",
+      "object_color": "black",
+      "appearance_notes": "High activity; There was a black dog left on the road. It walked to the middle of the road next to the dog that had just been crushed.",
+      "scene_zone": "road",
+      "event_text": "From 25.3s to 48.5s, there was a black dog left on the road. It walked to the middle of the road next to the dog that had just been crushed.",
+      "keywords": [
+        "black",
+        "dog",
+        "left",
+        "road",
+        "walked",
+        "middle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Abuse037_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 59.88,
+      "start_time": 48.5,
+      "end_time": 59.1,
+      "object_type": "dog",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The black dog walked away and left the middle of the road.",
+      "scene_zone": "road",
+      "event_text": "From 48.5s to 59.1s, the black dog walked away and left the middle of the road.",
+      "keywords": [
+        "black",
+        "dog",
+        "walked",
+        "away",
+        "left",
+        "middle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Abuse037_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 59.88,
+      "start_time": 40.4,
+      "end_time": 47.6,
+      "object_type": "car",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; The gray dog pulled out the tail of the dog that had just been run over by the car, then stayed for a few minutes and left.",
+      "scene_zone": "unknown",
+      "event_text": "From 40.4s to 47.6s, the gray dog pulled out the tail of the dog that had just been run over by the car, then stayed for a few minutes and left.",
+      "keywords": [
+        "gray",
+        "dog",
+        "pulled",
+        "out",
+        "tail",
+        "had"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    }
+  ]
+}

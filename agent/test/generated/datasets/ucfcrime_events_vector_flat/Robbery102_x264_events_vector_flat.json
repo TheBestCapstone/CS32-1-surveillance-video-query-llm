@@ -1,0 +1,270 @@
+{
+  "video_id": "Robbery102_x264",
+  "duration": 60.98,
+  "events": [
+    {
+      "video_id": "Robbery102_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 60.98,
+      "start_time": 9.4,
+      "end_time": 25.5,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; After the yard gate opened, a black car drove in.",
+      "scene_zone": "yard",
+      "event_text": "From 9.4s to 25.5s, after the yard gate opened, a black car drove in.",
+      "keywords": [
+        "yard",
+        "gate",
+        "opened",
+        "black",
+        "car",
+        "drove"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Robbery102_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 60.98,
+      "start_time": 26.9,
+      "end_time": 32.1,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The white gate of the yard slowly closed, and a motorcycle drove to the gate of the yard, with two people sitting on the motorcycle.",
+      "scene_zone": "yard",
+      "event_text": "From 26.9s to 32.1s, the white gate of the yard slowly closed, and a motorcycle drove to the gate of the yard, with two people sitting on the motorcycle.",
+      "keywords": [
+        "white",
+        "gate",
+        "yard",
+        "slowly",
+        "closed",
+        "motorcycle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Robbery102_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 60.98,
+      "start_time": 32.1,
+      "end_time": 37.1,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A woman got out of a black car in the courtyard, and a man in black on a motorcycle ran into the courtyard.",
+      "scene_zone": "yard",
+      "event_text": "From 32.1s to 37.1s, a woman got out of a black car in the courtyard, and a man in black on a motorcycle ran into the courtyard.",
+      "keywords": [
+        "woman",
+        "got",
+        "out",
+        "black",
+        "car",
+        "courtyard"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Robbery102_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 60.98,
+      "start_time": 37.1,
+      "end_time": 42.0,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The man in black and the woman in the courtyard were fighting for the bag, and both sides were pulling.",
+      "scene_zone": "yard",
+      "event_text": "From 37.1s to 42.0s, the man in black and the woman in the courtyard were fighting for the bag, and both sides were pulling.",
+      "keywords": [
+        "man",
+        "black",
+        "woman",
+        "courtyard",
+        "fighting",
+        "bag"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Robbery102_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 60.98,
+      "start_time": 42.0,
+      "end_time": 44.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; The woman jumped up and attacked the man, then pushed the man into the grass.",
+      "scene_zone": "unknown",
+      "event_text": "From 42.0s to 44.2s, the woman jumped up and attacked the man, then pushed the man into the grass.",
+      "keywords": [
+        "woman",
+        "jumped",
+        "attacked",
+        "man",
+        "pushed",
+        "grass"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Robbery102_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 60.98,
+      "start_time": 44.2,
+      "end_time": 50.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; The woman jumped into the grass and beat the man who fell to the ground.",
+      "scene_zone": "unknown",
+      "event_text": "From 44.2s to 50.8s, the woman jumped into the grass and beat the man who fell to the ground.",
+      "keywords": [
+        "woman",
+        "jumped",
+        "grass",
+        "beat",
+        "man",
+        "who"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Robbery102_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 60.98,
+      "start_time": 49.1,
+      "end_time": 51.8,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black ran into the yard, holding a knife in his hand, and then the woman in black stood up and stepped aside.",
+      "scene_zone": "yard",
+      "event_text": "From 49.1s to 51.8s, a man in black ran into the yard, holding a knife in his hand, and then the woman in black stood up and stepped aside.",
+      "keywords": [
+        "man",
+        "black",
+        "ran",
+        "yard",
+        "holding",
+        "knife"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Robbery102_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 60.98,
+      "start_time": 51.8,
+      "end_time": 56.6,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The man with the knife dragged the beaten man out of the yard, and the woman in black ran out of the screen.",
+      "scene_zone": "yard",
+      "event_text": "From 51.8s to 56.6s, the man with the knife dragged the beaten man out of the yard, and the woman in black ran out of the screen.",
+      "keywords": [
+        "man",
+        "knife",
+        "dragged",
+        "beaten",
+        "out",
+        "yard"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    }
+  ]
+}

@@ -1,0 +1,2382 @@
+{
+  "video_id": "Normal_Videos548_x264",
+  "duration": 2807.5,
+  "events": [
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 0.0,
+      "end_time": 27.5,
+      "object_type": "car",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; Several vehicles passed by on a highway, and a yellow truck stopped at the intersection.",
+      "scene_zone": "road",
+      "event_text": "From 0.0s to 27.5s, several vehicles passed by on a highway, and a yellow truck stopped at the intersection.",
+      "keywords": [
+        "several",
+        "vehicles",
+        "passed",
+        "highway",
+        "yellow",
+        "truck"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 27.5,
+      "end_time": 51.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The straight line of the vertical road passes. The vehicle turning left is waiting, and several vehicles pass by it.",
+      "scene_zone": "road",
+      "event_text": "From 27.5s to 51.0s, the straight line of the vertical road passes. The vehicle turning left is waiting, and several vehicles pass by it.",
+      "keywords": [
+        "straight",
+        "line",
+        "vertical",
+        "road",
+        "passes",
+        "vehicle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 51.0,
+      "end_time": 69.3,
+      "object_type": "car",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; Left-turning vehicles pass on the vertical road, and the yellow truck drives to the right road.",
+      "scene_zone": "road",
+      "event_text": "From 51.0s to 69.3s, left-turning vehicles pass on the vertical road, and the yellow truck drives to the right road.",
+      "keywords": [
+        "left",
+        "turning",
+        "vehicles",
+        "pass",
+        "vertical",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 76.3,
+      "end_time": 145.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; Vehicles in the straight direction of the transverse road pass, and vehicles in other directions wait.",
+      "scene_zone": "road",
+      "event_text": "From 76.3s to 145.0s, vehicles in the straight direction of the transverse road pass, and vehicles in other directions wait.",
+      "keywords": [
+        "vehicles",
+        "straight",
+        "direction",
+        "transverse",
+        "road",
+        "pass"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 145.4,
+      "end_time": 180.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; Left-turning vehicles on the transverse road pass, and vehicles in other directions wait.",
+      "scene_zone": "road",
+      "event_text": "From 145.4s to 180.3s, left-turning vehicles on the transverse road pass, and vehicles in other directions wait.",
+      "keywords": [
+        "left",
+        "turning",
+        "vehicles",
+        "transverse",
+        "road",
+        "pass"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 180.3,
+      "end_time": 237.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The straight line of the vertical road passes, and vehicles in other directions wait.",
+      "scene_zone": "road",
+      "event_text": "From 180.3s to 237.3s, the straight line of the vertical road passes, and vehicles in other directions wait.",
+      "keywords": [
+        "straight",
+        "line",
+        "vertical",
+        "road",
+        "passes",
+        "vehicles"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 228.0,
+      "end_time": 237.3,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A yellow taxi drove from the straight line to the left turn line and stopped next to the white car. Several vehicles passed by the road.",
+      "scene_zone": "road",
+      "event_text": "From 228.0s to 237.3s, a yellow taxi drove from the straight line to the left turn line and stopped next to the white car. Several vehicles passed by the road.",
+      "keywords": [
+        "yellow",
+        "taxi",
+        "drove",
+        "straight",
+        "line",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 237.3,
+      "end_time": 267.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The left turn line of the vertical road is passing, and the other vehicles are waiting.",
+      "scene_zone": "road",
+      "event_text": "From 237.3s to 267.1s, the left turn line of the vertical road is passing, and the other vehicles are waiting.",
+      "keywords": [
+        "left",
+        "turn",
+        "line",
+        "vertical",
+        "road",
+        "passing"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 267.1,
+      "end_time": 330.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The transverse lane passes straight through, a truck dragging an excavator and several cars passed by.",
+      "scene_zone": "unknown",
+      "event_text": "From 267.1s to 330.2s, the transverse lane passes straight through, a truck dragging an excavator and several cars passed by.",
+      "keywords": [
+        "transverse",
+        "lane",
+        "passes",
+        "straight",
+        "through",
+        "truck"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 330.2,
+      "end_time": 363.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The left turn line of the transverse lane passes, several vehicles pass by, and the vehicles in the remaining lanes wait.",
+      "scene_zone": "unknown",
+      "event_text": "From 330.2s to 363.2s, the left turn line of the transverse lane passes, several vehicles pass by, and the vehicles in the remaining lanes wait.",
+      "keywords": [
+        "left",
+        "turn",
+        "line",
+        "transverse",
+        "lane",
+        "passes"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 363.2,
+      "end_time": 426.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The straight line of the vertical lane passes, several vehicles pass by, and the vehicles in the remaining lanes wait.",
+      "scene_zone": "unknown",
+      "event_text": "From 363.2s to 426.2s, the straight line of the vertical lane passes, several vehicles pass by, and the vehicles in the remaining lanes wait.",
+      "keywords": [
+        "straight",
+        "line",
+        "vertical",
+        "lane",
+        "passes",
+        "several"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 383.0,
+      "end_time": 410.1,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A red and white bus stopped in front of the intersection, several vehicles passed the road, and several vehicles on the right stopped at the intersection.",
+      "scene_zone": "road",
+      "event_text": "From 383.0s to 410.1s, a red and white bus stopped in front of the intersection, several vehicles passed the road, and several vehicles on the right stopped at the intersection.",
+      "keywords": [
+        "red",
+        "white",
+        "bus",
+        "stopped",
+        "front",
+        "intersection"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 426.1,
+      "end_time": 456.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The left turn line of the vertical lane passes, a number of vehicles drive to the horizontal lane, and the vehicles in the remaining lanes wait.",
+      "scene_zone": "unknown",
+      "event_text": "From 426.1s to 456.0s, the left turn line of the vertical lane passes, a number of vehicles drive to the horizontal lane, and the vehicles in the remaining lanes wait.",
+      "keywords": [
+        "left",
+        "turn",
+        "line",
+        "vertical",
+        "lane",
+        "passes"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 456.0,
+      "end_time": 511.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The straight line for horizontal vehicles passes. There is a truck, a bus and several cars waiting in the upper lane.",
+      "scene_zone": "unknown",
+      "event_text": "From 456.0s to 511.1s, the straight line for horizontal vehicles passes. There is a truck, a bus and several cars waiting in the upper lane.",
+      "keywords": [
+        "straight",
+        "line",
+        "horizontal",
+        "vehicles",
+        "passes",
+        "truck"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 511.1,
+      "end_time": 552.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The left turn line of the transverse lane passes, several vehicles pass by, and the vehicles in the remaining lanes wait.",
+      "scene_zone": "unknown",
+      "event_text": "From 511.1s to 552.2s, the left turn line of the transverse lane passes, several vehicles pass by, and the vehicles in the remaining lanes wait.",
+      "keywords": [
+        "left",
+        "turn",
+        "line",
+        "transverse",
+        "lane",
+        "passes"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 552.2,
+      "end_time": 605.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The vertical lane goes straight, and vehicles in other directions wait.",
+      "scene_zone": "unknown",
+      "event_text": "From 552.2s to 605.2s, the vertical lane goes straight, and vehicles in other directions wait.",
+      "keywords": [
+        "vertical",
+        "lane",
+        "goes",
+        "straight",
+        "vehicles",
+        "other"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_16"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 605.2,
+      "end_time": 641.1,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Left-turn vehicles pass on the vertical road, and a truck pulling a red trailer drives out.",
+      "scene_zone": "road",
+      "event_text": "From 605.2s to 641.1s, left-turn vehicles pass on the vertical road, and a truck pulling a red trailer drives out.",
+      "keywords": [
+        "left",
+        "turn",
+        "vehicles",
+        "pass",
+        "vertical",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_17"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 641.1,
+      "end_time": 705.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The straight lane of the cross road passes. Several vehicles and motorcycles pass by. Vehicles in the remaining lanes are waiting.",
+      "scene_zone": "road",
+      "event_text": "From 641.1s to 705.3s, the straight lane of the cross road passes. Several vehicles and motorcycles pass by. Vehicles in the remaining lanes are waiting.",
+      "keywords": [
+        "straight",
+        "lane",
+        "cross",
+        "road",
+        "passes",
+        "several"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_18"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 705.3,
+      "end_time": 741.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The left turn lane of the horizontal road is passing. Several vehicles and motorcycles are passing by. Vehicles in other lanes are waiting.",
+      "scene_zone": "road",
+      "event_text": "From 705.3s to 741.1s, the left turn lane of the horizontal road is passing. Several vehicles and motorcycles are passing by. Vehicles in other lanes are waiting.",
+      "keywords": [
+        "left",
+        "turn",
+        "lane",
+        "horizontal",
+        "road",
+        "passing"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_19"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 743.1,
+      "end_time": 802.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The vertical lane goes straight, and there is a large truck and several cars waiting for the left turn line of the vertical lane.",
+      "scene_zone": "unknown",
+      "event_text": "From 743.1s to 802.1s, the vertical lane goes straight, and there is a large truck and several cars waiting for the left turn line of the vertical lane.",
+      "keywords": [
+        "vertical",
+        "lane",
+        "goes",
+        "straight",
+        "large",
+        "truck"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_20"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 743.1,
+      "end_time": 825.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; Vehicles waiting in the upper lane turn left, and the remaining lanes wait.",
+      "scene_zone": "unknown",
+      "event_text": "From 743.1s to 825.3s, vehicles waiting in the upper lane turn left, and the remaining lanes wait.",
+      "keywords": [
+        "vehicles",
+        "waiting",
+        "upper",
+        "lane",
+        "turn",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_21"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 825.3,
+      "end_time": 894.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; Several vehicles waiting in the straight line of the cross lane depart, and vehicles in other directions wait.",
+      "scene_zone": "unknown",
+      "event_text": "From 825.3s to 894.2s, several vehicles waiting in the straight line of the cross lane depart, and vehicles in other directions wait.",
+      "keywords": [
+        "several",
+        "vehicles",
+        "waiting",
+        "straight",
+        "line",
+        "cross"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_22"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 833.3,
+      "end_time": 894.2,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; A bus exits the left lane and waits in the left turn lane.",
+      "scene_zone": "unknown",
+      "event_text": "From 833.3s to 894.2s, a bus exits the left lane and waits in the left turn lane.",
+      "keywords": [
+        "bus",
+        "exits",
+        "left",
+        "lane",
+        "waits",
+        "turn"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_23"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 894.3,
+      "end_time": 928.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The left turn line of the transverse lane passes, several vehicles pass by, and the vehicles in the remaining lanes wait.",
+      "scene_zone": "unknown",
+      "event_text": "From 894.3s to 928.2s, the left turn line of the transverse lane passes, several vehicles pass by, and the vehicles in the remaining lanes wait.",
+      "keywords": [
+        "left",
+        "turn",
+        "line",
+        "transverse",
+        "lane",
+        "passes"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_24"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 928.2,
+      "end_time": 991.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; Vertical lane straight line passes, vehicles in other directions wait.",
+      "scene_zone": "unknown",
+      "event_text": "From 928.2s to 991.1s, vertical lane straight line passes, vehicles in other directions wait.",
+      "keywords": [
+        "vertical",
+        "lane",
+        "straight",
+        "line",
+        "passes",
+        "vehicles"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_25"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 991.1,
+      "end_time": 1018.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; Vertical lane left turn line passes, vehicles in other directions wait.",
+      "scene_zone": "unknown",
+      "event_text": "From 991.1s to 1018.3s, vertical lane left turn line passes, vehicles in other directions wait.",
+      "keywords": [
+        "vertical",
+        "lane",
+        "left",
+        "turn",
+        "line",
+        "passes"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_26"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1018.3,
+      "end_time": 1081.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; Horizontal vehicles pass in the straight line, and vehicles in other directions wait.",
+      "scene_zone": "unknown",
+      "event_text": "From 1018.3s to 1081.2s, horizontal vehicles pass in the straight line, and vehicles in other directions wait.",
+      "keywords": [
+        "horizontal",
+        "vehicles",
+        "pass",
+        "straight",
+        "line",
+        "other"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_27"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1068.0,
+      "end_time": 1077.3,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; There is a silver-white vehicle making a U-turn in the left turn lane of the road on the right.",
+      "scene_zone": "road",
+      "event_text": "From 1068.0s to 1077.3s, there is a silver-white vehicle making a U-turn in the left turn lane of the road on the right.",
+      "keywords": [
+        "silver",
+        "white",
+        "vehicle",
+        "making",
+        "turn",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_28"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1081.2,
+      "end_time": 1114.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; Vehicles on the left turn line of the horizontal road pass, and vehicles on other roads wait.",
+      "scene_zone": "road",
+      "event_text": "From 1081.2s to 1114.3s, vehicles on the left turn line of the horizontal road pass, and vehicles on other roads wait.",
+      "keywords": [
+        "vehicles",
+        "left",
+        "turn",
+        "line",
+        "horizontal",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_29"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1114.3,
+      "end_time": 1175.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The vertical lane goes straight, and vehicles in other directions wait.",
+      "scene_zone": "unknown",
+      "event_text": "From 1114.3s to 1175.3s, the vertical lane goes straight, and vehicles in other directions wait.",
+      "keywords": [
+        "vertical",
+        "lane",
+        "goes",
+        "straight",
+        "vehicles",
+        "other"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_30"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1175.3,
+      "end_time": 1205.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The left turn line of the vertical lane passes, and vehicles in other directions wait.",
+      "scene_zone": "unknown",
+      "event_text": "From 1175.3s to 1205.1s, the left turn line of the vertical lane passes, and vehicles in other directions wait.",
+      "keywords": [
+        "left",
+        "turn",
+        "line",
+        "vertical",
+        "lane",
+        "passes"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_31"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1205.1,
+      "end_time": 1266.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The transverse lane goes straight, and vehicles in other directions wait.",
+      "scene_zone": "unknown",
+      "event_text": "From 1205.1s to 1266.1s, the transverse lane goes straight, and vehicles in other directions wait.",
+      "keywords": [
+        "transverse",
+        "lane",
+        "goes",
+        "straight",
+        "vehicles",
+        "other"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_32"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1266.1,
+      "end_time": 1301.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The left turn line of the cross lane passes, and vehicles in other directions wait.",
+      "scene_zone": "unknown",
+      "event_text": "From 1266.1s to 1301.2s, the left turn line of the cross lane passes, and vehicles in other directions wait.",
+      "keywords": [
+        "left",
+        "turn",
+        "line",
+        "cross",
+        "lane",
+        "passes"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_33"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1297.3,
+      "end_time": 1301.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There is a car in the upper right turn lane turning right to the left road.",
+      "scene_zone": "road",
+      "event_text": "From 1297.3s to 1301.2s, there is a car in the upper right turn lane turning right to the left road.",
+      "keywords": [
+        "car",
+        "upper",
+        "right",
+        "turn",
+        "lane",
+        "turning"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_34"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1301.2,
+      "end_time": 1319.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The vehicle above is driving toward the road below, and several vehicles below are driving toward the highway above.",
+      "scene_zone": "road",
+      "event_text": "From 1301.2s to 1319.1s, the vehicle above is driving toward the road below, and several vehicles below are driving toward the highway above.",
+      "keywords": [
+        "vehicle",
+        "above",
+        "driving",
+        "toward",
+        "road",
+        "below"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_35"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1319.1,
+      "end_time": 1343.5,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several vehicles on the right stopped at the intersection, several vehicles above drove to the left road and the road below, and several vehicles below drove to the road above.",
+      "scene_zone": "road",
+      "event_text": "From 1319.1s to 1343.5s, several vehicles on the right stopped at the intersection, several vehicles above drove to the left road and the road below, and several vehicles below drove to the road above.",
+      "keywords": [
+        "several",
+        "vehicles",
+        "right",
+        "stopped",
+        "intersection",
+        "above"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_36"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1364.2,
+      "end_time": 1388.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The left turn lane of the vertical road is open, and other road vehicles are waiting.",
+      "scene_zone": "road",
+      "event_text": "From 1364.2s to 1388.1s, the left turn lane of the vertical road is open, and other road vehicles are waiting.",
+      "keywords": [
+        "left",
+        "turn",
+        "lane",
+        "vertical",
+        "road",
+        "open"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_37"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1389.1,
+      "end_time": 1464.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There are three cars in the right lane and turn right into the upper lane.",
+      "scene_zone": "unknown",
+      "event_text": "From 1389.1s to 1464.3s, there are three cars in the right lane and turn right into the upper lane.",
+      "keywords": [
+        "three",
+        "cars",
+        "right",
+        "lane",
+        "turn",
+        "upper"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_38"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1388.1,
+      "end_time": 1459.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The through lane of the cross road passes, and the remaining road vehicles wait.",
+      "scene_zone": "road",
+      "event_text": "From 1388.1s to 1459.0s, the through lane of the cross road passes, and the remaining road vehicles wait.",
+      "keywords": [
+        "through",
+        "lane",
+        "cross",
+        "road",
+        "passes",
+        "remaining"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_39"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1459.0,
+      "end_time": 1491.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The left turn lane of the cross road is open, and other road vehicles are waiting.",
+      "scene_zone": "road",
+      "event_text": "From 1459.0s to 1491.2s, the left turn lane of the cross road is open, and other road vehicles are waiting.",
+      "keywords": [
+        "left",
+        "turn",
+        "lane",
+        "cross",
+        "road",
+        "open"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_40"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1491.2,
+      "end_time": 1546.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The straight lane of the vertical road passes, and other road vehicles wait.",
+      "scene_zone": "road",
+      "event_text": "From 1491.2s to 1546.2s, the straight lane of the vertical road passes, and other road vehicles wait.",
+      "keywords": [
+        "straight",
+        "lane",
+        "vertical",
+        "road",
+        "passes",
+        "other"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_41"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1546.2,
+      "end_time": 1578.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The left turn lane of the vertical road is open, and other road vehicles are waiting.",
+      "scene_zone": "road",
+      "event_text": "From 1546.2s to 1578.0s, the left turn lane of the vertical road is open, and other road vehicles are waiting.",
+      "keywords": [
+        "left",
+        "turn",
+        "lane",
+        "vertical",
+        "road",
+        "open"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_42"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1578.3,
+      "end_time": 1643.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The group of vehicles on the right stopped at the intersection and then drove to the left road. Several vehicles on the left drove to the right road.",
+      "scene_zone": "road",
+      "event_text": "From 1578.3s to 1643.0s, the group of vehicles on the right stopped at the intersection and then drove to the left road. Several vehicles on the left drove to the right road.",
+      "keywords": [
+        "group",
+        "vehicles",
+        "right",
+        "stopped",
+        "intersection",
+        "drove"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_43"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1643.0,
+      "end_time": 1672.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; Vehicles turning left in the cross lane pass, and other road vehicles wait.",
+      "scene_zone": "road",
+      "event_text": "From 1643.0s to 1672.2s, vehicles turning left in the cross lane pass, and other road vehicles wait.",
+      "keywords": [
+        "vehicles",
+        "turning",
+        "left",
+        "cross",
+        "lane",
+        "pass"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_44"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1672.2,
+      "end_time": 1737.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; Through vehicles on vertical roads pass, and other road vehicles wait.",
+      "scene_zone": "road",
+      "event_text": "From 1672.2s to 1737.2s, through vehicles on vertical roads pass, and other road vehicles wait.",
+      "keywords": [
+        "through",
+        "vehicles",
+        "vertical",
+        "roads",
+        "pass",
+        "other"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_45"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1672.2,
+      "end_time": 1749.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There are many vehicles above and turn right to the left road.",
+      "scene_zone": "road",
+      "event_text": "From 1672.2s to 1749.1s, there are many vehicles above and turn right to the left road.",
+      "keywords": [
+        "many",
+        "vehicles",
+        "above",
+        "turn",
+        "right",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_46"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1737.2,
+      "end_time": 1757.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The left turn lane of the vertical road is open, and other road vehicles are waiting.",
+      "scene_zone": "road",
+      "event_text": "From 1737.2s to 1757.0s, the left turn lane of the vertical road is open, and other road vehicles are waiting.",
+      "keywords": [
+        "left",
+        "turn",
+        "lane",
+        "vertical",
+        "road",
+        "open"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_47"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1757.2,
+      "end_time": 1832.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The through lane of the transverse road passes, and other road vehicles wait.",
+      "scene_zone": "road",
+      "event_text": "From 1757.2s to 1832.0s, the through lane of the transverse road passes, and other road vehicles wait.",
+      "keywords": [
+        "through",
+        "lane",
+        "transverse",
+        "road",
+        "passes",
+        "other"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_48"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1832.0,
+      "end_time": 1863.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The left turn lane of the cross road is open, and other road vehicles are waiting.",
+      "scene_zone": "road",
+      "event_text": "From 1832.0s to 1863.2s, the left turn lane of the cross road is open, and other road vehicles are waiting.",
+      "keywords": [
+        "left",
+        "turn",
+        "lane",
+        "cross",
+        "road",
+        "open"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_49"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1863.2,
+      "end_time": 1918.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The straight lane of the vertical road passes, and other road vehicles wait.",
+      "scene_zone": "road",
+      "event_text": "From 1863.2s to 1918.2s, the straight lane of the vertical road passes, and other road vehicles wait.",
+      "keywords": [
+        "straight",
+        "lane",
+        "vertical",
+        "road",
+        "passes",
+        "other"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_50"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1918.2,
+      "end_time": 1954.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The left turn lane of the vertical road is open, and other road vehicles are waiting.",
+      "scene_zone": "road",
+      "event_text": "From 1918.2s to 1954.0s, the left turn lane of the vertical road is open, and other road vehicles are waiting.",
+      "keywords": [
+        "left",
+        "turn",
+        "lane",
+        "vertical",
+        "road",
+        "open"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_51"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 1954.0,
+      "end_time": 2018.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The through lane of the transverse road passes, and other road vehicles wait.",
+      "scene_zone": "road",
+      "event_text": "From 1954.0s to 2018.3s, the through lane of the transverse road passes, and other road vehicles wait.",
+      "keywords": [
+        "through",
+        "lane",
+        "transverse",
+        "road",
+        "passes",
+        "other"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_52"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 2015.0,
+      "end_time": 2038.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There are several vehicles on the road above turning right to the road on the left.",
+      "scene_zone": "road",
+      "event_text": "From 2015.0s to 2038.2s, there are several vehicles on the road above turning right to the road on the left.",
+      "keywords": [
+        "several",
+        "vehicles",
+        "road",
+        "above",
+        "turning",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_53"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 2018.3,
+      "end_time": 2050.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The left turn lane of the transverse road is open, and other road vehicles are waiting.",
+      "scene_zone": "road",
+      "event_text": "From 2018.3s to 2050.1s, the left turn lane of the transverse road is open, and other road vehicles are waiting.",
+      "keywords": [
+        "left",
+        "turn",
+        "lane",
+        "transverse",
+        "road",
+        "open"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_54"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 2050.1,
+      "end_time": 2109.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The straight lane of the vertical road passes, and other road vehicles wait.",
+      "scene_zone": "road",
+      "event_text": "From 2050.1s to 2109.1s, the straight lane of the vertical road passes, and other road vehicles wait.",
+      "keywords": [
+        "straight",
+        "lane",
+        "vertical",
+        "road",
+        "passes",
+        "other"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_55"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 2109.1,
+      "end_time": 2134.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The left turn lane of the vertical road is open, and other road vehicles are waiting.",
+      "scene_zone": "road",
+      "event_text": "From 2109.1s to 2134.3s, the left turn lane of the vertical road is open, and other road vehicles are waiting.",
+      "keywords": [
+        "left",
+        "turn",
+        "lane",
+        "vertical",
+        "road",
+        "open"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_56"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 2050.1,
+      "end_time": 2138.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There are several vehicles on the road above turning right to the road on the left.",
+      "scene_zone": "road",
+      "event_text": "From 2050.1s to 2138.3s, there are several vehicles on the road above turning right to the road on the left.",
+      "keywords": [
+        "several",
+        "vehicles",
+        "road",
+        "above",
+        "turning",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_57"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 2138.3,
+      "end_time": 2231.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The through lane of the transverse road passes, and other road vehicles wait.",
+      "scene_zone": "road",
+      "event_text": "From 2138.3s to 2231.1s, the through lane of the transverse road passes, and other road vehicles wait.",
+      "keywords": [
+        "through",
+        "lane",
+        "transverse",
+        "road",
+        "passes",
+        "other"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_58"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 2199.2,
+      "end_time": 2209.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; There is a yellow vehicle on the left road and drives next to the white car in the left turn lane.",
+      "scene_zone": "road",
+      "event_text": "From 2199.2s to 2209.2s, there is a yellow vehicle on the left road and drives next to the white car in the left turn lane.",
+      "keywords": [
+        "yellow",
+        "vehicle",
+        "left",
+        "road",
+        "drives",
+        "white"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_59"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 2231.1,
+      "end_time": 2268.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The left turn lane of the transverse road is open, and other road vehicles are waiting.",
+      "scene_zone": "road",
+      "event_text": "From 2231.1s to 2268.2s, the left turn lane of the transverse road is open, and other road vehicles are waiting.",
+      "keywords": [
+        "left",
+        "turn",
+        "lane",
+        "transverse",
+        "road",
+        "open"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_60"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 2268.2,
+      "end_time": 2341.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The straight lane of the vertical road passes, and other road vehicles wait.",
+      "scene_zone": "road",
+      "event_text": "From 2268.2s to 2341.1s, the straight lane of the vertical road passes, and other road vehicles wait.",
+      "keywords": [
+        "straight",
+        "lane",
+        "vertical",
+        "road",
+        "passes",
+        "other"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_61"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 2341.1,
+      "end_time": 2390.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The left turn lane of the vertical road is open, and other road vehicles are waiting.",
+      "scene_zone": "road",
+      "event_text": "From 2341.1s to 2390.2s, the left turn lane of the vertical road is open, and other road vehicles are waiting.",
+      "keywords": [
+        "left",
+        "turn",
+        "lane",
+        "vertical",
+        "road",
+        "open"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_62"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 2390.2,
+      "end_time": 2475.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The through lane of the transverse road passes, and other road vehicles wait.",
+      "scene_zone": "road",
+      "event_text": "From 2390.2s to 2475.1s, the through lane of the transverse road passes, and other road vehicles wait.",
+      "keywords": [
+        "through",
+        "lane",
+        "transverse",
+        "road",
+        "passes",
+        "other"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_63"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 2475.1,
+      "end_time": 2504.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The left turn lane of the cross road is open, and other road vehicles are waiting.",
+      "scene_zone": "road",
+      "event_text": "From 2475.1s to 2504.2s, the left turn lane of the cross road is open, and other road vehicles are waiting.",
+      "keywords": [
+        "left",
+        "turn",
+        "lane",
+        "cross",
+        "road",
+        "open"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_64"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 2504.2,
+      "end_time": 2549.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The straight lane of the vertical road is passing, and other road vehicles are waiting.",
+      "scene_zone": "road",
+      "event_text": "From 2504.2s to 2549.3s, the straight lane of the vertical road is passing, and other road vehicles are waiting.",
+      "keywords": [
+        "straight",
+        "lane",
+        "vertical",
+        "road",
+        "passing",
+        "other"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_65"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 2549.3,
+      "end_time": 2575.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The left turn lane of the vertical road is open, and other road vehicles are waiting.",
+      "scene_zone": "road",
+      "event_text": "From 2549.3s to 2575.1s, the left turn lane of the vertical road is open, and other road vehicles are waiting.",
+      "keywords": [
+        "left",
+        "turn",
+        "lane",
+        "vertical",
+        "road",
+        "open"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_66"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 2575.1,
+      "end_time": 2630.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The through lane of the cross road passes, and the remaining road vehicles wait.",
+      "scene_zone": "road",
+      "event_text": "From 2575.1s to 2630.2s, the through lane of the cross road passes, and the remaining road vehicles wait.",
+      "keywords": [
+        "through",
+        "lane",
+        "cross",
+        "road",
+        "passes",
+        "remaining"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_67"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 2630.2,
+      "end_time": 2660.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The left turn lane of the transverse road is open, and other road vehicles are waiting.",
+      "scene_zone": "road",
+      "event_text": "From 2630.2s to 2660.0s, the left turn lane of the transverse road is open, and other road vehicles are waiting.",
+      "keywords": [
+        "left",
+        "turn",
+        "lane",
+        "transverse",
+        "road",
+        "open"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_68"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 2660.0,
+      "end_time": 2705.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The straight lane of the vertical road passes, and other road vehicles wait.",
+      "scene_zone": "road",
+      "event_text": "From 2660.0s to 2705.1s, the straight lane of the vertical road passes, and other road vehicles wait.",
+      "keywords": [
+        "straight",
+        "lane",
+        "vertical",
+        "road",
+        "passes",
+        "other"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_69"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 2705.1,
+      "end_time": 2734.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The left turn lane of the vertical road is open, and other road vehicles are waiting.",
+      "scene_zone": "road",
+      "event_text": "From 2705.1s to 2734.2s, the left turn lane of the vertical road is open, and other road vehicles are waiting.",
+      "keywords": [
+        "left",
+        "turn",
+        "lane",
+        "vertical",
+        "road",
+        "open"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_70"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 2734.2,
+      "end_time": 2789.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The through lane of the transverse road passes, and other road vehicles wait.",
+      "scene_zone": "road",
+      "event_text": "From 2734.2s to 2789.2s, the through lane of the transverse road passes, and other road vehicles wait.",
+      "keywords": [
+        "through",
+        "lane",
+        "transverse",
+        "road",
+        "passes",
+        "other"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_71"
+    },
+    {
+      "video_id": "Normal_Videos548_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2807.5,
+      "start_time": 2789.2,
+      "end_time": 2807.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The left turn lane of the cross road passes, and the remaining road vehicles wait.",
+      "scene_zone": "road",
+      "event_text": "From 2789.2s to 2807.1s, the left turn lane of the cross road passes, and the remaining road vehicles wait.",
+      "keywords": [
+        "left",
+        "turn",
+        "lane",
+        "cross",
+        "road",
+        "passes"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_72"
+    }
+  ]
+}

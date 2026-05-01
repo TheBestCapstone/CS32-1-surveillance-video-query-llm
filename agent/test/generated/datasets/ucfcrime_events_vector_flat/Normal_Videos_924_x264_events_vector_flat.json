@@ -1,0 +1,1086 @@
+{
+  "video_id": "Normal_Videos_924_x264",
+  "duration": 3600.03,
+  "events": [
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 0.0,
+      "end_time": 12.5,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man in white walked over.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 12.5s, a man in white walked over.",
+      "keywords": [
+        "man",
+        "white",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 0.0,
+      "end_time": 160.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man is playing with his mobile phone behind the counter.",
+      "scene_zone": "store",
+      "event_text": "From 0.0s to 160.5s, a man is playing with his mobile phone behind the counter.",
+      "keywords": [
+        "man",
+        "playing",
+        "mobile",
+        "phone",
+        "behind",
+        "counter"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 0.0,
+      "end_time": 437.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man is sorting things in front of the counter.",
+      "scene_zone": "store",
+      "event_text": "From 0.0s to 437.5s, a man is sorting things in front of the counter.",
+      "keywords": [
+        "man",
+        "sorting",
+        "things",
+        "front",
+        "counter"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 0.0,
+      "end_time": 38.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There is a man squatting against the wall in the upper left corner of the screen.",
+      "scene_zone": "room",
+      "event_text": "From 0.0s to 38.5s, there is a man squatting against the wall in the upper left corner of the screen.",
+      "keywords": [
+        "man",
+        "squatting",
+        "against",
+        "wall",
+        "upper",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 34.1,
+      "end_time": 38.5,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man in red walked out of the upper left corner of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 34.1s to 38.5s, a man in red walked out of the upper left corner of the screen.",
+      "keywords": [
+        "man",
+        "red",
+        "walked",
+        "out",
+        "upper",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 38.5,
+      "end_time": 54.5,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The squatting man stood up and talked with the man in red.",
+      "scene_zone": "unknown",
+      "event_text": "From 38.5s to 54.5s, the squatting man stood up and talked with the man in red.",
+      "keywords": [
+        "squatting",
+        "man",
+        "stood",
+        "talked",
+        "red"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 54.5,
+      "end_time": 63.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The two people talking leave from the top of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 54.5s to 63.5s, the two people talking leave from the top of the screen.",
+      "keywords": [
+        "two",
+        "people",
+        "talking",
+        "leave",
+        "top",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 347.0,
+      "end_time": 356.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man walked in from the right side of the screen and placed a drink on the counter.",
+      "scene_zone": "store",
+      "event_text": "From 347.0s to 356.0s, a man walked in from the right side of the screen and placed a drink on the counter.",
+      "keywords": [
+        "man",
+        "walked",
+        "right",
+        "side",
+        "screen",
+        "placed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 356.0,
+      "end_time": 380.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man walked behind the man who was repairing things and sat down.",
+      "scene_zone": "unknown",
+      "event_text": "From 356.0s to 380.0s, the man walked behind the man who was repairing things and sat down.",
+      "keywords": [
+        "man",
+        "walked",
+        "behind",
+        "who",
+        "repairing",
+        "things"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 380.0,
+      "end_time": 435.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man got up and walked to the counter to chat with someone.",
+      "scene_zone": "store",
+      "event_text": "From 380.0s to 435.0s, the man got up and walked to the counter to chat with someone.",
+      "keywords": [
+        "man",
+        "got",
+        "walked",
+        "counter",
+        "chat",
+        "someone"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 435.0,
+      "end_time": 437.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man returned to where he was and sat down.",
+      "scene_zone": "unknown",
+      "event_text": "From 435.0s to 437.0s, the man returned to where he was and sat down.",
+      "keywords": [
+        "man",
+        "returned",
+        "where",
+        "sat",
+        "down"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 437.0,
+      "end_time": 446.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man who was sorting things stood up and communicated with others, then turned around and walked upwards.",
+      "scene_zone": "unknown",
+      "event_text": "From 437.0s to 446.0s, the man who was sorting things stood up and communicated with others, then turned around and walked upwards.",
+      "keywords": [
+        "man",
+        "who",
+        "sorting",
+        "things",
+        "stood",
+        "communicated"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 446.0,
+      "end_time": 454.0,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man threw something into the blue bucket and turned back with a man in a black shirt.",
+      "scene_zone": "unknown",
+      "event_text": "From 446.0s to 454.0s, the man threw something into the blue bucket and turned back with a man in a black shirt.",
+      "keywords": [
+        "man",
+        "threw",
+        "something",
+        "blue",
+        "bucket",
+        "turned"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 470.0,
+      "end_time": 510.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man returned to the counter to talk to someone, and then left.",
+      "scene_zone": "store",
+      "event_text": "From 470.0s to 510.0s, the man returned to the counter to talk to someone, and then left.",
+      "keywords": [
+        "man",
+        "returned",
+        "counter",
+        "talk",
+        "someone",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 514.0,
+      "end_time": 523.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man sitting on the ground got up, picked up the tape on the counter and sat back down.",
+      "scene_zone": "store",
+      "event_text": "From 514.0s to 523.0s, the man sitting on the ground got up, picked up the tape on the counter and sat back down.",
+      "keywords": [
+        "man",
+        "sitting",
+        "ground",
+        "got",
+        "picked",
+        "tape"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 523.0,
+      "end_time": 793.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Man sitting on the ground using tape to bind items.",
+      "scene_zone": "unknown",
+      "event_text": "From 523.0s to 793.0s, man sitting on the ground using tape to bind items.",
+      "keywords": [
+        "man",
+        "sitting",
+        "ground",
+        "using",
+        "tape",
+        "bind"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_16"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 512.0,
+      "end_time": 522.0,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A man in a blue shirt walks to the counter from above.",
+      "scene_zone": "store",
+      "event_text": "From 512.0s to 522.0s, a man in a blue shirt walks to the counter from above.",
+      "keywords": [
+        "man",
+        "blue",
+        "shirt",
+        "walks",
+        "counter",
+        "above"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_17"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 522.0,
+      "end_time": 602.0,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The man in blue shirt communicates with the person at the counter.",
+      "scene_zone": "store",
+      "event_text": "From 522.0s to 602.0s, the man in blue shirt communicates with the person at the counter.",
+      "keywords": [
+        "man",
+        "blue",
+        "shirt",
+        "communicates",
+        "person",
+        "counter"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_18"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 690.0,
+      "end_time": 696.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man returned to the counter and handed something to the clerk, who gave him something.",
+      "scene_zone": "store",
+      "event_text": "From 690.0s to 696.0s, the man returned to the counter and handed something to the clerk, who gave him something.",
+      "keywords": [
+        "man",
+        "returned",
+        "counter",
+        "handed",
+        "something",
+        "clerk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_19"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 696.0,
+      "end_time": 722.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man has been playing with the things in his hands.",
+      "scene_zone": "unknown",
+      "event_text": "From 696.0s to 722.0s, the man has been playing with the things in his hands.",
+      "keywords": [
+        "man",
+        "has",
+        "been",
+        "playing",
+        "things",
+        "hands"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_20"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 722.0,
+      "end_time": 733.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man squatted on the ground and continued to play with the things in his hands.",
+      "scene_zone": "unknown",
+      "event_text": "From 722.0s to 733.0s, the man squatted on the ground and continued to play with the things in his hands.",
+      "keywords": [
+        "man",
+        "squatted",
+        "ground",
+        "continued",
+        "play",
+        "things"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_21"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 733.0,
+      "end_time": 746.0,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A man in a blue shirt appears on the screen, and the clerk picks up the drink from the floor and walks back to the counter.",
+      "scene_zone": "store",
+      "event_text": "From 733.0s to 746.0s, a man in a blue shirt appears on the screen, and the clerk picks up the drink from the floor and walks back to the counter.",
+      "keywords": [
+        "man",
+        "blue",
+        "shirt",
+        "appears",
+        "screen",
+        "clerk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_22"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 746.0,
+      "end_time": 774.0,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Low activity; The man in a blue shirt looked at the two people on the ground.",
+      "scene_zone": "unknown",
+      "event_text": "From 746.0s to 774.0s, the man in a blue shirt looked at the two people on the ground.",
+      "keywords": [
+        "man",
+        "blue",
+        "shirt",
+        "looked",
+        "two",
+        "people"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_23"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 774.0,
+      "end_time": 793.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man squatting on the ground stood up, handed the things to the teller, and then squatted next to the man sitting on the ground.",
+      "scene_zone": "unknown",
+      "event_text": "From 774.0s to 793.0s, the man squatting on the ground stood up, handed the things to the teller, and then squatted next to the man sitting on the ground.",
+      "keywords": [
+        "man",
+        "squatting",
+        "ground",
+        "stood",
+        "handed",
+        "things"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_24"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 930.0,
+      "end_time": 950.0,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black appeared on the screen, rummaged in his backpack, and handed something to the man in a shirt.",
+      "scene_zone": "unknown",
+      "event_text": "From 930.0s to 950.0s, a man in black appeared on the screen, rummaged in his backpack, and handed something to the man in a shirt.",
+      "keywords": [
+        "man",
+        "black",
+        "appeared",
+        "screen",
+        "rummaged",
+        "backpack"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_25"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 1136.0,
+      "end_time": 1151.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man sitting on the ground got up and walked to the counter. He put the packaged goods on the counter and then turned back and sat down.",
+      "scene_zone": "store",
+      "event_text": "From 1136.0s to 1151.0s, the man sitting on the ground got up and walked to the counter. He put the packaged goods on the counter and then turned back and sat down.",
+      "keywords": [
+        "man",
+        "sitting",
+        "ground",
+        "got",
+        "walked",
+        "counter"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_26"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 1202.0,
+      "end_time": 1227.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man sitting on the ground got up and walked away.",
+      "scene_zone": "unknown",
+      "event_text": "From 1202.0s to 1227.0s, the man sitting on the ground got up and walked away.",
+      "keywords": [
+        "man",
+        "sitting",
+        "ground",
+        "got",
+        "walked",
+        "away"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_27"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 1355.0,
+      "end_time": 1395.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man sitting on the ground came back again.",
+      "scene_zone": "unknown",
+      "event_text": "From 1355.0s to 1395.0s, the man sitting on the ground came back again.",
+      "keywords": [
+        "man",
+        "sitting",
+        "ground",
+        "came",
+        "back",
+        "again"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_28"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 1423.0,
+      "end_time": 1444.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Another man got up and packed his things.",
+      "scene_zone": "unknown",
+      "event_text": "From 1423.0s to 1444.0s, another man got up and packed his things.",
+      "keywords": [
+        "another",
+        "man",
+        "got",
+        "packed",
+        "things"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_29"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 1444.0,
+      "end_time": 1450.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man who had packed his things stood up, turned around and walked upwards.",
+      "scene_zone": "unknown",
+      "event_text": "From 1444.0s to 1450.0s, the man who had packed his things stood up, turned around and walked upwards.",
+      "keywords": [
+        "man",
+        "who",
+        "had",
+        "packed",
+        "things",
+        "stood"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_30"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 1450.0,
+      "end_time": 1462.0,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The man threw something into the blue bucket and turned back.",
+      "scene_zone": "unknown",
+      "event_text": "From 1450.0s to 1462.0s, the man threw something into the blue bucket and turned back.",
+      "keywords": [
+        "man",
+        "threw",
+        "something",
+        "blue",
+        "bucket",
+        "turned"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_31"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 1462.0,
+      "end_time": 1554.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two men have been squatting by the wall.",
+      "scene_zone": "room",
+      "event_text": "From 1462.0s to 1554.0s, two men have been squatting by the wall.",
+      "keywords": [
+        "two",
+        "men",
+        "have",
+        "been",
+        "squatting",
+        "wall"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_32"
+    },
+    {
+      "video_id": "Normal_Videos_924_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3600.03,
+      "start_time": 1554.0,
+      "end_time": 1580.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two men got up and left.",
+      "scene_zone": "unknown",
+      "event_text": "From 1554.0s to 1580.0s, two men got up and left.",
+      "keywords": [
+        "two",
+        "men",
+        "got",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_33"
+    }
+  ]
+}

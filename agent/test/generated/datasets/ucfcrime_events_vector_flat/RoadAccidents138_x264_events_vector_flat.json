@@ -1,0 +1,71 @@
+{
+  "video_id": "RoadAccidents138_x264",
+  "duration": 32.22,
+  "events": [
+    {
+      "video_id": "RoadAccidents138_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 32.22,
+      "start_time": 0.2,
+      "end_time": 15.0,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "High activity; , a mother and daughter were hit by a red car while crossing the road, and then the red car drove away.",
+      "scene_zone": "road",
+      "event_text": "From 0.2s to 15.0s, , a mother and daughter were hit by a red car while crossing the road, and then the red car drove away.",
+      "keywords": [
+        "mother",
+        "daughter",
+        "hit",
+        "red",
+        "car",
+        "while"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "RoadAccidents138_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 32.22,
+      "start_time": 15.0,
+      "end_time": 21.4,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Passers came to the mother and daughter to check.",
+      "scene_zone": "unknown",
+      "event_text": "From 15.0s to 21.4s, passers came to the mother and daughter to check.",
+      "keywords": [
+        "passers",
+        "came",
+        "mother",
+        "daughter",
+        "check"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    }
+  ]
+}

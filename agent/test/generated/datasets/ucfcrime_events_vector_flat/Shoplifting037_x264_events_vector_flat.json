@@ -1,0 +1,297 @@
+{
+  "video_id": "Shoplifting037_x264",
+  "duration": 46.22,
+  "events": [
+    {
+      "video_id": "Shoplifting037_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 46.22,
+      "start_time": 0.8,
+      "end_time": 8.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man put a piece of jewelry on the table, then picked up the necklace on the table and put it on, then put it on the table again without wearing it.",
+      "scene_zone": "room",
+      "event_text": "From 0.8s to 8.5s, a man put a piece of jewelry on the table, then picked up the necklace on the table and put it on, then put it on the table again without wearing it.",
+      "keywords": [
+        "man",
+        "put",
+        "piece",
+        "jewelry",
+        "table",
+        "picked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Shoplifting037_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 46.22,
+      "start_time": 9.7,
+      "end_time": 13.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man took the necklace.",
+      "scene_zone": "unknown",
+      "event_text": "From 9.7s to 13.1s, the man took the necklace.",
+      "keywords": [
+        "man",
+        "took",
+        "necklace"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Shoplifting037_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 46.22,
+      "start_time": 11.8,
+      "end_time": 14.6,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The boss took out a necklace and put it on the table.",
+      "scene_zone": "room",
+      "event_text": "From 11.8s to 14.6s, the boss took out a necklace and put it on the table.",
+      "keywords": [
+        "boss",
+        "took",
+        "out",
+        "necklace",
+        "put",
+        "table"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Shoplifting037_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 46.22,
+      "start_time": 21.0,
+      "end_time": 26.7,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The boss opened the jewelry box and closed it again.",
+      "scene_zone": "unknown",
+      "event_text": "From 21.0s to 26.7s, the boss opened the jewelry box and closed it again.",
+      "keywords": [
+        "boss",
+        "opened",
+        "jewelry",
+        "box",
+        "closed",
+        "again"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Shoplifting037_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 46.22,
+      "start_time": 26.0,
+      "end_time": 33.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Then he gave all the jewelry boxes in his hand to the woman next to him and put them on the table.",
+      "scene_zone": "room",
+      "event_text": "From 26.0s to 33.7s, then he gave all the jewelry boxes in his hand to the woman next to him and put them on the table.",
+      "keywords": [
+        "gave",
+        "all",
+        "jewelry",
+        "boxes",
+        "hand",
+        "woman"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Shoplifting037_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 46.22,
+      "start_time": 34.0,
+      "end_time": 38.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The boss left his seat and the man was playing with the necklace on the table.",
+      "scene_zone": "room",
+      "event_text": "From 34.0s to 38.0s, the boss left his seat and the man was playing with the necklace on the table.",
+      "keywords": [
+        "boss",
+        "left",
+        "seat",
+        "man",
+        "playing",
+        "necklace"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Shoplifting037_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 46.22,
+      "start_time": 38.0,
+      "end_time": 41.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man put all the necklaces on the table in his hands, got up and ran away.",
+      "scene_zone": "room",
+      "event_text": "From 38.0s to 41.0s, the man put all the necklaces on the table in his hands, got up and ran away.",
+      "keywords": [
+        "man",
+        "put",
+        "all",
+        "necklaces",
+        "table",
+        "hands"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Shoplifting037_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 46.22,
+      "start_time": 41.4,
+      "end_time": 46.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman shouted in the direction of the door and followed her.",
+      "scene_zone": "room",
+      "event_text": "From 41.4s to 46.2s, the woman shouted in the direction of the door and followed her.",
+      "keywords": [
+        "woman",
+        "shouted",
+        "direction",
+        "door",
+        "followed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Shoplifting037_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 46.22,
+      "start_time": 40.4,
+      "end_time": 45.2,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The boss knocked over a vase and straightened it.",
+      "scene_zone": "unknown",
+      "event_text": "From 40.4s to 45.2s, the boss knocked over a vase and straightened it.",
+      "keywords": [
+        "boss",
+        "knocked",
+        "vase",
+        "straightened"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    }
+  ]
+}

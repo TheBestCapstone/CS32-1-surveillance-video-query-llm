@@ -1,0 +1,3103 @@
+{
+  "video_id": "Normal_Videos563_x264",
+  "duration": 2747.0,
+  "events": [
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 8.0,
+      "end_time": 12.5,
+      "object_type": "car",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; A yellow truck on the road above the parking lot drives to the right side of the parking lot.",
+      "scene_zone": "road",
+      "event_text": "From 8.0s to 12.5s, a yellow truck on the road above the parking lot drives to the right side of the parking lot.",
+      "keywords": [
+        "yellow",
+        "truck",
+        "road",
+        "above",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 22.6,
+      "end_time": 45.8,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A pedestrian wearing a down jacket walked out of the parking lot and walked to the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 22.6s to 45.8s, a pedestrian wearing a down jacket walked out of the parking lot and walked to the bottom of the parking lot.",
+      "keywords": [
+        "pedestrian",
+        "wearing",
+        "down",
+        "jacket",
+        "walked",
+        "out"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 41.6,
+      "end_time": 52.0,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man in white clothes got out of a white car in the parking space on the right side of the parking lot and walked to the left side of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 41.6s to 52.0s, a man in white clothes got out of a white car in the parking space on the right side of the parking lot and walked to the left side of the parking lot.",
+      "keywords": [
+        "man",
+        "white",
+        "clothes",
+        "got",
+        "out",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 53.3,
+      "end_time": 58.3,
+      "object_type": "unknown",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black van drove to the right side of the parking lot on the road above the parking lot.",
+      "scene_zone": "road",
+      "event_text": "From 53.3s to 58.3s, a black van drove to the right side of the parking lot on the road above the parking lot.",
+      "keywords": [
+        "black",
+        "van",
+        "drove",
+        "right",
+        "side",
+        "parking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 58.3,
+      "end_time": 68.3,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car on the road above the parking lot drives to the bottom of the parking lot.",
+      "scene_zone": "road",
+      "event_text": "From 58.3s to 68.3s, a white car on the road above the parking lot drives to the bottom of the parking lot.",
+      "keywords": [
+        "white",
+        "car",
+        "road",
+        "above",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 69.5,
+      "end_time": 81.8,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; A black car drove into the bottom of the parking lot, a white truck drove into the left side of the parking lot, and the two vehicles drove to the right side of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 69.5s to 81.8s, a black car drove into the bottom of the parking lot, a white truck drove into the left side of the parking lot, and the two vehicles drove to the right side of the parking lot.",
+      "keywords": [
+        "black",
+        "car",
+        "drove",
+        "bottom",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 82.6,
+      "end_time": 95.1,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A pedestrian walked out of the left side of the parking lot, and a white truck and a black commercial vehicle drove into the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 82.6s to 95.1s, a pedestrian walked out of the left side of the parking lot, and a white truck and a black commercial vehicle drove into the parking lot.",
+      "keywords": [
+        "pedestrian",
+        "walked",
+        "out",
+        "left",
+        "side",
+        "parking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 96.8,
+      "end_time": 108.6,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; Pedestrians and black commercial vehicles moved to the bottom of the parking lot, and the white truck drove to the right side of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 96.8s to 108.6s, pedestrians and black commercial vehicles moved to the bottom of the parking lot, and the white truck drove to the right side of the parking lot.",
+      "keywords": [
+        "pedestrians",
+        "black",
+        "commercial",
+        "vehicles",
+        "moved",
+        "bottom"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 128.9,
+      "end_time": 141.1,
+      "object_type": "unknown",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white van drove into the parking lot and drove to the right side of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 128.9s to 141.1s, a white van drove into the parking lot and drove to the right side of the parking lot.",
+      "keywords": [
+        "white",
+        "van",
+        "drove",
+        "parking",
+        "lot",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 128.9,
+      "end_time": 141.1,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white truck drove into the right side of the parking lot and drove to the left side of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 128.9s to 141.1s, a white truck drove into the right side of the parking lot and drove to the left side of the parking lot.",
+      "keywords": [
+        "white",
+        "truck",
+        "drove",
+        "right",
+        "side",
+        "parking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 159.0,
+      "end_time": 165.9,
+      "object_type": "unknown",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white van drove in from underneath the parking lot and drove to the right side of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 159.0s to 165.9s, a white van drove in from underneath the parking lot and drove to the right side of the parking lot.",
+      "keywords": [
+        "white",
+        "van",
+        "drove",
+        "underneath",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 170.6,
+      "end_time": 185.5,
+      "object_type": "unknown",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white van drove in from the top of the parking lot and drove to the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 170.6s to 185.5s, a white van drove in from the top of the parking lot and drove to the bottom of the parking lot.",
+      "keywords": [
+        "white",
+        "van",
+        "drove",
+        "top",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 221.3,
+      "end_time": 229.8,
+      "object_type": "unknown",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white jeep drove in from above the parking lot and drove to the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 221.3s to 229.8s, a white jeep drove in from above the parking lot and drove to the bottom of the parking lot.",
+      "keywords": [
+        "white",
+        "jeep",
+        "drove",
+        "above",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 255.2,
+      "end_time": 261.7,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A blue truck drove in from underneath the parking lot and drove to the right side of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 255.2s to 261.7s, a blue truck drove in from underneath the parking lot and drove to the right side of the parking lot.",
+      "keywords": [
+        "blue",
+        "truck",
+        "drove",
+        "underneath",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 262.5,
+      "end_time": 285.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A pedestrian and a white truck appeared from the left side of the parking lot and moved to the right side of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 262.5s to 285.2s, a pedestrian and a white truck appeared from the left side of the parking lot and moved to the right side of the parking lot.",
+      "keywords": [
+        "pedestrian",
+        "white",
+        "truck",
+        "appeared",
+        "left",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 315.9,
+      "end_time": 319.1,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car drove in from underneath the parking lot and drove to the right side of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 315.9s to 319.1s, a black car drove in from underneath the parking lot and drove to the right side of the parking lot.",
+      "keywords": [
+        "black",
+        "car",
+        "drove",
+        "underneath",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_16"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 339.1,
+      "end_time": 347.4,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A pedestrian and a silver truck entered from below the parking lot, the white truck drove to the top of the parking lot, and the pedestrian walked to the left side of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 339.1s to 347.4s, a pedestrian and a silver truck entered from below the parking lot, the white truck drove to the top of the parking lot, and the pedestrian walked to the left side of the parking lot.",
+      "keywords": [
+        "pedestrian",
+        "silver",
+        "truck",
+        "entered",
+        "below",
+        "parking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_17"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 367.8,
+      "end_time": 377.2,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man in red clothes walked out of the left side of the parking lot and walked towards the left side of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 367.8s to 377.2s, a man in red clothes walked out of the left side of the parking lot and walked towards the left side of the parking lot.",
+      "keywords": [
+        "man",
+        "red",
+        "clothes",
+        "walked",
+        "out",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_18"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 371.8,
+      "end_time": 382.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in white clothes walked out from under the parking lot and got into the white car.",
+      "scene_zone": "unknown",
+      "event_text": "From 371.8s to 382.2s, the man in white clothes walked out from under the parking lot and got into the white car.",
+      "keywords": [
+        "man",
+        "white",
+        "clothes",
+        "walked",
+        "out",
+        "parking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_19"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 396.7,
+      "end_time": 411.8,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The white car turned around and drove towards the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 396.7s to 411.8s, the white car turned around and drove towards the bottom of the parking lot.",
+      "keywords": [
+        "white",
+        "car",
+        "turned",
+        "around",
+        "drove",
+        "towards"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_20"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 416.0,
+      "end_time": 420.8,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white truck drove in from underneath the parking lot,.",
+      "scene_zone": "unknown",
+      "event_text": "From 416.0s to 420.8s, a white truck drove in from underneath the parking lot,.",
+      "keywords": [
+        "white",
+        "truck",
+        "drove",
+        "underneath",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_21"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 416.0,
+      "end_time": 420.8,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A blue truck drives in from above the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 416.0s to 420.8s, a blue truck drives in from above the parking lot.",
+      "keywords": [
+        "blue",
+        "truck",
+        "drives",
+        "above",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_22"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 422.4,
+      "end_time": 424.7,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car drove in from underneath the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 422.4s to 424.7s, a white car drove in from underneath the parking lot.",
+      "keywords": [
+        "white",
+        "car",
+        "drove",
+        "underneath",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_23"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 425.3,
+      "end_time": 436.5,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The white truck and the white car drove to the top of the parking lot one after another.",
+      "scene_zone": "unknown",
+      "event_text": "From 425.3s to 436.5s, the white truck and the white car drove to the top of the parking lot one after another.",
+      "keywords": [
+        "white",
+        "truck",
+        "car",
+        "drove",
+        "top",
+        "parking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_24"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 491.3,
+      "end_time": 511.1,
+      "object_type": "person",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; A man in a gray suit walked out from under the parking lot and walked to the left side of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 491.3s to 511.1s, a man in a gray suit walked out from under the parking lot and walked to the left side of the parking lot.",
+      "keywords": [
+        "man",
+        "gray",
+        "suit",
+        "walked",
+        "out",
+        "parking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_25"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 532.0,
+      "end_time": 550.3,
+      "object_type": "car",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; Two yellow trucks drove in from below the parking lot and drove to the top of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 532.0s to 550.3s, two yellow trucks drove in from below the parking lot and drove to the top of the parking lot.",
+      "keywords": [
+        "two",
+        "yellow",
+        "trucks",
+        "drove",
+        "below",
+        "parking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_26"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 551.2,
+      "end_time": 556.8,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white truck drove in from below the parking lot and drove to the top of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 551.2s to 556.8s, a white truck drove in from below the parking lot and drove to the top of the parking lot.",
+      "keywords": [
+        "white",
+        "truck",
+        "drove",
+        "below",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_27"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 557.8,
+      "end_time": 565.3,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white truck carrying things drove in from below the parking lot and drove to the top of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 557.8s to 565.3s, a white truck carrying things drove in from below the parking lot and drove to the top of the parking lot.",
+      "keywords": [
+        "white",
+        "truck",
+        "carrying",
+        "things",
+        "drove",
+        "below"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_28"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 566.4,
+      "end_time": 575.9,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A blue truck drove in from above the parking lot and drove to the right side of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 566.4s to 575.9s, a blue truck drove in from above the parking lot and drove to the right side of the parking lot.",
+      "keywords": [
+        "blue",
+        "truck",
+        "drove",
+        "above",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_29"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 626.8,
+      "end_time": 641.2,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car drove in from above the parking lot and drove to the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 626.8s to 641.2s, a black car drove in from above the parking lot and drove to the bottom of the parking lot.",
+      "keywords": [
+        "black",
+        "car",
+        "drove",
+        "above",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_30"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 642.4,
+      "end_time": 652.8,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car drove in from the top of the parking lot and drove to the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 642.4s to 652.8s, a white car drove in from the top of the parking lot and drove to the bottom of the parking lot.",
+      "keywords": [
+        "white",
+        "car",
+        "drove",
+        "top",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_31"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 623.4,
+      "end_time": 709.8,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Someone is cleaning up the advertising cloth on the left side of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 623.4s to 709.8s, someone is cleaning up the advertising cloth on the left side of the parking lot.",
+      "keywords": [
+        "someone",
+        "cleaning",
+        "advertising",
+        "cloth",
+        "left",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_32"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 646.4,
+      "end_time": 669.8,
+      "object_type": "dog",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A pedestrian is walking his dog from right to left.",
+      "scene_zone": "unknown",
+      "event_text": "From 646.4s to 669.8s, a pedestrian is walking his dog from right to left.",
+      "keywords": [
+        "pedestrian",
+        "walking",
+        "dog",
+        "right",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_33"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 654.3,
+      "end_time": 665.2,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car drove in from the bottom of the parking lot, and a red car drove in from the top of the parking lot, driving to the right of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 654.3s to 665.2s, a black car drove in from the bottom of the parking lot, and a red car drove in from the top of the parking lot, driving to the right of the parking lot.",
+      "keywords": [
+        "black",
+        "car",
+        "drove",
+        "bottom",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_34"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 668.3,
+      "end_time": 682.3,
+      "object_type": "unknown",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white van drove into the parking lot and drove to the top of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 668.3s to 682.3s, a white van drove into the parking lot and drove to the top of the parking lot.",
+      "keywords": [
+        "white",
+        "van",
+        "drove",
+        "parking",
+        "lot",
+        "top"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_35"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 668.3,
+      "end_time": 674.3,
+      "object_type": "unknown",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black jeep drove into the top of the parking lot and drove to the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 668.3s to 674.3s, a black jeep drove into the top of the parking lot and drove to the bottom of the parking lot.",
+      "keywords": [
+        "black",
+        "jeep",
+        "drove",
+        "top",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_36"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 696.0,
+      "end_time": 705.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white truck drove into the top of the parking lot and drove to the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 696.0s to 705.2s, a white truck drove into the top of the parking lot and drove to the bottom of the parking lot.",
+      "keywords": [
+        "white",
+        "truck",
+        "drove",
+        "top",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_37"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 703.0,
+      "end_time": 712.2,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A brown van drove into the parking lot and drove to the right side of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 703.0s to 712.2s, a brown van drove into the parking lot and drove to the right side of the parking lot.",
+      "keywords": [
+        "brown",
+        "van",
+        "drove",
+        "parking",
+        "lot",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_38"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 711.5,
+      "end_time": 716.4,
+      "object_type": "unknown",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black jeep drove into the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 711.5s to 716.4s, a black jeep drove into the parking lot.",
+      "keywords": [
+        "black",
+        "jeep",
+        "drove",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_39"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 709.8,
+      "end_time": 716.4,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The person collecting advertisements on the left side of the parking lot dragged the white cloth from left to right.",
+      "scene_zone": "unknown",
+      "event_text": "From 709.8s to 716.4s, the person collecting advertisements on the left side of the parking lot dragged the white cloth from left to right.",
+      "keywords": [
+        "person",
+        "collecting",
+        "advertisements",
+        "left",
+        "side",
+        "parking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_40"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 717.9,
+      "end_time": 721.2,
+      "object_type": "unknown",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The black jeep drives towards the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 717.9s to 721.2s, the black jeep drives towards the bottom of the parking lot.",
+      "keywords": [
+        "black",
+        "jeep",
+        "drives",
+        "towards",
+        "bottom",
+        "parking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_41"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 746.1,
+      "end_time": 754.9,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car drove into the top of the parking lot and drove to the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 746.1s to 754.9s, a white car drove into the top of the parking lot and drove to the bottom of the parking lot.",
+      "keywords": [
+        "white",
+        "car",
+        "drove",
+        "top",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_42"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 804.0,
+      "end_time": 808.3,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A blue truck drove into the parking lot, and a man in black clothes on the left side of the parking lot walked into the parking lot from left to right.",
+      "scene_zone": "unknown",
+      "event_text": "From 804.0s to 808.3s, a blue truck drove into the parking lot, and a man in black clothes on the left side of the parking lot walked into the parking lot from left to right.",
+      "keywords": [
+        "blue",
+        "truck",
+        "drove",
+        "parking",
+        "lot",
+        "man"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_43"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 809.5,
+      "end_time": 820.5,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The blue truck drove to the top of the parking lot, and a black car drove into the top of the parking lot and drove to the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 809.5s to 820.5s, the blue truck drove to the top of the parking lot, and a black car drove into the top of the parking lot and drove to the bottom of the parking lot.",
+      "keywords": [
+        "blue",
+        "truck",
+        "drove",
+        "top",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_44"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 852.7,
+      "end_time": 861.3,
+      "object_type": "unknown",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white van drove into the parking lot and drove to the top of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 852.7s to 861.3s, a white van drove into the parking lot and drove to the top of the parking lot.",
+      "keywords": [
+        "white",
+        "van",
+        "drove",
+        "parking",
+        "lot",
+        "top"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_45"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 862.9,
+      "end_time": 881.4,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black clothes walked out of the left side of the parking lot and walked towards the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 862.9s to 881.4s, a man in black clothes walked out of the left side of the parking lot and walked towards the bottom of the parking lot.",
+      "keywords": [
+        "man",
+        "black",
+        "clothes",
+        "walked",
+        "out",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_46"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 894.6,
+      "end_time": 905.9,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car drove in from above the parking lot and drove to the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 894.6s to 905.9s, a white car drove in from above the parking lot and drove to the bottom of the parking lot.",
+      "keywords": [
+        "white",
+        "car",
+        "drove",
+        "above",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_47"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 944.2,
+      "end_time": 953.9,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car drove into the bottom of the parking lot and drove to the top of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 944.2s to 953.9s, a white car drove into the bottom of the parking lot and drove to the top of the parking lot.",
+      "keywords": [
+        "white",
+        "car",
+        "drove",
+        "bottom",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_48"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 958.0,
+      "end_time": 963.2,
+      "object_type": "unknown",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white van drove into the top of the parking lot and drove to the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 958.0s to 963.2s, a white van drove into the top of the parking lot and drove to the bottom of the parking lot.",
+      "keywords": [
+        "white",
+        "van",
+        "drove",
+        "top",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_49"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 964.8,
+      "end_time": 984.6,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man wearing black clothes appeared on the left and right sides of the parking lot, and they walked towards the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 964.8s to 984.6s, a man wearing black clothes appeared on the left and right sides of the parking lot, and they walked towards the bottom of the parking lot.",
+      "keywords": [
+        "man",
+        "wearing",
+        "black",
+        "clothes",
+        "appeared",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_50"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 995.3,
+      "end_time": 1008.1,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The white car in the middle of the parking lot started and started to reverse.",
+      "scene_zone": "unknown",
+      "event_text": "From 995.3s to 1008.1s, the white car in the middle of the parking lot started and started to reverse.",
+      "keywords": [
+        "white",
+        "car",
+        "middle",
+        "parking",
+        "lot",
+        "started"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_51"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1002.3,
+      "end_time": 1008.1,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car drove into the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 1002.3s to 1008.1s, a white car drove into the parking lot.",
+      "keywords": [
+        "white",
+        "car",
+        "drove",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_52"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1007.3,
+      "end_time": 1008.1,
+      "object_type": "car",
+      "object_color": "silver",
+      "appearance_notes": "Observed event; A silver car drove into the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 1007.3s to 1008.1s, a silver car drove into the parking lot.",
+      "keywords": [
+        "silver",
+        "car",
+        "drove",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_53"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1009.8,
+      "end_time": 1021.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The white car and the silver car in the middle of the parking lot are driving towards the top of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 1009.8s to 1021.2s, the white car and the silver car in the middle of the parking lot are driving towards the top of the parking lot.",
+      "keywords": [
+        "white",
+        "car",
+        "silver",
+        "middle",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_54"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1017.8,
+      "end_time": 1027.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The white car driving in above the parking lot and driving to the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 1017.8s to 1027.2s, the white car driving in above the parking lot and driving to the bottom of the parking lot.",
+      "keywords": [
+        "white",
+        "car",
+        "driving",
+        "above",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_55"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1021.6,
+      "end_time": 1035.0,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man holding a black bag walked out of the left side of the parking lot and walked towards the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 1021.6s to 1035.0s, a man holding a black bag walked out of the left side of the parking lot and walked towards the bottom of the parking lot.",
+      "keywords": [
+        "man",
+        "holding",
+        "black",
+        "bag",
+        "walked",
+        "out"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_56"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1032.6,
+      "end_time": 1060.0,
+      "object_type": "person",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; A man in gray clothes walked out of the parking lot and walked to the left side of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 1032.6s to 1060.0s, a man in gray clothes walked out of the parking lot and walked to the left side of the parking lot.",
+      "keywords": [
+        "man",
+        "gray",
+        "clothes",
+        "walked",
+        "out",
+        "parking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_57"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1042.6,
+      "end_time": 1054.7,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car drove into the bottom of the parking lot and drove to the top of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 1042.6s to 1054.7s, a black car drove into the bottom of the parking lot and drove to the top of the parking lot.",
+      "keywords": [
+        "black",
+        "car",
+        "drove",
+        "bottom",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_58"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1057.5,
+      "end_time": 1066.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car drove into the top of the parking lot and drove to the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 1057.5s to 1066.2s, a white car drove into the top of the parking lot and drove to the bottom of the parking lot.",
+      "keywords": [
+        "white",
+        "car",
+        "drove",
+        "top",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_59"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1070.4,
+      "end_time": 1142.4,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A blue truck drove into the right side of the parking lot, stopped on the road on the left side of the parking lot and adjusted its position.",
+      "scene_zone": "road",
+      "event_text": "From 1070.4s to 1142.4s, a blue truck drove into the right side of the parking lot, stopped on the road on the left side of the parking lot and adjusted its position.",
+      "keywords": [
+        "blue",
+        "truck",
+        "drove",
+        "right",
+        "side",
+        "parking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_60"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1195.1,
+      "end_time": 1202.3,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Low activity; A blue truck drove into the right side of the parking lot again and parked on the left side of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 1195.1s to 1202.3s, a blue truck drove into the right side of the parking lot again and parked on the left side of the parking lot.",
+      "keywords": [
+        "blue",
+        "truck",
+        "drove",
+        "right",
+        "side",
+        "parking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_61"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1184.1,
+      "end_time": 1202.3,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Low activity; A man in black clothes walked out of the right side of the parking lot and walked to where two blue trucks were parked.",
+      "scene_zone": "unknown",
+      "event_text": "From 1184.1s to 1202.3s, a man in black clothes walked out of the right side of the parking lot and walked to where two blue trucks were parked.",
+      "keywords": [
+        "man",
+        "black",
+        "clothes",
+        "walked",
+        "out",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_62"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1235.3,
+      "end_time": 1243.8,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car drove into the bottom of the parking lot and drove to the top of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 1235.3s to 1243.8s, a black car drove into the bottom of the parking lot and drove to the top of the parking lot.",
+      "keywords": [
+        "black",
+        "car",
+        "drove",
+        "bottom",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_63"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1254.1,
+      "end_time": 1261.8,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car drove into the top of the parking lot and drove to the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 1254.1s to 1261.8s, a white car drove into the top of the parking lot and drove to the bottom of the parking lot.",
+      "keywords": [
+        "white",
+        "car",
+        "drove",
+        "top",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_64"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1277.5,
+      "end_time": 1292.3,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white truck drove into the parking lot and drove to the left side of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 1277.5s to 1292.3s, a white truck drove into the parking lot and drove to the left side of the parking lot.",
+      "keywords": [
+        "white",
+        "truck",
+        "drove",
+        "parking",
+        "lot",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_65"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1389.7,
+      "end_time": 1395.9,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black pickup truck drove into the parking lot and drove to the top of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 1389.7s to 1395.9s, a black pickup truck drove into the parking lot and drove to the top of the parking lot.",
+      "keywords": [
+        "black",
+        "pickup",
+        "truck",
+        "drove",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_66"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1400.3,
+      "end_time": 1406.4,
+      "object_type": "unknown",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white jeep drove into the bottom of the parking lot and drove to the top of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 1400.3s to 1406.4s, a white jeep drove into the bottom of the parking lot and drove to the top of the parking lot.",
+      "keywords": [
+        "white",
+        "jeep",
+        "drove",
+        "bottom",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_67"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1407.5,
+      "end_time": 1443.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; Two people riding bicycles on the left side of the parking lot were followed by a person running and pushing a bicycle. The three of them moved to the right side of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 1407.5s to 1443.2s, two people riding bicycles on the left side of the parking lot were followed by a person running and pushing a bicycle. The three of them moved to the right side of the parking lot.",
+      "keywords": [
+        "two",
+        "people",
+        "riding",
+        "bicycles",
+        "left",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_68"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1447.5,
+      "end_time": 1459.7,
+      "object_type": "unknown",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black van drove into the parking lot and drove to the top of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 1447.5s to 1459.7s, a black van drove into the parking lot and drove to the top of the parking lot.",
+      "keywords": [
+        "black",
+        "van",
+        "drove",
+        "parking",
+        "lot",
+        "top"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_69"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1460.1,
+      "end_time": 1470.4,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car drove into the parking lot and drove to the top of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 1460.1s to 1470.4s, a white car drove into the parking lot and drove to the top of the parking lot.",
+      "keywords": [
+        "white",
+        "car",
+        "drove",
+        "parking",
+        "lot",
+        "top"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_70"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1497.2,
+      "end_time": 1502.0,
+      "object_type": "unknown",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black jeep drove into the top of the parking lot and drove to the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 1497.2s to 1502.0s, a black jeep drove into the top of the parking lot and drove to the bottom of the parking lot.",
+      "keywords": [
+        "black",
+        "jeep",
+        "drove",
+        "top",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_71"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1506.3,
+      "end_time": 1516.6,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car drove into the bottom of the parking lot and drove to the top of the parking lot. A blue car drove into the top of the parking lot and drove to the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 1506.3s to 1516.6s, a white car drove into the bottom of the parking lot and drove to the top of the parking lot. A blue car drove into the top of the parking lot and drove to the bottom of the parking lot.",
+      "keywords": [
+        "white",
+        "car",
+        "drove",
+        "bottom",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_72"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1589.2,
+      "end_time": 1595.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white truck drove into the parking lot and drove to the top of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 1589.2s to 1595.2s, a white truck drove into the parking lot and drove to the top of the parking lot.",
+      "keywords": [
+        "white",
+        "truck",
+        "drove",
+        "parking",
+        "lot",
+        "top"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_73"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1700.7,
+      "end_time": 1718.4,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car and a white truck drove into the top of the parking lot, and the two cars drove to the bottom of the parking lot in turn.",
+      "scene_zone": "unknown",
+      "event_text": "From 1700.7s to 1718.4s, a white car and a white truck drove into the top of the parking lot, and the two cars drove to the bottom of the parking lot in turn.",
+      "keywords": [
+        "white",
+        "car",
+        "truck",
+        "drove",
+        "top",
+        "parking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_74"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1876.7,
+      "end_time": 1886.5,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car drove into the right side of the parking lot and drove to the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 1876.7s to 1886.5s, a black car drove into the right side of the parking lot and drove to the bottom of the parking lot.",
+      "keywords": [
+        "black",
+        "car",
+        "drove",
+        "right",
+        "side",
+        "parking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_75"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1905.4,
+      "end_time": 1927.2,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A person holding a black bag on the left side of the parking lot walked towards the bottom of the video.",
+      "scene_zone": "unknown",
+      "event_text": "From 1905.4s to 1927.2s, a person holding a black bag on the left side of the parking lot walked towards the bottom of the video.",
+      "keywords": [
+        "person",
+        "holding",
+        "black",
+        "bag",
+        "left",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_76"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 1930.3,
+      "end_time": 2064.1,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The machines on the two blue trucks on the left side of the parking lot are working.",
+      "scene_zone": "unknown",
+      "event_text": "From 1930.3s to 2064.1s, the machines on the two blue trucks on the left side of the parking lot are working.",
+      "keywords": [
+        "machines",
+        "two",
+        "blue",
+        "trucks",
+        "left",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_77"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 2065.6,
+      "end_time": 2091.2,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A woman wearing a black down jacket on the left side of the parking lot walks towards the blue truck.",
+      "scene_zone": "unknown",
+      "event_text": "From 2065.6s to 2091.2s, a woman wearing a black down jacket on the left side of the parking lot walks towards the blue truck.",
+      "keywords": [
+        "woman",
+        "wearing",
+        "black",
+        "down",
+        "jacket",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_78"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 2165.1,
+      "end_time": 2202.9,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car drove into the bottom of the parking lot, and a white truck drove to the top of the parking lot. A blue truck on the left side of the parking lot moved to the roadside.",
+      "scene_zone": "road",
+      "event_text": "From 2165.1s to 2202.9s, a white car drove into the bottom of the parking lot, and a white truck drove to the top of the parking lot. A blue truck on the left side of the parking lot moved to the roadside.",
+      "keywords": [
+        "white",
+        "car",
+        "drove",
+        "bottom",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_79"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 2205.8,
+      "end_time": 2250.3,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; After adjusting its position, the white truck reversed and parked next to the entrance of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 2205.8s to 2250.3s, after adjusting its position, the white truck reversed and parked next to the entrance of the parking lot.",
+      "keywords": [
+        "adjusting",
+        "its",
+        "position",
+        "white",
+        "truck",
+        "reversed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_80"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 2252.5,
+      "end_time": 2257.8,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The black car drives towards the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 2252.5s to 2257.8s, the black car drives towards the bottom of the parking lot.",
+      "keywords": [
+        "black",
+        "car",
+        "drives",
+        "towards",
+        "bottom",
+        "parking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_81"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 2260.5,
+      "end_time": 2307.2,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; Two people wearing white hats walked out of the left side of the parking lot. The first one picked up something from the ground and walked to the left side of the video. The one behind him wandered in the parking lot for a while. Go to the left side of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 2260.5s to 2307.2s, two people wearing white hats walked out of the left side of the parking lot. The first one picked up something from the ground and walked to the left side of the video. The one behind him wandered in the parking lot for a while. Go to the left side of the parking lot.",
+      "keywords": [
+        "two",
+        "people",
+        "wearing",
+        "white",
+        "hats",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_82"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 2308.4,
+      "end_time": 2345.3,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The white car drove into the parking lot upside down, turned around in the parking lot and drove to the top of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 2308.4s to 2345.3s, the white car drove into the parking lot upside down, turned around in the parking lot and drove to the top of the parking lot.",
+      "keywords": [
+        "white",
+        "car",
+        "drove",
+        "parking",
+        "lot",
+        "upside"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_83"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 2350.3,
+      "end_time": 2358.2,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black pickup truck drove into the parking lot and drove to the top of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 2350.3s to 2358.2s, a black pickup truck drove into the parking lot and drove to the top of the parking lot.",
+      "keywords": [
+        "black",
+        "pickup",
+        "truck",
+        "drove",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_84"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 2360.6,
+      "end_time": 2395.7,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A purple car drove into the parking lot, and a white truck drove in above the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 2360.6s to 2395.7s, a purple car drove into the parking lot, and a white truck drove in above the parking lot.",
+      "keywords": [
+        "purple",
+        "car",
+        "drove",
+        "parking",
+        "lot",
+        "white"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_85"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 2396.5,
+      "end_time": 2419.9,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car and a purple sedan drove into the parking lot and drove to the top of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 2396.5s to 2419.9s, a white car and a purple sedan drove into the parking lot and drove to the top of the parking lot.",
+      "keywords": [
+        "white",
+        "car",
+        "purple",
+        "sedan",
+        "drove",
+        "parking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_86"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 2396.5,
+      "end_time": 2419.9,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car and a white truck drove into the parking lot and drove to the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 2396.5s to 2419.9s, a white car and a white truck drove into the parking lot and drove to the bottom of the parking lot.",
+      "keywords": [
+        "white",
+        "car",
+        "truck",
+        "drove",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_87"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 2475.6,
+      "end_time": 2481.4,
+      "object_type": "unknown",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black jeep drove into the top of the parking lot and drove to the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 2475.6s to 2481.4s, a black jeep drove into the top of the parking lot and drove to the bottom of the parking lot.",
+      "keywords": [
+        "black",
+        "jeep",
+        "drove",
+        "top",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_88"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 2607.9,
+      "end_time": 2625.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car drove into the parking lot and drove into the parking lot and stopped.",
+      "scene_zone": "unknown",
+      "event_text": "From 2607.9s to 2625.2s, a white car drove into the parking lot and drove into the parking lot and stopped.",
+      "keywords": [
+        "white",
+        "car",
+        "drove",
+        "parking",
+        "lot",
+        "stopped"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_89"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 2635.5,
+      "end_time": 2664.4,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A man wearing a hat walked out of the right side of the parking lot and walked towards the blue truck.",
+      "scene_zone": "unknown",
+      "event_text": "From 2635.5s to 2664.4s, a man wearing a hat walked out of the right side of the parking lot and walked towards the blue truck.",
+      "keywords": [
+        "man",
+        "wearing",
+        "hat",
+        "walked",
+        "out",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_90"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 2672.6,
+      "end_time": 2682.3,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car drove into the right side of the parking lot and drove to the bottom of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 2672.6s to 2682.3s, a black car drove into the right side of the parking lot and drove to the bottom of the parking lot.",
+      "keywords": [
+        "black",
+        "car",
+        "drove",
+        "right",
+        "side",
+        "parking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_91"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 2672.6,
+      "end_time": 2682.3,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man in a brown coat got out of the parked white car and walked towards the right side of the video.",
+      "scene_zone": "unknown",
+      "event_text": "From 2672.6s to 2682.3s, a man in a brown coat got out of the parked white car and walked towards the right side of the video.",
+      "keywords": [
+        "man",
+        "brown",
+        "coat",
+        "got",
+        "out",
+        "parked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_92"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 2731.0,
+      "end_time": 2742.9,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A brown car drove into the parking lot and drove to the top of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 2731.0s to 2742.9s, a brown car drove into the parking lot and drove to the top of the parking lot.",
+      "keywords": [
+        "brown",
+        "car",
+        "drove",
+        "parking",
+        "lot",
+        "top"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_93"
+    },
+    {
+      "video_id": "Normal_Videos563_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2747.0,
+      "start_time": 2743.5,
+      "end_time": 2747.0,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white truck drove into the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 2743.5s to 2747.0s, a white truck drove into the parking lot.",
+      "keywords": [
+        "white",
+        "truck",
+        "drove",
+        "parking",
+        "lot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_94"
+    }
+  ]
+}

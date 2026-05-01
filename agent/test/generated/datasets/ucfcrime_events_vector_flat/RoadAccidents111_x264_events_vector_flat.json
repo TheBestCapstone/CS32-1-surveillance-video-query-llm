@@ -1,0 +1,226 @@
+{
+  "video_id": "RoadAccidents111_x264",
+  "duration": 41.16,
+  "events": [
+    {
+      "video_id": "RoadAccidents111_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 41.16,
+      "start_time": 0.0,
+      "end_time": 4.2,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man in white steps back.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 4.2s, a man in white steps back.",
+      "keywords": [
+        "man",
+        "white",
+        "steps",
+        "back"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "RoadAccidents111_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 41.16,
+      "start_time": 3.0,
+      "end_time": 6.6,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Barrier pole raised.",
+      "scene_zone": "unknown",
+      "event_text": "From 3.0s to 6.6s, barrier pole raised.",
+      "keywords": [
+        "barrier",
+        "pole",
+        "raised"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "RoadAccidents111_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 41.16,
+      "start_time": 7.0,
+      "end_time": 15.6,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A red car drove to the exit and stopped.",
+      "scene_zone": "unknown",
+      "event_text": "From 7.0s to 15.6s, a red car drove to the exit and stopped.",
+      "keywords": [
+        "red",
+        "car",
+        "drove",
+        "exit",
+        "stopped"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "RoadAccidents111_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 41.16,
+      "start_time": 15.6,
+      "end_time": 18.0,
+      "object_type": "unknown",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The roof of the red convertible is rising.",
+      "scene_zone": "unknown",
+      "event_text": "From 15.6s to 18.0s, the roof of the red convertible is rising.",
+      "keywords": [
+        "roof",
+        "red",
+        "convertible",
+        "rising"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "RoadAccidents111_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 41.16,
+      "start_time": 15.6,
+      "end_time": 18.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Put down the roadblock.",
+      "scene_zone": "road",
+      "event_text": "From 15.6s to 18.0s, put down the roadblock.",
+      "keywords": [
+        "put",
+        "down",
+        "roadblock"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "RoadAccidents111_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 41.16,
+      "start_time": 17.6,
+      "end_time": 35.0,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in white walked to the roadblock and held it with his hand.",
+      "scene_zone": "road",
+      "event_text": "From 17.6s to 35.0s, the man in white walked to the roadblock and held it with his hand.",
+      "keywords": [
+        "man",
+        "white",
+        "walked",
+        "roadblock",
+        "held",
+        "hand"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "RoadAccidents111_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 41.16,
+      "start_time": 36.0,
+      "end_time": 41.0,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "High activity; The red car drives forward, and the man in white walks behind the car.",
+      "scene_zone": "unknown",
+      "event_text": "From 36.0s to 41.0s, the red car drives forward, and the man in white walks behind the car.",
+      "keywords": [
+        "red",
+        "car",
+        "drives",
+        "forward",
+        "man",
+        "white"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    }
+  ]
+}

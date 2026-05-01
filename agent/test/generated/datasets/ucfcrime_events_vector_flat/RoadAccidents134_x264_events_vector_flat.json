@@ -1,0 +1,39 @@
+{
+  "video_id": "RoadAccidents134_x264",
+  "duration": 9.28,
+  "events": [
+    {
+      "video_id": "RoadAccidents134_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 9.28,
+      "start_time": 0.0,
+      "end_time": 9.2,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; A retrograde motorcycle was hit by a straight black car, and the black car hit a telephone pole.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 9.2s, a retrograde motorcycle was hit by a straight black car, and the black car hit a telephone pole.",
+      "keywords": [
+        "retrograde",
+        "motorcycle",
+        "hit",
+        "straight",
+        "black",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    }
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "video_id": "Arrest044_x264",
+  "duration": 113.76,
+  "events": [
+    {
+      "video_id": "Arrest044_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 113.76,
+      "start_time": 5.1,
+      "end_time": 11.9,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; A man wearing a white hat and black clothes is walking in the room.",
+      "scene_zone": "room",
+      "event_text": "From 5.1s to 11.9s, a man wearing a white hat and black clothes is walking in the room.",
+      "keywords": [
+        "man",
+        "wearing",
+        "white",
+        "hat",
+        "black",
+        "clothes"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Arrest044_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 113.76,
+      "start_time": 12.6,
+      "end_time": 20.2,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in a black coat opened the door and came in and walked up the stairs.",
+      "scene_zone": "room",
+      "event_text": "From 12.6s to 20.2s, a man in a black coat opened the door and came in and walked up the stairs.",
+      "keywords": [
+        "man",
+        "black",
+        "coat",
+        "opened",
+        "door",
+        "came"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Arrest044_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 113.76,
+      "start_time": 19.7,
+      "end_time": 21.9,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in black walks up the stairs.",
+      "scene_zone": "unknown",
+      "event_text": "From 19.7s to 21.9s, the man in black walks up the stairs.",
+      "keywords": [
+        "man",
+        "black",
+        "walks",
+        "stairs"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Arrest044_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 113.76,
+      "start_time": 22.9,
+      "end_time": 35.1,
+      "object_type": "police",
+      "object_color": "green",
+      "appearance_notes": "Observed event; A man in a green police uniform appeared and walked up to the second floor.",
+      "scene_zone": "unknown",
+      "event_text": "From 22.9s to 35.1s, a man in a green police uniform appeared and walked up to the second floor.",
+      "keywords": [
+        "man",
+        "green",
+        "police",
+        "uniform",
+        "appeared",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Arrest044_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 113.76,
+      "start_time": 42.2,
+      "end_time": 54.7,
+      "object_type": "police",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Three people in police uniforms ascended to the second floor one after another.",
+      "scene_zone": "unknown",
+      "event_text": "From 42.2s to 54.7s, three people in police uniforms ascended to the second floor one after another.",
+      "keywords": [
+        "three",
+        "people",
+        "police",
+        "uniforms",
+        "ascended",
+        "second"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Arrest044_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 113.76,
+      "start_time": 56.8,
+      "end_time": 63.1,
+      "object_type": "dog",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white dog jumped on the sofa.",
+      "scene_zone": "room",
+      "event_text": "From 56.8s to 63.1s, a white dog jumped on the sofa.",
+      "keywords": [
+        "white",
+        "dog",
+        "jumped",
+        "sofa"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Arrest044_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 113.76,
+      "start_time": 80.3,
+      "end_time": 97.7,
+      "object_type": "police",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Two men in police uniforms and a man in a black coat came down from upstairs and left the room.",
+      "scene_zone": "room",
+      "event_text": "From 80.3s to 97.7s, two men in police uniforms and a man in a black coat came down from upstairs and left the room.",
+      "keywords": [
+        "two",
+        "men",
+        "police",
+        "uniforms",
+        "man",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    }
+  ]
+}

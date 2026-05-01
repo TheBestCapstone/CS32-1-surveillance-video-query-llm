@@ -1,0 +1,171 @@
+{
+  "video_id": "Normal_Videos572_x264",
+  "duration": 147.6,
+  "events": [
+    {
+      "video_id": "Normal_Videos572_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 147.6,
+      "start_time": 0.0,
+      "end_time": 13.4,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The picture is in an alley. In the center of the picture, a woman in a red coat, white pants and a white satchel holding an umbrella walks to the lower left corner of the alley.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 13.4s, the picture is in an alley. In the center of the picture, a woman in a red coat, white pants and a white satchel holding an umbrella walks to the lower left corner of the alley.",
+      "keywords": [
+        "picture",
+        "alley",
+        "center",
+        "woman",
+        "red",
+        "coat"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos572_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 147.6,
+      "start_time": 8.2,
+      "end_time": 16.5,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black electric car with a purple umbrella under the road drove towards the top of the road.",
+      "scene_zone": "road",
+      "event_text": "From 8.2s to 16.5s, a black electric car with a purple umbrella under the road drove towards the top of the road.",
+      "keywords": [
+        "black",
+        "electric",
+        "car",
+        "purple",
+        "umbrella",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos572_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 147.6,
+      "start_time": 11.2,
+      "end_time": 43.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; An old man on the upper left side of the road is packing cardboard boxes.",
+      "scene_zone": "road",
+      "event_text": "From 11.2s to 43.2s, an old man on the upper left side of the road is packing cardboard boxes.",
+      "keywords": [
+        "old",
+        "man",
+        "upper",
+        "left",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos572_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 147.6,
+      "start_time": 131.0,
+      "end_time": 140.3,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "Observed event; A woman in a purple top on the road is driving a woman in a pink top on an electric bike past the lower left corner of the road.",
+      "scene_zone": "road",
+      "event_text": "From 131.0s to 140.3s, a woman in a purple top on the road is driving a woman in a pink top on an electric bike past the lower left corner of the road.",
+      "keywords": [
+        "woman",
+        "purple",
+        "top",
+        "road",
+        "driving",
+        "pink"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos572_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 147.6,
+      "start_time": 142.4,
+      "end_time": 146.5,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man in red riding a red electric car on the road passed the lower left corner.",
+      "scene_zone": "road",
+      "event_text": "From 142.4s to 146.5s, a man in red riding a red electric car on the road passed the lower left corner.",
+      "keywords": [
+        "man",
+        "red",
+        "riding",
+        "electric",
+        "car",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    }
+  ]
+}

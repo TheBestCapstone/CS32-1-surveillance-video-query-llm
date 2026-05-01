@@ -1,0 +1,334 @@
+{
+  "video_id": "Normal_Videos542_x264",
+  "duration": 211.23,
+  "events": [
+    {
+      "video_id": "Normal_Videos542_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 211.23,
+      "start_time": 17.2,
+      "end_time": 27.6,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The man in blue walked out and walked quickly to the upper side.",
+      "scene_zone": "unknown",
+      "event_text": "From 17.2s to 27.6s, the man in blue walked out and walked quickly to the upper side.",
+      "keywords": [
+        "man",
+        "blue",
+        "walked",
+        "out",
+        "quickly",
+        "upper"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos542_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 211.23,
+      "start_time": 40.1,
+      "end_time": 46.3,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A woman wearing white clothes appears on the right and walks into the store on the right.",
+      "scene_zone": "store",
+      "event_text": "From 40.1s to 46.3s, a woman wearing white clothes appears on the right and walks into the store on the right.",
+      "keywords": [
+        "woman",
+        "wearing",
+        "white",
+        "clothes",
+        "appears",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos542_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 211.23,
+      "start_time": 46.3,
+      "end_time": 60.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in black clothes walked down.",
+      "scene_zone": "unknown",
+      "event_text": "From 46.3s to 60.1s, the man in black clothes walked down.",
+      "keywords": [
+        "man",
+        "black",
+        "clothes",
+        "walked",
+        "down"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos542_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 211.23,
+      "start_time": 60.1,
+      "end_time": 75.7,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The woman carrying a backpack walked into the store and looked at the things in the store.",
+      "scene_zone": "store",
+      "event_text": "From 60.1s to 75.7s, the woman carrying a backpack walked into the store and looked at the things in the store.",
+      "keywords": [
+        "woman",
+        "carrying",
+        "backpack",
+        "walked",
+        "store",
+        "looked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos542_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 211.23,
+      "start_time": 75.7,
+      "end_time": 102.3,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There are shops on both sides of a commercial street, and there are some products at the entrance of each store.",
+      "scene_zone": "road",
+      "event_text": "From 75.7s to 102.3s, there are shops on both sides of a commercial street, and there are some products at the entrance of each store.",
+      "keywords": [
+        "shops",
+        "both",
+        "sides",
+        "commercial",
+        "street",
+        "some"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos542_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 211.23,
+      "start_time": 121.1,
+      "end_time": 139.2,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man appeared at the end of the corridor and walked towards the lower side of the shop.",
+      "scene_zone": "unknown",
+      "event_text": "From 121.1s to 139.2s, a man appeared at the end of the corridor and walked towards the lower side of the shop.",
+      "keywords": [
+        "man",
+        "appeared",
+        "end",
+        "corridor",
+        "walked",
+        "towards"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos542_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 211.23,
+      "start_time": 132.3,
+      "end_time": 139.8,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A woman in white walked out of the store door and then walked out across the intersection.",
+      "scene_zone": "road",
+      "event_text": "From 132.3s to 139.8s, a woman in white walked out of the store door and then walked out across the intersection.",
+      "keywords": [
+        "woman",
+        "white",
+        "walked",
+        "out",
+        "store",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos542_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 211.23,
+      "start_time": 139.8,
+      "end_time": 159.6,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black appeared above the store and was about to enter the store to buy something.",
+      "scene_zone": "store",
+      "event_text": "From 139.8s to 159.6s, a man in black appeared above the store and was about to enter the store to buy something.",
+      "keywords": [
+        "man",
+        "black",
+        "appeared",
+        "above",
+        "store",
+        "about"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Normal_Videos542_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 211.23,
+      "start_time": 179.1,
+      "end_time": 183.6,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in black walked out of the store, took something and walked out of the screen.",
+      "scene_zone": "store",
+      "event_text": "From 179.1s to 183.6s, the man in black walked out of the store, took something and walked out of the screen.",
+      "keywords": [
+        "man",
+        "black",
+        "walked",
+        "out",
+        "store",
+        "took"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Normal_Videos542_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 211.23,
+      "start_time": 181.6,
+      "end_time": 199.6,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in black walked up to the store, and then he walked back into the store.",
+      "scene_zone": "store",
+      "event_text": "From 181.6s to 199.6s, the man in black walked up to the store, and then he walked back into the store.",
+      "keywords": [
+        "man",
+        "black",
+        "walked",
+        "store",
+        "back"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    }
+  ]
+}

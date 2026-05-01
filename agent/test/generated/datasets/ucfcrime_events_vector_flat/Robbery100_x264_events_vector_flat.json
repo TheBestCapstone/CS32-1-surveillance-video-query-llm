@@ -1,0 +1,303 @@
+{
+  "video_id": "Robbery100_x264",
+  "duration": 149.95,
+  "events": [
+    {
+      "video_id": "Robbery100_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 149.95,
+      "start_time": 0.0,
+      "end_time": 23.1,
+      "object_type": "person",
+      "object_color": "purple",
+      "appearance_notes": "Observed event; There was only a man in purple sitting in front of the table in the room, with a computer with a bright screen in front of him.",
+      "scene_zone": "room",
+      "event_text": "From 0.0s to 23.1s, there was only a man in purple sitting in front of the table in the room, with a computer with a bright screen in front of him.",
+      "keywords": [
+        "only",
+        "man",
+        "purple",
+        "sitting",
+        "front",
+        "table"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Robbery100_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 149.95,
+      "start_time": 23.1,
+      "end_time": 30.8,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; Two people came in, wearing white and black clothes respectively. The man in white clothes handed something to the man in purple.",
+      "scene_zone": "unknown",
+      "event_text": "From 23.1s to 30.8s, two people came in, wearing white and black clothes respectively. The man in white clothes handed something to the man in purple.",
+      "keywords": [
+        "two",
+        "people",
+        "came",
+        "wearing",
+        "white",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Robbery100_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 149.95,
+      "start_time": 32.1,
+      "end_time": 42.5,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The man in white held a gun and pinched the collar of the man in purple. The two clashed. The man in black squatted down and stood up, and then the man in black went out.",
+      "scene_zone": "unknown",
+      "event_text": "From 32.1s to 42.5s, the man in white held a gun and pinched the collar of the man in purple. The two clashed. The man in black squatted down and stood up, and then the man in black went out.",
+      "keywords": [
+        "man",
+        "white",
+        "held",
+        "gun",
+        "pinched",
+        "collar"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Robbery100_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 149.95,
+      "start_time": 42.5,
+      "end_time": 51.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The man in white and the man in purple were in a stalemate, and the man in black came in and left.",
+      "scene_zone": "unknown",
+      "event_text": "From 42.5s to 51.1s, the man in white and the man in purple were in a stalemate, and the man in black came in and left.",
+      "keywords": [
+        "man",
+        "white",
+        "purple",
+        "stalemate",
+        "black",
+        "came"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Robbery100_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 149.95,
+      "start_time": 52.5,
+      "end_time": 60.5,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The man in white with a gun pushed the man in purple into the checkout counter, and the man in black came in with a black bag.",
+      "scene_zone": "store",
+      "event_text": "From 52.5s to 60.5s, the man in white with a gun pushed the man in purple into the checkout counter, and the man in black came in with a black bag.",
+      "keywords": [
+        "man",
+        "white",
+        "gun",
+        "pushed",
+        "purple",
+        "checkout"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Robbery100_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 149.95,
+      "start_time": 60.5,
+      "end_time": 83.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The man in black took out the contents of the drawer, and the man in white stood behind the cashier.",
+      "scene_zone": "unknown",
+      "event_text": "From 60.5s to 83.1s, the man in black took out the contents of the drawer, and the man in white stood behind the cashier.",
+      "keywords": [
+        "man",
+        "black",
+        "took",
+        "out",
+        "contents",
+        "drawer"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Robbery100_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 149.95,
+      "start_time": 83.1,
+      "end_time": 131.3,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The man in black stood up and turned around, then opened the black cabinet to put things in. The man in white with a gun stood up and guarded the man at the cashier.",
+      "scene_zone": "unknown",
+      "event_text": "From 83.1s to 131.3s, the man in black stood up and turned around, then opened the black cabinet to put things in. The man in white with a gun stood up and guarded the man at the cashier.",
+      "keywords": [
+        "man",
+        "black",
+        "stood",
+        "turned",
+        "around",
+        "opened"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Robbery100_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 149.95,
+      "start_time": 131.3,
+      "end_time": 138.7,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The man in black turned around and left with a black bag, and then the man in white with a gun also left together.",
+      "scene_zone": "unknown",
+      "event_text": "From 131.3s to 138.7s, the man in black turned around and left with a black bag, and then the man in white with a gun also left together.",
+      "keywords": [
+        "man",
+        "black",
+        "turned",
+        "around",
+        "left",
+        "bag"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Robbery100_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 149.95,
+      "start_time": 137.5,
+      "end_time": 141.7,
+      "object_type": "person",
+      "object_color": "purple",
+      "appearance_notes": "Observed event; The man in purple stood up and ran out of the door.",
+      "scene_zone": "room",
+      "event_text": "From 137.5s to 141.7s, the man in purple stood up and ran out of the door.",
+      "keywords": [
+        "man",
+        "purple",
+        "stood",
+        "ran",
+        "out",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    }
+  ]
+}

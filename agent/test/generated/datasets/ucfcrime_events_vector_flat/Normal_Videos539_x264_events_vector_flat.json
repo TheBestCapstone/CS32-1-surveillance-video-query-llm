@@ -1,0 +1,105 @@
+{
+  "video_id": "Normal_Videos539_x264",
+  "duration": 34.23,
+  "events": [
+    {
+      "video_id": "Normal_Videos539_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 34.23,
+      "start_time": 0.0,
+      "end_time": 2.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; At night, an electric car drives by in the lower left corner of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 2.1s, at night, an electric car drives by in the lower left corner of the screen.",
+      "keywords": [
+        "night",
+        "electric",
+        "car",
+        "drives",
+        "lower",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos539_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 34.23,
+      "start_time": 5.0,
+      "end_time": 14.1,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; On the other side of the road, a large oil tanker drove past in the traffic and passed on the right side.",
+      "scene_zone": "road",
+      "event_text": "From 5.0s to 14.1s, on the other side of the road, a large oil tanker drove past in the traffic and passed on the right side.",
+      "keywords": [
+        "other",
+        "side",
+        "road",
+        "large",
+        "oil",
+        "tanker"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos539_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 34.23,
+      "start_time": 21.2,
+      "end_time": 34.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Many motor vehicles pass by in the lane at night.",
+      "scene_zone": "unknown",
+      "event_text": "From 21.2s to 34.1s, many motor vehicles pass by in the lane at night.",
+      "keywords": [
+        "many",
+        "motor",
+        "vehicles",
+        "pass",
+        "lane",
+        "night"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    }
+  ]
+}

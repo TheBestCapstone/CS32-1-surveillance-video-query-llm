@@ -1,0 +1,468 @@
+{
+  "video_id": "Normal_Videos559_x264",
+  "duration": 661.0,
+  "events": [
+    {
+      "video_id": "Normal_Videos559_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 661.0,
+      "start_time": 0.0,
+      "end_time": 16.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A person pulling a trolley walks out from the left side of the video and leaves from the bottom of the video.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 16.0s, a person pulling a trolley walks out from the left side of the video and leaves from the bottom of the video.",
+      "keywords": [
+        "person",
+        "pulling",
+        "trolley",
+        "walks",
+        "out",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos559_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 661.0,
+      "start_time": 53.2,
+      "end_time": 69.0,
+      "object_type": "person",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; A man wearing gray trousers walked out of the upper right corner of the video and walked under the pillar on the right side of the video and sat on the steps next to it.",
+      "scene_zone": "unknown",
+      "event_text": "From 53.2s to 69.0s, a man wearing gray trousers walked out of the upper right corner of the video and walked under the pillar on the right side of the video and sat on the steps next to it.",
+      "keywords": [
+        "man",
+        "wearing",
+        "gray",
+        "trousers",
+        "walked",
+        "out"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos559_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 661.0,
+      "start_time": 116.3,
+      "end_time": 148.6,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man wearing gray trousers stood up and walked to a black stake below the video.",
+      "scene_zone": "unknown",
+      "event_text": "From 116.3s to 148.6s, the man wearing gray trousers stood up and walked to a black stake below the video.",
+      "keywords": [
+        "man",
+        "wearing",
+        "gray",
+        "trousers",
+        "stood",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos559_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 661.0,
+      "start_time": 141.2,
+      "end_time": 148.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A person holding a broom walks out of the room on the right side of the video.",
+      "scene_zone": "room",
+      "event_text": "From 141.2s to 148.6s, a person holding a broom walks out of the room on the right side of the video.",
+      "keywords": [
+        "person",
+        "holding",
+        "broom",
+        "walks",
+        "out",
+        "room"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos559_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 661.0,
+      "start_time": 149.4,
+      "end_time": 155.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The person holding the broom returns to the previous room.",
+      "scene_zone": "room",
+      "event_text": "From 149.4s to 155.6s, the person holding the broom returns to the previous room.",
+      "keywords": [
+        "person",
+        "holding",
+        "broom",
+        "returns",
+        "previous",
+        "room"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos559_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 661.0,
+      "start_time": 156.8,
+      "end_time": 176.2,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The person wearing gray trousers walked to the black stake in the upper left corner of the video.",
+      "scene_zone": "unknown",
+      "event_text": "From 156.8s to 176.2s, the person wearing gray trousers walked to the black stake in the upper left corner of the video.",
+      "keywords": [
+        "person",
+        "wearing",
+        "gray",
+        "trousers",
+        "walked",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos559_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 661.0,
+      "start_time": 177.6,
+      "end_time": 201.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A person walks out of the hut on the right side of the video and is wandering above.",
+      "scene_zone": "unknown",
+      "event_text": "From 177.6s to 201.2s, a person walks out of the hut on the right side of the video and is wandering above.",
+      "keywords": [
+        "person",
+        "walks",
+        "out",
+        "hut",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos559_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 661.0,
+      "start_time": 193.0,
+      "end_time": 215.2,
+      "object_type": "person",
+      "object_color": "green",
+      "appearance_notes": "Observed event; The man wearing gray trousers walks to the green chair.",
+      "scene_zone": "unknown",
+      "event_text": "From 193.0s to 215.2s, the man wearing gray trousers walks to the green chair.",
+      "keywords": [
+        "man",
+        "wearing",
+        "gray",
+        "trousers",
+        "walks",
+        "green"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Normal_Videos559_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 661.0,
+      "start_time": 201.2,
+      "end_time": 214.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The person walking out of the hut on the right side of the video leaves from below the video.",
+      "scene_zone": "unknown",
+      "event_text": "From 201.2s to 214.3s, the person walking out of the hut on the right side of the video leaves from below the video.",
+      "keywords": [
+        "person",
+        "walking",
+        "out",
+        "hut",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Normal_Videos559_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 661.0,
+      "start_time": 218.4,
+      "end_time": 238.5,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in gray trousers walked to the black stake in the middle of the left side of the video and touched it twice.",
+      "scene_zone": "unknown",
+      "event_text": "From 218.4s to 238.5s, the man in gray trousers walked to the black stake in the middle of the left side of the video and touched it twice.",
+      "keywords": [
+        "man",
+        "gray",
+        "trousers",
+        "walked",
+        "black",
+        "stake"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Normal_Videos559_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 661.0,
+      "start_time": 242.1,
+      "end_time": 295.5,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in gray trousers walked to the middle of the video and wandered for a while before walking to the black stakes on the right side of the video.",
+      "scene_zone": "unknown",
+      "event_text": "From 242.1s to 295.5s, the man in gray trousers walked to the middle of the video and wandered for a while before walking to the black stakes on the right side of the video.",
+      "keywords": [
+        "man",
+        "gray",
+        "trousers",
+        "walked",
+        "middle",
+        "video"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Normal_Videos559_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 661.0,
+      "start_time": 296.7,
+      "end_time": 323.1,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The man in gray pants walked to the blue pillar in the middle and sat down.",
+      "scene_zone": "unknown",
+      "event_text": "From 296.7s to 323.1s, the man in gray pants walked to the blue pillar in the middle and sat down.",
+      "keywords": [
+        "man",
+        "gray",
+        "pants",
+        "walked",
+        "blue",
+        "pillar"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Normal_Videos559_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 661.0,
+      "start_time": 576.1,
+      "end_time": 595.4,
+      "object_type": "person",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; A person walks out of the small room on the right side of the video and reaches the opposite side of the person wearing gray trousers.",
+      "scene_zone": "room",
+      "event_text": "From 576.1s to 595.4s, a person walks out of the small room on the right side of the video and reaches the opposite side of the person wearing gray trousers.",
+      "keywords": [
+        "person",
+        "walks",
+        "out",
+        "small",
+        "room",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Normal_Videos559_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 661.0,
+      "start_time": 596.4,
+      "end_time": 661.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two people sit and chat with each other.",
+      "scene_zone": "unknown",
+      "event_text": "From 596.4s to 661.0s, two people sit and chat with each other.",
+      "keywords": [
+        "two",
+        "people",
+        "sit",
+        "chat",
+        "each",
+        "other"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    }
+  ]
+}

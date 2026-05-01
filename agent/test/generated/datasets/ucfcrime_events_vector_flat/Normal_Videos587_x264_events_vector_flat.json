@@ -1,0 +1,237 @@
+{
+  "video_id": "Normal_Videos587_x264",
+  "duration": 289.83,
+  "events": [
+    {
+      "video_id": "Normal_Videos587_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 289.83,
+      "start_time": 0.0,
+      "end_time": 14.3,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; In a hall, a woman wearing a green striped dress opened the door and entered the room, walking to the lower right corner of the room.",
+      "scene_zone": "room",
+      "event_text": "From 0.0s to 14.3s, in a hall, a woman wearing a green striped dress opened the door and entered the room, walking to the lower right corner of the room.",
+      "keywords": [
+        "hall",
+        "woman",
+        "wearing",
+        "green",
+        "striped",
+        "dress"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos587_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 289.83,
+      "start_time": 30.1,
+      "end_time": 40.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The woman in gray outside the door in the upper left corner bent down to pick up the red bag on the ground and the woman in white left. The woman in pink top, denim shorts and carrying a white leather bag then left.",
+      "scene_zone": "room",
+      "event_text": "From 30.1s to 40.2s, the woman in gray outside the door in the upper left corner bent down to pick up the red bag on the ground and the woman in white left. The woman in pink top, denim shorts and carrying a white leather bag then left.",
+      "keywords": [
+        "woman",
+        "gray",
+        "outside",
+        "door",
+        "upper",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos587_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 289.83,
+      "start_time": 155.2,
+      "end_time": 178.3,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man wearing a blue shirt and white shorts outside the door opened the door, and a woman in white pushing a stroller in the upper left corner entered the room and walked to the lower right corner.",
+      "scene_zone": "room",
+      "event_text": "From 155.2s to 178.3s, a man wearing a blue shirt and white shorts outside the door opened the door, and a woman in white pushing a stroller in the upper left corner entered the room and walked to the lower right corner.",
+      "keywords": [
+        "man",
+        "wearing",
+        "blue",
+        "shirt",
+        "white",
+        "shorts"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos587_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 289.83,
+      "start_time": 181.4,
+      "end_time": 187.5,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The woman in white in the lower right corner opens the sun visor of the stroller and puts the pacifier back into the baby's mouth.",
+      "scene_zone": "unknown",
+      "event_text": "From 181.4s to 187.5s, the woman in white in the lower right corner opens the sun visor of the stroller and puts the pacifier back into the baby's mouth.",
+      "keywords": [
+        "woman",
+        "white",
+        "lower",
+        "right",
+        "corner",
+        "opens"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos587_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 289.83,
+      "start_time": 201.4,
+      "end_time": 216.2,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The woman wearing a green striped dress in the lower right corner of the room came out and opened the door and left together with the man wearing blue clothes and white shorts outside the door.",
+      "scene_zone": "room",
+      "event_text": "From 201.4s to 216.2s, the woman wearing a green striped dress in the lower right corner of the room came out and opened the door and left together with the man wearing blue clothes and white shorts outside the door.",
+      "keywords": [
+        "woman",
+        "wearing",
+        "green",
+        "striped",
+        "dress",
+        "lower"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos587_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 289.83,
+      "start_time": 201.4,
+      "end_time": 202.2,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The woman in white pushed the stroller into the lower right corner of the room.",
+      "scene_zone": "room",
+      "event_text": "From 201.4s to 202.2s, the woman in white pushed the stroller into the lower right corner of the room.",
+      "keywords": [
+        "woman",
+        "white",
+        "pushed",
+        "stroller",
+        "lower",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos587_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 289.83,
+      "start_time": 235.1,
+      "end_time": 256.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; A woman wearing sunglasses, a brown top, black pants, and a black leather bag walked out of the right side of the corridor and a man wearing sunglasses, a black top, and green shorts pushed the door to leave.",
+      "scene_zone": "room",
+      "event_text": "From 235.1s to 256.1s, a woman wearing sunglasses, a brown top, black pants, and a black leather bag walked out of the right side of the corridor and a man wearing sunglasses, a black top, and green shorts pushed the door to leave.",
+      "keywords": [
+        "woman",
+        "wearing",
+        "sunglasses",
+        "brown",
+        "top",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    }
+  ]
+}

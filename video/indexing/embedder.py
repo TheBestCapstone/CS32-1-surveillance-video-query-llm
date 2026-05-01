@@ -4,6 +4,8 @@ from dotenv import load_dotenv
 
 from typing import List, Union
 
+EMBEDDING_BATCH_LIMIT = 10
+
 def get_qwen_embedding(text: Union[str, List[str]]) -> Union[list[float], List[list[float]]]:
     """
     Call Dashscope-compatible embeddings API (single string or batch list).
@@ -23,18 +25,26 @@ def get_qwen_embedding(text: Union[str, List[str]]) -> Union[list[float], List[l
         base_url="https://dashscope.aliyuncs.com/compatible-mode/v1", 
     )
 
-    completion = client.embeddings.create(
-        model="text-embedding-v3",
-        input=text,
-        dimensions=1024,
-        encoding_format="float"
-    )
-    
     if isinstance(text, str):
+        completion = client.embeddings.create(
+            model="text-embedding-v3",
+            input=text,
+            dimensions=1024,
+            encoding_format="float"
+        )
         return completion.data[0].embedding
-    else:
+    all_embeddings: List[list[float]] = []
+    for start in range(0, len(text), EMBEDDING_BATCH_LIMIT):
+        batch = text[start : start + EMBEDDING_BATCH_LIMIT]
+        completion = client.embeddings.create(
+            model="text-embedding-v3",
+            input=batch,
+            dimensions=1024,
+            encoding_format="float"
+        )
         sorted_data = sorted(completion.data, key=lambda x: x.index)
-        return [item.embedding for item in sorted_data]
+        all_embeddings.extend(item.embedding for item in sorted_data)
+    return all_embeddings
 
 if __name__ == "__main__":
     test_text = "A silver-gray sedan parked stationary in a parking slot for a long time."

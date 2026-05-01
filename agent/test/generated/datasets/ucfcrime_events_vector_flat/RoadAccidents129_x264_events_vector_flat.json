@@ -1,0 +1,39 @@
+{
+  "video_id": "RoadAccidents129_x264",
+  "duration": 8.49,
+  "events": [
+    {
+      "video_id": "RoadAccidents129_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 8.49,
+      "start_time": 0.9,
+      "end_time": 8.3,
+      "object_type": "car",
+      "object_color": "gray",
+      "appearance_notes": "High activity; A gray car hit four cars parked on the roadside.",
+      "scene_zone": "road",
+      "event_text": "From 0.9s to 8.3s, a gray car hit four cars parked on the roadside.",
+      "keywords": [
+        "gray",
+        "car",
+        "hit",
+        "four",
+        "cars",
+        "parked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    }
+  ]
+}

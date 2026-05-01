@@ -1,0 +1,105 @@
+{
+  "video_id": "Arson023_x264",
+  "duration": 45.62,
+  "events": [
+    {
+      "video_id": "Arson023_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 45.62,
+      "start_time": 1.7,
+      "end_time": 17.9,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man in gray clothes came to the white car,.",
+      "scene_zone": "unknown",
+      "event_text": "From 1.7s to 17.9s, a man in gray clothes came to the white car,.",
+      "keywords": [
+        "man",
+        "gray",
+        "clothes",
+        "came",
+        "white",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Arson023_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 45.62,
+      "start_time": 17.8,
+      "end_time": 36.8,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Man poured gasoline on the car, mainly on the rear and top of the car.",
+      "scene_zone": "unknown",
+      "event_text": "From 17.8s to 36.8s, man poured gasoline on the car, mainly on the rear and top of the car.",
+      "keywords": [
+        "man",
+        "poured",
+        "gasoline",
+        "car",
+        "mainly",
+        "rear"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Arson023_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 45.62,
+      "start_time": 40.9,
+      "end_time": 45.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; The man threw a fire into the car and left, and the car started to burn.",
+      "scene_zone": "unknown",
+      "event_text": "From 40.9s to 45.3s, the man threw a fire into the car and left, and the car started to burn.",
+      "keywords": [
+        "man",
+        "threw",
+        "fire",
+        "car",
+        "left",
+        "started"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    }
+  ]
+}

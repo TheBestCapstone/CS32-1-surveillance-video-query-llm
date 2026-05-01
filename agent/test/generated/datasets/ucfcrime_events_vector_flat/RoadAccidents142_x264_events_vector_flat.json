@@ -1,0 +1,100 @@
+{
+  "video_id": "RoadAccidents142_x264",
+  "duration": 144.03,
+  "events": [
+    {
+      "video_id": "RoadAccidents142_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 144.03,
+      "start_time": 0.8,
+      "end_time": 90.4,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Vehicle traffic.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.8s to 90.4s, vehicle traffic.",
+      "keywords": [
+        "vehicle",
+        "traffic"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "RoadAccidents142_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 144.03,
+      "start_time": 98.4,
+      "end_time": 100.5,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A bus collided with a red car when turning.",
+      "scene_zone": "unknown",
+      "event_text": "From 98.4s to 100.5s, a bus collided with a red car when turning.",
+      "keywords": [
+        "bus",
+        "collided",
+        "red",
+        "car",
+        "when",
+        "turning"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "RoadAccidents142_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 144.03,
+      "start_time": 109.4,
+      "end_time": 135.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; After several cars were blocked at the accident scene.",
+      "scene_zone": "unknown",
+      "event_text": "From 109.4s to 135.3s, after several cars were blocked at the accident scene.",
+      "keywords": [
+        "several",
+        "cars",
+        "blocked",
+        "accident",
+        "scene"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    }
+  ]
+}

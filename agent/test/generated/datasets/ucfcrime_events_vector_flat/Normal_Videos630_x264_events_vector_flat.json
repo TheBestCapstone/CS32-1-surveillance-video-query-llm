@@ -1,0 +1,500 @@
+{
+  "video_id": "Normal_Videos630_x264",
+  "duration": 2112.88,
+  "events": [
+    {
+      "video_id": "Normal_Videos630_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2112.88,
+      "start_time": 117.5,
+      "end_time": 145.5,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A bird under the front of the blue car in the picture walked onto the roadside, and then slowly walked to the bottom of the picture.",
+      "scene_zone": "road",
+      "event_text": "From 117.5s to 145.5s, a bird under the front of the blue car in the picture walked onto the roadside, and then slowly walked to the bottom of the picture.",
+      "keywords": [
+        "bird",
+        "front",
+        "blue",
+        "car",
+        "picture",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos630_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2112.88,
+      "start_time": 312.5,
+      "end_time": 342.3,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; In the lower left corner of the screen, an old man in a gray shirt, black pants and a brown bag walked to the top of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 312.5s to 342.3s, in the lower left corner of the screen, an old man in a gray shirt, black pants and a brown bag walked to the top of the screen.",
+      "keywords": [
+        "lower",
+        "left",
+        "corner",
+        "screen",
+        "old",
+        "man"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos630_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2112.88,
+      "start_time": 403.3,
+      "end_time": 419.2,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A bird under the front of the blue car in the picture walked onto the roadside, and then slowly walked to the bottom of the picture.",
+      "scene_zone": "road",
+      "event_text": "From 403.3s to 419.2s, a bird under the front of the blue car in the picture walked onto the roadside, and then slowly walked to the bottom of the picture.",
+      "keywords": [
+        "bird",
+        "front",
+        "blue",
+        "car",
+        "picture",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos630_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2112.88,
+      "start_time": 416.1,
+      "end_time": 432.1,
+      "object_type": "unknown",
+      "object_color": "silver",
+      "appearance_notes": "Observed event; A silver jeep is reversing in the distance at the top of the screen, and then drives towards the left side of the screen from above.",
+      "scene_zone": "unknown",
+      "event_text": "From 416.1s to 432.1s, a silver jeep is reversing in the distance at the top of the screen, and then drives towards the left side of the screen from above.",
+      "keywords": [
+        "silver",
+        "jeep",
+        "reversing",
+        "distance",
+        "top",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos630_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2112.88,
+      "start_time": 565.3,
+      "end_time": 569.4,
+      "object_type": "unknown",
+      "object_color": "silver",
+      "appearance_notes": "Low activity; A silver jeep parked at the top of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 565.3s to 569.4s, a silver jeep parked at the top of the screen.",
+      "keywords": [
+        "silver",
+        "jeep",
+        "parked",
+        "top",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos630_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2112.88,
+      "start_time": 591.1,
+      "end_time": 641.5,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; At the bottom of the screen, a woman in red clothes and black trousers with a black bag and blond hair, white top and black trousers walked past and entered the red jeep in the upper left corner.",
+      "scene_zone": "unknown",
+      "event_text": "From 591.1s to 641.5s, at the bottom of the screen, a woman in red clothes and black trousers with a black bag and blond hair, white top and black trousers walked past and entered the red jeep in the upper left corner.",
+      "keywords": [
+        "bottom",
+        "screen",
+        "woman",
+        "red",
+        "clothes",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos630_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2112.88,
+      "start_time": 641.5,
+      "end_time": 647.5,
+      "object_type": "unknown",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The red jeep drives out of the left side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 641.5s to 647.5s, the red jeep drives out of the left side of the screen.",
+      "keywords": [
+        "red",
+        "jeep",
+        "drives",
+        "out",
+        "left",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos630_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2112.88,
+      "start_time": 890.4,
+      "end_time": 897.3,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white SUV at the top of the screen drives past the left side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 890.4s to 897.3s, a white SUV at the top of the screen drives past the left side of the screen.",
+      "keywords": [
+        "white",
+        "suv",
+        "top",
+        "screen",
+        "drives",
+        "past"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Normal_Videos630_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2112.88,
+      "start_time": 895.0,
+      "end_time": 923.2,
+      "object_type": "person",
+      "object_color": "green",
+      "appearance_notes": "Observed event; A man in a brown-gray shirt, brown shorts and a green backpack at the bottom of the screen walks to the top of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 895.0s to 923.2s, a man in a brown-gray shirt, brown shorts and a green backpack at the bottom of the screen walks to the top of the screen.",
+      "keywords": [
+        "man",
+        "brown",
+        "gray",
+        "shirt",
+        "shorts",
+        "green"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Normal_Videos630_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2112.88,
+      "start_time": 1480.5,
+      "end_time": 1491.4,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car at the top of the screen drove to the left side of the screen and stopped at the upper left corner of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1480.5s to 1491.4s, a white car at the top of the screen drove to the left side of the screen and stopped at the upper left corner of the screen.",
+      "keywords": [
+        "white",
+        "car",
+        "top",
+        "screen",
+        "drove",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Normal_Videos630_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2112.88,
+      "start_time": 1516.4,
+      "end_time": 1527.4,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The female car owner in a blue top and black pants walked to the right side of the screen and left at the bottom of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1516.4s to 1527.4s, the female car owner in a blue top and black pants walked to the right side of the screen and left at the bottom of the screen.",
+      "keywords": [
+        "female",
+        "car",
+        "owner",
+        "blue",
+        "top",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Normal_Videos630_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2112.88,
+      "start_time": 1603.2,
+      "end_time": 1626.5,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in a black suit and a black leather bag at the bottom of the screen walked to the top of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1603.2s to 1626.5s, a man in a black suit and a black leather bag at the bottom of the screen walked to the top of the screen.",
+      "keywords": [
+        "man",
+        "black",
+        "suit",
+        "leather",
+        "bag",
+        "bottom"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Normal_Videos630_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2112.88,
+      "start_time": 1627.3,
+      "end_time": 1644.4,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man in a dark red shirt and earth-colored pants came to the top of the screen and walked to the bottom of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1627.3s to 1644.4s, a man in a dark red shirt and earth-colored pants came to the top of the screen and walked to the bottom of the screen.",
+      "keywords": [
+        "man",
+        "dark",
+        "red",
+        "shirt",
+        "earth",
+        "colored"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Normal_Videos630_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2112.88,
+      "start_time": 1944.0,
+      "end_time": 1963.1,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man in a dark red shirt and earth-colored pants at the bottom of the screen walked to the top of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1944.0s to 1963.1s, a man in a dark red shirt and earth-colored pants at the bottom of the screen walked to the top of the screen.",
+      "keywords": [
+        "man",
+        "dark",
+        "red",
+        "shirt",
+        "earth",
+        "colored"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Normal_Videos630_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2112.88,
+      "start_time": 2079.2,
+      "end_time": 2092.3,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man in a dark red shirt and earth-colored pants came to the top of the screen and walked to the bottom of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 2079.2s to 2092.3s, a man in a dark red shirt and earth-colored pants came to the top of the screen and walked to the bottom of the screen.",
+      "keywords": [
+        "man",
+        "dark",
+        "red",
+        "shirt",
+        "earth",
+        "colored"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    }
+  ]
+}

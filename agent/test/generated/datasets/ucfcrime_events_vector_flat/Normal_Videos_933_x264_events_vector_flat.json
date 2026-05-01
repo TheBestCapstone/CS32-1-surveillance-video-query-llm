@@ -1,0 +1,103 @@
+{
+  "video_id": "Normal_Videos_933_x264",
+  "duration": 59.07,
+  "events": [
+    {
+      "video_id": "Normal_Videos_933_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 59.07,
+      "start_time": 9.0,
+      "end_time": 12.0,
+      "object_type": "person",
+      "object_color": "green",
+      "appearance_notes": "Low activity; The man in green came in and looked for something on the shelf.",
+      "scene_zone": "unknown",
+      "event_text": "From 9.0s to 12.0s, the man in green came in and looked for something on the shelf.",
+      "keywords": [
+        "man",
+        "green",
+        "came",
+        "looked",
+        "something",
+        "shelf"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos_933_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 59.07,
+      "start_time": 17.3,
+      "end_time": 24.3,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Low activity; The man in red is also looking for something on the shelf.",
+      "scene_zone": "unknown",
+      "event_text": "From 17.3s to 24.3s, the man in red is also looking for something on the shelf.",
+      "keywords": [
+        "man",
+        "red",
+        "also",
+        "looking",
+        "something",
+        "shelf"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos_933_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 59.07,
+      "start_time": 46.3,
+      "end_time": 54.3,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The man in red leaves the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 46.3s to 54.3s, the man in red leaves the screen.",
+      "keywords": [
+        "man",
+        "red",
+        "leaves",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    }
+  ]
+}

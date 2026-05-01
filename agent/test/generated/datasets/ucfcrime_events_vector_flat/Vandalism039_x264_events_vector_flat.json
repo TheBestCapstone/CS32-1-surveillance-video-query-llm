@@ -1,0 +1,199 @@
+{
+  "video_id": "Vandalism039_x264",
+  "duration": 30.02,
+  "events": [
+    {
+      "video_id": "Vandalism039_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 30.02,
+      "start_time": 0.0,
+      "end_time": 8.8,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Three cars passed by on the road,.",
+      "scene_zone": "road",
+      "event_text": "From 0.0s to 8.8s, three cars passed by on the road,.",
+      "keywords": [
+        "three",
+        "cars",
+        "passed",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Vandalism039_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 30.02,
+      "start_time": 4.0,
+      "end_time": 8.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Four people walking forward on the sidewalk.",
+      "scene_zone": "unknown",
+      "event_text": "From 4.0s to 8.8s, four people walking forward on the sidewalk.",
+      "keywords": [
+        "four",
+        "people",
+        "walking",
+        "forward",
+        "sidewalk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Vandalism039_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 30.02,
+      "start_time": 8.8,
+      "end_time": 14.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Four people started running on the sidewalk.",
+      "scene_zone": "unknown",
+      "event_text": "From 8.8s to 14.6s, four people started running on the sidewalk.",
+      "keywords": [
+        "four",
+        "people",
+        "started",
+        "running",
+        "sidewalk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Vandalism039_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 30.02,
+      "start_time": 14.6,
+      "end_time": 20.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two people were running across the road,.",
+      "scene_zone": "road",
+      "event_text": "From 14.6s to 20.9s, two people were running across the road,.",
+      "keywords": [
+        "two",
+        "people",
+        "running",
+        "across",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Vandalism039_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 30.02,
+      "start_time": 14.6,
+      "end_time": 20.9,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Low activity; A man ran onto a black car parked on the roadside, stamped on it, jumped down, and ran across the road with the two runners in front of him.",
+      "scene_zone": "road",
+      "event_text": "From 14.6s to 20.9s, a man ran onto a black car parked on the roadside, stamped on it, jumped down, and ran across the road with the two runners in front of him.",
+      "keywords": [
+        "man",
+        "ran",
+        "onto",
+        "black",
+        "car",
+        "parked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Vandalism039_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 30.02,
+      "start_time": 20.9,
+      "end_time": 29.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The three people ran a few steps and walked away on the sidewalk.",
+      "scene_zone": "unknown",
+      "event_text": "From 20.9s to 29.4s, the three people ran a few steps and walked away on the sidewalk.",
+      "keywords": [
+        "three",
+        "people",
+        "ran",
+        "few",
+        "steps",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    }
+  ]
+}

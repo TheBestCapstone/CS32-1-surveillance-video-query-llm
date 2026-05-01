@@ -1,0 +1,138 @@
+{
+  "video_id": "Arson036_x264",
+  "duration": 56.63,
+  "events": [
+    {
+      "video_id": "Arson036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 56.63,
+      "start_time": 2.1,
+      "end_time": 26.5,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; A black man in white clothes and a hat holding a gasoline bucket entered the house and sprinkled gasoline on the tables on both sides.",
+      "scene_zone": "room",
+      "event_text": "From 2.1s to 26.5s, a black man in white clothes and a hat holding a gasoline bucket entered the house and sprinkled gasoline on the tables on both sides.",
+      "keywords": [
+        "black",
+        "man",
+        "white",
+        "clothes",
+        "hat",
+        "holding"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Arson036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 56.63,
+      "start_time": 28.6,
+      "end_time": 40.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man put down the gasoline can and tore up the cash register machine on the table.",
+      "scene_zone": "room",
+      "event_text": "From 28.6s to 40.7s, the man put down the gasoline can and tore up the cash register machine on the table.",
+      "keywords": [
+        "man",
+        "put",
+        "down",
+        "gasoline",
+        "can",
+        "tore"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Arson036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 56.63,
+      "start_time": 48.1,
+      "end_time": 52.5,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The man walked to the door with a gasoline can and poured gasoline on it.",
+      "scene_zone": "room",
+      "event_text": "From 48.1s to 52.5s, the man walked to the door with a gasoline can and poured gasoline on it.",
+      "keywords": [
+        "man",
+        "walked",
+        "door",
+        "gasoline",
+        "can",
+        "poured"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Arson036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 56.63,
+      "start_time": 52.4,
+      "end_time": 54.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man set fire to the entire room at the door.",
+      "scene_zone": "room",
+      "event_text": "From 52.4s to 54.7s, the man set fire to the entire room at the door.",
+      "keywords": [
+        "man",
+        "set",
+        "fire",
+        "entire",
+        "room",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    }
+  ]
+}

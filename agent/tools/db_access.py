@@ -92,6 +92,26 @@ class ChromaGateway:
             return clauses[0]
         return {"$and": clauses}
 
+    def get_records_by_ids(self, record_ids: list[str]) -> list[dict[str, Any]]:
+        ids = [str(item).strip() for item in record_ids if str(item).strip()]
+        if not ids:
+            return []
+        res = self._collection.get(ids=ids, include=["documents", "metadatas"])
+        out: list[dict[str, Any]] = []
+        for idx, record_id in enumerate(res.get("ids", [])):
+            documents = res.get("documents", [])
+            metadatas = res.get("metadatas", [])
+            doc = documents[idx] if idx < len(documents) else None
+            meta = metadatas[idx] if idx < len(metadatas) else {}
+            out.append(
+                {
+                    "record_id": record_id,
+                    "document": doc,
+                    "metadata": meta or {},
+                }
+            )
+        return out
+
     def search(
         self,
         *,

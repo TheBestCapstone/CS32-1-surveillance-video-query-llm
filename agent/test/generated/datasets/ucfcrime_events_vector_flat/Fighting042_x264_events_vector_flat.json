@@ -1,0 +1,297 @@
+{
+  "video_id": "Fighting042_x264",
+  "duration": 74.59,
+  "events": [
+    {
+      "video_id": "Fighting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 74.59,
+      "start_time": 0.0,
+      "end_time": 8.2,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Security patrolling the door.",
+      "scene_zone": "room",
+      "event_text": "From 0.0s to 8.2s, security patrolling the door.",
+      "keywords": [
+        "security",
+        "patrolling",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Fighting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 74.59,
+      "start_time": 8.1,
+      "end_time": 25.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; A man wearing a hat approaches and fights with the security guard.",
+      "scene_zone": "unknown",
+      "event_text": "From 8.1s to 25.4s, a man wearing a hat approaches and fights with the security guard.",
+      "keywords": [
+        "man",
+        "wearing",
+        "hat",
+        "approaches",
+        "fights",
+        "security"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Fighting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 74.59,
+      "start_time": 25.8,
+      "end_time": 29.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man in the hat walked away, the man inside the door resisted the door.",
+      "scene_zone": "room",
+      "event_text": "From 25.8s to 29.2s, the man in the hat walked away, the man inside the door resisted the door.",
+      "keywords": [
+        "man",
+        "hat",
+        "walked",
+        "away",
+        "inside",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Fighting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 74.59,
+      "start_time": 30.8,
+      "end_time": 38.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man in the hat came back with a gun and tried to snatch the gun from the security guard.",
+      "scene_zone": "unknown",
+      "event_text": "From 30.8s to 38.2s, the man in the hat came back with a gun and tried to snatch the gun from the security guard.",
+      "keywords": [
+        "man",
+        "hat",
+        "came",
+        "back",
+        "gun",
+        "tried"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Fighting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 74.59,
+      "start_time": 38.8,
+      "end_time": 49.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man in the hat turned back outside the door twice and ran away.",
+      "scene_zone": "room",
+      "event_text": "From 38.8s to 49.2s, the man in the hat turned back outside the door twice and ran away.",
+      "keywords": [
+        "man",
+        "hat",
+        "turned",
+        "back",
+        "outside",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Fighting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 74.59,
+      "start_time": 41.1,
+      "end_time": 42.2,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The security guard closes the door.",
+      "scene_zone": "room",
+      "event_text": "From 41.1s to 42.2s, the security guard closes the door.",
+      "keywords": [
+        "security",
+        "guard",
+        "closes",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Fighting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 74.59,
+      "start_time": 43.2,
+      "end_time": 53.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The security guard took out his pistol and looked outside the door.",
+      "scene_zone": "room",
+      "event_text": "From 43.2s to 53.0s, the security guard took out his pistol and looked outside the door.",
+      "keywords": [
+        "security",
+        "guard",
+        "took",
+        "out",
+        "pistol",
+        "looked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Fighting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 74.59,
+      "start_time": 54.2,
+      "end_time": 59.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The security guard put the pistol on his waist.",
+      "scene_zone": "unknown",
+      "event_text": "From 54.2s to 59.0s, the security guard put the pistol on his waist.",
+      "keywords": [
+        "security",
+        "guard",
+        "put",
+        "pistol",
+        "waist"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Fighting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 74.59,
+      "start_time": 50.2,
+      "end_time": 73.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The security guard placed the pistol on the chair and paced.",
+      "scene_zone": "unknown",
+      "event_text": "From 50.2s to 73.0s, the security guard placed the pistol on the chair and paced.",
+      "keywords": [
+        "security",
+        "guard",
+        "placed",
+        "pistol",
+        "chair",
+        "paced"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    }
+  ]
+}

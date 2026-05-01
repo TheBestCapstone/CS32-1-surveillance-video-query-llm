@@ -1,0 +1,72 @@
+{
+  "video_id": "Explosion009_x264",
+  "duration": 36.7,
+  "events": [
+    {
+      "video_id": "Explosion009_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 36.7,
+      "start_time": 0.0,
+      "end_time": 7.2,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two men, one is smoking and the other is walking around.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 7.2s, two men, one is smoking and the other is walking around.",
+      "keywords": [
+        "two",
+        "men",
+        "one",
+        "smoking",
+        "other",
+        "walking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Explosion009_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 36.7,
+      "start_time": 7.2,
+      "end_time": 19.3,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A burst of flames spread quickly next to them, and the four men left quickly.",
+      "scene_zone": "unknown",
+      "event_text": "From 7.2s to 19.3s, a burst of flames spread quickly next to them, and the four men left quickly.",
+      "keywords": [
+        "burst",
+        "flames",
+        "spread",
+        "quickly",
+        "four",
+        "men"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    }
+  ]
+}

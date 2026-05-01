@@ -1,0 +1,72 @@
+{
+  "video_id": "RoadAccidents137_x264",
+  "duration": 33.56,
+  "events": [
+    {
+      "video_id": "RoadAccidents137_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 33.56,
+      "start_time": 1.8,
+      "end_time": 16.4,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car knocked down four people at a corner, and one person got up and ran away.",
+      "scene_zone": "unknown",
+      "event_text": "From 1.8s to 16.4s, a white car knocked down four people at a corner, and one person got up and ran away.",
+      "keywords": [
+        "white",
+        "car",
+        "knocked",
+        "down",
+        "four",
+        "people"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "RoadAccidents137_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 33.56,
+      "start_time": 16.4,
+      "end_time": 31.3,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; Several people got up and ran away, the white car left, and one person was chasing.",
+      "scene_zone": "unknown",
+      "event_text": "From 16.4s to 31.3s, several people got up and ran away, the white car left, and one person was chasing.",
+      "keywords": [
+        "several",
+        "people",
+        "got",
+        "ran",
+        "away",
+        "white"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    }
+  ]
+}

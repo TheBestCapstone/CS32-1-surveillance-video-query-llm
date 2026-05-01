@@ -1,0 +1,231 @@
+{
+  "video_id": "Shooting046_x264",
+  "duration": 169.6,
+  "events": [
+    {
+      "video_id": "Shooting046_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 169.6,
+      "start_time": 0.0,
+      "end_time": 32.9,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Low activity; A man in a blue plaid shirt is withdrawing money, and a man in black clothes is standing next to him.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 32.9s, a man in a blue plaid shirt is withdrawing money, and a man in black clothes is standing next to him.",
+      "keywords": [
+        "man",
+        "blue",
+        "plaid",
+        "shirt",
+        "withdrawing",
+        "money"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Shooting046_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 169.6,
+      "start_time": 32.9,
+      "end_time": 71.8,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Low activity; The man in the blue plaid shirt lowered his waist to pick up something. The man in black clothes looked at the man in the plaid shirt.",
+      "scene_zone": "unknown",
+      "event_text": "From 32.9s to 71.8s, the man in the blue plaid shirt lowered his waist to pick up something. The man in black clothes looked at the man in the plaid shirt.",
+      "keywords": [
+        "man",
+        "blue",
+        "plaid",
+        "shirt",
+        "lowered",
+        "waist"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Shooting046_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 169.6,
+      "start_time": 71.8,
+      "end_time": 134.4,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in a black helmet walked into the room and walked to the cash machine.",
+      "scene_zone": "room",
+      "event_text": "From 71.8s to 134.4s, a man in a black helmet walked into the room and walked to the cash machine.",
+      "keywords": [
+        "man",
+        "black",
+        "helmet",
+        "walked",
+        "room",
+        "cash"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Shooting046_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 169.6,
+      "start_time": 134.4,
+      "end_time": 145.6,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in blue plaid shirt took out a gun and pointed at the man in black clothes.",
+      "scene_zone": "unknown",
+      "event_text": "From 134.4s to 145.6s, the man in blue plaid shirt took out a gun and pointed at the man in black clothes.",
+      "keywords": [
+        "man",
+        "blue",
+        "plaid",
+        "shirt",
+        "took",
+        "out"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Shooting046_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 169.6,
+      "start_time": 137.4,
+      "end_time": 144.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man in the helmet shrank up.",
+      "scene_zone": "unknown",
+      "event_text": "From 137.4s to 144.6s, the man in the helmet shrank up.",
+      "keywords": [
+        "man",
+        "helmet",
+        "shrank"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Shooting046_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 169.6,
+      "start_time": 150.6,
+      "end_time": 156.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Helmet man passing by.",
+      "scene_zone": "unknown",
+      "event_text": "From 150.6s to 156.2s, helmet man passing by.",
+      "keywords": [
+        "helmet",
+        "man",
+        "passing"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Shooting046_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 169.6,
+      "start_time": 158.6,
+      "end_time": 168.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man next to him took out his gun and shot around.",
+      "scene_zone": "unknown",
+      "event_text": "From 158.6s to 168.2s, the man next to him took out his gun and shot around.",
+      "keywords": [
+        "man",
+        "him",
+        "took",
+        "out",
+        "gun",
+        "shot"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    }
+  ]
+}

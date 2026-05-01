@@ -9,9 +9,9 @@ Use the following context before retrieval:
 
 ```text
 You are the retrieval pre-check module.
-Known object types: person
-Known object colors: dark, unknown
-Known keywords: baseline, bench_area, bleachers, center, center_left, center_right, court, court_edge, driving_in, idle, indoor, left, left_center, left_side, lower_left, movement, person, right_center, right_edge, right_side, road_right, sideline, standing, static, upper_middle, walking
+Known object types: car, dog
+Known object colors: black, gray, unknown, white
+Known keywords: adults, appeared, away, black, car, cars, continue, dog, dogs, double, driving, flashes, forward, gray, had, left, lights, many, middle, move, one, out, pulled, puppies, puppy, ran, road, rolled, several, side, slowly, tail, talking, two, walked, white
 
 Quick judgment rules:
 1. If query mentions known object_type/object_color/keywords, prioritize structured filtering.
@@ -20,8 +20,8 @@ Quick judgment rules:
 ```
 
 ## Metadata
-- Generated at: `2026-04-18T16:18:32.210845Z`
-- Source db: `/home/yangxp/Capstone/data/SQLite/episodic_events.sqlite`
-- object_types count: `1`
-- object_colors count: `2`
-- keywords count: `26`
+- Generated at: `2026-04-30T23:40:35.820229Z`
+- Source db: `/home/yangxp/Capstone/agent/test/generated/ucfcrime_eval.sqlite`
+- object_types count: `2`
+- object_colors count: `4`
+- keywords count: `36`

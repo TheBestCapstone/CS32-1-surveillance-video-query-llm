@@ -1,0 +1,595 @@
+{
+  "video_id": "Vandalism033_x264",
+  "duration": 75.56,
+  "events": [
+    {
+      "video_id": "Vandalism033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 75.56,
+      "start_time": 0.0,
+      "end_time": 7.3,
+      "object_type": "unknown",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Two men in black jumped on the outside of the red fence of the yard and threw things into the yard.",
+      "scene_zone": "yard",
+      "event_text": "From 0.0s to 7.3s, two men in black jumped on the outside of the red fence of the yard and threw things into the yard.",
+      "keywords": [
+        "two",
+        "men",
+        "black",
+        "jumped",
+        "outside",
+        "red"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Vandalism033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 75.56,
+      "start_time": 10.9,
+      "end_time": 18.9,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man wearing gray clothes and covering his face with black cloth ran into the yard and threw things at the building.",
+      "scene_zone": "yard",
+      "event_text": "From 10.9s to 18.9s, a man wearing gray clothes and covering his face with black cloth ran into the yard and threw things at the building.",
+      "keywords": [
+        "man",
+        "wearing",
+        "gray",
+        "clothes",
+        "covering",
+        "face"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Vandalism033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 75.56,
+      "start_time": 15.9,
+      "end_time": 28.0,
+      "object_type": "unknown",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Two men in black clothes ran into the yard and threw things at the building.",
+      "scene_zone": "yard",
+      "event_text": "From 15.9s to 28.0s, two men in black clothes ran into the yard and threw things at the building.",
+      "keywords": [
+        "two",
+        "men",
+        "black",
+        "clothes",
+        "ran",
+        "yard"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Vandalism033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 75.56,
+      "start_time": 18.9,
+      "end_time": 20.9,
+      "object_type": "person",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; The man in gray clothes runs towards the wall.",
+      "scene_zone": "room",
+      "event_text": "From 18.9s to 20.9s, the man in gray clothes runs towards the wall.",
+      "keywords": [
+        "man",
+        "gray",
+        "clothes",
+        "runs",
+        "towards",
+        "wall"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Vandalism033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 75.56,
+      "start_time": 20.9,
+      "end_time": 28.0,
+      "object_type": "person",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; The man in gray climbed out of the wall and ran forward along the wall.",
+      "scene_zone": "room",
+      "event_text": "From 20.9s to 28.0s, the man in gray climbed out of the wall and ran forward along the wall.",
+      "keywords": [
+        "man",
+        "gray",
+        "climbed",
+        "out",
+        "wall",
+        "ran"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Vandalism033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 75.56,
+      "start_time": 22.9,
+      "end_time": 28.0,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A man in blue also threw things at the building within the wall.",
+      "scene_zone": "room",
+      "event_text": "From 22.9s to 28.0s, a man in blue also threw things at the building within the wall.",
+      "keywords": [
+        "man",
+        "blue",
+        "also",
+        "threw",
+        "things",
+        "building"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Vandalism033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 75.56,
+      "start_time": 28.0,
+      "end_time": 32.7,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The man in gray handed a small white bucket to a man in black in the yard through the black fence.",
+      "scene_zone": "yard",
+      "event_text": "From 28.0s to 32.7s, the man in gray handed a small white bucket to a man in black in the yard through the black fence.",
+      "keywords": [
+        "man",
+        "gray",
+        "handed",
+        "small",
+        "white",
+        "bucket"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Vandalism033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 75.56,
+      "start_time": 33.0,
+      "end_time": 36.7,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in black took the bucket and poured the contents into the building.",
+      "scene_zone": "unknown",
+      "event_text": "From 33.0s to 36.7s, the man in black took the bucket and poured the contents into the building.",
+      "keywords": [
+        "man",
+        "black",
+        "took",
+        "bucket",
+        "poured",
+        "contents"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Vandalism033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 75.56,
+      "start_time": 33.0,
+      "end_time": 34.7,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Another man in black walks towards the black wall.",
+      "scene_zone": "room",
+      "event_text": "From 33.0s to 34.7s, another man in black walks towards the black wall.",
+      "keywords": [
+        "another",
+        "man",
+        "black",
+        "walks",
+        "towards",
+        "wall"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Vandalism033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 75.56,
+      "start_time": 39.7,
+      "end_time": 59.8,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man in red is walking on the road outside the wall.",
+      "scene_zone": "road",
+      "event_text": "From 39.7s to 59.8s, a man in red is walking on the road outside the wall.",
+      "keywords": [
+        "man",
+        "red",
+        "walking",
+        "road",
+        "outside",
+        "wall"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Vandalism033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 75.56,
+      "start_time": 39.7,
+      "end_time": 47.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in black in the yard threw bricks at the red roof. The bricks rolled along the roof and fell to the ground. The man in black picked them up again.",
+      "scene_zone": "yard",
+      "event_text": "From 39.7s to 47.1s, the man in black in the yard threw bricks at the red roof. The bricks rolled along the roof and fell to the ground. The man in black picked them up again.",
+      "keywords": [
+        "man",
+        "black",
+        "yard",
+        "threw",
+        "bricks",
+        "red"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Vandalism033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 75.56,
+      "start_time": 51.1,
+      "end_time": 52.8,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car passed by,.",
+      "scene_zone": "unknown",
+      "event_text": "From 51.1s to 52.8s, a white car passed by,.",
+      "keywords": [
+        "white",
+        "car",
+        "passed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Vandalism033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 75.56,
+      "start_time": 47.1,
+      "end_time": 52.8,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black bent down in the yard and poured the objects in the small bucket.",
+      "scene_zone": "yard",
+      "event_text": "From 47.1s to 52.8s, a man in black bent down in the yard and poured the objects in the small bucket.",
+      "keywords": [
+        "man",
+        "black",
+        "bent",
+        "down",
+        "yard",
+        "poured"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Vandalism033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 75.56,
+      "start_time": 47.1,
+      "end_time": 59.8,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black kept throwing bricks towards the roof.",
+      "scene_zone": "unknown",
+      "event_text": "From 47.1s to 59.8s, a man in black kept throwing bricks towards the roof.",
+      "keywords": [
+        "man",
+        "black",
+        "kept",
+        "throwing",
+        "bricks",
+        "towards"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Vandalism033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 75.56,
+      "start_time": 59.8,
+      "end_time": 63.8,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in gray outside the black fence held the wall with his hand, lowered his head and then left.",
+      "scene_zone": "room",
+      "event_text": "From 59.8s to 63.8s, the man in gray outside the black fence held the wall with his hand, lowered his head and then left.",
+      "keywords": [
+        "man",
+        "gray",
+        "outside",
+        "black",
+        "fence",
+        "held"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    },
+    {
+      "video_id": "Vandalism033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 75.56,
+      "start_time": 62.8,
+      "end_time": 65.8,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black ran towards the corner of the yard in the direction where the man in gray left.",
+      "scene_zone": "yard",
+      "event_text": "From 62.8s to 65.8s, a man in black ran towards the corner of the yard in the direction where the man in gray left.",
+      "keywords": [
+        "man",
+        "black",
+        "ran",
+        "towards",
+        "corner",
+        "yard"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_16"
+    },
+    {
+      "video_id": "Vandalism033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 75.56,
+      "start_time": 74.3,
+      "end_time": 75.2,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car passed by on the road.",
+      "scene_zone": "road",
+      "event_text": "From 74.3s to 75.2s, a black car passed by on the road.",
+      "keywords": [
+        "black",
+        "car",
+        "passed",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_17"
+    },
+    {
+      "video_id": "Vandalism033_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 75.56,
+      "start_time": 70.3,
+      "end_time": 75.2,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black ran outside the yard to the middle of the road, threw a brick at the building in the yard and ran back.",
+      "scene_zone": "road",
+      "event_text": "From 70.3s to 75.2s, a man in black ran outside the yard to the middle of the road, threw a brick at the building in the yard and ran back.",
+      "keywords": [
+        "man",
+        "black",
+        "ran",
+        "outside",
+        "yard",
+        "middle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_18"
+    }
+  ]
+}

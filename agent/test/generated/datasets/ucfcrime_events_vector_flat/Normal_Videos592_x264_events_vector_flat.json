@@ -1,0 +1,198 @@
+{
+  "video_id": "Normal_Videos592_x264",
+  "duration": 85.75,
+  "events": [
+    {
+      "video_id": "Normal_Videos592_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 85.75,
+      "start_time": 0.0,
+      "end_time": 23.2,
+      "object_type": "unknown",
+      "object_color": "black",
+      "appearance_notes": "Observed event; In the parking lot, two women in black walked down and then left the camera.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 23.2s, in the parking lot, two women in black walked down and then left the camera.",
+      "keywords": [
+        "parking",
+        "lot",
+        "two",
+        "women",
+        "black",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos592_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 85.75,
+      "start_time": 18.0,
+      "end_time": 34.2,
+      "object_type": "car",
+      "object_color": "silver",
+      "appearance_notes": "High activity; A man in white walked out of the building on the left and went down the stairs and walked to the silver car on the left.",
+      "scene_zone": "unknown",
+      "event_text": "From 18.0s to 34.2s, a man in white walked out of the building on the left and went down the stairs and walked to the silver car on the left.",
+      "keywords": [
+        "man",
+        "white",
+        "walked",
+        "out",
+        "building",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos592_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 85.75,
+      "start_time": 34.2,
+      "end_time": 41.0,
+      "object_type": "car",
+      "object_color": "silver",
+      "appearance_notes": "High activity; The man in white enters the silver car,.",
+      "scene_zone": "unknown",
+      "event_text": "From 34.2s to 41.0s, the man in white enters the silver car,.",
+      "keywords": [
+        "man",
+        "white",
+        "enters",
+        "silver",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos592_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 85.75,
+      "start_time": 59.2,
+      "end_time": 69.0,
+      "object_type": "car",
+      "object_color": "silver",
+      "appearance_notes": "Observed event; The silver car drives towards the road below,.",
+      "scene_zone": "road",
+      "event_text": "From 59.2s to 69.0s, the silver car drives towards the road below,.",
+      "keywords": [
+        "silver",
+        "car",
+        "drives",
+        "towards",
+        "road",
+        "below"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos592_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 85.75,
+      "start_time": 69.0,
+      "end_time": 85.0,
+      "object_type": "car",
+      "object_color": "silver",
+      "appearance_notes": "Observed event; Silver car reverses,.",
+      "scene_zone": "unknown",
+      "event_text": "From 69.0s to 85.0s, silver car reverses,.",
+      "keywords": [
+        "silver",
+        "car",
+        "reverses"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos592_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 85.75,
+      "start_time": 34.2,
+      "end_time": 85.0,
+      "object_type": "person",
+      "object_color": "yellow",
+      "appearance_notes": "Low activity; A woman in yellow is standing on the roadside.",
+      "scene_zone": "road",
+      "event_text": "From 34.2s to 85.0s, a woman in yellow is standing on the roadside.",
+      "keywords": [
+        "woman",
+        "yellow",
+        "standing",
+        "roadside"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    }
+  ]
+}

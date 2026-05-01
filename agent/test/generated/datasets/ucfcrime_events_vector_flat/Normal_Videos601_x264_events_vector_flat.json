@@ -1,0 +1,138 @@
+{
+  "video_id": "Normal_Videos601_x264",
+  "duration": 82.48,
+  "events": [
+    {
+      "video_id": "Normal_Videos601_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 82.48,
+      "start_time": 0.0,
+      "end_time": 15.2,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; Several vehicles passed by on a highway. A black car and a white truck stopped at the intersection on the left side of the highway.",
+      "scene_zone": "road",
+      "event_text": "From 0.0s to 15.2s, several vehicles passed by on a highway. A black car and a white truck stopped at the intersection on the left side of the highway.",
+      "keywords": [
+        "several",
+        "vehicles",
+        "passed",
+        "highway",
+        "black",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos601_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 82.48,
+      "start_time": 15.2,
+      "end_time": 35.4,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Then the black car drove towards the road below, and another black car on the left stopped at the intersection.",
+      "scene_zone": "road",
+      "event_text": "From 15.2s to 35.4s, then the black car drove towards the road below, and another black car on the left stopped at the intersection.",
+      "keywords": [
+        "black",
+        "car",
+        "drove",
+        "towards",
+        "road",
+        "below"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos601_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 82.48,
+      "start_time": 35.4,
+      "end_time": 78.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several pedestrians walked across the sidewalk, and several vehicles on the upper left drove to the road on the right.",
+      "scene_zone": "road",
+      "event_text": "From 35.4s to 78.0s, several pedestrians walked across the sidewalk, and several vehicles on the upper left drove to the road on the right.",
+      "keywords": [
+        "several",
+        "pedestrians",
+        "walked",
+        "across",
+        "sidewalk",
+        "vehicles"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos601_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 82.48,
+      "start_time": 78.0,
+      "end_time": 82.0,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; The black car and the white truck are driving towards the right road, followed by several vehicles.",
+      "scene_zone": "road",
+      "event_text": "From 78.0s to 82.0s, the black car and the white truck are driving towards the right road, followed by several vehicles.",
+      "keywords": [
+        "black",
+        "car",
+        "white",
+        "truck",
+        "driving",
+        "towards"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    }
+  ]
+}

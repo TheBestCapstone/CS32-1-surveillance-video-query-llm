@@ -1,0 +1,136 @@
+{
+  "video_id": "Burglary068_x264",
+  "duration": 22.18,
+  "events": [
+    {
+      "video_id": "Burglary068_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 22.18,
+      "start_time": 1.6,
+      "end_time": 5.0,
+      "object_type": "unknown",
+      "object_color": "black",
+      "appearance_notes": "High activity; Two African-American men opened the door and entered the mobile phone store, wearing black and white vests and jeans respectively.",
+      "scene_zone": "room",
+      "event_text": "From 1.6s to 5.0s, two African-American men opened the door and entered the mobile phone store, wearing black and white vests and jeans respectively.",
+      "keywords": [
+        "two",
+        "african",
+        "american",
+        "men",
+        "opened",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Burglary068_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 22.18,
+      "start_time": 6.9,
+      "end_time": 10.2,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in a white vest forcibly unplugged the three mobile phones displayed on the counter on one side.",
+      "scene_zone": "store",
+      "event_text": "From 6.9s to 10.2s, the man in a white vest forcibly unplugged the three mobile phones displayed on the counter on one side.",
+      "keywords": [
+        "man",
+        "white",
+        "vest",
+        "forcibly",
+        "unplugged",
+        "three"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Burglary068_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 22.18,
+      "start_time": 10.9,
+      "end_time": 16.2,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Then quickly fled the store from the gate.",
+      "scene_zone": "store",
+      "event_text": "From 10.9s to 16.2s, then quickly fled the store from the gate.",
+      "keywords": [
+        "quickly",
+        "fled",
+        "store",
+        "gate"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Burglary068_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 22.18,
+      "start_time": 19.8,
+      "end_time": 20.2,
+      "object_type": "unknown",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Two men appeared again leaving the scene with connected mobile phones in their hands.",
+      "scene_zone": "unknown",
+      "event_text": "From 19.8s to 20.2s, two men appeared again leaving the scene with connected mobile phones in their hands.",
+      "keywords": [
+        "two",
+        "men",
+        "appeared",
+        "again",
+        "leaving",
+        "scene"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    }
+  ]
+}

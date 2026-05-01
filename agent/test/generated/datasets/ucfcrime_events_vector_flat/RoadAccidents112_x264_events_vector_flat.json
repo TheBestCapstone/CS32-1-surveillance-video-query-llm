@@ -1,0 +1,72 @@
+{
+  "video_id": "RoadAccidents112_x264",
+  "duration": 31.03,
+  "events": [
+    {
+      "video_id": "RoadAccidents112_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 31.03,
+      "start_time": 3.0,
+      "end_time": 12.2,
+      "object_type": "car",
+      "object_color": "green",
+      "appearance_notes": "Observed event; A green car drove onto the median in the middle of the road and drove away.",
+      "scene_zone": "road",
+      "event_text": "From 3.0s to 12.2s, a green car drove onto the median in the middle of the road and drove away.",
+      "keywords": [
+        "green",
+        "car",
+        "drove",
+        "onto",
+        "median",
+        "middle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "RoadAccidents112_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 31.03,
+      "start_time": 12.2,
+      "end_time": 31.0,
+      "object_type": "unknown",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A water column appeared in the middle of the isolation belt, and a lot of water flowed onto the road.",
+      "scene_zone": "road",
+      "event_text": "From 12.2s to 31.0s, a water column appeared in the middle of the isolation belt, and a lot of water flowed onto the road.",
+      "keywords": [
+        "water",
+        "column",
+        "appeared",
+        "middle",
+        "isolation",
+        "belt"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    }
+  ]
+}

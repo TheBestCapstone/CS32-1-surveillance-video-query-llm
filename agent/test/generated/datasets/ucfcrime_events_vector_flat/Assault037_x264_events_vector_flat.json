@@ -1,0 +1,104 @@
+{
+  "video_id": "Assault037_x264",
+  "duration": 106.98,
+  "events": [
+    {
+      "video_id": "Assault037_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 106.98,
+      "start_time": 12.2,
+      "end_time": 17.8,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A large group of people gathered at a bar.",
+      "scene_zone": "unknown",
+      "event_text": "From 12.2s to 17.8s, a large group of people gathered at a bar.",
+      "keywords": [
+        "large",
+        "group",
+        "people",
+        "gathered",
+        "bar"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Assault037_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 106.98,
+      "start_time": 20.6,
+      "end_time": 25.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; A man and the woman next to him got into a fight. The man punched the woman in the face and left.",
+      "scene_zone": "unknown",
+      "event_text": "From 20.6s to 25.6s, a man and the woman next to him got into a fight. The man punched the woman in the face and left.",
+      "keywords": [
+        "man",
+        "woman",
+        "him",
+        "got",
+        "fight",
+        "punched"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Assault037_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 106.98,
+      "start_time": 25.8,
+      "end_time": 80.7,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The injured woman’s friends gathered around to comfort her and check the injury.",
+      "scene_zone": "unknown",
+      "event_text": "From 25.8s to 80.7s, the injured woman’s friends gathered around to comfort her and check the injury.",
+      "keywords": [
+        "injured",
+        "woman",
+        "friends",
+        "gathered",
+        "around",
+        "comfort"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "video_id": "Normal_Videos546_x264",
+  "duration": 111.97,
+  "events": [
+    {
+      "video_id": "Normal_Videos546_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 111.97,
+      "start_time": 4.2,
+      "end_time": 31.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; In the residential area, a pedestrian walks to the right on the left road, the camera moves with it, and the pedestrian walks to the pavilion on the right.",
+      "scene_zone": "road",
+      "event_text": "From 4.2s to 31.0s, in the residential area, a pedestrian walks to the right on the left road, the camera moves with it, and the pedestrian walks to the pavilion on the right.",
+      "keywords": [
+        "residential",
+        "area",
+        "pedestrian",
+        "walks",
+        "right",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos546_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 111.97,
+      "start_time": 28.2,
+      "end_time": 49.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A car is driving towards the highway above. The camera follows the car until it turns left.",
+      "scene_zone": "unknown",
+      "event_text": "From 28.2s to 49.3s, a car is driving towards the highway above. The camera follows the car until it turns left.",
+      "keywords": [
+        "car",
+        "driving",
+        "towards",
+        "highway",
+        "above",
+        "camera"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos546_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 111.97,
+      "start_time": 54.3,
+      "end_time": 58.2,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The lens enlarges the field of view, a pedestrian on the left is walking towards the left road.",
+      "scene_zone": "road",
+      "event_text": "From 54.3s to 58.2s, the lens enlarges the field of view, a pedestrian on the left is walking towards the left road.",
+      "keywords": [
+        "lens",
+        "enlarges",
+        "field",
+        "view",
+        "pedestrian",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos546_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 111.97,
+      "start_time": 58.2,
+      "end_time": 68.1,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A man in blue clothes below is riding a bicycle towards the left road.",
+      "scene_zone": "road",
+      "event_text": "From 58.2s to 68.1s, a man in blue clothes below is riding a bicycle towards the left road.",
+      "keywords": [
+        "man",
+        "blue",
+        "clothes",
+        "below",
+        "riding",
+        "bicycle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos546_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 111.97,
+      "start_time": 69.2,
+      "end_time": 111.3,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black walks towards the road above, the camera follows the man in black.",
+      "scene_zone": "road",
+      "event_text": "From 69.2s to 111.3s, a man in black walks towards the road above, the camera follows the man in black.",
+      "keywords": [
+        "man",
+        "black",
+        "walks",
+        "towards",
+        "road",
+        "above"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    }
+  ]
+}

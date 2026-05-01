@@ -1,0 +1,135 @@
+{
+  "video_id": "Arson031_x264",
+  "duration": 96.13,
+  "events": [
+    {
+      "video_id": "Arson031_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 96.13,
+      "start_time": 1.5,
+      "end_time": 35.2,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; Two people dressed in white rushed into the house from the door and poured gasoline everywhere.",
+      "scene_zone": "room",
+      "event_text": "From 1.5s to 35.2s, two people dressed in white rushed into the house from the door and poured gasoline everywhere.",
+      "keywords": [
+        "two",
+        "people",
+        "dressed",
+        "white",
+        "rushed",
+        "house"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Arson031_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 96.13,
+      "start_time": 35.1,
+      "end_time": 40.9,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The two ran to the door and left.",
+      "scene_zone": "room",
+      "event_text": "From 35.1s to 40.9s, the two ran to the door and left.",
+      "keywords": [
+        "two",
+        "ran",
+        "door",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Arson031_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 96.13,
+      "start_time": 45.1,
+      "end_time": 50.5,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; The gasoline was lit at the door and continued to burn.",
+      "scene_zone": "room",
+      "event_text": "From 45.1s to 50.5s, the gasoline was lit at the door and continued to burn.",
+      "keywords": [
+        "gasoline",
+        "lit",
+        "door",
+        "continued",
+        "burn"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Arson031_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 96.13,
+      "start_time": 58.3,
+      "end_time": 81.6,
+      "object_type": "unknown",
+      "object_color": "white",
+      "appearance_notes": "High activity; Two men in white sprinkled gasoline on the ground and table and set it on fire.",
+      "scene_zone": "room",
+      "event_text": "From 58.3s to 81.6s, two men in white sprinkled gasoline on the ground and table and set it on fire.",
+      "keywords": [
+        "two",
+        "men",
+        "white",
+        "sprinkled",
+        "gasoline",
+        "ground"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    }
+  ]
+}

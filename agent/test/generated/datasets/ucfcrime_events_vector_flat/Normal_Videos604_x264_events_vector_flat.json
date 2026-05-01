@@ -1,0 +1,72 @@
+{
+  "video_id": "Normal_Videos604_x264",
+  "duration": 48.11,
+  "events": [
+    {
+      "video_id": "Normal_Videos604_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 48.11,
+      "start_time": 0.0,
+      "end_time": 13.3,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Low activity; On a road, several passers-by walked down and then walked left or right. A red car on the right entered the road and parked on the side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 0.0s to 13.3s, on a road, several passers-by walked down and then walked left or right. A red car on the right entered the road and parked on the side of the road.",
+      "keywords": [
+        "road",
+        "several",
+        "passers",
+        "walked",
+        "down",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos604_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 48.11,
+      "start_time": 13.3,
+      "end_time": 35.1,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A woman in black walked to the left on the sidewalk on the right. The driver of the red car got out of the car and walked to the road on the left.",
+      "scene_zone": "road",
+      "event_text": "From 13.3s to 35.1s, a woman in black walked to the left on the sidewalk on the right. The driver of the red car got out of the car and walked to the road on the left.",
+      "keywords": [
+        "woman",
+        "black",
+        "walked",
+        "left",
+        "sidewalk",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    }
+  ]
+}

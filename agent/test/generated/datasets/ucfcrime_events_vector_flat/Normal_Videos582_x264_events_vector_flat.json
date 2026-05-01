@@ -1,0 +1,334 @@
+{
+  "video_id": "Normal_Videos582_x264",
+  "duration": 141.57,
+  "events": [
+    {
+      "video_id": "Normal_Videos582_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 141.57,
+      "start_time": 0.0,
+      "end_time": 24.1,
+      "object_type": "unknown",
+      "object_color": "white",
+      "appearance_notes": "High activity; The picture is on a road. A white van on the right side drives to the left side of the road and waits to turn around. Then it turns around and drives to the right side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 0.0s to 24.1s, the picture is on a road. A white van on the right side drives to the left side of the road and waits to turn around. Then it turns around and drives to the right side of the road.",
+      "keywords": [
+        "picture",
+        "road",
+        "white",
+        "van",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos582_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 141.57,
+      "start_time": 2.5,
+      "end_time": 31.3,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; A red car on the right side of the road, many black cars and a white box truck drove across the left side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2.5s to 31.3s, a red car on the right side of the road, many black cars and a white box truck drove across the left side of the road.",
+      "keywords": [
+        "red",
+        "car",
+        "right",
+        "side",
+        "road",
+        "many"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos582_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 141.57,
+      "start_time": 37.4,
+      "end_time": 52.4,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; The white vehicle above the road drove to the right side of the road, and then a silver car and a black car drove to the right side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 37.4s to 52.4s, the white vehicle above the road drove to the right side of the road, and then a silver car and a black car drove to the right side of the road.",
+      "keywords": [
+        "white",
+        "vehicle",
+        "above",
+        "road",
+        "drove",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos582_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 141.57,
+      "start_time": 44.1,
+      "end_time": 55.3,
+      "object_type": "unknown",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Two men in black clothes and black pants in the lower left corner of the camera walked to the bottom of the sidewalk.",
+      "scene_zone": "unknown",
+      "event_text": "From 44.1s to 55.3s, two men in black clothes and black pants in the lower left corner of the camera walked to the bottom of the sidewalk.",
+      "keywords": [
+        "two",
+        "men",
+        "black",
+        "clothes",
+        "pants",
+        "lower"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos582_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 141.57,
+      "start_time": 54.1,
+      "end_time": 63.5,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Under the road, a man with a yellow hat, black clothes and black pants pulling a black suitcase walked to the left side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 54.1s to 63.5s, under the road, a man with a yellow hat, black clothes and black pants pulling a black suitcase walked to the left side of the road.",
+      "keywords": [
+        "road",
+        "man",
+        "yellow",
+        "hat",
+        "black",
+        "clothes"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos582_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 141.57,
+      "start_time": 71.3,
+      "end_time": 80.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; At night, a car drove in on the right side, turned around on the left side, and drove to the right side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 71.3s to 80.2s, at night, a car drove in on the right side, turned around on the left side, and drove to the right side of the road.",
+      "keywords": [
+        "night",
+        "car",
+        "drove",
+        "right",
+        "side",
+        "turned"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos582_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 141.57,
+      "start_time": 82.4,
+      "end_time": 84.5,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A taxi on the left drives to the right.",
+      "scene_zone": "unknown",
+      "event_text": "From 82.4s to 84.5s, a taxi on the left drives to the right.",
+      "keywords": [
+        "taxi",
+        "left",
+        "drives",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos582_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 141.57,
+      "start_time": 87.0,
+      "end_time": 106.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Three cars on the right turned to the top of the road, and two cars drove to the left side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 87.0s to 106.2s, three cars on the right turned to the top of the road, and two cars drove to the left side of the road.",
+      "keywords": [
+        "three",
+        "cars",
+        "right",
+        "turned",
+        "top",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Normal_Videos582_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 141.57,
+      "start_time": 108.5,
+      "end_time": 119.3,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Low activity; The picture is in an office. Two men are working in front of the computer. A red car parked outside the window.",
+      "scene_zone": "unknown",
+      "event_text": "From 108.5s to 119.3s, the picture is in an office. Two men are working in front of the computer. A red car parked outside the window.",
+      "keywords": [
+        "picture",
+        "office",
+        "two",
+        "men",
+        "working",
+        "front"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Normal_Videos582_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 141.57,
+      "start_time": 117.3,
+      "end_time": 122.4,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The computer screen in front of the man wearing a brown shirt turns blue.",
+      "scene_zone": "unknown",
+      "event_text": "From 117.3s to 122.4s, the computer screen in front of the man wearing a brown shirt turns blue.",
+      "keywords": [
+        "computer",
+        "screen",
+        "front",
+        "man",
+        "wearing",
+        "brown"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    }
+  ]
+}

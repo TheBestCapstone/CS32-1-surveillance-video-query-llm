@@ -1,0 +1,133 @@
+{
+  "video_id": "Normal_Videos_932_x264",
+  "duration": 59.51,
+  "events": [
+    {
+      "video_id": "Normal_Videos_932_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 59.51,
+      "start_time": 1.3,
+      "end_time": 9.3,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man in green entered the store, and then a man also entered the store.",
+      "scene_zone": "store",
+      "event_text": "From 1.3s to 9.3s, a man in green entered the store, and then a man also entered the store.",
+      "keywords": [
+        "man",
+        "green",
+        "entered",
+        "store",
+        "also"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos_932_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 59.51,
+      "start_time": 9.8,
+      "end_time": 22.5,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car drove over to refuel.",
+      "scene_zone": "unknown",
+      "event_text": "From 9.8s to 22.5s, a black car drove over to refuel.",
+      "keywords": [
+        "black",
+        "car",
+        "drove",
+        "refuel"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos_932_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 59.51,
+      "start_time": 40.5,
+      "end_time": 53.5,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The staff climbed up the ladder to search.",
+      "scene_zone": "bedside",
+      "event_text": "From 40.5s to 53.5s, the staff climbed up the ladder to search.",
+      "keywords": [
+        "staff",
+        "climbed",
+        "ladder",
+        "search"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos_932_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 59.51,
+      "start_time": 53.5,
+      "end_time": 57.9,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The staff got off the ladder and walked out of the house.",
+      "scene_zone": "unknown",
+      "event_text": "From 53.5s to 57.9s, the staff got off the ladder and walked out of the house.",
+      "keywords": [
+        "staff",
+        "got",
+        "off",
+        "ladder",
+        "walked",
+        "out"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    }
+  ]
+}

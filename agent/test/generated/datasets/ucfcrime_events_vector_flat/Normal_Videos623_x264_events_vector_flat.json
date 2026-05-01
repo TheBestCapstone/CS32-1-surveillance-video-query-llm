@@ -1,0 +1,699 @@
+{
+  "video_id": "Normal_Videos623_x264",
+  "duration": 374.26,
+  "events": [
+    {
+      "video_id": "Normal_Videos623_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 374.26,
+      "start_time": 0.0,
+      "end_time": 4.5,
+      "object_type": "car",
+      "object_color": "silver",
+      "appearance_notes": "High activity; A woman in a white top and black pants in the center of the screen walks to the right side of the screen, and a silver car drives past the right side of the screen on the road.",
+      "scene_zone": "road",
+      "event_text": "From 0.0s to 4.5s, a woman in a white top and black pants in the center of the screen walks to the right side of the screen, and a silver car drives past the right side of the screen on the road.",
+      "keywords": [
+        "woman",
+        "white",
+        "top",
+        "black",
+        "pants",
+        "center"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos623_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 374.26,
+      "start_time": 20.3,
+      "end_time": 24.4,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white pickup truck drives past the right side of the screen and drives past the upper left corner of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 20.3s to 24.4s, a white pickup truck drives past the right side of the screen and drives past the upper left corner of the screen.",
+      "keywords": [
+        "white",
+        "pickup",
+        "truck",
+        "drives",
+        "past",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos623_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 374.26,
+      "start_time": 29.5,
+      "end_time": 39.5,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car drives past the right side of the screen and drives past the upper left corner of the screen, followed by a silver car.",
+      "scene_zone": "unknown",
+      "event_text": "From 29.5s to 39.5s, a white car drives past the right side of the screen and drives past the upper left corner of the screen, followed by a silver car.",
+      "keywords": [
+        "white",
+        "car",
+        "drives",
+        "past",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos623_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 374.26,
+      "start_time": 39.5,
+      "end_time": 42.2,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black pickup truck passes by on the left and two men on bicycles pass by on the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 39.5s to 42.2s, a black pickup truck passes by on the left and two men on bicycles pass by on the right side of the screen.",
+      "keywords": [
+        "black",
+        "pickup",
+        "truck",
+        "passes",
+        "left",
+        "two"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos623_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 374.26,
+      "start_time": 44.5,
+      "end_time": 51.1,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; On the left side of the screen, a man in blue rides a red motorcycle and a white pickup truck drives past the right side of the screen, and a pickup truck on the right drives past the left side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 44.5s to 51.1s, on the left side of the screen, a man in blue rides a red motorcycle and a white pickup truck drives past the right side of the screen, and a pickup truck on the right drives past the left side of the screen.",
+      "keywords": [
+        "left",
+        "side",
+        "screen",
+        "man",
+        "blue",
+        "rides"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos623_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 374.26,
+      "start_time": 71.3,
+      "end_time": 82.4,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white truck drives past on the left side of the screen. A large white object is pulled behind the truck and drives past the right side of the screen. There are vehicles passing each other on both sides.",
+      "scene_zone": "unknown",
+      "event_text": "From 71.3s to 82.4s, a white truck drives past on the left side of the screen. A large white object is pulled behind the truck and drives past the right side of the screen. There are vehicles passing each other on both sides.",
+      "keywords": [
+        "white",
+        "truck",
+        "drives",
+        "past",
+        "left",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos623_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 374.26,
+      "start_time": 96.2,
+      "end_time": 103.5,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white pickup truck on the right side of the screen drives past the left side.",
+      "scene_zone": "unknown",
+      "event_text": "From 96.2s to 103.5s, a white pickup truck on the right side of the screen drives past the left side.",
+      "keywords": [
+        "white",
+        "pickup",
+        "truck",
+        "right",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos623_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 374.26,
+      "start_time": 115.1,
+      "end_time": 120.4,
+      "object_type": "car",
+      "object_color": "silver",
+      "appearance_notes": "Observed event; A large black pickup truck and a silver car passed by on the left side of the screen and passed by on the right side.",
+      "scene_zone": "unknown",
+      "event_text": "From 115.1s to 120.4s, a large black pickup truck and a silver car passed by on the left side of the screen and passed by on the right side.",
+      "keywords": [
+        "large",
+        "black",
+        "pickup",
+        "truck",
+        "silver",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Normal_Videos623_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 374.26,
+      "start_time": 123.4,
+      "end_time": 130.2,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car and a motorcycle passed by on the left side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 123.4s to 130.2s, a black car and a motorcycle passed by on the left side of the screen.",
+      "keywords": [
+        "black",
+        "car",
+        "motorcycle",
+        "passed",
+        "left",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Normal_Videos623_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 374.26,
+      "start_time": 132.1,
+      "end_time": 136.5,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A blue car passes by on the right side of the screen and drives to the left.",
+      "scene_zone": "unknown",
+      "event_text": "From 132.1s to 136.5s, a blue car passes by on the right side of the screen and drives to the left.",
+      "keywords": [
+        "blue",
+        "car",
+        "passes",
+        "right",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Normal_Videos623_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 374.26,
+      "start_time": 137.2,
+      "end_time": 156.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; On the right side of the screen, three cars are driving past to the left, and on the left side, an electric tricycle is driving to the right.",
+      "scene_zone": "unknown",
+      "event_text": "From 137.2s to 156.3s, on the right side of the screen, three cars are driving past to the left, and on the left side, an electric tricycle is driving to the right.",
+      "keywords": [
+        "right",
+        "side",
+        "screen",
+        "three",
+        "cars",
+        "driving"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Normal_Videos623_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 374.26,
+      "start_time": 157.1,
+      "end_time": 181.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There are many cars passing by on the left and right sides of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 157.1s to 181.1s, there are many cars passing by on the left and right sides of the screen.",
+      "keywords": [
+        "many",
+        "cars",
+        "passing",
+        "left",
+        "right",
+        "sides"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Normal_Videos623_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 374.26,
+      "start_time": 191.4,
+      "end_time": 196.3,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white pickup truck passes by on the right side of the screen and heads to the left.",
+      "scene_zone": "unknown",
+      "event_text": "From 191.4s to 196.3s, a white pickup truck passes by on the right side of the screen and heads to the left.",
+      "keywords": [
+        "white",
+        "pickup",
+        "truck",
+        "passes",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Normal_Videos623_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 374.26,
+      "start_time": 219.0,
+      "end_time": 233.2,
+      "object_type": "car",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; A silver car passes by on the left side of the screen, a blue tractor pulling goods passes by on the right side, followed by a sedan and a yellow car behind it.",
+      "scene_zone": "unknown",
+      "event_text": "From 219.0s to 233.2s, a silver car passes by on the left side of the screen, a blue tractor pulling goods passes by on the right side, followed by a sedan and a yellow car behind it.",
+      "keywords": [
+        "silver",
+        "car",
+        "passes",
+        "left",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Normal_Videos623_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 374.26,
+      "start_time": 235.2,
+      "end_time": 261.5,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Many cars and a small number of motorcycles pass by on both sides of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 235.2s to 261.5s, many cars and a small number of motorcycles pass by on both sides of the screen.",
+      "keywords": [
+        "many",
+        "cars",
+        "small",
+        "number",
+        "motorcycles",
+        "pass"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    },
+    {
+      "video_id": "Normal_Videos623_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 374.26,
+      "start_time": 262.3,
+      "end_time": 290.2,
+      "object_type": "car",
+      "object_color": "silver",
+      "appearance_notes": "Observed event; Two adults, a man, a woman and a child came to the top of the screen. They walked to the center of the screen. The three got into the silver car on the right side of the screen, and then drove away from the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 262.3s to 290.2s, two adults, a man, a woman and a child came to the top of the screen. They walked to the center of the screen. The three got into the silver car on the right side of the screen, and then drove away from the right side of the screen.",
+      "keywords": [
+        "two",
+        "adults",
+        "man",
+        "woman",
+        "child",
+        "came"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_16"
+    },
+    {
+      "video_id": "Normal_Videos623_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 374.26,
+      "start_time": 281.2,
+      "end_time": 290.2,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; A woman wearing a white top, black pants and an orange backpack walks past the bottom of the screen, and a woman wearing black clothes and black pants walks above, holding paper in her hand.",
+      "scene_zone": "unknown",
+      "event_text": "From 281.2s to 290.2s, a woman wearing a white top, black pants and an orange backpack walks past the bottom of the screen, and a woman wearing black clothes and black pants walks above, holding paper in her hand.",
+      "keywords": [
+        "woman",
+        "wearing",
+        "white",
+        "top",
+        "black",
+        "pants"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_17"
+    },
+    {
+      "video_id": "Normal_Videos623_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 374.26,
+      "start_time": 290.2,
+      "end_time": 308.4,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; Two women riding bicycles on the right and a woman wearing white jeans walked to the left of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 290.2s to 308.4s, two women riding bicycles on the right and a woman wearing white jeans walked to the left of the screen.",
+      "keywords": [
+        "two",
+        "women",
+        "riding",
+        "bicycles",
+        "right",
+        "woman"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_18"
+    },
+    {
+      "video_id": "Normal_Videos623_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 374.26,
+      "start_time": 306.1,
+      "end_time": 311.1,
+      "object_type": "unknown",
+      "object_color": "pink",
+      "appearance_notes": "Observed event; A cyclist in a pink shirt walked by on the right side,.",
+      "scene_zone": "unknown",
+      "event_text": "From 306.1s to 311.1s, a cyclist in a pink shirt walked by on the right side,.",
+      "keywords": [
+        "cyclist",
+        "pink",
+        "shirt",
+        "walked",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_19"
+    },
+    {
+      "video_id": "Normal_Videos623_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 374.26,
+      "start_time": 311.1,
+      "end_time": 341.1,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white pickup truck on the right side with a wooden shelf in the back turned around from across the road, reversed and stopped in the lower right corner of the screen.",
+      "scene_zone": "road",
+      "event_text": "From 311.1s to 341.1s, a white pickup truck on the right side with a wooden shelf in the back turned around from across the road, reversed and stopped in the lower right corner of the screen.",
+      "keywords": [
+        "white",
+        "pickup",
+        "truck",
+        "right",
+        "side",
+        "wooden"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_20"
+    },
+    {
+      "video_id": "Normal_Videos623_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 374.26,
+      "start_time": 357.4,
+      "end_time": 368.5,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A woman in a blue dress and green bag at the bottom of the screen walks to the left side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 357.4s to 368.5s, a woman in a blue dress and green bag at the bottom of the screen walks to the left side of the screen.",
+      "keywords": [
+        "woman",
+        "blue",
+        "dress",
+        "green",
+        "bag",
+        "bottom"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_21"
+    }
+  ]
+}

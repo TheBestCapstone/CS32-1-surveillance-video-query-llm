@@ -1,0 +1,166 @@
+{
+  "video_id": "RoadAccidents118_x264",
+  "duration": 32.33,
+  "events": [
+    {
+      "video_id": "RoadAccidents118_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 32.33,
+      "start_time": 5.0,
+      "end_time": 6.0,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A yellow car hit a white car.",
+      "scene_zone": "unknown",
+      "event_text": "From 5.0s to 6.0s, a yellow car hit a white car.",
+      "keywords": [
+        "yellow",
+        "car",
+        "hit",
+        "white"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "RoadAccidents118_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 32.33,
+      "start_time": 6.0,
+      "end_time": 6.3,
+      "object_type": "car",
+      "object_color": "yellow",
+      "appearance_notes": "High activity; The yellow car hit the woman who was walking to the zebra crossing.",
+      "scene_zone": "unknown",
+      "event_text": "From 6.0s to 6.3s, the yellow car hit the woman who was walking to the zebra crossing.",
+      "keywords": [
+        "yellow",
+        "car",
+        "hit",
+        "woman",
+        "who",
+        "walking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "RoadAccidents118_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 32.33,
+      "start_time": 7.0,
+      "end_time": 11.3,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The white car was hit on the sidewalk.",
+      "scene_zone": "unknown",
+      "event_text": "From 7.0s to 11.3s, the white car was hit on the sidewalk.",
+      "keywords": [
+        "white",
+        "car",
+        "hit",
+        "sidewalk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "RoadAccidents118_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 32.33,
+      "start_time": 7.0,
+      "end_time": 28.0,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The door of the white car opened, and a child, a woman in white and a bald man came out.",
+      "scene_zone": "room",
+      "event_text": "From 7.0s to 28.0s, the door of the white car opened, and a child, a woman in white and a bald man came out.",
+      "keywords": [
+        "door",
+        "white",
+        "car",
+        "opened",
+        "child",
+        "woman"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "RoadAccidents118_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 32.33,
+      "start_time": 28.0,
+      "end_time": 32.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A pedestrian walked up to the woman and touched her head.",
+      "scene_zone": "unknown",
+      "event_text": "From 28.0s to 32.0s, a pedestrian walked up to the woman and touched her head.",
+      "keywords": [
+        "pedestrian",
+        "walked",
+        "woman",
+        "touched",
+        "head"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    }
+  ]
+}

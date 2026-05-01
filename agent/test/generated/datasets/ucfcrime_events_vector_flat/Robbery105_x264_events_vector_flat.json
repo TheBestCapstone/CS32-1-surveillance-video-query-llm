@@ -1,0 +1,269 @@
+{
+  "video_id": "Robbery105_x264",
+  "duration": 73.85,
+  "events": [
+    {
+      "video_id": "Robbery105_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 73.85,
+      "start_time": 6.0,
+      "end_time": 12.7,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A woman wandered in front of the counter, and a man walked behind the counter with a phone under his shoulder to talk to her.",
+      "scene_zone": "store",
+      "event_text": "From 6.0s to 12.7s, a woman wandered in front of the counter, and a man walked behind the counter with a phone under his shoulder to talk to her.",
+      "keywords": [
+        "woman",
+        "wandered",
+        "front",
+        "counter",
+        "man",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Robbery105_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 73.85,
+      "start_time": 14.1,
+      "end_time": 22.1,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; Two men entered from the door, a man in blue broke into the counter, and the man at the counter ran into the house.",
+      "scene_zone": "room",
+      "event_text": "From 14.1s to 22.1s, two men entered from the door, a man in blue broke into the counter, and the man at the counter ran into the house.",
+      "keywords": [
+        "two",
+        "men",
+        "entered",
+        "door",
+        "man",
+        "blue"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Robbery105_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 73.85,
+      "start_time": 19.7,
+      "end_time": 23.5,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The man in blue followed him into the house.",
+      "scene_zone": "unknown",
+      "event_text": "From 19.7s to 23.5s, the man in blue followed him into the house.",
+      "keywords": [
+        "man",
+        "blue",
+        "followed",
+        "him",
+        "house"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Robbery105_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 73.85,
+      "start_time": 22.7,
+      "end_time": 32.5,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; Backpack The man in white took off his backpack and put it on the counter to load things.",
+      "scene_zone": "store",
+      "event_text": "From 22.7s to 32.5s, backpack The man in white took off his backpack and put it on the counter to load things.",
+      "keywords": [
+        "backpack",
+        "man",
+        "white",
+        "took",
+        "off",
+        "put"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Robbery105_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 73.85,
+      "start_time": 33.0,
+      "end_time": 35.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man coming out of the house pointed a gun at the two of them.",
+      "scene_zone": "unknown",
+      "event_text": "From 33.0s to 35.6s, the man coming out of the house pointed a gun at the two of them.",
+      "keywords": [
+        "man",
+        "coming",
+        "out",
+        "house",
+        "pointed",
+        "gun"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Robbery105_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 73.85,
+      "start_time": 35.7,
+      "end_time": 40.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man threw the contents of the bag and the two fled out the door.",
+      "scene_zone": "room",
+      "event_text": "From 35.7s to 40.5s, the man threw the contents of the bag and the two fled out the door.",
+      "keywords": [
+        "man",
+        "threw",
+        "contents",
+        "bag",
+        "two",
+        "fled"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Robbery105_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 73.85,
+      "start_time": 37.7,
+      "end_time": 41.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man with the gun chased him out, followed by a little boy.",
+      "scene_zone": "unknown",
+      "event_text": "From 37.7s to 41.1s, the man with the gun chased him out, followed by a little boy.",
+      "keywords": [
+        "man",
+        "gun",
+        "chased",
+        "him",
+        "out",
+        "followed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Robbery105_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 73.85,
+      "start_time": 43.8,
+      "end_time": 54.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman pulled the child back into the house to hug and comfort her, and observed the situation outside the door.",
+      "scene_zone": "room",
+      "event_text": "From 43.8s to 54.8s, the woman pulled the child back into the house to hug and comfort her, and observed the situation outside the door.",
+      "keywords": [
+        "woman",
+        "pulled",
+        "child",
+        "back",
+        "house",
+        "hug"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    }
+  ]
+}

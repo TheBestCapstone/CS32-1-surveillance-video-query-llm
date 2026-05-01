@@ -1,0 +1,39 @@
+{
+  "video_id": "Normal_Videos609_x264",
+  "duration": 20.13,
+  "events": [
+    {
+      "video_id": "Normal_Videos609_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 20.13,
+      "start_time": 0.0,
+      "end_time": 20.0,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "High activity; There are several people on a road. Two people below are pushing a blue cart upwards. A man comes to the middle of the road.",
+      "scene_zone": "road",
+      "event_text": "From 0.0s to 20.0s, there are several people on a road. Two people below are pushing a blue cart upwards. A man comes to the middle of the road.",
+      "keywords": [
+        "several",
+        "people",
+        "road",
+        "two",
+        "below",
+        "pushing"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    }
+  ]
+}

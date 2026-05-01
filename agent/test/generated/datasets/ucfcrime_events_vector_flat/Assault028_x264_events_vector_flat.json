@@ -1,0 +1,134 @@
+{
+  "video_id": "Assault028_x264",
+  "duration": 87.87,
+  "events": [
+    {
+      "video_id": "Assault028_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 87.87,
+      "start_time": 13.7,
+      "end_time": 20.7,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; A man in white walks towards a black car on the snowy road.",
+      "scene_zone": "road",
+      "event_text": "From 13.7s to 20.7s, a man in white walks towards a black car on the snowy road.",
+      "keywords": [
+        "man",
+        "white",
+        "walks",
+        "towards",
+        "black",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Assault028_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 87.87,
+      "start_time": 20.3,
+      "end_time": 30.3,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; At this time, two men in white coats got out of a white car opposite and beat the man.",
+      "scene_zone": "unknown",
+      "event_text": "From 20.3s to 30.3s, at this time, two men in white coats got out of a white car opposite and beat the man.",
+      "keywords": [
+        "time",
+        "two",
+        "men",
+        "white",
+        "coats",
+        "got"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Assault028_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 87.87,
+      "start_time": 30.1,
+      "end_time": 33.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man then left.",
+      "scene_zone": "unknown",
+      "event_text": "From 30.1s to 33.5s, the man then left.",
+      "keywords": [
+        "man",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Assault028_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 87.87,
+      "start_time": 50.7,
+      "end_time": 70.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Someone called for help and two passers-by helped up the man who was knocked to the ground.",
+      "scene_zone": "unknown",
+      "event_text": "From 50.7s to 70.8s, someone called for help and two passers-by helped up the man who was knocked to the ground.",
+      "keywords": [
+        "someone",
+        "called",
+        "help",
+        "two",
+        "passers",
+        "helped"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    }
+  ]
+}

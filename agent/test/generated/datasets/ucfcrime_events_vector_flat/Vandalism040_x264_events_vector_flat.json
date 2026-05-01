@@ -1,0 +1,236 @@
+{
+  "video_id": "Vandalism040_x264",
+  "duration": 34.6,
+  "events": [
+    {
+      "video_id": "Vandalism040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 34.6,
+      "start_time": 0.0,
+      "end_time": 4.2,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black without a hat pointed a watering can at a gray door in a room.",
+      "scene_zone": "room",
+      "event_text": "From 0.0s to 4.2s, a man in black without a hat pointed a watering can at a gray door in a room.",
+      "keywords": [
+        "man",
+        "black",
+        "without",
+        "hat",
+        "pointed",
+        "watering"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Vandalism040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 34.6,
+      "start_time": 0.0,
+      "end_time": 4.2,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in black with the hat walked to him and opened the door.",
+      "scene_zone": "room",
+      "event_text": "From 0.0s to 4.2s, the man in black with the hat walked to him and opened the door.",
+      "keywords": [
+        "man",
+        "black",
+        "hat",
+        "walked",
+        "him",
+        "opened"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Vandalism040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 34.6,
+      "start_time": 4.2,
+      "end_time": 14.9,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in black with a hat spray paints on a green device,.",
+      "scene_zone": "unknown",
+      "event_text": "From 4.2s to 14.9s, the man in black with a hat spray paints on a green device,.",
+      "keywords": [
+        "man",
+        "black",
+        "hat",
+        "spray",
+        "paints",
+        "green"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Vandalism040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 34.6,
+      "start_time": 6.2,
+      "end_time": 14.9,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The man in black without the hat dropped the white object in his hand and walked to the man in black with the hat, and then the two left together.",
+      "scene_zone": "unknown",
+      "event_text": "From 6.2s to 14.9s, the man in black without the hat dropped the white object in his hand and walked to the man in black with the hat, and then the two left together.",
+      "keywords": [
+        "man",
+        "black",
+        "without",
+        "hat",
+        "dropped",
+        "white"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Vandalism040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 34.6,
+      "start_time": 14.9,
+      "end_time": 20.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in black without a hat ran from one corner of the room to the opposite corner of the room,.",
+      "scene_zone": "room",
+      "event_text": "From 14.9s to 20.1s, the man in black without a hat ran from one corner of the room to the opposite corner of the room,.",
+      "keywords": [
+        "man",
+        "black",
+        "without",
+        "hat",
+        "ran",
+        "one"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Vandalism040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 34.6,
+      "start_time": 20.9,
+      "end_time": 24.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in black with the hat ran over with the man in black without the hat.",
+      "scene_zone": "unknown",
+      "event_text": "From 20.9s to 24.1s, the man in black with the hat ran over with the man in black without the hat.",
+      "keywords": [
+        "man",
+        "black",
+        "hat",
+        "ran",
+        "without"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Vandalism040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 34.6,
+      "start_time": 24.1,
+      "end_time": 34.0,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Two men in black wearing hats and a man in black without hats walked into the room and walked around before leaving.",
+      "scene_zone": "room",
+      "event_text": "From 24.1s to 34.0s, two men in black wearing hats and a man in black without hats walked into the room and walked around before leaving.",
+      "keywords": [
+        "two",
+        "men",
+        "black",
+        "wearing",
+        "hats",
+        "man"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    }
+  ]
+}

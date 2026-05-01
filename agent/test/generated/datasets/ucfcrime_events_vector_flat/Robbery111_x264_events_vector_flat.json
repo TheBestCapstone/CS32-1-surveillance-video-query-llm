@@ -1,0 +1,171 @@
+{
+  "video_id": "Robbery111_x264",
+  "duration": 190.32,
+  "events": [
+    {
+      "video_id": "Robbery111_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 190.32,
+      "start_time": 4.6,
+      "end_time": 15.8,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man in white walked around and talked to the man at the counter.",
+      "scene_zone": "store",
+      "event_text": "From 4.6s to 15.8s, a man in white walked around and talked to the man at the counter.",
+      "keywords": [
+        "man",
+        "white",
+        "walked",
+        "around",
+        "talked",
+        "counter"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Robbery111_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 190.32,
+      "start_time": 19.4,
+      "end_time": 31.6,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; After the man in white sat on the chair, four more men came in at the door.",
+      "scene_zone": "room",
+      "event_text": "From 19.4s to 31.6s, after the man in white sat on the chair, four more men came in at the door.",
+      "keywords": [
+        "man",
+        "white",
+        "sat",
+        "chair",
+        "four",
+        "more"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Robbery111_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 190.32,
+      "start_time": 34.7,
+      "end_time": 75.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several people stood up and started to take things from the counter.",
+      "scene_zone": "store",
+      "event_text": "From 34.7s to 75.5s, several people stood up and started to take things from the counter.",
+      "keywords": [
+        "several",
+        "people",
+        "stood",
+        "started",
+        "take",
+        "things"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Robbery111_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 190.32,
+      "start_time": 89.6,
+      "end_time": 150.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several people continued to search the cabinets and counters in the store.",
+      "scene_zone": "store",
+      "event_text": "From 89.6s to 150.0s, several people continued to search the cabinets and counters in the store.",
+      "keywords": [
+        "several",
+        "people",
+        "continued",
+        "search",
+        "cabinets",
+        "counters"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Robbery111_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 190.32,
+      "start_time": 158.0,
+      "end_time": 187.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several people filled their backpacks and left from the door.",
+      "scene_zone": "room",
+      "event_text": "From 158.0s to 187.2s, several people filled their backpacks and left from the door.",
+      "keywords": [
+        "several",
+        "people",
+        "filled",
+        "backpacks",
+        "left",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    }
+  ]
+}

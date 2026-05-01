@@ -1,0 +1,359 @@
+{
+  "video_id": "Normal_Videos_925_x264",
+  "duration": 257.58,
+  "events": [
+    {
+      "video_id": "Normal_Videos_925_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 257.58,
+      "start_time": 0.1,
+      "end_time": 13.1,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Someone is walking in the dark night.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.1s to 13.1s, someone is walking in the dark night.",
+      "keywords": [
+        "someone",
+        "walking",
+        "dark",
+        "night"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos_925_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 257.58,
+      "start_time": 14.6,
+      "end_time": 16.9,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A car drove past in the dark night.",
+      "scene_zone": "unknown",
+      "event_text": "From 14.6s to 16.9s, a car drove past in the dark night.",
+      "keywords": [
+        "car",
+        "drove",
+        "past",
+        "dark",
+        "night"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos_925_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 257.58,
+      "start_time": 31.6,
+      "end_time": 32.9,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A car drove past in the dark night.",
+      "scene_zone": "unknown",
+      "event_text": "From 31.6s to 32.9s, a car drove past in the dark night.",
+      "keywords": [
+        "car",
+        "drove",
+        "past",
+        "dark",
+        "night"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos_925_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 257.58,
+      "start_time": 34.3,
+      "end_time": 40.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There is an old man walking in the dark night.",
+      "scene_zone": "unknown",
+      "event_text": "From 34.3s to 40.3s, there is an old man walking in the dark night.",
+      "keywords": [
+        "old",
+        "man",
+        "walking",
+        "dark",
+        "night"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos_925_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 257.58,
+      "start_time": 39.6,
+      "end_time": 40.9,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A car drove past in the dark night.",
+      "scene_zone": "unknown",
+      "event_text": "From 39.6s to 40.9s, a car drove past in the dark night.",
+      "keywords": [
+        "car",
+        "drove",
+        "past",
+        "dark",
+        "night"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos_925_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 257.58,
+      "start_time": 132.9,
+      "end_time": 146.9,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two cars drove past in the dark night.",
+      "scene_zone": "unknown",
+      "event_text": "From 132.9s to 146.9s, two cars drove past in the dark night.",
+      "keywords": [
+        "two",
+        "cars",
+        "drove",
+        "past",
+        "dark",
+        "night"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos_925_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 257.58,
+      "start_time": 148.4,
+      "end_time": 150.4,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two cars drove past in the dark night.",
+      "scene_zone": "unknown",
+      "event_text": "From 148.4s to 150.4s, two cars drove past in the dark night.",
+      "keywords": [
+        "two",
+        "cars",
+        "drove",
+        "past",
+        "dark",
+        "night"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos_925_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 257.58,
+      "start_time": 189.2,
+      "end_time": 195.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A person appears in a car in the dark night.",
+      "scene_zone": "unknown",
+      "event_text": "From 189.2s to 195.2s, a person appears in a car in the dark night.",
+      "keywords": [
+        "person",
+        "appears",
+        "car",
+        "dark",
+        "night"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Normal_Videos_925_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 257.58,
+      "start_time": 204.0,
+      "end_time": 212.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Many people got out of the car in the dark night.",
+      "scene_zone": "unknown",
+      "event_text": "From 204.0s to 212.0s, many people got out of the car in the dark night.",
+      "keywords": [
+        "many",
+        "people",
+        "got",
+        "out",
+        "car",
+        "dark"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Normal_Videos_925_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 257.58,
+      "start_time": 212.3,
+      "end_time": 222.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Three people stood in front of the car in the dark night.",
+      "scene_zone": "unknown",
+      "event_text": "From 212.3s to 222.3s, three people stood in front of the car in the dark night.",
+      "keywords": [
+        "three",
+        "people",
+        "stood",
+        "front",
+        "car",
+        "dark"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Normal_Videos_925_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 257.58,
+      "start_time": 251.7,
+      "end_time": 256.8,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A car is driving in the distance.",
+      "scene_zone": "unknown",
+      "event_text": "From 251.7s to 256.8s, a car is driving in the distance.",
+      "keywords": [
+        "car",
+        "driving",
+        "distance"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "video_id": "Robbery109_x264",
+  "duration": 100.84,
+  "events": [
+    {
+      "video_id": "Robbery109_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 100.84,
+      "start_time": 2.6,
+      "end_time": 13.9,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black broke into the counter, followed by a man in black.",
+      "scene_zone": "store",
+      "event_text": "From 2.6s to 13.9s, a man in black broke into the counter, followed by a man in black.",
+      "keywords": [
+        "man",
+        "black",
+        "broke",
+        "counter",
+        "followed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Robbery109_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 100.84,
+      "start_time": 17.0,
+      "end_time": 27.1,
+      "object_type": "unknown",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Two men in black drove several employees into the house.",
+      "scene_zone": "unknown",
+      "event_text": "From 17.0s to 27.1s, two men in black drove several employees into the house.",
+      "keywords": [
+        "two",
+        "men",
+        "black",
+        "drove",
+        "several",
+        "employees"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Robbery109_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 100.84,
+      "start_time": 29.7,
+      "end_time": 65.6,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The two men drove the employees away and made them squat together.",
+      "scene_zone": "unknown",
+      "event_text": "From 29.7s to 65.6s, the two men drove the employees away and made them squat together.",
+      "keywords": [
+        "two",
+        "men",
+        "drove",
+        "employees",
+        "away",
+        "made"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Robbery109_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 100.84,
+      "start_time": 73.1,
+      "end_time": 84.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The two of them finished loading things in front of the counter and fled out the door.",
+      "scene_zone": "room",
+      "event_text": "From 73.1s to 84.0s, the two of them finished loading things in front of the counter and fled out the door.",
+      "keywords": [
+        "two",
+        "finished",
+        "loading",
+        "things",
+        "front",
+        "counter"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    }
+  ]
+}

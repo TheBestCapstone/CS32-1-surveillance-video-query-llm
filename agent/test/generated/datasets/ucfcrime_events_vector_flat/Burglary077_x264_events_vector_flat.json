@@ -1,0 +1,334 @@
+{
+  "video_id": "Burglary077_x264",
+  "duration": 63.58,
+  "events": [
+    {
+      "video_id": "Burglary077_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 63.58,
+      "start_time": 1.7,
+      "end_time": 6.0,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A group of people poured into the gun store,.",
+      "scene_zone": "store",
+      "event_text": "From 1.7s to 6.0s, a group of people poured into the gun store,.",
+      "keywords": [
+        "group",
+        "people",
+        "poured",
+        "gun",
+        "store"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Burglary077_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 63.58,
+      "start_time": 1.7,
+      "end_time": 6.0,
+      "object_type": "unknown",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Two masked men in black ran inside,.",
+      "scene_zone": "unknown",
+      "event_text": "From 1.7s to 6.0s, two masked men in black ran inside,.",
+      "keywords": [
+        "two",
+        "masked",
+        "men",
+        "black",
+        "ran",
+        "inside"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Burglary077_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 63.58,
+      "start_time": 1.7,
+      "end_time": 6.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There is another group of people gathering at a counter outside.",
+      "scene_zone": "store",
+      "event_text": "From 1.7s to 6.0s, there is another group of people gathering at a counter outside.",
+      "keywords": [
+        "another",
+        "group",
+        "people",
+        "gathering",
+        "counter",
+        "outside"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Burglary077_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 63.58,
+      "start_time": 8.1,
+      "end_time": 22.7,
+      "object_type": "unknown",
+      "object_color": "red",
+      "appearance_notes": "Observed event; 7 or 8 men gathered outside and began to move inside. Some of them used tools to break the glass cabinet.",
+      "scene_zone": "unknown",
+      "event_text": "From 8.1s to 22.7s, 7 or 8 men gathered outside and began to move inside. Some of them used tools to break the glass cabinet.",
+      "keywords": [
+        "men",
+        "gathered",
+        "outside",
+        "began",
+        "move",
+        "inside"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Burglary077_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 63.58,
+      "start_time": 8.1,
+      "end_time": 22.7,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Someone took out the pistol displayed in the cabinet and put it into his pocket.",
+      "scene_zone": "unknown",
+      "event_text": "From 8.1s to 22.7s, someone took out the pistol displayed in the cabinet and put it into his pocket.",
+      "keywords": [
+        "someone",
+        "took",
+        "out",
+        "pistol",
+        "displayed",
+        "cabinet"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Burglary077_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 63.58,
+      "start_time": 8.1,
+      "end_time": 17.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; At the same time, a masked man ran out,.",
+      "scene_zone": "unknown",
+      "event_text": "From 8.1s to 17.7s, at the same time, a masked man ran out,.",
+      "keywords": [
+        "same",
+        "time",
+        "masked",
+        "man",
+        "ran",
+        "out"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Burglary077_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 63.58,
+      "start_time": 18.1,
+      "end_time": 22.7,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; ran out of the store holding 3 or 4 rifles.",
+      "scene_zone": "store",
+      "event_text": "From 18.1s to 22.7s, ran out of the store holding 3 or 4 rifles.",
+      "keywords": [
+        "ran",
+        "out",
+        "store",
+        "holding",
+        "rifles"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Burglary077_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 63.58,
+      "start_time": 22.8,
+      "end_time": 41.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; People in the store continue to smash open the glass cabinets.",
+      "scene_zone": "store",
+      "event_text": "From 22.8s to 41.2s, people in the store continue to smash open the glass cabinets.",
+      "keywords": [
+        "people",
+        "store",
+        "continue",
+        "smash",
+        "open",
+        "glass"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Burglary077_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 63.58,
+      "start_time": 42.8,
+      "end_time": 51.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The person in the store took out the pistol inside and put it in his pocket.",
+      "scene_zone": "store",
+      "event_text": "From 42.8s to 51.2s, the person in the store took out the pistol inside and put it in his pocket.",
+      "keywords": [
+        "person",
+        "store",
+        "took",
+        "out",
+        "pistol",
+        "inside"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Burglary077_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 63.58,
+      "start_time": 52.8,
+      "end_time": 61.2,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Everyone in the store finally ran out of the store and left.",
+      "scene_zone": "store",
+      "event_text": "From 52.8s to 61.2s, everyone in the store finally ran out of the store and left.",
+      "keywords": [
+        "everyone",
+        "store",
+        "finally",
+        "ran",
+        "out",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    }
+  ]
+}

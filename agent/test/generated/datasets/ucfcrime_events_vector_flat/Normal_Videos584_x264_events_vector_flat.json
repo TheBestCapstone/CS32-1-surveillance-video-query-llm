@@ -1,0 +1,534 @@
+{
+  "video_id": "Normal_Videos584_x264",
+  "duration": 299.45,
+  "events": [
+    {
+      "video_id": "Normal_Videos584_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.45,
+      "start_time": 0.0,
+      "end_time": 11.5,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The picture is in a parking lot. There are many cars. In the center of the parking lot, there is a silver car, a black car and a motorcycle. The three cars drive through the upper right corner of the parking lot in sequence.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 11.5s, the picture is in a parking lot. There are many cars. In the center of the parking lot, there is a silver car, a black car and a motorcycle. The three cars drive through the upper right corner of the parking lot in sequence.",
+      "keywords": [
+        "picture",
+        "parking",
+        "lot",
+        "many",
+        "cars",
+        "center"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos584_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.45,
+      "start_time": 9.2,
+      "end_time": 29.1,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A black woman with a top on the left side of the red vehicle walks into the screen and then walks to the top of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 9.2s to 29.1s, a black woman with a top on the left side of the red vehicle walks into the screen and then walks to the top of the parking lot.",
+      "keywords": [
+        "black",
+        "woman",
+        "top",
+        "left",
+        "side",
+        "red"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos584_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.45,
+      "start_time": 15.9,
+      "end_time": 27.3,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The left side of the red car drove into a beige car, a red car and a black motorcycle, and drove past the upper right corner in turn.",
+      "scene_zone": "unknown",
+      "event_text": "From 15.9s to 27.3s, the left side of the red car drove into a beige car, a red car and a black motorcycle, and drove past the upper right corner in turn.",
+      "keywords": [
+        "left",
+        "side",
+        "red",
+        "car",
+        "drove",
+        "beige"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos584_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.45,
+      "start_time": 26.2,
+      "end_time": 48.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Five vehicles above the parking lot drove to the right, and a motorcycle on the left drove to the upper right corner.",
+      "scene_zone": "unknown",
+      "event_text": "From 26.2s to 48.1s, five vehicles above the parking lot drove to the right, and a motorcycle on the left drove to the upper right corner.",
+      "keywords": [
+        "five",
+        "vehicles",
+        "above",
+        "parking",
+        "lot",
+        "drove"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos584_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.45,
+      "start_time": 51.5,
+      "end_time": 54.4,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black SUV drove into the left side and then left the right side.",
+      "scene_zone": "unknown",
+      "event_text": "From 51.5s to 54.4s, a black SUV drove into the left side and then left the right side.",
+      "keywords": [
+        "black",
+        "suv",
+        "drove",
+        "left",
+        "side",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos584_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.45,
+      "start_time": 67.2,
+      "end_time": 79.2,
+      "object_type": "car",
+      "object_color": "silver",
+      "appearance_notes": "Observed event; Two silver cars on the left drove past the upper right corner of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 67.2s to 79.2s, two silver cars on the left drove past the upper right corner of the parking lot.",
+      "keywords": [
+        "two",
+        "silver",
+        "cars",
+        "left",
+        "drove",
+        "past"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos584_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.45,
+      "start_time": 66.5,
+      "end_time": 96.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Five cars headed by an orange SUV in the upper left corner of the parking lot drove past the right side in sequence.",
+      "scene_zone": "unknown",
+      "event_text": "From 66.5s to 96.3s, five cars headed by an orange SUV in the upper left corner of the parking lot drove past the right side in sequence.",
+      "keywords": [
+        "five",
+        "cars",
+        "headed",
+        "orange",
+        "suv",
+        "upper"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos584_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.45,
+      "start_time": 97.1,
+      "end_time": 108.1,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A silver car and a red car passed by on the left side of the red car, and a woman in blue clothes walked across the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 97.1s to 108.1s, a silver car and a red car passed by on the left side of the red car, and a woman in blue clothes walked across the screen.",
+      "keywords": [
+        "silver",
+        "car",
+        "red",
+        "passed",
+        "left",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Normal_Videos584_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.45,
+      "start_time": 110.4,
+      "end_time": 122.4,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "High activity; A white van on the left side of the red car enters the screen, and a green taxi in the upper left corner drives to the right side of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 110.4s to 122.4s, a white van on the left side of the red car enters the screen, and a green taxi in the upper left corner drives to the right side of the parking lot.",
+      "keywords": [
+        "white",
+        "van",
+        "left",
+        "side",
+        "red",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Normal_Videos584_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.45,
+      "start_time": 160.2,
+      "end_time": 173.2,
+      "object_type": "car",
+      "object_color": "silver",
+      "appearance_notes": "High activity; A small silver car in the upper left corner of the parking lot and a white van driving in from the lower left corner drove past the right side.",
+      "scene_zone": "unknown",
+      "event_text": "From 160.2s to 173.2s, a small silver car in the upper left corner of the parking lot and a white van driving in from the lower left corner drove past the right side.",
+      "keywords": [
+        "small",
+        "silver",
+        "car",
+        "upper",
+        "left",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Normal_Videos584_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.45,
+      "start_time": 176.3,
+      "end_time": 206.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There are many vehicles passing by on the left side of the screen and disappearing on the right side.",
+      "scene_zone": "unknown",
+      "event_text": "From 176.3s to 206.3s, there are many vehicles passing by on the left side of the screen and disappearing on the right side.",
+      "keywords": [
+        "many",
+        "vehicles",
+        "passing",
+        "left",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Normal_Videos584_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.45,
+      "start_time": 213.4,
+      "end_time": 221.3,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; A white vehicle in the lower left corner drives past to the upper right corner, followed by a black car passing on the right.",
+      "scene_zone": "unknown",
+      "event_text": "From 213.4s to 221.3s, a white vehicle in the lower left corner drives past to the upper right corner, followed by a black car passing on the right.",
+      "keywords": [
+        "white",
+        "vehicle",
+        "lower",
+        "left",
+        "corner",
+        "drives"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Normal_Videos584_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.45,
+      "start_time": 232.1,
+      "end_time": 238.5,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "High activity; A woman in a pink top and white pants walked into the left side of the red car, and a truck with a red front and a white box on the left drove to the right side of the parking lot.",
+      "scene_zone": "unknown",
+      "event_text": "From 232.1s to 238.5s, a woman in a pink top and white pants walked into the left side of the red car, and a truck with a red front and a white box on the left drove to the right side of the parking lot.",
+      "keywords": [
+        "woman",
+        "pink",
+        "top",
+        "white",
+        "pants",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Normal_Videos584_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.45,
+      "start_time": 252.3,
+      "end_time": 274.4,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Three cars in the upper left corner of the parking lot drive to the right in sequence.",
+      "scene_zone": "unknown",
+      "event_text": "From 252.3s to 274.4s, three cars in the upper left corner of the parking lot drive to the right in sequence.",
+      "keywords": [
+        "three",
+        "cars",
+        "upper",
+        "left",
+        "corner",
+        "parking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Normal_Videos584_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.45,
+      "start_time": 274.2,
+      "end_time": 277.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; In the center of the parking lot, a man wearing a black helmet and a black jacket rode a motorcycle to the left side of the parking lot and left.",
+      "scene_zone": "unknown",
+      "event_text": "From 274.2s to 277.1s, in the center of the parking lot, a man wearing a black helmet and a black jacket rode a motorcycle to the left side of the parking lot and left.",
+      "keywords": [
+        "center",
+        "parking",
+        "lot",
+        "man",
+        "wearing",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    },
+    {
+      "video_id": "Normal_Videos584_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.45,
+      "start_time": 287.2,
+      "end_time": 297.4,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "High activity; On the left side of the red car, a woman in a black dress and a white bag walked to the center of the screen, opened the door of the silver car, sat in, and closed the door.",
+      "scene_zone": "room",
+      "event_text": "From 287.2s to 297.4s, on the left side of the red car, a woman in a black dress and a white bag walked to the center of the screen, opened the door of the silver car, sat in, and closed the door.",
+      "keywords": [
+        "left",
+        "side",
+        "red",
+        "car",
+        "woman",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_16"
+    }
+  ]
+}

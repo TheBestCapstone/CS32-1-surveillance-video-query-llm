@@ -1,0 +1,225 @@
+{
+  "video_id": "Shoplifting039_x264",
+  "duration": 93.46,
+  "events": [
+    {
+      "video_id": "Shoplifting039_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 93.46,
+      "start_time": 1.4,
+      "end_time": 12.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man walked into the house.",
+      "scene_zone": "unknown",
+      "event_text": "From 1.4s to 12.3s, a man walked into the house.",
+      "keywords": [
+        "man",
+        "walked",
+        "house"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Shoplifting039_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 93.46,
+      "start_time": 15.5,
+      "end_time": 30.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Another tall man walked into the room.",
+      "scene_zone": "room",
+      "event_text": "From 15.5s to 30.6s, another tall man walked into the room.",
+      "keywords": [
+        "another",
+        "tall",
+        "man",
+        "walked",
+        "room"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Shoplifting039_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 93.46,
+      "start_time": 30.6,
+      "end_time": 38.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man wearing glasses walked into the house.",
+      "scene_zone": "unknown",
+      "event_text": "From 30.6s to 38.7s, a man wearing glasses walked into the house.",
+      "keywords": [
+        "man",
+        "wearing",
+        "glasses",
+        "walked",
+        "house"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Shoplifting039_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 93.46,
+      "start_time": 48.6,
+      "end_time": 64.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man moved a box.",
+      "scene_zone": "unknown",
+      "event_text": "From 48.6s to 64.1s, the man moved a box.",
+      "keywords": [
+        "man",
+        "moved",
+        "box"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Shoplifting039_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 93.46,
+      "start_time": 64.9,
+      "end_time": 70.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man wearing glasses walked out.",
+      "scene_zone": "unknown",
+      "event_text": "From 64.9s to 70.8s, the man wearing glasses walked out.",
+      "keywords": [
+        "man",
+        "wearing",
+        "glasses",
+        "walked",
+        "out"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Shoplifting039_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 93.46,
+      "start_time": 71.9,
+      "end_time": 78.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man in short sleeves moved a box of things.",
+      "scene_zone": "unknown",
+      "event_text": "From 71.9s to 78.7s, the man in short sleeves moved a box of things.",
+      "keywords": [
+        "man",
+        "short",
+        "sleeves",
+        "moved",
+        "box",
+        "things"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Shoplifting039_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 93.46,
+      "start_time": 81.7,
+      "end_time": 93.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man walked out.",
+      "scene_zone": "unknown",
+      "event_text": "From 81.7s to 93.1s, a man walked out.",
+      "keywords": [
+        "man",
+        "walked",
+        "out"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    }
+  ]
+}

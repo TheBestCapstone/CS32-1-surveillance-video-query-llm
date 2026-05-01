@@ -1,6 +1,9 @@
 import re
 from typing import Any
 
+from db.config import get_graph_chroma_parent_collection, get_graph_chroma_path
+from tools.db_access import ChromaGateway
+
 
 DEFAULT_SEARCH_CONFIG = {
     "candidate_limit": 80,
@@ -132,6 +135,130 @@ def normalize_hybrid_rows(rows: list[dict[str, Any]] | None) -> list[dict[str, A
             }
         )
     return normalized
+
+
+def _dedupe_texts(values: list[Any]) -> list[str]:
+    seen: set[str] = set()
+    out: list[str] = []
+    for value in values:
+        text = str(value or "").strip()
+        if not text or text in seen:
+            continue
+        seen.add(text)
+        out.append(text)
+    return out
+
+
+def _safe_min_time(rows: list[dict[str, Any]]) -> float | None:
+    nums = [float(row["start_time"]) for row in rows if isinstance(row.get("start_time"), (int, float))]
+    return min(nums) if nums else None
+
+
+def _safe_max_time(rows: list[dict[str, Any]]) -> float | None:
+    nums = [float(row["end_time"]) for row in rows if isinstance(row.get("end_time"), (int, float))]
+    return max(nums) if nums else None
+
+
+def _aggregate_parent_fallback(video_id: str, child_rows: list[dict[str, Any]]) -> dict[str, Any]:
+    start_time = _safe_min_time(child_rows)
+    end_time = _safe_max_time(child_rows)
+    track_ids = _dedupe_texts([row.get("track_id") for row in child_rows])
+    child_event_ids = _dedupe_texts([row.get("event_id") for row in child_rows])
+    summaries = _dedupe_texts([row.get("event_summary_en") or row.get("event_text_en") for row in child_rows])
+    object_types = _dedupe_texts([row.get("object_type") for row in child_rows])
+    object_colors = _dedupe_texts([row.get("object_color_en") for row in child_rows])
+    scene_zones = _dedupe_texts([row.get("scene_zone_en") for row in child_rows])
+    best_distance = min([float(row["_distance"]) for row in child_rows if isinstance(row.get("_distance"), (int, float))], default=None)
+    best_hybrid = max([float(row["_hybrid_score"]) for row in child_rows if isinstance(row.get("_hybrid_score"), (int, float))], default=None)
+    summary_parts = [
+        f"Video {video_id}.",
+        f"This parent view summarizes {len(child_rows)} child results.",
+    ]
+    if object_types:
+        summary_parts.append("Object types: " + ", ".join(object_types) + ".")
+    if object_colors:
+        summary_parts.append("Object colors: " + ", ".join(object_colors) + ".")
+    if scene_zones:
+        summary_parts.append("Scene zones: " + ", ".join(scene_zones) + ".")
+    if summaries:
+        summary_parts.append("Child summaries: " + " ".join(summaries[:5]))
+    return {
+        "event_id": video_id,
+        "record_id": video_id,
+        "video_id": video_id,
+        "track_id": ",".join(track_ids[:8]) if track_ids else None,
+        "start_time": start_time,
+        "end_time": end_time,
+        "event_summary_en": " ".join(summary_parts),
+        "event_text_en": " ".join(summary_parts),
+        "_distance": best_distance,
+        "_hybrid_score": best_hybrid,
+        "_source_type": "parent_projection",
+        "_record_level": "parent",
+        "_parent_hit_count": len(child_rows),
+        "_child_event_ids": child_event_ids,
+        "_child_rows": child_rows,
+    }
+
+
+def project_rows_to_parent_context(rows: list[dict[str, Any]] | None, limit: int = 5) -> list[dict[str, Any]]:
+    grouped: dict[str, list[dict[str, Any]]] = {}
+    for row in rows or []:
+        video_id = str(row.get("video_id") or "").strip()
+        if not video_id:
+            continue
+        grouped.setdefault(video_id, []).append(row)
+    if not grouped:
+        return []
+
+    ordered_videos = sorted(
+        grouped.keys(),
+        key=lambda video_id: min(
+            [
+                float(item.get("_distance"))
+                for item in grouped[video_id]
+                if isinstance(item.get("_distance"), (int, float))
+            ]
+            or [999999.0]
+        ),
+    )
+
+    parent_lookup: dict[str, dict[str, Any]] = {}
+    try:
+        gateway = ChromaGateway(
+            db_path=get_graph_chroma_path(),
+            collection_name=get_graph_chroma_parent_collection(),
+        )
+        parent_records = gateway.get_records_by_ids(ordered_videos)
+        for item in parent_records:
+            parent_lookup[str(item.get("record_id"))] = item
+    except Exception:
+        parent_lookup = {}
+
+    out: list[dict[str, Any]] = []
+    for rank, video_id in enumerate(ordered_videos[:limit], start=1):
+        child_rows = grouped[video_id]
+        parent_record = parent_lookup.get(video_id)
+        if parent_record:
+            metadata = parent_record.get("metadata") if isinstance(parent_record.get("metadata"), dict) else {}
+            row = _aggregate_parent_fallback(video_id, child_rows)
+            parent_doc = str(parent_record.get("document") or "").strip()
+            if parent_doc:
+                row["event_summary_en"] = parent_doc
+                row["event_text_en"] = parent_doc
+            row["start_time"] = metadata.get("start_time", row.get("start_time"))
+            row["end_time"] = metadata.get("end_time", row.get("end_time"))
+            row["_parent_collection_hit"] = True
+            row["_parent_child_count"] = metadata.get("child_count")
+            row["_parent_scene_zones"] = metadata.get("scene_zones")
+            row["_parent_object_types"] = metadata.get("object_types")
+            row["_parent_object_colors"] = metadata.get("object_colors")
+        else:
+            row = _aggregate_parent_fallback(video_id, child_rows)
+            row["_parent_collection_hit"] = False
+        row["_parent_rank"] = rank
+        out.append(row)
+    return out
 
 
 def build_routing_metrics(

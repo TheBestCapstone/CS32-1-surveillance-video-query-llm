@@ -1,0 +1,39 @@
+{
+  "video_id": "Explosion019_x264",
+  "duration": 12.01,
+  "events": [
+    {
+      "video_id": "Explosion019_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 12.01,
+      "start_time": 0.0,
+      "end_time": 12.0,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; A man in blue was walking and suddenly something exploded, emitting white light and black smoke.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 12.0s, a man in blue was walking and suddenly something exploded, emitting white light and black smoke.",
+      "keywords": [
+        "man",
+        "blue",
+        "walking",
+        "suddenly",
+        "something",
+        "exploded"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "video_id": "Arson027_x264",
+  "duration": 90.0,
+  "events": [
+    {
+      "video_id": "Arson027_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 90.0,
+      "start_time": 1.3,
+      "end_time": 28.3,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man in a white vest came to the table in the yard and poured gasoline on the ground.",
+      "scene_zone": "room",
+      "event_text": "From 1.3s to 28.3s, a man in a white vest came to the table in the yard and poured gasoline on the ground.",
+      "keywords": [
+        "man",
+        "white",
+        "vest",
+        "came",
+        "table",
+        "yard"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Arson027_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 90.0,
+      "start_time": 0.7,
+      "end_time": 28.9,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in black has been at a table in the yard.",
+      "scene_zone": "room",
+      "event_text": "From 0.7s to 28.9s, the man in black has been at a table in the yard.",
+      "keywords": [
+        "man",
+        "black",
+        "has",
+        "been",
+        "table",
+        "yard"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Arson027_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 90.0,
+      "start_time": 29.3,
+      "end_time": 40.6,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The two set the table on fire and left.",
+      "scene_zone": "room",
+      "event_text": "From 29.3s to 40.6s, the two set the table on fire and left.",
+      "keywords": [
+        "two",
+        "set",
+        "table",
+        "fire",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Arson027_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 90.0,
+      "start_time": 55.4,
+      "end_time": 61.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; Several people threw burning torches at the door to a nearby house.",
+      "scene_zone": "room",
+      "event_text": "From 55.4s to 61.0s, several people threw burning torches at the door to a nearby house.",
+      "keywords": [
+        "several",
+        "people",
+        "threw",
+        "burning",
+        "torches",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Arson027_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 90.0,
+      "start_time": 80.0,
+      "end_time": 89.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The house has been smoking, and two people came out of the house.",
+      "scene_zone": "unknown",
+      "event_text": "From 80.0s to 89.4s, the house has been smoking, and two people came out of the house.",
+      "keywords": [
+        "house",
+        "has",
+        "been",
+        "smoking",
+        "two",
+        "people"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "video_id": "Normal_Videos555_x264",
+  "duration": 28.2,
+  "events": [
+    {
+      "video_id": "Normal_Videos555_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 28.2,
+      "start_time": 0.0,
+      "end_time": 6.1,
+      "object_type": "unknown",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; A gray van drives into the top of the video and stops in the middle of the video.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 6.1s, a gray van drives into the top of the video and stops in the middle of the video.",
+      "keywords": [
+        "gray",
+        "van",
+        "drives",
+        "top",
+        "video",
+        "stops"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos555_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 28.2,
+      "start_time": 7.2,
+      "end_time": 13.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The door opens, and two people get out of the driver's seat and the passenger seat.",
+      "scene_zone": "room",
+      "event_text": "From 7.2s to 13.3s, the door opens, and two people get out of the driver's seat and the passenger seat.",
+      "keywords": [
+        "door",
+        "opens",
+        "two",
+        "people",
+        "get",
+        "out"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos555_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 28.2,
+      "start_time": 13.3,
+      "end_time": 27.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two people slowly walked to the front of the van to talk.",
+      "scene_zone": "unknown",
+      "event_text": "From 13.3s to 27.2s, two people slowly walked to the front of the van to talk.",
+      "keywords": [
+        "two",
+        "people",
+        "slowly",
+        "walked",
+        "front",
+        "van"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    }
+  ]
+}

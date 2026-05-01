@@ -1,0 +1,39 @@
+{
+  "video_id": "Assault031_x264",
+  "duration": 25.23,
+  "events": [
+    {
+      "video_id": "Assault031_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 25.23,
+      "start_time": 7.9,
+      "end_time": 20.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; A group of people were beating each other, and someone was trying to break up the fight.",
+      "scene_zone": "unknown",
+      "event_text": "From 7.9s to 20.4s, a group of people were beating each other, and someone was trying to break up the fight.",
+      "keywords": [
+        "group",
+        "people",
+        "beating",
+        "each",
+        "other",
+        "someone"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    }
+  ]
+}

@@ -1,0 +1,336 @@
+{
+  "video_id": "Normal_Videos550_x264",
+  "duration": 282.8,
+  "events": [
+    {
+      "video_id": "Normal_Videos550_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 282.8,
+      "start_time": 0.0,
+      "end_time": 31.4,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; At an intersection, there are many cars heading towards the upper side of the screen and are blocked there.",
+      "scene_zone": "road",
+      "event_text": "From 0.0s to 31.4s, at an intersection, there are many cars heading towards the upper side of the screen and are blocked there.",
+      "keywords": [
+        "intersection",
+        "many",
+        "cars",
+        "heading",
+        "towards",
+        "upper"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos550_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 282.8,
+      "start_time": 31.4,
+      "end_time": 51.5,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Vehicles on the upper side of the screen pass through the intersection one after another and drive towards the lower side of the screen.",
+      "scene_zone": "road",
+      "event_text": "From 31.4s to 51.5s, vehicles on the upper side of the screen pass through the intersection one after another and drive towards the lower side of the screen.",
+      "keywords": [
+        "vehicles",
+        "upper",
+        "side",
+        "screen",
+        "pass",
+        "through"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos550_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 282.8,
+      "start_time": 51.5,
+      "end_time": 80.1,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A red bus appears on the upper side of the screen passing the intersection, and several people on the right side of the screen are riding bicycles towards the lower left corner of the screen.",
+      "scene_zone": "road",
+      "event_text": "From 51.5s to 80.1s, a red bus appears on the upper side of the screen passing the intersection, and several people on the right side of the screen are riding bicycles towards the lower left corner of the screen.",
+      "keywords": [
+        "red",
+        "bus",
+        "appears",
+        "upper",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos550_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 282.8,
+      "start_time": 80.1,
+      "end_time": 114.9,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The vehicles on the right side of the screen turn towards the upper left corner of the screen one after another.",
+      "scene_zone": "unknown",
+      "event_text": "From 80.1s to 114.9s, the vehicles on the right side of the screen turn towards the upper left corner of the screen one after another.",
+      "keywords": [
+        "vehicles",
+        "right",
+        "side",
+        "screen",
+        "turn",
+        "towards"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos550_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 282.8,
+      "start_time": 114.9,
+      "end_time": 126.7,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A blue truck on the right side of the screen drives towards the bottom of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 114.9s to 126.7s, a blue truck on the right side of the screen drives towards the bottom of the screen.",
+      "keywords": [
+        "blue",
+        "truck",
+        "right",
+        "side",
+        "screen",
+        "drives"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos550_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 282.8,
+      "start_time": 145.7,
+      "end_time": 166.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Vehicles in the lower left corner of the screen drive towards the upper right corner of the screen one after another.",
+      "scene_zone": "unknown",
+      "event_text": "From 145.7s to 166.1s, vehicles in the lower left corner of the screen drive towards the upper right corner of the screen one after another.",
+      "keywords": [
+        "vehicles",
+        "lower",
+        "left",
+        "corner",
+        "screen",
+        "drive"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos550_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 282.8,
+      "start_time": 166.1,
+      "end_time": 189.2,
+      "object_type": "unknown",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A red bus appears in the lower left corner of the screen and drives to the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 166.1s to 189.2s, a red bus appears in the lower left corner of the screen and drives to the right side of the screen.",
+      "keywords": [
+        "red",
+        "bus",
+        "appears",
+        "lower",
+        "left",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos550_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 282.8,
+      "start_time": 189.2,
+      "end_time": 220.9,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The vehicles on the upper side of the screen move toward the lower side of the screen and leave the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 189.2s to 220.9s, the vehicles on the upper side of the screen move toward the lower side of the screen and leave the screen.",
+      "keywords": [
+        "vehicles",
+        "upper",
+        "side",
+        "screen",
+        "move",
+        "toward"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Normal_Videos550_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 282.8,
+      "start_time": 239.2,
+      "end_time": 249.2,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The vehicles on the right side of the screen scattered towards the upper left corner of the screen, and then left the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 239.2s to 249.2s, the vehicles on the right side of the screen scattered towards the upper left corner of the screen, and then left the screen.",
+      "keywords": [
+        "vehicles",
+        "right",
+        "side",
+        "screen",
+        "scattered",
+        "towards"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Normal_Videos550_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 282.8,
+      "start_time": 249.2,
+      "end_time": 282.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The vehicles on the right side of the screen are driving towards the upper left corner of the screen one after another.",
+      "scene_zone": "unknown",
+      "event_text": "From 249.2s to 282.2s, the vehicles on the right side of the screen are driving towards the upper left corner of the screen one after another.",
+      "keywords": [
+        "vehicles",
+        "right",
+        "side",
+        "screen",
+        "driving",
+        "towards"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    }
+  ]
+}

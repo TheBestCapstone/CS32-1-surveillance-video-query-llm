@@ -1,0 +1,5211 @@
+{
+  "video_id": "Normal_Videos541_x264",
+  "duration": 3160.0,
+  "events": [
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 0.0,
+      "end_time": 16.2,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Low activity; On a street, there were several vehicles parked on the street, and a woman appeared on the upper side riding a bicycle heading to the right.",
+      "scene_zone": "road",
+      "event_text": "From 0.0s to 16.2s, on a street, there were several vehicles parked on the street, and a woman appeared on the upper side riding a bicycle heading to the right.",
+      "keywords": [
+        "street",
+        "several",
+        "vehicles",
+        "parked",
+        "woman",
+        "appeared"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 7.1,
+      "end_time": 16.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A motorcycle carrying two people drove to the left.",
+      "scene_zone": "unknown",
+      "event_text": "From 7.1s to 16.2s, a motorcycle carrying two people drove to the left.",
+      "keywords": [
+        "motorcycle",
+        "carrying",
+        "two",
+        "people",
+        "drove",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 23.1,
+      "end_time": 30.2,
+      "object_type": "unknown",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white jeep appeared on the right side of the road and drove into the middle of the road.",
+      "scene_zone": "road",
+      "event_text": "From 23.1s to 30.2s, a white jeep appeared on the right side of the road and drove into the middle of the road.",
+      "keywords": [
+        "white",
+        "jeep",
+        "appeared",
+        "right",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 30.2,
+      "end_time": 44.1,
+      "object_type": "unknown",
+      "object_color": "white",
+      "appearance_notes": "High activity; The white jeep drives from the right side of the road to the lower right side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 30.2s to 44.1s, the white jeep drives from the right side of the road to the lower right side of the road.",
+      "keywords": [
+        "white",
+        "jeep",
+        "drives",
+        "right",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 43.2,
+      "end_time": 49.1,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; Another white car drives to the left.",
+      "scene_zone": "unknown",
+      "event_text": "From 43.2s to 49.1s, another white car drives to the left.",
+      "keywords": [
+        "another",
+        "white",
+        "car",
+        "drives",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 49.1,
+      "end_time": 58.4,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A motorcycle carrying two people passed by on the right.",
+      "scene_zone": "unknown",
+      "event_text": "From 49.1s to 58.4s, a motorcycle carrying two people passed by on the right.",
+      "keywords": [
+        "motorcycle",
+        "carrying",
+        "two",
+        "people",
+        "passed",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 51.4,
+      "end_time": 75.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There were three or four people wearing helmets and riding motorcycles passing by.",
+      "scene_zone": "unknown",
+      "event_text": "From 51.4s to 75.4s, there were three or four people wearing helmets and riding motorcycles passing by.",
+      "keywords": [
+        "three",
+        "four",
+        "people",
+        "wearing",
+        "helmets",
+        "riding"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 74.2,
+      "end_time": 80.2,
+      "object_type": "car",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; A gray car is driving to the right.",
+      "scene_zone": "unknown",
+      "event_text": "From 74.2s to 80.2s, a gray car is driving to the right.",
+      "keywords": [
+        "gray",
+        "car",
+        "driving",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 80.2,
+      "end_time": 94.1,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Three cars, two gray and one black, drove to the left.",
+      "scene_zone": "unknown",
+      "event_text": "From 80.2s to 94.1s, three cars, two gray and one black, drove to the left.",
+      "keywords": [
+        "three",
+        "cars",
+        "two",
+        "gray",
+        "one",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 91.1,
+      "end_time": 109.5,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A truck drove over and stopped in the middle of the road. A man got out of the car and entered the shop on the left.",
+      "scene_zone": "road",
+      "event_text": "From 91.1s to 109.5s, a truck drove over and stopped in the middle of the road. A man got out of the car and entered the shop on the left.",
+      "keywords": [
+        "truck",
+        "drove",
+        "stopped",
+        "middle",
+        "road",
+        "man"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 109.5,
+      "end_time": 125.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The truck reversed and parked into the store on the left.",
+      "scene_zone": "store",
+      "event_text": "From 109.5s to 125.1s, the truck reversed and parked into the store on the left.",
+      "keywords": [
+        "truck",
+        "reversed",
+        "parked",
+        "store",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 125.1,
+      "end_time": 148.9,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white vehicle moved toward the upper road, and a motorcycle entered the upper road from the right.",
+      "scene_zone": "road",
+      "event_text": "From 125.1s to 148.9s, a white vehicle moved toward the upper road, and a motorcycle entered the upper road from the right.",
+      "keywords": [
+        "white",
+        "vehicle",
+        "moved",
+        "toward",
+        "upper",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 169.9,
+      "end_time": 172.2,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A blue truck drove into the left side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 169.9s to 172.2s, a blue truck drove into the left side of the road.",
+      "keywords": [
+        "blue",
+        "truck",
+        "drove",
+        "left",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 172.2,
+      "end_time": 183.2,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The blue truck moves from left to right, and a gray car comes from behind.",
+      "scene_zone": "unknown",
+      "event_text": "From 172.2s to 183.2s, the blue truck moves from left to right, and a gray car comes from behind.",
+      "keywords": [
+        "blue",
+        "truck",
+        "moves",
+        "left",
+        "right",
+        "gray"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 183.2,
+      "end_time": 213.2,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car drives from left to right.",
+      "scene_zone": "unknown",
+      "event_text": "From 183.2s to 213.2s, a black car drives from left to right.",
+      "keywords": [
+        "black",
+        "car",
+        "drives",
+        "left",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 230.2,
+      "end_time": 237.8,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The van enters the upper left corner and moves towards the lower left side.",
+      "scene_zone": "unknown",
+      "event_text": "From 230.2s to 237.8s, the van enters the upper left corner and moves towards the lower left side.",
+      "keywords": [
+        "van",
+        "enters",
+        "upper",
+        "left",
+        "corner",
+        "moves"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_16"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 251.1,
+      "end_time": 261.2,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Three electric cars and a red car drive from the upper left corner to the right road.",
+      "scene_zone": "road",
+      "event_text": "From 251.1s to 261.2s, three electric cars and a red car drive from the upper left corner to the right road.",
+      "keywords": [
+        "three",
+        "electric",
+        "cars",
+        "red",
+        "car",
+        "drive"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_17"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 261.2,
+      "end_time": 285.2,
+      "object_type": "bicycle",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two men riding electric bicycles drove to the left side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 261.2s to 285.2s, two men riding electric bicycles drove to the left side of the road.",
+      "keywords": [
+        "two",
+        "men",
+        "riding",
+        "electric",
+        "bicycles",
+        "drove"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_18"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 285.2,
+      "end_time": 300.9,
+      "object_type": "bicycle",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two men on bicycles appear in the upper left corner and drive towards the road on the right.",
+      "scene_zone": "road",
+      "event_text": "From 285.2s to 300.9s, two men on bicycles appear in the upper left corner and drive towards the road on the right.",
+      "keywords": [
+        "two",
+        "men",
+        "bicycles",
+        "appear",
+        "upper",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_19"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 300.9,
+      "end_time": 319.2,
+      "object_type": "person",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; The man in gray clothes and the woman in pink clothes walk towards the store on the right.",
+      "scene_zone": "store",
+      "event_text": "From 300.9s to 319.2s, the man in gray clothes and the woman in pink clothes walk towards the store on the right.",
+      "keywords": [
+        "man",
+        "gray",
+        "clothes",
+        "woman",
+        "pink",
+        "walk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_20"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 344.4,
+      "end_time": 356.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car and a blue car enter the upper left corner and move to the right road.",
+      "scene_zone": "road",
+      "event_text": "From 344.4s to 356.2s, a white car and a blue car enter the upper left corner and move to the right road.",
+      "keywords": [
+        "white",
+        "car",
+        "blue",
+        "enter",
+        "upper",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_21"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 356.2,
+      "end_time": 377.2,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Two electric vehicles drove from left to right, and a black car entered the road on the left.",
+      "scene_zone": "road",
+      "event_text": "From 356.2s to 377.2s, two electric vehicles drove from left to right, and a black car entered the road on the left.",
+      "keywords": [
+        "two",
+        "electric",
+        "vehicles",
+        "drove",
+        "left",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_22"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 397.2,
+      "end_time": 402.7,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Enter the red car in the upper left corner and drive to the right.",
+      "scene_zone": "unknown",
+      "event_text": "From 397.2s to 402.7s, enter the red car in the upper left corner and drive to the right.",
+      "keywords": [
+        "enter",
+        "red",
+        "car",
+        "upper",
+        "left",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_23"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 402.7,
+      "end_time": 418.1,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A green truck entered on the right and moved toward the road above, and a white car appeared on the left road.",
+      "scene_zone": "road",
+      "event_text": "From 402.7s to 418.1s, a green truck entered on the right and moved toward the road above, and a white car appeared on the left road.",
+      "keywords": [
+        "green",
+        "truck",
+        "entered",
+        "right",
+        "moved",
+        "toward"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_24"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 418.1,
+      "end_time": 447.3,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; Four cars appear in the upper left corner, two of them are white and one is black. The other car is brown and moves to the left side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 418.1s to 447.3s, four cars appear in the upper left corner, two of them are white and one is black. The other car is brown and moves to the left side of the road.",
+      "keywords": [
+        "four",
+        "cars",
+        "appear",
+        "upper",
+        "left",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_25"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 459.3,
+      "end_time": 472.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two people riding electric bicycles drive in from the right and move from right to top.",
+      "scene_zone": "unknown",
+      "event_text": "From 459.3s to 472.3s, two people riding electric bicycles drive in from the right and move from right to top.",
+      "keywords": [
+        "two",
+        "people",
+        "riding",
+        "electric",
+        "bicycles",
+        "drive"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_26"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 472.3,
+      "end_time": 495.7,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There are three vehicles passing on the upper side, one of which is a van, two cars, and an electric vehicle enters on the right.",
+      "scene_zone": "unknown",
+      "event_text": "From 472.3s to 495.7s, there are three vehicles passing on the upper side, one of which is a van, two cars, and an electric vehicle enters on the right.",
+      "keywords": [
+        "three",
+        "vehicles",
+        "passing",
+        "upper",
+        "side",
+        "one"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_27"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 514.8,
+      "end_time": 531.0,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; Five vehicles drove in from the right, two of them white, one black, one red, and one green, moving upward in sequence.",
+      "scene_zone": "unknown",
+      "event_text": "From 514.8s to 531.0s, five vehicles drove in from the right, two of them white, one black, one red, and one green, moving upward in sequence.",
+      "keywords": [
+        "five",
+        "vehicles",
+        "drove",
+        "right",
+        "two",
+        "white"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_28"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 529.0,
+      "end_time": 548.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car appears on the right side parked next to the shop on the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 529.0s to 548.2s, a white car appears on the right side parked next to the shop on the right side of the screen.",
+      "keywords": [
+        "white",
+        "car",
+        "appears",
+        "right",
+        "side",
+        "parked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_29"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 548.2,
+      "end_time": 577.9,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black appears on the upper side holding something and crossing the road towards the right road.",
+      "scene_zone": "road",
+      "event_text": "From 548.2s to 577.9s, a man in black appears on the upper side holding something and crossing the road towards the right road.",
+      "keywords": [
+        "man",
+        "black",
+        "appears",
+        "upper",
+        "side",
+        "holding"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_30"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 593.8,
+      "end_time": 602.2,
+      "object_type": "car",
+      "object_color": "green",
+      "appearance_notes": "Observed event; A green car drives to the right.",
+      "scene_zone": "unknown",
+      "event_text": "From 593.8s to 602.2s, a green car drives to the right.",
+      "keywords": [
+        "green",
+        "car",
+        "drives",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_31"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 605.1,
+      "end_time": 614.3,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several motorcycles drove along the road to the upper left corner.",
+      "scene_zone": "road",
+      "event_text": "From 605.1s to 614.3s, several motorcycles drove along the road to the upper left corner.",
+      "keywords": [
+        "several",
+        "motorcycles",
+        "drove",
+        "along",
+        "road",
+        "upper"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_32"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 655.0,
+      "end_time": 667.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man in pink got off the white car and crossed the road.",
+      "scene_zone": "road",
+      "event_text": "From 655.0s to 667.2s, a man in pink got off the white car and crossed the road.",
+      "keywords": [
+        "man",
+        "pink",
+        "got",
+        "off",
+        "white",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_33"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 662.7,
+      "end_time": 671.1,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The red vehicle leaves from the right side of the screen, and the red electric car leaves the camera's field of view.",
+      "scene_zone": "unknown",
+      "event_text": "From 662.7s to 671.1s, the red vehicle leaves from the right side of the screen, and the red electric car leaves the camera's field of view.",
+      "keywords": [
+        "red",
+        "vehicle",
+        "leaves",
+        "right",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_34"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 671.1,
+      "end_time": 695.4,
+      "object_type": "bicycle",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Several men on bicycles appeared on the right side and passed by the camera one after another and left the camera field of view.",
+      "scene_zone": "unknown",
+      "event_text": "From 671.1s to 695.4s, several men on bicycles appeared on the right side and passed by the camera one after another and left the camera field of view.",
+      "keywords": [
+        "several",
+        "men",
+        "bicycles",
+        "appeared",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_35"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 695.4,
+      "end_time": 710.4,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There are several vehicles above that pass by the screen one after another and then leave.",
+      "scene_zone": "unknown",
+      "event_text": "From 695.4s to 710.4s, there are several vehicles above that pass by the screen one after another and then leave.",
+      "keywords": [
+        "several",
+        "vehicles",
+        "above",
+        "pass",
+        "screen",
+        "one"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_36"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 710.4,
+      "end_time": 725.6,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car and electric vehicle on the right side drive to the upper road.",
+      "scene_zone": "road",
+      "event_text": "From 710.4s to 725.6s, a white car and electric vehicle on the right side drive to the upper road.",
+      "keywords": [
+        "white",
+        "car",
+        "electric",
+        "vehicle",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_37"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 725.6,
+      "end_time": 739.6,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white vehicle appears in the upper left corner and drives to the right side of the screen, leaving the camera's field of view.",
+      "scene_zone": "unknown",
+      "event_text": "From 725.6s to 739.6s, a white vehicle appears in the upper left corner and drives to the right side of the screen, leaving the camera's field of view.",
+      "keywords": [
+        "white",
+        "vehicle",
+        "appears",
+        "upper",
+        "left",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_38"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 739.6,
+      "end_time": 760.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There are several vehicles on the upper side passing through the camera field of view one after another.",
+      "scene_zone": "unknown",
+      "event_text": "From 739.6s to 760.1s, there are several vehicles on the upper side passing through the camera field of view one after another.",
+      "keywords": [
+        "several",
+        "vehicles",
+        "upper",
+        "side",
+        "passing",
+        "through"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_39"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 760.1,
+      "end_time": 776.4,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white truck appears on the upper side and drives to the right side of the camera and then stops.",
+      "scene_zone": "unknown",
+      "event_text": "From 760.1s to 776.4s, a white truck appears on the upper side and drives to the right side of the camera and then stops.",
+      "keywords": [
+        "white",
+        "truck",
+        "appears",
+        "upper",
+        "side",
+        "drives"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_40"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 776.4,
+      "end_time": 792.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The white truck leaves from the right side of the screen, and a group of electric vehicles appears in the upper left corner of the screen heading towards the lower right corner of the camera.",
+      "scene_zone": "unknown",
+      "event_text": "From 776.4s to 792.2s, the white truck leaves from the right side of the screen, and a group of electric vehicles appears in the upper left corner of the screen heading towards the lower right corner of the camera.",
+      "keywords": [
+        "white",
+        "truck",
+        "leaves",
+        "right",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_41"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 792.2,
+      "end_time": 826.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several cars appear on the right side heading towards the upper right corner.",
+      "scene_zone": "unknown",
+      "event_text": "From 792.2s to 826.2s, several cars appear on the right side heading towards the upper right corner.",
+      "keywords": [
+        "several",
+        "cars",
+        "appear",
+        "right",
+        "side",
+        "heading"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_42"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 826.2,
+      "end_time": 843.8,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There are vehicles on the upper side passing through the screen one after another and then leaving the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 826.2s to 843.8s, there are vehicles on the upper side passing through the screen one after another and then leaving the screen.",
+      "keywords": [
+        "vehicles",
+        "upper",
+        "side",
+        "passing",
+        "through",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_43"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 843.8,
+      "end_time": 860.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man on a bicycle appears in the upper left corner and rides to the right side of the screen and leaves the camera's field of view.",
+      "scene_zone": "unknown",
+      "event_text": "From 843.8s to 860.7s, a man on a bicycle appears in the upper left corner and rides to the right side of the screen and leaves the camera's field of view.",
+      "keywords": [
+        "man",
+        "bicycle",
+        "appears",
+        "upper",
+        "left",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_44"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 860.7,
+      "end_time": 880.1,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Some vehicles on the upper side leave the screen, and a black car drives towards the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 860.7s to 880.1s, some vehicles on the upper side leave the screen, and a black car drives towards the right side of the screen.",
+      "keywords": [
+        "some",
+        "vehicles",
+        "upper",
+        "side",
+        "leave",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_45"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 880.1,
+      "end_time": 898.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Vehicles are passing through the screen in the upper left corner.",
+      "scene_zone": "unknown",
+      "event_text": "From 880.1s to 898.2s, vehicles are passing through the screen in the upper left corner.",
+      "keywords": [
+        "vehicles",
+        "passing",
+        "through",
+        "screen",
+        "upper",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_46"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 898.2,
+      "end_time": 923.5,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white vehicle appears on the right side and drives towards the road on the upper side of the screen, then stops.",
+      "scene_zone": "road",
+      "event_text": "From 898.2s to 923.5s, a white vehicle appears on the right side and drives towards the road on the upper side of the screen, then stops.",
+      "keywords": [
+        "white",
+        "vehicle",
+        "appears",
+        "right",
+        "side",
+        "drives"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_47"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 923.5,
+      "end_time": 939.5,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A red vehicle appears in the upper left corner and drives into the screen, followed closely by a white vehicle.",
+      "scene_zone": "unknown",
+      "event_text": "From 923.5s to 939.5s, a red vehicle appears in the upper left corner and drives into the screen, followed closely by a white vehicle.",
+      "keywords": [
+        "red",
+        "vehicle",
+        "appears",
+        "upper",
+        "left",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_48"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 939.5,
+      "end_time": 961.6,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The red vehicle and the white vehicle leave the screen, and a white vehicle drives towards the upper left corner of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 939.5s to 961.6s, the red vehicle and the white vehicle leave the screen, and a white vehicle drives towards the upper left corner of the screen.",
+      "keywords": [
+        "red",
+        "vehicle",
+        "white",
+        "leave",
+        "screen",
+        "drives"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_49"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 961.6,
+      "end_time": 984.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several vehicles are driving out of the camera's field of view one after another.",
+      "scene_zone": "unknown",
+      "event_text": "From 961.6s to 984.1s, several vehicles are driving out of the camera's field of view one after another.",
+      "keywords": [
+        "several",
+        "vehicles",
+        "driving",
+        "out",
+        "camera",
+        "field"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_50"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 979.1,
+      "end_time": 1005.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two people came out of the lower right corner and walked towards the upper left corner.",
+      "scene_zone": "unknown",
+      "event_text": "From 979.1s to 1005.4s, two people came out of the lower right corner and walked towards the upper left corner.",
+      "keywords": [
+        "two",
+        "people",
+        "came",
+        "out",
+        "lower",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_51"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 984.1,
+      "end_time": 1005.4,
+      "object_type": "person",
+      "object_color": "green",
+      "appearance_notes": "Observed event; A woman in green holds something and walks to the right side of the screen to leave.",
+      "scene_zone": "unknown",
+      "event_text": "From 984.1s to 1005.4s, a woman in green holds something and walks to the right side of the screen to leave.",
+      "keywords": [
+        "woman",
+        "green",
+        "holds",
+        "something",
+        "walks",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_52"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1005.4,
+      "end_time": 1028.1,
+      "object_type": "car",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; A yellow vehicle appears in the upper left corner passing by the screen and then leaves from the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1005.4s to 1028.1s, a yellow vehicle appears in the upper left corner passing by the screen and then leaves from the right side of the screen.",
+      "keywords": [
+        "yellow",
+        "vehicle",
+        "appears",
+        "upper",
+        "left",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_53"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1028.1,
+      "end_time": 1051.9,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Several vehicles appeared on the upper side of the road passing by the road and then disappeared.",
+      "scene_zone": "road",
+      "event_text": "From 1028.1s to 1051.9s, several vehicles appeared on the upper side of the road passing by the road and then disappeared.",
+      "keywords": [
+        "several",
+        "vehicles",
+        "appeared",
+        "upper",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_54"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1051.9,
+      "end_time": 1070.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two cars appear on the upper side of the road and drive towards the road on the right side of the screen, leaving the camera's field of view.",
+      "scene_zone": "road",
+      "event_text": "From 1051.9s to 1070.1s, two cars appear on the upper side of the road and drive towards the road on the right side of the screen, leaving the camera's field of view.",
+      "keywords": [
+        "two",
+        "cars",
+        "appear",
+        "upper",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_55"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1087.1,
+      "end_time": 1108.2,
+      "object_type": "car",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; A woman in pink appears on the right side walking into a gray car and preparing to leave the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1087.1s to 1108.2s, a woman in pink appears on the right side walking into a gray car and preparing to leave the screen.",
+      "keywords": [
+        "woman",
+        "pink",
+        "appears",
+        "right",
+        "side",
+        "walking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_56"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1104.2,
+      "end_time": 1123.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car appears in the upper left corner and drives to the right side of the screen, and the gray car leaves the camera's field of view.",
+      "scene_zone": "unknown",
+      "event_text": "From 1104.2s to 1123.2s, a white car appears in the upper left corner and drives to the right side of the screen, and the gray car leaves the camera's field of view.",
+      "keywords": [
+        "white",
+        "car",
+        "appears",
+        "upper",
+        "left",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_57"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1123.2,
+      "end_time": 1147.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several electric vehicles appear on the right side and drive towards the top of the screen. Several electric vehicles drive towards the top of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1123.2s to 1147.0s, several electric vehicles appear on the right side and drive towards the top of the screen. Several electric vehicles drive towards the top of the screen.",
+      "keywords": [
+        "several",
+        "electric",
+        "vehicles",
+        "appear",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_58"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1147.0,
+      "end_time": 1169.0,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Several cars successively appeared in the upper left corner of the road passing by the screen, and then left from the right side of the screen.",
+      "scene_zone": "road",
+      "event_text": "From 1147.0s to 1169.0s, several cars successively appeared in the upper left corner of the road passing by the screen, and then left from the right side of the screen.",
+      "keywords": [
+        "several",
+        "cars",
+        "successively",
+        "appeared",
+        "upper",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_59"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1169.0,
+      "end_time": 1190.7,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Two electric vehicles appeared in the upper left corner of the road and drove away to the right side of the screen.",
+      "scene_zone": "road",
+      "event_text": "From 1169.0s to 1190.7s, two electric vehicles appeared in the upper left corner of the road and drove away to the right side of the screen.",
+      "keywords": [
+        "two",
+        "electric",
+        "vehicles",
+        "appeared",
+        "upper",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_60"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1169.0,
+      "end_time": 1207.4,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A blue vehicle appears in the upper left corner of the road and walks into the screen and then leaves the camera field of view from the right side of the screen.",
+      "scene_zone": "road",
+      "event_text": "From 1169.0s to 1207.4s, a blue vehicle appears in the upper left corner of the road and walks into the screen and then leaves the camera field of view from the right side of the screen.",
+      "keywords": [
+        "blue",
+        "vehicle",
+        "appears",
+        "upper",
+        "left",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_61"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1207.4,
+      "end_time": 1213.1,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A red electric car appears in the upper left corner of the road and drives towards the right side of the screen, leaving the camera's field of view.",
+      "scene_zone": "road",
+      "event_text": "From 1207.4s to 1213.1s, a red electric car appears in the upper left corner of the road and drives towards the right side of the screen, leaving the camera's field of view.",
+      "keywords": [
+        "red",
+        "electric",
+        "car",
+        "appears",
+        "upper",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_62"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1213.1,
+      "end_time": 1234.6,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A silver-white SUV appears on the right side of the road passing through the screen and then leaves the camera's field of view.",
+      "scene_zone": "road",
+      "event_text": "From 1213.1s to 1234.6s, a silver-white SUV appears on the right side of the road passing through the screen and then leaves the camera's field of view.",
+      "keywords": [
+        "silver",
+        "white",
+        "suv",
+        "appears",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_63"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1234.6,
+      "end_time": 1247.9,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The road red pickup truck drove into the center of the screen and then left the road on the right side of the screen.",
+      "scene_zone": "road",
+      "event_text": "From 1234.6s to 1247.9s, the road red pickup truck drove into the center of the screen and then left the road on the right side of the screen.",
+      "keywords": [
+        "road",
+        "red",
+        "pickup",
+        "truck",
+        "drove",
+        "center"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_64"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1249.1,
+      "end_time": 1281.3,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A woman in red appeared in the lower right corner of the road and walked to the shop on the right.",
+      "scene_zone": "road",
+      "event_text": "From 1249.1s to 1281.3s, a woman in red appeared in the lower right corner of the road and walked to the shop on the right.",
+      "keywords": [
+        "woman",
+        "red",
+        "appeared",
+        "lower",
+        "right",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_65"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1253.1,
+      "end_time": 1280.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A bag-bearing woman appears in the lower right corner of the road and walks out of the screen, then walks towards the center of the screen.",
+      "scene_zone": "road",
+      "event_text": "From 1253.1s to 1280.1s, a bag-bearing woman appears in the lower right corner of the road and walks out of the screen, then walks towards the center of the screen.",
+      "keywords": [
+        "bag",
+        "bearing",
+        "woman",
+        "appears",
+        "lower",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_66"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1261.1,
+      "end_time": 1300.5,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Some electric vehicles appear on the right side of the road and leave at the top of the screen.",
+      "scene_zone": "road",
+      "event_text": "From 1261.1s to 1300.5s, some electric vehicles appear on the right side of the road and leave at the top of the screen.",
+      "keywords": [
+        "some",
+        "electric",
+        "vehicles",
+        "appear",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_67"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1300.5,
+      "end_time": 1326.0,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A woman in brown clothes appeared on the left side of the road, walking to the left to pack her things.",
+      "scene_zone": "road",
+      "event_text": "From 1300.5s to 1326.0s, a woman in brown clothes appeared on the left side of the road, walking to the left to pack her things.",
+      "keywords": [
+        "woman",
+        "brown",
+        "clothes",
+        "appeared",
+        "left",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_68"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1326.0,
+      "end_time": 1335.0,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car appears on the road and drives to the right side of the screen and leaves the screen.",
+      "scene_zone": "road",
+      "event_text": "From 1326.0s to 1335.0s, a black car appears on the road and drives to the right side of the screen and leaves the screen.",
+      "keywords": [
+        "black",
+        "car",
+        "appears",
+        "road",
+        "drives",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_69"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1335.0,
+      "end_time": 1370.5,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man in white appears on the right side and walks towards the upper side of the screen and leaves the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1335.0s to 1370.5s, a man in white appears on the right side and walks towards the upper side of the screen and leaves the screen.",
+      "keywords": [
+        "man",
+        "white",
+        "appears",
+        "right",
+        "side",
+        "walks"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_70"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1370.5,
+      "end_time": 1390.6,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A silver car and a red car passed by on the road and then drove to the upper side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 1370.5s to 1390.6s, a silver car and a red car passed by on the road and then drove to the upper side of the road.",
+      "keywords": [
+        "silver",
+        "car",
+        "red",
+        "passed",
+        "road",
+        "drove"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_71"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1390.6,
+      "end_time": 1410.1,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car appeared at the corner of the road and drove away to the lower side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 1390.6s to 1410.1s, a black car appeared at the corner of the road and drove away to the lower side of the road.",
+      "keywords": [
+        "black",
+        "car",
+        "appeared",
+        "corner",
+        "road",
+        "drove"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_72"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1410.1,
+      "end_time": 1433.1,
+      "object_type": "unknown",
+      "object_color": "white",
+      "appearance_notes": "High activity; A silver-white van drove past the corner of the road and stopped in front of the shop on the left side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 1410.1s to 1433.1s, a silver-white van drove past the corner of the road and stopped in front of the shop on the left side of the road.",
+      "keywords": [
+        "silver",
+        "white",
+        "van",
+        "drove",
+        "past",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_73"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1433.1,
+      "end_time": 1460.4,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; Silver, white and black vehicles appeared on the right side of the road driving across the road towards the end of the road.",
+      "scene_zone": "road",
+      "event_text": "From 1433.1s to 1460.4s, silver, white and black vehicles appeared on the right side of the road driving across the road towards the end of the road.",
+      "keywords": [
+        "silver",
+        "white",
+        "black",
+        "vehicles",
+        "appeared",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_74"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1460.4,
+      "end_time": 1477.4,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The white van slowly drove towards the lower side of the road and drove away, and the silver-white car slowly drove past the lower side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 1460.4s to 1477.4s, the white van slowly drove towards the lower side of the road and drove away, and the silver-white car slowly drove past the lower side of the road.",
+      "keywords": [
+        "white",
+        "van",
+        "slowly",
+        "drove",
+        "towards",
+        "lower"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_75"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1477.4,
+      "end_time": 1502.7,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car drove out from the right side of the road and drove to the upper side of the road. An electric car drove from the right side of the shop to the left side of the shop.",
+      "scene_zone": "road",
+      "event_text": "From 1477.4s to 1502.7s, a white car drove out from the right side of the road and drove to the upper side of the road. An electric car drove from the right side of the shop to the left side of the shop.",
+      "keywords": [
+        "white",
+        "car",
+        "drove",
+        "out",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_76"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1502.7,
+      "end_time": 1524.2,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A number of electric vehicles and cars appeared on the road below and drove towards the top of the road.",
+      "scene_zone": "road",
+      "event_text": "From 1502.7s to 1524.2s, a number of electric vehicles and cars appeared on the road below and drove towards the top of the road.",
+      "keywords": [
+        "number",
+        "electric",
+        "vehicles",
+        "cars",
+        "appeared",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_77"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1524.2,
+      "end_time": 1551.2,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; A black car appeared on the road below and drove to the top of the road. Then the white car followed the black car to the end of the road.",
+      "scene_zone": "road",
+      "event_text": "From 1524.2s to 1551.2s, a black car appeared on the road below and drove to the top of the road. Then the white car followed the black car to the end of the road.",
+      "keywords": [
+        "black",
+        "car",
+        "appeared",
+        "road",
+        "below",
+        "drove"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_78"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1539.1,
+      "end_time": 1614.4,
+      "object_type": "person",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; A man in gray walks from the upper left corner to the lower right corner.",
+      "scene_zone": "unknown",
+      "event_text": "From 1539.1s to 1614.4s, a man in gray walks from the upper left corner to the lower right corner.",
+      "keywords": [
+        "man",
+        "gray",
+        "walks",
+        "upper",
+        "left",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_79"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1551.2,
+      "end_time": 1573.4,
+      "object_type": "unknown",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The blue van drove towards the lower side of the road and drove out.",
+      "scene_zone": "road",
+      "event_text": "From 1551.2s to 1573.4s, the blue van drove towards the lower side of the road and drove out.",
+      "keywords": [
+        "blue",
+        "van",
+        "drove",
+        "towards",
+        "lower",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_80"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1573.4,
+      "end_time": 1584.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Two people in black clothes appeared on the right side of the road, talking and laughing, walking towards the left side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 1573.4s to 1584.1s, two people in black clothes appeared on the right side of the road, talking and laughing, walking towards the left side of the road.",
+      "keywords": [
+        "two",
+        "people",
+        "black",
+        "clothes",
+        "appeared",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_81"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1584.1,
+      "end_time": 1615.4,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The silver-white car drove to the upper side of the road, and then drove away towards the end of the road.",
+      "scene_zone": "road",
+      "event_text": "From 1584.1s to 1615.4s, the silver-white car drove to the upper side of the road, and then drove away towards the end of the road.",
+      "keywords": [
+        "silver",
+        "white",
+        "car",
+        "drove",
+        "upper",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_82"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1615.4,
+      "end_time": 1638.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A brown vehicle drove out of the upper left corner of the road and drove slowly towards the lower side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 1615.4s to 1638.2s, a brown vehicle drove out of the upper left corner of the road and drove slowly towards the lower side of the road.",
+      "keywords": [
+        "brown",
+        "vehicle",
+        "drove",
+        "out",
+        "upper",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_83"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1630.1,
+      "end_time": 1637.1,
+      "object_type": "unknown",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black motorcycle makes a U-turn.",
+      "scene_zone": "unknown",
+      "event_text": "From 1630.1s to 1637.1s, a black motorcycle makes a U-turn.",
+      "keywords": [
+        "black",
+        "motorcycle",
+        "makes",
+        "turn"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_84"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1638.2,
+      "end_time": 1660.1,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; There is a yellow car and a silver-white car on the right side of the road. They quickly drive towards the road above and then disappear from sight.",
+      "scene_zone": "road",
+      "event_text": "From 1638.2s to 1660.1s, there is a yellow car and a silver-white car on the right side of the road. They quickly drive towards the road above and then disappear from sight.",
+      "keywords": [
+        "yellow",
+        "car",
+        "silver",
+        "white",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_85"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1660.1,
+      "end_time": 1674.6,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car appeared in the upper left corner of the road and drove quickly to the right side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 1660.1s to 1674.6s, a black car appeared in the upper left corner of the road and drove quickly to the right side of the road.",
+      "keywords": [
+        "black",
+        "car",
+        "appeared",
+        "upper",
+        "left",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_86"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1674.6,
+      "end_time": 1690.1,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The black vehicle then disappeared from the end of the field of vision, and several electric vehicles on the right side of the road drove to the upper side of the road and disappeared from the field of vision.",
+      "scene_zone": "road",
+      "event_text": "From 1674.6s to 1690.1s, the black vehicle then disappeared from the end of the field of vision, and several electric vehicles on the right side of the road drove to the upper side of the road and disappeared from the field of vision.",
+      "keywords": [
+        "black",
+        "vehicle",
+        "disappeared",
+        "end",
+        "field",
+        "vision"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_87"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1690.1,
+      "end_time": 1710.2,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A blue truck appeared on the left side of the road pulling goods and drove to the right side of the road and left the field of vision.",
+      "scene_zone": "road",
+      "event_text": "From 1690.1s to 1710.2s, a blue truck appeared on the left side of the road pulling goods and drove to the right side of the road and left the field of vision.",
+      "keywords": [
+        "blue",
+        "truck",
+        "appeared",
+        "left",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_88"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1710.2,
+      "end_time": 1718.3,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Low activity; The blue truck parked in the middle of the road drove to the right side of the road and drove away.",
+      "scene_zone": "road",
+      "event_text": "From 1710.2s to 1718.3s, the blue truck parked in the middle of the road drove to the right side of the road and drove away.",
+      "keywords": [
+        "blue",
+        "truck",
+        "parked",
+        "middle",
+        "road",
+        "drove"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_89"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1718.3,
+      "end_time": 1745.3,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A silver-white car appeared on the left side of the road and drove quickly to the right side of the road and drove away.",
+      "scene_zone": "road",
+      "event_text": "From 1718.3s to 1745.3s, a silver-white car appeared on the left side of the road and drove quickly to the right side of the road and drove away.",
+      "keywords": [
+        "silver",
+        "white",
+        "car",
+        "appeared",
+        "left",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_90"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1723.1,
+      "end_time": 1732.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two people walked out of the shop on the left to chat.",
+      "scene_zone": "unknown",
+      "event_text": "From 1723.1s to 1732.1s, two people walked out of the shop on the left to chat.",
+      "keywords": [
+        "two",
+        "people",
+        "walked",
+        "out",
+        "shop",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_91"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1745.3,
+      "end_time": 1782.2,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; There is a silver-white car and a black car in the upper left corner of the road, slowly driving to the right side of the road and driving away.",
+      "scene_zone": "road",
+      "event_text": "From 1745.3s to 1782.2s, there is a silver-white car and a black car in the upper left corner of the road, slowly driving to the right side of the road and driving away.",
+      "keywords": [
+        "silver",
+        "white",
+        "car",
+        "black",
+        "upper",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_92"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1782.2,
+      "end_time": 1797.1,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A silver-white car appeared on the right side of the road and slowly drove up the road and then drove away.",
+      "scene_zone": "road",
+      "event_text": "From 1782.2s to 1797.1s, a silver-white car appeared on the right side of the road and slowly drove up the road and then drove away.",
+      "keywords": [
+        "silver",
+        "white",
+        "car",
+        "appeared",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_93"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1797.1,
+      "end_time": 1809.1,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A silver-white SUV drove out on the right side of the road. In the upper left corner of the road, several electric vehicles drove to the right side of the road and rode out.",
+      "scene_zone": "road",
+      "event_text": "From 1797.1s to 1809.1s, a silver-white SUV drove out on the right side of the road. In the upper left corner of the road, several electric vehicles drove to the right side of the road and rode out.",
+      "keywords": [
+        "silver",
+        "white",
+        "suv",
+        "drove",
+        "out",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_94"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1809.1,
+      "end_time": 1827.3,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man wearing a silver-white helmet riding an electric bicycle appeared in the upper left corner of the road and rode to the right side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 1809.1s to 1827.3s, a man wearing a silver-white helmet riding an electric bicycle appeared in the upper left corner of the road and rode to the right side of the road.",
+      "keywords": [
+        "man",
+        "wearing",
+        "silver",
+        "white",
+        "helmet",
+        "riding"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_95"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1827.3,
+      "end_time": 1840.4,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; On the right side of the road, there is a man in black riding a bicycle slowly towards the upper side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 1827.3s to 1840.4s, on the right side of the road, there is a man in black riding a bicycle slowly towards the upper side of the road.",
+      "keywords": [
+        "right",
+        "side",
+        "road",
+        "man",
+        "black",
+        "riding"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_96"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1840.4,
+      "end_time": 1862.4,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car and a brown car drove into the right side of the road and slowly stopped in the middle of the road.",
+      "scene_zone": "road",
+      "event_text": "From 1840.4s to 1862.4s, a white car and a brown car drove into the right side of the road and slowly stopped in the middle of the road.",
+      "keywords": [
+        "white",
+        "car",
+        "brown",
+        "drove",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_97"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1862.4,
+      "end_time": 1880.8,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black electric car drove out of the intersection on the left side of the road and headed down the road, then disappeared from sight.",
+      "scene_zone": "road",
+      "event_text": "From 1862.4s to 1880.8s, a black electric car drove out of the intersection on the left side of the road and headed down the road, then disappeared from sight.",
+      "keywords": [
+        "black",
+        "electric",
+        "car",
+        "drove",
+        "out",
+        "intersection"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_98"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1880.8,
+      "end_time": 1883.8,
+      "object_type": "car",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; A yellow car appeared at the intersection and drove across the road and then left in sight.",
+      "scene_zone": "road",
+      "event_text": "From 1880.8s to 1883.8s, a yellow car appeared at the intersection and drove across the road and then left in sight.",
+      "keywords": [
+        "yellow",
+        "car",
+        "appeared",
+        "intersection",
+        "drove",
+        "across"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_99"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1883.8,
+      "end_time": 1917.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black and two men in blue appeared on the lower side of the intersection, riding slowly towards the center of the intersection.",
+      "scene_zone": "road",
+      "event_text": "From 1883.8s to 1917.1s, a man in black and two men in blue appeared on the lower side of the intersection, riding slowly towards the center of the intersection.",
+      "keywords": [
+        "man",
+        "black",
+        "two",
+        "men",
+        "blue",
+        "appeared"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_100"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1917.1,
+      "end_time": 1959.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several electric vehicles pass by on the left side of the intersection.",
+      "scene_zone": "road",
+      "event_text": "From 1917.1s to 1959.1s, several electric vehicles pass by on the left side of the intersection.",
+      "keywords": [
+        "several",
+        "electric",
+        "vehicles",
+        "pass",
+        "left",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_101"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1943.8,
+      "end_time": 1953.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A woman wearing a black coat crosses the road.",
+      "scene_zone": "road",
+      "event_text": "From 1943.8s to 1953.1s, a woman wearing a black coat crosses the road.",
+      "keywords": [
+        "woman",
+        "wearing",
+        "black",
+        "coat",
+        "crosses",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_102"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1965.1,
+      "end_time": 1973.7,
+      "object_type": "car",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; A yellow car drove out of the upper left corner of the road and then drove out from the right side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 1965.1s to 1973.7s, a yellow car drove out of the upper left corner of the road and then drove out from the right side of the road.",
+      "keywords": [
+        "yellow",
+        "car",
+        "drove",
+        "out",
+        "upper",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_103"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 1973.7,
+      "end_time": 2005.8,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Two men appeared on the upper side of the road and walked to the right side of the road to leave. A man in red and a woman in black appeared on the lower right side of the road and crossed the road.",
+      "scene_zone": "road",
+      "event_text": "From 1973.7s to 2005.8s, two men appeared on the upper side of the road and walked to the right side of the road to leave. A man in red and a woman in black appeared on the lower right side of the road and crossed the road.",
+      "keywords": [
+        "two",
+        "men",
+        "appeared",
+        "upper",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_104"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2005.8,
+      "end_time": 2035.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; On the road, the man in red and the woman in black walked to the left side of the road, talking and laughing, and walked out.",
+      "scene_zone": "road",
+      "event_text": "From 2005.8s to 2035.1s, on the road, the man in red and the woman in black walked to the left side of the road, talking and laughing, and walked out.",
+      "keywords": [
+        "road",
+        "man",
+        "red",
+        "woman",
+        "black",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_105"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2035.1,
+      "end_time": 2061.7,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There are several vehicles on the left side of the intersection passing through the intersection and then leaving the field of view.",
+      "scene_zone": "road",
+      "event_text": "From 2035.1s to 2061.7s, there are several vehicles on the left side of the intersection passing through the intersection and then leaving the field of view.",
+      "keywords": [
+        "several",
+        "vehicles",
+        "left",
+        "side",
+        "intersection",
+        "passing"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_106"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2061.7,
+      "end_time": 2079.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Three electric vehicles drove into the road, passed the middle of the road, and then left from the right side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2061.7s to 2079.2s, three electric vehicles drove into the road, passed the middle of the road, and then left from the right side of the road.",
+      "keywords": [
+        "three",
+        "electric",
+        "vehicles",
+        "drove",
+        "road",
+        "passed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_107"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2079.2,
+      "end_time": 2110.7,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; An electric car appears on the right side of the road and drives away above the road.",
+      "scene_zone": "road",
+      "event_text": "From 2079.2s to 2110.7s, an electric car appears on the right side of the road and drives away above the road.",
+      "keywords": [
+        "electric",
+        "car",
+        "appears",
+        "right",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_108"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2110.7,
+      "end_time": 2124.2,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man in red appeared on the left side of the road riding an electric car and drove to the lower side of the road and left.",
+      "scene_zone": "road",
+      "event_text": "From 2110.7s to 2124.2s, a man in red appeared on the left side of the road riding an electric car and drove to the lower side of the road and left.",
+      "keywords": [
+        "man",
+        "red",
+        "appeared",
+        "left",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_109"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2124.2,
+      "end_time": 2151.5,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A blue truck appeared in the upper left corner of the road. The blue truck passed through the middle of the road and left from the right side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2124.2s to 2151.5s, a blue truck appeared in the upper left corner of the road. The blue truck passed through the middle of the road and left from the right side of the road.",
+      "keywords": [
+        "blue",
+        "truck",
+        "appeared",
+        "upper",
+        "left",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_110"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2151.5,
+      "end_time": 2175.6,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; An electric car appeared in the upper left corner of the road, passed through the middle of the road, and then left from the right side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2151.5s to 2175.6s, an electric car appeared in the upper left corner of the road, passed through the middle of the road, and then left from the right side of the road.",
+      "keywords": [
+        "electric",
+        "car",
+        "appeared",
+        "upper",
+        "left",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_111"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2175.6,
+      "end_time": 2206.1,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; An electric vehicle appeared on the right side of the road and drove to the upper side of the road to leave.",
+      "scene_zone": "road",
+      "event_text": "From 2175.6s to 2206.1s, an electric vehicle appeared on the right side of the road and drove to the upper side of the road to leave.",
+      "keywords": [
+        "electric",
+        "vehicle",
+        "appeared",
+        "right",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_112"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2206.1,
+      "end_time": 2235.0,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car passed the middle of the road on the right side of the road and then left.",
+      "scene_zone": "road",
+      "event_text": "From 2206.1s to 2235.0s, a white car passed the middle of the road on the right side of the road and then left.",
+      "keywords": [
+        "white",
+        "car",
+        "passed",
+        "middle",
+        "road",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_113"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2235.0,
+      "end_time": 2250.0,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car drove out from the right side of the road and headed towards the upper side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2235.0s to 2250.0s, a black car drove out from the right side of the road and headed towards the upper side of the road.",
+      "keywords": [
+        "black",
+        "car",
+        "drove",
+        "out",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_114"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2250.0,
+      "end_time": 2272.2,
+      "object_type": "car",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; There was a gray car on the upper side of the road passing through the middle of the road and then leaving from the lower side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2250.0s to 2272.2s, there was a gray car on the upper side of the road passing through the middle of the road and then leaving from the lower side of the road.",
+      "keywords": [
+        "gray",
+        "car",
+        "upper",
+        "side",
+        "road",
+        "passing"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_115"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2272.2,
+      "end_time": 2290.8,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; An electric vehicle appeared on the right side of the road and drove to the upper side of the road to leave.",
+      "scene_zone": "road",
+      "event_text": "From 2272.2s to 2290.8s, an electric vehicle appeared on the right side of the road and drove to the upper side of the road to leave.",
+      "keywords": [
+        "electric",
+        "vehicle",
+        "appeared",
+        "right",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_116"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2290.8,
+      "end_time": 2325.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There are two electric vehicles on the left side of the road leaving from the right side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2290.8s to 2325.1s, there are two electric vehicles on the left side of the road leaving from the right side of the road.",
+      "keywords": [
+        "two",
+        "electric",
+        "vehicles",
+        "left",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_117"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2325.1,
+      "end_time": 2330.8,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car drove from the upper side of the road to the right side of the road and left. At the same time, a blue truck appeared on the right side of the road and drove to the center of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2325.1s to 2330.8s, a white car drove from the upper side of the road to the right side of the road and left. At the same time, a blue truck appeared on the right side of the road and drove to the center of the road.",
+      "keywords": [
+        "white",
+        "car",
+        "drove",
+        "upper",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_118"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2330.8,
+      "end_time": 2348.1,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; Several vehicles passed through the middle of the road. One of the white cars flashed double and then left the upper side of the road. The blue truck left the upper side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2330.8s to 2348.1s, several vehicles passed through the middle of the road. One of the white cars flashed double and then left the upper side of the road. The blue truck left the upper side of the road.",
+      "keywords": [
+        "several",
+        "vehicles",
+        "passed",
+        "through",
+        "middle",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_119"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2348.1,
+      "end_time": 2370.4,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Five electric vehicles passed through the middle of the road and then left from the upper side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2348.1s to 2370.4s, five electric vehicles passed through the middle of the road and then left from the upper side of the road.",
+      "keywords": [
+        "five",
+        "electric",
+        "vehicles",
+        "passed",
+        "through",
+        "middle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_120"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2370.4,
+      "end_time": 2395.4,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black appears on the right side of the road and takes a child towards the center of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2370.4s to 2395.4s, a man in black appears on the right side of the road and takes a child towards the center of the road.",
+      "keywords": [
+        "man",
+        "black",
+        "appears",
+        "right",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_121"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2395.4,
+      "end_time": 2412.7,
+      "object_type": "car",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; There is a purple vehicle passing by in the upper left corner of the road, and a yellow vehicle appears on the right side of the road heading up the road.",
+      "scene_zone": "road",
+      "event_text": "From 2395.4s to 2412.7s, there is a purple vehicle passing by in the upper left corner of the road, and a yellow vehicle appears on the right side of the road heading up the road.",
+      "keywords": [
+        "purple",
+        "vehicle",
+        "passing",
+        "upper",
+        "left",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_122"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2412.7,
+      "end_time": 2438.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There are three electric vehicles passing by the middle of the road in the upper left corner of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2412.7s to 2438.2s, there are three electric vehicles passing by the middle of the road in the upper left corner of the road.",
+      "keywords": [
+        "three",
+        "electric",
+        "vehicles",
+        "passing",
+        "middle",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_123"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2438.2,
+      "end_time": 2458.1,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; Two silver-white vehicles appeared on the right side of the road and drove up the road.",
+      "scene_zone": "road",
+      "event_text": "From 2438.2s to 2458.1s, two silver-white vehicles appeared on the right side of the road and drove up the road.",
+      "keywords": [
+        "two",
+        "silver",
+        "white",
+        "vehicles",
+        "appeared",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_124"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2458.1,
+      "end_time": 2475.8,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; A black vehicle appeared on the right side of the road and drove towards the center of the road. A silver-white car passed by in the upper left corner of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2458.1s to 2475.8s, a black vehicle appeared on the right side of the road and drove towards the center of the road. A silver-white car passed by in the upper left corner of the road.",
+      "keywords": [
+        "black",
+        "vehicle",
+        "appeared",
+        "right",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_125"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2475.8,
+      "end_time": 2511.7,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car appeared on the left side of the road and then left the upper side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2475.8s to 2511.7s, a white car appeared on the left side of the road and then left the upper side of the road.",
+      "keywords": [
+        "white",
+        "car",
+        "appeared",
+        "left",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_126"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2511.7,
+      "end_time": 2524.7,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car appeared on the right side of the road and drove to the upper side of the road to leave.",
+      "scene_zone": "road",
+      "event_text": "From 2511.7s to 2524.7s, a white car appeared on the right side of the road and drove to the upper side of the road to leave.",
+      "keywords": [
+        "white",
+        "car",
+        "appeared",
+        "right",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_127"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2524.7,
+      "end_time": 2547.0,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car appeared on the right side of the road and drove towards the center of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2524.7s to 2547.0s, a white car appeared on the right side of the road and drove towards the center of the road.",
+      "keywords": [
+        "white",
+        "car",
+        "appeared",
+        "right",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_128"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2547.0,
+      "end_time": 2577.1,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A gray car and a black car appeared on the right side of the road heading up the road.",
+      "scene_zone": "road",
+      "event_text": "From 2547.0s to 2577.1s, a gray car and a black car appeared on the right side of the road heading up the road.",
+      "keywords": [
+        "gray",
+        "car",
+        "black",
+        "appeared",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_129"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2577.1,
+      "end_time": 2607.5,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Four electric vehicles appeared on the left side of the road and left from the right side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2577.1s to 2607.5s, four electric vehicles appeared on the left side of the road and left from the right side of the road.",
+      "keywords": [
+        "four",
+        "electric",
+        "vehicles",
+        "appeared",
+        "left",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_130"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2607.5,
+      "end_time": 2614.9,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man wearing a white helmet riding an electric bicycle appeared on the upper side of the road and left from the right side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2607.5s to 2614.9s, a man wearing a white helmet riding an electric bicycle appeared on the upper side of the road and left from the right side of the road.",
+      "keywords": [
+        "man",
+        "wearing",
+        "white",
+        "helmet",
+        "riding",
+        "electric"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_131"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2614.9,
+      "end_time": 2632.1,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Two black cars appeared on the right side of the road and drove towards the upper side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2614.9s to 2632.1s, two black cars appeared on the right side of the road and drove towards the upper side of the road.",
+      "keywords": [
+        "two",
+        "black",
+        "cars",
+        "appeared",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_132"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2632.1,
+      "end_time": 2650.1,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A brown SUV appeared on the left side of the road and drove to the right side of the road to leave.",
+      "scene_zone": "road",
+      "event_text": "From 2632.1s to 2650.1s, a brown SUV appeared on the left side of the road and drove to the right side of the road to leave.",
+      "keywords": [
+        "brown",
+        "suv",
+        "appeared",
+        "left",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_133"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2650.1,
+      "end_time": 2658.7,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man riding a bicycle appeared on the left side of the road and left from the right side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2650.1s to 2658.7s, a man riding a bicycle appeared on the left side of the road and left from the right side of the road.",
+      "keywords": [
+        "man",
+        "riding",
+        "bicycle",
+        "appeared",
+        "left",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_134"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2658.7,
+      "end_time": 2677.2,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A red electric car appears in the upper left corner of the road and drives to the right side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2658.7s to 2677.2s, a red electric car appears in the upper left corner of the road and drives to the right side of the road.",
+      "keywords": [
+        "red",
+        "electric",
+        "car",
+        "appears",
+        "upper",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_135"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2677.2,
+      "end_time": 2690.7,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There are five electric vehicles and three cars passing the road in the upper left corner of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2677.2s to 2690.7s, there are five electric vehicles and three cars passing the road in the upper left corner of the road.",
+      "keywords": [
+        "five",
+        "electric",
+        "vehicles",
+        "three",
+        "cars",
+        "passing"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_136"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2690.7,
+      "end_time": 2706.1,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black vehicle appears on the right side of the road and drives to the upper side of the road. A man riding a bicycle in the upper left corner of the road rides to the right side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2690.7s to 2706.1s, a black vehicle appears on the right side of the road and drives to the upper side of the road. A man riding a bicycle in the upper left corner of the road rides to the right side of the road.",
+      "keywords": [
+        "black",
+        "vehicle",
+        "appears",
+        "right",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_137"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2706.1,
+      "end_time": 2730.9,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Two cars appeared on the right side of the road and drove towards the upper side of the road, and an electric car drove towards the center of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2706.1s to 2730.9s, two cars appeared on the right side of the road and drove towards the upper side of the road, and an electric car drove towards the center of the road.",
+      "keywords": [
+        "two",
+        "cars",
+        "appeared",
+        "right",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_138"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2730.9,
+      "end_time": 2746.3,
+      "object_type": "car",
+      "object_color": "green",
+      "appearance_notes": "Observed event; A green car appeared in the upper left corner of the road and drove to the right side of the road to leave.",
+      "scene_zone": "road",
+      "event_text": "From 2730.9s to 2746.3s, a green car appeared in the upper left corner of the road and drove to the right side of the road to leave.",
+      "keywords": [
+        "green",
+        "car",
+        "appeared",
+        "upper",
+        "left",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_139"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2746.3,
+      "end_time": 2767.1,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car appears in the upper left corner of the road and drives to the right side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2746.3s to 2767.1s, a white car appears in the upper left corner of the road and drives to the right side of the road.",
+      "keywords": [
+        "white",
+        "car",
+        "appears",
+        "upper",
+        "left",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_140"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2767.1,
+      "end_time": 2779.5,
+      "object_type": "car",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; A yellow car appears in the upper left corner of the road and drives to the right side of the road to leave.",
+      "scene_zone": "road",
+      "event_text": "From 2767.1s to 2779.5s, a yellow car appears in the upper left corner of the road and drives to the right side of the road to leave.",
+      "keywords": [
+        "yellow",
+        "car",
+        "appears",
+        "upper",
+        "left",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_141"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2779.5,
+      "end_time": 2795.3,
+      "object_type": "unknown",
+      "object_color": "white",
+      "appearance_notes": "High activity; A cyclist wearing white clothes appears in the upper left corner of the road and rides to the right side of the road to leave.",
+      "scene_zone": "road",
+      "event_text": "From 2779.5s to 2795.3s, a cyclist wearing white clothes appears in the upper left corner of the road and rides to the right side of the road to leave.",
+      "keywords": [
+        "cyclist",
+        "wearing",
+        "white",
+        "clothes",
+        "appears",
+        "upper"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_142"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2823.5,
+      "end_time": 2838.8,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white vehicle appeared on the right side of the road heading up the road, and a black hat man appeared on the left side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2823.5s to 2838.8s, a white vehicle appeared on the right side of the road heading up the road, and a black hat man appeared on the left side of the road.",
+      "keywords": [
+        "white",
+        "vehicle",
+        "appeared",
+        "right",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_143"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2838.8,
+      "end_time": 2854.1,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A car appeared in the upper left corner of the road and drove to the right side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2838.8s to 2854.1s, a car appeared in the upper left corner of the road and drove to the right side of the road.",
+      "keywords": [
+        "car",
+        "appeared",
+        "upper",
+        "left",
+        "corner",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_144"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2854.1,
+      "end_time": 2881.9,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white vehicle appears in the center of the road and drives towards the upper side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2854.1s to 2881.9s, a white vehicle appears in the center of the road and drives towards the upper side of the road.",
+      "keywords": [
+        "white",
+        "vehicle",
+        "appears",
+        "center",
+        "road",
+        "drives"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_145"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2881.9,
+      "end_time": 2910.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There are several electric vehicles and cyclists passing through the middle of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2881.9s to 2910.1s, there are several electric vehicles and cyclists passing through the middle of the road.",
+      "keywords": [
+        "several",
+        "electric",
+        "vehicles",
+        "cyclists",
+        "passing",
+        "through"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_146"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2910.1,
+      "end_time": 2927.4,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A woman in white coat appeared in the center of the road and slowly passed the road.",
+      "scene_zone": "road",
+      "event_text": "From 2910.1s to 2927.4s, a woman in white coat appeared in the center of the road and slowly passed the road.",
+      "keywords": [
+        "woman",
+        "white",
+        "coat",
+        "appeared",
+        "center",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_147"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2927.4,
+      "end_time": 2936.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A gray SUV appears on the right side of the road, and a white vehicle appears on the upper side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2927.4s to 2936.2s, a gray SUV appears on the right side of the road, and a white vehicle appears on the upper side of the road.",
+      "keywords": [
+        "gray",
+        "suv",
+        "appears",
+        "right",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_148"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2936.2,
+      "end_time": 2951.1,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The white vehicle on the left side of the road leaves from the right side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2936.2s to 2951.1s, the white vehicle on the left side of the road leaves from the right side of the road.",
+      "keywords": [
+        "white",
+        "vehicle",
+        "left",
+        "side",
+        "road",
+        "leaves"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_149"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2951.1,
+      "end_time": 2974.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Many cars and electric vehicles of different colors drove in from above the road and left below the road.",
+      "scene_zone": "road",
+      "event_text": "From 2951.1s to 2974.2s, many cars and electric vehicles of different colors drove in from above the road and left below the road.",
+      "keywords": [
+        "many",
+        "cars",
+        "electric",
+        "vehicles",
+        "different",
+        "colors"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_150"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2974.2,
+      "end_time": 2996.8,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A silver-white vehicle appeared in the upper left corner of the road and then left from the right side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2974.2s to 2996.8s, a silver-white vehicle appeared in the upper left corner of the road and then left from the right side of the road.",
+      "keywords": [
+        "silver",
+        "white",
+        "vehicle",
+        "appeared",
+        "upper",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_151"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 2996.8,
+      "end_time": 3032.9,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man on a bicycle appeared on the right side of the road and then left from the upper side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 2996.8s to 3032.9s, a man on a bicycle appeared on the right side of the road and then left from the upper side of the road.",
+      "keywords": [
+        "man",
+        "bicycle",
+        "appeared",
+        "right",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_152"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 3032.9,
+      "end_time": 3050.1,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Two cars appeared on the right side of the road and then left from the top of the road.",
+      "scene_zone": "road",
+      "event_text": "From 3032.9s to 3050.1s, two cars appeared on the right side of the road and then left from the top of the road.",
+      "keywords": [
+        "two",
+        "cars",
+        "appeared",
+        "right",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_153"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 3050.1,
+      "end_time": 3073.3,
+      "object_type": "car",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; There is a silver-gray vehicle on the upper side of the road passing through the middle of the road and leaving from the right.",
+      "scene_zone": "road",
+      "event_text": "From 3050.1s to 3073.3s, there is a silver-gray vehicle on the upper side of the road passing through the middle of the road and leaving from the right.",
+      "keywords": [
+        "silver",
+        "gray",
+        "vehicle",
+        "upper",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_154"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 3073.3,
+      "end_time": 3094.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A brown car appeared on the right side of the road and drove to the upper side of the road, and a man in white appeared on the left side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 3073.3s to 3094.2s, a brown car appeared on the right side of the road and drove to the upper side of the road, and a man in white appeared on the left side of the road.",
+      "keywords": [
+        "brown",
+        "car",
+        "appeared",
+        "right",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_155"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 3094.2,
+      "end_time": 3111.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in white left the road, and then five electric vehicles left.",
+      "scene_zone": "road",
+      "event_text": "From 3094.2s to 3111.2s, the man in white left the road, and then five electric vehicles left.",
+      "keywords": [
+        "man",
+        "white",
+        "left",
+        "road",
+        "five",
+        "electric"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_156"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 3111.2,
+      "end_time": 3119.3,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car appeared on the upper side of the road and walked to the lower side of the road and then left.",
+      "scene_zone": "road",
+      "event_text": "From 3111.2s to 3119.3s, a black car appeared on the upper side of the road and walked to the lower side of the road and then left.",
+      "keywords": [
+        "black",
+        "car",
+        "appeared",
+        "upper",
+        "side",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_157"
+    },
+    {
+      "video_id": "Normal_Videos541_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 3160.0,
+      "start_time": 3119.3,
+      "end_time": 3160.0,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Three cars appeared in the upper left corner of the road and drove towards the road and left from the right.",
+      "scene_zone": "road",
+      "event_text": "From 3119.3s to 3160.0s, three cars appeared in the upper left corner of the road and drove towards the road and left from the right.",
+      "keywords": [
+        "three",
+        "cars",
+        "appeared",
+        "upper",
+        "left",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_158"
+    }
+  ]
+}

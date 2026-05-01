@@ -1,0 +1,1223 @@
+{
+  "video_id": "Normal_Videos568_x264",
+  "duration": 235.97,
+  "events": [
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 0.0,
+      "end_time": 1.2,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; There are several electric vehicles in front of a shop, and a man in blue clothes and brown pants appears on the left.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 1.2s, there are several electric vehicles in front of a shop, and a man in blue clothes and brown pants appears on the left.",
+      "keywords": [
+        "several",
+        "electric",
+        "vehicles",
+        "front",
+        "shop",
+        "man"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 0.0,
+      "end_time": 5.2,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in a black sweater walked above and walked to the center and bent down to remove the blue box on the ground.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 5.2s, a man in a black sweater walked above and walked to the center and bent down to remove the blue box on the ground.",
+      "keywords": [
+        "man",
+        "black",
+        "sweater",
+        "walked",
+        "above",
+        "center"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 5.2,
+      "end_time": 11.2,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man in a brown shirt and a woman in a white shirt came over from the right, walked to the left and talked to the man in blue and left on the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 5.2s to 11.2s, a man in a brown shirt and a woman in a white shirt came over from the right, walked to the left and talked to the man in blue and left on the right side of the screen.",
+      "keywords": [
+        "man",
+        "brown",
+        "shirt",
+        "woman",
+        "white",
+        "came"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 11.5,
+      "end_time": 23.5,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "High activity; The man in blue on the left pushed the box on the ground away. A little girl was playing around the box.",
+      "scene_zone": "unknown",
+      "event_text": "From 11.5s to 23.5s, the man in blue on the left pushed the box on the ground away. A little girl was playing around the box.",
+      "keywords": [
+        "man",
+        "blue",
+        "left",
+        "pushed",
+        "box",
+        "ground"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 11.5,
+      "end_time": 23.5,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; A man in gray clothes and black trousers pushing a bicycle entered on the right side, communicated with the man in the store, and then turned the bicycle around.",
+      "scene_zone": "store",
+      "event_text": "From 11.5s to 23.5s, a man in gray clothes and black trousers pushing a bicycle entered on the right side, communicated with the man in the store, and then turned the bicycle around.",
+      "keywords": [
+        "man",
+        "gray",
+        "clothes",
+        "black",
+        "trousers",
+        "pushing"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 25.4,
+      "end_time": 34.4,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; Two men in the lower right corner walked into the store one after another. The man with a yellow helmet and a white shirt was talking in front of the store.",
+      "scene_zone": "store",
+      "event_text": "From 25.4s to 34.4s, two men in the lower right corner walked into the store one after another. The man with a yellow helmet and a white shirt was talking in front of the store.",
+      "keywords": [
+        "two",
+        "men",
+        "lower",
+        "right",
+        "corner",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 28.4,
+      "end_time": 34.4,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A man in a light blue shirt in the lower right corner is checking the package in his hand, and then enters the store.",
+      "scene_zone": "store",
+      "event_text": "From 28.4s to 34.4s, a man in a light blue shirt in the lower right corner is checking the package in his hand, and then enters the store.",
+      "keywords": [
+        "man",
+        "light",
+        "blue",
+        "shirt",
+        "lower",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 36.2,
+      "end_time": 37.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A woman in a floral top and jeans walked out of the store on the left and pulled a child onto the electric car in the lower right corner.",
+      "scene_zone": "store",
+      "event_text": "From 36.2s to 37.3s, a woman in a floral top and jeans walked out of the store on the left and pulled a child onto the electric car in the lower right corner.",
+      "keywords": [
+        "woman",
+        "floral",
+        "top",
+        "jeans",
+        "walked",
+        "out"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 37.2,
+      "end_time": 39.3,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "Observed event; A man wearing a light pink shirt and jeans walked past the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 37.2s to 39.3s, a man wearing a light pink shirt and jeans walked past the screen.",
+      "keywords": [
+        "man",
+        "wearing",
+        "light",
+        "pink",
+        "shirt",
+        "jeans"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 39.2,
+      "end_time": 44.2,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in gray clothes and black trousers on the left and the man in blue clothes holding a big box walked out.",
+      "scene_zone": "unknown",
+      "event_text": "From 39.2s to 44.2s, the man in gray clothes and black trousers on the left and the man in blue clothes holding a big box walked out.",
+      "keywords": [
+        "man",
+        "gray",
+        "clothes",
+        "black",
+        "trousers",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 44.2,
+      "end_time": 53.3,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The man in blue put the box on the back seat of the bicycle on the right, and the people in the picture left one after another.",
+      "scene_zone": "unknown",
+      "event_text": "From 44.2s to 53.3s, the man in blue put the box on the back seat of the bicycle on the right, and the people in the picture left one after another.",
+      "keywords": [
+        "man",
+        "blue",
+        "put",
+        "box",
+        "back",
+        "seat"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 49.1,
+      "end_time": 65.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in gray clothes and black pants below walked to the side of the bicycle.",
+      "scene_zone": "unknown",
+      "event_text": "From 49.1s to 65.1s, the man in gray clothes and black pants below walked to the side of the bicycle.",
+      "keywords": [
+        "man",
+        "gray",
+        "clothes",
+        "black",
+        "pants",
+        "below"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 61.1,
+      "end_time": 63.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Low activity; A man in black walked in from above and waited at the door for a while before entering the store on the left.",
+      "scene_zone": "room",
+      "event_text": "From 61.1s to 63.1s, a man in black walked in from above and waited at the door for a while before entering the store on the left.",
+      "keywords": [
+        "man",
+        "black",
+        "walked",
+        "above",
+        "waited",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 61.1,
+      "end_time": 65.1,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The man in the yellow helmet in the lower right corner and the man in the blue shirt moved the big box in the center of the screen to the lower right corner of the road.",
+      "scene_zone": "road",
+      "event_text": "From 61.1s to 65.1s, the man in the yellow helmet in the lower right corner and the man in the blue shirt moved the big box in the center of the screen to the lower right corner of the road.",
+      "keywords": [
+        "man",
+        "yellow",
+        "helmet",
+        "lower",
+        "right",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 74.5,
+      "end_time": 80.4,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; In the picture, the man in gray clothes and black trousers is on the phone, pacing back and forth in the upper right corner. During this period, many heads flashed around him.",
+      "scene_zone": "unknown",
+      "event_text": "From 74.5s to 80.4s, in the picture, the man in gray clothes and black trousers is on the phone, pacing back and forth in the upper right corner. During this period, many heads flashed around him.",
+      "keywords": [
+        "picture",
+        "man",
+        "gray",
+        "clothes",
+        "black",
+        "trousers"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 78.5,
+      "end_time": 80.4,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A woman wearing red clothes and black pants below walks into the store on the left.",
+      "scene_zone": "store",
+      "event_text": "From 78.5s to 80.4s, a woman wearing red clothes and black pants below walks into the store on the left.",
+      "keywords": [
+        "woman",
+        "wearing",
+        "red",
+        "clothes",
+        "black",
+        "pants"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_16"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 94.1,
+      "end_time": 95.3,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black clothes and black pants passed by on the road.",
+      "scene_zone": "road",
+      "event_text": "From 94.1s to 95.3s, a man in black clothes and black pants passed by on the road.",
+      "keywords": [
+        "man",
+        "black",
+        "clothes",
+        "pants",
+        "passed",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_17"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 94.1,
+      "end_time": 113.3,
+      "object_type": "person",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; The man in gray in the upper right corner walked to the bicycle, making a phone call and checking the box.",
+      "scene_zone": "unknown",
+      "event_text": "From 94.1s to 113.3s, the man in gray in the upper right corner walked to the bicycle, making a phone call and checking the box.",
+      "keywords": [
+        "man",
+        "gray",
+        "upper",
+        "right",
+        "corner",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_18"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 97.1,
+      "end_time": 101.3,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The man in blue in the lower right corner enters the store on the left.",
+      "scene_zone": "store",
+      "event_text": "From 97.1s to 101.3s, the man in blue in the lower right corner enters the store on the left.",
+      "keywords": [
+        "man",
+        "blue",
+        "lower",
+        "right",
+        "corner",
+        "enters"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_19"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 102.1,
+      "end_time": 103.3,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The woman in red on the left leaves,.",
+      "scene_zone": "unknown",
+      "event_text": "From 102.1s to 103.3s, the woman in red on the left leaves,.",
+      "keywords": [
+        "woman",
+        "red",
+        "left",
+        "leaves"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_20"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 103.3,
+      "end_time": 113.3,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in the brown shirt and the woman in the white shirt and gray pants entered to the left, and the following people walked down together.",
+      "scene_zone": "unknown",
+      "event_text": "From 103.3s to 113.3s, the man in the brown shirt and the woman in the white shirt and gray pants entered to the left, and the following people walked down together.",
+      "keywords": [
+        "man",
+        "brown",
+        "shirt",
+        "woman",
+        "white",
+        "gray"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_21"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 118.4,
+      "end_time": 123.5,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "High activity; The man in blue on the right pushed a green electric tricycle to the right side of the road, and then walked to the bottom of the road. The little girl then entered below,.",
+      "scene_zone": "road",
+      "event_text": "From 118.4s to 123.5s, the man in blue on the right pushed a green electric tricycle to the right side of the road, and then walked to the bottom of the road. The little girl then entered below,.",
+      "keywords": [
+        "man",
+        "blue",
+        "right",
+        "pushed",
+        "green",
+        "electric"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_22"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 122.4,
+      "end_time": 126.5,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; In the upper right corner, a man wearing a gray and black patchwork top and jeans enters the store on the left.",
+      "scene_zone": "store",
+      "event_text": "From 122.4s to 126.5s, in the upper right corner, a man wearing a gray and black patchwork top and jeans enters the store on the left.",
+      "keywords": [
+        "upper",
+        "right",
+        "corner",
+        "man",
+        "wearing",
+        "gray"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_23"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 127.5,
+      "end_time": 139.5,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in a brown plaid shirt holding a child walked out of the store on the left and strolled in front of the store. The man in black on the left walked to the upper right corner and left. A woman in black clothes and black pants was above the road. Entering the store, the man in blue then enters the store, and the three people behind him leave the screen.",
+      "scene_zone": "road",
+      "event_text": "From 127.5s to 139.5s, a man in a brown plaid shirt holding a child walked out of the store on the left and strolled in front of the store. The man in black on the left walked to the upper right corner and left. A woman in black clothes and black pants was above the road. Entering the store, the man in blue then enters the store, and the three people behind him leave the screen.",
+      "keywords": [
+        "man",
+        "brown",
+        "plaid",
+        "shirt",
+        "holding",
+        "child"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_24"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 140.4,
+      "end_time": 142.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The woman in black clothes and black pants on the left left, and the man in brown clothes holding a child entered the store.",
+      "scene_zone": "store",
+      "event_text": "From 140.4s to 142.1s, the woman in black clothes and black pants on the left left, and the man in brown clothes holding a child entered the store.",
+      "keywords": [
+        "woman",
+        "black",
+        "clothes",
+        "pants",
+        "left",
+        "man"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_25"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 142.1,
+      "end_time": 153.1,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The man in the gray shirt on the right entered the store on the left, then returned to the bicycle and began to tie the rope.",
+      "scene_zone": "store",
+      "event_text": "From 142.1s to 153.1s, the man in the gray shirt on the right entered the store on the left, then returned to the bicycle and began to tie the rope.",
+      "keywords": [
+        "man",
+        "gray",
+        "shirt",
+        "right",
+        "entered",
+        "store"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_26"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 148.1,
+      "end_time": 153.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man wearing black jeans in the upper right corner of the road enters the store on the left.",
+      "scene_zone": "road",
+      "event_text": "From 148.1s to 153.1s, a man wearing black jeans in the upper right corner of the road enters the store on the left.",
+      "keywords": [
+        "man",
+        "wearing",
+        "black",
+        "jeans",
+        "upper",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_27"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 155.2,
+      "end_time": 180.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There are many people flowing in and out of the left side of the store.",
+      "scene_zone": "store",
+      "event_text": "From 155.2s to 180.1s, there are many people flowing in and out of the left side of the store.",
+      "keywords": [
+        "many",
+        "people",
+        "flowing",
+        "out",
+        "left",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_28"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 155.2,
+      "end_time": 180.1,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The man in gray on the right put the box on the bicycle on the ground and the man in blue in the lower right corner helped to sort it out. During this period, the man in blue kept moving things to the electric tricycle on the right.",
+      "scene_zone": "unknown",
+      "event_text": "From 155.2s to 180.1s, the man in gray on the right put the box on the bicycle on the ground and the man in blue in the lower right corner helped to sort it out. During this period, the man in blue kept moving things to the electric tricycle on the right.",
+      "keywords": [
+        "man",
+        "gray",
+        "right",
+        "put",
+        "box",
+        "bicycle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_29"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 165.2,
+      "end_time": 167.1,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two men passed by above,.",
+      "scene_zone": "unknown",
+      "event_text": "From 165.2s to 167.1s, two men passed by above,.",
+      "keywords": [
+        "two",
+        "men",
+        "passed",
+        "above"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_30"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 172.2,
+      "end_time": 180.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman in a brown top holding a child on the left walked to the center of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 172.2s to 180.1s, the woman in a brown top holding a child on the left walked to the center of the screen.",
+      "keywords": [
+        "woman",
+        "brown",
+        "top",
+        "holding",
+        "child",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_31"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 183.5,
+      "end_time": 187.5,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The man in blue on the right side of the road rode an electric tricycle and drove off the upper right corner of the road.",
+      "scene_zone": "road",
+      "event_text": "From 183.5s to 187.5s, the man in blue on the right side of the road rode an electric tricycle and drove off the upper right corner of the road.",
+      "keywords": [
+        "man",
+        "blue",
+        "right",
+        "side",
+        "road",
+        "rode"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_32"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 189.5,
+      "end_time": 192.5,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Four women in the upper right corner walk together to the door of the store on the left.",
+      "scene_zone": "room",
+      "event_text": "From 189.5s to 192.5s, four women in the upper right corner walk together to the door of the store on the left.",
+      "keywords": [
+        "four",
+        "women",
+        "upper",
+        "right",
+        "corner",
+        "walk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_33"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 211.3,
+      "end_time": 215.1,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Four women on the left walked to the upper right corner and left.",
+      "scene_zone": "unknown",
+      "event_text": "From 211.3s to 215.1s, four women on the left walked to the upper right corner and left.",
+      "keywords": [
+        "four",
+        "women",
+        "left",
+        "walked",
+        "upper",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_34"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 211.3,
+      "end_time": 233.1,
+      "object_type": "person",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; The man in gray on the right is on the phone and packing boxes.",
+      "scene_zone": "unknown",
+      "event_text": "From 211.3s to 233.1s, the man in gray on the right is on the phone and packing boxes.",
+      "keywords": [
+        "man",
+        "gray",
+        "right",
+        "phone",
+        "packing",
+        "boxes"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_35"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 223.3,
+      "end_time": 233.1,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Many motorcycles on the right side gathered on the right side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 223.3s to 233.1s, many motorcycles on the right side gathered on the right side of the road.",
+      "keywords": [
+        "many",
+        "motorcycles",
+        "right",
+        "side",
+        "gathered",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_36"
+    },
+    {
+      "video_id": "Normal_Videos568_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 235.97,
+      "start_time": 226.3,
+      "end_time": 233.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Many people on the left enter and exit the store on the left.",
+      "scene_zone": "store",
+      "event_text": "From 226.3s to 233.1s, many people on the left enter and exit the store on the left.",
+      "keywords": [
+        "many",
+        "people",
+        "left",
+        "enter",
+        "exit",
+        "store"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_37"
+    }
+  ]
+}

@@ -1,0 +1,202 @@
+{
+  "video_id": "Normal_Videos624_x264",
+  "duration": 140.0,
+  "events": [
+    {
+      "video_id": "Normal_Videos624_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 140.0,
+      "start_time": 0.0,
+      "end_time": 10.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The picture shows a very wide road with a large number of vehicles driving on the left and right sides.",
+      "scene_zone": "road",
+      "event_text": "From 0.0s to 10.2s, the picture shows a very wide road with a large number of vehicles driving on the left and right sides.",
+      "keywords": [
+        "picture",
+        "shows",
+        "very",
+        "wide",
+        "road",
+        "large"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos624_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 140.0,
+      "start_time": 0.0,
+      "end_time": 10.5,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "High activity; A blue truck and a white van in the center of the screen drive past the bottom of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 10.5s, a blue truck and a white van in the center of the screen drive past the bottom of the screen.",
+      "keywords": [
+        "blue",
+        "truck",
+        "white",
+        "van",
+        "center",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos624_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 140.0,
+      "start_time": 11.1,
+      "end_time": 29.4,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The right lane starts to move.",
+      "scene_zone": "unknown",
+      "event_text": "From 11.1s to 29.4s, the right lane starts to move.",
+      "keywords": [
+        "right",
+        "lane",
+        "starts",
+        "move"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos624_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 140.0,
+      "start_time": 30.3,
+      "end_time": 46.5,
+      "object_type": "unknown",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A blue-green bus turns from the left side of the screen and drives past the bottom of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 30.3s to 46.5s, a blue-green bus turns from the left side of the screen and drives past the bottom of the screen.",
+      "keywords": [
+        "blue",
+        "green",
+        "bus",
+        "turns",
+        "left",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos624_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 140.0,
+      "start_time": 57.3,
+      "end_time": 100.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The oncoming traffic at the top of the screen begins to pass through the bottom of the screen. There are many buses and a large number of cars passing down the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 57.3s to 100.2s, the oncoming traffic at the top of the screen begins to pass through the bottom of the screen. There are many buses and a large number of cars passing down the screen.",
+      "keywords": [
+        "oncoming",
+        "traffic",
+        "top",
+        "screen",
+        "begins",
+        "pass"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos624_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 140.0,
+      "start_time": 121.1,
+      "end_time": 139.3,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; Two blue-green buses and a large number of cars drove past the bottom of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 121.1s to 139.3s, two blue-green buses and a large number of cars drove past the bottom of the screen.",
+      "keywords": [
+        "two",
+        "blue",
+        "green",
+        "buses",
+        "large",
+        "number"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    }
+  ]
+}

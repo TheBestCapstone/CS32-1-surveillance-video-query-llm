@@ -1,0 +1,1090 @@
+{
+  "video_id": "Normal_Videos591_x264",
+  "duration": 301.02,
+  "events": [
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 0.0,
+      "end_time": 2.5,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; On a road, a car at the top is driving to the road at the bottom left.",
+      "scene_zone": "road",
+      "event_text": "From 0.0s to 2.5s, on a road, a car at the top is driving to the road at the bottom left.",
+      "keywords": [
+        "road",
+        "car",
+        "top",
+        "driving",
+        "bottom",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 13.5,
+      "end_time": 27.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A car below is driving towards the road above, followed by several vehicles.",
+      "scene_zone": "road",
+      "event_text": "From 13.5s to 27.2s, a car below is driving towards the road above, followed by several vehicles.",
+      "keywords": [
+        "car",
+        "below",
+        "driving",
+        "towards",
+        "road",
+        "above"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 16.5,
+      "end_time": 27.2,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car above is driving towards the lower left road, followed by a motorcycle.",
+      "scene_zone": "road",
+      "event_text": "From 16.5s to 27.2s, a black car above is driving towards the lower left road, followed by a motorcycle.",
+      "keywords": [
+        "black",
+        "car",
+        "above",
+        "driving",
+        "towards",
+        "lower"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 27.2,
+      "end_time": 65.0,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car above is driving towards the lower left road, followed by several vehicles.",
+      "scene_zone": "road",
+      "event_text": "From 27.2s to 65.0s, a black car above is driving towards the lower left road, followed by several vehicles.",
+      "keywords": [
+        "black",
+        "car",
+        "above",
+        "driving",
+        "towards",
+        "lower"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 36.2,
+      "end_time": 44.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A cyclist drives towards the lower right road,.",
+      "scene_zone": "road",
+      "event_text": "From 36.2s to 44.0s, a cyclist drives towards the lower right road,.",
+      "keywords": [
+        "cyclist",
+        "drives",
+        "towards",
+        "lower",
+        "right",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 48.2,
+      "end_time": 60.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two pedestrians walked towards the lower left road,.",
+      "scene_zone": "road",
+      "event_text": "From 48.2s to 60.0s, two pedestrians walked towards the lower left road,.",
+      "keywords": [
+        "two",
+        "pedestrians",
+        "walked",
+        "towards",
+        "lower",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 48.2,
+      "end_time": 62.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A pedestrian walks towards the lower right road.",
+      "scene_zone": "road",
+      "event_text": "From 48.2s to 62.0s, a pedestrian walks towards the lower right road.",
+      "keywords": [
+        "pedestrian",
+        "walks",
+        "towards",
+        "lower",
+        "right",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 65.0,
+      "end_time": 67.3,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car below is driving to the left road.",
+      "scene_zone": "road",
+      "event_text": "From 65.0s to 67.3s, a white car below is driving to the left road.",
+      "keywords": [
+        "white",
+        "car",
+        "below",
+        "driving",
+        "left",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 65.0,
+      "end_time": 70.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The two cars above are driving towards the lower left road.",
+      "scene_zone": "road",
+      "event_text": "From 65.0s to 70.3s, the two cars above are driving towards the lower left road.",
+      "keywords": [
+        "two",
+        "cars",
+        "above",
+        "driving",
+        "towards",
+        "lower"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 65.0,
+      "end_time": 72.3,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A cyclist drives towards the lower right road.",
+      "scene_zone": "road",
+      "event_text": "From 65.0s to 72.3s, a cyclist drives towards the lower right road.",
+      "keywords": [
+        "cyclist",
+        "drives",
+        "towards",
+        "lower",
+        "right",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 72.3,
+      "end_time": 94.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A truck below drives towards the road above, followed by several vehicles.",
+      "scene_zone": "road",
+      "event_text": "From 72.3s to 94.0s, a truck below drives towards the road above, followed by several vehicles.",
+      "keywords": [
+        "truck",
+        "below",
+        "drives",
+        "towards",
+        "road",
+        "above"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 80.3,
+      "end_time": 99.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A bus above stopped at the platform.",
+      "scene_zone": "unknown",
+      "event_text": "From 80.3s to 99.0s, a bus above stopped at the platform.",
+      "keywords": [
+        "bus",
+        "above",
+        "stopped",
+        "platform"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 99.0,
+      "end_time": 128.4,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Then the bus drove to the lower left road, followed by several vehicles.",
+      "scene_zone": "road",
+      "event_text": "From 99.0s to 128.4s, then the bus drove to the lower left road, followed by several vehicles.",
+      "keywords": [
+        "bus",
+        "drove",
+        "lower",
+        "left",
+        "road",
+        "followed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 112.0,
+      "end_time": 128.4,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A pedestrian is crossing the road towards the building on the right.",
+      "scene_zone": "road",
+      "event_text": "From 112.0s to 128.4s, a pedestrian is crossing the road towards the building on the right.",
+      "keywords": [
+        "pedestrian",
+        "crossing",
+        "road",
+        "towards",
+        "building",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 128.4,
+      "end_time": 131.1,
+      "object_type": "car",
+      "object_color": "silver",
+      "appearance_notes": "Observed event; A silver car below is driving to the left road.",
+      "scene_zone": "road",
+      "event_text": "From 128.4s to 131.1s, a silver car below is driving to the left road.",
+      "keywords": [
+        "silver",
+        "car",
+        "below",
+        "driving",
+        "left",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 139.4,
+      "end_time": 143.1,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car drove towards the highway above,.",
+      "scene_zone": "unknown",
+      "event_text": "From 139.4s to 143.1s, a white car drove towards the highway above,.",
+      "keywords": [
+        "white",
+        "car",
+        "drove",
+        "towards",
+        "highway",
+        "above"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_16"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 128.4,
+      "end_time": 143.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several vehicles above are heading towards the lower left road.",
+      "scene_zone": "road",
+      "event_text": "From 128.4s to 143.1s, several vehicles above are heading towards the lower left road.",
+      "keywords": [
+        "several",
+        "vehicles",
+        "above",
+        "heading",
+        "towards",
+        "lower"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_17"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 143.1,
+      "end_time": 146.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A pedestrian on the left is crossing the road and heading to the sidewalk on the right.",
+      "scene_zone": "road",
+      "event_text": "From 143.1s to 146.0s, a pedestrian on the left is crossing the road and heading to the sidewalk on the right.",
+      "keywords": [
+        "pedestrian",
+        "left",
+        "crossing",
+        "road",
+        "heading",
+        "sidewalk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_18"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 143.1,
+      "end_time": 153.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several vehicles passing by the road.",
+      "scene_zone": "road",
+      "event_text": "From 143.1s to 153.0s, several vehicles passing by the road.",
+      "keywords": [
+        "several",
+        "vehicles",
+        "passing",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_19"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 153.0,
+      "end_time": 155.0,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car below is driving towards the lower left road.",
+      "scene_zone": "road",
+      "event_text": "From 153.0s to 155.0s, a black car below is driving towards the lower left road.",
+      "keywords": [
+        "black",
+        "car",
+        "below",
+        "driving",
+        "towards",
+        "lower"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_20"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 161.0,
+      "end_time": 171.0,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A cyclist and a red car drove towards the road above,.",
+      "scene_zone": "road",
+      "event_text": "From 161.0s to 171.0s, a cyclist and a red car drove towards the road above,.",
+      "keywords": [
+        "cyclist",
+        "red",
+        "car",
+        "drove",
+        "towards",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_21"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 164.0,
+      "end_time": 173.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A motorcycle and a cyclist above are heading towards the lower left road.",
+      "scene_zone": "road",
+      "event_text": "From 164.0s to 173.0s, a motorcycle and a cyclist above are heading towards the lower left road.",
+      "keywords": [
+        "motorcycle",
+        "cyclist",
+        "above",
+        "heading",
+        "towards",
+        "lower"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_22"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 171.0,
+      "end_time": 197.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; Several vehicles then passed by the road, and three pedestrians were waiting at the streetlight on the left sidewalk.",
+      "scene_zone": "road",
+      "event_text": "From 171.0s to 197.3s, several vehicles then passed by the road, and three pedestrians were waiting at the streetlight on the left sidewalk.",
+      "keywords": [
+        "several",
+        "vehicles",
+        "passed",
+        "road",
+        "three",
+        "pedestrians"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_23"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 197.3,
+      "end_time": 216.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several vehicles above are heading to the lower left road.",
+      "scene_zone": "road",
+      "event_text": "From 197.3s to 216.1s, several vehicles above are heading to the lower left road.",
+      "keywords": [
+        "several",
+        "vehicles",
+        "above",
+        "heading",
+        "lower",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_24"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 216.3,
+      "end_time": 220.1,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Then two pedestrians crossed the road and walked towards the lawn on the right.",
+      "scene_zone": "road",
+      "event_text": "From 216.3s to 220.1s, then two pedestrians crossed the road and walked towards the lawn on the right.",
+      "keywords": [
+        "two",
+        "pedestrians",
+        "crossed",
+        "road",
+        "walked",
+        "towards"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_25"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 216.3,
+      "end_time": 223.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several vehicles below are heading to the lower left road.",
+      "scene_zone": "road",
+      "event_text": "From 216.3s to 223.1s, several vehicles below are heading to the lower left road.",
+      "keywords": [
+        "several",
+        "vehicles",
+        "below",
+        "heading",
+        "lower",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_26"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 223.1,
+      "end_time": 244.2,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two pedestrians walked to the right from the lawn and then left the camera's field of view.",
+      "scene_zone": "unknown",
+      "event_text": "From 223.1s to 244.2s, two pedestrians walked to the right from the lawn and then left the camera's field of view.",
+      "keywords": [
+        "two",
+        "pedestrians",
+        "walked",
+        "right",
+        "lawn",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_27"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 223.1,
+      "end_time": 244.2,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; A pedestrian was still waiting at the streetlight, then walked to the road and looked up.",
+      "scene_zone": "road",
+      "event_text": "From 223.1s to 244.2s, a pedestrian was still waiting at the streetlight, then walked to the road and looked up.",
+      "keywords": [
+        "pedestrian",
+        "still",
+        "waiting",
+        "streetlight",
+        "walked",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_28"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 182.1,
+      "end_time": 244.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A car below drives towards the lower left road.",
+      "scene_zone": "road",
+      "event_text": "From 182.1s to 244.2s, a car below drives towards the lower left road.",
+      "keywords": [
+        "car",
+        "below",
+        "drives",
+        "towards",
+        "lower",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_29"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 244.2,
+      "end_time": 274.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A car above is driving to the lower left road, and several vehicles below are driving to the upper road.",
+      "scene_zone": "road",
+      "event_text": "From 244.2s to 274.0s, a car above is driving to the lower left road, and several vehicles below are driving to the upper road.",
+      "keywords": [
+        "car",
+        "above",
+        "driving",
+        "lower",
+        "left",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_30"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 244.2,
+      "end_time": 274.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The pedestrian was pacing back and forth on the road,.",
+      "scene_zone": "road",
+      "event_text": "From 244.2s to 274.0s, the pedestrian was pacing back and forth on the road,.",
+      "keywords": [
+        "pedestrian",
+        "pacing",
+        "back",
+        "forth",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_31"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 244.2,
+      "end_time": 248.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A motorcycle passed by it and headed to the lower left road.",
+      "scene_zone": "road",
+      "event_text": "From 244.2s to 248.0s, a motorcycle passed by it and headed to the lower left road.",
+      "keywords": [
+        "motorcycle",
+        "passed",
+        "headed",
+        "lower",
+        "left",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_32"
+    },
+    {
+      "video_id": "Normal_Videos591_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 301.02,
+      "start_time": 274.0,
+      "end_time": 301.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several vehicles above are heading towards the lower left road and the lower right road respectively.",
+      "scene_zone": "road",
+      "event_text": "From 274.0s to 301.0s, several vehicles above are heading towards the lower left road and the lower right road respectively.",
+      "keywords": [
+        "several",
+        "vehicles",
+        "above",
+        "heading",
+        "towards",
+        "lower"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_33"
+    }
+  ]
+}

@@ -1,0 +1,2045 @@
+{
+  "video_id": "Normal_Videos638_x264",
+  "duration": 1024.81,
+  "events": [
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 1.3,
+      "end_time": 8.6,
+      "object_type": "person",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; A woman with yellow hair crossed the road.",
+      "scene_zone": "road",
+      "event_text": "From 1.3s to 8.6s, a woman with yellow hair crossed the road.",
+      "keywords": [
+        "woman",
+        "yellow",
+        "hair",
+        "crossed",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 20.5,
+      "end_time": 26.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man walked by with a suitcase.",
+      "scene_zone": "unknown",
+      "event_text": "From 20.5s to 26.4s, a man walked by with a suitcase.",
+      "keywords": [
+        "man",
+        "walked",
+        "suitcase"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 30.7,
+      "end_time": 46.4,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Lens change There are cars and bicycles passing by on the road. There is a group of people talking about something on the side road.",
+      "scene_zone": "road",
+      "event_text": "From 30.7s to 46.4s, lens change There are cars and bicycles passing by on the road. There is a group of people talking about something on the side road.",
+      "keywords": [
+        "lens",
+        "change",
+        "cars",
+        "bicycles",
+        "passing",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 51.9,
+      "end_time": 61.4,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; Many vehicles passed, and two white cars turned.",
+      "scene_zone": "unknown",
+      "event_text": "From 51.9s to 61.4s, many vehicles passed, and two white cars turned.",
+      "keywords": [
+        "many",
+        "vehicles",
+        "passed",
+        "two",
+        "white",
+        "cars"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 68.7,
+      "end_time": 78.3,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; Lens change: A white car makes a U-turn on the road, followed by many vehicles passing by.",
+      "scene_zone": "road",
+      "event_text": "From 68.7s to 78.3s, lens change: A white car makes a U-turn on the road, followed by many vehicles passing by.",
+      "keywords": [
+        "lens",
+        "change",
+        "white",
+        "car",
+        "makes",
+        "turn"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 80.1,
+      "end_time": 83.9,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A long bus passed by.",
+      "scene_zone": "unknown",
+      "event_text": "From 80.1s to 83.9s, a long bus passed by.",
+      "keywords": [
+        "long",
+        "bus",
+        "passed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 86.8,
+      "end_time": 97.7,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two cars in opposite directions passed each other on the road.",
+      "scene_zone": "road",
+      "event_text": "From 86.8s to 97.7s, two cars in opposite directions passed each other on the road.",
+      "keywords": [
+        "two",
+        "cars",
+        "opposite",
+        "directions",
+        "passed",
+        "each"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 101.6,
+      "end_time": 106.7,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car drives by, the lens changes.",
+      "scene_zone": "unknown",
+      "event_text": "From 101.6s to 106.7s, a black car drives by, the lens changes.",
+      "keywords": [
+        "black",
+        "car",
+        "drives",
+        "lens",
+        "changes"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 108.0,
+      "end_time": 121.4,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car passed by, a woman was walking on the path in the middle, and several people crossed the road.",
+      "scene_zone": "road",
+      "event_text": "From 108.0s to 121.4s, a black car passed by, a woman was walking on the path in the middle, and several people crossed the road.",
+      "keywords": [
+        "black",
+        "car",
+        "passed",
+        "woman",
+        "walking",
+        "path"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 123.9,
+      "end_time": 142.5,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The camera switches to a static white car, and then switches again.",
+      "scene_zone": "unknown",
+      "event_text": "From 123.9s to 142.5s, the camera switches to a static white car, and then switches again.",
+      "keywords": [
+        "camera",
+        "switches",
+        "static",
+        "white",
+        "car",
+        "again"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 144.4,
+      "end_time": 150.8,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A car drives over and an electric car drives over.",
+      "scene_zone": "unknown",
+      "event_text": "From 144.4s to 150.8s, a car drives over and an electric car drives over.",
+      "keywords": [
+        "car",
+        "drives",
+        "electric"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 155.4,
+      "end_time": 162.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The camera changes after several cars pass by. On the relatively empty road, there are many cars parked on the street.",
+      "scene_zone": "road",
+      "event_text": "From 155.4s to 162.3s, the camera changes after several cars pass by. On the relatively empty road, there are many cars parked on the street.",
+      "keywords": [
+        "camera",
+        "changes",
+        "several",
+        "cars",
+        "pass",
+        "relatively"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 180.9,
+      "end_time": 196.2,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Low activity; The red car stopped at the intersection and waited for the passing vehicles.",
+      "scene_zone": "road",
+      "event_text": "From 180.9s to 196.2s, the red car stopped at the intersection and waited for the passing vehicles.",
+      "keywords": [
+        "red",
+        "car",
+        "stopped",
+        "intersection",
+        "waited",
+        "passing"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 198.7,
+      "end_time": 207.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two people pulling suitcases walked by the side path.",
+      "scene_zone": "unknown",
+      "event_text": "From 198.7s to 207.1s, two people pulling suitcases walked by the side path.",
+      "keywords": [
+        "two",
+        "people",
+        "pulling",
+        "suitcases",
+        "walked",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 208.6,
+      "end_time": 213.3,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A bus and a black car passed by together.",
+      "scene_zone": "unknown",
+      "event_text": "From 208.6s to 213.3s, a bus and a black car passed by together.",
+      "keywords": [
+        "bus",
+        "black",
+        "car",
+        "passed",
+        "together"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 217.5,
+      "end_time": 234.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The lens changes between pedestrians and vehicles.",
+      "scene_zone": "unknown",
+      "event_text": "From 217.5s to 234.1s, the lens changes between pedestrians and vehicles.",
+      "keywords": [
+        "lens",
+        "changes",
+        "between",
+        "pedestrians",
+        "vehicles"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_16"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 235.6,
+      "end_time": 250.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The camera shows a stationary white car.",
+      "scene_zone": "unknown",
+      "event_text": "From 235.6s to 250.2s, the camera shows a stationary white car.",
+      "keywords": [
+        "camera",
+        "shows",
+        "stationary",
+        "white",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_17"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 255.5,
+      "end_time": 269.1,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Lens transition A black car drives by.",
+      "scene_zone": "unknown",
+      "event_text": "From 255.5s to 269.1s, lens transition A black car drives by.",
+      "keywords": [
+        "lens",
+        "transition",
+        "black",
+        "car",
+        "drives"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_18"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 274.1,
+      "end_time": 290.6,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Cars keep turning around during lens transition.",
+      "scene_zone": "unknown",
+      "event_text": "From 274.1s to 290.6s, cars keep turning around during lens transition.",
+      "keywords": [
+        "cars",
+        "keep",
+        "turning",
+        "around",
+        "during",
+        "lens"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_19"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 292.3,
+      "end_time": 304.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A person crosses the road. Two cars stopped.",
+      "scene_zone": "road",
+      "event_text": "From 292.3s to 304.1s, a person crosses the road. Two cars stopped.",
+      "keywords": [
+        "person",
+        "crosses",
+        "road",
+        "two",
+        "cars",
+        "stopped"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_20"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 306.4,
+      "end_time": 325.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The camera switches to the traffic flow on the road. There are two people, one big and one small, passing by on the path.",
+      "scene_zone": "road",
+      "event_text": "From 306.4s to 325.0s, the camera switches to the traffic flow on the road. There are two people, one big and one small, passing by on the path.",
+      "keywords": [
+        "camera",
+        "switches",
+        "traffic",
+        "flow",
+        "road",
+        "two"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_21"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 329.1,
+      "end_time": 340.8,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The train starts and leaves.",
+      "scene_zone": "unknown",
+      "event_text": "From 329.1s to 340.8s, the train starts and leaves.",
+      "keywords": [
+        "train",
+        "starts",
+        "leaves"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_22"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 341.9,
+      "end_time": 361.9,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The lens changes constantly and cars pass by the stationary white car.",
+      "scene_zone": "unknown",
+      "event_text": "From 341.9s to 361.9s, the lens changes constantly and cars pass by the stationary white car.",
+      "keywords": [
+        "lens",
+        "changes",
+        "constantly",
+        "cars",
+        "pass",
+        "stationary"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_23"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 365.5,
+      "end_time": 381.6,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The camera switches to vehicles on the road.",
+      "scene_zone": "road",
+      "event_text": "From 365.5s to 381.6s, the camera switches to vehicles on the road.",
+      "keywords": [
+        "camera",
+        "switches",
+        "vehicles",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_24"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 386.0,
+      "end_time": 401.3,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car turns around, other vehicles drive normally.",
+      "scene_zone": "unknown",
+      "event_text": "From 386.0s to 401.3s, a black car turns around, other vehicles drive normally.",
+      "keywords": [
+        "black",
+        "car",
+        "turns",
+        "around",
+        "other",
+        "vehicles"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_25"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 402.9,
+      "end_time": 416.4,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A person crossed the road, two cars stopped and drove away, and there were cars passing by on the road below.",
+      "scene_zone": "road",
+      "event_text": "From 402.9s to 416.4s, a person crossed the road, two cars stopped and drove away, and there were cars passing by on the road below.",
+      "keywords": [
+        "person",
+        "crossed",
+        "road",
+        "two",
+        "cars",
+        "stopped"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_26"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 421.6,
+      "end_time": 440.6,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There are cars passing by all the time, and the camera moves quickly.",
+      "scene_zone": "unknown",
+      "event_text": "From 421.6s to 440.6s, there are cars passing by all the time, and the camera moves quickly.",
+      "keywords": [
+        "cars",
+        "passing",
+        "all",
+        "time",
+        "camera",
+        "moves"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_27"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 442.2,
+      "end_time": 457.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A woman was walking on the path in the middle of the road, and three cars passed by.",
+      "scene_zone": "road",
+      "event_text": "From 442.2s to 457.0s, a woman was walking on the path in the middle of the road, and three cars passed by.",
+      "keywords": [
+        "woman",
+        "walking",
+        "path",
+        "middle",
+        "road",
+        "three"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_28"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 458.3,
+      "end_time": 471.9,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A passerby walked past a stationary white car.",
+      "scene_zone": "unknown",
+      "event_text": "From 458.3s to 471.9s, a passerby walked past a stationary white car.",
+      "keywords": [
+        "passerby",
+        "walked",
+        "past",
+        "stationary",
+        "white",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_29"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 477.4,
+      "end_time": 493.4,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There are cars passing by in the right lane.",
+      "scene_zone": "unknown",
+      "event_text": "From 477.4s to 493.4s, there are cars passing by in the right lane.",
+      "keywords": [
+        "cars",
+        "passing",
+        "right",
+        "lane"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_30"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 497.4,
+      "end_time": 513.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A very long car drove by.",
+      "scene_zone": "unknown",
+      "event_text": "From 497.4s to 513.0s, a very long car drove by.",
+      "keywords": [
+        "very",
+        "long",
+        "car",
+        "drove"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_31"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 515.5,
+      "end_time": 528.1,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car parked in the middle of the road waiting for passing vehicles.",
+      "scene_zone": "road",
+      "event_text": "From 515.5s to 528.1s, a white car parked in the middle of the road waiting for passing vehicles.",
+      "keywords": [
+        "white",
+        "car",
+        "parked",
+        "middle",
+        "road",
+        "waiting"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_32"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 532.5,
+      "end_time": 547.5,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; A white car drives by and a black car drives away.",
+      "scene_zone": "unknown",
+      "event_text": "From 532.5s to 547.5s, a white car drives by and a black car drives away.",
+      "keywords": [
+        "white",
+        "car",
+        "drives",
+        "black",
+        "away"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_33"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 552.5,
+      "end_time": 563.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There was a group of people walking on the path, and a woman crossed the road.",
+      "scene_zone": "road",
+      "event_text": "From 552.5s to 563.7s, there was a group of people walking on the path, and a woman crossed the road.",
+      "keywords": [
+        "group",
+        "people",
+        "walking",
+        "path",
+        "woman",
+        "crossed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_34"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 565.4,
+      "end_time": 568.3,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two women follow them across the road, the camera changes.",
+      "scene_zone": "road",
+      "event_text": "From 565.4s to 568.3s, two women follow them across the road, the camera changes.",
+      "keywords": [
+        "two",
+        "women",
+        "follow",
+        "across",
+        "road",
+        "camera"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_35"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 569.4,
+      "end_time": 584.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; There are constantly pedestrians and vehicles passing by on both sides of the stationary white car.",
+      "scene_zone": "unknown",
+      "event_text": "From 569.4s to 584.2s, there are constantly pedestrians and vehicles passing by on both sides of the stationary white car.",
+      "keywords": [
+        "constantly",
+        "pedestrians",
+        "vehicles",
+        "passing",
+        "both",
+        "sides"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_36"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 589.1,
+      "end_time": 603.4,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A car drove by and two people passed each other on the road.",
+      "scene_zone": "road",
+      "event_text": "From 589.1s to 603.4s, a car drove by and two people passed each other on the road.",
+      "keywords": [
+        "car",
+        "drove",
+        "two",
+        "people",
+        "passed",
+        "each"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_37"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 609.0,
+      "end_time": 624.9,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A blue car turns around.",
+      "scene_zone": "unknown",
+      "event_text": "From 609.0s to 624.9s, a blue car turns around.",
+      "keywords": [
+        "blue",
+        "car",
+        "turns",
+        "around"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_38"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 626.2,
+      "end_time": 641.7,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Vehicles and pedestrians walk normally.",
+      "scene_zone": "unknown",
+      "event_text": "From 626.2s to 641.7s, vehicles and pedestrians walk normally.",
+      "keywords": [
+        "vehicles",
+        "pedestrians",
+        "walk",
+        "normally"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_39"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 643.3,
+      "end_time": 658.4,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A long train passed by with several cars, and several passers-by passed by.",
+      "scene_zone": "unknown",
+      "event_text": "From 643.3s to 658.4s, a long train passed by with several cars, and several passers-by passed by.",
+      "keywords": [
+        "long",
+        "train",
+        "passed",
+        "several",
+        "cars",
+        "passers"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_40"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 663.7,
+      "end_time": 671.3,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A woman crosses the road and a black car makes a U-turn.",
+      "scene_zone": "road",
+      "event_text": "From 663.7s to 671.3s, a woman crosses the road and a black car makes a U-turn.",
+      "keywords": [
+        "woman",
+        "crosses",
+        "road",
+        "black",
+        "car",
+        "makes"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_41"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 674.2,
+      "end_time": 679.3,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car drives normally, lens change.",
+      "scene_zone": "unknown",
+      "event_text": "From 674.2s to 679.3s, a black car drives normally, lens change.",
+      "keywords": [
+        "black",
+        "car",
+        "drives",
+        "normally",
+        "lens",
+        "change"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_42"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 681.3,
+      "end_time": 695.4,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A woman walked past the white car.",
+      "scene_zone": "unknown",
+      "event_text": "From 681.3s to 695.4s, a woman walked past the white car.",
+      "keywords": [
+        "woman",
+        "walked",
+        "past",
+        "white",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_43"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 699.3,
+      "end_time": 710.2,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car drives by, the camera continues to change.",
+      "scene_zone": "unknown",
+      "event_text": "From 699.3s to 710.2s, a black car drives by, the camera continues to change.",
+      "keywords": [
+        "black",
+        "car",
+        "drives",
+        "camera",
+        "continues",
+        "change"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_44"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 720.7,
+      "end_time": 734.7,
+      "object_type": "unknown",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Two red trains passed by.",
+      "scene_zone": "unknown",
+      "event_text": "From 720.7s to 734.7s, two red trains passed by.",
+      "keywords": [
+        "two",
+        "red",
+        "trains",
+        "passed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_45"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 741.1,
+      "end_time": 752.9,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two cars stopped and drove away at the intersection.",
+      "scene_zone": "road",
+      "event_text": "From 741.1s to 752.9s, two cars stopped and drove away at the intersection.",
+      "keywords": [
+        "two",
+        "cars",
+        "stopped",
+        "drove",
+        "away",
+        "intersection"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_46"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 754.9,
+      "end_time": 770.3,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There is constant traffic coming and going, and passers-by passing by.",
+      "scene_zone": "unknown",
+      "event_text": "From 754.9s to 770.3s, there is constant traffic coming and going, and passers-by passing by.",
+      "keywords": [
+        "constant",
+        "traffic",
+        "coming",
+        "going",
+        "passers",
+        "passing"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_47"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 775.4,
+      "end_time": 790.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; There are cars passing by in the right lane, and a person is crossing the road.",
+      "scene_zone": "road",
+      "event_text": "From 775.4s to 790.2s, there are cars passing by in the right lane, and a person is crossing the road.",
+      "keywords": [
+        "cars",
+        "passing",
+        "right",
+        "lane",
+        "person",
+        "crossing"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_48"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 791.4,
+      "end_time": 802.8,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A large black car drove by.",
+      "scene_zone": "unknown",
+      "event_text": "From 791.4s to 802.8s, a large black car drove by.",
+      "keywords": [
+        "large",
+        "black",
+        "car",
+        "drove"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_49"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 810.3,
+      "end_time": 820.5,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; A black car turns onto the road and a white car drives in the opposite direction.",
+      "scene_zone": "road",
+      "event_text": "From 810.3s to 820.5s, a black car turns onto the road and a white car drives in the opposite direction.",
+      "keywords": [
+        "black",
+        "car",
+        "turns",
+        "onto",
+        "road",
+        "white"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_50"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 831.0,
+      "end_time": 841.4,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Low activity; A black car stopped and waited for the car in front of it to pass before turning around.",
+      "scene_zone": "unknown",
+      "event_text": "From 831.0s to 841.4s, a black car stopped and waited for the car in front of it to pass before turning around.",
+      "keywords": [
+        "black",
+        "car",
+        "stopped",
+        "waited",
+        "front",
+        "pass"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_51"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 843.5,
+      "end_time": 848.8,
+      "object_type": "car",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; A gray car turns around.",
+      "scene_zone": "unknown",
+      "event_text": "From 843.5s to 848.8s, a gray car turns around.",
+      "keywords": [
+        "gray",
+        "car",
+        "turns",
+        "around"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_52"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 849.7,
+      "end_time": 857.5,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two cars stopped at the intersection in the upper left corner, and one car turned around.",
+      "scene_zone": "road",
+      "event_text": "From 849.7s to 857.5s, two cars stopped at the intersection in the upper left corner, and one car turned around.",
+      "keywords": [
+        "two",
+        "cars",
+        "stopped",
+        "intersection",
+        "upper",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_53"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 859.7,
+      "end_time": 872.0,
+      "object_type": "unknown",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A red train passes by, and there is traffic next to it.",
+      "scene_zone": "unknown",
+      "event_text": "From 859.7s to 872.0s, a red train passes by, and there is traffic next to it.",
+      "keywords": [
+        "red",
+        "train",
+        "passes",
+        "traffic"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_54"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 885.5,
+      "end_time": 901.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car drove by, followed by a red car.",
+      "scene_zone": "unknown",
+      "event_text": "From 885.5s to 901.2s, a white car drove by, followed by a red car.",
+      "keywords": [
+        "white",
+        "car",
+        "drove",
+        "followed",
+        "red"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_55"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 911.7,
+      "end_time": 921.5,
+      "object_type": "unknown",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Camera transition after the black train passes.",
+      "scene_zone": "unknown",
+      "event_text": "From 911.7s to 921.5s, camera transition after the black train passes.",
+      "keywords": [
+        "camera",
+        "transition",
+        "black",
+        "train",
+        "passes"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_56"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 922.4,
+      "end_time": 937.7,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The right lane keeps passing vehicles, and then the camera rotates.",
+      "scene_zone": "unknown",
+      "event_text": "From 922.4s to 937.7s, the right lane keeps passing vehicles, and then the camera rotates.",
+      "keywords": [
+        "right",
+        "lane",
+        "keeps",
+        "passing",
+        "vehicles",
+        "camera"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_57"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 942.4,
+      "end_time": 957.9,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Three cars followed and turned around one after another. A man in orange clothes walked by pulling a red bucket on the roadside.",
+      "scene_zone": "road",
+      "event_text": "From 942.4s to 957.9s, three cars followed and turned around one after another. A man in orange clothes walked by pulling a red bucket on the roadside.",
+      "keywords": [
+        "three",
+        "cars",
+        "followed",
+        "turned",
+        "around",
+        "one"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_58"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 959.8,
+      "end_time": 964.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A car turns right and passes by, a car drives by quickly, and a car stops.",
+      "scene_zone": "unknown",
+      "event_text": "From 959.8s to 964.2s, a car turns right and passes by, a car drives by quickly, and a car stops.",
+      "keywords": [
+        "car",
+        "turns",
+        "right",
+        "passes",
+        "drives",
+        "quickly"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_59"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 965.4,
+      "end_time": 968.9,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Two cars, one black and one red, drive away.",
+      "scene_zone": "unknown",
+      "event_text": "From 965.4s to 968.9s, two cars, one black and one red, drive away.",
+      "keywords": [
+        "two",
+        "cars",
+        "one",
+        "black",
+        "red",
+        "drive"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_60"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 975.9,
+      "end_time": 993.4,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The camera turned around, a man stood behind a truck on the roadside, and many cars passed by.",
+      "scene_zone": "road",
+      "event_text": "From 975.9s to 993.4s, the camera turned around, a man stood behind a truck on the roadside, and many cars passed by.",
+      "keywords": [
+        "camera",
+        "turned",
+        "around",
+        "man",
+        "stood",
+        "behind"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_61"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 998.1,
+      "end_time": 1009.4,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A group of people and two dogs are crossing the road, and several cars are passing by in the center of the camera.",
+      "scene_zone": "road",
+      "event_text": "From 998.1s to 1009.4s, a group of people and two dogs are crossing the road, and several cars are passing by in the center of the camera.",
+      "keywords": [
+        "group",
+        "people",
+        "two",
+        "dogs",
+        "crossing",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_62"
+    },
+    {
+      "video_id": "Normal_Videos638_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1024.81,
+      "start_time": 1010.1,
+      "end_time": 1023.7,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The camera rotates, there are two cars and a speed limit sign, and there is a moving thing on the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1010.1s to 1023.7s, the camera rotates, there are two cars and a speed limit sign, and there is a moving thing on the right side of the screen.",
+      "keywords": [
+        "camera",
+        "rotates",
+        "two",
+        "cars",
+        "speed",
+        "limit"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_63"
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "video_id": "Robbery095_x264",
+  "duration": 42.09,
+  "events": [
+    {
+      "video_id": "Robbery095_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 42.09,
+      "start_time": 2.3,
+      "end_time": 12.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man walks down the stairs.",
+      "scene_zone": "unknown",
+      "event_text": "From 2.3s to 12.2s, a man walks down the stairs.",
+      "keywords": [
+        "man",
+        "walks",
+        "down",
+        "stairs"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Robbery095_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 42.09,
+      "start_time": 12.2,
+      "end_time": 21.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The two men rushed towards the place where the man just walked out.",
+      "scene_zone": "unknown",
+      "event_text": "From 12.2s to 21.9s, the two men rushed towards the place where the man just walked out.",
+      "keywords": [
+        "two",
+        "men",
+        "rushed",
+        "towards",
+        "place",
+        "where"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Robbery095_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 42.09,
+      "start_time": 21.9,
+      "end_time": 26.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Another man also ran in the same direction.",
+      "scene_zone": "unknown",
+      "event_text": "From 21.9s to 26.7s, another man also ran in the same direction.",
+      "keywords": [
+        "another",
+        "man",
+        "also",
+        "ran",
+        "same",
+        "direction"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Robbery095_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 42.09,
+      "start_time": 26.7,
+      "end_time": 30.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man ran in holding another man hostage.",
+      "scene_zone": "unknown",
+      "event_text": "From 26.7s to 30.6s, a man ran in holding another man hostage.",
+      "keywords": [
+        "man",
+        "ran",
+        "holding",
+        "another",
+        "hostage"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    }
+  ]
+}

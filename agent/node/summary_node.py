@@ -1,5 +1,11 @@
 from typing import Any
 
+from lightingRL.prompt_registry import (
+    SUMMARY_SYSTEM_PROMPT_KEY,
+    SUMMARY_USER_PROMPT_KEY,
+    get_prompt_template,
+    render_prompt,
+)
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langchain_core.runnables import RunnableConfig
 from langgraph.store.base import BaseStore
@@ -36,10 +42,11 @@ def _build_citations(rows: list[dict[str, Any]], limit: int = 3) -> list[dict[st
     for row in rows:
         source_type = _infer_source_type(row)
         video_id = str(row.get("video_id") or "unknown_video")
-        event_id = row.get("event_id")
+        is_parent = str(row.get("_record_level") or "").lower() == "parent"
+        event_id = None if is_parent else row.get("event_id")
         start_time = row.get("start_time")
         end_time = row.get("end_time")
-        key = f"{source_type}|{video_id}|{event_id}|{start_time}|{end_time}"
+        key = f"{source_type}|{video_id}|{event_id if event_id is not None else 'parent'}|{start_time}|{end_time}"
         if key in seen:
             continue
         seen.add(key)
@@ -50,6 +57,7 @@ def _build_citations(rows: list[dict[str, Any]], limit: int = 3) -> list[dict[st
                 "event_id": event_id,
                 "start_time": start_time,
                 "end_time": end_time,
+                "record_level": "parent" if is_parent else "child",
             }
         )
         if len(citations) >= limit:
@@ -62,10 +70,15 @@ def _render_citations(citations: list[dict[str, Any]]) -> str:
         return ""
     rendered = []
     for item in citations:
-        rendered.append(
-            f"[{item['source_type']}] {item['video_id']} | event_id={item.get('event_id')} | "
-            f"{item.get('start_time')}-{item.get('end_time')}"
-        )
+        if item.get("record_level") == "parent":
+            rendered.append(
+                f"[{item['source_type']}] {item['video_id']} | parent | {item.get('start_time')}-{item.get('end_time')}"
+            )
+        else:
+            rendered.append(
+                f"[{item['source_type']}] {item['video_id']} | event_id={item.get('event_id')} | "
+                f"{item.get('start_time')}-{item.get('end_time')}"
+            )
     return "Sources: " + "; ".join(rendered)
 
 
@@ -116,22 +129,19 @@ def create_summary_node(llm: Any = None):
                 "messages": [AIMessage(content=final_text)],
             }
 
-        prompt = (
-            "You are the final response summarizer for a basketball retrieval assistant. "
-            "Write a concise, friendly, natural English summary for a native speaker. "
-            "Be accurate, grounded in the provided results, and easy to read. "
-            "Do not mention internal routing, SQL, hybrid retrieval, or chain-of-thought. "
-            "Keep the answer under 90 words. Do not include a sources section; sources will be appended separately."
-            f"\n\nOriginal user query: {original_query}"
-            f"\nRewritten retrieval query: {rewritten_query}"
-            f"\nRetrieved result count: {len(rows)}"
-            f"\nTop results: {row_digest[:3]}"
-            f"\nDraft answer: {raw_answer}"
+        prompt = render_prompt(
+            SUMMARY_USER_PROMPT_KEY,
+            original_query=original_query,
+            rewritten_query=rewritten_query,
+            row_count=len(rows),
+            top_results=row_digest[:3],
+            raw_answer=raw_answer,
         )
+        system_prompt = get_prompt_template(SUMMARY_SYSTEM_PROMPT_KEY)
         try:
             model = llm.bind(max_tokens=120) if hasattr(llm, "bind") else llm
             raw = model.invoke(
-                [SystemMessage(content="Return only the final English summary text."), HumanMessage(content=prompt)],
+                [SystemMessage(content=system_prompt), HumanMessage(content=prompt)],
                 config=config,
             )
             summary_text = raw.content if hasattr(raw, "content") else str(raw)

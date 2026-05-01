@@ -60,3 +60,18 @@ Capstone/
 ├── scripts/
 ├── docs/
 └── tests/
+```
+
+## Current Chroma Chunk Strategy
+
+- The vector index now uses a parent-child layout.
+- Child index keeps the current track-level chunking:
+  - record id: `{video_id}_{entity_hint}`
+  - granularity: one child record per track
+  - purpose: semantic retrieval over track-level behavior
+- Parent index is grouped by `video_id`:
+  - record id: `{video_id}`
+  - granularity: one parent record per video
+  - purpose: coarse video-level recall and parent-child routing
+- Child metadata stores `parent_id=video_id` so parent and child records stay linked.
+- Current online retrieval still reads the child collection by default, while the parent collection is built for hierarchical retrieval expansion.

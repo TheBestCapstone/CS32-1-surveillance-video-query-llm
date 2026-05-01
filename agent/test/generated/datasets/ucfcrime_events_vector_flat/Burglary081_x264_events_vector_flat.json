@@ -1,0 +1,105 @@
+{
+  "video_id": "Burglary081_x264",
+  "duration": 13.88,
+  "events": [
+    {
+      "video_id": "Burglary081_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 13.88,
+      "start_time": 0.9,
+      "end_time": 4.6,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man wearing a gray coat and a black backpack came to the window of a house.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.9s to 4.6s, a man wearing a gray coat and a black backpack came to the window of a house.",
+      "keywords": [
+        "man",
+        "wearing",
+        "gray",
+        "coat",
+        "black",
+        "backpack"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Burglary081_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 13.88,
+      "start_time": 4.9,
+      "end_time": 8.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man reached his hands into the window and fiddled with something.",
+      "scene_zone": "unknown",
+      "event_text": "From 4.9s to 8.6s, the man reached his hands into the window and fiddled with something.",
+      "keywords": [
+        "man",
+        "reached",
+        "hands",
+        "window",
+        "fiddled",
+        "something"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Burglary081_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 13.88,
+      "start_time": 9.3,
+      "end_time": 13.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man jumped up and climbed into the room through the window.",
+      "scene_zone": "room",
+      "event_text": "From 9.3s to 13.3s, the man jumped up and climbed into the room through the window.",
+      "keywords": [
+        "man",
+        "jumped",
+        "climbed",
+        "room",
+        "through",
+        "window"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    }
+  ]
+}

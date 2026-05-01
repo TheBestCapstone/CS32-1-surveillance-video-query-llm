@@ -1,0 +1,906 @@
+{
+  "video_id": "Stealing079_x264",
+  "duration": 195.06,
+  "events": [
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 0.0,
+      "end_time": 3.9,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A motorcycle passed by on the road at the entrance of the yard.",
+      "scene_zone": "road",
+      "event_text": "From 0.0s to 3.9s, a motorcycle passed by on the road at the entrance of the yard.",
+      "keywords": [
+        "motorcycle",
+        "passed",
+        "road",
+        "entrance",
+        "yard"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 11.9,
+      "end_time": 13.2,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A motorcycle passed by on the road at the entrance of the yard.",
+      "scene_zone": "road",
+      "event_text": "From 11.9s to 13.2s, a motorcycle passed by on the road at the entrance of the yard.",
+      "keywords": [
+        "motorcycle",
+        "passed",
+        "road",
+        "entrance",
+        "yard"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 20.2,
+      "end_time": 22.3,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A motorcycle passed by on the road at the entrance of the yard.",
+      "scene_zone": "road",
+      "event_text": "From 20.2s to 22.3s, a motorcycle passed by on the road at the entrance of the yard.",
+      "keywords": [
+        "motorcycle",
+        "passed",
+        "road",
+        "entrance",
+        "yard"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 26.3,
+      "end_time": 27.4,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A motorcycle passed by on the road at the entrance of the yard.",
+      "scene_zone": "road",
+      "event_text": "From 26.3s to 27.4s, a motorcycle passed by on the road at the entrance of the yard.",
+      "keywords": [
+        "motorcycle",
+        "passed",
+        "road",
+        "entrance",
+        "yard"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 36.4,
+      "end_time": 38.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; An orange car passed by on the road outside the yard.",
+      "scene_zone": "road",
+      "event_text": "From 36.4s to 38.1s, an orange car passed by on the road outside the yard.",
+      "keywords": [
+        "orange",
+        "car",
+        "passed",
+        "road",
+        "outside",
+        "yard"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 39.1,
+      "end_time": 44.7,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A motorcycle and a white car passed by on the road outside the yard.",
+      "scene_zone": "road",
+      "event_text": "From 39.1s to 44.7s, a motorcycle and a white car passed by on the road outside the yard.",
+      "keywords": [
+        "motorcycle",
+        "white",
+        "car",
+        "passed",
+        "road",
+        "outside"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 49.7,
+      "end_time": 57.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man wearing a helmet and striped clothes walked to the corner outside the yard and squatted down.",
+      "scene_zone": "yard",
+      "event_text": "From 49.7s to 57.8s, a man wearing a helmet and striped clothes walked to the corner outside the yard and squatted down.",
+      "keywords": [
+        "man",
+        "wearing",
+        "helmet",
+        "striped",
+        "clothes",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 53.7,
+      "end_time": 56.8,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A motorcycle passed by on the road.",
+      "scene_zone": "road",
+      "event_text": "From 53.7s to 56.8s, a motorcycle passed by on the road.",
+      "keywords": [
+        "motorcycle",
+        "passed",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 57.8,
+      "end_time": 69.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The man in a striped shirt wearing a helmet squatted, looked left and right, and moved back.",
+      "scene_zone": "unknown",
+      "event_text": "From 57.8s to 69.9s, the man in a striped shirt wearing a helmet squatted, looked left and right, and moved back.",
+      "keywords": [
+        "man",
+        "striped",
+        "shirt",
+        "wearing",
+        "helmet",
+        "squatted"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 63.9,
+      "end_time": 66.9,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A red car passed by on the road outside the yard.",
+      "scene_zone": "road",
+      "event_text": "From 63.9s to 66.9s, a red car passed by on the road outside the yard.",
+      "keywords": [
+        "red",
+        "car",
+        "passed",
+        "road",
+        "outside",
+        "yard"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 69.9,
+      "end_time": 81.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man in the helmet-striped shirt from the corner stuck his head out, and then retracted.",
+      "scene_zone": "unknown",
+      "event_text": "From 69.9s to 81.4s, the man in the helmet-striped shirt from the corner stuck his head out, and then retracted.",
+      "keywords": [
+        "man",
+        "helmet",
+        "striped",
+        "shirt",
+        "corner",
+        "stuck"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 79.9,
+      "end_time": 81.4,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car passed by on the road.",
+      "scene_zone": "road",
+      "event_text": "From 79.9s to 81.4s, a white car passed by on the road.",
+      "keywords": [
+        "white",
+        "car",
+        "passed",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 81.4,
+      "end_time": 99.8,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in the striped shirt walked to the middle of the black iron gate of the yard and opened it.",
+      "scene_zone": "yard",
+      "event_text": "From 81.4s to 99.8s, the man in the striped shirt walked to the middle of the black iron gate of the yard and opened it.",
+      "keywords": [
+        "man",
+        "striped",
+        "shirt",
+        "walked",
+        "middle",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 97.4,
+      "end_time": 99.8,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A red car passed by on the road.",
+      "scene_zone": "road",
+      "event_text": "From 97.4s to 99.8s, a red car passed by on the road.",
+      "keywords": [
+        "red",
+        "car",
+        "passed",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 99.8,
+      "end_time": 111.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man in the striped shirt walked into the yard,.",
+      "scene_zone": "yard",
+      "event_text": "From 99.8s to 111.2s, the man in the striped shirt walked into the yard,.",
+      "keywords": [
+        "man",
+        "striped",
+        "shirt",
+        "walked",
+        "yard"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 101.8,
+      "end_time": 108.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A car passes by on the road.",
+      "scene_zone": "road",
+      "event_text": "From 101.8s to 108.2s, a car passes by on the road.",
+      "keywords": [
+        "car",
+        "passes",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_16"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 105.8,
+      "end_time": 107.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A car passed by on the road.",
+      "scene_zone": "road",
+      "event_text": "From 105.8s to 107.2s, a car passed by on the road.",
+      "keywords": [
+        "car",
+        "passed",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_17"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 108.8,
+      "end_time": 111.2,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A motorcycle passed by on the road.",
+      "scene_zone": "road",
+      "event_text": "From 108.8s to 111.2s, a motorcycle passed by on the road.",
+      "keywords": [
+        "motorcycle",
+        "passed",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_18"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 111.2,
+      "end_time": 122.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; The man in striped shirt pushed a motorcycle to the iron gate of the yard, but the motorcycle was stuck by the gate.",
+      "scene_zone": "yard",
+      "event_text": "From 111.2s to 122.5s, the man in striped shirt pushed a motorcycle to the iron gate of the yard, but the motorcycle was stuck by the gate.",
+      "keywords": [
+        "man",
+        "striped",
+        "shirt",
+        "pushed",
+        "motorcycle",
+        "iron"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_19"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 122.5,
+      "end_time": 143.6,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man in the striped shirt moved the car hard,.",
+      "scene_zone": "unknown",
+      "event_text": "From 122.5s to 143.6s, the man in the striped shirt moved the car hard,.",
+      "keywords": [
+        "man",
+        "striped",
+        "shirt",
+        "moved",
+        "car",
+        "hard"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_20"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 122.5,
+      "end_time": 143.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; A man riding a motorcycle looked at him on the road, then rode a few steps forward.",
+      "scene_zone": "road",
+      "event_text": "From 122.5s to 143.6s, a man riding a motorcycle looked at him on the road, then rode a few steps forward.",
+      "keywords": [
+        "man",
+        "riding",
+        "motorcycle",
+        "looked",
+        "him",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_21"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 143.6,
+      "end_time": 147.2,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man in white rushed towards the man in striped shirt with a shovel, and the man in striped shirt ran away.",
+      "scene_zone": "unknown",
+      "event_text": "From 143.6s to 147.2s, a man in white rushed towards the man in striped shirt with a shovel, and the man in striped shirt ran away.",
+      "keywords": [
+        "man",
+        "white",
+        "rushed",
+        "towards",
+        "striped",
+        "shirt"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_22"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 147.2,
+      "end_time": 151.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man riding a motorcycle drove away on the road.",
+      "scene_zone": "road",
+      "event_text": "From 147.2s to 151.2s, the man riding a motorcycle drove away on the road.",
+      "keywords": [
+        "man",
+        "riding",
+        "motorcycle",
+        "drove",
+        "away",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_23"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 151.2,
+      "end_time": 173.1,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in white dragged the shovel across the motorcycle and walked to the middle of the road and looked into the distance.",
+      "scene_zone": "road",
+      "event_text": "From 151.2s to 173.1s, the man in white dragged the shovel across the motorcycle and walked to the middle of the road and looked into the distance.",
+      "keywords": [
+        "man",
+        "white",
+        "dragged",
+        "shovel",
+        "across",
+        "motorcycle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_24"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 173.1,
+      "end_time": 179.1,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; Two motorcycles passed by on the road, and one motorcycle drove next to the man in white.",
+      "scene_zone": "road",
+      "event_text": "From 173.1s to 179.1s, two motorcycles passed by on the road, and one motorcycle drove next to the man in white.",
+      "keywords": [
+        "two",
+        "motorcycles",
+        "passed",
+        "road",
+        "one",
+        "motorcycle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_25"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 179.1,
+      "end_time": 180.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A car passed by on the road,.",
+      "scene_zone": "road",
+      "event_text": "From 179.1s to 180.0s, a car passed by on the road,.",
+      "keywords": [
+        "car",
+        "passed",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_26"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 179.1,
+      "end_time": 191.1,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in white holds a shovel and talks to the people in the yard.",
+      "scene_zone": "yard",
+      "event_text": "From 179.1s to 191.1s, the man in white holds a shovel and talks to the people in the yard.",
+      "keywords": [
+        "man",
+        "white",
+        "holds",
+        "shovel",
+        "talks",
+        "people"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_27"
+    },
+    {
+      "video_id": "Stealing079_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 195.06,
+      "start_time": 191.1,
+      "end_time": 195.0,
+      "object_type": "person",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; A man in yellow pants walked to the motorcycle in the yard.",
+      "scene_zone": "yard",
+      "event_text": "From 191.1s to 195.0s, a man in yellow pants walked to the motorcycle in the yard.",
+      "keywords": [
+        "man",
+        "yellow",
+        "pants",
+        "walked",
+        "motorcycle",
+        "yard"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_28"
+    }
+  ]
+}

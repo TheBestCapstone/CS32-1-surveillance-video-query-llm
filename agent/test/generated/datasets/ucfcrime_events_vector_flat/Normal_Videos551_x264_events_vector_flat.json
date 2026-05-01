@@ -1,0 +1,2738 @@
+{
+  "video_id": "Normal_Videos551_x264",
+  "duration": 1800.0,
+  "events": [
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 0.0,
+      "end_time": 6.9,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The red man plays with the camera and moves towards the left side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 6.9s, the red man plays with the camera and moves towards the left side of the screen.",
+      "keywords": [
+        "red",
+        "man",
+        "plays",
+        "camera",
+        "moves",
+        "towards"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 6.9,
+      "end_time": 14.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; Two people stand in the center of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 6.9s to 14.1s, two people stand in the center of the screen.",
+      "keywords": [
+        "two",
+        "people",
+        "stand",
+        "center",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 14.1,
+      "end_time": 26.1,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man in red appears on the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 14.1s to 26.1s, a man in red appears on the right side of the screen.",
+      "keywords": [
+        "man",
+        "red",
+        "appears",
+        "right",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 26.1,
+      "end_time": 38.6,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A man in blue and a woman in red walked out of the depth of the screen and walked towards the left side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 26.1s to 38.6s, a man in blue and a woman in red walked out of the depth of the screen and walked towards the left side of the screen.",
+      "keywords": [
+        "man",
+        "blue",
+        "woman",
+        "red",
+        "walked",
+        "out"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 38.6,
+      "end_time": 61.2,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "Observed event; The man on the left side of the screen walks towards the center of the screen to communicate with the woman in pink.",
+      "scene_zone": "unknown",
+      "event_text": "From 38.6s to 61.2s, the man on the left side of the screen walks towards the center of the screen to communicate with the woman in pink.",
+      "keywords": [
+        "man",
+        "left",
+        "side",
+        "screen",
+        "walks",
+        "towards"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 75.2,
+      "end_time": 81.2,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The man in red walks to the left side of the screen to get something on the ground.",
+      "scene_zone": "unknown",
+      "event_text": "From 75.2s to 81.2s, the man in red walks to the left side of the screen to get something on the ground.",
+      "keywords": [
+        "man",
+        "red",
+        "walks",
+        "left",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 96.2,
+      "end_time": 111.1,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The man in red walks to the left side of the screen and then appears from the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 96.2s to 111.1s, the man in red walks to the left side of the screen and then appears from the right side of the screen.",
+      "keywords": [
+        "man",
+        "red",
+        "walks",
+        "left",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 111.1,
+      "end_time": 135.2,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "Low activity; The woman in pink stands in the center of the screen, holding something and preparing to walk to the left side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 111.1s to 135.2s, the woman in pink stands in the center of the screen, holding something and preparing to walk to the left side of the screen.",
+      "keywords": [
+        "woman",
+        "pink",
+        "stands",
+        "center",
+        "screen",
+        "holding"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 135.2,
+      "end_time": 160.3,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Low activity; The man in red looks deep into the screen, and the woman in pink looks towards the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 135.2s to 160.3s, the man in red looks deep into the screen, and the woman in pink looks towards the right side of the screen.",
+      "keywords": [
+        "man",
+        "red",
+        "looks",
+        "deep",
+        "screen",
+        "woman"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 160.3,
+      "end_time": 184.1,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The woman in pink in the center of the screen walks to the right side of the screen to communicate with the man in red.",
+      "scene_zone": "unknown",
+      "event_text": "From 160.3s to 184.1s, the woman in pink in the center of the screen walks to the right side of the screen to communicate with the man in red.",
+      "keywords": [
+        "woman",
+        "pink",
+        "center",
+        "screen",
+        "walks",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 184.1,
+      "end_time": 210.5,
+      "object_type": "unknown",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A bunch of men holding flags appeared on the right side of the screen and walked from the right side of the screen to the center of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 184.1s to 210.5s, a bunch of men holding flags appeared on the right side of the screen and walked from the right side of the screen to the center of the screen.",
+      "keywords": [
+        "bunch",
+        "men",
+        "holding",
+        "flags",
+        "appeared",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 210.5,
+      "end_time": 230.2,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Low activity; Several cars drove out of the depth of the screen, and the man in red looked to the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 210.5s to 230.2s, several cars drove out of the depth of the screen, and the man in red looked to the right side of the screen.",
+      "keywords": [
+        "several",
+        "cars",
+        "drove",
+        "out",
+        "depth",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 230.2,
+      "end_time": 265.3,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; Several silver-white cars appear on the right side of the screen and drive towards the depth of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 230.2s to 265.3s, several silver-white cars appear on the right side of the screen and drive towards the depth of the screen.",
+      "keywords": [
+        "several",
+        "silver",
+        "white",
+        "cars",
+        "appear",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 265.3,
+      "end_time": 283.7,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "Observed event; A woman in pink appears on the right side of the screen and walks towards the depth of the screen, then leaves.",
+      "scene_zone": "unknown",
+      "event_text": "From 265.3s to 283.7s, a woman in pink appears on the right side of the screen and walks towards the depth of the screen, then leaves.",
+      "keywords": [
+        "woman",
+        "pink",
+        "appears",
+        "right",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 283.7,
+      "end_time": 295.1,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The woman in pink and the man in red are communicating with each other on the left side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 283.7s to 295.1s, the woman in pink and the man in red are communicating with each other on the left side of the screen.",
+      "keywords": [
+        "woman",
+        "pink",
+        "man",
+        "red",
+        "communicating",
+        "each"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 295.1,
+      "end_time": 322.5,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "Low activity; The woman in pink walks to the center of the screen and looks towards the bottom of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 295.1s to 322.5s, the woman in pink walks to the center of the screen and looks towards the bottom of the screen.",
+      "keywords": [
+        "woman",
+        "pink",
+        "walks",
+        "center",
+        "screen",
+        "looks"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_16"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 322.5,
+      "end_time": 341.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A woman with a child appears in the center of the screen, leading the child to the left side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 322.5s to 341.1s, a woman with a child appears in the center of the screen, leading the child to the left side of the screen.",
+      "keywords": [
+        "woman",
+        "child",
+        "appears",
+        "center",
+        "screen",
+        "leading"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_17"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 318.1,
+      "end_time": 355.4,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Vehicles appear one after another on the right side of the screen, driving towards the center of the screen and then towards the depth of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 318.1s to 355.4s, vehicles appear one after another on the right side of the screen, driving towards the center of the screen and then towards the depth of the screen.",
+      "keywords": [
+        "vehicles",
+        "appear",
+        "one",
+        "another",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_18"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 355.4,
+      "end_time": 387.5,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Low activity; The man in red looks to the right side of the screen, and the woman in pink stands in the center of the screen and looks to the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 355.4s to 387.5s, the man in red looks to the right side of the screen, and the woman in pink stands in the center of the screen and looks to the right side of the screen.",
+      "keywords": [
+        "man",
+        "red",
+        "looks",
+        "right",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_19"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 400.1,
+      "end_time": 423.7,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A red truck appears on the right side of the screen, driving towards the center of the screen and leaving the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 400.1s to 423.7s, a red truck appears on the right side of the screen, driving towards the center of the screen and leaving the screen.",
+      "keywords": [
+        "red",
+        "truck",
+        "appears",
+        "right",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_20"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 423.7,
+      "end_time": 443.9,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A succession of red trucks appear on the right side of the screen passing by, and then leave deep in the center of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 423.7s to 443.9s, a succession of red trucks appear on the right side of the screen passing by, and then leave deep in the center of the screen.",
+      "keywords": [
+        "succession",
+        "red",
+        "trucks",
+        "appear",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_21"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 443.9,
+      "end_time": 465.4,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "Observed event; The woman in pink clothes walks to the right side of the screen while picking up something.",
+      "scene_zone": "unknown",
+      "event_text": "From 443.9s to 465.4s, the woman in pink clothes walks to the right side of the screen while picking up something.",
+      "keywords": [
+        "woman",
+        "pink",
+        "clothes",
+        "walks",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_22"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 465.4,
+      "end_time": 486.2,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Low activity; The woman in pink walked back to the center of the screen and looked to the lower side of the screen. A red truck appeared on the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 465.4s to 486.2s, the woman in pink walked back to the center of the screen and looked to the lower side of the screen. A red truck appeared on the right side of the screen.",
+      "keywords": [
+        "woman",
+        "pink",
+        "walked",
+        "back",
+        "center",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_23"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 486.2,
+      "end_time": 514.8,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The red truck drives away from the right side of the screen towards the center of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 486.2s to 514.8s, the red truck drives away from the right side of the screen towards the center of the screen.",
+      "keywords": [
+        "red",
+        "truck",
+        "drives",
+        "away",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_24"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 526.1,
+      "end_time": 538.7,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A vehicle appears on the right side of the screen, and the woman in black walks towards the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 526.1s to 538.7s, a vehicle appears on the right side of the screen, and the woman in black walks towards the right side of the screen.",
+      "keywords": [
+        "vehicle",
+        "appears",
+        "right",
+        "side",
+        "screen",
+        "woman"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_25"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 538.7,
+      "end_time": 555.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The woman in black walks to the right side of the screen, picks up something, and walks back to the center of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 538.7s to 555.1s, the woman in black walks to the right side of the screen, picks up something, and walks back to the center of the screen.",
+      "keywords": [
+        "woman",
+        "black",
+        "walks",
+        "right",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_26"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 555.1,
+      "end_time": 570.1,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Low activity; The woman in pink looks to the bottom of the screen, and the man in red looks to the right of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 555.1s to 570.1s, the woman in pink looks to the bottom of the screen, and the man in red looks to the right of the screen.",
+      "keywords": [
+        "woman",
+        "pink",
+        "looks",
+        "bottom",
+        "screen",
+        "man"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_27"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 570.1,
+      "end_time": 601.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several vehicles appear on the right side of the screen and move towards the center of the screen and then drive towards the depth of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 570.1s to 601.2s, several vehicles appear on the right side of the screen and move towards the center of the screen and then drive towards the depth of the screen.",
+      "keywords": [
+        "several",
+        "vehicles",
+        "appear",
+        "right",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_28"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 601.2,
+      "end_time": 623.8,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Low activity; A truck appears on the right side of the screen, the man in red stands on the right side of the screen, and the woman in pink stands in the center of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 601.2s to 623.8s, a truck appears on the right side of the screen, the man in red stands on the right side of the screen, and the woman in pink stands in the center of the screen.",
+      "keywords": [
+        "truck",
+        "appears",
+        "right",
+        "side",
+        "screen",
+        "man"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_29"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 623.8,
+      "end_time": 651.7,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A truck appears on the right side of the screen and drives towards the center of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 623.8s to 651.7s, a truck appears on the right side of the screen and drives towards the center of the screen.",
+      "keywords": [
+        "truck",
+        "appears",
+        "right",
+        "side",
+        "screen",
+        "drives"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_30"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 651.7,
+      "end_time": 672.5,
+      "object_type": "car",
+      "object_color": "pink",
+      "appearance_notes": "Low activity; The woman in pink looked at the truck, which was driving towards the center of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 651.7s to 672.5s, the woman in pink looked at the truck, which was driving towards the center of the screen.",
+      "keywords": [
+        "woman",
+        "pink",
+        "looked",
+        "truck",
+        "which",
+        "driving"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_31"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 672.5,
+      "end_time": 707.1,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A woman in blue appears on the right side of the screen with her child walking toward the center of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 672.5s to 707.1s, a woman in blue appears on the right side of the screen with her child walking toward the center of the screen.",
+      "keywords": [
+        "woman",
+        "blue",
+        "appears",
+        "right",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_32"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 707.1,
+      "end_time": 720.2,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The woman in pink bent over to pick up something, and the woman in black bent over to pick up something.",
+      "scene_zone": "unknown",
+      "event_text": "From 707.1s to 720.2s, the woman in pink bent over to pick up something, and the woman in black bent over to pick up something.",
+      "keywords": [
+        "woman",
+        "pink",
+        "bent",
+        "pick",
+        "something",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_33"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 720.2,
+      "end_time": 758.2,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A group of people appeared on the right side of the screen and walked towards the center of the screen, and then moved towards the depth of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 720.2s to 758.2s, a group of people appeared on the right side of the screen and walked towards the center of the screen, and then moved towards the depth of the screen.",
+      "keywords": [
+        "group",
+        "people",
+        "appeared",
+        "right",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_34"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 758.2,
+      "end_time": 791.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A vehicle appears on the screen, in the center of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 758.2s to 791.1s, a vehicle appears on the screen, in the center of the screen.",
+      "keywords": [
+        "vehicle",
+        "appears",
+        "screen",
+        "center"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_35"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 807.1,
+      "end_time": 818.2,
+      "object_type": "person",
+      "object_color": "green",
+      "appearance_notes": "Observed event; A man in green appears on the left side of the screen and walks towards the center of the screen and leaves the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 807.1s to 818.2s, a man in green appears on the left side of the screen and walks towards the center of the screen and leaves the screen.",
+      "keywords": [
+        "man",
+        "green",
+        "appears",
+        "left",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_36"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 804.6,
+      "end_time": 821.1,
+      "object_type": "person",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; The man in gray walks out of the center of the screen, walks to the left side of the screen, and then leaves the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 804.6s to 821.1s, the man in gray walks out of the center of the screen, walks to the left side of the screen, and then leaves the screen.",
+      "keywords": [
+        "man",
+        "gray",
+        "walks",
+        "out",
+        "center",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_37"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 837.1,
+      "end_time": 855.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several cars appear on the right side of the screen and pass through the screen one after another and then leave the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 837.1s to 855.2s, several cars appear on the right side of the screen and pass through the screen one after another and then leave the screen.",
+      "keywords": [
+        "several",
+        "cars",
+        "appear",
+        "right",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_38"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 871.3,
+      "end_time": 880.3,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in red appears on the left side of the screen and picks up the black things on the ground.",
+      "scene_zone": "unknown",
+      "event_text": "From 871.3s to 880.3s, the man in red appears on the left side of the screen and picks up the black things on the ground.",
+      "keywords": [
+        "man",
+        "red",
+        "appears",
+        "left",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_39"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 880.3,
+      "end_time": 890.3,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Several cars pass by on the right side of the screen and drive towards the center of the screen, and the man in red appears on the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 880.3s to 890.3s, several cars pass by on the right side of the screen and drive towards the center of the screen, and the man in red appears on the right side of the screen.",
+      "keywords": [
+        "several",
+        "cars",
+        "pass",
+        "right",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_40"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 890.3,
+      "end_time": 904.2,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The woman in black in the center of the screen picks up something and then walks back to the center of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 890.3s to 904.2s, the woman in black in the center of the screen picks up something and then walks back to the center of the screen.",
+      "keywords": [
+        "woman",
+        "black",
+        "center",
+        "screen",
+        "picks",
+        "something"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_41"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 904.2,
+      "end_time": 924.5,
+      "object_type": "car",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; A yellow pickup truck appears on the right side of the screen and drives towards the center of the screen and then towards the depth of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 904.2s to 924.5s, a yellow pickup truck appears on the right side of the screen and drives towards the center of the screen and then towards the depth of the screen.",
+      "keywords": [
+        "yellow",
+        "pickup",
+        "truck",
+        "appears",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_42"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 924.5,
+      "end_time": 950.2,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Low activity; A black pickup truck appears on the right side of the screen and drives towards the center of the screen. The woman in pink looks towards the lower side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 924.5s to 950.2s, a black pickup truck appears on the right side of the screen and drives towards the center of the screen. The woman in pink looks towards the lower side of the screen.",
+      "keywords": [
+        "black",
+        "pickup",
+        "truck",
+        "appears",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_43"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 950.2,
+      "end_time": 972.2,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The black pickup truck drives towards the depth of the screen, and the woman in black bends down to pick up something.",
+      "scene_zone": "unknown",
+      "event_text": "From 950.2s to 972.2s, the black pickup truck drives towards the depth of the screen, and the woman in black bends down to pick up something.",
+      "keywords": [
+        "black",
+        "pickup",
+        "truck",
+        "drives",
+        "towards",
+        "depth"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_44"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 972.2,
+      "end_time": 990.4,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Low activity; The woman in black walks back to the center of the screen and looks to the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 972.2s to 990.4s, the woman in black walks back to the center of the screen and looks to the right side of the screen.",
+      "keywords": [
+        "woman",
+        "black",
+        "walks",
+        "back",
+        "center",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_45"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 990.4,
+      "end_time": 1015.4,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Low activity; A black jeep appears on the screen driving towards the center of the screen, and the man in red looks to the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 990.4s to 1015.4s, a black jeep appears on the screen driving towards the center of the screen, and the man in red looks to the right side of the screen.",
+      "keywords": [
+        "black",
+        "jeep",
+        "appears",
+        "screen",
+        "driving",
+        "towards"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_46"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1015.4,
+      "end_time": 1034.8,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Low activity; The woman in pink is holding something and looking to the right side of the screen, while the woman in black is sitting in the center of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1015.4s to 1034.8s, the woman in pink is holding something and looking to the right side of the screen, while the woman in black is sitting in the center of the screen.",
+      "keywords": [
+        "woman",
+        "pink",
+        "holding",
+        "something",
+        "looking",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_47"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1047.8,
+      "end_time": 1053.2,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Low activity; The woman in black goes to the depth of the screen to pick up something, and the man in red looks into the depth of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1047.8s to 1053.2s, the woman in black goes to the depth of the screen to pick up something, and the man in red looks into the depth of the screen.",
+      "keywords": [
+        "woman",
+        "black",
+        "goes",
+        "depth",
+        "screen",
+        "pick"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_48"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1053.2,
+      "end_time": 1070.3,
+      "object_type": "car",
+      "object_color": "pink",
+      "appearance_notes": "Observed event; There are vehicles passing by the screen one after another, and the woman in pink goes to pick up something.",
+      "scene_zone": "unknown",
+      "event_text": "From 1053.2s to 1070.3s, there are vehicles passing by the screen one after another, and the woman in pink goes to pick up something.",
+      "keywords": [
+        "vehicles",
+        "passing",
+        "screen",
+        "one",
+        "another",
+        "woman"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_49"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1070.3,
+      "end_time": 1091.2,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black vehicle appears on the right side of the screen passing by and heading towards the center of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1070.3s to 1091.2s, a black vehicle appears on the right side of the screen passing by and heading towards the center of the screen.",
+      "keywords": [
+        "black",
+        "vehicle",
+        "appears",
+        "right",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_50"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1091.2,
+      "end_time": 1115.4,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The woman in black picked up something and then put it into the bag in the center of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1091.2s to 1115.4s, the woman in black picked up something and then put it into the bag in the center of the screen.",
+      "keywords": [
+        "woman",
+        "black",
+        "picked",
+        "something",
+        "put",
+        "bag"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_51"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1115.4,
+      "end_time": 1128.5,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Low activity; In the center of the screen, the woman in pink and the woman in black sit down and look at the bag below.",
+      "scene_zone": "unknown",
+      "event_text": "From 1115.4s to 1128.5s, in the center of the screen, the woman in pink and the woman in black sit down and look at the bag below.",
+      "keywords": [
+        "center",
+        "screen",
+        "woman",
+        "pink",
+        "black",
+        "sit"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_52"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1128.5,
+      "end_time": 1146.9,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "Low activity; The pink man in the center of the screen looks to the lower side of the screen, and the man in red looks to the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1128.5s to 1146.9s, the pink man in the center of the screen looks to the lower side of the screen, and the man in red looks to the right side of the screen.",
+      "keywords": [
+        "pink",
+        "man",
+        "center",
+        "screen",
+        "looks",
+        "lower"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_53"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1146.9,
+      "end_time": 1175.7,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Low activity; In the center of the screen, the woman in pink and the woman in black are sitting and looking to the right side of the screen, while the man in red is standing.",
+      "scene_zone": "unknown",
+      "event_text": "From 1146.9s to 1175.7s, in the center of the screen, the woman in pink and the woman in black are sitting and looking to the right side of the screen, while the man in red is standing.",
+      "keywords": [
+        "center",
+        "screen",
+        "woman",
+        "pink",
+        "black",
+        "sitting"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_54"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1175.7,
+      "end_time": 1201.9,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Low activity; The woman in pink raised her hand and looked into the distance, and the woman in black communicated with the woman in pink.",
+      "scene_zone": "unknown",
+      "event_text": "From 1175.7s to 1201.9s, the woman in pink raised her hand and looked into the distance, and the woman in black communicated with the woman in pink.",
+      "keywords": [
+        "woman",
+        "pink",
+        "raised",
+        "hand",
+        "looked",
+        "distance"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_55"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1201.9,
+      "end_time": 1228.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two people appear in the center of the screen and move towards the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1201.9s to 1228.3s, two people appear in the center of the screen and move towards the right side of the screen.",
+      "keywords": [
+        "two",
+        "people",
+        "appear",
+        "center",
+        "screen",
+        "move"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_56"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1228.3,
+      "end_time": 1254.1,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Low activity; The woman in the center of the screen is sitting and looking at the bottom of the screen, and the man in red is looking at the top of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1228.3s to 1254.1s, the woman in the center of the screen is sitting and looking at the bottom of the screen, and the man in red is looking at the top of the screen.",
+      "keywords": [
+        "woman",
+        "center",
+        "screen",
+        "sitting",
+        "looking",
+        "bottom"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_57"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1254.1,
+      "end_time": 1278.3,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The woman in pink and the woman in black are communicating with each other in the center of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1254.1s to 1278.3s, the woman in pink and the woman in black are communicating with each other in the center of the screen.",
+      "keywords": [
+        "woman",
+        "pink",
+        "black",
+        "communicating",
+        "each",
+        "other"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_58"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1278.3,
+      "end_time": 1300.3,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Low activity; In the center of the screen, the woman in trench coat and the woman in black look to the right side of the screen, while the man in red stands looking to the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1278.3s to 1300.3s, in the center of the screen, the woman in trench coat and the woman in black look to the right side of the screen, while the man in red stands looking to the right side of the screen.",
+      "keywords": [
+        "center",
+        "screen",
+        "woman",
+        "trench",
+        "coat",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_59"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1300.3,
+      "end_time": 1323.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two people on the left side of the screen passed by the screen and then left the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1300.3s to 1323.2s, two people on the left side of the screen passed by the screen and then left the screen.",
+      "keywords": [
+        "two",
+        "people",
+        "left",
+        "side",
+        "screen",
+        "passed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_60"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1323.2,
+      "end_time": 1346.8,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Low activity; There are several people standing on the left side of the screen communicating, and the woman in pink and the woman in black are communicating in the center of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1323.2s to 1346.8s, there are several people standing on the left side of the screen communicating, and the woman in pink and the woman in black are communicating in the center of the screen.",
+      "keywords": [
+        "several",
+        "people",
+        "standing",
+        "left",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_61"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1346.8,
+      "end_time": 1363.8,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A vehicle appears on the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1346.8s to 1363.8s, a vehicle appears on the right side of the screen.",
+      "keywords": [
+        "vehicle",
+        "appears",
+        "right",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_62"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1363.8,
+      "end_time": 1367.1,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "Observed event; The woman in pink stood up.",
+      "scene_zone": "unknown",
+      "event_text": "From 1363.8s to 1367.1s, the woman in pink stood up.",
+      "keywords": [
+        "woman",
+        "pink",
+        "stood"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_63"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1363.8,
+      "end_time": 1387.0,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Low activity; The vehicle on the right side of the screen drives towards the center of the screen. The woman in black gets up to pick up something, and the woman in pink looks to the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1363.8s to 1387.0s, the vehicle on the right side of the screen drives towards the center of the screen. The woman in black gets up to pick up something, and the woman in pink looks to the right side of the screen.",
+      "keywords": [
+        "vehicle",
+        "right",
+        "side",
+        "screen",
+        "drives",
+        "towards"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_64"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1387.0,
+      "end_time": 1397.2,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "Low activity; The woman in pink bent over to pick up something and put it in the bag in the center of the screen. The woman in pink looked towards the lower side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1387.0s to 1397.2s, the woman in pink bent over to pick up something and put it in the bag in the center of the screen. The woman in pink looked towards the lower side of the screen.",
+      "keywords": [
+        "woman",
+        "pink",
+        "bent",
+        "pick",
+        "something",
+        "put"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_65"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1397.2,
+      "end_time": 1420.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The woman in black in the center of the screen sits down and sorts the things in the bag.",
+      "scene_zone": "unknown",
+      "event_text": "From 1397.2s to 1420.1s, the woman in black in the center of the screen sits down and sorts the things in the bag.",
+      "keywords": [
+        "woman",
+        "black",
+        "center",
+        "screen",
+        "sits",
+        "down"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_66"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1420.1,
+      "end_time": 1441.2,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Low activity; The woman in pink in the center of the screen looks to the lower side of the screen, and the man in red looks to the right of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1420.1s to 1441.2s, the woman in pink in the center of the screen looks to the lower side of the screen, and the man in red looks to the right of the screen.",
+      "keywords": [
+        "woman",
+        "pink",
+        "center",
+        "screen",
+        "looks",
+        "lower"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_67"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1441.2,
+      "end_time": 1461.3,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "Observed event; The woman in pink in the center of the screen is holding something and walking towards the depth of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1441.2s to 1461.3s, the woman in pink in the center of the screen is holding something and walking towards the depth of the screen.",
+      "keywords": [
+        "woman",
+        "pink",
+        "center",
+        "screen",
+        "holding",
+        "something"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_68"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1461.3,
+      "end_time": 1482.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several people appear on the right side of the screen and walk towards the center of the screen, and then leave the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1461.3s to 1482.6s, several people appear on the right side of the screen and walk towards the center of the screen, and then leave the screen.",
+      "keywords": [
+        "several",
+        "people",
+        "appear",
+        "right",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_69"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1482.6,
+      "end_time": 1501.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car appears on the right side of the screen, and a woman in black sits in the center of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1482.6s to 1501.2s, a white car appears on the right side of the screen, and a woman in black sits in the center of the screen.",
+      "keywords": [
+        "white",
+        "car",
+        "appears",
+        "right",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_70"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1501.2,
+      "end_time": 1521.7,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The white car drives towards the center of the screen, and the woman in pink walks towards the bottom of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1501.2s to 1521.7s, the white car drives towards the center of the screen, and the woman in pink walks towards the bottom of the screen.",
+      "keywords": [
+        "white",
+        "car",
+        "drives",
+        "towards",
+        "center",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_71"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1521.7,
+      "end_time": 1556.2,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The woman in black in the center of the screen picks up things and puts them in her bag.",
+      "scene_zone": "unknown",
+      "event_text": "From 1521.7s to 1556.2s, the woman in black in the center of the screen picks up things and puts them in her bag.",
+      "keywords": [
+        "woman",
+        "black",
+        "center",
+        "screen",
+        "picks",
+        "things"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_72"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1556.2,
+      "end_time": 1565.6,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white pickup truck appears on the right side of the screen and drives into the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1556.2s to 1565.6s, a white pickup truck appears on the right side of the screen and drives into the screen.",
+      "keywords": [
+        "white",
+        "pickup",
+        "truck",
+        "appears",
+        "right",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_73"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1565.6,
+      "end_time": 1586.8,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Low activity; The woman in black in the center of the screen looks left and right, walking around, and the woman in pink looks to the right of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1565.6s to 1586.8s, the woman in black in the center of the screen looks left and right, walking around, and the woman in pink looks to the right of the screen.",
+      "keywords": [
+        "woman",
+        "black",
+        "center",
+        "screen",
+        "looks",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_74"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1586.8,
+      "end_time": 1610.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The white pickup truck drives towards the center of the screen, and the man in red looks to the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1586.8s to 1610.2s, the white pickup truck drives towards the center of the screen, and the man in red looks to the right side of the screen.",
+      "keywords": [
+        "white",
+        "pickup",
+        "truck",
+        "drives",
+        "towards",
+        "center"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_75"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1610.2,
+      "end_time": 1638.8,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several vehicles appear on the right side of the screen and move towards the center of the screen and then drive deep into the center of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1610.2s to 1638.8s, several vehicles appear on the right side of the screen and move towards the center of the screen and then drive deep into the center of the screen.",
+      "keywords": [
+        "several",
+        "vehicles",
+        "appear",
+        "right",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_76"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1638.8,
+      "end_time": 1664.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Parade vehicles and people passing by appear on the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1638.8s to 1664.2s, parade vehicles and people passing by appear on the right side of the screen.",
+      "keywords": [
+        "parade",
+        "vehicles",
+        "people",
+        "passing",
+        "appear",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_77"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1664.2,
+      "end_time": 1685.3,
+      "object_type": "car",
+      "object_color": "pink",
+      "appearance_notes": "Observed event; The vehicles and the crowd moved away from the center of the screen, and the woman in pink sat down.",
+      "scene_zone": "unknown",
+      "event_text": "From 1664.2s to 1685.3s, the vehicles and the crowd moved away from the center of the screen, and the woman in pink sat down.",
+      "keywords": [
+        "vehicles",
+        "crowd",
+        "moved",
+        "away",
+        "center",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_78"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1708.2,
+      "end_time": 1713.0,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The woman in black goes to pick up something, the woman in pink gets up, and the man in red appears on the left side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1708.2s to 1713.0s, the woman in black goes to pick up something, the woman in pink gets up, and the man in red appears on the left side of the screen.",
+      "keywords": [
+        "woman",
+        "black",
+        "goes",
+        "pick",
+        "something",
+        "pink"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_79"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1713.0,
+      "end_time": 1730.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in red appears on the right side of the screen, and the woman in pink communicates with the woman in black.",
+      "scene_zone": "unknown",
+      "event_text": "From 1713.0s to 1730.1s, the man in red appears on the right side of the screen, and the woman in pink communicates with the woman in black.",
+      "keywords": [
+        "man",
+        "red",
+        "appears",
+        "right",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_80"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1730.1,
+      "end_time": 1754.1,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A vehicle appears on the right side of the screen, and the woman in black goes to pick up something.",
+      "scene_zone": "unknown",
+      "event_text": "From 1730.1s to 1754.1s, a vehicle appears on the right side of the screen, and the woman in black goes to pick up something.",
+      "keywords": [
+        "vehicle",
+        "appears",
+        "right",
+        "side",
+        "screen",
+        "woman"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_81"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1754.1,
+      "end_time": 1779.6,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Low activity; The woman in black walked to the center of the screen and put it in her bag, looking to the right side of the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 1754.1s to 1779.6s, the woman in black walked to the center of the screen and put it in her bag, looking to the right side of the screen.",
+      "keywords": [
+        "woman",
+        "black",
+        "walked",
+        "center",
+        "screen",
+        "put"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_82"
+    },
+    {
+      "video_id": "Normal_Videos551_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 1800.0,
+      "start_time": 1779.6,
+      "end_time": 1800.0,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Low activity; The woman in pink looks to the right side of the screen, and the woman in black walks left and right.",
+      "scene_zone": "unknown",
+      "event_text": "From 1779.6s to 1800.0s, the woman in pink looks to the right side of the screen, and the woman in black walks left and right.",
+      "keywords": [
+        "woman",
+        "pink",
+        "looks",
+        "right",
+        "side",
+        "screen"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_83"
+    }
+  ]
+}

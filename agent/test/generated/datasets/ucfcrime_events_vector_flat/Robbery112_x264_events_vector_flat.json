@@ -1,0 +1,105 @@
+{
+  "video_id": "Robbery112_x264",
+  "duration": 45.78,
+  "events": [
+    {
+      "video_id": "Robbery112_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 45.78,
+      "start_time": 3.7,
+      "end_time": 14.9,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; The two of them took their things and walked to the trunk of the white car to load them.",
+      "scene_zone": "unknown",
+      "event_text": "From 3.7s to 14.9s, the two of them took their things and walked to the trunk of the white car to load them.",
+      "keywords": [
+        "two",
+        "took",
+        "things",
+        "walked",
+        "trunk",
+        "white"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Robbery112_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 45.78,
+      "start_time": 18.9,
+      "end_time": 30.5,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A car drove up on the road and several men got out and took away the two people behind the white car.",
+      "scene_zone": "road",
+      "event_text": "From 18.9s to 30.5s, a car drove up on the road and several men got out and took away the two people behind the white car.",
+      "keywords": [
+        "car",
+        "drove",
+        "road",
+        "several",
+        "men",
+        "got"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Robbery112_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 45.78,
+      "start_time": 32.8,
+      "end_time": 41.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several men suddenly rushed out of the door, and a naked man with a gun chased out from behind.",
+      "scene_zone": "room",
+      "event_text": "From 32.8s to 41.8s, several men suddenly rushed out of the door, and a naked man with a gun chased out from behind.",
+      "keywords": [
+        "several",
+        "men",
+        "suddenly",
+        "rushed",
+        "out",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    }
+  ]
+}

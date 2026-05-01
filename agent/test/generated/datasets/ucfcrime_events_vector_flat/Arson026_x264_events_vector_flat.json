@@ -1,0 +1,234 @@
+{
+  "video_id": "Arson026_x264",
+  "duration": 196.63,
+  "events": [
+    {
+      "video_id": "Arson026_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 196.63,
+      "start_time": 7.8,
+      "end_time": 17.3,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man in white clothes in a store pushed a stroller and left the store through the door.",
+      "scene_zone": "room",
+      "event_text": "From 7.8s to 17.3s, a man in white clothes in a store pushed a stroller and left the store through the door.",
+      "keywords": [
+        "man",
+        "white",
+        "clothes",
+        "store",
+        "pushed",
+        "stroller"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Arson026_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 196.63,
+      "start_time": 18.3,
+      "end_time": 28.0,
+      "object_type": "child",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A child entered the store and lit something on the ground at the door before leaving.",
+      "scene_zone": "room",
+      "event_text": "From 18.3s to 28.0s, a child entered the store and lit something on the ground at the door before leaving.",
+      "keywords": [
+        "child",
+        "entered",
+        "store",
+        "lit",
+        "something",
+        "ground"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Arson026_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 196.63,
+      "start_time": 49.2,
+      "end_time": 56.7,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man entered the store from the door.",
+      "scene_zone": "room",
+      "event_text": "From 49.2s to 56.7s, a man entered the store from the door.",
+      "keywords": [
+        "man",
+        "entered",
+        "store",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Arson026_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 196.63,
+      "start_time": 88.2,
+      "end_time": 96.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Many people enter the house from the store door.",
+      "scene_zone": "room",
+      "event_text": "From 88.2s to 96.4s, many people enter the house from the store door.",
+      "keywords": [
+        "many",
+        "people",
+        "enter",
+        "house",
+        "store",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Arson026_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 196.63,
+      "start_time": 85.3,
+      "end_time": 90.1,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The fire on the ground gradually grew bigger, and smoke and fire continued.",
+      "scene_zone": "unknown",
+      "event_text": "From 85.3s to 90.1s, the fire on the ground gradually grew bigger, and smoke and fire continued.",
+      "keywords": [
+        "fire",
+        "ground",
+        "gradually",
+        "grew",
+        "bigger",
+        "smoke"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Arson026_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 196.63,
+      "start_time": 120.6,
+      "end_time": 124.1,
+      "object_type": "unknown",
+      "object_color": "red",
+      "appearance_notes": "Observed event; An employee appeared with a fire extinguisher and used the fire extinguisher to put out the fire.",
+      "scene_zone": "unknown",
+      "event_text": "From 120.6s to 124.1s, an employee appeared with a fire extinguisher and used the fire extinguisher to put out the fire.",
+      "keywords": [
+        "employee",
+        "appeared",
+        "fire",
+        "extinguisher",
+        "used",
+        "put"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Arson026_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 196.63,
+      "start_time": 150.2,
+      "end_time": 160.4,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Everyone is leaving the store one after another.",
+      "scene_zone": "store",
+      "event_text": "From 150.2s to 160.4s, everyone is leaving the store one after another.",
+      "keywords": [
+        "everyone",
+        "leaving",
+        "store",
+        "one",
+        "another"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    }
+  ]
+}

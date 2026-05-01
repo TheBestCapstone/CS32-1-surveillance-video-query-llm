@@ -1,0 +1,557 @@
+{
+  "video_id": "Normal_Videos590_x264",
+  "duration": 299.7,
+  "events": [
+    {
+      "video_id": "Normal_Videos590_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.7,
+      "start_time": 0.0,
+      "end_time": 16.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two men walked from the building on the right to the left, leaving the camera's field of view.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 16.0s, two men walked from the building on the right to the left, leaving the camera's field of view.",
+      "keywords": [
+        "two",
+        "men",
+        "walked",
+        "building",
+        "right",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos590_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.7,
+      "start_time": 0.0,
+      "end_time": 17.5,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black carrying a suitcase passed two men and walked into the building.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 17.5s, a man in black carrying a suitcase passed two men and walked into the building.",
+      "keywords": [
+        "man",
+        "black",
+        "carrying",
+        "suitcase",
+        "passed",
+        "two"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos590_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.7,
+      "start_time": 7.0,
+      "end_time": 23.4,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Behind the man in black, a man in plaid clothes followed closely with a suitcase.",
+      "scene_zone": "unknown",
+      "event_text": "From 7.0s to 23.4s, behind the man in black, a man in plaid clothes followed closely with a suitcase.",
+      "keywords": [
+        "behind",
+        "man",
+        "black",
+        "plaid",
+        "clothes",
+        "followed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos590_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.7,
+      "start_time": 24.4,
+      "end_time": 39.2,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Low activity; A black car parked on the roadside above, and several vehicles passed by the road.",
+      "scene_zone": "road",
+      "event_text": "From 24.4s to 39.2s, a black car parked on the roadside above, and several vehicles passed by the road.",
+      "keywords": [
+        "black",
+        "car",
+        "parked",
+        "roadside",
+        "above",
+        "several"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos590_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.7,
+      "start_time": 44.2,
+      "end_time": 49.1,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The black car drives left and leaves the camera field of view.",
+      "scene_zone": "unknown",
+      "event_text": "From 44.2s to 49.1s, the black car drives left and leaves the camera field of view.",
+      "keywords": [
+        "black",
+        "car",
+        "drives",
+        "left",
+        "leaves",
+        "camera"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos590_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.7,
+      "start_time": 48.2,
+      "end_time": 60.1,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man in white and a man in floral clothes are walking towards the top.",
+      "scene_zone": "unknown",
+      "event_text": "From 48.2s to 60.1s, a man in white and a man in floral clothes are walking towards the top.",
+      "keywords": [
+        "man",
+        "white",
+        "floral",
+        "clothes",
+        "walking",
+        "towards"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos590_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.7,
+      "start_time": 60.1,
+      "end_time": 90.1,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The two of them stopped at the corner,.",
+      "scene_zone": "unknown",
+      "event_text": "From 60.1s to 90.1s, the two of them stopped at the corner,.",
+      "keywords": [
+        "two",
+        "stopped",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos590_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.7,
+      "start_time": 90.1,
+      "end_time": 102.1,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in white walks to the left and leaves the camera field of view.",
+      "scene_zone": "unknown",
+      "event_text": "From 90.1s to 102.1s, the man in white walks to the left and leaves the camera field of view.",
+      "keywords": [
+        "man",
+        "white",
+        "walks",
+        "left",
+        "leaves",
+        "camera"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Normal_Videos590_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.7,
+      "start_time": 90.1,
+      "end_time": 125.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man in colorful clothes stood there.",
+      "scene_zone": "unknown",
+      "event_text": "From 90.1s to 125.1s, the man in colorful clothes stood there.",
+      "keywords": [
+        "man",
+        "colorful",
+        "clothes",
+        "stood"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Normal_Videos590_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.7,
+      "start_time": 125.1,
+      "end_time": 129.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man in colorful clothes walks to the left and leaves the camera field of view.",
+      "scene_zone": "unknown",
+      "event_text": "From 125.1s to 129.3s, the man in colorful clothes walks to the left and leaves the camera field of view.",
+      "keywords": [
+        "man",
+        "colorful",
+        "clothes",
+        "walks",
+        "left",
+        "leaves"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Normal_Videos590_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.7,
+      "start_time": 131.1,
+      "end_time": 134.3,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A woman in red followed closely behind,.",
+      "scene_zone": "unknown",
+      "event_text": "From 131.1s to 134.3s, a woman in red followed closely behind,.",
+      "keywords": [
+        "woman",
+        "red",
+        "followed",
+        "closely",
+        "behind"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Normal_Videos590_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.7,
+      "start_time": 133.3,
+      "end_time": 138.3,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two pedestrians in the upper right corner are walking to the right.",
+      "scene_zone": "unknown",
+      "event_text": "From 133.3s to 138.3s, two pedestrians in the upper right corner are walking to the right.",
+      "keywords": [
+        "two",
+        "pedestrians",
+        "upper",
+        "right",
+        "corner",
+        "walking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Normal_Videos590_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.7,
+      "start_time": 156.3,
+      "end_time": 159.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A pedestrian on the road in the upper right corner walks to the right and then leaves the camera's field of view.",
+      "scene_zone": "road",
+      "event_text": "From 156.3s to 159.0s, a pedestrian on the road in the upper right corner walks to the right and then leaves the camera's field of view.",
+      "keywords": [
+        "pedestrian",
+        "road",
+        "upper",
+        "right",
+        "corner",
+        "walks"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Normal_Videos590_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.7,
+      "start_time": 138.3,
+      "end_time": 173.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several vehicles passing by the road.",
+      "scene_zone": "road",
+      "event_text": "From 138.3s to 173.0s, several vehicles passing by the road.",
+      "keywords": [
+        "several",
+        "vehicles",
+        "passing",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Normal_Videos590_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.7,
+      "start_time": 197.0,
+      "end_time": 209.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; An SUV is heading towards the left road. After a brief stop on the right road, it quickly drives towards the right road.",
+      "scene_zone": "road",
+      "event_text": "From 197.0s to 209.2s, an SUV is heading towards the left road. After a brief stop on the right road, it quickly drives towards the right road.",
+      "keywords": [
+        "suv",
+        "heading",
+        "towards",
+        "left",
+        "road",
+        "brief"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    },
+    {
+      "video_id": "Normal_Videos590_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.7,
+      "start_time": 210.2,
+      "end_time": 227.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man and a woman below are walking upwards, then turn right into the building, continue walking upwards, and finally turn right out of the camera's field of view.",
+      "scene_zone": "unknown",
+      "event_text": "From 210.2s to 227.1s, a man and a woman below are walking upwards, then turn right into the building, continue walking upwards, and finally turn right out of the camera's field of view.",
+      "keywords": [
+        "man",
+        "woman",
+        "below",
+        "walking",
+        "upwards",
+        "turn"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_16"
+    },
+    {
+      "video_id": "Normal_Videos590_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 299.7,
+      "start_time": 228.1,
+      "end_time": 299.1,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several vehicles passing by the road.",
+      "scene_zone": "road",
+      "event_text": "From 228.1s to 299.1s, several vehicles passing by the road.",
+      "keywords": [
+        "several",
+        "vehicles",
+        "passing",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_17"
+    }
+  ]
+}

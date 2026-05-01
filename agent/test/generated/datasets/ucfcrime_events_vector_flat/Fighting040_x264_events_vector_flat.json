@@ -1,0 +1,201 @@
+{
+  "video_id": "Fighting040_x264",
+  "duration": 77.68,
+  "events": [
+    {
+      "video_id": "Fighting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 77.68,
+      "start_time": 0.7,
+      "end_time": 13.6,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several motorcycles are coming and going in the alley.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.7s to 13.6s, several motorcycles are coming and going in the alley.",
+      "keywords": [
+        "several",
+        "motorcycles",
+        "coming",
+        "going",
+        "alley"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Fighting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 77.68,
+      "start_time": 11.8,
+      "end_time": 20.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two men walked into the alley and talked with another person.",
+      "scene_zone": "unknown",
+      "event_text": "From 11.8s to 20.8s, two men walked into the alley and talked with another person.",
+      "keywords": [
+        "two",
+        "men",
+        "walked",
+        "alley",
+        "talked",
+        "another"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Fighting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 77.68,
+      "start_time": 53.1,
+      "end_time": 63.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man with the gun was knocked down and then a man stopped on a motorcycle.",
+      "scene_zone": "unknown",
+      "event_text": "From 53.1s to 63.0s, the man with the gun was knocked down and then a man stopped on a motorcycle.",
+      "keywords": [
+        "man",
+        "gun",
+        "knocked",
+        "down",
+        "stopped",
+        "motorcycle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Fighting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 77.68,
+      "start_time": 20.8,
+      "end_time": 33.6,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; The two had a dispute and struggled to the side of the car.",
+      "scene_zone": "unknown",
+      "event_text": "From 20.8s to 33.6s, the two had a dispute and struggled to the side of the car.",
+      "keywords": [
+        "two",
+        "had",
+        "dispute",
+        "struggled",
+        "side",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Fighting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 77.68,
+      "start_time": 33.6,
+      "end_time": 62.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; One person shot and another person grabbed his arm. The two struggled back to the wall.",
+      "scene_zone": "room",
+      "event_text": "From 33.6s to 62.0s, one person shot and another person grabbed his arm. The two struggled back to the wall.",
+      "keywords": [
+        "one",
+        "person",
+        "shot",
+        "another",
+        "grabbed",
+        "arm"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Fighting040_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 77.68,
+      "start_time": 63.0,
+      "end_time": 77.0,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several motorcycles stopped and surrounded them.",
+      "scene_zone": "unknown",
+      "event_text": "From 63.0s to 77.0s, several motorcycles stopped and surrounded them.",
+      "keywords": [
+        "several",
+        "motorcycles",
+        "stopped",
+        "surrounded"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    }
+  ]
+}

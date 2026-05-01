@@ -1,0 +1,202 @@
+{
+  "video_id": "Normal_Videos593_x264",
+  "duration": 87.03,
+  "events": [
+    {
+      "video_id": "Normal_Videos593_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 87.03,
+      "start_time": 0.0,
+      "end_time": 14.3,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; Several people in a room are working. On the lower right side, a woman in white is flipping through notes on the table.",
+      "scene_zone": "room",
+      "event_text": "From 0.0s to 14.3s, several people in a room are working. On the lower right side, a woman in white is flipping through notes on the table.",
+      "keywords": [
+        "several",
+        "people",
+        "room",
+        "working",
+        "lower",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos593_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 87.03,
+      "start_time": 14.3,
+      "end_time": 25.2,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A woman in black on the lower left stood up, put the paper on the table behind her, and finally sat back down.",
+      "scene_zone": "room",
+      "event_text": "From 14.3s to 25.2s, a woman in black on the lower left stood up, put the paper on the table behind her, and finally sat back down.",
+      "keywords": [
+        "woman",
+        "black",
+        "lower",
+        "left",
+        "stood",
+        "put"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos593_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 87.03,
+      "start_time": 25.2,
+      "end_time": 39.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The woman in white on the right picked up the note and put it in the cabinet behind her. A woman in black came from the upper right and walked towards the workstation on the left.",
+      "scene_zone": "unknown",
+      "event_text": "From 25.2s to 39.1s, the woman in white on the right picked up the note and put it in the cabinet behind her. A woman in black came from the upper right and walked towards the workstation on the left.",
+      "keywords": [
+        "woman",
+        "white",
+        "right",
+        "picked",
+        "note",
+        "put"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos593_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 87.03,
+      "start_time": 39.1,
+      "end_time": 50.0,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The woman in black handed the paper to the man in white and then sat on her seat.",
+      "scene_zone": "unknown",
+      "event_text": "From 39.1s to 50.0s, the woman in black handed the paper to the man in white and then sat on her seat.",
+      "keywords": [
+        "woman",
+        "black",
+        "handed",
+        "paper",
+        "man",
+        "white"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos593_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 87.03,
+      "start_time": 50.0,
+      "end_time": 80.2,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The woman in black on the left turned her back and put the paper on the table behind her, then turned around and continued working.",
+      "scene_zone": "room",
+      "event_text": "From 50.0s to 80.2s, the woman in black on the left turned her back and put the paper on the table behind her, then turned around and continued working.",
+      "keywords": [
+        "woman",
+        "black",
+        "left",
+        "turned",
+        "back",
+        "put"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos593_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 87.03,
+      "start_time": 80.2,
+      "end_time": 87.0,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black enters the room.",
+      "scene_zone": "room",
+      "event_text": "From 80.2s to 87.0s, a man in black enters the room.",
+      "keywords": [
+        "man",
+        "black",
+        "enters",
+        "room"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    }
+  ]
+}

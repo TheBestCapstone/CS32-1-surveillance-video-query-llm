@@ -1,0 +1,129 @@
+{
+  "video_id": "RoadAccidents131_x264",
+  "duration": 50.83,
+  "events": [
+    {
+      "video_id": "RoadAccidents131_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 50.83,
+      "start_time": 1.2,
+      "end_time": 16.7,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; At the intersection, a black car going straight collided with a black car going straight on the other road.",
+      "scene_zone": "road",
+      "event_text": "From 1.2s to 16.7s, at the intersection, a black car going straight collided with a black car going straight on the other road.",
+      "keywords": [
+        "intersection",
+        "black",
+        "car",
+        "going",
+        "straight",
+        "collided"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "RoadAccidents131_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 50.83,
+      "start_time": 16.7,
+      "end_time": 31.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Vehicle driving.",
+      "scene_zone": "unknown",
+      "event_text": "From 16.7s to 31.3s, vehicle driving.",
+      "keywords": [
+        "vehicle",
+        "driving"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "RoadAccidents131_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 50.83,
+      "start_time": 31.3,
+      "end_time": 46.6,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; People ran to two cars.",
+      "scene_zone": "unknown",
+      "event_text": "From 31.3s to 46.6s, people ran to two cars.",
+      "keywords": [
+        "people",
+        "ran",
+        "two",
+        "cars"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "RoadAccidents131_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 50.83,
+      "start_time": 46.6,
+      "end_time": 50.8,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; People come and go by the car.",
+      "scene_zone": "unknown",
+      "event_text": "From 46.6s to 50.8s, people come and go by the car.",
+      "keywords": [
+        "people",
+        "come",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    }
+  ]
+}

@@ -1,0 +1,1488 @@
+{
+  "video_id": "Abuse042_x264",
+  "duration": 949.28,
+  "events": [
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 6.1,
+      "end_time": 33.8,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "Observed event; A woman in a pink skirt is sitting on the ground feeding a baby with a bottle, and the baby is holding the bottle in both hands.",
+      "scene_zone": "unknown",
+      "event_text": "From 6.1s to 33.8s, a woman in a pink skirt is sitting on the ground feeding a baby with a bottle, and the baby is holding the bottle in both hands.",
+      "keywords": [
+        "woman",
+        "pink",
+        "skirt",
+        "sitting",
+        "ground",
+        "feeding"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 30.8,
+      "end_time": 46.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The woman sometimes looks up and sometimes looks at the baby, and continues to breastfeed.",
+      "scene_zone": "unknown",
+      "event_text": "From 30.8s to 46.2s, the woman sometimes looks up and sometimes looks at the baby, and continues to breastfeed.",
+      "keywords": [
+        "woman",
+        "sometimes",
+        "looks",
+        "baby",
+        "continues",
+        "breastfeed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 49.8,
+      "end_time": 54.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; The baby kicked around, the woman took the bottle, then pushed the baby hard, and then continued to feed the baby.",
+      "scene_zone": "unknown",
+      "event_text": "From 49.8s to 54.6s, the baby kicked around, the woman took the bottle, then pushed the baby hard, and then continued to feed the baby.",
+      "keywords": [
+        "baby",
+        "kicked",
+        "around",
+        "woman",
+        "took",
+        "bottle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 55.9,
+      "end_time": 59.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The baby holds the bottle by himself, and the woman walks away.",
+      "scene_zone": "unknown",
+      "event_text": "From 55.9s to 59.9s, the baby holds the bottle by himself, and the woman walks away.",
+      "keywords": [
+        "baby",
+        "holds",
+        "bottle",
+        "himself",
+        "woman",
+        "walks"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 64.0,
+      "end_time": 77.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The baby held the bottle to his chest, let go of his mouth, and looked at the woman above his head. Then the woman walked over and continued to feed him, and wiped his mouth with a pillow towel.",
+      "scene_zone": "bedside",
+      "event_text": "From 64.0s to 77.9s, the baby held the bottle to his chest, let go of his mouth, and looked at the woman above his head. Then the woman walked over and continued to feed him, and wiped his mouth with a pillow towel.",
+      "keywords": [
+        "baby",
+        "held",
+        "bottle",
+        "chest",
+        "let",
+        "mouth"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 77.9,
+      "end_time": 136.5,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "Observed event; The woman in a pink skirt held a milk bottle in one hand, then got up and walked away. The baby was lying on the ground with his head raised to drink milk.",
+      "scene_zone": "unknown",
+      "event_text": "From 77.9s to 136.5s, the woman in a pink skirt held a milk bottle in one hand, then got up and walked away. The baby was lying on the ground with his head raised to drink milk.",
+      "keywords": [
+        "woman",
+        "pink",
+        "skirt",
+        "held",
+        "milk",
+        "bottle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 137.9,
+      "end_time": 154.2,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The woman in pink clothes is doing something next to the white hanging basket next to the child.",
+      "scene_zone": "unknown",
+      "event_text": "From 137.9s to 154.2s, the woman in pink clothes is doing something next to the white hanging basket next to the child.",
+      "keywords": [
+        "woman",
+        "pink",
+        "clothes",
+        "doing",
+        "something",
+        "white"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 137.2,
+      "end_time": 215.0,
+      "object_type": "child",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The child is lying on the ground alone holding a bottle.",
+      "scene_zone": "unknown",
+      "event_text": "From 137.2s to 215.0s, the child is lying on the ground alone holding a bottle.",
+      "keywords": [
+        "child",
+        "lying",
+        "ground",
+        "alone",
+        "holding",
+        "bottle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 215.0,
+      "end_time": 227.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman walked to the baby and squatted down, using the quilt to wipe the baby's mouth. The baby kicked its legs vigorously, but the woman continued rudely, and the baby also kept kicking.",
+      "scene_zone": "unknown",
+      "event_text": "From 215.0s to 227.5s, the woman walked to the baby and squatted down, using the quilt to wipe the baby's mouth. The baby kicked its legs vigorously, but the woman continued rudely, and the baby also kept kicking.",
+      "keywords": [
+        "woman",
+        "walked",
+        "baby",
+        "squatted",
+        "down",
+        "using"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 229.0,
+      "end_time": 238.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman wiped the baby's mouth again, then spread the quilt, and continued to pick up the bottle to feed the baby.",
+      "scene_zone": "unknown",
+      "event_text": "From 229.0s to 238.5s, the woman wiped the baby's mouth again, then spread the quilt, and continued to pick up the bottle to feed the baby.",
+      "keywords": [
+        "woman",
+        "wiped",
+        "baby",
+        "mouth",
+        "again",
+        "spread"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 238.1,
+      "end_time": 245.3,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The woman in pink clothes placed the bottle on the ground, took out the cap of the bottle, covered the bottle, put it aside, and stood up.",
+      "scene_zone": "unknown",
+      "event_text": "From 238.1s to 245.3s, the woman in pink clothes placed the bottle on the ground, took out the cap of the bottle, covered the bottle, put it aside, and stood up.",
+      "keywords": [
+        "woman",
+        "pink",
+        "clothes",
+        "placed",
+        "bottle",
+        "ground"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 246.4,
+      "end_time": 254.4,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "Observed event; The woman in pink clothes took several things from the bed. When she raised her feet, the baby grabbed her skirt and then let go. The woman put the things aside.",
+      "scene_zone": "bedside",
+      "event_text": "From 246.4s to 254.4s, the woman in pink clothes took several things from the bed. When she raised her feet, the baby grabbed her skirt and then let go. The woman put the things aside.",
+      "keywords": [
+        "woman",
+        "pink",
+        "clothes",
+        "took",
+        "several",
+        "things"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 256.3,
+      "end_time": 267.5,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "High activity; The woman in pink clothes walked back to the baby, hit the baby with a pillow, then threw it on his head, and then let the baby lie on it.",
+      "scene_zone": "bedside",
+      "event_text": "From 256.3s to 267.5s, the woman in pink clothes walked back to the baby, hit the baby with a pillow, then threw it on his head, and then let the baby lie on it.",
+      "keywords": [
+        "woman",
+        "pink",
+        "clothes",
+        "walked",
+        "back",
+        "baby"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 268.8,
+      "end_time": 288.1,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "Observed event; The woman in pink clothes patted the baby's head with one hand and patted his butt with the other.",
+      "scene_zone": "unknown",
+      "event_text": "From 268.8s to 288.1s, the woman in pink clothes patted the baby's head with one hand and patted his butt with the other.",
+      "keywords": [
+        "woman",
+        "pink",
+        "clothes",
+        "patted",
+        "baby",
+        "head"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 294.5,
+      "end_time": 301.7,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "Observed event; The woman in pink clothes sat cross-legged, moved the baby to the pillow and continued to pat him.",
+      "scene_zone": "bedside",
+      "event_text": "From 294.5s to 301.7s, the woman in pink clothes sat cross-legged, moved the baby to the pillow and continued to pat him.",
+      "keywords": [
+        "woman",
+        "pink",
+        "clothes",
+        "sat",
+        "cross",
+        "legged"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 309.6,
+      "end_time": 319.0,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "High activity; The woman in pink clothes pushed the baby's butt, and then the woman started to slap him.",
+      "scene_zone": "unknown",
+      "event_text": "From 309.6s to 319.0s, the woman in pink clothes pushed the baby's butt, and then the woman started to slap him.",
+      "keywords": [
+        "woman",
+        "pink",
+        "clothes",
+        "pushed",
+        "baby",
+        "butt"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_16"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 320.7,
+      "end_time": 332.2,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "Observed event; The woman in pink clothes patted the baby's head with one hand and patted his back with the other.",
+      "scene_zone": "unknown",
+      "event_text": "From 320.7s to 332.2s, the woman in pink clothes patted the baby's head with one hand and patted his back with the other.",
+      "keywords": [
+        "woman",
+        "pink",
+        "clothes",
+        "patted",
+        "baby",
+        "head"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_17"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 335.7,
+      "end_time": 343.2,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "Observed event; Woman in pink clothes patting the baby's butt with one hand.",
+      "scene_zone": "unknown",
+      "event_text": "From 335.7s to 343.2s, woman in pink clothes patting the baby's butt with one hand.",
+      "keywords": [
+        "woman",
+        "pink",
+        "clothes",
+        "patting",
+        "baby",
+        "butt"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_18"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 352.7,
+      "end_time": 365.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman patted the baby's back with one hand, and the baby played with the bottle cap.",
+      "scene_zone": "unknown",
+      "event_text": "From 352.7s to 365.2s, the woman patted the baby's back with one hand, and the baby played with the bottle cap.",
+      "keywords": [
+        "woman",
+        "patted",
+        "baby",
+        "back",
+        "one",
+        "hand"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_19"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 366.0,
+      "end_time": 372.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The woman patted the baby's back with one hand, and the baby looked at the bottle cap running away.",
+      "scene_zone": "unknown",
+      "event_text": "From 366.0s to 372.5s, the woman patted the baby's back with one hand, and the baby looked at the bottle cap running away.",
+      "keywords": [
+        "woman",
+        "patted",
+        "baby",
+        "back",
+        "one",
+        "hand"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_20"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 373.1,
+      "end_time": 376.9,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "Observed event; The woman in pink clothes reaches out and gives the bottle cap to the baby.",
+      "scene_zone": "unknown",
+      "event_text": "From 373.1s to 376.9s, the woman in pink clothes reaches out and gives the bottle cap to the baby.",
+      "keywords": [
+        "woman",
+        "pink",
+        "clothes",
+        "reaches",
+        "out",
+        "gives"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_21"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 377.1,
+      "end_time": 389.9,
+      "object_type": "person",
+      "object_color": "pink",
+      "appearance_notes": "Observed event; The man in pink clothes threatened the baby.",
+      "scene_zone": "unknown",
+      "event_text": "From 377.1s to 389.9s, the man in pink clothes threatened the baby.",
+      "keywords": [
+        "man",
+        "pink",
+        "clothes",
+        "threatened",
+        "baby"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_22"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 390.5,
+      "end_time": 409.5,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman patted the baby's back with one hand and began to caress the baby.",
+      "scene_zone": "unknown",
+      "event_text": "From 390.5s to 409.5s, the woman patted the baby's back with one hand and began to caress the baby.",
+      "keywords": [
+        "woman",
+        "patted",
+        "baby",
+        "back",
+        "one",
+        "hand"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_23"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 422.2,
+      "end_time": 436.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman wiped her face, picked up the cap of the bottle and played with the baby, and then the child put the cap into his mouth.",
+      "scene_zone": "unknown",
+      "event_text": "From 422.2s to 436.9s, the woman wiped her face, picked up the cap of the bottle and played with the baby, and then the child put the cap into his mouth.",
+      "keywords": [
+        "woman",
+        "wiped",
+        "face",
+        "picked",
+        "cap",
+        "bottle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_24"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 438.3,
+      "end_time": 449.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman turned the child over, put it on the pillow, picked up the bottle and gave him milk.",
+      "scene_zone": "bedside",
+      "event_text": "From 438.3s to 449.5s, the woman turned the child over, put it on the pillow, picked up the bottle and gave him milk.",
+      "keywords": [
+        "woman",
+        "turned",
+        "child",
+        "put",
+        "pillow",
+        "picked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_25"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 452.5,
+      "end_time": 476.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman uses her hands to help the child hold the bottle and continue to drink milk. The woman’s other hand supports her chin.",
+      "scene_zone": "unknown",
+      "event_text": "From 452.5s to 476.2s, the woman uses her hands to help the child hold the bottle and continue to drink milk. The woman’s other hand supports her chin.",
+      "keywords": [
+        "woman",
+        "uses",
+        "hands",
+        "help",
+        "child",
+        "hold"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_26"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 477.0,
+      "end_time": 498.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The child took away the bottle, the woman arranged the child's bellyband, and then continued to hold the bottle to give him milk.",
+      "scene_zone": "unknown",
+      "event_text": "From 477.0s to 498.3s, the child took away the bottle, the woman arranged the child's bellyband, and then continued to hold the bottle to give him milk.",
+      "keywords": [
+        "child",
+        "took",
+        "away",
+        "bottle",
+        "woman",
+        "arranged"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_27"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 499.8,
+      "end_time": 523.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The child let go of his hand and hugged the bottle again. The woman changed one hand to hold the bottle for the child, and used the other hand to support her forehead. She smoothed her hair twice and continued to support her forehead.",
+      "scene_zone": "unknown",
+      "event_text": "From 499.8s to 523.1s, the child let go of his hand and hugged the bottle again. The woman changed one hand to hold the bottle for the child, and used the other hand to support her forehead. She smoothed her hair twice and continued to support her forehead.",
+      "keywords": [
+        "child",
+        "let",
+        "hand",
+        "hugged",
+        "bottle",
+        "again"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_28"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 525.5,
+      "end_time": 542.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The child suddenly turned over and lay on the ground trying to get up. The woman picked up the bottle, capped it and put it aside.",
+      "scene_zone": "unknown",
+      "event_text": "From 525.5s to 542.8s, the child suddenly turned over and lay on the ground trying to get up. The woman picked up the bottle, capped it and put it aside.",
+      "keywords": [
+        "child",
+        "suddenly",
+        "turned",
+        "lay",
+        "ground",
+        "trying"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_29"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 545.4,
+      "end_time": 572.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The child started playing with the pillow. After a while, he bit a corner of the pillow. The woman took a big pillow from the bed and put the child on it.",
+      "scene_zone": "bedside",
+      "event_text": "From 545.4s to 572.0s, the child started playing with the pillow. After a while, he bit a corner of the pillow. The woman took a big pillow from the bed and put the child on it.",
+      "keywords": [
+        "child",
+        "started",
+        "playing",
+        "pillow",
+        "while",
+        "bit"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_30"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 573.2,
+      "end_time": 585.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The child was lying on the pillow, and the pillow was on the woman's lap. Then the woman picked up the child upside down and put it down again.",
+      "scene_zone": "bedside",
+      "event_text": "From 573.2s to 585.4s, the child was lying on the pillow, and the pillow was on the woman's lap. Then the woman picked up the child upside down and put it down again.",
+      "keywords": [
+        "child",
+        "lying",
+        "pillow",
+        "woman",
+        "lap",
+        "picked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_31"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 587.6,
+      "end_time": 625.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman's legs shook and bumped the child, and then she began to shake her legs from side to side, and then moved up and down again. The woman touched her lower back.",
+      "scene_zone": "unknown",
+      "event_text": "From 587.6s to 625.4s, the woman's legs shook and bumped the child, and then she began to shake her legs from side to side, and then moved up and down again. The woman touched her lower back.",
+      "keywords": [
+        "woman",
+        "legs",
+        "shook",
+        "bumped",
+        "child",
+        "she"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_32"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 626.7,
+      "end_time": 654.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman leaned on the floor and continued to bump the child. The child raised his head and then fell down.",
+      "scene_zone": "unknown",
+      "event_text": "From 626.7s to 654.2s, the woman leaned on the floor and continued to bump the child. The child raised his head and then fell down.",
+      "keywords": [
+        "woman",
+        "leaned",
+        "floor",
+        "continued",
+        "bump",
+        "child"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_33"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 656.2,
+      "end_time": 671.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman began to bump the child while patting his back. She touched her hair and face with the other hand, and then began to pat him while leaning on the ground.",
+      "scene_zone": "unknown",
+      "event_text": "From 656.2s to 671.2s, the woman began to bump the child while patting his back. She touched her hair and face with the other hand, and then began to pat him while leaning on the ground.",
+      "keywords": [
+        "woman",
+        "began",
+        "bump",
+        "child",
+        "while",
+        "patting"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_34"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 672.1,
+      "end_time": 737.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman bumped the child and patted his back.",
+      "scene_zone": "unknown",
+      "event_text": "From 672.1s to 737.0s, the woman bumped the child and patted his back.",
+      "keywords": [
+        "woman",
+        "bumped",
+        "child",
+        "patted",
+        "back"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_35"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 737.6,
+      "end_time": 749.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The woman squatted to answer the phone with one hand and patted the child on the back with the other. Suddenly the child looked up and the woman lay down again.",
+      "scene_zone": "unknown",
+      "event_text": "From 737.6s to 749.0s, the woman squatted to answer the phone with one hand and patted the child on the back with the other. Suddenly the child looked up and the woman lay down again.",
+      "keywords": [
+        "woman",
+        "squatted",
+        "answer",
+        "phone",
+        "one",
+        "hand"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_36"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 750.1,
+      "end_time": 766.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman squatted to answer the phone with one hand, and patted the child's back with the other. The child was lying on one side.",
+      "scene_zone": "unknown",
+      "event_text": "From 750.1s to 766.1s, the woman squatted to answer the phone with one hand, and patted the child's back with the other. The child was lying on one side.",
+      "keywords": [
+        "woman",
+        "squatted",
+        "answer",
+        "phone",
+        "one",
+        "hand"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_37"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 767.5,
+      "end_time": 794.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The child raised his head to look at the woman, and then lay down again. The woman kept patting the child's back, and the child raised his head again and lay down again.",
+      "scene_zone": "unknown",
+      "event_text": "From 767.5s to 794.0s, the child raised his head to look at the woman, and then lay down again. The woman kept patting the child's back, and the child raised his head again and lay down again.",
+      "keywords": [
+        "child",
+        "raised",
+        "head",
+        "look",
+        "woman",
+        "lay"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_38"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 795.3,
+      "end_time": 811.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman hung up the phone, and then the child got up. The woman grabbed the child's arm and moved him to the pillow.",
+      "scene_zone": "bedside",
+      "event_text": "From 795.3s to 811.7s, the woman hung up the phone, and then the child got up. The woman grabbed the child's arm and moved him to the pillow.",
+      "keywords": [
+        "woman",
+        "hung",
+        "phone",
+        "child",
+        "got",
+        "grabbed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_39"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 812.6,
+      "end_time": 823.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; The woman patted the child's back, pushed the hair behind the ears, continued to pat the child, and then touched the child's hair with her other hand.",
+      "scene_zone": "unknown",
+      "event_text": "From 812.6s to 823.1s, the woman patted the child's back, pushed the hair behind the ears, continued to pat the child, and then touched the child's hair with her other hand.",
+      "keywords": [
+        "woman",
+        "patted",
+        "child",
+        "back",
+        "pushed",
+        "hair"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_40"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 824.9,
+      "end_time": 841.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The woman looked back at her mobile phone, patting the child with her other hand, then turned back and continued patting, the child suddenly faced her, and the woman pressed the child's head on the pillow.",
+      "scene_zone": "bedside",
+      "event_text": "From 824.9s to 841.8s, the woman looked back at her mobile phone, patting the child with her other hand, then turned back and continued patting, the child suddenly faced her, and the woman pressed the child's head on the pillow.",
+      "keywords": [
+        "woman",
+        "looked",
+        "back",
+        "mobile",
+        "phone",
+        "patting"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_41"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 842.7,
+      "end_time": 853.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman patted the child's head and then stood up.",
+      "scene_zone": "unknown",
+      "event_text": "From 842.7s to 853.5s, the woman patted the child's head and then stood up.",
+      "keywords": [
+        "woman",
+        "patted",
+        "child",
+        "head",
+        "stood"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_42"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 853.9,
+      "end_time": 865.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; The woman walked aside and pushed the child's bed. The child lay on his stomach and looked at the crib. Then the woman took away the clothes on the crib.",
+      "scene_zone": "bedside",
+      "event_text": "From 853.9s to 865.9s, the woman walked aside and pushed the child's bed. The child lay on his stomach and looked at the crib. Then the woman took away the clothes on the crib.",
+      "keywords": [
+        "woman",
+        "walked",
+        "aside",
+        "pushed",
+        "child",
+        "bed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_43"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 868.7,
+      "end_time": 914.5,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Low activity; The woman picked up the things on the ground, put a pile of red things on the bed, then arranged them and stood up, with the child watching.",
+      "scene_zone": "bedside",
+      "event_text": "From 868.7s to 914.5s, the woman picked up the things on the ground, put a pile of red things on the bed, then arranged them and stood up, with the child watching.",
+      "keywords": [
+        "woman",
+        "picked",
+        "things",
+        "ground",
+        "put",
+        "pile"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_44"
+    },
+    {
+      "video_id": "Abuse042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 949.28,
+      "start_time": 915.9,
+      "end_time": 948.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The baby looked at her, the woman walked over, then walked away, bringing a bunch of toys for the child to play with.",
+      "scene_zone": "unknown",
+      "event_text": "From 915.9s to 948.8s, the baby looked at her, the woman walked over, then walked away, bringing a bunch of toys for the child to play with.",
+      "keywords": [
+        "baby",
+        "looked",
+        "woman",
+        "walked",
+        "away",
+        "bringing"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_45"
+    }
+  ]
+}

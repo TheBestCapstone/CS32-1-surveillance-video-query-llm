@@ -1,0 +1,465 @@
+{
+  "video_id": "Arrest043_x264",
+  "duration": 359.97,
+  "events": [
+    {
+      "video_id": "Arrest043_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 359.97,
+      "start_time": 0.0,
+      "end_time": 38.3,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A red small truck parked in the middle, a large white truck parked next to the wall, and several people standing in the distance.",
+      "scene_zone": "room",
+      "event_text": "From 0.0s to 38.3s, a red small truck parked in the middle, a large white truck parked next to the wall, and several people standing in the distance.",
+      "keywords": [
+        "red",
+        "small",
+        "truck",
+        "parked",
+        "middle",
+        "large"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Arrest043_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 359.97,
+      "start_time": 38.2,
+      "end_time": 47.2,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black leaves.",
+      "scene_zone": "unknown",
+      "event_text": "From 38.2s to 47.2s, a man in black leaves.",
+      "keywords": [
+        "man",
+        "black",
+        "leaves"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Arrest043_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 359.97,
+      "start_time": 43.0,
+      "end_time": 64.5,
+      "object_type": "police",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Several people in black police uniforms walked to the red car.",
+      "scene_zone": "unknown",
+      "event_text": "From 43.0s to 64.5s, several people in black police uniforms walked to the red car.",
+      "keywords": [
+        "several",
+        "people",
+        "black",
+        "police",
+        "uniforms",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Arrest043_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 359.97,
+      "start_time": 51.8,
+      "end_time": 61.9,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A man in blue clothes leaves with something in his hand.",
+      "scene_zone": "unknown",
+      "event_text": "From 51.8s to 61.9s, a man in blue clothes leaves with something in his hand.",
+      "keywords": [
+        "man",
+        "blue",
+        "clothes",
+        "leaves",
+        "something",
+        "hand"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Arrest043_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 359.97,
+      "start_time": 66.7,
+      "end_time": 79.0,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The three people next to the blue car lay on the ground.",
+      "scene_zone": "unknown",
+      "event_text": "From 66.7s to 79.0s, the three people next to the blue car lay on the ground.",
+      "keywords": [
+        "three",
+        "people",
+        "blue",
+        "car",
+        "lay",
+        "ground"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Arrest043_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 359.97,
+      "start_time": 72.6,
+      "end_time": 127.9,
+      "object_type": "police",
+      "object_color": "black",
+      "appearance_notes": "High activity; A man wearing a yellow hat and a black police uniform walked up to a man lying on the ground and stepped on him with his feet to beat him.",
+      "scene_zone": "unknown",
+      "event_text": "From 72.6s to 127.9s, a man wearing a yellow hat and a black police uniform walked up to a man lying on the ground and stepped on him with his feet to beat him.",
+      "keywords": [
+        "man",
+        "wearing",
+        "yellow",
+        "hat",
+        "black",
+        "police"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Arrest043_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 359.97,
+      "start_time": 73.4,
+      "end_time": 97.1,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The two people in the red vehicle got out of the car and left.",
+      "scene_zone": "unknown",
+      "event_text": "From 73.4s to 97.1s, the two people in the red vehicle got out of the car and left.",
+      "keywords": [
+        "two",
+        "people",
+        "red",
+        "vehicle",
+        "got",
+        "out"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Arrest043_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 359.97,
+      "start_time": 77.1,
+      "end_time": 88.0,
+      "object_type": "police",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Several people in black police uniforms rushed over.",
+      "scene_zone": "unknown",
+      "event_text": "From 77.1s to 88.0s, several people in black police uniforms rushed over.",
+      "keywords": [
+        "several",
+        "people",
+        "black",
+        "police",
+        "uniforms",
+        "rushed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Arrest043_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 359.97,
+      "start_time": 78.5,
+      "end_time": 87.6,
+      "object_type": "person",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; The man in the yellow hat pressed on the man lying on the ground in the middle of the yard.",
+      "scene_zone": "yard",
+      "event_text": "From 78.5s to 87.6s, the man in the yellow hat pressed on the man lying on the ground in the middle of the yard.",
+      "keywords": [
+        "man",
+        "yellow",
+        "hat",
+        "pressed",
+        "lying",
+        "ground"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Arrest043_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 359.97,
+      "start_time": 98.2,
+      "end_time": 120.3,
+      "object_type": "person",
+      "object_color": "yellow",
+      "appearance_notes": "High activity; The man wearing a yellow hat in the middle of the yard beats the man lying on the ground.",
+      "scene_zone": "yard",
+      "event_text": "From 98.2s to 120.3s, the man wearing a yellow hat in the middle of the yard beats the man lying on the ground.",
+      "keywords": [
+        "man",
+        "wearing",
+        "yellow",
+        "hat",
+        "middle",
+        "yard"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Arrest043_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 359.97,
+      "start_time": 122.2,
+      "end_time": 222.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; During this period, a man stood on the man lying on the ground and kept pulling something.",
+      "scene_zone": "unknown",
+      "event_text": "From 122.2s to 222.3s, during this period, a man stood on the man lying on the ground and kept pulling something.",
+      "keywords": [
+        "during",
+        "period",
+        "man",
+        "stood",
+        "lying",
+        "ground"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Arrest043_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 359.97,
+      "start_time": 224.7,
+      "end_time": 236.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man lying on the ground stood up and walked to the side of another man lying on the ground.",
+      "scene_zone": "unknown",
+      "event_text": "From 224.7s to 236.5s, a man lying on the ground stood up and walked to the side of another man lying on the ground.",
+      "keywords": [
+        "man",
+        "lying",
+        "ground",
+        "stood",
+        "walked",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Arrest043_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 359.97,
+      "start_time": 238.2,
+      "end_time": 342.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man lying on the ground had his hands tied up and started doing it. People around him were walking around and saying something to him.",
+      "scene_zone": "unknown",
+      "event_text": "From 238.2s to 342.3s, the man lying on the ground had his hands tied up and started doing it. People around him were walking around and saying something to him.",
+      "keywords": [
+        "man",
+        "lying",
+        "ground",
+        "had",
+        "hands",
+        "tied"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Arrest043_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 359.97,
+      "start_time": 348.4,
+      "end_time": 359.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man was surrounded by many people and taken away.",
+      "scene_zone": "unknown",
+      "event_text": "From 348.4s to 359.9s, the man was surrounded by many people and taken away.",
+      "keywords": [
+        "man",
+        "surrounded",
+        "many",
+        "people",
+        "taken",
+        "away"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    }
+  ]
+}

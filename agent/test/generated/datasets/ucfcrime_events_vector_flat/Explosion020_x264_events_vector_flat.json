@@ -1,0 +1,171 @@
+{
+  "video_id": "Explosion020_x264",
+  "duration": 43.07,
+  "events": [
+    {
+      "video_id": "Explosion020_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 43.07,
+      "start_time": 0.0,
+      "end_time": 7.3,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man stood next to a black car and communicated with another man. There were a lot of sparks in his pocket, and then the thing fell to the ground.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 7.3s, a man stood next to a black car and communicated with another man. There were a lot of sparks in his pocket, and then the thing fell to the ground.",
+      "keywords": [
+        "man",
+        "stood",
+        "black",
+        "car",
+        "communicated",
+        "another"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Explosion020_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 43.07,
+      "start_time": 5.7,
+      "end_time": 12.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man walked over and stamped out the things on the ground.",
+      "scene_zone": "unknown",
+      "event_text": "From 5.7s to 12.6s, a man walked over and stamped out the things on the ground.",
+      "keywords": [
+        "man",
+        "walked",
+        "stamped",
+        "out",
+        "things",
+        "ground"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Explosion020_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 43.07,
+      "start_time": 5.7,
+      "end_time": 11.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man talking ran to the man's side to help put out the fire on his clothes.",
+      "scene_zone": "unknown",
+      "event_text": "From 5.7s to 11.9s, the man talking ran to the man's side to help put out the fire on his clothes.",
+      "keywords": [
+        "man",
+        "talking",
+        "ran",
+        "side",
+        "help",
+        "put"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Explosion020_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 43.07,
+      "start_time": 24.2,
+      "end_time": 32.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; A man wearing a hat walked over and looked at the things on the ground before leaving.",
+      "scene_zone": "unknown",
+      "event_text": "From 24.2s to 32.0s, a man wearing a hat walked over and looked at the things on the ground before leaving.",
+      "keywords": [
+        "man",
+        "wearing",
+        "hat",
+        "walked",
+        "looked",
+        "things"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Explosion020_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 43.07,
+      "start_time": 24.2,
+      "end_time": 41.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black walked over and stepped on the things on the ground a few times before kicking them away.",
+      "scene_zone": "unknown",
+      "event_text": "From 24.2s to 41.1s, a man in black walked over and stepped on the things on the ground a few times before kicking them away.",
+      "keywords": [
+        "man",
+        "black",
+        "walked",
+        "stepped",
+        "things",
+        "ground"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    }
+  ]
+}

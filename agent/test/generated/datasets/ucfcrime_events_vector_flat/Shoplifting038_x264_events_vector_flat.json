@@ -1,0 +1,301 @@
+{
+  "video_id": "Shoplifting038_x264",
+  "duration": 96.83,
+  "events": [
+    {
+      "video_id": "Shoplifting038_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 96.83,
+      "start_time": 1.0,
+      "end_time": 16.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man walked into the dessert shop, and then another man walked into the dessert shop.",
+      "scene_zone": "unknown",
+      "event_text": "From 1.0s to 16.1s, a man walked into the dessert shop, and then another man walked into the dessert shop.",
+      "keywords": [
+        "man",
+        "walked",
+        "dessert",
+        "shop",
+        "another"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Shoplifting038_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 96.83,
+      "start_time": 19.8,
+      "end_time": 38.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The man looked at his phone, continued to look at the desserts, and then stretched.",
+      "scene_zone": "unknown",
+      "event_text": "From 19.8s to 38.7s, the man looked at his phone, continued to look at the desserts, and then stretched.",
+      "keywords": [
+        "man",
+        "looked",
+        "phone",
+        "continued",
+        "look",
+        "desserts"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Shoplifting038_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 96.83,
+      "start_time": 43.2,
+      "end_time": 49.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man walked out of the dessert shop, and a man ran out behind him.",
+      "scene_zone": "unknown",
+      "event_text": "From 43.2s to 49.6s, the man walked out of the dessert shop, and a man ran out behind him.",
+      "keywords": [
+        "man",
+        "walked",
+        "out",
+        "dessert",
+        "shop",
+        "ran"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Shoplifting038_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 96.83,
+      "start_time": 51.3,
+      "end_time": 60.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; A woman walked to the counter and the man lay on the counter to watch.",
+      "scene_zone": "store",
+      "event_text": "From 51.3s to 60.6s, a woman walked to the counter and the man lay on the counter to watch.",
+      "keywords": [
+        "woman",
+        "walked",
+        "counter",
+        "man",
+        "lay",
+        "watch"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Shoplifting038_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 96.83,
+      "start_time": 62.6,
+      "end_time": 74.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The woman slipped to the side, the man followed her and looked over, then came back, and the man sat on the stool.",
+      "scene_zone": "unknown",
+      "event_text": "From 62.6s to 74.7s, the woman slipped to the side, the man followed her and looked over, then came back, and the man sat on the stool.",
+      "keywords": [
+        "woman",
+        "slipped",
+        "side",
+        "man",
+        "followed",
+        "looked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Shoplifting038_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 96.83,
+      "start_time": 75.8,
+      "end_time": 77.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The woman handed the man something, and the man gave it to the woman after looking at it.",
+      "scene_zone": "unknown",
+      "event_text": "From 75.8s to 77.8s, the woman handed the man something, and the man gave it to the woman after looking at it.",
+      "keywords": [
+        "woman",
+        "handed",
+        "man",
+        "something",
+        "gave",
+        "looking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Shoplifting038_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 96.83,
+      "start_time": 77.4,
+      "end_time": 79.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman put the things back on the counter.",
+      "scene_zone": "store",
+      "event_text": "From 77.4s to 79.2s, the woman put the things back on the counter.",
+      "keywords": [
+        "woman",
+        "put",
+        "things",
+        "back",
+        "counter"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Shoplifting038_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 96.83,
+      "start_time": 80.8,
+      "end_time": 85.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man suddenly reached the counter and ran away, kicking the woman down as well.",
+      "scene_zone": "store",
+      "event_text": "From 80.8s to 85.2s, the man suddenly reached the counter and ran away, kicking the woman down as well.",
+      "keywords": [
+        "man",
+        "suddenly",
+        "reached",
+        "counter",
+        "ran",
+        "away"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Shoplifting038_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 96.83,
+      "start_time": 88.8,
+      "end_time": 96.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Another woman ran up next to her and pulled the woman away from the counter.",
+      "scene_zone": "store",
+      "event_text": "From 88.8s to 96.2s, another woman ran up next to her and pulled the woman away from the counter.",
+      "keywords": [
+        "another",
+        "woman",
+        "ran",
+        "pulled",
+        "away",
+        "counter"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    }
+  ]
+}

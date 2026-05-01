@@ -1,0 +1,52 @@
+{
+  "cases": [
+    {
+      "case_id": "PART1_0002",
+      "video_id": "Abuse037_x264",
+      "question": "Is there a clip of a car running over a black dog on the road?",
+      "retrieved_contexts": [],
+      "top_video_ids": [],
+      "top_hit": false,
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.0,
+          "context_recall": 0.0
+        },
+        "generation": {
+          "answer_relevancy": 0.0,
+          "factual_correctness": 0.0,
+          "faithfulness": 0.0
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "PART1_0003",
+      "video_id": "Abuse037_x264",
+      "question": "A vehicle injured an animal on the road, and other animals approached the injured one afterward.",
+      "retrieved_contexts": [
+        "Video Abuse037_x264. Video time range 1.2s to 59.1s. This parent record summarizes 5 child tracks. Object types: car, dog. Object colors: white, black, gray. Scene zones: road, unknown. Child track summaries: Video Abuse037_x264. Track segment_1. Time range 1.2s to 8.2s. Appearance notes: High activity; A white car with double flashes slowly appeared on the screen, crushing the black dog walking in the middle of the road. Located in: road. Events: From 1.2s to 8.2s, a white car with double flashes slowly appeared on the screen, crushing the black dog walking in the middle of the road. Keywords: white, car, double, flashes, slowly, appeared. Video Abuse037_x264. Track segment_2. Time range 8.4s to 25.3s. Appearance notes: High activity; The white car was driving in the middle of the road, and several dogs ran onto the road. Located in: road. Events: From 8.4s to 25.3s, the white car was driving in the middle of the road, and several dogs ran onto the road. Keywords: white, car, driving, middle, road, several. Video Abuse037_x264. Track segment_3. Time range 25.3s to 48.5s. Appearance notes: High activity; There was a black dog left on the road. It walked to the middle of the road next to the dog that had just been crushed. Located in: road. Events: From 25.3s to 48.5s, there was a black dog left on the road. It walked to the middle of the road next to the dog that had just been crushed. Keywords: black, dog, left, road, walked, middle. Video Abuse037_x264. Track segment_4. Time range 48.5s to 59.1s. Appearance notes: Observed event; The black dog walked away and left the middle of the road. Located in: road. Events: From 48.5s to 59.1s, the black dog walked away and left the middle of the road. Keywords: black, dog, walked, away, left, middle. Video Abuse037_x264. Track segment_5. Time range 40.4s to 47.6s. Appearance notes: Observed event; The gray dog pulled out the tail of the dog that had just been run over by the car, then stayed for a few minutes and left. Located in: unknown. Events: From 40.4s to 47.6s, the gray dog pulled out the tail of the dog that had just been run over by the car, then stayed for a few minutes and left. Keywords: gray, dog, pulled, out, tail, had."
+      ],
+      "top_video_ids": [
+        "Abuse037_x264"
+      ],
+      "top_hit": true,
+      "ragas": {
+        "retrieval": {
+          "context_precision": 1.0,
+          "context_recall": 1.0
+        },
+        "generation": {
+          "answer_relevancy": 0.7541,
+          "factual_correctness": 0.0,
+          "faithfulness": 0.8
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.7108
+        }
+      }
+    }
+  ]
+}

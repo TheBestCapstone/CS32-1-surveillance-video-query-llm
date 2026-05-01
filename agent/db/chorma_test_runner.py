@@ -12,7 +12,8 @@ from langchain_openai import OpenAIEmbeddings
 
 ROOT = Path("/home/yangxp/Capstone")
 CHROMA_PATH = ROOT / "data/chroma/basketball_tracks"
-COLLECTION = "basketball_tracks"
+CHILD_COLLECTION = "basketball_tracks"
+PARENT_COLLECTION = "basketball_tracks_parent"
 SEEDS = [
     ROOT / "data/basketball_output/basketball_1_events_vector_flat.json",
     ROOT / "data/basketball_output/basketball_2_events_vector_flat.json",
@@ -67,7 +68,12 @@ def main() -> None:
     )
 
     client = chromadb.PersistentClient(path=str(CHROMA_PATH))
-    collection = client.get_collection(COLLECTION)
+    collection = client.get_collection(CHILD_COLLECTION)
+    try:
+        parent_collection = client.get_collection(PARENT_COLLECTION)
+        parent_record_count = parent_collection.count()
+    except Exception:
+        parent_record_count = 0
     all_data = collection.get(include=["documents", "metadatas"])
     ids = all_data["ids"]
     docs = all_data["documents"]
@@ -195,11 +201,13 @@ def main() -> None:
 
     report = {
         "embedding_model_test": {"model": "text-embedding-v3", "dimension": 1024, "status": "ok"},
-        "collection": COLLECTION,
+        "child_collection": CHILD_COLLECTION,
+        "parent_collection": PARENT_COLLECTION,
         "chroma_path": str(CHROMA_PATH),
-        "record_count": len(ids),
+        "child_record_count": len(ids),
+        "parent_record_count": parent_record_count,
         "source_event_count": len(source_events),
-        "chunking_strategy_detected": "track-level aggregation (record id = video_id_entity_hint)",
+        "chunking_strategy_detected": "parent-child (child=video_id_entity_hint, parent=video_id)",
         "missing_provenance_ids": missing,
         "per_record_provenance": per_record,
         "retrieval_tests": retrieval_tests,
@@ -211,10 +219,12 @@ def main() -> None:
 
     lines = []
     lines.append("# Chroma 测试报告\n\n")
-    lines.append(f"- collection: `{COLLECTION}`\n")
-    lines.append(f"- record_count: `{len(ids)}`\n")
+    lines.append(f"- child_collection: `{CHILD_COLLECTION}`\n")
+    lines.append(f"- parent_collection: `{PARENT_COLLECTION}`\n")
+    lines.append(f"- child_record_count: `{len(ids)}`\n")
+    lines.append(f"- parent_record_count: `{parent_record_count}`\n")
     lines.append(f"- source_event_count: `{len(source_events)}`\n")
-    lines.append("- chunking: `track-level aggregation (video_id_entity_hint)`\n")
+    lines.append("- chunking: `parent-child (child=video_id_entity_hint, parent=video_id)`\n")
     lines.append("- embedding: `text-embedding-v3 (1024)`\n\n")
     lines.append("## 检索策略测试\n")
     for item in retrieval_tests:
@@ -243,4 +253,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

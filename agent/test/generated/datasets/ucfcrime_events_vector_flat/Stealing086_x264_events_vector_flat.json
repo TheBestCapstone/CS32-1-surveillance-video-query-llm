@@ -1,0 +1,1758 @@
+{
+  "video_id": "Stealing086_x264",
+  "duration": 604.98,
+  "events": [
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 5.2,
+      "end_time": 7.7,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car passed by,.",
+      "scene_zone": "unknown",
+      "event_text": "From 5.2s to 7.7s, a black car passed by,.",
+      "keywords": [
+        "black",
+        "car",
+        "passed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 7.2,
+      "end_time": 12.7,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man carrying a red backpack walked by.",
+      "scene_zone": "unknown",
+      "event_text": "From 7.2s to 12.7s, a man carrying a red backpack walked by.",
+      "keywords": [
+        "man",
+        "carrying",
+        "red",
+        "backpack",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 21.3,
+      "end_time": 33.4,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man in red crossed the road and walked along the sidewalk.",
+      "scene_zone": "road",
+      "event_text": "From 21.3s to 33.4s, a man in red crossed the road and walked along the sidewalk.",
+      "keywords": [
+        "man",
+        "red",
+        "crossed",
+        "road",
+        "walked",
+        "along"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 24.3,
+      "end_time": 30.4,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A car passed by on the road.",
+      "scene_zone": "road",
+      "event_text": "From 24.3s to 30.4s, a car passed by on the road.",
+      "keywords": [
+        "car",
+        "passed",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 54.4,
+      "end_time": 72.4,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car drove to the end of the road and stopped.",
+      "scene_zone": "road",
+      "event_text": "From 54.4s to 72.4s, a black car drove to the end of the road and stopped.",
+      "keywords": [
+        "black",
+        "car",
+        "drove",
+        "end",
+        "road",
+        "stopped"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 75.4,
+      "end_time": 85.0,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Two people came from the direction of the black car.",
+      "scene_zone": "unknown",
+      "event_text": "From 75.4s to 85.0s, two people came from the direction of the black car.",
+      "keywords": [
+        "two",
+        "people",
+        "came",
+        "direction",
+        "black",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 81.4,
+      "end_time": 89.0,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in gray walks towards the black car.",
+      "scene_zone": "unknown",
+      "event_text": "From 81.4s to 89.0s, a man in gray walks towards the black car.",
+      "keywords": [
+        "man",
+        "gray",
+        "walks",
+        "towards",
+        "black",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 100.0,
+      "end_time": 105.5,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A woman in black walks along the sidewalk.",
+      "scene_zone": "unknown",
+      "event_text": "From 100.0s to 105.5s, a woman in black walks along the sidewalk.",
+      "keywords": [
+        "woman",
+        "black",
+        "walks",
+        "along",
+        "sidewalk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 121.5,
+      "end_time": 123.8,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A motorcycle passed by,.",
+      "scene_zone": "unknown",
+      "event_text": "From 121.5s to 123.8s, a motorcycle passed by,.",
+      "keywords": [
+        "motorcycle",
+        "passed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 116.5,
+      "end_time": 129.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A woman reading a newspaper in her hand walked across the sidewalk.",
+      "scene_zone": "unknown",
+      "event_text": "From 116.5s to 129.8s, a woman reading a newspaper in her hand walked across the sidewalk.",
+      "keywords": [
+        "woman",
+        "reading",
+        "newspaper",
+        "hand",
+        "walked",
+        "across"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 134.8,
+      "end_time": 145.4,
+      "object_type": "child",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two women walked by holding a child.",
+      "scene_zone": "unknown",
+      "event_text": "From 134.8s to 145.4s, two women walked by holding a child.",
+      "keywords": [
+        "two",
+        "women",
+        "walked",
+        "holding",
+        "child"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 136.8,
+      "end_time": 146.4,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A motorcycle and black car passed by.",
+      "scene_zone": "unknown",
+      "event_text": "From 136.8s to 146.4s, a motorcycle and black car passed by.",
+      "keywords": [
+        "motorcycle",
+        "black",
+        "car",
+        "passed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 148.4,
+      "end_time": 154.2,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man wearing a blue shirt and carrying a black bag passed by.",
+      "scene_zone": "unknown",
+      "event_text": "From 148.4s to 154.2s, a man wearing a blue shirt and carrying a black bag passed by.",
+      "keywords": [
+        "man",
+        "wearing",
+        "blue",
+        "shirt",
+        "carrying",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 183.2,
+      "end_time": 186.4,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car passed by.",
+      "scene_zone": "unknown",
+      "event_text": "From 183.2s to 186.4s, a black car passed by.",
+      "keywords": [
+        "black",
+        "car",
+        "passed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 186.4,
+      "end_time": 196.4,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man carrying a bag is walking on the road,.",
+      "scene_zone": "road",
+      "event_text": "From 186.4s to 196.4s, a man carrying a bag is walking on the road,.",
+      "keywords": [
+        "man",
+        "carrying",
+        "bag",
+        "walking",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 194.4,
+      "end_time": 197.4,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man in white clothes is walking on the sidewalk.",
+      "scene_zone": "unknown",
+      "event_text": "From 194.4s to 197.4s, a man in white clothes is walking on the sidewalk.",
+      "keywords": [
+        "man",
+        "white",
+        "clothes",
+        "walking",
+        "sidewalk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_16"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 199.4,
+      "end_time": 205.9,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A red car passed by.",
+      "scene_zone": "unknown",
+      "event_text": "From 199.4s to 205.9s, a red car passed by.",
+      "keywords": [
+        "red",
+        "car",
+        "passed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_17"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 225.9,
+      "end_time": 231.3,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man in red clothes walked from one side of the road to the other.",
+      "scene_zone": "road",
+      "event_text": "From 225.9s to 231.3s, a man in red clothes walked from one side of the road to the other.",
+      "keywords": [
+        "man",
+        "red",
+        "clothes",
+        "walked",
+        "one",
+        "side"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_18"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 229.9,
+      "end_time": 237.3,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car passed by,.",
+      "scene_zone": "unknown",
+      "event_text": "From 229.9s to 237.3s, a black car passed by,.",
+      "keywords": [
+        "black",
+        "car",
+        "passed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_19"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 232.9,
+      "end_time": 235.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man passed by on a bicycle.",
+      "scene_zone": "unknown",
+      "event_text": "From 232.9s to 235.3s, a man passed by on a bicycle.",
+      "keywords": [
+        "man",
+        "passed",
+        "bicycle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_20"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 256.9,
+      "end_time": 267.0,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; A woman in a white top and black pants passed by with a bag on her shoulder.",
+      "scene_zone": "unknown",
+      "event_text": "From 256.9s to 267.0s, a woman in a white top and black pants passed by with a bag on her shoulder.",
+      "keywords": [
+        "woman",
+        "white",
+        "top",
+        "black",
+        "pants",
+        "passed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_21"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 260.9,
+      "end_time": 264.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; An elderly man passed by on the sidewalk,.",
+      "scene_zone": "unknown",
+      "event_text": "From 260.9s to 264.0s, an elderly man passed by on the sidewalk,.",
+      "keywords": [
+        "elderly",
+        "man",
+        "passed",
+        "sidewalk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_22"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 268.9,
+      "end_time": 275.0,
+      "object_type": "person",
+      "object_color": "purple",
+      "appearance_notes": "Observed event; An old woman in purple passed by on the sidewalk.",
+      "scene_zone": "unknown",
+      "event_text": "From 268.9s to 275.0s, an old woman in purple passed by on the sidewalk.",
+      "keywords": [
+        "old",
+        "woman",
+        "purple",
+        "passed",
+        "sidewalk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_23"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 284.0,
+      "end_time": 297.9,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two cars passed by on the road,.",
+      "scene_zone": "road",
+      "event_text": "From 284.0s to 297.9s, two cars passed by on the road,.",
+      "keywords": [
+        "two",
+        "cars",
+        "passed",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_24"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 293.0,
+      "end_time": 296.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A woman with short hair walked on the sidewalk while touching her hair.",
+      "scene_zone": "unknown",
+      "event_text": "From 293.0s to 296.9s, a woman with short hair walked on the sidewalk while touching her hair.",
+      "keywords": [
+        "woman",
+        "short",
+        "hair",
+        "walked",
+        "sidewalk",
+        "while"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_25"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 297.9,
+      "end_time": 308.2,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A woman wearing striped clothes and carrying a brown bag is walking on the sidewalk.",
+      "scene_zone": "unknown",
+      "event_text": "From 297.9s to 308.2s, a woman wearing striped clothes and carrying a brown bag is walking on the sidewalk.",
+      "keywords": [
+        "woman",
+        "wearing",
+        "striped",
+        "clothes",
+        "carrying",
+        "brown"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_26"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 308.2,
+      "end_time": 326.0,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A red car stopped at the end of the road.",
+      "scene_zone": "road",
+      "event_text": "From 308.2s to 326.0s, a red car stopped at the end of the road.",
+      "keywords": [
+        "red",
+        "car",
+        "stopped",
+        "end",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_27"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 326.0,
+      "end_time": 331.7,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The red vehicle at the end of the road drives away,.",
+      "scene_zone": "road",
+      "event_text": "From 326.0s to 331.7s, the red vehicle at the end of the road drives away,.",
+      "keywords": [
+        "red",
+        "vehicle",
+        "end",
+        "road",
+        "drives",
+        "away"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_28"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 332.0,
+      "end_time": 339.7,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; A woman in black clothes and a white bag carrying a white bag on the sidewalk, a man in a suit, and a woman in white walked past each other.",
+      "scene_zone": "unknown",
+      "event_text": "From 332.0s to 339.7s, a woman in black clothes and a white bag carrying a white bag on the sidewalk, a man in a suit, and a woman in white walked past each other.",
+      "keywords": [
+        "woman",
+        "black",
+        "clothes",
+        "white",
+        "bag",
+        "carrying"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_29"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 339.7,
+      "end_time": 357.2,
+      "object_type": "car",
+      "object_color": "white",
+      "appearance_notes": "High activity; A white car and a gray car drove past on the road.",
+      "scene_zone": "road",
+      "event_text": "From 339.7s to 357.2s, a white car and a gray car drove past on the road.",
+      "keywords": [
+        "white",
+        "car",
+        "gray",
+        "drove",
+        "past",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_30"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 361.2,
+      "end_time": 366.5,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A woman in a red skirt walked on the sidewalk,.",
+      "scene_zone": "unknown",
+      "event_text": "From 361.2s to 366.5s, a woman in a red skirt walked on the sidewalk,.",
+      "keywords": [
+        "woman",
+        "red",
+        "skirt",
+        "walked",
+        "sidewalk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_31"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 368.2,
+      "end_time": 372.5,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A car passed by on the road,.",
+      "scene_zone": "road",
+      "event_text": "From 368.2s to 372.5s, a car passed by on the road,.",
+      "keywords": [
+        "car",
+        "passed",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_32"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 368.2,
+      "end_time": 380.5,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two men walking past on the road.",
+      "scene_zone": "road",
+      "event_text": "From 368.2s to 380.5s, two men walking past on the road.",
+      "keywords": [
+        "two",
+        "men",
+        "walking",
+        "past",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_33"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 380.5,
+      "end_time": 384.6,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A woman in blue clothes walked on the sidewalk,.",
+      "scene_zone": "unknown",
+      "event_text": "From 380.5s to 384.6s, a woman in blue clothes walked on the sidewalk,.",
+      "keywords": [
+        "woman",
+        "blue",
+        "clothes",
+        "walked",
+        "sidewalk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_34"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 380.5,
+      "end_time": 386.6,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; A white car drove to the end of the road and met a black car.",
+      "scene_zone": "road",
+      "event_text": "From 380.5s to 386.6s, a white car drove to the end of the road and met a black car.",
+      "keywords": [
+        "white",
+        "car",
+        "drove",
+        "end",
+        "road",
+        "met"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_35"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 386.6,
+      "end_time": 392.6,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; The black car retreats and the white car drives away.",
+      "scene_zone": "unknown",
+      "event_text": "From 386.6s to 392.6s, the black car retreats and the white car drives away.",
+      "keywords": [
+        "black",
+        "car",
+        "retreats",
+        "white",
+        "drives",
+        "away"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_36"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 392.6,
+      "end_time": 399.3,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A blue car passed by,.",
+      "scene_zone": "unknown",
+      "event_text": "From 392.6s to 399.3s, a blue car passed by,.",
+      "keywords": [
+        "blue",
+        "car",
+        "passed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_37"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 392.6,
+      "end_time": 402.3,
+      "object_type": "car",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A motorcycle carrying two people drove to the middle of the road and turned a corner. The man in the red helmet got off the motorcycle.",
+      "scene_zone": "road",
+      "event_text": "From 392.6s to 402.3s, a motorcycle carrying two people drove to the middle of the road and turned a corner. The man in the red helmet got off the motorcycle.",
+      "keywords": [
+        "motorcycle",
+        "carrying",
+        "two",
+        "people",
+        "drove",
+        "middle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_38"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 402.3,
+      "end_time": 407.7,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Low activity; The man in black helmet stopped and parked the motorcycle.",
+      "scene_zone": "unknown",
+      "event_text": "From 402.3s to 407.7s, the man in black helmet stopped and parked the motorcycle.",
+      "keywords": [
+        "man",
+        "black",
+        "helmet",
+        "stopped",
+        "parked",
+        "motorcycle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_39"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 407.7,
+      "end_time": 413.7,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The man in the black helmet helped the man in the red helmet sit on a white motorcycle, and finally rode on his own motorcycle.",
+      "scene_zone": "unknown",
+      "event_text": "From 407.7s to 413.7s, the man in the black helmet helped the man in the red helmet sit on a white motorcycle, and finally rode on his own motorcycle.",
+      "keywords": [
+        "man",
+        "black",
+        "helmet",
+        "helped",
+        "red",
+        "sit"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_40"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 413.7,
+      "end_time": 424.0,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in the red helmet and the man in the black helmet rode motorcycles along the road one after the other.",
+      "scene_zone": "road",
+      "event_text": "From 413.7s to 424.0s, the man in the red helmet and the man in the black helmet rode motorcycles along the road one after the other.",
+      "keywords": [
+        "man",
+        "red",
+        "helmet",
+        "black",
+        "rode",
+        "motorcycles"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_41"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 437.0,
+      "end_time": 442.9,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A blue car passed by.",
+      "scene_zone": "unknown",
+      "event_text": "From 437.0s to 442.9s, a blue car passed by.",
+      "keywords": [
+        "blue",
+        "car",
+        "passed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_42"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 465.9,
+      "end_time": 470.8,
+      "object_type": "car",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; A gray car passed by.",
+      "scene_zone": "unknown",
+      "event_text": "From 465.9s to 470.8s, a gray car passed by.",
+      "keywords": [
+        "gray",
+        "car",
+        "passed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_43"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 470.8,
+      "end_time": 474.7,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A man in blue clothes is walking on the sidewalk,.",
+      "scene_zone": "unknown",
+      "event_text": "From 470.8s to 474.7s, a man in blue clothes is walking on the sidewalk,.",
+      "keywords": [
+        "man",
+        "blue",
+        "clothes",
+        "walking",
+        "sidewalk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_44"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 470.8,
+      "end_time": 479.7,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; A man in a black coat with white lining is walking on the road.",
+      "scene_zone": "road",
+      "event_text": "From 470.8s to 479.7s, a man in a black coat with white lining is walking on the road.",
+      "keywords": [
+        "man",
+        "black",
+        "coat",
+        "white",
+        "lining",
+        "walking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_45"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 497.8,
+      "end_time": 499.3,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A woman in gray clothes and a black bag is walking on the sidewalk.",
+      "scene_zone": "unknown",
+      "event_text": "From 497.8s to 499.3s, a woman in gray clothes and a black bag is walking on the sidewalk.",
+      "keywords": [
+        "woman",
+        "gray",
+        "clothes",
+        "black",
+        "bag",
+        "walking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_46"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 527.8,
+      "end_time": 532.3,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in a black suit walked on the sidewalk,.",
+      "scene_zone": "unknown",
+      "event_text": "From 527.8s to 532.3s, a man in a black suit walked on the sidewalk,.",
+      "keywords": [
+        "man",
+        "black",
+        "suit",
+        "walked",
+        "sidewalk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_47"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 527.8,
+      "end_time": 532.3,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A car passed by on the road,.",
+      "scene_zone": "road",
+      "event_text": "From 527.8s to 532.3s, a car passed by on the road,.",
+      "keywords": [
+        "car",
+        "passed",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_48"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 532.3,
+      "end_time": 536.2,
+      "object_type": "car",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; A gray car stopped at the end of the road.",
+      "scene_zone": "road",
+      "event_text": "From 532.3s to 536.2s, a gray car stopped at the end of the road.",
+      "keywords": [
+        "gray",
+        "car",
+        "stopped",
+        "end",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_49"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 536.2,
+      "end_time": 546.4,
+      "object_type": "car",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; A yellow car and a gray car passed each other head-on.",
+      "scene_zone": "unknown",
+      "event_text": "From 536.2s to 546.4s, a yellow car and a gray car passed each other head-on.",
+      "keywords": [
+        "yellow",
+        "car",
+        "gray",
+        "passed",
+        "each",
+        "other"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_50"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 543.2,
+      "end_time": 546.4,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man in white ran past on the sidewalk.",
+      "scene_zone": "unknown",
+      "event_text": "From 543.2s to 546.4s, a man in white ran past on the sidewalk.",
+      "keywords": [
+        "man",
+        "white",
+        "ran",
+        "past",
+        "sidewalk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_51"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 546.4,
+      "end_time": 557.7,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; A man in black walked by carrying a white bag.",
+      "scene_zone": "unknown",
+      "event_text": "From 546.4s to 557.7s, a man in black walked by carrying a white bag.",
+      "keywords": [
+        "man",
+        "black",
+        "walked",
+        "carrying",
+        "white",
+        "bag"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_52"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 588.4,
+      "end_time": 596.0,
+      "object_type": "car",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; A blue car passes by.",
+      "scene_zone": "unknown",
+      "event_text": "From 588.4s to 596.0s, a blue car passes by.",
+      "keywords": [
+        "blue",
+        "car",
+        "passes"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_53"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 600.0,
+      "end_time": 604.0,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car passed by,.",
+      "scene_zone": "unknown",
+      "event_text": "From 600.0s to 604.0s, a black car passed by,.",
+      "keywords": [
+        "black",
+        "car",
+        "passed"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_54"
+    },
+    {
+      "video_id": "Stealing086_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 604.98,
+      "start_time": 596.0,
+      "end_time": 604.0,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; A man in white clothes and black shorts is walking on the road with his head lowered.",
+      "scene_zone": "road",
+      "event_text": "From 596.0s to 604.0s, a man in white clothes and black shorts is walking on the road with his head lowered.",
+      "keywords": [
+        "man",
+        "white",
+        "clothes",
+        "black",
+        "shorts",
+        "walking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_55"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "cases": [
+    {
+      "case_id": "PART1_0002",
+      "video_id": "Abuse037_x264",
+      "question": "Is there a clip of a car running over a black dog on the road?",
+      "reference_answer": "Yes. The relevant clip is in Abuse037_x264, around 0:00:06 - 0:00:22.",
+      "response": "No matching results found. You can add more specific descriptions like colors or actions.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": null,
+          "context_recall": null
+        },
+        "generation": {
+          "answer_relevancy": 0.0,
+          "factual_correctness": 0.0,
+          "faithfulness": null
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.0
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0003",
+      "video_id": "Abuse037_x264",
+      "question": "A vehicle injured an animal on the road, and other animals approached the injured one afterward.",
+      "reference_answer": "Yes. The relevant clip is in Abuse037_x264, around 0:00:30 - 0:00:43.",
+      "response": "A white car struck a black dog on the road. Afterward, other dogs approached—the black dog walked near the injured one, and a gray dog tugged its tail before leaving. Several dogs were seen running onto the road during the incident.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 1.0,
+          "context_recall": 1.0
+        },
+        "generation": {
+          "answer_relevancy": 0.5431,
+          "factual_correctness": 0.0,
+          "faithfulness": 0.2
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.5486
+        },
+        "metric_errors": {}
+      }
+    }
+  ]
+}

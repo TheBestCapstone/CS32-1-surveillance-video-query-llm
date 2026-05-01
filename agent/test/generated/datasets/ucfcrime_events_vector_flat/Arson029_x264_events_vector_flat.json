@@ -1,0 +1,105 @@
+{
+  "video_id": "Arson029_x264",
+  "duration": 44.97,
+  "events": [
+    {
+      "video_id": "Arson029_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 44.97,
+      "start_time": 0.7,
+      "end_time": 9.5,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man in white clothes is squatting in the last row of the bus with his back to the seat.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.7s to 9.5s, a man in white clothes is squatting in the last row of the bus with his back to the seat.",
+      "keywords": [
+        "man",
+        "white",
+        "clothes",
+        "squatting",
+        "last",
+        "row"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Arson029_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 44.97,
+      "start_time": 10.6,
+      "end_time": 27.7,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man sat down in the last row of the car, lit something on his hand, and threw it on the seat. The seat caught fire.",
+      "scene_zone": "unknown",
+      "event_text": "From 10.6s to 27.7s, the man sat down in the last row of the car, lit something on his hand, and threw it on the seat. The seat caught fire.",
+      "keywords": [
+        "man",
+        "sat",
+        "down",
+        "last",
+        "row",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Arson029_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 44.97,
+      "start_time": 31.7,
+      "end_time": 39.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man got up and walked away, got out of the car in the middle of the car and left.",
+      "scene_zone": "unknown",
+      "event_text": "From 31.7s to 39.0s, the man got up and walked away, got out of the car in the middle of the car and left.",
+      "keywords": [
+        "man",
+        "got",
+        "walked",
+        "away",
+        "out",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    }
+  ]
+}

@@ -1,0 +1,237 @@
+{
+  "video_id": "Normal_Videos599_x264",
+  "duration": 79.27,
+  "events": [
+    {
+      "video_id": "Normal_Videos599_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 79.27,
+      "start_time": 0.0,
+      "end_time": 8.3,
+      "object_type": "person",
+      "object_color": "purple",
+      "appearance_notes": "Low activity; In an office, a man in plaid clothes is making a call, and a man in purple clothes is standing beside him,.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 8.3s, in an office, a man in plaid clothes is making a call, and a man in purple clothes is standing beside him,.",
+      "keywords": [
+        "office",
+        "man",
+        "plaid",
+        "clothes",
+        "making",
+        "call"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos599_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 79.27,
+      "start_time": 0.0,
+      "end_time": 8.3,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The woman in white above is also making a call, and the man in gray next to her is standing and looking at the man in plaid.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.0s to 8.3s, the woman in white above is also making a call, and the man in gray next to her is standing and looking at the man in plaid.",
+      "keywords": [
+        "woman",
+        "white",
+        "above",
+        "also",
+        "making",
+        "call"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos599_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 79.27,
+      "start_time": 8.3,
+      "end_time": 19.0,
+      "object_type": "person",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; The man in purple comes to the lower left and leans on the workstation railing to talk to someone. The man in gray leaves the view of the camera.",
+      "scene_zone": "unknown",
+      "event_text": "From 8.3s to 19.0s, the man in purple comes to the lower left and leans on the workstation railing to talk to someone. The man in gray leaves the view of the camera.",
+      "keywords": [
+        "man",
+        "purple",
+        "comes",
+        "lower",
+        "left",
+        "leans"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos599_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 79.27,
+      "start_time": 19.0,
+      "end_time": 39.5,
+      "object_type": "person",
+      "object_color": "purple",
+      "appearance_notes": "Observed event; Then the man in purple picked up the phone from his workstation and made a call. The man in plaid took notes while making the call.",
+      "scene_zone": "unknown",
+      "event_text": "From 19.0s to 39.5s, then the man in purple picked up the phone from his workstation and made a call. The man in plaid took notes while making the call.",
+      "keywords": [
+        "man",
+        "purple",
+        "picked",
+        "phone",
+        "workstation",
+        "made"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos599_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 79.27,
+      "start_time": 39.5,
+      "end_time": 47.1,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The woman in white put down the phone and walked to the left,.",
+      "scene_zone": "unknown",
+      "event_text": "From 39.5s to 47.1s, the woman in white put down the phone and walked to the left,.",
+      "keywords": [
+        "woman",
+        "white",
+        "put",
+        "down",
+        "phone",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos599_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 79.27,
+      "start_time": 44.5,
+      "end_time": 59.1,
+      "object_type": "person",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; The man in gray walked to the lower right workstation, took out a bottle and gave it to the man in purple.",
+      "scene_zone": "unknown",
+      "event_text": "From 44.5s to 59.1s, the man in gray walked to the lower right workstation, took out a bottle and gave it to the man in purple.",
+      "keywords": [
+        "man",
+        "gray",
+        "walked",
+        "lower",
+        "right",
+        "workstation"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos599_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 79.27,
+      "start_time": 59.1,
+      "end_time": 79.0,
+      "object_type": "person",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; The man in gray walked to the left, and then played with the bottle on the left workstation.",
+      "scene_zone": "unknown",
+      "event_text": "From 59.1s to 79.0s, the man in gray walked to the left, and then played with the bottle on the left workstation.",
+      "keywords": [
+        "man",
+        "gray",
+        "walked",
+        "left",
+        "played",
+        "bottle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    }
+  ]
+}

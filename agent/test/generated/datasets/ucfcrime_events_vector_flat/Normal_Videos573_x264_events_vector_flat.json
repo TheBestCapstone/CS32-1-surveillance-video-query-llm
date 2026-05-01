@@ -1,0 +1,171 @@
+{
+  "video_id": "Normal_Videos573_x264",
+  "duration": 131.47,
+  "events": [
+    {
+      "video_id": "Normal_Videos573_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 131.47,
+      "start_time": 0.0,
+      "end_time": 12.4,
+      "object_type": "bicycle",
+      "object_color": "black",
+      "appearance_notes": "High activity; The picture is in a corridor. On the left side is the stairs. On the right side is a place to park bicycles. Outside the corridor door, two men in white shirts and black pants entered the corridor, walked out of the stairs and went upstairs.",
+      "scene_zone": "room",
+      "event_text": "From 0.0s to 12.4s, the picture is in a corridor. On the left side is the stairs. On the right side is a place to park bicycles. Outside the corridor door, two men in white shirts and black pants entered the corridor, walked out of the stairs and went upstairs.",
+      "keywords": [
+        "picture",
+        "corridor",
+        "left",
+        "side",
+        "stairs",
+        "right"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos573_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 131.47,
+      "start_time": 45.1,
+      "end_time": 50.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; A man in a black shirt and gray pants entered the corridor above, and a man in a white shirt and black pants entered the corridor.",
+      "scene_zone": "unknown",
+      "event_text": "From 45.1s to 50.1s, a man in a black shirt and gray pants entered the corridor above, and a man in a white shirt and black pants entered the corridor.",
+      "keywords": [
+        "man",
+        "black",
+        "shirt",
+        "gray",
+        "pants",
+        "entered"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos573_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 131.47,
+      "start_time": 50.1,
+      "end_time": 69.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The man in white clothes and black pants went up to the upper left corner of the stairs and looked up. The man in black bent down and reached for the bicycle on the right, picked up an object, put it to the side and left.",
+      "scene_zone": "unknown",
+      "event_text": "From 50.1s to 69.1s, the man in white clothes and black pants went up to the upper left corner of the stairs and looked up. The man in black bent down and reached for the bicycle on the right, picked up an object, put it to the side and left.",
+      "keywords": [
+        "man",
+        "white",
+        "clothes",
+        "black",
+        "pants",
+        "went"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos573_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 131.47,
+      "start_time": 69.1,
+      "end_time": 78.4,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in white walked out of the corridor and left the screen.",
+      "scene_zone": "unknown",
+      "event_text": "From 69.1s to 78.4s, the man in white walked out of the corridor and left the screen.",
+      "keywords": [
+        "man",
+        "white",
+        "walked",
+        "out",
+        "corridor",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos573_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 131.47,
+      "start_time": 117.5,
+      "end_time": 125.5,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A woman in a black vest and black pants walked up the corridor and walked up the stairs on the left to the second floor.",
+      "scene_zone": "unknown",
+      "event_text": "From 117.5s to 125.5s, a woman in a black vest and black pants walked up the corridor and walked up the stairs on the left to the second floor.",
+      "keywords": [
+        "woman",
+        "black",
+        "vest",
+        "pants",
+        "walked",
+        "corridor"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "video_id": "RoadAccidents122_x264",
+  "duration": 21.6,
+  "events": [
+    {
+      "video_id": "RoadAccidents122_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 21.6,
+      "start_time": 0.3,
+      "end_time": 15.1,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A black car collided with a motorcycle while turning, and the motorcycle driver was knocked away.",
+      "scene_zone": "unknown",
+      "event_text": "From 0.3s to 15.1s, a black car collided with a motorcycle while turning, and the motorcycle driver was knocked away.",
+      "keywords": [
+        "black",
+        "car",
+        "collided",
+        "motorcycle",
+        "while",
+        "turning"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "RoadAccidents122_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 21.6,
+      "start_time": 15.1,
+      "end_time": 20.9,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The driver of the black car got out of the car.",
+      "scene_zone": "unknown",
+      "event_text": "From 15.1s to 20.9s, the driver of the black car got out of the car.",
+      "keywords": [
+        "driver",
+        "black",
+        "car",
+        "got",
+        "out"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    }
+  ]
+}

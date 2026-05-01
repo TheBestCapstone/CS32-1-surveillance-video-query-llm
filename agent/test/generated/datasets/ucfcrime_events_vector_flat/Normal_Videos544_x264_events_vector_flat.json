@@ -1,0 +1,2380 @@
+{
+  "video_id": "Normal_Videos544_x264",
+  "duration": 2012.07,
+  "events": [
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 0.0,
+      "end_time": 13.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; In a room, two people are sitting on the sofa, resting and talking, and several people are standing outside the door.",
+      "scene_zone": "room",
+      "event_text": "From 0.0s to 13.2s, in a room, two people are sitting on the sofa, resting and talking, and several people are standing outside the door.",
+      "keywords": [
+        "room",
+        "two",
+        "people",
+        "sitting",
+        "sofa",
+        "resting"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 13.2,
+      "end_time": 46.4,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in red and the man in white are talking in the room, and several people are walking back and forth outside the door.",
+      "scene_zone": "room",
+      "event_text": "From 13.2s to 46.4s, the man in red and the man in white are talking in the room, and several people are walking back and forth outside the door.",
+      "keywords": [
+        "man",
+        "red",
+        "white",
+        "talking",
+        "room",
+        "several"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 46.4,
+      "end_time": 51.1,
+      "object_type": "person",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; A man in gray enters the room and then walks out of the camera range.",
+      "scene_zone": "room",
+      "event_text": "From 46.4s to 51.1s, a man in gray enters the room and then walks out of the camera range.",
+      "keywords": [
+        "man",
+        "gray",
+        "enters",
+        "room",
+        "walks",
+        "out"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 53.4,
+      "end_time": 77.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two people outside the door were walking back and forth, and two people in the room were sitting on the sofa talking.",
+      "scene_zone": "room",
+      "event_text": "From 53.4s to 77.4s, two people outside the door were walking back and forth, and two people in the room were sitting on the sofa talking.",
+      "keywords": [
+        "two",
+        "people",
+        "outside",
+        "door",
+        "walking",
+        "back"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 77.4,
+      "end_time": 101.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; A man in plaid clothes walked outside the door, and finally left the camera's field of view, and the two of them looked into the distance outside the door.",
+      "scene_zone": "room",
+      "event_text": "From 77.4s to 101.0s, a man in plaid clothes walked outside the door, and finally left the camera's field of view, and the two of them looked into the distance outside the door.",
+      "keywords": [
+        "man",
+        "plaid",
+        "clothes",
+        "walked",
+        "outside",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 101.0,
+      "end_time": 148.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man in plaid clothes walked back and forth with his hands behind his back, and several people outside the door began to exercise.",
+      "scene_zone": "room",
+      "event_text": "From 101.0s to 148.2s, the man in plaid clothes walked back and forth with his hands behind his back, and several people outside the door began to exercise.",
+      "keywords": [
+        "man",
+        "plaid",
+        "clothes",
+        "walked",
+        "back",
+        "forth"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 148.2,
+      "end_time": 202.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; Three people stood outside the door and looked into the distance, and several more people came to talk to them.",
+      "scene_zone": "room",
+      "event_text": "From 148.2s to 202.1s, three people stood outside the door and looked into the distance, and several more people came to talk to them.",
+      "keywords": [
+        "three",
+        "people",
+        "stood",
+        "outside",
+        "door",
+        "looked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 202.1,
+      "end_time": 210.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man in striped clothes enters the room and then leaves the camera's field of view.",
+      "scene_zone": "room",
+      "event_text": "From 202.1s to 210.2s, a man in striped clothes enters the room and then leaves the camera's field of view.",
+      "keywords": [
+        "man",
+        "striped",
+        "clothes",
+        "enters",
+        "room",
+        "leaves"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 210.2,
+      "end_time": 244.3,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; Several people were busy outside the door, and a man in blue stood at the door.",
+      "scene_zone": "room",
+      "event_text": "From 210.2s to 244.3s, several people were busy outside the door, and a man in blue stood at the door.",
+      "keywords": [
+        "several",
+        "people",
+        "busy",
+        "outside",
+        "door",
+        "man"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 244.3,
+      "end_time": 293.2,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; Several people were talking outside the door, and a man in a jacket entered the room.",
+      "scene_zone": "room",
+      "event_text": "From 244.3s to 293.2s, several people were talking outside the door, and a man in a jacket entered the room.",
+      "keywords": [
+        "several",
+        "people",
+        "talking",
+        "outside",
+        "door",
+        "man"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 293.2,
+      "end_time": 316.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man in striped clothes came into view and came to the door of the room. The man in jacket walked beside him and talked with several people outside the door.",
+      "scene_zone": "room",
+      "event_text": "From 293.2s to 316.1s, the man in striped clothes came into view and came to the door of the room. The man in jacket walked beside him and talked with several people outside the door.",
+      "keywords": [
+        "man",
+        "striped",
+        "clothes",
+        "came",
+        "view",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 316.1,
+      "end_time": 353.4,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; All the people entered the room and followed the man in striped clothes to the lower right corner of the camera.",
+      "scene_zone": "room",
+      "event_text": "From 316.1s to 353.4s, all the people entered the room and followed the man in striped clothes to the lower right corner of the camera.",
+      "keywords": [
+        "all",
+        "people",
+        "entered",
+        "room",
+        "followed",
+        "man"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 353.4,
+      "end_time": 408.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several people were talking in the room, a man in rice clothes was gesticulating, and a man in a jacket was talking to him.",
+      "scene_zone": "room",
+      "event_text": "From 353.4s to 408.1s, several people were talking in the room, a man in rice clothes was gesticulating, and a man in a jacket was talking to him.",
+      "keywords": [
+        "several",
+        "people",
+        "talking",
+        "room",
+        "man",
+        "rice"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 408.4,
+      "end_time": 431.1,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Everyone walked out of the room and talked outside the door.",
+      "scene_zone": "room",
+      "event_text": "From 408.4s to 431.1s, everyone walked out of the room and talked outside the door.",
+      "keywords": [
+        "everyone",
+        "walked",
+        "out",
+        "room",
+        "talked",
+        "outside"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 433.1,
+      "end_time": 455.5,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man in white leaves the room and walks toward the door. The man in a jacket leans on the counter. The man in blue approaches the window and looks out the window.",
+      "scene_zone": "room",
+      "event_text": "From 433.1s to 455.5s, a man in white leaves the room and walks toward the door. The man in a jacket leans on the counter. The man in blue approaches the window and looks out the window.",
+      "keywords": [
+        "man",
+        "white",
+        "leaves",
+        "room",
+        "walks",
+        "toward"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 455.5,
+      "end_time": 491.1,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The man in red on the sofa got up and walked out of the room with the man in the jacket. The man in blue was next to the door. Several people came to the door and talked with several people outside.",
+      "scene_zone": "room",
+      "event_text": "From 455.5s to 491.1s, the man in red on the sofa got up and walked out of the room with the man in the jacket. The man in blue was next to the door. Several people came to the door and talked with several people outside.",
+      "keywords": [
+        "man",
+        "red",
+        "sofa",
+        "got",
+        "walked",
+        "out"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_16"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 477.2,
+      "end_time": 486.3,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A woman in white walked to the door to check and then returned.",
+      "scene_zone": "room",
+      "event_text": "From 477.2s to 486.3s, a woman in white walked to the door to check and then returned.",
+      "keywords": [
+        "woman",
+        "white",
+        "walked",
+        "door",
+        "check",
+        "returned"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_17"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 491.1,
+      "end_time": 514.3,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; Several people outside the door continued to talk. Several people appeared in the room talking to people outside the door. The man in white got up and talked to the people in the room.",
+      "scene_zone": "room",
+      "event_text": "From 491.1s to 514.3s, several people outside the door continued to talk. Several people appeared in the room talking to people outside the door. The man in white got up and talked to the people in the room.",
+      "keywords": [
+        "several",
+        "people",
+        "outside",
+        "door",
+        "continued",
+        "talk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_18"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 514.1,
+      "end_time": 531.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several people walked out of the back room and dispersed to talk.",
+      "scene_zone": "room",
+      "event_text": "From 514.1s to 531.3s, several people walked out of the back room and dispersed to talk.",
+      "keywords": [
+        "several",
+        "people",
+        "walked",
+        "out",
+        "back",
+        "room"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_19"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 531.3,
+      "end_time": 554.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Several people walked into the store.",
+      "scene_zone": "store",
+      "event_text": "From 531.3s to 554.2s, several people walked into the store.",
+      "keywords": [
+        "several",
+        "people",
+        "walked",
+        "store"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_20"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 554.3,
+      "end_time": 569.3,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; Several people came in and out of the room, a man in white, a man in stripes, talking to a man in black, a man in white and a man in yellow.",
+      "scene_zone": "room",
+      "event_text": "From 554.3s to 569.3s, several people came in and out of the room, a man in white, a man in stripes, talking to a man in black, a man in white and a man in yellow.",
+      "keywords": [
+        "several",
+        "people",
+        "came",
+        "out",
+        "room",
+        "man"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_21"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 569.3,
+      "end_time": 586.1,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Low activity; Several people outside the door continued to talk. The man in red entered the room and looked at the crowd outside the door.",
+      "scene_zone": "room",
+      "event_text": "From 569.3s to 586.1s, several people outside the door continued to talk. The man in red entered the room and looked at the crowd outside the door.",
+      "keywords": [
+        "several",
+        "people",
+        "outside",
+        "door",
+        "continued",
+        "talk"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_22"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 586.1,
+      "end_time": 621.0,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The man in the jacket appeared in the camera and talked with several people in the room. A woman in blue talked with the man in the jacket and then came to the door.",
+      "scene_zone": "room",
+      "event_text": "From 586.1s to 621.0s, the man in the jacket appeared in the camera and talked with several people in the room. A woman in blue talked with the man in the jacket and then came to the door.",
+      "keywords": [
+        "man",
+        "jacket",
+        "appeared",
+        "camera",
+        "talked",
+        "several"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_23"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 621.0,
+      "end_time": 658.0,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The man in red walked inside and left the camera's field of view. Several people outside the door continued to talk. The woman in blue came to the counter to write something, and the man in the jacket leaned against the table.",
+      "scene_zone": "room",
+      "event_text": "From 621.0s to 658.0s, the man in red walked inside and left the camera's field of view. Several people outside the door continued to talk. The woman in blue came to the counter to write something, and the man in the jacket leaned against the table.",
+      "keywords": [
+        "man",
+        "red",
+        "walked",
+        "inside",
+        "left",
+        "camera"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_24"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 658.0,
+      "end_time": 678.2,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The man in blue walked to the counter. Several people in the room walked towards the door, followed closely by the man in blue.",
+      "scene_zone": "room",
+      "event_text": "From 658.0s to 678.2s, the man in blue walked to the counter. Several people in the room walked towards the door, followed closely by the man in blue.",
+      "keywords": [
+        "man",
+        "blue",
+        "walked",
+        "counter",
+        "several",
+        "people"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_25"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 678.2,
+      "end_time": 698.1,
+      "object_type": "person",
+      "object_color": "yellow",
+      "appearance_notes": "Observed event; The woman in yellow clothes walked out of the door and talked with several people outside the door. The man in rice clothes in the room walked out of the room and talked with several people outside the door.",
+      "scene_zone": "room",
+      "event_text": "From 678.2s to 698.1s, the woman in yellow clothes walked out of the door and talked with several people outside the door. The man in rice clothes in the room walked out of the room and talked with several people outside the door.",
+      "keywords": [
+        "woman",
+        "yellow",
+        "clothes",
+        "walked",
+        "out",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_26"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 698.1,
+      "end_time": 723.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Then the man in rice clothes returned to the room and left the camera field of view, and the man in stripes clothes walked out of the room and came to the door.",
+      "scene_zone": "room",
+      "event_text": "From 698.1s to 723.3s, then the man in rice clothes returned to the room and left the camera field of view, and the man in stripes clothes walked out of the room and came to the door.",
+      "keywords": [
+        "man",
+        "rice",
+        "clothes",
+        "returned",
+        "room",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_27"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 723.3,
+      "end_time": 748.0,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in the jacket walked back and forth in the room and then left the camera's field of view. Several people in the room walked towards the door. A woman in white talked with the man in the jacket.",
+      "scene_zone": "room",
+      "event_text": "From 723.3s to 748.0s, the man in the jacket walked back and forth in the room and then left the camera's field of view. Several people in the room walked towards the door. A woman in white talked with the man in the jacket.",
+      "keywords": [
+        "man",
+        "jacket",
+        "walked",
+        "back",
+        "forth",
+        "room"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_28"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 748.0,
+      "end_time": 758.1,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The woman in white leaves the camera view, and the man in the jacket leans on the counter.",
+      "scene_zone": "store",
+      "event_text": "From 748.0s to 758.1s, the woman in white leaves the camera view, and the man in the jacket leans on the counter.",
+      "keywords": [
+        "woman",
+        "white",
+        "leaves",
+        "camera",
+        "view",
+        "man"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_29"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 758.1,
+      "end_time": 797.1,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; Two men in the room quickly left the room and walked out of the door. The man in the jacket went out to watch, and then returned to the room. A woman in white entered the room and left the camera view.",
+      "scene_zone": "room",
+      "event_text": "From 758.1s to 797.1s, two men in the room quickly left the room and walked out of the door. The man in the jacket went out to watch, and then returned to the room. A woman in white entered the room and left the camera view.",
+      "keywords": [
+        "two",
+        "men",
+        "room",
+        "quickly",
+        "left",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_30"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 797.1,
+      "end_time": 827.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A woman in a skirt walks out of the room, and a man in a jacket makes a phone call and walks back and forth in the room.",
+      "scene_zone": "room",
+      "event_text": "From 797.1s to 827.0s, a woman in a skirt walks out of the room, and a man in a jacket makes a phone call and walks back and forth in the room.",
+      "keywords": [
+        "woman",
+        "skirt",
+        "walks",
+        "out",
+        "room",
+        "man"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_31"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 827.0,
+      "end_time": 855.0,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A woman in white looks at the crowd outside the door, the woman in skirt returns to the room and finally leaves the camera view, and the man in jacket returns to the counter.",
+      "scene_zone": "room",
+      "event_text": "From 827.0s to 855.0s, a woman in white looks at the crowd outside the door, the woman in skirt returns to the room and finally leaves the camera view, and the man in jacket returns to the counter.",
+      "keywords": [
+        "woman",
+        "white",
+        "looks",
+        "crowd",
+        "outside",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_32"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 855.0,
+      "end_time": 883.2,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The woman in skirt walks out the door again, and the man in jacket talks to the woman in blue.",
+      "scene_zone": "room",
+      "event_text": "From 855.0s to 883.2s, the woman in skirt walks out the door again, and the man in jacket talks to the woman in blue.",
+      "keywords": [
+        "woman",
+        "skirt",
+        "walks",
+        "out",
+        "door",
+        "again"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_33"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 883.2,
+      "end_time": 915.4,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; An old man followed the woman in white and the woman in skirt into the room and then left the camera field of view. The man in red walked out of the door.",
+      "scene_zone": "room",
+      "event_text": "From 883.2s to 915.4s, an old man followed the woman in white and the woman in skirt into the room and then left the camera field of view. The man in red walked out of the door.",
+      "keywords": [
+        "old",
+        "man",
+        "followed",
+        "woman",
+        "white",
+        "skirt"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_34"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 915.4,
+      "end_time": 939.1,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Low activity; The man in blue made a call, and the man in jacket walked to the door and looked at the crowd outside.",
+      "scene_zone": "room",
+      "event_text": "From 915.4s to 939.1s, the man in blue made a call, and the man in jacket walked to the door and looked at the crowd outside.",
+      "keywords": [
+        "man",
+        "blue",
+        "made",
+        "call",
+        "jacket",
+        "walked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_35"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 939.1,
+      "end_time": 974.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in the jacket walked back and forth, the woman in black and the man in blue returned to the room, and the woman in blue walked towards the counter.",
+      "scene_zone": "room",
+      "event_text": "From 939.1s to 974.1s, the man in the jacket walked back and forth, the woman in black and the man in blue returned to the room, and the woman in blue walked towards the counter.",
+      "keywords": [
+        "man",
+        "jacket",
+        "walked",
+        "back",
+        "forth",
+        "woman"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_36"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 974.1,
+      "end_time": 1011.0,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; Two men in white in the room walked towards the door, and the woman in black walked towards the woman in blue to talk to them.",
+      "scene_zone": "room",
+      "event_text": "From 974.1s to 1011.0s, two men in white in the room walked towards the door, and the woman in black walked towards the woman in blue to talk to them.",
+      "keywords": [
+        "two",
+        "men",
+        "white",
+        "room",
+        "walked",
+        "towards"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_37"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1011.0,
+      "end_time": 1029.3,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; Several people in the room stood still. The woman in black left the camera, and the man in stripes came to the woman in blue.",
+      "scene_zone": "room",
+      "event_text": "From 1011.0s to 1029.3s, several people in the room stood still. The woman in black left the camera, and the man in stripes came to the woman in blue.",
+      "keywords": [
+        "several",
+        "people",
+        "room",
+        "stood",
+        "still",
+        "woman"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_38"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1029.3,
+      "end_time": 1061.0,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The man in the jacket walked to the sofa and sat down. After talking, the man in striped clothes walked towards the door. The woman in skirt walked out of the door and then walked towards the woman in blue.",
+      "scene_zone": "room",
+      "event_text": "From 1029.3s to 1061.0s, the man in the jacket walked to the sofa and sat down. After talking, the man in striped clothes walked towards the door. The woman in skirt walked out of the door and then walked towards the woman in blue.",
+      "keywords": [
+        "man",
+        "jacket",
+        "walked",
+        "sofa",
+        "sat",
+        "down"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_39"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1061.0,
+      "end_time": 1081.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Then the woman in the skirt walked into the room and left the camera. Two men outside the door walked into the room and left the camera.",
+      "scene_zone": "room",
+      "event_text": "From 1061.0s to 1081.1s, then the woman in the skirt walked into the room and left the camera. Two men outside the door walked into the room and left the camera.",
+      "keywords": [
+        "woman",
+        "skirt",
+        "walked",
+        "room",
+        "left",
+        "camera"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_40"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1081.1,
+      "end_time": 1110.1,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in white enters the room and returns to the sofa. The woman in skirt walks out of the room, and then the man in white leaves the view of the camera.",
+      "scene_zone": "room",
+      "event_text": "From 1081.1s to 1110.1s, the man in white enters the room and returns to the sofa. The woman in skirt walks out of the room, and then the man in white leaves the view of the camera.",
+      "keywords": [
+        "man",
+        "white",
+        "enters",
+        "room",
+        "returns",
+        "sofa"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_41"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1110.1,
+      "end_time": 1133.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two men in the room walked out of the room, and the woman in skirt walked into the room.",
+      "scene_zone": "room",
+      "event_text": "From 1110.1s to 1133.0s, two men in the room walked out of the room, and the woman in skirt walked into the room.",
+      "keywords": [
+        "two",
+        "men",
+        "room",
+        "walked",
+        "out",
+        "woman"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_42"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1133.0,
+      "end_time": 1158.3,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The woman in blue leaned on the counter and made a phone call. The man in the jacket got up and left the room. Several people in the room walked out of the door.",
+      "scene_zone": "room",
+      "event_text": "From 1133.0s to 1158.3s, the woman in blue leaned on the counter and made a phone call. The man in the jacket got up and left the room. Several people in the room walked out of the door.",
+      "keywords": [
+        "woman",
+        "blue",
+        "leaned",
+        "counter",
+        "made",
+        "phone"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_43"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1158.3,
+      "end_time": 1195.1,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in white looked at the crowd outside the door, and then walked outside. A man in white walked into the room and then left the camera.",
+      "scene_zone": "room",
+      "event_text": "From 1158.3s to 1195.1s, the man in white looked at the crowd outside the door, and then walked outside. A man in white walked into the room and then left the camera.",
+      "keywords": [
+        "man",
+        "white",
+        "looked",
+        "crowd",
+        "outside",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_44"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1195.1,
+      "end_time": 1212.0,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The woman in blue walked to the door and talked with the people outside.",
+      "scene_zone": "room",
+      "event_text": "From 1195.1s to 1212.0s, the woman in blue walked to the door and talked with the people outside.",
+      "keywords": [
+        "woman",
+        "blue",
+        "walked",
+        "door",
+        "talked",
+        "people"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_45"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1212.0,
+      "end_time": 1246.1,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A woman in white clothes walks out of the room, and the woman in blue returns to the room and then leaves the camera.",
+      "scene_zone": "room",
+      "event_text": "From 1212.0s to 1246.1s, a woman in white clothes walks out of the room, and the woman in blue returns to the room and then leaves the camera.",
+      "keywords": [
+        "woman",
+        "white",
+        "clothes",
+        "walks",
+        "out",
+        "room"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_46"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1246.1,
+      "end_time": 1281.3,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The two men returned to the room and then walked out of the room, and the woman in blue walked out of the room.",
+      "scene_zone": "room",
+      "event_text": "From 1246.1s to 1281.3s, the two men returned to the room and then walked out of the room, and the woman in blue walked out of the room.",
+      "keywords": [
+        "two",
+        "men",
+        "returned",
+        "room",
+        "walked",
+        "out"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_47"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1281.3,
+      "end_time": 1333.4,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; Two men push a cart into the room and leave the camera. Several people outside the door enter the room.",
+      "scene_zone": "room",
+      "event_text": "From 1281.3s to 1333.4s, two men push a cart into the room and leave the camera. Several people outside the door enter the room.",
+      "keywords": [
+        "two",
+        "men",
+        "push",
+        "cart",
+        "room",
+        "leave"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_48"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1333.4,
+      "end_time": 1359.0,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in white left the room, and several men stood in the room.",
+      "scene_zone": "room",
+      "event_text": "From 1333.4s to 1359.0s, the man in white left the room, and several men stood in the room.",
+      "keywords": [
+        "man",
+        "white",
+        "left",
+        "room",
+        "several",
+        "men"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_49"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1359.0,
+      "end_time": 1385.2,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; Two men pulled out of the door and tripped a man in white. Several people came forward to help him. The man in white got up and punched but was dodged. A man in white came over to talk to him.",
+      "scene_zone": "room",
+      "event_text": "From 1359.0s to 1385.2s, two men pulled out of the door and tripped a man in white. Several people came forward to help him. The man in white got up and punched but was dodged. A man in white came over to talk to him.",
+      "keywords": [
+        "two",
+        "men",
+        "pulled",
+        "out",
+        "door",
+        "tripped"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_50"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1385.2,
+      "end_time": 1422.4,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in white walks back and forth in the room, and a woman in white enters the room and then leaves the camera.",
+      "scene_zone": "room",
+      "event_text": "From 1385.2s to 1422.4s, the man in white walks back and forth in the room, and a woman in white enters the room and then leaves the camera.",
+      "keywords": [
+        "man",
+        "white",
+        "walks",
+        "back",
+        "forth",
+        "room"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_51"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1422.4,
+      "end_time": 1438.1,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in white placed the sofa, and the two entered the room to talk to him.",
+      "scene_zone": "room",
+      "event_text": "From 1422.4s to 1438.1s, the man in white placed the sofa, and the two entered the room to talk to him.",
+      "keywords": [
+        "man",
+        "white",
+        "placed",
+        "sofa",
+        "two",
+        "entered"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_52"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1438.1,
+      "end_time": 1455.0,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in white points to the ground, and a man in blue walks into the room and leaves the camera.",
+      "scene_zone": "room",
+      "event_text": "From 1438.1s to 1455.0s, the man in white points to the ground, and a man in blue walks into the room and leaves the camera.",
+      "keywords": [
+        "man",
+        "white",
+        "points",
+        "ground",
+        "blue",
+        "walks"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_53"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1455.0,
+      "end_time": 1476.4,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; Several people entered the room and talked with the man in white, and then led the man in white out of the room.",
+      "scene_zone": "room",
+      "event_text": "From 1455.0s to 1476.4s, several people entered the room and talked with the man in white, and then led the man in white out of the room.",
+      "keywords": [
+        "several",
+        "people",
+        "entered",
+        "room",
+        "talked",
+        "man"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_54"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1476.4,
+      "end_time": 1497.2,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man in white entered the room with a mop and then started mopping the floor.",
+      "scene_zone": "room",
+      "event_text": "From 1476.4s to 1497.2s, a man in white entered the room with a mop and then started mopping the floor.",
+      "keywords": [
+        "man",
+        "white",
+        "entered",
+        "room",
+        "mop",
+        "started"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_55"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1497.2,
+      "end_time": 1523.3,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; The man in striped clothes stepped back while holding his mobile phone, and then the man in red clothes entered the room to take pictures.",
+      "scene_zone": "room",
+      "event_text": "From 1497.2s to 1523.3s, the man in striped clothes stepped back while holding his mobile phone, and then the man in red clothes entered the room to take pictures.",
+      "keywords": [
+        "man",
+        "striped",
+        "clothes",
+        "stepped",
+        "back",
+        "while"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_56"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1523.3,
+      "end_time": 1552.5,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The two people entered the room and then left the camera field of view. The man in white mopping the floor left the room.",
+      "scene_zone": "room",
+      "event_text": "From 1523.3s to 1552.5s, the two people entered the room and then left the camera field of view. The man in white mopping the floor left the room.",
+      "keywords": [
+        "two",
+        "people",
+        "entered",
+        "room",
+        "left",
+        "camera"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_57"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1552.5,
+      "end_time": 1581.0,
+      "object_type": "car",
+      "object_color": "yellow",
+      "appearance_notes": "High activity; The man in striped clothes leaves the camera, the man in blue enters the room and leaves the camera, the man in white comes back and puts the mop into the yellow car and then leaves the camera.",
+      "scene_zone": "room",
+      "event_text": "From 1552.5s to 1581.0s, the man in striped clothes leaves the camera, the man in blue enters the room and leaves the camera, the man in white comes back and puts the mop into the yellow car and then leaves the camera.",
+      "keywords": [
+        "man",
+        "striped",
+        "clothes",
+        "leaves",
+        "camera",
+        "blue"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_58"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1581.0,
+      "end_time": 1623.1,
+      "object_type": "person",
+      "object_color": "blue",
+      "appearance_notes": "Observed event; The man in blue walks out of the room, the man in the jacket walks into the room and then leaves the camera.",
+      "scene_zone": "room",
+      "event_text": "From 1581.0s to 1623.1s, the man in blue walks out of the room, the man in the jacket walks into the room and then leaves the camera.",
+      "keywords": [
+        "man",
+        "blue",
+        "walks",
+        "out",
+        "room",
+        "jacket"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_59"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1623.1,
+      "end_time": 1651.1,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Low activity; The two people walked out of the room, and the woman in black looked out the door.",
+      "scene_zone": "room",
+      "event_text": "From 1623.1s to 1651.1s, the two people walked out of the room, and the woman in black looked out the door.",
+      "keywords": [
+        "two",
+        "people",
+        "walked",
+        "out",
+        "room",
+        "woman"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_60"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1651.1,
+      "end_time": 1683.5,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The woman in black walked out, the man in blue took out his mobile phone to take pictures of the crowd outside, the man in jacket and the man in striped clothes walked out.",
+      "scene_zone": "unknown",
+      "event_text": "From 1651.1s to 1683.5s, the woman in black walked out, the man in blue took out his mobile phone to take pictures of the crowd outside, the man in jacket and the man in striped clothes walked out.",
+      "keywords": [
+        "woman",
+        "black",
+        "walked",
+        "out",
+        "man",
+        "blue"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_61"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1683.5,
+      "end_time": 1698.0,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in white appears in the camera and then takes the mop away from the camera.",
+      "scene_zone": "unknown",
+      "event_text": "From 1683.5s to 1698.0s, the man in white appears in the camera and then takes the mop away from the camera.",
+      "keywords": [
+        "man",
+        "white",
+        "appears",
+        "camera",
+        "takes",
+        "mop"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_62"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1698.0,
+      "end_time": 1740.3,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The man in white continued to mop the floor. The man in striped clothes entered the room and then walked out of the room. The woman in black entered the room.",
+      "scene_zone": "room",
+      "event_text": "From 1698.0s to 1740.3s, the man in white continued to mop the floor. The man in striped clothes entered the room and then walked out of the room. The woman in black entered the room.",
+      "keywords": [
+        "man",
+        "white",
+        "continued",
+        "mop",
+        "floor",
+        "striped"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_63"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1740.3,
+      "end_time": 1756.0,
+      "object_type": "car",
+      "object_color": "yellow",
+      "appearance_notes": "High activity; The man in striped clothes enters the room and leaves the camera. The man in white clothes puts the mop into the yellow car and rinses it.",
+      "scene_zone": "room",
+      "event_text": "From 1740.3s to 1756.0s, the man in striped clothes enters the room and leaves the camera. The man in white clothes puts the mop into the yellow car and rinses it.",
+      "keywords": [
+        "man",
+        "striped",
+        "clothes",
+        "enters",
+        "room",
+        "leaves"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_64"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1756.0,
+      "end_time": 1769.2,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in blue looked at the crowd outside the door, and the man in white rinsed the mop and continued to mop the floor.",
+      "scene_zone": "room",
+      "event_text": "From 1756.0s to 1769.2s, the man in blue looked at the crowd outside the door, and the man in white rinsed the mop and continued to mop the floor.",
+      "keywords": [
+        "man",
+        "blue",
+        "looked",
+        "crowd",
+        "outside",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_65"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1769.2,
+      "end_time": 1814.0,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The woman in black leaves the room, the man in blue makes a phone call and walks back and forth, the man in blue outside the door walks into the room and leaves the camera, the man in stripes walks out of the room.",
+      "scene_zone": "room",
+      "event_text": "From 1769.2s to 1814.0s, the woman in black leaves the room, the man in blue makes a phone call and walks back and forth, the man in blue outside the door walks into the room and leaves the camera, the man in stripes walks out of the room.",
+      "keywords": [
+        "woman",
+        "black",
+        "leaves",
+        "room",
+        "man",
+        "blue"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_66"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1814.0,
+      "end_time": 1837.4,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in blue left the room and then entered the room. The man in white mopped the floor and walked out of the room.",
+      "scene_zone": "room",
+      "event_text": "From 1814.0s to 1837.4s, the man in blue left the room and then entered the room. The man in white mopped the floor and walked out of the room.",
+      "keywords": [
+        "man",
+        "blue",
+        "left",
+        "room",
+        "entered",
+        "white"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_67"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1837.4,
+      "end_time": 1861.1,
+      "object_type": "car",
+      "object_color": "yellow",
+      "appearance_notes": "High activity; The man in blue started to make a call, and then went to the counter to look for items. The man in white took the mop and returned to the yellow car to continue rinsing.",
+      "scene_zone": "store",
+      "event_text": "From 1837.4s to 1861.1s, the man in blue started to make a call, and then went to the counter to look for items. The man in white took the mop and returned to the yellow car to continue rinsing.",
+      "keywords": [
+        "man",
+        "blue",
+        "started",
+        "make",
+        "call",
+        "went"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_68"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1861.1,
+      "end_time": 1922.2,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The man in white continued to mop the floor. A man in black entered the room, and the man in white went to mop the floor outside the room.",
+      "scene_zone": "room",
+      "event_text": "From 1861.1s to 1922.2s, the man in white continued to mop the floor. A man in black entered the room, and the man in white went to mop the floor outside the room.",
+      "keywords": [
+        "man",
+        "white",
+        "continued",
+        "mop",
+        "floor",
+        "black"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_69"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1922.2,
+      "end_time": 1959.0,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The man in black walked back and forth in the room, and the man in white returned to the room and continued mopping the floor.",
+      "scene_zone": "room",
+      "event_text": "From 1922.2s to 1959.0s, the man in black walked back and forth in the room, and the man in white returned to the room and continued mopping the floor.",
+      "keywords": [
+        "man",
+        "black",
+        "walked",
+        "back",
+        "forth",
+        "room"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_70"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1959.0,
+      "end_time": 1984.3,
+      "object_type": "car",
+      "object_color": "yellow",
+      "appearance_notes": "High activity; The man in black is making a call on the side, the man in white continues to mop the floor, and then pulls the yellow car away from the camera.",
+      "scene_zone": "unknown",
+      "event_text": "From 1959.0s to 1984.3s, the man in black is making a call on the side, the man in white continues to mop the floor, and then pulls the yellow car away from the camera.",
+      "keywords": [
+        "man",
+        "black",
+        "making",
+        "call",
+        "side",
+        "white"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_71"
+    },
+    {
+      "video_id": "Normal_Videos544_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 2012.07,
+      "start_time": 1984.3,
+      "end_time": 2003.0,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man in black makes a phone call in the lower right corner and then leaves the camera.",
+      "scene_zone": "unknown",
+      "event_text": "From 1984.3s to 2003.0s, the man in black makes a phone call in the lower right corner and then leaves the camera.",
+      "keywords": [
+        "man",
+        "black",
+        "makes",
+        "phone",
+        "call",
+        "lower"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_72"
+    }
+  ]
+}

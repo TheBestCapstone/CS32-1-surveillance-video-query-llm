@@ -1,0 +1,660 @@
+{
+  "video_id": "Shoplifting042_x264",
+  "duration": 170.75,
+  "events": [
+    {
+      "video_id": "Shoplifting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 170.75,
+      "start_time": 0.7,
+      "end_time": 4.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A woman wearing sunglasses on her head pointed to the products on the wall.",
+      "scene_zone": "room",
+      "event_text": "From 0.7s to 4.6s, a woman wearing sunglasses on her head pointed to the products on the wall.",
+      "keywords": [
+        "woman",
+        "wearing",
+        "sunglasses",
+        "head",
+        "pointed",
+        "products"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Shoplifting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 170.75,
+      "start_time": 4.7,
+      "end_time": 9.6,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; After a woman wearing a headscarf came into the house.",
+      "scene_zone": "unknown",
+      "event_text": "From 4.7s to 9.6s, after a woman wearing a headscarf came into the house.",
+      "keywords": [
+        "woman",
+        "wearing",
+        "headscarf",
+        "came",
+        "house"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Shoplifting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 170.75,
+      "start_time": 8.0,
+      "end_time": 9.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman wearing sunglasses pointed at the products on the wall.",
+      "scene_zone": "room",
+      "event_text": "From 8.0s to 9.0s, the woman wearing sunglasses pointed at the products on the wall.",
+      "keywords": [
+        "woman",
+        "wearing",
+        "sunglasses",
+        "pointed",
+        "products",
+        "wall"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Shoplifting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 170.75,
+      "start_time": 10.0,
+      "end_time": 18.9,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man walked from the corner of the counter to the counter of the woman wearing sunglasses, pointed at the product and explained it to her, then took something to give to the woman.",
+      "scene_zone": "store",
+      "event_text": "From 10.0s to 18.9s, the man walked from the corner of the counter to the counter of the woman wearing sunglasses, pointed at the product and explained it to her, then took something to give to the woman.",
+      "keywords": [
+        "man",
+        "walked",
+        "corner",
+        "counter",
+        "woman",
+        "wearing"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Shoplifting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 170.75,
+      "start_time": 19.4,
+      "end_time": 26.6,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two men wearing caps and carrying schoolbags came in.",
+      "scene_zone": "unknown",
+      "event_text": "From 19.4s to 26.6s, two men wearing caps and carrying schoolbags came in.",
+      "keywords": [
+        "two",
+        "men",
+        "wearing",
+        "caps",
+        "carrying",
+        "schoolbags"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Shoplifting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 170.75,
+      "start_time": 22.6,
+      "end_time": 31.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman wearing sunglasses went out, and the man at the counter glanced at the direction she left.",
+      "scene_zone": "store",
+      "event_text": "From 22.6s to 31.5s, the woman wearing sunglasses went out, and the man at the counter glanced at the direction she left.",
+      "keywords": [
+        "woman",
+        "wearing",
+        "sunglasses",
+        "went",
+        "out",
+        "man"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Shoplifting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 170.75,
+      "start_time": 31.9,
+      "end_time": 41.9,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Two men wearing peaked caps are browsing products.",
+      "scene_zone": "unknown",
+      "event_text": "From 31.9s to 41.9s, two men wearing peaked caps are browsing products.",
+      "keywords": [
+        "two",
+        "men",
+        "wearing",
+        "peaked",
+        "caps",
+        "browsing"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Shoplifting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 170.75,
+      "start_time": 42.6,
+      "end_time": 51.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man at the counter gave the woman wearing sunglasses a product, then calculated it with a calculator and showed it to the woman.",
+      "scene_zone": "store",
+      "event_text": "From 42.6s to 51.8s, the man at the counter gave the woman wearing sunglasses a product, then calculated it with a calculator and showed it to the woman.",
+      "keywords": [
+        "man",
+        "counter",
+        "gave",
+        "woman",
+        "wearing",
+        "sunglasses"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    },
+    {
+      "video_id": "Shoplifting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 170.75,
+      "start_time": 53.4,
+      "end_time": 68.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man at the counter is picking products from the shelves on the wall and putting them in his hands.",
+      "scene_zone": "room",
+      "event_text": "From 53.4s to 68.5s, the man at the counter is picking products from the shelves on the wall and putting them in his hands.",
+      "keywords": [
+        "man",
+        "counter",
+        "picking",
+        "products",
+        "shelves",
+        "wall"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_9"
+    },
+    {
+      "video_id": "Shoplifting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 170.75,
+      "start_time": 69.5,
+      "end_time": 80.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman wearing sunglasses points to the merchandise on the wall, and then the man takes it down to the woman.",
+      "scene_zone": "room",
+      "event_text": "From 69.5s to 80.4s, the woman wearing sunglasses points to the merchandise on the wall, and then the man takes it down to the woman.",
+      "keywords": [
+        "woman",
+        "wearing",
+        "sunglasses",
+        "points",
+        "merchandise",
+        "wall"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_10"
+    },
+    {
+      "video_id": "Shoplifting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 170.75,
+      "start_time": 83.0,
+      "end_time": 87.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man at the counter leaned over and took something from it to show to the woman.",
+      "scene_zone": "store",
+      "event_text": "From 83.0s to 87.1s, the man at the counter leaned over and took something from it to show to the woman.",
+      "keywords": [
+        "man",
+        "counter",
+        "leaned",
+        "took",
+        "something",
+        "show"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_11"
+    },
+    {
+      "video_id": "Shoplifting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 170.75,
+      "start_time": 83.0,
+      "end_time": 99.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man took the mobile phone from behind and then operated the calculator with his right hand.",
+      "scene_zone": "unknown",
+      "event_text": "From 83.0s to 99.1s, the man took the mobile phone from behind and then operated the calculator with his right hand.",
+      "keywords": [
+        "man",
+        "took",
+        "mobile",
+        "phone",
+        "behind",
+        "operated"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_12"
+    },
+    {
+      "video_id": "Shoplifting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 170.75,
+      "start_time": 101.4,
+      "end_time": 120.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man at the counter was talking on the phone to the woman wearing sunglasses opposite.",
+      "scene_zone": "store",
+      "event_text": "From 101.4s to 120.4s, the man at the counter was talking on the phone to the woman wearing sunglasses opposite.",
+      "keywords": [
+        "man",
+        "counter",
+        "talking",
+        "phone",
+        "woman",
+        "wearing"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_13"
+    },
+    {
+      "video_id": "Shoplifting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 170.75,
+      "start_time": 121.4,
+      "end_time": 125.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man continues to communicate with the woman on the phone.",
+      "scene_zone": "unknown",
+      "event_text": "From 121.4s to 125.4s, the man continues to communicate with the woman on the phone.",
+      "keywords": [
+        "man",
+        "continues",
+        "communicate",
+        "woman",
+        "phone"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_14"
+    },
+    {
+      "video_id": "Shoplifting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 170.75,
+      "start_time": 125.4,
+      "end_time": 129.5,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The man put down his mobile phone, and then looked at the wall under the woman’s command.",
+      "scene_zone": "room",
+      "event_text": "From 125.4s to 129.5s, the man put down his mobile phone, and then looked at the wall under the woman’s command.",
+      "keywords": [
+        "man",
+        "put",
+        "down",
+        "mobile",
+        "phone",
+        "looked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_15"
+    },
+    {
+      "video_id": "Shoplifting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 170.75,
+      "start_time": 129.9,
+      "end_time": 139.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man took something from the glass shelf, then took something from the corner and placed it in front of the woman wearing sunglasses.",
+      "scene_zone": "unknown",
+      "event_text": "From 129.9s to 139.0s, the man took something from the glass shelf, then took something from the corner and placed it in front of the woman wearing sunglasses.",
+      "keywords": [
+        "man",
+        "took",
+        "something",
+        "glass",
+        "shelf",
+        "corner"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_16"
+    },
+    {
+      "video_id": "Shoplifting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 170.75,
+      "start_time": 139.8,
+      "end_time": 140.3,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The four people outside the counter all looked to the right.",
+      "scene_zone": "store",
+      "event_text": "From 139.8s to 140.3s, the four people outside the counter all looked to the right.",
+      "keywords": [
+        "four",
+        "people",
+        "outside",
+        "counter",
+        "all",
+        "looked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_17"
+    },
+    {
+      "video_id": "Shoplifting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 170.75,
+      "start_time": 140.8,
+      "end_time": 151.3,
+      "object_type": "person",
+      "object_color": "red",
+      "appearance_notes": "Observed event; A man came to the right side of the woman wearing sunglasses, and they gathered together to talk and discuss.",
+      "scene_zone": "unknown",
+      "event_text": "From 140.8s to 151.3s, a man came to the right side of the woman wearing sunglasses, and they gathered together to talk and discuss.",
+      "keywords": [
+        "man",
+        "came",
+        "right",
+        "side",
+        "woman",
+        "wearing"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_18"
+    },
+    {
+      "video_id": "Shoplifting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 170.75,
+      "start_time": 152.3,
+      "end_time": 168.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman wearing sunglasses is talking to the woman next to her.",
+      "scene_zone": "unknown",
+      "event_text": "From 152.3s to 168.1s, the woman wearing sunglasses is talking to the woman next to her.",
+      "keywords": [
+        "woman",
+        "wearing",
+        "sunglasses",
+        "talking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_19"
+    },
+    {
+      "video_id": "Shoplifting042_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 170.75,
+      "start_time": 168.3,
+      "end_time": 170.4,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The woman wearing sunglasses is gone.",
+      "scene_zone": "unknown",
+      "event_text": "From 168.3s to 170.4s, the woman wearing sunglasses is gone.",
+      "keywords": [
+        "woman",
+        "wearing",
+        "sunglasses",
+        "gone"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_20"
+    }
+  ]
+}

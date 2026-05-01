@@ -1,0 +1,171 @@
+{
+  "video_id": "Robbery101_x264",
+  "duration": 111.48,
+  "events": [
+    {
+      "video_id": "Robbery101_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 111.48,
+      "start_time": 8.5,
+      "end_time": 16.6,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; A man wearing a black hat and blue clothes stood in front of the counter, and a clerk wearing a white apron and black hat stood behind the counter at the cashier.",
+      "scene_zone": "store",
+      "event_text": "From 8.5s to 16.6s, a man wearing a black hat and blue clothes stood in front of the counter, and a clerk wearing a white apron and black hat stood behind the counter at the cashier.",
+      "keywords": [
+        "man",
+        "wearing",
+        "black",
+        "hat",
+        "blue",
+        "clothes"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Robbery101_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 111.48,
+      "start_time": 16.6,
+      "end_time": 39.5,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "High activity; The clerk wearing a white apron and a black hat clicks on the checkout display to talk to a man wearing a black hat and blue clothes.",
+      "scene_zone": "unknown",
+      "event_text": "From 16.6s to 39.5s, the clerk wearing a white apron and a black hat clicks on the checkout display to talk to a man wearing a black hat and blue clothes.",
+      "keywords": [
+        "clerk",
+        "wearing",
+        "white",
+        "apron",
+        "black",
+        "hat"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Robbery101_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 111.48,
+      "start_time": 39.5,
+      "end_time": 50.6,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; The man wearing a black hat and blue clothes took out a pistol and communicated with the store clerk.",
+      "scene_zone": "store",
+      "event_text": "From 39.5s to 50.6s, the man wearing a black hat and blue clothes took out a pistol and communicated with the store clerk.",
+      "keywords": [
+        "man",
+        "wearing",
+        "black",
+        "hat",
+        "blue",
+        "clothes"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Robbery101_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 111.48,
+      "start_time": 52.8,
+      "end_time": 63.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man pointed a gun at the clerk, and the clerk opened the cashier drawer to withdraw money.",
+      "scene_zone": "unknown",
+      "event_text": "From 52.8s to 63.2s, the man pointed a gun at the clerk, and the clerk opened the cashier drawer to withdraw money.",
+      "keywords": [
+        "man",
+        "pointed",
+        "gun",
+        "clerk",
+        "opened",
+        "cashier"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Robbery101_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 111.48,
+      "start_time": 66.0,
+      "end_time": 76.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The clerk handed the money to the man and the drawer to the man. The man didn't want it, and the clerk put the drawer back.",
+      "scene_zone": "unknown",
+      "event_text": "From 66.0s to 76.8s, the clerk handed the money to the man and the drawer to the man. The man didn't want it, and the clerk put the drawer back.",
+      "keywords": [
+        "clerk",
+        "handed",
+        "money",
+        "man",
+        "drawer",
+        "didn"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    }
+  ]
+}

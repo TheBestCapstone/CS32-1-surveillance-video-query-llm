@@ -1,0 +1,200 @@
+{
+  "video_id": "Burglary082_x264",
+  "duration": 92.6,
+  "events": [
+    {
+      "video_id": "Burglary082_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 92.6,
+      "start_time": 14.7,
+      "end_time": 23.7,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black appeared near the house on the opposite side of the road, walking around from the side of the house to the front of the house.",
+      "scene_zone": "road",
+      "event_text": "From 14.7s to 23.7s, a man in black appeared near the house on the opposite side of the road, walking around from the side of the house to the front of the house.",
+      "keywords": [
+        "man",
+        "black",
+        "appeared",
+        "near",
+        "house",
+        "opposite"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Burglary082_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 92.6,
+      "start_time": 24.7,
+      "end_time": 33.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; The man was looking inward at the wall.",
+      "scene_zone": "room",
+      "event_text": "From 24.7s to 33.7s, the man was looking inward at the wall.",
+      "keywords": [
+        "man",
+        "looking",
+        "inward",
+        "wall"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Burglary082_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 92.6,
+      "start_time": 34.7,
+      "end_time": 43.7,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "Low activity; The man later ran into a black car parked on the side of the road.",
+      "scene_zone": "road",
+      "event_text": "From 34.7s to 43.7s, the man later ran into a black car parked on the side of the road.",
+      "keywords": [
+        "man",
+        "later",
+        "ran",
+        "black",
+        "car",
+        "parked"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Burglary082_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 92.6,
+      "start_time": 44.1,
+      "end_time": 51.1,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; A man wearing a white T-shirt, black shorts and a baseball cap got out of the car.",
+      "scene_zone": "unknown",
+      "event_text": "From 44.1s to 51.1s, a man wearing a white T-shirt, black shorts and a baseball cap got out of the car.",
+      "keywords": [
+        "man",
+        "wearing",
+        "white",
+        "shirt",
+        "black",
+        "shorts"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Burglary082_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 92.6,
+      "start_time": 54.1,
+      "end_time": 71.1,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Run to the side of the house and stay.",
+      "scene_zone": "unknown",
+      "event_text": "From 54.1s to 71.1s, run to the side of the house and stay.",
+      "keywords": [
+        "run",
+        "side",
+        "house",
+        "stay"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Burglary082_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 92.6,
+      "start_time": 78.3,
+      "end_time": 92.2,
+      "object_type": "car",
+      "object_color": "black",
+      "appearance_notes": "High activity; I saw a man in black and a man in a white T-shirt walking towards the side of the house near the car.",
+      "scene_zone": "unknown",
+      "event_text": "From 78.3s to 92.2s, i saw a man in black and a man in a white T-shirt walking towards the side of the house near the car.",
+      "keywords": [
+        "saw",
+        "man",
+        "black",
+        "white",
+        "shirt",
+        "walking"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    }
+  ]
+}

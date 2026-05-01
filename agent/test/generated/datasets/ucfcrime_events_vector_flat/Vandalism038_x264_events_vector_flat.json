@@ -1,0 +1,232 @@
+{
+  "video_id": "Vandalism038_x264",
+  "duration": 94.24,
+  "events": [
+    {
+      "video_id": "Vandalism038_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 94.24,
+      "start_time": 0.0,
+      "end_time": 5.1,
+      "object_type": "person",
+      "object_color": "gray",
+      "appearance_notes": "Low activity; A man in gray clothes rode a bicycle from the road to the wall of the building, looking back while riding.",
+      "scene_zone": "road",
+      "event_text": "From 0.0s to 5.1s, a man in gray clothes rode a bicycle from the road to the wall of the building, looking back while riding.",
+      "keywords": [
+        "man",
+        "gray",
+        "clothes",
+        "rode",
+        "bicycle",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Vandalism038_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 94.24,
+      "start_time": 5.1,
+      "end_time": 10.1,
+      "object_type": "person",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; The man in gray stopped in front of the wall and fiddled with the plastic bag in his hand.",
+      "scene_zone": "room",
+      "event_text": "From 5.1s to 10.1s, the man in gray stopped in front of the wall and fiddled with the plastic bag in his hand.",
+      "keywords": [
+        "man",
+        "gray",
+        "stopped",
+        "front",
+        "wall",
+        "fiddled"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Vandalism038_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 94.24,
+      "start_time": 10.1,
+      "end_time": 20.9,
+      "object_type": "person",
+      "object_color": "gray",
+      "appearance_notes": "Low activity; The man in gray took out the spray bottle from the plastic bag, sat on his bicycle and spray painted on the wall, looking back twice during the process.",
+      "scene_zone": "room",
+      "event_text": "From 10.1s to 20.9s, the man in gray took out the spray bottle from the plastic bag, sat on his bicycle and spray painted on the wall, looking back twice during the process.",
+      "keywords": [
+        "man",
+        "gray",
+        "took",
+        "out",
+        "spray",
+        "bottle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Vandalism038_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 94.24,
+      "start_time": 20.9,
+      "end_time": 66.9,
+      "object_type": "person",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; The man in gray continued to move forward on his bicycle, spraying things on the wall.",
+      "scene_zone": "room",
+      "event_text": "From 20.9s to 66.9s, the man in gray continued to move forward on his bicycle, spraying things on the wall.",
+      "keywords": [
+        "man",
+        "gray",
+        "continued",
+        "move",
+        "forward",
+        "bicycle"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Vandalism038_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 94.24,
+      "start_time": 66.9,
+      "end_time": 69.6,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A car passed by on the road,.",
+      "scene_zone": "road",
+      "event_text": "From 66.9s to 69.6s, a car passed by on the road,.",
+      "keywords": [
+        "car",
+        "passed",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Vandalism038_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 94.24,
+      "start_time": 66.9,
+      "end_time": 77.6,
+      "object_type": "person",
+      "object_color": "gray",
+      "appearance_notes": "Observed event; The man in gray rode a bicycle toward the road, and then the man left on his bicycle.",
+      "scene_zone": "road",
+      "event_text": "From 66.9s to 77.6s, the man in gray rode a bicycle toward the road, and then the man left on his bicycle.",
+      "keywords": [
+        "man",
+        "gray",
+        "rode",
+        "bicycle",
+        "toward",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Vandalism038_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 94.24,
+      "start_time": 81.5,
+      "end_time": 93.8,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; Man riding a bicycle on the road.",
+      "scene_zone": "road",
+      "event_text": "From 81.5s to 93.8s, man riding a bicycle on the road.",
+      "keywords": [
+        "man",
+        "riding",
+        "bicycle",
+        "road"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    }
+  ]
+}

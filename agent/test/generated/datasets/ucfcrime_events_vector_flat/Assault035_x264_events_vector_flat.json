@@ -1,0 +1,104 @@
+{
+  "video_id": "Assault035_x264",
+  "duration": 30.01,
+  "events": [
+    {
+      "video_id": "Assault035_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 30.01,
+      "start_time": 1.8,
+      "end_time": 19.7,
+      "object_type": "car",
+      "object_color": "gray",
+      "appearance_notes": "High activity; Two men walked around a gray car beating another man with a stick.",
+      "scene_zone": "unknown",
+      "event_text": "From 1.8s to 19.7s, two men walked around a gray car beating another man with a stick.",
+      "keywords": [
+        "two",
+        "men",
+        "walked",
+        "around",
+        "gray",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Assault035_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 30.01,
+      "start_time": 19.2,
+      "end_time": 22.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man broke the left front glass of the car with a stick, and then ran away.",
+      "scene_zone": "unknown",
+      "event_text": "From 19.2s to 22.0s, a man broke the left front glass of the car with a stick, and then ran away.",
+      "keywords": [
+        "man",
+        "broke",
+        "left",
+        "front",
+        "glass",
+        "car"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Assault035_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 30.01,
+      "start_time": 22.4,
+      "end_time": 30.0,
+      "object_type": "car",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The car drove forward and drove away from the scene.",
+      "scene_zone": "unknown",
+      "event_text": "From 22.4s to 30.0s, the car drove forward and drove away from the scene.",
+      "keywords": [
+        "car",
+        "drove",
+        "forward",
+        "away",
+        "scene"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    }
+  ]
+}

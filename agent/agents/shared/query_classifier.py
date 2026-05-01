@@ -2,6 +2,12 @@ import json
 import os
 from typing import Any, Dict
 
+from lightingRL.prompt_registry import (
+    QUERY_CLASSIFICATION_SYSTEM_PROMPT_KEY,
+    QUERY_CLASSIFICATION_USER_PROMPT_KEY,
+    get_prompt_template,
+    render_prompt,
+)
 from langchain_core.messages import HumanMessage, SystemMessage
 
 QUERY_CLASSIFICATION_OUTPUT_SCHEMA = {
@@ -100,31 +106,19 @@ def classify_query(query: str, llm: Any = None, config: Any = None) -> Dict[str,
         except Exception:
             return _fallback_result("llm init failed")
 
-    prompt = (
-        "你是查询分类器。请判断用户问题属于 structured / semantic / mixed。"
-        "structured: 明确字段过滤、存在性/计数/列表查询为主；"
-        "semantic: 语义理解、相似检索、关系描述为主；"
-        "mixed: 两者都明显存在。"
-        "判定优先级：若问题主要是是否存在/列出/查某类目标，即使语句是自然语言，也优先 structured。"
-        "只有当问题核心依赖语义关系（near/around/similar/行为过程）时才判 semantic。"
-        "示例："
-        "1) Did you see any person in the database? -> structured；"
-        "2) Show me dark persons. -> structured；"
-        "3) Find a person near the left bleachers. -> semantic。"
-        "仅输出结构化 JSON。"
-        f"\n\n用户问题: {text}"
-    )
+    prompt = render_prompt(QUERY_CLASSIFICATION_USER_PROMPT_KEY, query=text)
+    system_prompt = get_prompt_template(QUERY_CLASSIFICATION_SYSTEM_PROMPT_KEY)
     try:
         if hasattr(llm, "with_structured_output"):
             model = llm.with_structured_output(QUERY_CLASSIFICATION_OUTPUT_SCHEMA)
             result = model.invoke(
-                [SystemMessage(content="严格输出 JSON。"), HumanMessage(content=prompt)],
+                [SystemMessage(content=system_prompt), HumanMessage(content=prompt)],
                 config=config,
             )
             payload = result.model_dump() if hasattr(result, "model_dump") else dict(result)
         else:
             raw = llm.invoke(
-                [SystemMessage(content="严格输出 JSON。"), HumanMessage(content=prompt)],
+                [SystemMessage(content=system_prompt), HumanMessage(content=prompt)],
                 config=config,
             )
             text_out = raw.content if hasattr(raw, "content") else str(raw)

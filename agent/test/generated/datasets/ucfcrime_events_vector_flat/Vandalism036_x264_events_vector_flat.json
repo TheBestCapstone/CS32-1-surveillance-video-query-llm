@@ -1,0 +1,266 @@
+{
+  "video_id": "Vandalism036_x264",
+  "duration": 48.12,
+  "events": [
+    {
+      "video_id": "Vandalism036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 48.12,
+      "start_time": 0.0,
+      "end_time": 8.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Low activity; A naked man walked into the store, walked to the counter, held the counter with both hands and looked around.",
+      "scene_zone": "store",
+      "event_text": "From 0.0s to 8.6s, a naked man walked into the store, walked to the counter, held the counter with both hands and looked around.",
+      "keywords": [
+        "naked",
+        "man",
+        "walked",
+        "store",
+        "counter",
+        "held"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Vandalism036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 48.12,
+      "start_time": 14.3,
+      "end_time": 18.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The shirtless man glanced inside the counter and suddenly threw an item on the counter to the ground.",
+      "scene_zone": "store",
+      "event_text": "From 14.3s to 18.2s, the shirtless man glanced inside the counter and suddenly threw an item on the counter to the ground.",
+      "keywords": [
+        "shirtless",
+        "man",
+        "glanced",
+        "inside",
+        "counter",
+        "suddenly"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Vandalism036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 48.12,
+      "start_time": 18.2,
+      "end_time": 25.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; Then the shirtless man pushed all the shelves to the ground while walking towards the store.",
+      "scene_zone": "store",
+      "event_text": "From 18.2s to 25.2s, then the shirtless man pushed all the shelves to the ground while walking towards the store.",
+      "keywords": [
+        "shirtless",
+        "man",
+        "pushed",
+        "all",
+        "shelves",
+        "ground"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Vandalism036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 48.12,
+      "start_time": 24.2,
+      "end_time": 25.2,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; A man in white walked toward the door while looking in the direction of the shirtless man.",
+      "scene_zone": "room",
+      "event_text": "From 24.2s to 25.2s, a man in white walked toward the door while looking in the direction of the shirtless man.",
+      "keywords": [
+        "man",
+        "white",
+        "walked",
+        "toward",
+        "door",
+        "while"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Vandalism036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 48.12,
+      "start_time": 21.2,
+      "end_time": 25.2,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A person came from inside the counter.",
+      "scene_zone": "store",
+      "event_text": "From 21.2s to 25.2s, a person came from inside the counter.",
+      "keywords": [
+        "person",
+        "came",
+        "inside",
+        "counter"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    },
+    {
+      "video_id": "Vandalism036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 48.12,
+      "start_time": 25.2,
+      "end_time": 26.7,
+      "object_type": "person",
+      "object_color": "white",
+      "appearance_notes": "High activity; The man in white left from the door,.",
+      "scene_zone": "room",
+      "event_text": "From 25.2s to 26.7s, the man in white left from the door,.",
+      "keywords": [
+        "man",
+        "white",
+        "left",
+        "door"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_6"
+    },
+    {
+      "video_id": "Vandalism036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 48.12,
+      "start_time": 30.2,
+      "end_time": 33.2,
+      "object_type": "person",
+      "object_color": "black",
+      "appearance_notes": "Observed event; A man in black and a man in a striped shirt wearing a hat left the door.",
+      "scene_zone": "room",
+      "event_text": "From 30.2s to 33.2s, a man in black and a man in a striped shirt wearing a hat left the door.",
+      "keywords": [
+        "man",
+        "black",
+        "striped",
+        "shirt",
+        "wearing",
+        "hat"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_7"
+    },
+    {
+      "video_id": "Vandalism036_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 48.12,
+      "start_time": 35.7,
+      "end_time": 48.0,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "High activity; The shirtless man continued to push the shelves and then left from the door.",
+      "scene_zone": "room",
+      "event_text": "From 35.7s to 48.0s, the shirtless man continued to push the shelves and then left from the door.",
+      "keywords": [
+        "shirtless",
+        "man",
+        "continued",
+        "push",
+        "shelves",
+        "left"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_8"
+    }
+  ]
+}

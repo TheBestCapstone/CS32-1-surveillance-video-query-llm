@@ -1,0 +1,165 @@
+{
+  "video_id": "Robbery092_x264",
+  "duration": 28.36,
+  "events": [
+    {
+      "video_id": "Robbery092_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 28.36,
+      "start_time": 0.0,
+      "end_time": 8.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; A man stood in front of the counter.",
+      "scene_zone": "store",
+      "event_text": "From 0.0s to 8.6s, a man stood in front of the counter.",
+      "keywords": [
+        "man",
+        "stood",
+        "front",
+        "counter"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_1"
+    },
+    {
+      "video_id": "Robbery092_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 28.36,
+      "start_time": 8.6,
+      "end_time": 10.6,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man quickly walked behind the counter.",
+      "scene_zone": "store",
+      "event_text": "From 8.6s to 10.6s, the man quickly walked behind the counter.",
+      "keywords": [
+        "man",
+        "quickly",
+        "walked",
+        "behind",
+        "counter"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_2"
+    },
+    {
+      "video_id": "Robbery092_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 28.36,
+      "start_time": 10.6,
+      "end_time": 12.7,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man behind the counter picked up the stick.",
+      "scene_zone": "store",
+      "event_text": "From 10.6s to 12.7s, the man behind the counter picked up the stick.",
+      "keywords": [
+        "man",
+        "behind",
+        "counter",
+        "picked",
+        "stick"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_3"
+    },
+    {
+      "video_id": "Robbery092_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 28.36,
+      "start_time": 12.7,
+      "end_time": 14.1,
+      "object_type": "person",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The man turned and ran away, followed closely by the man behind the counter.",
+      "scene_zone": "store",
+      "event_text": "From 12.7s to 14.1s, the man turned and ran away, followed closely by the man behind the counter.",
+      "keywords": [
+        "man",
+        "turned",
+        "ran",
+        "away",
+        "followed",
+        "closely"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_4"
+    },
+    {
+      "video_id": "Robbery092_x264",
+      "clip_start_sec": 0.0,
+      "clip_end_sec": 28.36,
+      "start_time": 14.1,
+      "end_time": 15.3,
+      "object_type": "unknown",
+      "object_color": "unknown",
+      "appearance_notes": "Observed event; The two men ran out.",
+      "scene_zone": "unknown",
+      "event_text": "From 14.1s to 15.3s, the two men ran out.",
+      "keywords": [
+        "two",
+        "men",
+        "ran",
+        "out"
+      ],
+      "start_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "end_bbox_xyxy": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "entity_hint": "segment_5"
+    }
+  ]
+}

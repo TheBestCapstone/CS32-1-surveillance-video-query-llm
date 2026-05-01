@@ -4,7 +4,12 @@ from langchain_core.runnables import RunnableConfig
 from langgraph.store.base import BaseStore
 
 from agents.hybrid_search.sub_agent import run_hybrid_sub_agent
-from .retrieval_contracts import build_routing_metrics, build_search_config, normalize_hybrid_rows
+from .retrieval_contracts import (
+    build_routing_metrics,
+    build_search_config,
+    normalize_hybrid_rows,
+    project_rows_to_parent_context,
+)
 from .types import AgentState, InputValidator
 import time
 
@@ -27,16 +32,17 @@ def create_hybrid_search_node(llm=None, **kwargs):
             summary, raw_rows = run_hybrid_sub_agent(user_query, llm)
             duration = time.perf_counter() - start
             normalized_rows = normalize_hybrid_rows(raw_rows)
+            parent_rows = project_rows_to_parent_context(normalized_rows)
             search_config = build_search_config(state.get("search_config", {}))
             
             return {
                 "hybrid_result": normalized_rows,
-                "rerank_result": normalized_rows,
+                "rerank_result": parent_rows,
                 "reflection_result": {"feedback": "Retrieval successful", "quality_score": 1.0, "needs_retry": False},
                 "tool_error": None,
                 "retry_count": current_retry,
                 "current_node": "hybrid_search_node",
-                "search_explain": summary,
+                "search_explain": f"{summary}\nParent projection rows={len(parent_rows)}",
                 "routing_metrics": build_routing_metrics(
                     execution_mode="legacy_router",
                     label="semantic",
