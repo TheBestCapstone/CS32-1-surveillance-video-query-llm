@@ -80,18 +80,33 @@ def token_f1(pred, gt):
     pr, rc = overlap/len(p), overlap/len(g)
     return 2*pr*rc/(pr+rc)
 
-def greedy_match(pred_ts, pred_sent, gt_ts, gt_sent):
-    used = set(); out = []
+def optimal_match(pred_ts, pred_sent, gt_ts, gt_sent):
+    """Hungarian-optimal matching (maximises sum of tIoU over all GT segments)."""
+    import numpy as np
+    from scipy.optimize import linear_sum_assignment
+    n_g, n_p = len(gt_ts), len(pred_ts)
+    if n_g == 0 or n_p == 0:
+        return [(gi, -1, 0.0, 0.0) for gi in range(n_g)]
+    # cost matrix: negated tIoU (scipy minimises)
+    cost = np.zeros((n_g, n_p))
     for gi, gts in enumerate(gt_ts):
-        best_i, best_iou = -1, 0.0
         for pi, pts in enumerate(pred_ts):
-            if pi in used: continue
-            iou = temporal_iou(tuple(pts), tuple(gts))
-            if iou > best_iou: best_iou, best_i = iou, pi
-        if best_i >= 0: used.add(best_i)
-        out.append((gi, best_i, best_iou,
-                    token_f1(pred_sent[best_i], gt_sent[gi]) if best_i >= 0 else 0.0))
+            cost[gi, pi] = -temporal_iou(tuple(pts), tuple(gts))
+    row_ind, col_ind = linear_sum_assignment(cost)
+    assigned = {r: c for r, c in zip(row_ind, col_ind)}
+    out = []
+    for gi in range(n_g):
+        if gi in assigned:
+            pi = assigned[gi]
+            iou = -cost[gi, pi]
+            tf1 = token_f1(pred_sent[pi], gt_sent[gi]) if pi < len(pred_sent) else 0.0
+            out.append((gi, pi, iou, tf1))
+        else:
+            out.append((gi, -1, 0.0, 0.0))
     return out
+
+# keep old name as alias so existing call-sites still work
+greedy_match = optimal_match
 
 def adaptive_frame_count(dur, base=12):
     if dur < 30:  return base
