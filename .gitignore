@@ -43,6 +43,8 @@ __pycache__/
 .ipynb_checkpoints/
 
 # ─── tooling / IDE ──────────────────────────────────────────────────────────
+.claude/
+.trae/
 .langgraph_api/
 agent/.langgraph_api/
 agent/init/agent_init_profile.json
