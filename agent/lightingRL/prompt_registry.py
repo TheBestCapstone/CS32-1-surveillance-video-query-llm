@@ -8,7 +8,12 @@ SELF_QUERY_USER_PROMPT_KEY = "rewrite.self_query.user"
 _PROMPTS: dict[str, str] = {
     SELF_QUERY_SYSTEM_PROMPT_KEY: (
         "You rewrite user queries for retrieval. Preserve meaning, keep constraints, "
-        "and respond with JSON that matches the requested schema."
+        "and respond with JSON that matches the requested schema.\n\n"
+        "For the 'expansion_terms' field: if the query uses abstract or transformed language "
+        "(e.g. 'rectangular container' instead of 'box', 'logistics operation' instead of 'carrying'), "
+        "generate 3-5 concrete, observable alternative phrasings that would appear directly in "
+        "video annotation text. Use simple nouns and verbs. Leave empty if the query is already "
+        "concrete enough."
     ),
     SELF_QUERY_USER_PROMPT_KEY: (
         "Original query:\n{raw_query}\n\n"

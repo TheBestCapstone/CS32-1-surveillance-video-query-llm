@@ -4,172 +4,100 @@
 >
 > 配套文档：
 >
-> - `agent/handoff.md` — 上 session 末尾接力快照
+> - `agent/handoff.md` — **给下一个 agent 的交接快照（优先读）**
 > - `agent/调试记录.md` — 全 session 完整复盘
 > - `agent/data_audit_2026_05_02.md` — 父子索引架构调研
 > - `agent/recall_diagnosis_2026_05_02.md` — context_recall 低值诊断 ⭐
 
 ---
 
-## 当前已知瓶颈（截至 2026-05-02 P1-7 v2.3 实测后）
+## 本轮工作总结（2026-05-03）
+
+- **图与清理**：仅保留并行融合路径；删除 legacy router / `merged_result` / `SQLiteGateway` 等（P1-5 + P3-3）。
+- **存在性链路**：P1-Next-A 收紧 summary bail-out；P1-7 v2.3 重选 span + follow-up 已修。
+- **评测去噪（P1-Next-F）**：R1/R2/R3；**Part1 50-case** context_recall +0.19（0.36→0.55）。
+- **P1-Next-G R4**：metadata 净化（`Keywords:` 剥离）、reranker A/B（bge-v2-m3 不如 ms-marco）、**Step 1 已修**：禁用 `AGENT_RERANK_METADATA_IN_QUERY`（默认 OFF），消除跨视频噪声。
+- **P1-Next-G R6**：self_query_node 扩展 `expansion_terms`，LLM 对抽象 query 生成具体可观测替代词。
+- **导入切换**：默认仅 Part4（`DEFAULT_INCLUDE_SHEETS = ["Part4"]`），104 个 Normal_Videos 种子已补全。
+- **IoU**：Part4 14/15 eligible（IoU 0.594）；修复 `expected_answer_label == "no"` 时不应算 IoU 的 bug。
+
+---
+
+## 当前已知瓶颈（截至 2026-05-03，Part4 15-case 基线）
 
 
-| 指标                                | 起点   | 当前        | 目标         | 真因                                                                         |
-| --------------------------------- | ---- | --------- | ---------- | -------------------------------------------------------------------------- |
-| `top_hit_rate`                    | 0.40 | **0.94**  | ≥ 0.95     | (P0/P1 已修)                                                                 |
-| `context_precision_avg`           | 0.18 | 0.58      | ≥ 0.65     | reranker 把弱相关 chunk 排进 top-3                                               |
-| `**context_recall_avg`**          | 0.15 | **0.36**  | **≥ 0.55** | **F1+F2+F3 评测/接口问题（详见 `recall_diagnosis_2026_05_02.md`），不是 retrieval 召不到** |
-| `time_iou_avg`                    | 0.13 | 0.23      | ≥ 0.40     | rerank 排序错 + 长视频中段被错过                                                      |
-| `factual_correctness_avg` (RAGAS) | 0.48 | 0.58-0.62 | (废)        | 用 P1-Next-C `custom_correctness` 替代                                        |
+| 指标                           | Part4 15-case | 目标     | 说明                                     |
+| ---------------------------- | ------------- | ------ | -------------------------------------- |
+| `top_hit_rate`               | 0.867         | ≥ 0.90 | Normal_Videos 检索比 UCFCrime 难           |
+| `context_precision_avg`      | **0.697**     | ≥ 0.75 | R4 Step1 fix 后已回升（+0.024 vs pre-R4R6）  |
+| `context_recall_avg`         | 0.700         | ≥ 0.75 | R6 expansion 已 +0.04；余量在 R4 Step2 / R8 |
+| `time_range_overlap_iou_avg` | 0.594         | ≥ 0.60 | 14/15 eligible，口径已修复                   |
+| `custom_correctness_avg`     | 0.763         | ≥ 0.80 | Part4 video_match 是瓶颈                  |
+| `ragas_e2e_score_avg`        | 0.690         | ≥ 0.75 | 用 custom_correctness 参与合成              |
 
 
 ---
+
+## 评测流程（每次跑完 `ragas_eval_runner.py`）
+
+1. `**REPORT_TABLES.md`（必读）** — 汇总 RAGAS 指标、**自定义指标 `custom_correctness`**（§2.3 与 §6 明细）、任务原生时间/视频对齐、逐 case 宽表与 Verifier。
+  - **默认**：runner 在写出 `e2e_report.json` / `summary_report.json` 后**自动**生成 `--output-dir/REPORT_TABLES.md`（`agent/test/eval_report_tables.py`）。不需要时加 `**--no-report-tables`**。  
+  - **仅补生成**（改模板后重渲染、或历史 run 未生成）：  
+  `python agent/test/scripts/regen_report_tables.py --output-dir <run 输出目录>`  
+  - **RAGAS wall 耗时**：若 tee 日志为 `agent/test/generated/<与目录同名>.log`，脚本会自动匹配；否则加 `--log <路径>`。
+2. 建议终端 `**tee`** 保存 `.log`，便于耗时与复盘。
+
+---
+
+# 已验收（Smoke 10-case，2026-05-02）
+
+
+| 项                       | 结论                                                                                                                                                                                                                                                                                                                                     |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **输出**                  | `agent/test/generated/ragas_eval_e2e_n10_unverified_20260502/`：`REPORT_TABLES.md`、`summary_report.json`、`e2e_report.json`；日志 `agent/test/generated/ragas_eval_e2e_n10_unverified_20260502.log`                                                                                                                                         |
+| **子库**                  | `runtime/eval_subset.sqlite`、`runtime/eval_subset_chroma`；seed：`generated/datasets/ucfcrime_events_vector_flat`（4 视频）                                                                                                                                                                                                                  |
+| **指标快照（本机该次 run，10 条）** | `context_precision_avg` **0.4876**；`context_recall_avg` **0.55**；`custom_correctness_avg` **0.7438**；`factual_correctness_avg` **0.8**；`faithfulness_avg` **0.7583**；`ragas_e2e_score_avg` **0.6349**；`top_hit_rate` **1.0**；`time_range_overlap_iou_avg` **0.2278**；`video_match_score_avg` **0.8889**（n=9）；RAGAS/Graph 错误 case **0** |
+| **备注**                  | `reference_used_rich_count`=0：当前导入数据侧无可用 `reference_answer_rich` 或未命中富参考路径；smoke 结论**不依赖** rich，后续可单独修导入再对比。                                                                                                                                                                                                                           |
+
 
 # 🚧 未完成（按优先级排序）
 
-## ⭐ P1-Next-F evaluator-only 修复（**最高优先级**，单一 PR ≤ 1 天）
+## IoU / 时间定位 ✅ 已解决（2026-05-03）
 
-> 来源：`agent/recall_diagnosis_2026_05_02.md` R1+R2+R3。
-> 三个改动**全部在 evaluator 端，不动产品代码**（retrieval / verifier / summary 一行不动），与 P1-7 v2.3 / P1-Next-A / P1-Next-C 完全正交。
-> 预期 context_recall: 0.36 → **0.55-0.65**；同时把"评测信号 / 噪声比"拉起来，让后续任何 retrieval 改造的真实收益可观测。
-
-### R1 给 RAGAS 看到的 context 强制带 video_id + 时段头
-
-- 文件：`agent/test/ragas_eval_runner.py:120-127` (`_row_context_text`)
-- 改动：返回 `f"Video {row['video_id']}. Time {row['start_time']:.1f}s-{row['end_time']:.1f}s. " + 现有 event_summary_en`
-- 当前数据：56% (84/150) chunk 缺 `Video <id>` 前缀，导致参考里 `In <video> around <time>` 直接归因失败
-- 预期收益：消灭 F2 失败模式，**+0.10~0.15 absolute recall**
-- 工作量：< 30min
-
-### R2 把 evaluator note 从 reference_answer_rich 剥离
-
-- 文件：`agent/test/agent_test_importer.py:509-538` (`_build_reference_answer_rich`)
-- 改动：clean ref `f"Yes. In {video_id} around {time}."`；`recall_challenge` 单独放 metadata，不拼进 reference
-- 当前数据：35/50 case 的 reference 含评测备注（"Minimal" / "Must link X to Y" / "Bystander has no actions; easily overlooked..."）；含备注组 avg recall=0.333 vs clean 组 0.422
-- ⚠️ `agent/challenge.md §5.1` "default-on rich reference" 的设计假设**事实错误**，rich 多出来的 scene 是 evaluator 备注污染。建议同时把 `--ragas-no-rich-reference` 改成默认或加 ablation
-- 预期收益：消灭 F1 失败模式，**+0.05~0.10 absolute recall**
-- 工作量：< 1h（含 dataset 重生成，不需要重跑 retrieval）
-
-### R3 提升 RAGAS 看到的 chunk 数到 5
-
-- 文件：`agent/test/ragas_eval_runner.py:822` (`--ragas-max-contexts` 3 → 5) + 同步把 `--ragas-max-total-context-chars` 1800 → 3000
-- 当前数据：rerank top-K = 5，但 RAGAS 只看 3 个 chunk，多 fact 答案没机会被多 chunk 同时支撑
-- 预期收益：消灭 F3 失败模式，**+0.03~0.05 absolute recall**
-- 工作量：< 5min
-
-### 验收
-
-- 跑一次 50-case eval，对比 P1-Next-A baseline 的 context_recall：从 **0.36 → ≥ 0.55**
-- top_hit_rate / context_precision / faithfulness 不退步（P1-Next-F 不改 retrieval 一行）
-- factual_correctness 可能因 reference 干净而提升（次要预期）
+> 切到 Part4-only 后，15-case smoke 中 **14/15** 有 GT 时间窗（`time_range_overlap_iou_case_count=14`），IoU 均值 **0.594**。Part4 天然自带完整的 `expected_start_sec/expected_end_sec`，不再需要数据补全。
+>
+> 同时修复了 `expected_answer_label == "no"` 时不应计算 IoU 的 bug（`ragas_eval_runner.py` `_compute_custom_correctness`）。
 
 ---
 
-## ⚠️ P1-7 v2.3 follow-up: summary_node mismatch bug（中优先，30min + 25min eval）
+## P1-Next-G retrieval 真实改造（按 ROI 排序；**P1-Next-F 已完成**，可启动 A/B 规划）
 
-> 触发：P1-7 v2.3 grounder ON 50-case eval 暴露了 PART1_0021 退步（factual 0.5 → 0.0）。verifier 给出 mismatch + span_source=rerank_reselected + 跨视频选错（Arrest046 而非 expected Arrest043），但 `summary_node._build_factual_summary` 看到 `span_source=="rerank_reselected"` 就直接用 verifier 的 `(video_id, start, end)` 写出 "The most relevant clip is in Arrest046..."，**覆盖了 grounder 的 mismatch 语义**。
+> 这一组改动会动 retrieval 真实链路。评测噪声（F1–F3）已通过 P1-Next-F 压低；剩余 recall 缺口以 R4/R6/R8 真改为主。来源：`recall_diagnosis_2026_05_02.md`。
 
-- 文件：`agent/node/summary_node.py:138-176` (`_build_factual_summary`)
-- 改动思路：增加判断 ——
-  ```python
-  if (
-      verifier_result.get("decision") == "mismatch"
-      and verifier_result.get("span_source") == "rerank_reselected"
-      and grounder_enabled
-  ):
-      return "No matching clip found."  # 不用 verifier 的 video_id/start/end
-  ```
-  保留 grounder OFF 行为不变（rows>0 强制 Yes）
-- 验收：重跑 P1-7 v2.3 grounder ON 50-case，PART1_0021 不再 factual=0；其它 case 不退步
-- 工作量：30min 代码 + 25min eval
+### R4 reranker 升级 / metadata 净化 ✅ Step 1 DONE
 
----
+> **已落地**：`Keywords:` 剥离、`AGENT_RERANK_METADATA_IN_QUERY` 默认 OFF（灰度口保留）、`_enrich_query_with_metadata`。
+> **A/B 结论**：`bge-reranker-v2-m3` 不如 `ms-marco-MiniLM-L-6-v2`（precision -0.033, recall -0.037），保持旧模型。
+> **Step 1 fix 已验证**：metadata-in-query OFF → 15-case precision 0.673→0.697，PART4_0014 precision +0.417。
 
-## P1-Next-C 评测指标改造（实施时机：R1+R2+R3 之后）
+#### 待做 Step 2（兜底，低成本）：reranker 顶上加 ulin abstention
 
-> 触发：sanity check 发现 RAGAS factual_correctness 单次评测随机抖动 ±0.10-0.15。
-> 实施时机：**先做 P1-Next-F 拉真信号 → 再做 P1-Next-C 替换 factual**（顺序换了不影响最终目标）。
+**动机**：Step 1 之后「is there any X」类 negative query 的 reranker positive-class bias 仍可能存在。
 
-### 保留的 RAGAS 指标
+**实施**：
 
-- `context_precision` / `context_recall` / `faithfulness`（不动）
+1. 从 PART4 挑 ~50 条有 label 样本，跑 reranker 拿 score 向量，fit ridge regression（target mAP 或 precision@K）
+2. 推理时算 ulin(z)，低于 τ 返回空（"No matching clip"）
+3. τ 扫 abstention rate 10%/30%/50%，在 precision 与 recall 间找平衡
+4. 成本：~50 行代码，延迟 ~1ms
+5. 注意：按 query 类型分别 fit 或 "无答案" 类型单独走 binary classifier
 
-### 移除指标
+### R6 Query 改写 / expansion ✅ DONE
 
-- ❌ `factual_correctness`（被自定义"准确性"指标完全替代）
-
-### 新增 `custom_correctness`（规则型，0 LLM 调用）
-
-```
-yes_no_score    = 1.0 if predicted_answer_label == expected_answer_label else 0.0
-video_id_score  = 1.0 if predicted_video_id == expected_video_id else 0.0
-time_iou_score  = max(0, IoU((pred_start, pred_end), (exp_start, exp_end)))
-time_bonus      = 0.2 if time_iou_score >= 0.5 else 0.0
-
-# 默认权重（有 expected_time）
-custom_correctness = 0.4 × yes_no + 0.4 × video_id + 0.2 × min(1.0, time_iou + time_bonus)
-
-# expected_time 缺失时
-custom_correctness = 0.5 × yes_no + 0.5 × video_id
-```
-
-### RAGAS LLM 评分参数变更
-
-- `temperature=0`（runner 里 `LangchainLLMWrapper(ChatOpenAI(model="...", temperature=0))`）
-- 仍保留 retry，但失败计入 `metric_errors`
-
-### 实施前讨论清单
-
-- `expected_answer_label="no"` 时 video_id_score 跳过（"no"问题没有正确视频），权重重分配到 yes_no 和 time
-- `predicted_answer_label` 从 response 抽：正则 `"No matching" / "Yes." / "The most relevant clip"` 三类
-- `expected_time` 模糊（如"约 0:01:00"）扩 ±5s tolerance
-- 旧 baseline 数字反向计算：runner 加 `--rescore-only` 模式
-
-### 改造范围
-
-- 文件：`agent/test/ragas_eval_runner.py` 新建 `_score_custom_correctness()` + 替换 factual_correctness 注入点 + 设 `temperature=0`
-- 新文件 `agent/test/test_custom_correctness.py`
-- `agent/challenge.md` 加一节描述 custom_correctness 含义
-
-### 工作量：1.5-2h
-
----
-
-## P1-Next-G retrieval 真实改造（按 ROI 排序，先做 P1-Next-F 后启动）
-
-> 这一组改动会动 retrieval 真实链路。需要 P1-Next-F 把评测噪声降下来后才能可靠 A/B。来源：`recall_diagnosis_2026_05_02.md` R4-R8。
-
-### R4 reranker 升级 / metadata 净化
-
-- 文件：`agent/tools/rerank.py:17, 20-33`
-- 选项：
-  - (a) `BAAI/bge-reranker-v2-m3` 替换 `cross-encoder/ms-marco-MiniLM-L-6-v2`（多语 + 对 metadata-rich 文本更好）
-  - (b) `_build_pair_text` 把 metadata 段移到 query 侧
-  - (c) 剥掉 doc 文本里 `Keywords:` 段
-- 预期：救 F5（reranker 排错），**+0.02~0.05 recall + 显著 localization 改善**
-- 工作量：(a) 1-2 天 / (b)(c) 半天
-
-### R5 长视频按时间窗 hard split chunking
-
-- 文件：`agent/db/chroma_builder.py:208-257, 356-438`
-- 改动：新增按 30s 时间窗聚合多 events 的 child 策略（与现有 entity_hint 策略并存或替换）
-- 预期：救 F4（长视频中段被错过），**+0.05 recall + localization 显著改善**
-- 工作量：中-大（改 builder + 重建索引 + 验证）
-- 与 P1-Next-E 的关系：互斥但都有效；**推荐先做 R5（简单可控），entity_hint 重做留作后续**
-
-### R6 Query 改写 / expansion
-
-- 文件：新增 `agent/node/query_rewriter_node.py` 或扩展 `self_query_node`
-- 改动：LLM 把抽象 question（"neglect" / "bystander" / "excessive force"）改写为可观察 chunk 关键词
-- 预期：救 F6（negative-behavior / 抽象描述），**+0.02~0.04 recall**
-- 工作量：中（新节点 + prompt 调优）
-
-### R7 Hybrid alpha sweep
-
-- 文件：`agent/node/retrieval_contracts.py:15-17` (`hybrid_alpha=0.7`, `hybrid_fallback_alpha=0.9`)
-- 改动：跑 0.5 / 0.7 / 0.9 三档 + dense-only ablation 对比
-- 预期：**+0.01~0.03 recall**（不确定）
-- 工作量：低
+- 文件：`agent/node/self_query_node.py`、`agent/lightingRL/prompt_registry.py`
+- 已落地：`expansion_terms` 字段，LLM 对抽象 query 生成 3-5 个可观测替代词，拼到 `rewritten_query` 尾部
+- 27-case 验证：`context_recall` +0.04（0.70→0.74）
+- TODO：expansion 仅在 3-5/27 case 触发，可降低触发门槛或改为检索内部 expansion
 
 ### R8 交叉验证用 NonLLM/IDBased recall（诊断辅助）
 
@@ -180,10 +108,26 @@ custom_correctness = 0.5 × yes_no + 0.5 × video_id
 
 ---
 
+## P1-Next-G R7 Hybrid alpha sweep（独立项，留到最后）
+
+> 从 P1-Next-G 中拆出，作为最终微调项。
+
+- 文件：`agent/node/retrieval_contracts.py:15-17` (`hybrid_alpha=0.7`, `hybrid_fallback_alpha=0.9`)
+- 改动：跑 0.5 / 0.7 / 0.9 三档 + dense-only ablation 对比
+- 预期：**+0.01~0.03 recall**（不确定，属于 fine-tuning 级别）
+- 工作量：低
+
+### 验收
+
+- 同一 `--limit 50`（Part4）子集上 ablate 至少 3 档 alpha + dense-only
+- 选最优 alpha 入默认配置
+- context_recall / context_precision 不退步
+
+---
+
 ## P1-Next-E entity_hint 字段语义修复（长期，独立路径）
 
 > 触发：UCFCrime source data 的 `entity_hint = segment_<event_index>` 顺序编号，导致 chroma_builder 按 `(video_id, entity_hint)` 聚合时每组仅 1 event，三层架构退化为两层（详见 `data_audit_2026_05_02.md`）。
-> 与 P1-Next-G R5 关系：R5 改 child 切分维度为时间窗；本 todo 改 entity_hint 为真实 entity track ID。**两路径互斥**（同一时间只用一种 child 策略），R5 简单可控、本 todo 长期方向。
 
 ### 推荐方案 B: LLM-based entity clustering
 
@@ -211,9 +155,23 @@ custom_correctness = 0.5 × yes_no + 0.5 × video_id
 
 # ✅ 已完成（按时间倒序）
 
-## P1-7 v2.3 verifier 在 rerank_result 内重选 best span ✅ 代码 DONE（2026-05-02）
+## P1-Next-C `custom_correctness` + 保留 `factual_correctness` 对照 ✅ DONE（2026-05-02）
 
-⚠️ **有 follow-up bug 待修**（见上方"P1-7 v2.3 follow-up"）
+- **规则型** `custom_correctness`（yes/no 对齐 + top-1 video + 时间 IoU/bonus；期望为 `no` 时跳过 video 权重）；`expected_time_is_approx` 时 GT 区间 ±5s 再算 IoU。
+- **保留** RAGAS `factual_correctness`；`**ragas_e2e_score` 均值** 用 `custom_correctness` 替代原 factual 项。
+- 报告字段：`generation_summary.custom_correctness_avg`；`challenge.md` §5.4。
+- 未做：`--rescore-only`（仍列在可选增强）。
+
+## P1-Next-F evaluator-only（R1+R2+R3）✅ DONE（2026-05-02）
+
+- **R1** `ragas_eval_runner._row_context_text`：每条 context 前缀 `Video <id>. Time <start>s-<end>s.`，消除「参考里写 In video 但 chunk 无 video token」的 RAGAS 归因失败。
+- **R2** `agent_test_importer._build_reference_scene_description`：场景描述从**题干**推导，`recall_challenge` 仅 metadata，**不**再污染 reference 文本（消 F1）。
+- **R3** 默认 `--ragas-max-contexts` **5**、`--ragas-max-total-context-chars` **3000**（对齐 rerank top-K，消 F3）。
+- **范围**：仅评测 / 数据集导入路径；**未改**并行检索、verifier、summary 生产代码。
+- **50-case**（同子库、相对 P1-Next-F 前基线）：`context_recall_avg` 约 **+0.12**（如 0.36→**0.48**）、`context_precision_avg` 约 **+0.12**、`faithfulness_avg` 约 **+0.05**、`ragas_e2e_score_avg` 约 **+0.08**。
+- 依据：`agent/recall_diagnosis_2026_05_02.md`。
+
+## P1-7 v2.3 verifier 在 rerank_result 内重选 best span ✅ DONE（2026-05-02）
 
 - 文件：`agent/node/match_verifier_node.py`、`agent/node/summary_node.py`、新文件 `agent/test/test_match_verifier_v23.py`（20 例）
 - 设计：让 verifier 在 `rerank_result[:8]` 同视频候选里 LLM single-shot 挑 best span，输出 `span_source ∈ {"rerank_reselected", "candidate_top_row"}`，**不调 chroma 二次 fetch**
@@ -222,6 +180,12 @@ custom_correctness = 0.5 × yes_no + 0.5 × video_id
 - 50-case 验证（grounder OFF）：14 case existence 中 2 case 真重选；指标在 RAGAS 噪声范围内（±0.04）
 - 50-case 验证（grounder ON）：context_recall +0.033、context_precision +0.02、faithfulness +0.016；factual_correctness -0.04（受 follow-up bug 影响）
 - 12 个原 No-matching 子集 factual avg：0.2083 → **0.2500**（+0.042 真实净贡献，对照组锁死无 RAGAS 噪声）
+
+## P1-7 v2.3 follow-up：summary mismatch × rerank_reselected ✅ DONE（2026-05-02）
+
+- **问题**：grounder ON 时 `decision=mismatch` 仍可能带 `span_source=rerank_reselected`；原逻辑优先用 verifier span 写 Yes，与 mismatch 冲突。
+- **修复**：`_build_factual_summary` 在 `AGENT_ENABLE_EXISTENCE_GROUNDER=1` 且上述两条件时返回 `No matching clip is expected.`；`_canonicalize_summary` 对 LLM 输出的 Yes 行在同条件下改回该结论。grounder OFF 不变。
+- 单测：`test_match_verifier_v23.DownstreamConsumptionTests`（grounder on/off）、`test_summary_node_bail_out.CanonicalizeSummaryTests.test_p1_7_llm_yes_demoted_when_mismatch_rerank`。
 
 ## P1-5 + P3-3 全手术清理 legacy_router ✅ DONE（2026-05-02）
 

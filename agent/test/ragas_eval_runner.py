@@ -47,7 +47,7 @@ _LEGACY_GENERATED_SEED_DIR = (
     ROOT_DIR / "agent" / "test" / "generated" / "datasets" / "ucfcrime_events_vector_flat"
 )
 DEFAULT_OUTPUT_DIR = ROOT_DIR / "agent" / "test" / "generated" / "ragas_eval"
-DEFAULT_INCLUDE_SHEETS = ["Part1", "Part4"]
+DEFAULT_INCLUDE_SHEETS = ["Part4"]
 DEFAULT_RAGAS_MODEL = "gpt-4o"
 
 
@@ -220,6 +220,129 @@ def _extract_predicted_span(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "predicted_video_id": str(primary.get("video_id") or top_row.get("video_id") or "").strip() or None,
         "predicted_start_sec": primary.get("start_time", top_row.get("start_time")),
         "predicted_end_sec": primary.get("end_time", top_row.get("end_time")),
+    }
+
+
+def _predicted_answer_label_from_response(text: str | None) -> str:
+    """Map final answer text to ``yes``, ``no``, or unknown (empty string) (P1-Next-C).
+
+    Heuristics align with ``summary_node`` templates: ``No matching…``,
+    ``Yes. The relevant clip…``, ``The most relevant clip…``.
+    """
+    s = str(text or "").strip()
+    if not s:
+        return ""
+    low = s.lower()
+    if re.search(r"no\s+matching", low):
+        return "no"
+    if re.search(r"the\s+most\s+relevant\s+clip", low):
+        return "yes"
+    if re.search(r"^yes[.!]", low) or low.startswith("yes.") or "the relevant clip is in" in low:
+        return "yes"
+    return ""
+
+
+def _normalize_expected_answer_label(raw: str | None) -> str:
+    s = str(raw or "").strip().lower()
+    if s in {"yes", "y", "1", "true"}:
+        return "yes"
+    if s in {"no", "n", "0", "false"}:
+        return "no"
+    return ""
+
+
+def _effective_expected_span_for_iou(
+    expected_start_sec: float,
+    expected_end_sec: float,
+    *,
+    is_approx: bool,
+) -> tuple[float, float]:
+    """Optional ±5s GT expansion when ``expected_time_is_approx`` (P1-Next-C)."""
+    a = float(expected_start_sec)
+    b = float(expected_end_sec)
+    if is_approx:
+        return (a - 5.0, b + 5.0)
+    return (a, b)
+
+
+def _compute_custom_correctness(case_result: dict[str, Any]) -> dict[str, Any]:
+    """Rule-based answer correctness (0 LLM calls). See ``agent/challenge.md`` §5.4.
+
+    ``factual_correctness`` (RAGAS) remains available separately as a noisy reference.
+    """
+    exp_label = _normalize_expected_answer_label(case_result.get("expected_answer_label"))
+    pred_label = _predicted_answer_label_from_response(case_result.get("response"))
+
+    yes_no_score = (
+        1.0
+        if exp_label and pred_label and pred_label == exp_label
+        else 0.0
+    )
+
+    exp_video = str(case_result.get("video_id") or "").strip()
+    pred_video = str(case_result.get("predicted_video_id") or "").strip()
+    video_id_score = 1.0 if (exp_video and pred_video and pred_video == exp_video) else 0.0
+
+    exp_start = _safe_float(case_result.get("expected_start_sec"))
+    exp_end = _safe_float(case_result.get("expected_end_sec"))
+    pred_start = _safe_float(case_result.get("predicted_start_sec"))
+    pred_end = _safe_float(case_result.get("predicted_end_sec"))
+    is_approx = bool(case_result.get("expected_time_is_approx"))
+    has_gt_time = _is_valid_span(exp_start, exp_end)
+
+    time_iou_score = 0.0
+    time_bonus = 0.0
+    time_term = 0.0
+    # Only compute IoU when the expected answer is "yes" (a matching clip is expected).
+    # For "no" cases there is no ground-truth time window to compare against.
+    if exp_label == "yes" and has_gt_time and exp_start is not None and exp_end is not None:
+        es, ee = _effective_expected_span_for_iou(exp_start, exp_end, is_approx=is_approx)
+        if _is_valid_span(pred_start, pred_end):
+            time_iou_score = _compute_temporal_iou(
+                expected_start_sec=es,
+                expected_end_sec=ee,
+                predicted_start_sec=float(pred_start),
+                predicted_end_sec=float(pred_end),
+            )
+        else:
+            time_iou_score = 0.0
+        time_bonus = 0.2 if time_iou_score >= 0.5 else 0.0
+        time_term = min(1.0, float(time_iou_score) + time_bonus)
+
+    score: float | None = None
+    branch = ""
+
+    if exp_label == "yes":
+        if has_gt_time:
+            score = 0.4 * yes_no_score + 0.4 * video_id_score + 0.2 * time_term
+            branch = "yes_expected_time"
+        else:
+            score = 0.5 * yes_no_score + 0.5 * video_id_score
+            branch = "yes_missing_time"
+    elif exp_label == "no":
+        # No IoU for "no" cases: there is no ground-truth time window to compare against.
+        # Score is purely based on whether the agent correctly predicted "no".
+        score = yes_no_score
+        branch = "no_expected_time" if has_gt_time else "no_missing_time"
+    else:
+        score = 0.0
+        branch = "unknown_expected_label"
+
+    time_eligible = exp_label == "yes" and has_gt_time
+    rounded = round(float(score), 4) if score is not None else None
+    return {
+        "score": rounded,
+        "detail": {
+            "branch": branch,
+            "expected_label": exp_label or None,
+            "predicted_label": pred_label or None,
+            "yes_no_score": yes_no_score,
+            "video_id_score": video_id_score,
+            "time_iou_score": round(float(time_iou_score), 4) if time_eligible else None,
+            "time_bonus": time_bonus if time_eligible else None,
+            "time_term": round(time_term, 4) if time_eligible else None,
+            "expected_time_is_approx": bool(is_approx),
+        },
     }
 
 
@@ -397,15 +520,32 @@ def _load_cases_from_dataset_dir(dataset_dir: Path) -> tuple[list[dict[str, Any]
 
 
 def _resolve_seed_files(seed_dir: Path, cases: list[dict[str, Any]]) -> list[Path]:
+    """Resolve seed files, trying both naming conventions (the xlsx uses
+    ``Normal_Videos_594_x264`` while the importer may produce
+    ``Normal_Videos594_x264``).  Skips video_ids that do not look like real
+    Normal_Videos entries (e.g. garbled rows like ``!?4h?!``)."""
     unique_ids = sorted({str(case.get("video_id", "")).strip() for case in cases if str(case.get("video_id", "")).strip()})
     seed_files: list[Path] = []
     missing: list[str] = []
+    skipped: list[str] = []
     for video_id in unique_ids:
         seed_file = seed_dir / f"{video_id}_events_vector_flat.json"
         if seed_file.exists():
             seed_files.append(seed_file)
-        else:
-            missing.append(video_id)
+            continue
+        # Try alternate naming: Normal_Videos_594_x264 → Normal_Videos594_x264
+        alt_id = video_id.replace("Normal_Videos_", "Normal_Videos")
+        alt_file = seed_dir / f"{alt_id}_events_vector_flat.json"
+        if alt_file.exists():
+            seed_files.append(alt_file)
+            continue
+        # Skip obviously invalid / garbled video_ids (e.g. ``!?4h?!``, ``多摄像头``)
+        if not video_id.startswith("Normal_Videos"):
+            skipped.append(video_id)
+            continue
+        missing.append(video_id)
+    if skipped:
+        print(f"[ragas_eval] Skipped {len(skipped)} unrecognized video_ids (no seed available): {skipped[:5]}")
     if missing:
         raise FileNotFoundError(f"Missing seed files for video_ids: {missing[:10]}")
     return seed_files
@@ -646,6 +786,7 @@ def _run_case(graph: Any, case: dict[str, Any], idx: int, top_k: int) -> dict[st
         "expected_time_raw": case.get("expected_time_raw"),
         "expected_start_sec": case.get("expected_start_sec"),
         "expected_end_sec": case.get("expected_end_sec"),
+        "expected_time_is_approx": case.get("expected_time_is_approx"),
         "elapsed_ms": elapsed_ms,
         "route_mode": ((last_chunk.get("tool_choice") or {}).get("mode") if isinstance(last_chunk.get("tool_choice"), dict) else None),
         "classification_result": cr if isinstance(cr, dict) else {},
@@ -698,6 +839,7 @@ def _build_summary(case_results: list[dict[str, Any]], dataset_report: dict[str,
         "generation_summary": {
             "faithfulness_avg": _mean([item.get("faithfulness") for item in generation_cases]),
             "factual_correctness_avg": _mean([item.get("factual_correctness") for item in generation_cases]),
+            "custom_correctness_avg": _mean([item.get("custom_correctness") for item in generation_cases]),
         },
         "temporal_summary": {
             "time_range_overlap_iou_avg": _mean(temporal_scores),
@@ -756,7 +898,8 @@ def _build_markdown(summary: dict[str, Any], case_results: list[dict[str, Any]])
         "",
         "## Generation",
         f"- Faithfulness avg: `{summary['generation_summary']['faithfulness_avg']}`",
-        f"- Factual correctness avg: `{summary['generation_summary']['factual_correctness_avg']}`",
+        f"- Custom correctness avg (rule-based, P1-Next-C): `{summary['generation_summary']['custom_correctness_avg']}`",
+        f"- Factual correctness avg (RAGAS LLM, reference): `{summary['generation_summary']['factual_correctness_avg']}`",
         "",
         "## Temporal Localization",
         f"- Time overlap IoU avg: `{summary['temporal_summary']['time_range_overlap_iou_avg']}`",
@@ -800,7 +943,7 @@ def _build_markdown(summary: dict[str, Any], case_results: list[dict[str, Any]])
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Run RAGAS evaluation for Part1/Part4 agent cases")
+    parser = argparse.ArgumentParser(description="Run RAGAS evaluation for Part4 agent cases")
     parser.add_argument(
         "--xlsx-path",
         type=str,
@@ -833,7 +976,7 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
         metavar="SHEET",
         help=(
-            "Sheets to include for xlsx import. Default Part1 Part4 when this flag is omitted or given with no sheet names "
+            "Sheets to include for xlsx import. Default Part4 when this flag is omitted or given with no sheet names "
             "(explicit values override; Part2 and Part6 are always skipped)."
         ),
     )
@@ -872,6 +1015,11 @@ def build_parser() -> argparse.ArgumentParser:
         dest="ragas_use_rich_reference",
         action="store_false",
         help="Force legacy pointer-style reference_answer for RAGAS scoring (for A/B comparison)",
+    )
+    parser.add_argument(
+        "--no-report-tables",
+        action="store_true",
+        help="Skip writing REPORT_TABLES.md (custom metrics + tables; see eval_report_tables.py)",
     )
     return parser
 
@@ -993,6 +1141,18 @@ def main() -> None:
                 "reference_text": reference,
                 "question_chars": len(question),
             }
+            cc = _compute_custom_correctness(case_result)
+            gen = ragas_result.setdefault("generation", {})
+            gen["custom_correctness"] = cc["score"]
+            gen["custom_correctness_detail"] = cc["detail"]
+            ragas_result["end_to_end"]["ragas_e2e_score"] = _mean(
+                [
+                    ragas_result.get("retrieval", {}).get("context_precision"),
+                    ragas_result.get("retrieval", {}).get("context_recall"),
+                    gen.get("custom_correctness"),
+                    gen.get("faithfulness"),
+                ]
+            )
             case_result["ragas"] = ragas_result
             case_result["retrieved_contexts_for_ragas"] = contexts
             case_result["temporal"] = _score_time_range_overlap(case_result)
@@ -1045,6 +1205,15 @@ def main() -> None:
     _write_json(paths.e2e_report_json, e2e_report)
     _write_json(paths.summary_report_json, summary)
     paths.summary_report_md.write_text(_build_markdown(summary, case_results), encoding="utf-8")
+
+    if not bool(getattr(args, "no_report_tables", False)):
+        try:
+            from eval_report_tables import write_eval_report_tables
+
+            report_tables_path = write_eval_report_tables(output_dir)
+            print(f"[ragas_eval] REPORT_TABLES.md -> {report_tables_path}", flush=True)
+        except Exception as exc:
+            print(f"[ragas_eval] REPORT_TABLES.md skipped: {exc}", flush=True)
 
     print(json.dumps(summary, ensure_ascii=False, indent=2))
 

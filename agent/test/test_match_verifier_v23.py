@@ -383,6 +383,57 @@ class DownstreamConsumptionTests(unittest.TestCase):
         out = _build_factual_summary([], "any?", verifier_result=None)
         self.assertEqual(out, "No matching clip is expected.")
 
+    @mock.patch.dict(os.environ, {"AGENT_ENABLE_EXISTENCE_GROUNDER": "1"}, clear=False)
+    def test_p1_7_grounder_on_mismatch_rerank_returns_no_match_not_yes(self) -> None:
+        """P1-7 follow-up: mismatch + rerank_reselected must not emit Yes + wrong clip."""
+        rows = [
+            {
+                "video_id": "Arrest043_x264",
+                "start_time": 10.0,
+                "end_time": 20.0,
+                "event_summary_en": "scene",
+            }
+        ]
+        verifier_result = {
+            "decision": "mismatch",
+            "video_id": "Arrest046_x264",
+            "start_time": 1.0,
+            "end_time": 5.0,
+            "span_source": "rerank_reselected",
+            "best_chunk_index": 2,
+            "candidate_count": 5,
+        }
+        out = _build_factual_summary(
+            rows, "Is there a clip of X?", verifier_result=verifier_result
+        )
+        self.assertEqual(out, "No matching clip is expected.")
+
+    @mock.patch.dict(os.environ, {"AGENT_ENABLE_EXISTENCE_GROUNDER": "0"}, clear=False)
+    def test_p1_7_grounder_off_mismatch_rerank_still_uses_verifier_span(self) -> None:
+        """Grounder OFF: keep legacy Yes + verifier span for rows>0."""
+        rows = [
+            {
+                "video_id": "Arrest043_x264",
+                "start_time": 10.0,
+                "end_time": 20.0,
+                "event_summary_en": "scene",
+            }
+        ]
+        verifier_result = {
+            "decision": "mismatch",
+            "video_id": "Arrest046_x264",
+            "start_time": 58.7,
+            "end_time": 69.1,
+            "span_source": "rerank_reselected",
+            "best_chunk_index": 4,
+            "candidate_count": 5,
+        }
+        out = _build_factual_summary(
+            rows, "Is there a clip of X?", verifier_result=verifier_result
+        )
+        self.assertIn("Arrest046_x264", out)
+        self.assertNotIn("No matching clip is expected.", out)
+
 
 if __name__ == "__main__":  # pragma: no cover
     unittest.main()

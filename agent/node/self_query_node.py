@@ -26,6 +26,11 @@ SELF_QUERY_OUTPUT_SCHEMA = {
         "ambiguities": {"type": "array", "items": {"type": "string"}},
         "reasoning_summary": {"type": "string"},
         "confidence": {"type": "number"},
+        "expansion_terms": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Concrete, observable alternative phrasing / keywords that help retrieval surface relevant chunks even when the original query uses abstract language",
+        },
     },
     "required": [
         "rewritten_query",
@@ -43,13 +48,14 @@ SELF_QUERY_OUTPUT_SCHEMA = {
 def _fallback_self_query(raw_query: str) -> dict[str, Any]:
     return {
         "rewritten_query": raw_query,
-        "user_need": "Find relevant basketball retrieval results from the user's request.",
+        "user_need": "Find relevant retrieval results from the user's request.",
         "intent_label": "mixed",
         "retrieval_focus": "mixed",
         "key_constraints": [],
         "ambiguities": [],
         "reasoning_summary": "Fallback to the original query because self-query preprocessing was unavailable.",
         "confidence": 0.35,
+        "expansion_terms": [],
     }
 
 
@@ -96,13 +102,14 @@ def _fast_path_self_query(raw_query: str) -> dict[str, Any] | None:
             intent = "mixed"
         return {
             "rewritten_query": normalized,
-            "user_need": f"Retrieve basketball video results that satisfy: {normalized}",
+            "user_need": f"Retrieve video results that satisfy: {normalized}",
             "intent_label": intent,
             "retrieval_focus": intent,
             "key_constraints": [token for token in tokens[:6]],
             "ambiguities": [],
             "reasoning_summary": "Fast-path preprocessing kept the original meaning and only normalized surface noise.",
             "confidence": 0.8,
+            "expansion_terms": [],
         }
     return None
 
@@ -143,12 +150,19 @@ def create_self_query_node(llm: Any = None):
                 result = _fallback_self_query(raw_query)
 
         rewritten_query = _normalize_query_text(result.get("rewritten_query", raw_query)) or _normalize_query_text(raw_query)
+        expansion_terms = result.get("expansion_terms") or []
+        # Append expansion terms to the rewritten query so retrieval can use them
+        expanded_query = rewritten_query
+        if expansion_terms:
+            expansion_suffix = " | " + " | ".join(str(t).strip() for t in expansion_terms if str(t).strip())
+            expanded_query = rewritten_query + expansion_suffix
         print(
             "[SELF_QUERY_DEBUG] "
             + json.dumps(
                 {
                     "raw_query": raw_query,
                     "rewritten_query": rewritten_query,
+                    "expansion_terms": expansion_terms,
                     "intent_label": result.get("intent_label", "mixed"),
                     "retrieval_focus": result.get("retrieval_focus", "mixed"),
                 },
@@ -160,10 +174,12 @@ def create_self_query_node(llm: Any = None):
             **reset_updates,
             "original_user_query": raw_query,
             "user_query": raw_query,
-            "rewritten_query": rewritten_query,
+            "rewritten_query": expanded_query,
             "self_query_result": {
                 **result,
-                "rewritten_query": rewritten_query,
+                "rewritten_query": expanded_query,
+                "base_rewritten_query": rewritten_query,
+                "expansion_terms": expansion_terms,
                 "original_user_query": raw_query,
             },
             "current_node": "self_query_node",

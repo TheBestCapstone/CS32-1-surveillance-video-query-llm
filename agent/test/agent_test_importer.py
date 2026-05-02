@@ -16,7 +16,7 @@ DEFAULT_TEST_DATA_ROOT = ROOT_DIR / "agent" / "test" / "data"
 DEFAULT_XLSX_PATH = DEFAULT_TEST_DATA_ROOT / "agent_test.xlsx"
 # Default output: agent/test/data/imported/
 DEFAULT_IMPORT_OUTPUT_DIR = DEFAULT_TEST_DATA_ROOT / "imported"
-DEFAULT_IMPORT_INCLUDE_SHEETS = ("Part1", "Part4")
+DEFAULT_IMPORT_INCLUDE_SHEETS = ("Part4",)
 # Legacy path kept for callers that referenced the older default.
 DEFAULT_OUTPUT_DIR = ROOT_DIR / "agent" / "test" / "generated"
 DEFAULT_DB_PATH = DEFAULT_OUTPUT_DIR / "agent_test_eval.sqlite"
@@ -712,14 +712,14 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
         metavar="SHEET",
         help=(
-            "Only parse listed worksheets (default when omitted: Part1 Part4). "
+            "Only parse listed worksheets (default when omitted: Part4). "
             "Part2 and Part6 are always skipped."
         ),
     )
     parser.add_argument(
         "--all-sheets",
         action="store_true",
-        help="Parse all worksheets except the hard-skipped Part2 / Part6 (overrides default Part1/Part4 filter).",
+        help="Parse all worksheets except the hard-skipped Part2 / Part6 (overrides default Part4 filter).",
     )
     return parser
 

@@ -250,6 +250,31 @@ class CanonicalizeSummaryTests(unittest.TestCase):
         )
         self.assertIn("Abuse037_x264", result)
 
+    @mock.patch.dict(os.environ, {"AGENT_ENABLE_EXISTENCE_GROUNDER": "1"}, clear=False)
+    def test_p1_7_llm_yes_demoted_when_mismatch_rerank(self) -> None:
+        """P1-7 follow-up: LLM Yes-line must not override grounder mismatch + rerank_reselected."""
+        rows = [_row()]
+        vr = {
+            "decision": "mismatch",
+            "video_id": "Arrest046_x264",
+            "start_time": 1.0,
+            "end_time": 2.0,
+            "span_source": "rerank_reselected",
+        }
+        yes_line = "Yes. The relevant clip is in Arrest046_x264, around 0:00:01 - 0:00:02."
+        result = _canonicalize_summary(
+            yes_line,
+            fallback="SHOULD_NOT_USE",
+            rows=rows,
+            query="Is there a clip?",
+            answer_type="existence",
+            verifier_decision="mismatch",
+            grounder_enabled=True,
+            bail_out_strict=True,
+            verifier_result=vr,
+        )
+        self.assertEqual(result, _NO_MATCH)
+
 
 class SummaryNodeIntegrationTests(unittest.TestCase):
     """Integration: invoke the actual ``summary_node`` callable with a stub LLM."""

@@ -124,6 +124,20 @@ def _pick_primary_row(row: dict[str, Any]) -> dict[str, Any]:
     return ranked_children[0] if ranked_children else row
 
 
+def _grounder_mismatch_rerank_forbids_positive_clip_summary(verifier_result: dict[str, Any] | None) -> bool:
+    """P1-7 follow-up: verifier mismatch + span from rerank re-select must not be
+    turned into a Yes-style clip answer when the existence grounder is on — the
+    re-selected span can point at the wrong video while decision is still mismatch.
+    """
+    if not _existence_grounder_enabled():
+        return False
+    if not isinstance(verifier_result, dict):
+        return False
+    if str(verifier_result.get("decision") or "").strip().lower() != "mismatch":
+        return False
+    return str(verifier_result.get("span_source") or "").strip().lower() == "rerank_reselected"
+
+
 def _looks_like_binary_query(text: str) -> bool:
     query = str(text or "").strip().lower()
     if not query:
@@ -148,8 +162,16 @@ def _build_factual_summary(
     prefer the verifier's ``video_id / start_time / end_time``. Otherwise fall
     back to the rerank top-1 row. ``rows`` empty still maps to the bail-out
     string so the early-return path in ``summary_node`` keeps working.
+
+    P1-7 follow-up: if the existence grounder is on and the verifier still says
+    ``mismatch`` for that re-selected span, return ``No matching clip is
+    expected.`` instead of a false-positive Yes (``rerank_reselected`` can point
+    at the wrong video). When the grounder is off, behaviour is unchanged.
     """
     if not rows:
+        return "No matching clip is expected."
+
+    if _grounder_mismatch_rerank_forbids_positive_clip_summary(verifier_result):
         return "No matching clip is expected."
 
     use_verifier_span = (
@@ -245,7 +267,11 @@ def _canonicalize_summary(
     normalized = _normalize_summary_output(text, fallback, allow_no_match=allow_no_match)
     if normalized == "No matching clip is expected.":
         return normalized
-    if normalized.startswith("Yes. The relevant clip is in ") or normalized.startswith("The most relevant clip is in "):
+    if normalized.startswith("Yes. The relevant clip is in ") or normalized.startswith(
+        "The most relevant clip is in "
+    ):
+        if _grounder_mismatch_rerank_forbids_positive_clip_summary(verifier_result):
+            return _build_factual_summary(rows, query, verifier_result=verifier_result)
         return normalized
     return _build_factual_summary(rows, query, verifier_result=verifier_result)
 

@@ -109,6 +109,22 @@ def localization_score(pred, ref):
   - `video_id_match_rate_top1` —— 预测的 top-1 视频 ID 是否等于 GT 视频 ID 的命中率。
 - `top_hit_rate`（top-K 命中）继续保留。
 
+### 5.4 `custom_correctness`（P1-Next-C，规则型、0 LLM）
+
+与 RAGAS `factual_correctness`（LLM 裁判、仍有方差）**并行**：runner 同时输出两者；**合成 `ragas_e2e_score` 时用 `custom_correctness` 替代 `factual_correctness`**，避免端到端均值被 LLM 抖动拖垮。`factual_correctness_avg` 仍保留在报告里作对照参考。
+
+- **预测标签**：从 `final_answer` 文本用启发式归类为 `yes` / `no`（对齐 `summary_node`：`No matching…`、`The most relevant clip…`、`Yes. The relevant clip…`）。
+- **视频与时间**：`predicted_video_id` / `predicted_*_sec` 与现有 `temporal` 指标一致，取自 top 检索行（非从答句再解析）。
+- **公式**（与 `agent/todo.md` 一致）：
+  - 期望为 `yes` 且有时间窗：`0.4×yes_no + 0.4×video_id + 0.2×min(1, IoU + bonus)`，其中 `bonus=0.2` 当 `IoU≥0.5`。
+  - 期望为 `yes` 且无时间：`0.5×yes_no + 0.5×video_id`。
+  - 期望为 `no`：不比较 `video_id`；有时间窗时 `0.5×yes_no + 0.5×time_term`，无时间窗时仅 `yes_no`。
+- **模糊时间**：`expected_time_is_approx=1` 时，将 GT 区间在 IoU 上按 **±5s** 扩张后再算重叠。
+
+实现：`agent/test/ragas_eval_runner.py` 中 `_compute_custom_correctness`；单测：`agent/test/test_custom_correctness.py`。
+
+**可读报告**：每次评测结束后在 `--output-dir` 生成 `REPORT_TABLES.md`（`agent/test/eval_report_tables.py`），汇总 **§2.3 自定义指标**、逐条 `custom_correctness_detail`、任务原生 IoU / video_match、以及 RAGAS 宽表；仅补跑报告：`python agent/test/scripts/regen_report_tables.py --output-dir <run 目录>`。
+
 ### 5.3 优先级
 
 - **P0（本次）**：5.1 + 5.2。对齐评估协议，把主指标转到任务原生指标上。
