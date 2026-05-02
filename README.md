@@ -75,3 +75,25 @@ Capstone/
   - purpose: coarse video-level recall and parent-child routing
 - Child metadata stores `parent_id=video_id` so parent and child records stay linked.
 - Current online retrieval still reads the child collection by default, while the parent collection is built for hierarchical retrieval expansion.
+
+## FastAPI Service
+
+- The Web UI and API service now live under `fastapi/`.
+- Quick local startup:
+
+```bash
+./quick_start.sh
+```
+
+- Manual startup:
+
+```bash
+source ~/.bashrc
+conda activate capstone
+uvicorn main:app --app-dir /home/yangxp/Capstone/fastapi --host 127.0.0.1 --port 8001
+```
+
+- Default local entry:
+  - `http://127.0.0.1:8001/`
+- Deployment guide:
+  - See `deploy.md`

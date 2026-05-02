@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page_title }}</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', path='/app.css') }}" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <main class="container py-4 py-lg-5">
+    <section class="hero-card card shadow-sm border-0 mb-4">
+      <div class="card-body p-4 p-lg-5">
+        <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
+          <div>
+            <p class="text-uppercase text-secondary small mb-2">Capstone FastAPI</p>
+            <h1 class="h3 mb-2" data-i18n="heroTitle">Video Upload & Retrieval Console</h1>
+            <p class="text-secondary mb-0" data-i18n="heroSubtitle">Choose a database before querying. Uploading a new video automatically creates and switches to a fresh database.</p>
+          </div>
+          <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-2">
+            <div class="btn-group language-switch" role="group" aria-label="Language switch">
+              <button class="btn btn-outline-secondary btn-sm" id="lang-en-btn" type="button">EN</button>
+              <button class="btn btn-outline-secondary btn-sm" id="lang-zh-btn" type="button">中文</button>
+            </div>
+            <div class="status-pill">
+              <span class="status-dot" id="service-status-dot"></span>
+              <span id="service-status-text">Checking service status...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="row g-4">
+      <div class="col-12 col-xl-5">
+        <div class="card shadow-sm border-0 h-100">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div>
+                <h2 class="h5 mb-1" data-i18n="databaseSectionTitle">1. Select Database</h2>
+                <p class="text-secondary small mb-0" data-i18n="databaseSectionDesc">Query stays disabled until a database is selected.</p>
+              </div>
+              <button class="btn btn-outline-secondary btn-sm" id="refresh-databases-btn" type="button" data-i18n="refreshListBtn">Refresh</button>
+            </div>
+
+            <div class="current-db-card mb-3">
+              <div class="small text-secondary mb-1" data-i18n="currentDatabaseLabel">Current Database</div>
+              <div class="fw-semibold" id="current-db-label">Not selected</div>
+              <div class="small text-secondary mt-2" id="current-db-meta">Select one from the list below, or upload a new video to create one automatically.</div>
+            </div>
+
+            <label class="form-label" for="database-select" data-i18n="databaseListLabel">Local Database List</label>
+            <select class="form-select mb-3" id="database-select">
+              <option value="">Loading database list...</option>
+            </select>
+            <div class="d-grid gap-2">
+              <button class="btn btn-primary" id="select-database-btn" type="button" data-i18n="useSelectedDatabaseBtn">Use Selected Database</button>
+            </div>
+            <p class="small text-secondary mt-3 mb-0" id="database-hint" data-i18n="databaseHint">A newly uploaded video will also be auto-selected after indexing finishes.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-xl-7">
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-4">
+            <h2 class="h5 mb-1" data-i18n="uploadSectionTitle">2. Upload Video & Build Database</h2>
+            <p class="text-secondary small mb-3" data-i18n="uploadSectionDesc">Drag and drop is supported. Allowed formats: MP4, AVI, MOV, MKV. Maximum file size: {{ max_upload_mb }} MB per file.</p>
+
+            <div id="drop-zone" class="drop-zone mb-3" tabindex="0" role="button" aria-label="Drag a video here or click to choose a file">
+              <input id="file-input" class="d-none" type="file" multiple accept=".mp4,.avi,.mov,.mkv,video/mp4,video/quicktime,video/x-msvideo,video/x-matroska">
+              <div class="drop-zone-inner text-center">
+                <div class="drop-zone-icon mb-2">+</div>
+                <div class="fw-semibold mb-1" data-i18n="dropZoneTitle">Drag videos here, or click to choose files</div>
+                <div class="small text-secondary" id="selected-file-text">No file selected</div>
+              </div>
+            </div>
+
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label class="form-label" for="model-path-input" data-i18n="modelLabel">Model</label>
+                <input class="form-control" id="model-path-input" type="text" value="n">
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="tracker-input">Tracker</label>
+                <input class="form-control" id="tracker-input" type="text" value="botsort_reid">
+              </div>
+              <div class="col-sm-4">
+                <label class="form-label" for="conf-input">conf</label>
+                <input class="form-control" id="conf-input" type="number" min="0" max="1" step="0.01" value="0.25">
+              </div>
+              <div class="col-sm-4">
+                <label class="form-label" for="iou-input">iou</label>
+                <input class="form-control" id="iou-input" type="number" min="0" max="1" step="0.01" value="0.25">
+              </div>
+              <div class="col-sm-4">
+                <label class="form-label" for="refine-mode-select">refine_mode</label>
+                <select class="form-select" id="refine-mode-select">
+                  <option value="none">none</option>
+                  <option value="vector" selected>vector</option>
+                  <option value="full">full</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row g-3 mt-1">
+              <div class="col-sm-6">
+                <label class="form-label" for="refine-model-input">refine_model</label>
+                <input class="form-control" id="refine-model-input" type="text" value="gpt-5.4-mini">
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="target-classes-input">target_classes</label>
+                <input class="form-control" id="target-classes-input" type="text" placeholder="person,car" data-i18n-placeholder="targetClassesPlaceholder">
+              </div>
+            </div>
+
+            <div class="progress mt-4 mb-2" role="progressbar" aria-label="Upload progress">
+              <div id="upload-progress-bar" class="progress-bar progress-bar-striped" style="width: 0%">0%</div>
+            </div>
+            <div class="small text-secondary mb-3" id="upload-progress-text">Waiting for upload</div>
+
+            <div class="d-grid d-sm-flex gap-2">
+              <button class="btn btn-success" id="upload-btn" type="button" data-i18n="uploadBtn">Upload and Create Database</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card shadow-sm border-0 mt-4">
+      <div class="card-body p-4">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+          <div>
+            <h2 class="h5 mb-1" data-i18n="querySectionTitle">3. Query</h2>
+            <p class="text-secondary small mb-0" data-i18n="querySectionDesc">Query is only available after a database has been selected.</p>
+          </div>
+          <div class="small text-secondary" id="query-db-state">No database selected</div>
+        </div>
+
+        <div class="row g-3 align-items-end">
+          <div class="col-12 col-lg-9">
+            <label class="form-label" for="query-input" data-i18n="queryInputLabel">Query</label>
+            <textarea class="form-control" id="query-input" rows="3" placeholder="For example: a group of people stands near the left-side bleachers" data-i18n-placeholder="queryInputPlaceholder"></textarea>
+          </div>
+          <div class="col-12 col-lg-3">
+            <label class="form-label" for="top-k-input" data-i18n="topKLabel">Top K</label>
+            <input class="form-control mb-2" id="top-k-input" type="number" min="1" max="10" value="3">
+            <button class="btn btn-primary w-100" id="query-btn" type="button" disabled>Choose a database first</button>
+          </div>
+        </div>
+
+        <div class="alert alert-warning mt-3 mb-0" id="query-requirement-alert" data-i18n="queryRequirementAlert">
+          Select a database first, or upload a new video and wait for the database to be created.
+        </div>
+      </div>
+    </section>
+
+    <section class="row g-4 mt-1">
+      <div class="col-12 col-lg-6">
+        <div class="card shadow-sm border-0 h-100">
+          <div class="card-body p-4">
+            <h2 class="h5 mb-3" data-i18n="feedbackTitle">Activity</h2>
+            <div id="feedback-box" class="feedback-box">Page loaded. Reading service status...</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="card shadow-sm border-0 h-100">
+          <div class="card-body p-4">
+            <h2 class="h5 mb-3" data-i18n="queryResultTitle">Query Result</h2>
+            <div id="query-result" class="result-box text-secondary">Results will appear here after the query finishes.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    window.APP_CONFIG = {
+      maxUploadBytes: {{ max_upload_mb * 1024 * 1024 }},
+      defaultLanguage: "en",
+    };
+  </script>
+  <script src="{{ url_for('static', path='/app.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  capstone-fastapi:
+    build:
+      context: ..
+      dockerfile: fastapi/Dockerfile
+    image: capstone-fastapi:latest
+    container_name: capstone-fastapi
+    env_file:
+      - .env
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8001
+    ports:
+      - "${PORT:-8001}:8001"
+    volumes:
+      - ./data:/app/fastapi/data
+      - ../data:/app/data
+      - ../video_data:/app/video_data
+    restart: unless-stopped

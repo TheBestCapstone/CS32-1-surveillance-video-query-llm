@@ -1,0 +1,7 @@
+.git
+__pycache__
+*.pyc
+.pytest_cache
+agent/fastapi/data
+agent/fastapi/__pycache__
+agent/fastapi/static/__pycache__

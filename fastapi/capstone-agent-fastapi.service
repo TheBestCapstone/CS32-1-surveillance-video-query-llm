@@ -1,0 +1,15 @@
+[Unit]
+Description=Capstone FastAPI Agent Service
+After=network.target
+
+[Service]
+Type=simple
+User=yangxp
+WorkingDirectory=/home/yangxp/Capstone
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/home/yangxp/Capstone/fastapi/run_uvicorn.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
