@@ -75,8 +75,6 @@ _FAST_DECISIONS = {"exact", "partial", "mismatch"}
 def _select_rows(state: AgentState) -> list[dict[str, Any]]:
     if "rerank_result" in state:
         return list(state.get("rerank_result") or [])
-    if "merged_result" in state:
-        return list(state.get("merged_result") or [])
     if "hybrid_result" in state:
         return list(state.get("hybrid_result") or [])
     return list(state.get("sql_result") or [])

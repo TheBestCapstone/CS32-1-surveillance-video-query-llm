@@ -228,7 +228,6 @@ def create_parallel_retrieval_fusion_node(llm=None, **kwargs):
             return {
                 "sql_result": [],
                 "hybrid_result": [],
-                "merged_result": [],
                 "rerank_result": [],
                 "tool_error": f"Both branches failed: sql={sql_error}; hybrid={hybrid_error}",
                 "current_node": "parallel_retrieval_fusion_node",
@@ -333,7 +332,6 @@ def create_parallel_retrieval_fusion_node(llm=None, **kwargs):
         return {
             "sql_result": sql_rows,
             "hybrid_result": hybrid_rows,
-            "merged_result": reranked_rows,
             "rerank_result": final_rows,
             "tool_error": None,
             "current_node": "parallel_retrieval_fusion_node",

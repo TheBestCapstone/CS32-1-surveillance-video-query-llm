@@ -36,4 +36,4 @@
 - 第一优先级: `summary prompt`
 - 第二优先级: `query classification prompt`
 - 第三优先级: `self_query prompt`
-- 暂不纳入第一阶段: `legacy_router` 下的 `init prompt` 与 `router prompts`
+- 备注: 原 `legacy_router` 下的 init prompt / router prompts 已于 P1-5 / P3-3 （2026-05-02）随节点删除，不再需要纳入

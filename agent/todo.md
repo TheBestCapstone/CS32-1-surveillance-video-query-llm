@@ -244,30 +244,68 @@ ragas_e2e_score = mean([
 
 下个 session（不在本次 commit 内）。本次 commit 只把决策记录到 `todo.md` 与本节。
 
-### P1-5 清理 SQLiteGateway / merged_result 等"僵尸代码"
+### P1-5 + P3-3 清理"僵尸代码 / legacy 死路径" ✅ DONE（2026-05-02）
 
-- 文件：`agent/tools/db_access.py:177-241`、`agent/node/parallel_retrieval_fusion_node.py`、`answer_node.py`
-- 现状：
-  - `SQLiteGateway.allowed_fields` 里有 `object_color_cn`（schema 已不存在），任何走到这里的代码都会失效
-  - `merged_result` 写了但几乎没被真正消费，冗余
-- 改造：
-  - 若无调用点，直接删除 `SQLiteGateway` 类；否则与 `schema.INSERT_COLUMNS` 对齐
-  - `merged_result` 保留但在文档里标记为 "intermediate debug only"，下游统一读 `rerank_result`
-- 验收：删除后所有测试仍通过
+> 用户决策：全手术 —— 一次性清掉 `SQLiteGateway` + `merged_result` + 整个 `legacy_router` 链路（`tool_router_node` / `reflection_node` / `cot_engine` / `router_prompts` / `query_optimizer` / `error_classifier`）。
 
-### P1-6 路由收敛：SQL 只做融合通道，不再作终态分支
+#### 删除的文件（8 个，约 -123KB）
+- `agent/node/tool_router_node.py`（19580 bytes）
+- `agent/node/router_prompts.py`（2205 bytes）
+- `agent/node/reflection_node.py`（37435 bytes）
+- `agent/node/cot_engine.py`（12051 bytes）
+- `agent/node/query_optimizer.py`（3254 bytes，零外部 import）
+- `agent/node/error_classifier.py`（3132 bytes，仅被 query_optimizer 引）
+- `agent/node/tool_router_node.cover`、`agent/node/cot_engine.cover`（coverage artifacts）
 
-- 文件：`agent/graph_builder.py`、`agent/node/tool_router_node.py`、`agent/agents/shared/query_classifier.py`、`agent/agents/shared/fusion_engine.py`、`agent/node/parallel_retrieval_fusion_node.py`
-- 现状（2026-05-01 审查）：
-  - 默认 `AGENT_EXECUTION_MODE=parallel_fusion` 已走 `parallel_retrieval_fusion_node`（SQL + Hybrid 并行 + RRF），满足"SQL 不做终态"
-  - `legacy_router` 分支里 `pure_sql_node` 仍是终态，少量脚本还在走它；`tool_router_node.route_by_tool_choice` 还会据 `tool_choice.mode` 分叉
-  - `weighted_rrf_fuse` 用的 label→固定权重映射，没有用到 classifier 的 signals
-- 改造（范围收敛到"不破坏 legacy_router 行为"）：
+#### 删除的代码段
+- `agent/tools/db_access.py`：删 `SQLiteGateway` 类（`object_color_cn` 已脱 schema，零外部调用），同步删 `import sqlite3`
+- `agent/node/types.py`：删 `merged_result` 字段定义 + `EPHEMERAL_FIELDS` 中的默认值
+- `agent/node/parallel_retrieval_fusion_node.py`：返回 dict 中两处 `"merged_result": ...` 删除
+- `agent/node/hybrid_search_node.py`：返回 dict 中 `"merged_result": ...` 删除；`execution_mode="legacy_router"` → `"parallel_fusion"`
+- `agent/node/pure_sql_node.py`：`execution_mode="legacy_router"` → `"parallel_fusion"`
+- `agent/node/summary_node.py / answer_node.py / match_verifier_node.py`：`_select_rows` / `_select_final_rows` 里的 `merged_result` fallback 分支删除
+- `agent/test/ragas_eval_runner.py`、`agent/test_somke/result_test_runner.py`、`agent/test_somke/comprehensive_test_runner.py`：同上 fallback 分支删除
+
+#### graph_builder.py 简化
+- 删 3 个 legacy import：`reflection_node` / `tool_router_node` / `agents.build_*`
+- 删整个 `_build_legacy_router_graph` 函数
+- `build_graph` 简化：直接返回 `_build_parallel_fusion_graph`；`init_prompt_text` 参数保留但 `del` 掉，兼容老调用方
+
+#### 文档同步
+- `agent/architecture.md`：删 legacy_router 子图，加 verifier 节点说明
+- `agent/routing_rules.md`：彻底重写，去 RR-LEGACY-* 三条
+- `agent/graph_structure.md`：单一 parallel_fusion 子图
+- `agent/agents/README.md`：去掉 `AGENT_EXECUTION_MODE=legacy_router` 提示
+- `agent/node/README.md`：重写文件清单 + 已删除清单
+- `agent/test_somke/01_测试模块汇总.md`：删 §4（tool_router）、§5（reflection），加 verifier 段
+- `agent/test_somke/02_测试要求规格说明书.md`：`merged_result` → `rerank_result`
+- `agent/lightingRL/todo.md`：删 legacy 备注
+- `deploy.md`：删 `AGENT_EXECUTION_MODE`，补当前活跃 env flags
+
+#### 验证
+- `python -m pytest agent/test/test_*.py`：**64/64 全过**（既有 + 新加 P1-Next-A 单测 + P1-3 单测）
+- graph compile smoke（默认 + `AGENT_DISABLE_VERIFIER_NODE=1` 两种模式）：✅ 全过；reflection_node / tool_router_node 已不在 nodes 列表
+
+#### 影响范围 / 已知边界
+- **完全废弃 `AGENT_EXECUTION_MODE=legacy_router` 模式**；旧脚本设此 env 无效（默认仍走 parallel_fusion，behaviour 兼容）
+- `pure_sql_node.py` / `hybrid_search_node.py` 文件保留（仍是 sub-agent 接口），但不再被默认 graph 引用
+- 全 codebase 净减约 -4000 / +50 LoC
+- 详细复盘见 `agent/调试记录.md` §11
+
+#### 回滚
+- 无灰度 flag —— 此次为终态删除。如需恢复 legacy_router，必须 `git revert` 整个 commit。建议先确认线上无 `AGENT_EXECUTION_MODE=legacy_router` 残留再 push。
+
+### P1-6 路由收敛：SQL 只做融合通道，不再作终态分支 ✅ DONE（2026-05-01 完成；P1-5/P3-3 后描述已过时）
+
+> 历史描述：本段落原描述按 `AGENT_LEGACY_DISABLE_PURE_SQL_TERMINAL` 等灰度口"不破坏 legacy_router"做收敛。
+> 2026-05-02 P1-5/P3-3 把整个 `legacy_router` 链路一次性废弃了（见上方对应段），所以 `AGENT_LEGACY_DISABLE_PURE_SQL_TERMINAL` 等灰度口已不再需要、相关代码删除。本段落保留作历史归档。
+
+- 文件：`agent/agents/shared/query_classifier.py`、`agent/agents/shared/fusion_engine.py`、`agent/node/parallel_retrieval_fusion_node.py`
+- 改造已落地的部分：
   - 新增 `multi_hop` classifier label，`classify_mode_from_label` 映射为 hybrid 兼容模式
   - 分类器输出 `signals = {metadata_hits[], relation_cues[], multi_step_cues[], existence_cues[]}`，fast-path 从"句式白名单"改为"信号型证据"
-  - `weighted_rrf_fuse` 新增可选 `signals` 关键字参数，按证据数量对 `{sql, hybrid}` 权重做 soft-bias（±0.2 封顶），证据不存在时保持 label→权重的原语义，保证 `test_weighted_rrf_fuse.py` 继续通过
-  - `parallel_retrieval_fusion_node` 把 `signals` 透传给 `weighted_rrf_fuse`，并在 `fusion_meta.signals` 中留痕，方便事后分析
-  - `legacy_router` 的 `pure_sql_node` 终态分支加 `AGENT_LEGACY_DISABLE_PURE_SQL_TERMINAL` 开关（默认保持原行为，`=1` 时改走 `hybrid_search_node`），作为将来合流的灰度口
+  - `weighted_rrf_fuse` 新增可选 `signals` 关键字参数，按证据数量对 `{sql, hybrid}` 权重做 soft-bias（±0.2 封顶）
+  - `parallel_retrieval_fusion_node` 把 `signals` 透传给 `weighted_rrf_fuse`，并在 `fusion_meta.signals` 中留痕
 - 验收：
   - 默认图走 parallel_fusion 时，10 例 e2e 结果 `fusion_meta.signals` 非空
   - `test_weighted_rrf_fuse.py` / `test_extract_text_tokens_for_sql.py` / `test_pure_sql_fallback.py` 全绿
@@ -403,15 +441,10 @@ ragas_e2e_score = mean([
   - 跨域只需要重建库 + 重生成 profile，代码层零改动
 - 验收：切换到非 basketball 数据集时 self-query / classifier 仍可用
 
-### P3-3 删除冗余路径 / 死代码
+### P3-3 删除冗余路径 / 死代码 ✅ DONE（2026-05-02，与 P1-5 合并执行）
 
-- 文件：
-  - `agent/node/tool_router_node.py`（仅 legacy 用，默认图不走）
-  - `agent/node/#match_verifier_node.py`（恢复或永久删除）
-  - `agent/node/cot_engine.py`、`query_optimizer.py`、`error_classifier.py`（只在 legacy 的 reflection 里零散使用）
-- 改造：
-  - P2-1 verifier 上线后，legacy 分支可以正式标记 deprecated
-  - 冻结文件（`#*.py`）统一迁入 `agent/node/_archive/`，不再用 `#` 前缀
+> 与 P1-5 一起做的"全手术"清理。详见 `### P1-5 + P3-3 清理"僵尸代码 / legacy 死路径"` 段落上面。
+> 总结：6 个 legacy 节点文件删除、`SQLiteGateway` 删除、`merged_result` 字段删除、`legacy_router` 模式整体废弃、graph_builder 简化、9 篇文档同步、64/64 单测通过。
 
 ---
 

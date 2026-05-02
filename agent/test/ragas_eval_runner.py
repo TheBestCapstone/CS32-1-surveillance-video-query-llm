@@ -112,8 +112,6 @@ def _write_json(path: Path, payload: Any) -> None:
 def _select_final_rows(final_state: dict[str, Any]) -> list[dict[str, Any]]:
     if "rerank_result" in final_state:
         return list(final_state.get("rerank_result") or [])
-    if "merged_result" in final_state:
-        return list(final_state.get("merged_result") or [])
     if "hybrid_result" in final_state:
         return list(final_state.get("hybrid_result") or [])
     return list(final_state.get("sql_result") or [])

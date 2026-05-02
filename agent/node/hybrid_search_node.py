@@ -57,7 +57,6 @@ def create_hybrid_search_node(llm=None, **kwargs):
             
             return {
                 "hybrid_result": normalized_rows,
-                "merged_result": reranked_rows,
                 "rerank_result": final_rows,
                 "reflection_result": {"feedback": "Retrieval successful", "quality_score": 1.0, "needs_retry": False},
                 "tool_error": None,
@@ -65,7 +64,7 @@ def create_hybrid_search_node(llm=None, **kwargs):
                 "current_node": "hybrid_search_node",
                 "search_explain": f"{summary}\nRerank={rerank_meta}\nResult mode={result_mode}, rows={len(final_rows)}",
                 "routing_metrics": build_routing_metrics(
-                    execution_mode="legacy_router",
+                    execution_mode="parallel_fusion",
                     label="semantic",
                     query=user_query,
                     sql_rows_count=0,

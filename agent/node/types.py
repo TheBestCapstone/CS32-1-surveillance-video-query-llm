@@ -64,7 +64,6 @@ class AgentState(TypedDict, total=False):
     meta_list: List[Dict[str, Any]]
     sql_result: List[Dict[str, Any]]
     hybrid_result: List[Dict[str, Any]]
-    merged_result: List[Dict[str, Any]]
     rerank_result: List[Dict[str, Any]]
     tool_error: Optional[str]
     route: str
@@ -206,7 +205,6 @@ class StateResetter:
         "meta_list": [],
         "sql_result": [],
         "hybrid_result": [],
-        "merged_result": [],
         "rerank_result": [],
         "tool_error": None,
         "route": "",

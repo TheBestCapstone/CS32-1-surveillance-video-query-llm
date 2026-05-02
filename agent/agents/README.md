@@ -31,7 +31,7 @@
 - 目录间尽量单向依赖：`component -> node`，`node -> sub_agent`，禁止循环导入。
 
 ## 并行融合方案
-- 执行模式：默认 `parallel_fusion`（可用 `AGENT_EXECUTION_MODE=legacy_router` 切回旧路由）。
+- 执行模式：`parallel_fusion`（P1-5 / P3-3 清理后唯一模式，2026-05-02 移除 `legacy_router`）。
 - 分类器：`agents/shared/query_classifier.py`（规则优先，兜底 `mixed/semantic`）。
 - 融合器：`agents/shared/fusion_engine.py`（Weighted RRF，不直接做异构分数求和）。
 - 选型理由：SQL 与 Hybrid 分数不同量纲，采用排名融合更稳定且便于降级。

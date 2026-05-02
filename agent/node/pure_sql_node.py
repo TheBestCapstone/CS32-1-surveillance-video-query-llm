@@ -39,7 +39,7 @@ def create_pure_sql_node(llm=None, **kwargs):
                 "retry_count": current_retry,
                 "current_node": "pure_sql_node",
                 "routing_metrics": build_routing_metrics(
-                    execution_mode="legacy_router",
+                    execution_mode="parallel_fusion",
                     label="structured",
                     query=user_query,
                     sql_rows_count=len(normalized_rows),
