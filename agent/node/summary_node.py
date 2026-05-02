@@ -135,14 +135,39 @@ def _looks_like_binary_query(text: str) -> bool:
     )
 
 
-def _build_factual_summary(rows: list[dict[str, Any]], query: str) -> str:
+def _build_factual_summary(
+    rows: list[dict[str, Any]],
+    query: str,
+    *,
+    verifier_result: dict[str, Any] | None = None,
+) -> str:
+    """Build the canonical Yes / The-most-relevant template.
+
+    P1-7 v2.3: when the verifier re-selected a different chunk inside
+    ``rerank_result`` (``verifier_result.span_source == "rerank_reselected"``),
+    prefer the verifier's ``video_id / start_time / end_time``. Otherwise fall
+    back to the rerank top-1 row. ``rows`` empty still maps to the bail-out
+    string so the early-return path in ``summary_node`` keeps working.
+    """
     if not rows:
         return "No matching clip is expected."
-    top_row = rows[0]
-    primary = _pick_primary_row(top_row)
-    video_id = str(primary.get("video_id") or top_row.get("video_id") or "unknown_video").strip()
-    start_time = primary.get("start_time", top_row.get("start_time"))
-    end_time = primary.get("end_time", top_row.get("end_time"))
+
+    use_verifier_span = (
+        isinstance(verifier_result, dict)
+        and str(verifier_result.get("span_source") or "").strip().lower() == "rerank_reselected"
+        and verifier_result.get("video_id")
+    )
+    if use_verifier_span:
+        video_id = str(verifier_result.get("video_id") or "unknown_video").strip()
+        start_time = verifier_result.get("start_time")
+        end_time = verifier_result.get("end_time")
+    else:
+        top_row = rows[0]
+        primary = _pick_primary_row(top_row)
+        video_id = str(primary.get("video_id") or top_row.get("video_id") or "unknown_video").strip()
+        start_time = primary.get("start_time", top_row.get("start_time"))
+        end_time = primary.get("end_time", top_row.get("end_time"))
+
     start_text = _format_clip_time(start_time)
     end_text = _format_clip_time(end_time)
     if _looks_like_binary_query(query):
@@ -208,6 +233,7 @@ def _canonicalize_summary(
     verifier_decision: str = "",
     grounder_enabled: bool = False,
     bail_out_strict: bool = True,
+    verifier_result: dict[str, Any] | None = None,
 ) -> str:
     allow_no_match = _allow_no_match_decision(
         rows=rows,
@@ -221,7 +247,7 @@ def _canonicalize_summary(
         return normalized
     if normalized.startswith("Yes. The relevant clip is in ") or normalized.startswith("The most relevant clip is in "):
         return normalized
-    return _build_factual_summary(rows, query)
+    return _build_factual_summary(rows, query, verifier_result=verifier_result)
 
 
 def create_summary_node(llm: Any = None):
@@ -244,7 +270,12 @@ def create_summary_node(llm: Any = None):
             for row in rows[:5]
         ]
 
-        factual_fallback = _build_factual_summary(rows, original_query or rewritten_query)
+        verifier_payload = state.get("verifier_result")
+        if not isinstance(verifier_payload, dict):
+            verifier_payload = None
+        factual_fallback = _build_factual_summary(
+            rows, original_query or rewritten_query, verifier_result=verifier_payload
+        )
         fallback_summary = factual_fallback or raw_answer or "No matching clip is expected."
         if not rows:
             return {
@@ -312,7 +343,6 @@ def create_summary_node(llm: Any = None):
             ]
         )
         prompt = "\n".join(prompt_lines)
-        verifier_payload = state.get("verifier_result")
         verifier_decision = ""
         if isinstance(verifier_payload, dict):
             verifier_decision = str(verifier_payload.get("decision") or "").strip().lower()
@@ -353,6 +383,7 @@ def create_summary_node(llm: Any = None):
             verifier_decision=verifier_decision,
             grounder_enabled=grounder_enabled,
             bail_out_strict=bail_out_strict,
+            verifier_result=verifier_payload,
         )
         final_text = final_summary if not rendered_citations else f"{final_summary}\n{rendered_citations}"
         payload["citations"] = citations
