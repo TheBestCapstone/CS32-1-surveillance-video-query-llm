@@ -499,9 +499,26 @@ class AgentTestDatasetImporter:
         question: str,
         question_language: str,
     ) -> str | None:
-        raw = (recall_challenge or "").strip()
-        if raw:
-            return raw.rstrip("。. ") or None
+        """Build the ``scene_description`` snippet that goes into ``reference_answer_rich``.
+
+        P1-Next-F R2 (2026-05-02): the original implementation preferred the
+        XLSX ``recall_challenge`` column (e.g. ``"Minimal"`` /
+        ``"Must link 'other dogs approaching' to the main collision event"`` /
+        ``"Bystander has no actions; easily overlooked in action-based retrieval"``).
+        Those cells are *evaluator-side annotations*, not facts about the video,
+        so RAGAS context_recall could never attribute them and 30/50 50-case eval
+        ran with a permanently unattributable sentence in the reference.
+
+        Now we always derive the scene snippet from the (stripped) question,
+        which is a real description of what the video should depict and which
+        retrieval chunks can plausibly support. ``recall_challenge`` survives
+        as a pure dataset metadata field elsewhere; it just no longer leaks
+        into the reference answer.
+
+        See ``agent/recall_diagnosis_2026_05_02.md`` §2 for the diagnostic that
+        motivated this change.
+        """
+        del recall_challenge  # intentionally unused; kept on the signature for callers
         stripped_question = AgentTestDatasetImporter._strip_question_wrappers(question, question_language)
         return stripped_question or None
 

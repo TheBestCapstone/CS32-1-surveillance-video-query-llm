@@ -118,13 +118,43 @@ def _select_final_rows(final_state: dict[str, Any]) -> list[dict[str, Any]]:
 
 
 def _row_context_text(row: dict[str, Any]) -> str:
-    return str(
+    """Build the per-chunk context string fed to RAGAS.
+
+    P1-Next-F R1 (2026-05-02): always prefix ``Video <video_id>. Time <st>s-<et>s.``
+    so the RAGAS LLM can attribute the ``In <video> around <time>`` fact in the
+    reference. Previously about 56% of chunks reached RAGAS without any
+    ``video_id`` token, which made every reference of the form ``In <video_id>``
+    unattributable. See ``agent/recall_diagnosis_2026_05_02.md`` §3 for the
+    full diagnosis.
+    """
+    body = str(
         row.get("event_summary_en")
         or row.get("event_text_en")
         or row.get("event_text_cn")
         or row.get("event_text")
         or ""
     ).strip()
+    video_id = str(row.get("video_id") or "").strip()
+    start = row.get("start_time")
+    end = row.get("end_time")
+
+    head_parts: list[str] = []
+    if video_id:
+        head_parts.append(f"Video {video_id}.")
+    if isinstance(start, (int, float)) and isinstance(end, (int, float)):
+        head_parts.append(f"Time {float(start):.1f}s-{float(end):.1f}s.")
+    elif isinstance(start, (int, float)):
+        head_parts.append(f"Time starts at {float(start):.1f}s.")
+
+    head = " ".join(head_parts)
+    if not head:
+        return body
+    if not body:
+        return head
+    # Avoid double-prefixing when the body already begins with "Video ...".
+    if body.lower().startswith("video "):
+        return body
+    return f"{head} {body}"
 
 
 def _strip_sources(text: str | None) -> str:
@@ -819,9 +849,12 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--ragas-openai-base-url", type=str, default="", help="Optional base url for RAGAS OpenAI client")
     parser.add_argument("--ragas-concurrency", type=int, default=4, help="Parallel RAGAS scoring concurrency")
     parser.add_argument("--ragas-case-batch-size", type=int, default=4, help="How many cases to score in one asyncio batch")
-    parser.add_argument("--ragas-max-contexts", type=int, default=3, help="Max contexts passed into RAGAS")
+    # P1-Next-F R3 (2026-05-02): default 3 -> 5 to match rerank_top_k so multi-fact
+    # answers have a chance of being attributed across multiple chunks; total chars
+    # 1800 -> 3000 to avoid _compact_contexts truncating those extra chunks.
+    parser.add_argument("--ragas-max-contexts", type=int, default=5, help="Max contexts passed into RAGAS")
     parser.add_argument("--ragas-max-context-chars", type=int, default=700, help="Max chars per context for RAGAS")
-    parser.add_argument("--ragas-max-total-context-chars", type=int, default=1800, help="Max total context chars for RAGAS")
+    parser.add_argument("--ragas-max-total-context-chars", type=int, default=3000, help="Max total context chars for RAGAS")
     parser.add_argument("--ragas-max-response-chars", type=int, default=900, help="Max response chars for RAGAS")
     parser.add_argument("--ragas-max-reference-chars", type=int, default=700, help="Max reference chars for RAGAS")
     parser.add_argument("--ragas-metric-max-retries", type=int, default=4, help="Max retries for retryable RAGAS metric failures")
