@@ -22,6 +22,7 @@ logs/
 sanity/
 results/
 docs/
+agent/test/generated/
 
 # Root-level scratch result files
 /result_*.json
