@@ -385,4 +385,6 @@ P2/P3 见 `agent/todo.md`。
 4. 然后从 **P1-Next-A**（`summary_node.py` bail-out 收紧）下手 —— 这是最快的指标杠杆，10 行内可以拿到 `factual_correctness 0.48 → 0.65`
 5. 完成后跑一次 50-case e2e，把数据贴回 `agent/todo.md` 的 P1-Next-A 验收行
 
+真实接口联调时我观察到你当前检索环境还存在已有问题： hybrid 分支会偶发降级到 sql only ，报错里出现过 embedding dimension mismatch 和 Chroma 相关异常；这不是这次 FastAPI 包装引入的，但会影响召回质量。
+我碰到一个仓库里的老问题： agent/ 目录既支持 bare import，也有相对导入，导致测试里用顶层 db.* 会触发包层级错误。我现在把新文件改成统一用 agent.db.* ，这样 pytest 更稳
 祝顺利。

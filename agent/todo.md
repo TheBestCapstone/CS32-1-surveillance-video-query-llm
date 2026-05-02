@@ -135,25 +135,114 @@
   - `AGENT_HYBRID_BM25_FUSED=0` 立即关闭 BM25 通道，等价于纯向量行为（旧 subset BM25 不可恢复）
 - 待验证：恢复 DashScope embedding 鉴权后跑一次完整 50-case e2e，预计 `context_recall_avg` 从 0.30 → ≥ 0.35（10 例 smoke 已经从 0.20 → 0.30，相对 +50%）
 
-### P1-3 query embedding LRU + 磁盘缓存
+### P1-3 query embedding LRU + 磁盘缓存 ✅ DONE（2026-05-02）
 
-- 文件：`agent/tools/llm.py`、`agent/tools/db_access.py`
-- 现状：每次 query 都调一次 DashScope embedding
-- 改造：
-  - 在 `get_qwen_embedding` 外层包一层 `functools.lru_cache(maxsize=2048)`（query 级）
-  - 加可选磁盘缓存目录 `data/cache/embedding/`，按 hash(text) 存 .npy
-  - 失败时重试 2 次 + 指数退避
-- 验收：一轮 30 条评测的 embedding API 调用次数显著下降（从 ~60 → ~30）
+- 文件：`agent/tools/llm.py`（重写 +260 / -30）、新文件 `agent/test/test_embedding_cache.py`（+260）
+- 现状（改造前）：`get_qwen_embedding` 每次 query 都调一次 DashScope/OpenAI embedding，无缓存、无重试
+- 改造实施：
+  - 自实现轻量 LRU（`OrderedDict` + 锁），可"只查不发"以支持批量路径正确命中
+  - 磁盘缓存：按 `sha256(provider|model|dimensions|text)` 落盘到 `AGENT_EMBEDDING_CACHE_DIR`，`.json` 含 vector + meta，写入用 `tempfile + rename` 防 partial write
+  - 失败重试：单条 / 批量分别 3 次重试，指数退避 0.5s → 1s → 2s（封顶 4s）
+  - 单条路径：`_lookup_cached`（LRU → disk → miss）→ `_embed_single_remote_with_retry`
+  - 批量路径：先逐项查 LRU/disk，未命中合并按 `EMBEDDING_BATCH_LIMIT=10` 分批一次性 batch API call，结果两层回写
+  - 暴露 `clear_embedding_cache()` / `get_embedding_cache_stats()` 用于运维与测试
+  - env knobs：
+    - `AGENT_EMBEDDING_CACHE_DIR=path` 启用磁盘缓存（不设则只用 LRU）
+    - `AGENT_EMBEDDING_CACHE_LRU_SIZE=N`（默认 2048）
+    - `AGENT_EMBEDDING_CACHE_DISABLED=1` 完全旁路缓存（debug 用）
+  - 兼容性：`get_qwen_embedding(text)` 签名 / 返回类型 / 单条 vs 批量行为完全不变；6 个调用点（`db_access.py / chroma_builder.py / llamaindex_adapter.py / py2sql.py / event_retriever.py / __main__`）零改动
+- 单测：`agent/test/test_embedding_cache.py` 10 例（LRU 命中 / disk 命中 / disk hit warming LRU / 批量 partial-hit / 批量分块 / cache key 随 model 变化 / 禁用 flag bypass / LRU 容量 eviction / retry 成功 / retry 耗尽传播），全用 `mock.patch._build_embedding_client` 不触网络；与既有 54 例一起 **64/64 全过**
+- 在线烟测（真实 OpenAI API，3 query × 3 round）：
+  - 1st pass（cold）：3 次 API call、1 次 LRU hit（重复 query）
+  - 2nd pass（清 LRU）：**3 次 disk hit、0 次 API call**
+  - 3rd pass（LRU warm）：**3 次 LRU hit、0 次 API call**
+  - 磁盘按 SHA256 key 落 `.json`，`vector + provider + model + dimensions` 完整保留
+- 兼容性 / 回滚：
+  - `AGENT_EMBEDDING_CACHE_DISABLED=1` 立即回到旧行为（无缓存 + 仍带 retry，比改造前还稳）
+  - 不设 `AGENT_EMBEDDING_CACHE_DIR` 时只走 LRU（进程级 ephemeral）
+  - 删除磁盘 cache 目录任意时刻安全（命中失败会自动 fallback 到 remote）
 
-### P1-4 summary 输出分 strict / natural 两档
+### P1-4 ~~summary 输出分 strict / natural 两档~~ ❌ 取消（2026-05-02）
 
-- 文件：`agent/node/summary_node.py`
-- 现状：`_canonicalize_summary` 硬拉成 `"Yes. The relevant clip is in X, around h:mm:ss..."`，实际应用不可用
-- 改造：
-  - 新增 env flag：`AGENT_SUMMARY_STYLE ∈ {strict, natural}`，默认 `natural`
-  - strict 保留当前模板（eval 专用）
-  - natural 允许自然句并附带 `[event summary]` 与 citations
-- 验收：strict 模式下评测数值不退化，natural 模式下 LLM 输出不被覆盖
+> 取消理由：P1-Next-A 已经把 summary_node 的 bail-out 三道锁同步打掉，并且通过 `AGENT_SUMMARY_BAIL_OUT_STRICT` env flag 提供了灰度回滚口；如果将来要"natural 自然句"行为，可以在 `_normalize_summary_output` 加一个新 flag，没必要再做"双档"抽象。当前的 strict 模板（"Yes. The relevant clip is in ..." / "The most relevant clip is in ..."）已经是 RAGAS reference 期望的格式，natural 模式实际场景里也用不到（前端拿到 final_answer 自己渲染即可）。
+
+### P1-Next-C 评测指标改造（决策固化 2026-05-02，待下个 session 实施）
+
+> 触发原因：sanity check 发现 RAGAS `factual_correctness` 单次评测随机抖动 ±0.10-0.15（同 response 不同 LLM 评分得分相差 0.18 avg），单次跑无法识别真实改造收益。
+
+#### 保留指标（沿用 RAGAS）
+
+- `context_precision`（用 reference + retrieved_contexts 评）
+- `context_recall`（用 reference + retrieved_contexts 评）
+- `faithfulness`（用 user_input + response + retrieved_contexts 评；用户决策保留）
+
+#### 移除指标
+
+- ❌ `factual_correctness`（被自定义"准确性"指标完全替代）
+
+#### 新增自定义指标 `custom_correctness`（规则型，0 LLM 调用）
+
+公式（初版，需要在实施时讨论调整）：
+
+```
+yes_no_score    = 1.0 if predicted_answer_label == expected_answer_label else 0.0
+video_id_score  = 1.0 if predicted_video_id == expected_video_id else 0.0
+time_iou_score  = max(0, IoU((pred_start, pred_end), (exp_start, exp_end)))   # 缺失则 None
+time_bonus      = 0.2 if time_iou_score >= 0.5 else 0.0                       # 命中阈值奖励
+
+# 默认权重（有 expected_time）
+custom_correctness =
+    0.4 × yes_no_score
+  + 0.4 × video_id_score
+  + 0.2 × min(1.0, time_iou_score + time_bonus)
+
+# 当 expected_time 缺失时（重分配最后一项的 0.2 权重）
+custom_correctness =
+    0.5 × yes_no_score
+  + 0.5 × video_id_score
+```
+
+实施前讨论清单：
+
+- 当 `expected_answer_label = "no"` 时，`yes_no_score=1.0` 已经能拿 0.4 分；要不要直接给满分？"no" 类问题没有正确视频，不应再要求 video_id（建议：`expected_answer_label="no"` 时 `video_id_score` 跳过，权重重分配）
+- "no" 类问题的 `predicted_answer_label` 怎么从 response 抽？目前 `summary_node` 输出 `"No matching clip is expected."` 是显式信号，但其他模板都是肯定句 → 用正则识别 `"No matching" / "Yes." / "The most relevant clip"` 三类
+- `time_iou` 计算时，`expected_time` 模糊（如"约 0:01:00"）怎么处理？建议把 reference 的时间窗扩 ±5s tolerance
+- 是否再加 `confidence` 子项（结合 verifier_decision）作为加成
+- 旧 baseline 数字（0.48 等）能否反向计算？需要从 e2e_report 里重抽 fields 重新算（runner 加 `--rescore-only` 模式）
+- predicted_answer_label / predicted_video_id / predicted_start_sec / predicted_end_sec 这些字段 runner 已经写出，无须改 agent 输出
+
+#### RAGAS LLM 评分参数变更
+
+- `temperature=0`（runner 里 `LangchainLLMWrapper(ChatOpenAI(model="...", temperature=0))`，当前未显式传，跟 client 默认）
+- 仍保留 retry，但失败计入 `metric_errors`，不被 silent drop
+
+#### `ragas_e2e_score_avg` 重定义
+
+```
+ragas_e2e_score = mean([
+    context_precision,        # RAGAS retrieval
+    context_recall,           # RAGAS retrieval
+    faithfulness,             # RAGAS generation
+    custom_correctness,       # task-native (替代 factual_correctness)
+])
+```
+
+#### 改造范围（实施时）
+
+- 文件：
+  - `agent/test/ragas_eval_runner.py`：新建 `_score_custom_correctness()` + 替换 `factual_correctness` 注入点 + LLM `temperature=0`
+  - 新文件 `agent/test/test_custom_correctness.py`：覆盖 yes/no 路径、video 错、time_iou 边界、缺失 expected_time、加权
+  - `agent/challenge.md`：新增一节描述 `custom_correctness` 含义与权重出处
+- 兼容性：保留旧 e2e_report 字段名（`factual_correctness` 写 None），加新字段 `custom_correctness`
+
+#### 预期收益
+
+- `custom_correctness` 跨次评测**完全确定**（同 response 永远同分），可清晰识别 ±0.005 级别的改造收益
+- RAGAS 子集（precision/recall/faithfulness）+ temperature=0 → 抖动从 ±0.15 降到 ±0.05 量级（推测）
+
+#### 决策时机
+
+下个 session（不在本次 commit 内）。本次 commit 只把决策记录到 `todo.md` 与本节。
 
 ### P1-5 清理 SQLiteGateway / merged_result 等"僵尸代码"
 
@@ -201,6 +290,34 @@
   - 10 例 e2e 回归：existence 子集上 `faithfulness` 均值 ≥ 0.55（当前 ~0.375），且 `top_hit_rate` 不退步
   - `ragas_eval_runner` 的 e2e_report 每条带有 `verifier_result`（mismatch/partial/exact + reason）
   - 非 existence 问题行为与改造前完全一致（`rerank_result` 未修改）
+
+### P1-Next-A 收紧 summary_node bail-out ✅ DONE（2026-05-02）
+
+- 文件：`agent/node/summary_node.py`、新文件 `agent/test/test_summary_node_bail_out.py`、`agent/graph_builder.py`（附带 `AGENT_DISABLE_VERIFIER_NODE` sanity flag）
+- 现状（改造前）：`summary_node` 里有**3 道串联锁**导致 retrieval-correct case 输出 "No matching clip is expected."
+  - 锁 1（`summary_node.py:212-227`）：LLM prompt 里 `"answer exactly: No matching clip is expected."` 主观 bail-out 指令
+  - 锁 2（`_normalize_summary_output`）：字符串短路 —— LLM 输出含此短语就强制返回此短语
+  - 锁 3（`_canonicalize_summary`）：normalize 输出是 `"No matching"` 时直接放行
+- 改造实施：
+  - prompt 按 `len(rows)` 分支构造：`rows == 0` 才有"No matching"指令；`rows > 0` 显式禁止 LLM 输出该短语
+  - `_normalize_summary_output(text, fallback, *, allow_no_match=True)`：新增参数；False 时把 `"No matching"` 字符串短路 demote 为 fallback
+  - `_canonicalize_summary(..., answer_type, verifier_decision, grounder_enabled, bail_out_strict)`：新增 4 个上下文参数；`_allow_no_match_decision()` 真值表函数判断是否允许放行
+  - 真值表：`rows==[] | bail_out_strict=False | (grounder_ON & answer_type==existence & verifier=mismatch)` → 允许；其他 → demote
+  - env flag `AGENT_SUMMARY_BAIL_OUT_STRICT=0/1`（默认 1=新行为）作为灰度回滚口
+  - 同步加 `AGENT_DISABLE_VERIFIER_NODE=0/1`（默认 0），在 `_build_parallel_fusion_graph` 里 short-circuit `match_verifier_node`，用于 sanity 测试 / 节省 LLM quota
+- 单测：`agent/test/test_summary_node_bail_out.py` 20 例（`AllowNoMatchDecisionTests` 6 + `NormalizeSummaryOutputTests` 3 + `CanonicalizeSummaryTests` 4 + `SummaryNodeIntegrationTests` 6 + `SummaryNodeNoLLMFallbackTests` 1），含 prompt 内容断言（用 `_StubLLM` 捕获 prompt 验证 rows>0 时不含 bail-out 指令）；与既有 34 例一起 **54/54 全过**
+- 在线验证（50-case e2e，`agent/test/generated/ragas_eval_e2e_n50_p1_next_a_v1/`）：
+  - **`No matching clip is expected.` case 数：12 → 0（确定性消除，核心 KPI）**
+  - **12 个原 No-matching 子集 factual avg：0.1667 → 0.2083（+25% rel，对照组锁死无 RAGAS 噪声）**
+  - `factual_correctness_avg`：0.48 → 0.60（+0.12，含 RAGAS 评分本身 ±0.10-0.15 的随机噪声）
+  - `top_hit_rate / context_precision / localization` 全部不变 → 改造无副作用
+- 已知边界 / 后续 P1-Next-A.5：
+  - 4 个 case（PART1_0018/_0022/_0036/_0039）改造后输出正确 video_id 但 factual 仍 0，因为 reference 含 scene 描述（rich 模板`"Yes. In <video> around <time>, <scene>."`），当前 fallback 只给 video+time
+  - P1-Next-A.5 待办：`_build_factual_summary` 加 `event_summary_en[:80]` 截取，预期再 +0.04 fc avg
+- 兼容性 / 回滚：
+  - `AGENT_SUMMARY_BAIL_OUT_STRICT=0` 立即回到旧 bail-out 全允许
+  - `AGENT_DISABLE_VERIFIER_NODE=1` 从 graph 中剔除 verifier（advisory 模式无效果差异，仅省 LLM quota）
+  - 详细复盘见 `agent/调试记录.md` §10
 
 ---
 

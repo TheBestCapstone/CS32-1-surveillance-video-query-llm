@@ -1,3 +1,4 @@
+import os
 from typing import Any
 import re
 
@@ -6,6 +7,24 @@ from langchain_core.runnables import RunnableConfig
 from langgraph.store.base import BaseStore
 
 from .types import AgentState
+
+
+def _bail_out_strict_enabled() -> bool:
+    # P1-Next-A: tighten the 'No matching clip is expected.' bail-out.
+    # When enabled (default), ``rows>0`` cases are forbidden from emitting
+    # the bail-out string unless the existence-grounder explicitly classified
+    # the query as a verified ``mismatch``. Set ``=0`` to recover the legacy
+    # behaviour where any code path may yield 'No matching clip is expected.'
+    raw = os.getenv("AGENT_SUMMARY_BAIL_OUT_STRICT", "1").strip().lower()
+    return raw in {"1", "true", "yes", "on"}
+
+
+def _existence_grounder_enabled() -> bool:
+    # Mirrors ``answer_node._existence_grounder_enabled``; we cannot import
+    # from answer_node without a circular dependency, so duplicate the
+    # tiny helper. Keep the env-var name identical.
+    raw = os.getenv("AGENT_ENABLE_EXISTENCE_GROUNDER", "").strip().lower()
+    return raw in {"1", "true", "yes", "on"}
 
 
 def _select_rows(state: AgentState) -> list[dict[str, Any]]:
@@ -133,17 +152,52 @@ def _build_factual_summary(rows: list[dict[str, Any]], query: str) -> str:
     return f"The most relevant clip is in {video_id}, around {start_text} - {end_text}."
 
 
-def _normalize_summary_output(text: str, fallback: str) -> str:
+def _normalize_summary_output(
+    text: str,
+    fallback: str,
+    *,
+    allow_no_match: bool = True,
+) -> str:
     cleaned = " ".join(str(text or "").strip().split())
     if not cleaned:
         return fallback
     if "No matching clip is expected." in cleaned:
-        return "No matching clip is expected."
+        # P1-Next-A: only honour the bail-out string when the caller explicitly
+        # allows it (rows empty, or grounder verdict said mismatch). Otherwise
+        # demote to the factual fallback so retrieval-correct cases stop
+        # emitting a vacuously empty answer.
+        return "No matching clip is expected." if allow_no_match else fallback
     if len(cleaned) > 140:
         return fallback
     if cleaned.count("Abuse") > 1:
         return fallback
     return cleaned
+
+
+def _allow_no_match_decision(
+    *,
+    rows: list[dict[str, Any]],
+    answer_type: str,
+    verifier_decision: str,
+    grounder_enabled: bool,
+    bail_out_strict: bool,
+) -> bool:
+    # Truth table (P1-Next-A):
+    #   rows == [] -> always allow (early return path also covers this).
+    #   bail_out_strict == False -> always allow (legacy behaviour, escape hatch).
+    #   grounder ON + answer_type == existence + verifier mismatch -> allow.
+    #   otherwise -> forbid.
+    if not rows:
+        return True
+    if not bail_out_strict:
+        return True
+    if (
+        grounder_enabled
+        and answer_type == "existence"
+        and verifier_decision == "mismatch"
+    ):
+        return True
+    return False
 
 
 def _canonicalize_summary(
@@ -152,8 +206,19 @@ def _canonicalize_summary(
     fallback: str,
     rows: list[dict[str, Any]],
     query: str,
+    answer_type: str = "",
+    verifier_decision: str = "",
+    grounder_enabled: bool = False,
+    bail_out_strict: bool = True,
 ) -> str:
-    normalized = _normalize_summary_output(text, fallback)
+    allow_no_match = _allow_no_match_decision(
+        rows=rows,
+        answer_type=answer_type,
+        verifier_decision=verifier_decision,
+        grounder_enabled=grounder_enabled,
+        bail_out_strict=bail_out_strict,
+    )
+    normalized = _normalize_summary_output(text, fallback, allow_no_match=allow_no_match)
     if normalized == "No matching clip is expected.":
         return normalized
     if normalized.startswith("Yes. The relevant clip is in ") or normalized.startswith("The most relevant clip is in "):
@@ -209,22 +274,61 @@ def create_summary_node(llm: Any = None):
                 "messages": [AIMessage(content=final_text)],
             }
 
-        prompt = (
-            "You are the final response summarizer for a retrieval assistant. "
-            "Return a short factual answer that matches the reference-answer style used in evaluation. "
-            "Use only the single strongest result. Do not merge multiple videos. "
-            "If the evidence does not clearly support the query, answer exactly: No matching clip is expected. "
+        # P1-Next-A: when ``rows`` is non-empty we drop the bail-out clause
+        # entirely. Only the empty-rows branch (handled earlier with an early
+        # return) ever reaches the legacy 'No matching' wording.
+        prompt_lines: list[str] = [
+            "You are the final response summarizer for a retrieval assistant.",
+            "Return a short factual answer that matches the reference-answer style used in evaluation.",
+            "Use only the single strongest result. Do not merge multiple videos.",
+        ]
+        if not rows:
+            prompt_lines.append(
+                "If no result is provided, answer exactly: No matching clip is expected."
+            )
+        else:
+            prompt_lines.append(
+                "Even if the evidence is partial, summarize using the strongest result. "
+                "Do not return 'No matching clip is expected.' when results are provided."
+            )
+        prompt_lines.append(
             "If the evidence supports the query, use exactly this format: "
-            "'Yes. The relevant clip is in <video_id>, around <h:mm:ss> - <h:mm:ss>.' "
-            "For non-binary questions, use: 'The most relevant clip is in <video_id>, around <h:mm:ss> - <h:mm:ss>.' "
-            "Do not add extra scene details, explanations, or a sources section."
-            f"\n\nOriginal user query: {original_query}"
-            f"\nRewritten retrieval query: {rewritten_query}"
-            f"\nRetrieved result count: {len(rows)}"
-            f"\nTop results: {row_digest[:2]}"
-            f"\nPreferred fallback answer: {factual_fallback}"
-            f"\nDraft answer: {raw_answer}"
+            "'Yes. The relevant clip is in <video_id>, around <h:mm:ss> - <h:mm:ss>.'"
         )
+        prompt_lines.append(
+            "For non-binary questions, use: "
+            "'The most relevant clip is in <video_id>, around <h:mm:ss> - <h:mm:ss>.'"
+        )
+        prompt_lines.append(
+            "Do not add extra scene details, explanations, or a sources section."
+        )
+        prompt_lines.extend(
+            [
+                "",
+                f"Original user query: {original_query}",
+                f"Rewritten retrieval query: {rewritten_query}",
+                f"Retrieved result count: {len(rows)}",
+                f"Top results: {row_digest[:2]}",
+                f"Preferred fallback answer: {factual_fallback}",
+                f"Draft answer: {raw_answer}",
+            ]
+        )
+        prompt = "\n".join(prompt_lines)
+        verifier_payload = state.get("verifier_result")
+        verifier_decision = ""
+        if isinstance(verifier_payload, dict):
+            verifier_decision = str(verifier_payload.get("decision") or "").strip().lower()
+        answer_type = str(state.get("answer_type") or "").strip().lower()
+        grounder_enabled = _existence_grounder_enabled()
+        bail_out_strict = _bail_out_strict_enabled()
+        allow_no_match = _allow_no_match_decision(
+            rows=rows,
+            answer_type=answer_type,
+            verifier_decision=verifier_decision,
+            grounder_enabled=grounder_enabled,
+            bail_out_strict=bail_out_strict,
+        )
+
         try:
             model = llm.bind(max_tokens=120) if hasattr(llm, "bind") else llm
             raw = model.invoke(
@@ -233,7 +337,9 @@ def create_summary_node(llm: Any = None):
             )
             summary_text = raw.content if hasattr(raw, "content") else str(raw)
             payload = {
-                "summary": _normalize_summary_output(str(summary_text), fallback_summary),
+                "summary": _normalize_summary_output(
+                    str(summary_text), fallback_summary, allow_no_match=allow_no_match
+                ),
                 "style": "llm_summary",
                 "confidence": 0.8,
             }
@@ -245,6 +351,10 @@ def create_summary_node(llm: Any = None):
             fallback=fallback_summary,
             rows=rows,
             query=original_query or rewritten_query,
+            answer_type=answer_type,
+            verifier_decision=verifier_decision,
+            grounder_enabled=grounder_enabled,
+            bail_out_strict=bail_out_strict,
         )
         final_text = final_summary if not rendered_citations else f"{final_summary}\n{rendered_citations}"
         payload["citations"] = citations
