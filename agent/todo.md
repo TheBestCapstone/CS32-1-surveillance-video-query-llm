@@ -150,7 +150,7 @@
     - `AGENT_EMBEDDING_CACHE_DIR=path` 启用磁盘缓存（不设则只用 LRU）
     - `AGENT_EMBEDDING_CACHE_LRU_SIZE=N`（默认 2048）
     - `AGENT_EMBEDDING_CACHE_DISABLED=1` 完全旁路缓存（debug 用）
-  - 兼容性：`get_qwen_embedding(text)` 签名 / 返回类型 / 单条 vs 批量行为完全不变；6 个调用点（`db_access.py / chroma_builder.py / llamaindex_adapter.py / py2sql.py / event_retriever.py / __main__`）零改动
+  - 兼容性：`get_qwen_embedding(text)` 签名 / 返回类型 / 单条 vs 批量行为完全不变；6 个调用点（`db_access.py / chroma_builder.py / llamaindex_adapter.py / py2sql.py / event_retriever.py / __main_`_）零改动
 - 单测：`agent/test/test_embedding_cache.py` 10 例（LRU 命中 / disk 命中 / disk hit warming LRU / 批量 partial-hit / 批量分块 / cache key 随 model 变化 / 禁用 flag bypass / LRU 容量 eviction / retry 成功 / retry 耗尽传播），全用 `mock.patch._build_embedding_client` 不触网络；与既有 54 例一起 **64/64 全过**
 - 在线烟测（真实 OpenAI API，3 query × 3 round）：
   - 1st pass（cold）：3 次 API call、1 次 LRU hit（重复 query）
@@ -165,6 +165,131 @@
 ### P1-4 ~~summary 输出分 strict / natural 两档~~ ❌ 取消（2026-05-02）
 
 > 取消理由：P1-Next-A 已经把 summary_node 的 bail-out 三道锁同步打掉，并且通过 `AGENT_SUMMARY_BAIL_OUT_STRICT` env flag 提供了灰度回滚口；如果将来要"natural 自然句"行为，可以在 `_normalize_summary_output` 加一个新 flag，没必要再做"双档"抽象。当前的 strict 模板（"Yes. The relevant clip is in ..." / "The most relevant clip is in ..."）已经是 RAGAS reference 期望的格式，natural 模式实际场景里也用不到（前端拿到 final_answer 自己渲染即可）。
+
+### P1-Next-D chunk 方案重审 / 父子索引有效性验证 ✅ DONE（2026-05-02，调研完成不改代码）
+
+> 完整调研报告：`agent/data_audit_2026_05_02.md`
+
+#### 关键发现
+- **UCFCrime（310 videos / 4331 events）**：`(video_id, entity_hint)` track 中 100% 含且仅含 1 个 event；child collection 与 event collection 完全等价（4331/4331）。根因：source data 的 `entity_hint` 字段被当作 `segment_<event_index>` 顺序编号用，**不是真正的 entity track ID**。
+- **Basketball（2 videos / 269 events）**：basketball_1 几乎全 1:1（events/track=1.01），basketball_2 仅 15% tracks 含多 events（events/track=1.26）。
+- **三层架构在 ucfcrime 上实际只有两层**：parent (17) + child==event (235)。
+
+#### 决策结果
+- **方案 A（不动数据，承认现状）**：✅ 采纳
+  - `chroma_builder.py` 代码逻辑无 bug，问题在 source data 字段语义错位
+  - 三层架构对 basketball 仍有 15% 收益，跨数据集架构合理，不删 event collection
+  - **对 P1-7 v2.3 的指导（结合 retrieval 多样性 audit）**：
+    - 后续 retrieval 多样性 audit 进一步发现：56% case top-K 全是同 video chunks，所有候选实际都已经在 `rerank_result` 里
+    - 因此 P1-7 从 v2.2-Plus（event-level secondary fetch）修订为 **v2.3**（直接在 `rerank_result` 内 LLM 重选 best span，不调 chroma 二次 fetch）
+    - PART1_0011 案例预期：仍能修复（Abuse040_x264 的 7 个 segments 中 5 个已在 top-5，含 hitting 的 segment_4/5 都在）
+
+#### 长期跟进（不阻塞 P1-7）
+- 新增 **P3-4**（见下方 P3 章节）：重新设计 ucfcrime source data 的 entity_hint，真正反映 entity track ID；或改 chunk 切分策略为按时间窗
+
+<!-- 历史调研描述（已经完成，保留作归档） -->
+
+<details>
+<summary>原 P1-Next-D 调研提案（点击展开）</summary>
+
+> 触发原因：本次 P1-7 调研中发现 **eval 子库 child collection 与 event collection 几乎 1:1 对应**（235 / 235 records on `ucfcrime_eval_chroma`），而设计意图是 child（track 聚合）粗于 event（单事件）。这意味着父子索引结构可能并未真正发挥作用，需要先验证、必要时重构。**此 todo 是 P1-7 v2.2-Plus 的前置阻塞项**：
+> - 若 1:1 是 bug → 修复后 P1-7 受益巨大（event 真正比 child 细，secondary fetch 才有意义）
+> - 若 1:1 是数据特性（每个 source track 本就只 1 个 event）→ P1-7 secondary fetch 收益受限，可能改方向（如改 source data 的 event 切分；或确认架构精简，删 event collection）
+
+#### 验证项（数据驱动调研）
+
+1. **抽样源数据**：从 `agent/init/seed/` 或 `data/` 找 source events JSON，抽 5-10 个 video，统计每个 track 真实 event 数量分布（直方图）
+2. **检查 chroma_builder.py 逻辑**：
+   - `_build_child_records()` 是否真的按 `(video_id, entity_hint)` 聚合多个 events？
+   - `_build_event_records()` 是否每个 event 一条记录？
+   - chunk strategy 是不是被 source data 形状决定（每条 source event = 一个 track）？
+3. **多 namespace 对比**：basketball namespace 和 ucfcrime namespace 的 child:event 比例是否相同？
+4. **child doc 内容**：当前 child 的 doc 是 "Track segment_N. Time range ..."，看起来跟 event 描述同质 → 是否本来该聚合多 event 摘要的，但因为 source data 每 track 1 event 而退化成单 event？
+
+#### 决策矩阵（基于验证结果）
+
+| 验证发现 | 推荐动作 |
+|---|---|
+| **A. 数据特性使然**（每 track 1 event，全数据集都这样）| 删除 event collection，简化为 child only；P1-7 v2.2-Plus 改用 child top-K secondary fetch |
+| **B. 部分视频有多 event**（5%+ track 含 ≥2 events）| 修 `chroma_builder._build_child_records` 真正聚合多 events；P1-7 v2.2-Plus 仍按原方案 |
+| **C. chunk strategy 完全未生效**（应该有多 events 但被错误展开）| 修 builder 同时保留两层；P1-7 v2.2-Plus 按原方案 |
+| **D. 数据有但建库时丢失**（source 多 events，build 后只剩单 event）| 调试 build 流程，重建 chroma；之后再做 P1-7 |
+
+#### 输出
+- 一份调研结论 markdown：`agent/data_audit_2026_05_02.md`，含分布数据 + 决策建议
+- 必要的 chroma_builder.py 改造（如选 B / C / D）
+- 必要的 chroma 库重建命令（manage_graph_db）
+
+#### 工作量预估
+- 仅调研 + 报告：1-2 小时（无代码改动）
+- 调研 + chunk 重构 + 重建库：4-6 小时（视决策而定）
+- 不跑 eval（这个 todo 不需要 eval）
+
+</details>
+
+### P1-7 v2.3 existence verifier 在 rerank_result 内重选 best span（2026-05-02 修订定稿，可启动）
+
+> **由 v2.2-Plus 修订而来**。深入调研发现：
+>
+> 1. UCFCrime 的 child = event = 1:1（P1-Next-D 结论）
+> 2. **retrieval top-K 在 56% case 全是同一个视频的多个 chunks**（top-K 多样性极差，等价于"video 召回 + 同视频内 rerank"）
+> 3. 5 个 verifier=mismatch case 中 4 个的"对的 chunk 已经在 rerank_result top-5 里"，只是 rerank 把不匹配 query 的 chunk 排第一了
+> 4. Verifier sanity check 显示 verifier 在 advisory 模式下对最终输出 0 影响，但 verifier 的 mismatch verdict 本身是判得对的（5/5 全对），只是被 P1-Next-A 的"rows>0 强制 Yes"覆盖
+>
+> → 真正问题不是"父子粒度不够细"，而是"rerank 排错了 chunk 顺序、verifier 看错了对象"。
+
+#### 设计哲学
+> 让 verifier 在 **rerank_result 里同视频的所有 chunks** 上做 LLM single-shot 重选 best span，**不再调 chroma 二次 fetch**（候选都已在 rerank_result 里）。
+> verifier 角色变为 **span re-selector**（不是 gatekeeper），输出新 (start, end) 给 summary_node 用；与 P1-Next-A 完全兼容。
+
+#### 改造点（3 处文件，净 +150 / -100 LoC 含单测）
+
+1. **改造 `agent/node/match_verifier_node.py`**（核心）
+   - 取 `rerank_result[:8]`，按 `top_video_id` 分组：
+     - `same_video_chunks = [r for r in rerank_result if r.video_id == top_video]`
+     - `other_video_top1 = [r for r in rerank_result if r.video_id != top_video][:2]`（保留小量异质候选，防 retrieval 视频选错时 LLM 还有选择权）
+   - `_llm_select_best_chunk(query, candidates, llm)`：single-shot LLM 在所有候选里挑 best chunk + 下 verdict（一次调用）
+   - `_heuristic_select_best_chunk(query, candidates)`：LLM 失败兜底（基于 token overlap）
+   - 输出 `verifier_result.span_source ∈ {"rerank_reselected", "candidate_top_row"}` + 重选的 video_id/start/end/primary_summary
+
+2. **改造 `agent/node/summary_node.py:_build_factual_summary`**
+   - 当 `verifier_result.span_source == "rerank_reselected"` 时优先用 verifier 重选的 (video_id, start, end, summary)
+   - 否则保持当前 P1-Next-A 行为（top_row 的 span）
+
+3. **`agent/node/answer_node.py`**：grounder ON 时已经用 verifier_result 字段，自动受益（无需改）
+
+> 本方案**不再新建** `agent/tools/verifier_tools.py`，不调用 chroma event collection 二次 fetch。
+
+#### 单测：`agent/test/test_match_verifier_v23.py`（约 8-10 例）
+
+- LLM 在多 chunk 候选里挑 best（PART1_0011 风格场景：top_row 是错 chunk，top-K 里有对的 chunk）
+- LLM 选的 best 不是 top_row → `span_source=rerank_reselected`, `decision=exact`
+- LLM 选的 best 就是 top_row → `span_source=candidate_top_row`, `decision=exact`
+- LLM 失败 → fallback 到 heuristic
+- rerank_result 只有 1 个 chunk → 等价于 single-row 路径
+- rerank_result 全同视频（PART1_0011 场景）→ candidates 全部来自同视频，正确流转
+- rerank_result 跨多视频（PART1_0034 场景）→ candidates 含同视频 + 异质 video top1
+- summary_node 真的用了 verifier 重选的 span（端到端验证）
+
+#### Env 灰度
+
+- `AGENT_VERIFIER_RESELECT_SPAN=0/1`（默认 1=新行为）：=0 退回旧 single-row verdict
+- `AGENT_VERIFIER_EVENT_TOP_K`（默认 5）：candidate event chunks 数量
+
+#### 验收（50-case eval，grounder ON）
+
+- "No matching" 输出 case 数 ≤ 2（仅 retrieval 真错的）
+- 5 个原 verifier=mismatch case 中 ≥ 3 个变 exact/partial（top_hit=True 的那 4 个）
+- localization_score_avg ≥ 0.40（撬 P1-Next-B 主目标）
+- top_hit_rate 0.94 不变
+- 14 个 existence case factual 不退步
+- 50-case eval 时间 ≤ 30min（基线 23min，多 ~3min event fetch + LLM）
+
+#### 兼容性 / 回滚
+
+- `AGENT_VERIFIER_EVENT_FETCH=0` 立即回到旧逻辑
+- `AGENT_VERIFIER_USE_LLM=0` 完全禁用 LLM 走 heuristic（已有 flag）
+- event collection 不存在时自动 fallback（不会炸）
 
 ### P1-Next-C 评测指标改造（决策固化 2026-05-02，待下个 session 实施）
 
@@ -249,6 +374,7 @@ ragas_e2e_score = mean([
 > 用户决策：全手术 —— 一次性清掉 `SQLiteGateway` + `merged_result` + 整个 `legacy_router` 链路（`tool_router_node` / `reflection_node` / `cot_engine` / `router_prompts` / `query_optimizer` / `error_classifier`）。
 
 #### 删除的文件（8 个，约 -123KB）
+
 - `agent/node/tool_router_node.py`（19580 bytes）
 - `agent/node/router_prompts.py`（2205 bytes）
 - `agent/node/reflection_node.py`（37435 bytes）
@@ -258,6 +384,7 @@ ragas_e2e_score = mean([
 - `agent/node/tool_router_node.cover`、`agent/node/cot_engine.cover`（coverage artifacts）
 
 #### 删除的代码段
+
 - `agent/tools/db_access.py`：删 `SQLiteGateway` 类（`object_color_cn` 已脱 schema，零外部调用），同步删 `import sqlite3`
 - `agent/node/types.py`：删 `merged_result` 字段定义 + `EPHEMERAL_FIELDS` 中的默认值
 - `agent/node/parallel_retrieval_fusion_node.py`：返回 dict 中两处 `"merged_result": ...` 删除
@@ -267,11 +394,13 @@ ragas_e2e_score = mean([
 - `agent/test/ragas_eval_runner.py`、`agent/test_somke/result_test_runner.py`、`agent/test_somke/comprehensive_test_runner.py`：同上 fallback 分支删除
 
 #### graph_builder.py 简化
+
 - 删 3 个 legacy import：`reflection_node` / `tool_router_node` / `agents.build_*`
 - 删整个 `_build_legacy_router_graph` 函数
 - `build_graph` 简化：直接返回 `_build_parallel_fusion_graph`；`init_prompt_text` 参数保留但 `del` 掉，兼容老调用方
 
 #### 文档同步
+
 - `agent/architecture.md`：删 legacy_router 子图，加 verifier 节点说明
 - `agent/routing_rules.md`：彻底重写，去 RR-LEGACY-* 三条
 - `agent/graph_structure.md`：单一 parallel_fusion 子图
@@ -283,16 +412,19 @@ ragas_e2e_score = mean([
 - `deploy.md`：删 `AGENT_EXECUTION_MODE`，补当前活跃 env flags
 
 #### 验证
+
 - `python -m pytest agent/test/test_*.py`：**64/64 全过**（既有 + 新加 P1-Next-A 单测 + P1-3 单测）
 - graph compile smoke（默认 + `AGENT_DISABLE_VERIFIER_NODE=1` 两种模式）：✅ 全过；reflection_node / tool_router_node 已不在 nodes 列表
 
 #### 影响范围 / 已知边界
+
 - **完全废弃 `AGENT_EXECUTION_MODE=legacy_router` 模式**；旧脚本设此 env 无效（默认仍走 parallel_fusion，behaviour 兼容）
 - `pure_sql_node.py` / `hybrid_search_node.py` 文件保留（仍是 sub-agent 接口），但不再被默认 graph 引用
 - 全 codebase 净减约 -4000 / +50 LoC
 - 详细复盘见 `agent/调试记录.md` §11
 
 #### 回滚
+
 - 无灰度 flag —— 此次为终态删除。如需恢复 legacy_router，必须 `git revert` 整个 commit。建议先确认线上无 `AGENT_EXECUTION_MODE=legacy_router` 残留再 push。
 
 ### P1-6 路由收敛：SQL 只做融合通道，不再作终态分支 ✅ DONE（2026-05-01 完成；P1-5/P3-3 后描述已过时）
@@ -310,24 +442,14 @@ ragas_e2e_score = mean([
   - 默认图走 parallel_fusion 时，10 例 e2e 结果 `fusion_meta.signals` 非空
   - `test_weighted_rrf_fuse.py` / `test_extract_text_tokens_for_sql.py` / `test_pure_sql_fallback.py` 全绿
 
-### P1-7 存在性 grounder：retrieve → verifier → answer
+### P1-7 存在性 grounder：retrieve → verifier → answer ✅ 基础设施 DONE（2026-05-01 之前），后续优化已合并到 P1-7 v2.3
 
-- 文件：`agent/node/#match_verifier_node.py`（恢复成 `match_verifier_node.py`）、`agent/node/answer_node.py`、`agent/node/query_classification_node.py`、`agent/node/types.py`、`agent/graph_builder.py`、`agent/agents/shared/query_classifier.py`
-- 现状：默认图是 `parallel_retrieval_fusion_node → final_answer_node`，没有"这些 chunk 是否真能回答 yes/no"这一步，这是 faithfulness 偏低与存在性问题偏乐观的主要原因之一
-- 改造：
-  - classifier 新增 `answer_type ∈ {existence, list, description, count, unknown}`，通过 prompt + 启发式同时填（"Is there / Did you see / 有没有" → existence）
-  - `query_classification_node` 把 `answer_type` 写到 `state.answer_type`，并在 `classification_result` 里保留一份
-  - `#match_verifier_node.py` 搬回 `match_verifier_node.py`；仅当 `answer_type == "existence"` 时才跑 LLM/启发式裁决，其他情况直接 pass-through，不动 rerank 结果
-  - `final_answer_node`：
-    - 非 existence：保持原"列出 top-5 结果"行为
-    - existence + verdict=mismatch：返回结构化的 "No matching clip found."
-    - existence + verdict=exact/partial：返回 "Yes. Video=, start=, end=. Summary=..."，形成 RAGAS/E2E 评测期待的格式
-  - `graph_builder._build_parallel_fusion_graph` 插入 `match_verifier_node` 到 `parallel_retrieval_fusion_node → final_answer_node` 之间
-  - `AgentState` 新增 `answer_type / verifier_result` 字段，并加入 `StateResetter.EPHEMERAL_FIELDS`
-- 验收：
-  - 10 例 e2e 回归：existence 子集上 `faithfulness` 均值 ≥ 0.55（当前 ~0.375），且 `top_hit_rate` 不退步
-  - `ragas_eval_runner` 的 e2e_report 每条带有 `verifier_result`（mismatch/partial/exact + reason）
-  - 非 existence 问题行为与改造前完全一致（`rerank_result` 未修改）
+> 此段落原描述的"基础设施"工作（classifier answer_type、match_verifier_node 接入图、final_answer_node grounder 分支、AgentState 字段）已经在 P1-Next-A commit 之前全部落地。
+> **2026-05-02 调研发现**：verifier 在 advisory 模式 0 副作用，但 5/5 mismatch 判定**全部正确**（retrieval top_row 是同 video 的错 chunk），只是被 P1-Next-A 的"rows>0 强制 Yes"覆盖。
+> → 真正的下一步优化已合并为 **P1-7 v2.3**（rerank_result 内 LLM 重选 best span，不调 chroma 二次 fetch），见上方对应段落。本段保留作历史归档。
+
+- 已落地：classifier answer_type / match_verifier_node / final_answer_node grounder 分支 / AgentState fields / e2e_report verifier_result 字段
+- 待优化（迁至 P1-7 v2.3）：让 verifier 在 rerank_result 多 chunk 候选里 LLM 重选 best span，输出新 (start, end) 给 summary_node 用
 
 ### P1-Next-A 收紧 summary_node bail-out ✅ DONE（2026-05-02）
 
@@ -345,7 +467,7 @@ ragas_e2e_score = mean([
   - 同步加 `AGENT_DISABLE_VERIFIER_NODE=0/1`（默认 0），在 `_build_parallel_fusion_graph` 里 short-circuit `match_verifier_node`，用于 sanity 测试 / 节省 LLM quota
 - 单测：`agent/test/test_summary_node_bail_out.py` 20 例（`AllowNoMatchDecisionTests` 6 + `NormalizeSummaryOutputTests` 3 + `CanonicalizeSummaryTests` 4 + `SummaryNodeIntegrationTests` 6 + `SummaryNodeNoLLMFallbackTests` 1），含 prompt 内容断言（用 `_StubLLM` 捕获 prompt 验证 rows>0 时不含 bail-out 指令）；与既有 34 例一起 **54/54 全过**
 - 在线验证（50-case e2e，`agent/test/generated/ragas_eval_e2e_n50_p1_next_a_v1/`）：
-  - **`No matching clip is expected.` case 数：12 → 0（确定性消除，核心 KPI）**
+  - `**No matching clip is expected.` case 数：12 → 0（确定性消除，核心 KPI）**
   - **12 个原 No-matching 子集 factual avg：0.1667 → 0.2083（+25% rel，对照组锁死无 RAGAS 噪声）**
   - `factual_correctness_avg`：0.48 → 0.60（+0.12，含 RAGAS 评分本身 ±0.10-0.15 的随机噪声）
   - `top_hit_rate / context_precision / localization` 全部不变 → 改造无副作用
@@ -357,137 +479,7 @@ ragas_e2e_score = mean([
   - `AGENT_DISABLE_VERIFIER_NODE=1` 从 graph 中剔除 verifier（advisory 模式无效果差异，仅省 LLM quota）
   - 详细复盘见 `agent/调试记录.md` §10
 
----
-
-## P2 中期（1 个月内，增加自修复与跨语言能力）
-
-### P2-1 引入 verifier + 二次检索
-
-- 文件：`agent/node/#match_verifier_node.py`（当前冻结）→ 恢复为 `match_verifier_node.py`
-- 改造：
-  - 默认图改为：`parallel_retrieval_fusion_node → match_verifier_node → final_answer_node`
-  - verifier 判断：
-    - 结果数=0 → 放宽 filter / 切换 query 改写 / 再跑一次 parallel（最多 1 次）
-    - 结果数>0 但 rerank 置信度低 → 触发 parent→event 下钻
-  - retry 次数写进 `state.retry_count`，避免死循环
-- 验收：`top_hit_rate` 提升 ≥ 5 个百分点
-
-### P2-2 SQLite schema 归一化
-
-- 文件：`agent/db/schema.py`、`sqlite_builder.py`
-- 现状：单表塞所有字段，无 JOIN 能力，`metadata_json` 冗余
-- 改造（破坏性，需要评测前后对比）：
-  - 拆成 `videos / tracks / events` 三张表，FK 串联
-  - 去掉 `metadata_json` 字段
-  - `keywords_json` 和 `semantic_tags_json` 合并为一份
-  - 增加 Alembic 或手写 migration 脚本，真正用起 `schema_version`
-- 验收：
-  - 新 schema 下所有 SQL 测试通过
-  - 增量 ingestion 支持 upsert 而不是 truncate
-
-### P2-3 中文支持
-
-- 文件：`agent/db/chroma_builder.py`、`agent/node/self_query_node.py`
-- 方案 A（推荐）：
-  - `_build_child_document` 追加 `event_summary_cn / appearance_notes_cn` 字段（若源数据含中文）
-  - 同一条记录同时 embed 中英文文本（拼接）
-- 方案 B：
-  - `self_query_node` 在改写后强制翻译到英文再检索，原始 query 仅保留在 summary 阶段
-- 验收：中文 query 的 top hit 率提升
-
-### P2-4 ThreadPoolExecutor → asyncio
-
-- 文件：`agent/node/parallel_retrieval_fusion_node.py:162-173`
-- 现状：`timeout` 后线程不会真正停止，积累僵尸请求
-- 改造：
-  - 两条分支提供 async 版本（`_run_sql_branch_async / _run_hybrid_branch_async`）
-  - 用 `asyncio.wait_for` + `task.cancel()`
-  - SQLite 查询走 `asyncio.to_thread`，embedding 走 async HTTPX client
-- 验收：超时后 process 级不再有残留连接
-
-### P2-5 统一 RetrievalTrace 可观测对象
-
-- 新文件：`agent/node/retrieval_trace.py`
-- 改造：
-  - 定义 dataclass `RetrievalTrace`，包含 `sql_branch / hybrid_branch / fusion / rerank / verifier / final` 六段
-  - 所有节点统一写入 `state["retrieval_trace"]`，不再散落在 `sql_debug / routing_metrics / metrics / search_explain`
-  - `ragas_eval_runner.py` 输出 per-case trace JSON，方便事后分析 bad case
-- 验收：单个 case 的所有阶段信息可以从一个字段读出
 
 ---
 
-## P3 架构级（按需排期）
-
-### P3-1 配置中心化
-
-- 新文件：`agent/config/retrieval.yaml`
-- 现状：检索参数散落在
-  - 环境变量 `AGENT_`*
-  - `retrieval_contracts.DEFAULT_SEARCH_CONFIG`
-  - `fusion_engine.load_fusion_weights`
-  - 各 node 内部常量
-- 改造：
-  - 单一 YAML 真源，启动时 load 到 state
-  - env 变量只保留 overrides
-  - 每个节点从 state 读配置，不再直接 `os.getenv`
-
-### P3-2 self-query / classifier 改为 seed profile 驱动
-
-- 文件：`agent/node/self_query_node.py:70-89`、`agent/agents/shared/query_classifier.py:49-79`
-- 现状：fast-path 关键字硬编码 basketball + UCFCrime 域
-- 改造：
-  - 建库时已生成 `agent/init/agent_init_profile.json`（object_types / colors / keywords）
-  - fast-path 规则从 profile 动态载入，而不是写死在代码
-  - 跨域只需要重建库 + 重生成 profile，代码层零改动
-- 验收：切换到非 basketball 数据集时 self-query / classifier 仍可用
-
-### P3-3 删除冗余路径 / 死代码 ✅ DONE（2026-05-02，与 P1-5 合并执行）
-
-> 与 P1-5 一起做的"全手术"清理。详见 `### P1-5 + P3-3 清理"僵尸代码 / legacy 死路径"` 段落上面。
-> 总结：6 个 legacy 节点文件删除、`SQLiteGateway` 删除、`merged_result` 字段删除、`legacy_router` 模式整体废弃、graph_builder 简化、9 篇文档同步、64/64 单测通过。
-
----
-
-## 阶段性验收
-
-### 阶段一（P0 完成）
-
-- Time IoU avg ≥ 0.25（现在 0.13）
-- Top hit rate ≥ 0.5（现在 0.4）
-- 不引入新的失败 case
-
-### 阶段二（P1 完成）
-
-- Context precision avg ≥ 0.3（现在 0.18）
-- Context recall avg ≥ 0.3（现在 0.15）
-- 评测 latency 下降 ≥ 30%
-
-### 阶段三（P2 完成）
-
-- 引入 verifier 后自修复至少拯救 10% bad case
-- 中文 query 的 top hit 率不低于英文 -10%
-
-### 阶段四（P3 完成）
-
-- 切换到新数据集零代码改动可复用
-
----
-
-## 风险与回滚
-
-- **P0-1 关闭 parent_projection**：如果 eval 出现回归，用 `AGENT_DISABLE_PARENT_PROJECTION=0` 立即恢复
-- **P0-2 event collection**：只新增 collection，不影响 child / parent 现有行为
-- **P1-1 FTS5**：已落地；建库失败时 `_create_fts5` 自动降级为 False；运行时 `AGENT_SQL_USE_FTS5=0` 立即回退 LIKE
-- **P1-2 去伪 BM25**：feature flag `AGENT_HYBRID_BM25_FUSED=0/1`（默认 1）已落地，需要回滚时 `export AGENT_HYBRID_BM25_FUSED=0` 即可退回纯向量
-- **P2-2 schema 归一化**：必须保留旧表建库入口作为回滚口，至少一个 release 周期
-
----
-
-## 交付清单
-
-- P0 PR：parent_projection default off + event collection + guardrail 放宽 + 停用词修复
-- P1 PR：FTS5 + hybrid 真 hybrid + embedding cache + summary 双档 + 僵尸代码清理
-- P2 PR：verifier 节点 + schema 归一化 + 中文支持 + asyncio + RetrievalTrace
-- P3 PR：配置中心化 + profile 驱动 + archive 清理
-- 每个 PR 必须附：一次完整 `ragas_eval_runner` 的前后指标对比表
-
+> P2 / P3 历史 todo 已于 2026-05-02 清理（用户决策：超出当前范围，不维护）。如需查阅，从 git history 找此次 commit 之前的 `agent/todo.md` 即可。
