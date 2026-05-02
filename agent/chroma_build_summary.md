@@ -10,9 +10,16 @@
 - Chroma 路径：`/home/yangxp/Capstone/data/chroma/basketball_tracks`
 - Child Collection：`basketball_tracks`
 - Parent Collection：`basketball_tracks_parent`
+- Event Collection：`basketball_events`（P0-2 新增，单事件粒度）
 - 输入数据：
 - `/home/yangxp/Capstone/data/basketball_output/basketball_1_events_vector_flat.json`
 - `/home/yangxp/Capstone/data/basketball_output/basketball_2_events_vector_flat.json`
+
+## Collection Namespace Convention
+- Default namespace is `basketball`; collection names above are derived as `{namespace}_tracks`, `{namespace}_tracks_parent`, `{namespace}_events`.
+- Switch datasets by exporting `AGENT_CHROMA_NAMESPACE=<new_name>` (or using `manage_graph_db switch --chroma-namespace <new_name>`).
+- Full precedence: explicit `AGENT_CHROMA_{CHILD|PARENT|EVENT}_COLLECTION` env > `AGENT_CHROMA_NAMESPACE` derivation > `basketball_*` default.
+- `AGENT_CHROMA_RETRIEVAL_LEVEL` (child | event) is independent: it only decides which collection the single-collection online path reads.
 
 ## Embedding 配置
 - 模型：`text-embedding-v3`

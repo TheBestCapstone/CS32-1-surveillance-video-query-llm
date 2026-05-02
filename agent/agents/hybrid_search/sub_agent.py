@@ -3,6 +3,7 @@ import json
 from langchain_core.messages import ToolMessage
 
 from agents.shared import run_react_sub_agent
+from tools.llamaindex_adapter import run_llamaindex_vector_query, use_llamaindex_vector
 from tools.hybrid_tools import dynamic_weighted_vector_search, get_temporal_anchor
 
 HYBRID_SEARCH_AGENT_PROMPT = """
@@ -39,6 +40,8 @@ def _extract_hybrid_result(response: dict) -> tuple[str, list[dict]]:
 
 
 def run_hybrid_sub_agent(user_query: str, llm):
+    if use_llamaindex_vector():
+        return run_llamaindex_vector_query(user_query, limit=5)
     return run_react_sub_agent(
         user_query=user_query,
         llm=llm,

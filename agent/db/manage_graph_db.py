@@ -4,11 +4,15 @@ import logging
 from pathlib import Path
 
 from .config import (
+    CHROMA_RETRIEVAL_LEVELS,
     DEFAULT_ENV_FILE,
     get_graph_chroma_child_collection,
     get_graph_chroma_collection,
+    get_graph_chroma_event_collection,
+    get_graph_chroma_namespace,
     get_graph_chroma_parent_collection,
     get_graph_chroma_path,
+    get_graph_chroma_retrieval_level,
     get_graph_lancedb_path,
     get_graph_sqlite_db_path,
     persist_env_value,
@@ -51,11 +55,13 @@ def cmd_build_chroma(args: argparse.Namespace) -> None:
     seed_files = [Path(x).expanduser().resolve() for x in args.seed_json]
     child_collection = args.child_collection or get_graph_chroma_child_collection()
     parent_collection = args.parent_collection or get_graph_chroma_parent_collection()
+    event_collection = args.event_collection or get_graph_chroma_event_collection()
     builder = ChromaIndexBuilder(
         ChromaBuildConfig(
             chroma_path=chroma_path,
             child_collection=child_collection,
             parent_collection=parent_collection,
+            event_collection=event_collection,
             reset_existing=bool(args.reset),
         )
     )
@@ -77,6 +83,12 @@ def cmd_switch(args: argparse.Namespace) -> None:
         chroma_path = str(Path(args.chroma_path).expanduser().resolve())
         persist_env_value("AGENT_CHROMA_PATH", chroma_path, env_file=env_path)
         logger.info("Updated AGENT_CHROMA_PATH=%s", chroma_path)
+    if args.chroma_namespace:
+        namespace = args.chroma_namespace.strip()
+        if not namespace:
+            raise SystemExit("--chroma-namespace cannot be blank")
+        persist_env_value("AGENT_CHROMA_NAMESPACE", namespace, env_file=env_path)
+        logger.info("Updated AGENT_CHROMA_NAMESPACE=%s", namespace)
     if args.chroma_collection:
         persist_env_value("AGENT_CHROMA_COLLECTION", args.chroma_collection, env_file=env_path)
         logger.info("Updated AGENT_CHROMA_COLLECTION=%s", args.chroma_collection)
@@ -86,6 +98,17 @@ def cmd_switch(args: argparse.Namespace) -> None:
     if args.chroma_parent_collection:
         persist_env_value("AGENT_CHROMA_PARENT_COLLECTION", args.chroma_parent_collection, env_file=env_path)
         logger.info("Updated AGENT_CHROMA_PARENT_COLLECTION=%s", args.chroma_parent_collection)
+    if args.chroma_event_collection:
+        persist_env_value("AGENT_CHROMA_EVENT_COLLECTION", args.chroma_event_collection, env_file=env_path)
+        logger.info("Updated AGENT_CHROMA_EVENT_COLLECTION=%s", args.chroma_event_collection)
+    if args.chroma_retrieval_level:
+        level = args.chroma_retrieval_level.strip().lower()
+        if level not in CHROMA_RETRIEVAL_LEVELS:
+            raise SystemExit(
+                f"Invalid --chroma-retrieval-level={level!r}; expected one of {sorted(CHROMA_RETRIEVAL_LEVELS)}"
+            )
+        persist_env_value("AGENT_CHROMA_RETRIEVAL_LEVEL", level, env_file=env_path)
+        logger.info("Updated AGENT_CHROMA_RETRIEVAL_LEVEL=%s", level)
 
     print(
         json.dumps(
@@ -94,9 +117,12 @@ def cmd_switch(args: argparse.Namespace) -> None:
                 "effective_sqlite_path": str(get_graph_sqlite_db_path()),
                 "effective_lancedb_path": str(get_graph_lancedb_path()),
                 "effective_chroma_path": str(get_graph_chroma_path()),
+                "effective_chroma_namespace": get_graph_chroma_namespace(),
                 "effective_chroma_collection": get_graph_chroma_collection(),
                 "effective_chroma_child_collection": get_graph_chroma_child_collection(),
                 "effective_chroma_parent_collection": get_graph_chroma_parent_collection(),
+                "effective_chroma_event_collection": get_graph_chroma_event_collection(),
+                "effective_chroma_retrieval_level": get_graph_chroma_retrieval_level(),
             },
             ensure_ascii=False,
             indent=2,
@@ -117,11 +143,12 @@ def build_parser() -> argparse.ArgumentParser:
     p_build.add_argument("--init-prompt-json", type=str, default="", help="Output json path for init prompt profile")
     p_build.set_defaults(func=cmd_build)
 
-    p_build_chroma = sub.add_parser("build-chroma", help="Create Chroma parent/child indexes from seed json")
+    p_build_chroma = sub.add_parser("build-chroma", help="Create Chroma parent/child/event indexes from seed json")
     p_build_chroma.add_argument("--chroma-path", type=str, default="", help="Target Chroma persistent path")
     p_build_chroma.add_argument("--seed-json", nargs="*", default=[], help="Seed json file(s)")
     p_build_chroma.add_argument("--child-collection", type=str, default="", help="Child collection name")
     p_build_chroma.add_argument("--parent-collection", type=str, default="", help="Parent collection name")
+    p_build_chroma.add_argument("--event-collection", type=str, default="", help="Event-level collection name")
     p_build_chroma.add_argument("--reset", action="store_true", help="Delete existing Chroma collections before build")
     p_build_chroma.set_defaults(func=cmd_build_chroma)
 
@@ -129,9 +156,25 @@ def build_parser() -> argparse.ArgumentParser:
     p_switch.add_argument("--sqlite-path", type=str, default="", help="New sqlite db path")
     p_switch.add_argument("--lancedb-path", type=str, default="", help="New LanceDB path")
     p_switch.add_argument("--chroma-path", type=str, default="", help="New Chroma persistent path")
+    p_switch.add_argument(
+        "--chroma-namespace",
+        type=str,
+        default="",
+        help=(
+            "New Chroma dataset namespace (default 'basketball'). "
+            "Automatically derives {namespace}_tracks, {namespace}_tracks_parent and {namespace}_events."
+        ),
+    )
     p_switch.add_argument("--chroma-collection", type=str, default="", help="New Chroma collection name")
     p_switch.add_argument("--chroma-child-collection", type=str, default="", help="New Chroma child collection name")
     p_switch.add_argument("--chroma-parent-collection", type=str, default="", help="New Chroma parent collection name")
+    p_switch.add_argument("--chroma-event-collection", type=str, default="", help="New Chroma event-level collection name")
+    p_switch.add_argument(
+        "--chroma-retrieval-level",
+        type=str,
+        default="",
+        help="Default retrieval collection level: child | event",
+    )
     p_switch.add_argument("--env-file", type=str, default="", help="Custom .env file path")
     p_switch.set_defaults(func=cmd_switch)
 

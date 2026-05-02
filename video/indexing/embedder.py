@@ -1,50 +1,13 @@
-import os
-from openai import OpenAI
-from dotenv import load_dotenv
-
+import sys
+from pathlib import Path
 from typing import List, Union
 
-EMBEDDING_BATCH_LIMIT = 10
 
-def get_qwen_embedding(text: Union[str, List[str]]) -> Union[list[float], List[list[float]]]:
-    """
-    Call Dashscope-compatible embeddings API (single string or batch list).
-    Requires DASHSCOPE_API_KEY in the environment.
-    """
-    try:
-        load_dotenv()
-    except Exception:
-        pass
-        
-    api_key = os.environ.get("DASHSCOPE_API_KEY")
-    if not api_key:
-        raise ValueError("Set environment variable DASHSCOPE_API_KEY")
+ROOT_DIR = Path(__file__).resolve().parents[2]
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
 
-    client = OpenAI(
-        api_key=api_key,
-        base_url="https://dashscope.aliyuncs.com/compatible-mode/v1", 
-    )
-
-    if isinstance(text, str):
-        completion = client.embeddings.create(
-            model="text-embedding-v3",
-            input=text,
-            dimensions=1024,
-            encoding_format="float"
-        )
-        return completion.data[0].embedding
-    all_embeddings: List[list[float]] = []
-    for start in range(0, len(text), EMBEDDING_BATCH_LIMIT):
-        batch = text[start : start + EMBEDDING_BATCH_LIMIT]
-        completion = client.embeddings.create(
-            model="text-embedding-v3",
-            input=batch,
-            dimensions=1024,
-            encoding_format="float"
-        )
-        sorted_data = sorted(completion.data, key=lambda x: x.index)
-        all_embeddings.extend(item.embedding for item in sorted_data)
-    return all_embeddings
+from agent.tools.llm import get_embedding_runtime_profile, get_qwen_embedding
 
 if __name__ == "__main__":
     test_text = "A silver-gray sedan parked stationary in a parking slot for a long time."
@@ -52,6 +15,7 @@ if __name__ == "__main__":
     try:
         vec = get_qwen_embedding(test_text)
         print(f"OK: dim={len(vec)}")
+        print(f"Runtime profile: {get_embedding_runtime_profile()}")
         print(f"First 5 values: {vec[:5]}")
     except Exception as e:
         print(f"Failed: {e}")

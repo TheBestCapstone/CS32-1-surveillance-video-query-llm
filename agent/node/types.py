@@ -4,8 +4,11 @@ from typing import Any, Dict, List, Optional, TypedDict
 from langchain_core.messages import BaseMessage, HumanMessage
 from db.config import (
     get_graph_chroma_child_collection,
+    get_graph_chroma_event_collection,
+    get_graph_chroma_namespace,
     get_graph_chroma_parent_collection,
     get_graph_chroma_path,
+    get_graph_chroma_retrieval_level,
     get_graph_lancedb_path,
     get_graph_sqlite_db_path,
 )
@@ -81,6 +84,8 @@ class AgentState(TypedDict, total=False):
     sql_debug: Dict[str, Any]
     metrics: Dict[str, Any]
     classification_result: Dict[str, Any]
+    answer_type: str
+    verifier_result: Dict[str, Any]
     self_query_result: Dict[str, Any]
     search_explain: str
     raw_final_answer: str
@@ -220,6 +225,8 @@ class StateResetter:
         "sql_debug": {},
         "metrics": {},
         "classification_result": {},
+        "answer_type": "",
+        "verifier_result": {},
         "self_query_result": {},
         "search_explain": "",
         "raw_final_answer": "",
@@ -330,6 +337,18 @@ def default_chroma_collection() -> str:
 
 def default_chroma_parent_collection() -> str:
     return get_graph_chroma_parent_collection()
+
+
+def default_chroma_event_collection() -> str:
+    return get_graph_chroma_event_collection()
+
+
+def default_chroma_retrieval_level() -> str:
+    return get_graph_chroma_retrieval_level()
+
+
+def default_chroma_namespace() -> str:
+    return get_graph_chroma_namespace()
 
 
 if __name__ == "__main__":

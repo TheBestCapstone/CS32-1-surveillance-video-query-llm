@@ -5,7 +5,7 @@ from langgraph.store.base import BaseStore
 
 from agents.pure_sql.sub_agent import run_pure_sql_sub_agent
 from .retrieval_contracts import build_routing_metrics, build_search_config, infer_sql_plan, normalize_sql_rows
-from .types import AgentState, InputValidator
+from .types import AgentState, InputValidator, default_sqlite_db_path
 import time
 
 def create_pure_sql_node(llm=None, **kwargs):
@@ -23,6 +23,7 @@ def create_pure_sql_node(llm=None, **kwargs):
         
         start = time.perf_counter()
         print(f"[DEBUG] pure_sql_node user_query: {user_query}")
+        print(f"[DEBUG] pure_sql_node sqlite_db_path: {default_sqlite_db_path()}")
         try:
             summary, raw_rows = run_pure_sql_sub_agent(user_query, llm)
             duration = time.perf_counter() - start
@@ -48,7 +49,8 @@ def create_pure_sql_node(llm=None, **kwargs):
                 "sql_plan": sql_plan,
                 "sql_debug": {
                     "duration": duration,
-                    "agent_summary": summary
+                    "agent_summary": summary,
+                    "db_path": str(default_sqlite_db_path()),
                 },
                 "messages": [AIMessage(content=f"SQL Sub-Agent retrieval complete. Summary:\n{summary}")],
             }

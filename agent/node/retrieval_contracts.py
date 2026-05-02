@@ -1,4 +1,5 @@
 import re
+import os
 from typing import Any
 
 from db.config import get_graph_chroma_parent_collection, get_graph_chroma_path
@@ -9,6 +10,7 @@ DEFAULT_SEARCH_CONFIG = {
     "candidate_limit": 80,
     "top_k_per_event": 20,
     "rerank_top_k": 5,
+    "rerank_candidate_limit": 20,
     "distance_threshold": None,
     "hybrid_alpha": 0.7,
     "hybrid_fallback_alpha": 0.9,
@@ -17,8 +19,37 @@ DEFAULT_SEARCH_CONFIG = {
 }
 
 
+def parent_projection_enabled() -> bool:
+    # Default is OFF: child rows flow straight to answer/summary so the temporal
+    # range reported to the user stays per-track instead of being collapsed to
+    # the full video span.
+    # Re-enable with AGENT_ENABLE_PARENT_PROJECTION=1.
+    # Legacy AGENT_DISABLE_PARENT_PROJECTION is kept for backward compatibility
+    # but only takes effect when it explicitly disables the feature.
+    disable_raw = os.getenv("AGENT_DISABLE_PARENT_PROJECTION", "").strip().lower()
+    if disable_raw in {"1", "true", "yes", "on"}:
+        return False
+    enable_raw = os.getenv("AGENT_ENABLE_PARENT_PROJECTION", "").strip().lower()
+    return enable_raw in {"1", "true", "yes", "on"}
+
+
 def build_search_config(existing: dict[str, Any] | None = None) -> dict[str, Any]:
     cfg = dict(DEFAULT_SEARCH_CONFIG)
+    env_overrides = {
+        "candidate_limit": os.getenv("AGENT_CANDIDATE_LIMIT"),
+        "top_k_per_event": os.getenv("AGENT_TOP_K_PER_EVENT"),
+        "rerank_top_k": os.getenv("AGENT_RERANK_TOP_K"),
+        "rerank_candidate_limit": os.getenv("AGENT_RERANK_CANDIDATE_LIMIT"),
+        "hybrid_limit": os.getenv("AGENT_HYBRID_LIMIT"),
+        "sql_limit": os.getenv("AGENT_SQL_LIMIT"),
+    }
+    for key, raw in env_overrides.items():
+        if raw is None or not str(raw).strip():
+            continue
+        try:
+            cfg[key] = int(raw)
+        except Exception:
+            pass
     if isinstance(existing, dict):
         cfg.update({k: v for k, v in existing.items() if v is not None})
     return cfg
@@ -201,6 +232,70 @@ def _aggregate_parent_fallback(video_id: str, child_rows: list[dict[str, Any]]) 
     }
 
 
+def summarize_parent_context(rows: list[dict[str, Any]] | None, limit: int = 5) -> list[dict[str, Any]]:
+    """Lightweight parent summary that never hits the Chroma parent collection.
+
+    Used when parent projection is disabled so downstream debug / UI still has a
+    video-level overview without paying the network round trip to fetch parent
+    records. Output is intentionally NOT written into ``rerank_result``; it is a
+    debug artifact only.
+    """
+    grouped: dict[str, list[dict[str, Any]]] = {}
+    for row in rows or []:
+        video_id = str(row.get("video_id") or "").strip()
+        if not video_id:
+            continue
+        grouped.setdefault(video_id, []).append(row)
+    if not grouped:
+        return []
+
+    ordered_videos = sorted(
+        grouped.keys(),
+        key=lambda video_id: min(
+            [
+                float(item.get("_distance"))
+                for item in grouped[video_id]
+                if isinstance(item.get("_distance"), (int, float))
+            ]
+            or [999999.0]
+        ),
+    )
+
+    out: list[dict[str, Any]] = []
+    for rank, video_id in enumerate(ordered_videos[:limit], start=1):
+        child_rows = grouped[video_id]
+        out.append(
+            {
+                "video_id": video_id,
+                "child_hit_count": len(child_rows),
+                "start_time": _safe_min_time(child_rows),
+                "end_time": _safe_max_time(child_rows),
+                "best_distance": min(
+                    [
+                        float(row["_distance"])
+                        for row in child_rows
+                        if isinstance(row.get("_distance"), (int, float))
+                    ],
+                    default=None,
+                ),
+                "best_hybrid_score": max(
+                    [
+                        float(row["_hybrid_score"])
+                        for row in child_rows
+                        if isinstance(row.get("_hybrid_score"), (int, float))
+                    ],
+                    default=None,
+                ),
+                "track_ids": _dedupe_texts([row.get("track_id") for row in child_rows])[:8],
+                "object_types": _dedupe_texts([row.get("object_type") for row in child_rows]),
+                "object_colors": _dedupe_texts([row.get("object_color_en") for row in child_rows]),
+                "scene_zones": _dedupe_texts([row.get("scene_zone_en") for row in child_rows]),
+                "parent_rank": rank,
+            }
+        )
+    return out
+
+
 def project_rows_to_parent_context(rows: list[dict[str, Any]] | None, limit: int = 5) -> list[dict[str, Any]]:
     grouped: dict[str, list[dict[str, Any]]] = {}
     for row in rows or []:
@@ -282,45 +377,107 @@ def build_routing_metrics(
     }
 
 
+# P0-4: Stopwords scoped to true function words and query-chrome only.
+# Content words like ``person``, ``car``, ``moving``, ``area`` were previously
+# blacklisted here, which dropped the strongest signal tokens and also
+# duplicated the work already done by ``filter_terms`` dedup below. They are
+# NOT included here anymore.
+_SQL_TOKEN_STOPWORDS: frozenset[str] = frozenset(
+    {
+        # determiners / articles
+        "the", "this", "that", "these", "those",
+        "some", "any", "all", "every", "each", "both", "either", "neither",
+        # pronouns
+        "you", "him", "her", "them", "they", "their", "its", "our", "your",
+        "who", "whom", "what", "which",
+        "where", "when", "why", "how",
+        # auxiliary / modal verbs (len >= 3 only; shorter ones fall out via length guard)
+        "are", "was", "were", "been", "being",
+        "does", "did", "done",
+        "has", "had", "having",
+        "can", "could", "may", "might", "must", "shall", "will",
+        "should", "would",
+        # conjunctions / prepositions (len >= 3)
+        "and", "but", "nor", "not", "yet",
+        "for", "into", "onto", "out", "off", "over", "under", "above", "below",
+        "about", "between", "among", "across", "through", "around", "against",
+        "before", "after",
+        "with", "without", "from", "than", "then",
+        # query-chrome / instruction verbs
+        "show", "tell", "find", "look", "see", "get", "give", "please",
+        "want", "need",
+        # generic domain nouns that never help as text filters
+        "database", "video", "videos", "clip", "clips", "footage",
+        "scene", "scenes", "moment", "moments", "record", "records",
+        "there", "here",
+        # hedge / meta
+        "maybe", "possibly", "just", "really",
+    }
+)
+
+# Small, explicit plural -> singular map. We intentionally avoid heuristic
+# stemming because it causes false merges (news -> new, lens -> len, etc.).
+_PLURAL_TO_SINGULAR: dict[str, str] = {
+    "persons": "person",
+    "people": "person",
+    "men": "man",
+    "women": "woman",
+    "children": "child",
+    "kids": "kid",
+    "boys": "boy",
+    "girls": "girl",
+    "babies": "baby",
+    "officers": "officer",
+    "civilians": "civilian",
+    "police": "police",
+    "guards": "guard",
+    "caregivers": "caregiver",
+    "animals": "animal",
+    "dogs": "dog",
+    "puppies": "puppy",
+    "cats": "cat",
+    "cars": "car",
+    "trucks": "truck",
+    "buses": "bus",
+    "vehicles": "vehicle",
+    "bikes": "bike",
+    "bicycles": "bicycle",
+    "motorcycles": "motorcycle",
+    "events": "event",
+    "tracks": "track",
+    "objects": "object",
+    "items": "item",
+    "shoes": "shoe",
+    "zones": "zone",
+    "rooms": "room",
+    "stairs": "stair",
+    "supermarkets": "supermarket",
+    "stores": "store",
+    "scenes": "scene",
+}
+
+
+def _singularize_token(token: str) -> str:
+    return _PLURAL_TO_SINGULAR.get(token, token)
+
+
 def extract_text_tokens_for_sql(user_query: str, filters: dict[str, str]) -> list[str]:
     filter_terms: set[str] = set()
     for value in filters.values():
         filter_terms.update(t for t in re.findall(r"[a-z0-9_]+", str(value).lower()) if t)
-    stopwords = {
-        "did",
-        "you",
-        "see",
-        "any",
-        "the",
-        "show",
-        "me",
-        "are",
-        "there",
-        "database",
-        "look",
-        "for",
-        "find",
-        "near",
-        "who",
-        "what",
-        "where",
-        "with",
-        "into",
-        "from",
-        "that",
-        "this",
-        "persons",
-        "person",
-        "cars",
-        "car",
-        "area",
-        "moving",
-        "clothed",
-        "in",
-        "on",
-    }
-    return [
-        t
-        for t in re.findall(r"[a-z0-9_]+", user_query.lower())
-        if len(t) > 2 and t not in stopwords and t not in filter_terms
-    ][:4]
+
+    out: list[str] = []
+    seen: set[str] = set()
+    for raw in re.findall(r"[a-z0-9_]+", user_query.lower()):
+        if len(raw) <= 2:
+            continue
+        token = _singularize_token(raw)
+        if token in _SQL_TOKEN_STOPWORDS:
+            continue
+        if token in filter_terms:
+            continue
+        if token in seen:
+            continue
+        seen.add(token)
+        out.append(token)
+    return out[:6]

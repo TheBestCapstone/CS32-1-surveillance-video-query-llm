@@ -15,10 +15,12 @@
 
 ### 1. 先看全局判断
 - [rag-audit.md](file:///home/yangxp/Capstone/agent/docs/rag-audit.md)
+- [llamaindex-architecture-report.md](file:///home/yangxp/Capstone/agent/docs/llamaindex-architecture-report.md)
 - 适合场景：
   - 快速了解当前混合 RAG 完整性现状
   - 看 P0/P1/P2 问题分级
   - 看需要拍板的架构决策
+  - 看 `LlamaIndex` 双链路接入后的分层、开关与风险
 
 ### 2. 再看字段与数据口径
 - [data-dictionary.md](file:///home/yangxp/Capstone/agent/docs/data-dictionary.md)
@@ -58,6 +60,7 @@
 | `20` Query rewrite 增强边界梳理 | `DONE` | [query-rewrite-boundaries.md](file:///home/yangxp/Capstone/agent/docs/query-rewrite-boundaries.md) |
 | `21` Prompt 模板与版本化治理 | `DONE` | [prompt-governance.md](file:///home/yangxp/Capstone/agent/docs/prompt-governance.md)、[prompt-registry.json](file:///home/yangxp/Capstone/agent/docs/prompt-registry.json) |
 | `22` 流式输出与上下文预算治理 | `DONE` | [streaming-token-budget.md](file:///home/yangxp/Capstone/agent/docs/streaming-token-budget.md) |
+| `LlamaIndex` 双链路改造 | `DONE` | [llamaindex-architecture-report.md](file:///home/yangxp/Capstone/agent/docs/llamaindex-architecture-report.md) |
 
 ## 按角色查阅
 

@@ -12,6 +12,13 @@ from langgraph.store.base import BaseStore
 
 from agents.shared import weighted_rrf_fuse
 from tools.hybrid_tools import dynamic_weighted_vector_search
+from tools.llamaindex_adapter import (
+    run_llamaindex_sql_query,
+    run_llamaindex_vector_query,
+    use_llamaindex_sql,
+    use_llamaindex_vector,
+)
+from tools.rerank import rerank_rows
 from .retrieval_contracts import (
     build_routing_metrics,
     build_search_config,
@@ -19,8 +26,10 @@ from .retrieval_contracts import (
     extract_text_tokens_for_sql,
     infer_sql_plan,
     normalize_hybrid_rows,
+    parent_projection_enabled,
     normalize_sql_rows,
     project_rows_to_parent_context,
+    summarize_parent_context,
 )
 from .types import AgentState, InputValidator
 from .types import default_sqlite_db_path
@@ -34,7 +43,49 @@ def _safe_sub_agent_call(func, *args) -> Tuple[str, List[Dict[str, Any]], str | 
         return "", [], str(exc)
 
 
+def _sql_use_fts5_enabled() -> bool:
+    """``AGENT_SQL_USE_FTS5`` toggles the FTS5 lexical path (default on).
+
+    Set ``AGENT_SQL_USE_FTS5=0`` to fall back to the legacy LIKE-OR scan when
+    diagnosing FTS5 regressions. Independent of the BM25 fusion knob in
+    ``hybrid_tools``.
+    """
+
+    raw = (os.getenv("AGENT_SQL_USE_FTS5", "1") or "").strip().lower()
+    return raw in {"1", "true", "yes", "on"}
+
+
+def _fts5_table_present(conn: sqlite3.Connection, table_name: str = "episodic_events_fts") -> bool:
+    try:
+        row = conn.execute(
+            "SELECT 1 FROM sqlite_master WHERE type IN ('table','view') AND name = ?",
+            (table_name,),
+        ).fetchone()
+        return row is not None
+    except sqlite3.OperationalError:
+        return False
+
+
+# FTS5 ``MATCH`` syntax treats a small set of characters as operators (``"`` /
+# ``*`` / ``(`` / ``)`` / ``:`` / ``+`` / ``-`` / ``,``). We quote each token
+# so user content (e.g. tokens with hyphens) becomes a literal phrase.
+_FTS5_TOKEN_QUOTE = re.compile(r'"')
+
+
+def _build_fts5_match_expr(tokens: List[str]) -> str:
+    quoted: List[str] = []
+    for tok in tokens:
+        clean = _FTS5_TOKEN_QUOTE.sub('""', tok)
+        quoted.append(f'"{clean}"')
+    return " OR ".join(quoted)
+
+
 def _run_sql_branch(user_query: str, search_config: Dict[str, Any]) -> Tuple[str, List[Dict[str, Any]]]:
+    if use_llamaindex_sql():
+        return run_llamaindex_sql_query(
+            user_query,
+            limit=int(search_config.get("sql_limit", 80)),
+        )
     db_path = default_sqlite_db_path()
     filters = extract_structured_filters(user_query)
     params: List[Any] = []
@@ -50,32 +101,51 @@ def _run_sql_branch(user_query: str, search_config: Dict[str, Any]) -> Tuple[str
         params.append(f"%{filters['scene_zone_en']}%")
 
     tokens = extract_text_tokens_for_sql(user_query, filters)
-    text_clauses = []
-    for t in tokens:
-        text_clauses.append(
-            "(lower(coalesce(event_text_en,'')) LIKE ? OR lower(coalesce(event_summary_en,'')) LIKE ? OR lower(coalesce(appearance_notes_en,'')) LIKE ?)"
-        )
-        params.extend([f"%{t}%", f"%{t}%", f"%{t}%"])
-    if text_clauses:
-        clauses.append("(" + " OR ".join(text_clauses) + ")")
-
-    where_sql = (" WHERE " + " AND ".join(clauses)) if clauses else ""
-    sql = (
-        "SELECT event_id, video_id, track_id, start_time, end_time, object_type, "
-        "object_color_en, scene_zone_en, event_summary_en "
-        "FROM episodic_events"
-        f"{where_sql} ORDER BY start_time ASC LIMIT {int(search_config.get('sql_limit', 80))}"
-    )
+    text_strategy = "none"
+    sql_limit = int(search_config.get("sql_limit", 80))
     with sqlite3.connect(db_path) as conn:
         conn.row_factory = sqlite3.Row
+        use_fts5 = _sql_use_fts5_enabled() and tokens and _fts5_table_present(conn)
+        if use_fts5:
+            # FTS5 path: one indexed lookup instead of N table-scan ORs.
+            match_expr = _build_fts5_match_expr(tokens)
+            clauses.append(
+                "event_id IN (SELECT rowid FROM episodic_events_fts WHERE episodic_events_fts MATCH ?)"
+            )
+            params.append(match_expr)
+            text_strategy = "fts5"
+        elif tokens:
+            text_clauses = []
+            for t in tokens:
+                text_clauses.append(
+                    "(lower(coalesce(event_text_en,'')) LIKE ? OR lower(coalesce(event_summary_en,'')) LIKE ? OR lower(coalesce(appearance_notes_en,'')) LIKE ?)"
+                )
+                params.extend([f"%{t}%", f"%{t}%", f"%{t}%"])
+            clauses.append("(" + " OR ".join(text_clauses) + ")")
+            text_strategy = "like"
+
+        where_sql = (" WHERE " + " AND ".join(clauses)) if clauses else ""
+        sql = (
+            "SELECT event_id, video_id, track_id, start_time, end_time, object_type, "
+            "object_color_en, scene_zone_en, event_summary_en "
+            "FROM episodic_events"
+            f"{where_sql} ORDER BY start_time ASC LIMIT {sql_limit}"
+        )
         rows = normalize_sql_rows([dict(r) for r in conn.execute(sql, params).fetchall()])
-    return f"SQL direct retrieval rows={len(rows)}", rows
+    return f"SQL direct retrieval rows={len(rows)} text_strategy={text_strategy}", rows
 
 
 def _run_hybrid_branch(user_query: str, search_config: Dict[str, Any]) -> Tuple[str, List[Dict[str, Any]]]:
     if not (user_query or "").strip():
         return "Hybrid retrieval skipped: empty query", []
     filters = extract_structured_filters(user_query)
+    if use_llamaindex_vector():
+        summary, rows = run_llamaindex_vector_query(
+            user_query,
+            filters=filters,
+            limit=int(search_config.get("hybrid_limit", 50)),
+        )
+        return summary, normalize_hybrid_rows(rows)
     msg = dynamic_weighted_vector_search.invoke(
         {
             "query": user_query,
@@ -124,11 +194,11 @@ def create_parallel_retrieval_fusion_node(llm=None, **kwargs):
         del config, store
         user_query = InputValidator.resolve_active_query(state)
         search_config = build_search_config(state.get("search_config", {}))
-        label = (
-            (state.get("classification_result", {}) or {}).get("label")
-            if isinstance(state.get("classification_result", {}), dict)
-            else "mixed"
-        ) or "mixed"
+        classification_result = state.get("classification_result", {}) or {}
+        if not isinstance(classification_result, dict):
+            classification_result = {}
+        label = classification_result.get("label") or "mixed"
+        classification_signals = classification_result.get("signals") if isinstance(classification_result.get("signals"), dict) else {}
         sql_plan = infer_sql_plan(user_query, search_config)
 
         start = time.perf_counter()
@@ -187,25 +257,69 @@ def create_parallel_retrieval_fusion_node(llm=None, **kwargs):
                 "method": "fallback_sql_only",
             }
         else:
-            fused, fusion_meta = weighted_rrf_fuse(sql_rows, hybrid_rows, label=label, limit=fused_limit)
+            fused, fusion_meta = weighted_rrf_fuse(
+                sql_rows,
+                hybrid_rows,
+                label=label,
+                limit=fused_limit,
+                signals=classification_signals or None,
+            )
             fusion_meta["degraded"] = False
+            if classification_signals:
+                fusion_meta["signals"] = classification_signals
 
+        # P0-3: Soft degradation replaces the former hard ``structured_zero_guardrail``.
+        # Previously, when the classifier said "structured", SQL returned zero rows
+        # and at least one structured filter was present, the node wiped ``fused``
+        # to empty, even when the hybrid branch had useful candidates. That killed
+        # recoverable cases such as UCFCrime prompts where the filter token hit
+        # the synonym dictionary but the SQL row did not.
+        # New behavior:
+        #   * sql=0 + hybrid>0 -> keep the RRF-fused hybrid tail (rank-preserved),
+        #     mark ``degraded_reason=sql_zero_hybrid_fallback`` for observability.
+        #   * sql=0 + hybrid=0 -> return empty with ``all_branches_zero``.
+        #   * sql>0 -> untouched, normal weighted RRF wins.
         structured_filters = extract_structured_filters(user_query)
         if label == "structured" and not sql_rows and structured_filters:
-            fused = []
-            fusion_meta = {
-                "label": label,
-                "degraded": True,
-                "degraded_reason": "structured_zero_guardrail",
-                "method": "prefer_empty_sql_over_loose_semantic",
-            }
+            if hybrid_rows:
+                fusion_meta = {
+                    **fusion_meta,
+                    "degraded": True,
+                    "degraded_reason": "sql_zero_hybrid_fallback",
+                    "method": fusion_meta.get("method", "weighted_rrf"),
+                    "structured_filters": structured_filters,
+                }
+            else:
+                fused = []
+                fusion_meta = {
+                    "label": label,
+                    "degraded": True,
+                    "degraded_reason": "all_branches_zero",
+                    "method": "no_candidates",
+                    "structured_filters": structured_filters,
+                }
 
         if hybrid_error:
             fusion_meta["degraded"] = True
         if sql_error:
             fusion_meta["degraded"] = True
 
-        parent_rows = project_rows_to_parent_context(fused, limit=fused_limit)
+        rerank_top_k = int(search_config.get("rerank_top_k", 5))
+        rerank_candidate_limit = int(search_config.get("rerank_candidate_limit", 20))
+        reranked_rows, rerank_meta = rerank_rows(
+            user_query,
+            fused,
+            top_k=fused_limit,
+            candidate_limit=rerank_candidate_limit,
+        )
+        parent_context: List[Dict[str, Any]] = []
+        if parent_projection_enabled():
+            final_rows = project_rows_to_parent_context(reranked_rows, limit=rerank_top_k)
+            result_mode = "parent_projection"
+        else:
+            final_rows = reranked_rows[:rerank_top_k]
+            result_mode = "child_only"
+            parent_context = summarize_parent_context(reranked_rows, limit=rerank_top_k)
         duration = time.perf_counter() - start
         routing_metrics = build_routing_metrics(
             execution_mode="parallel_fusion",
@@ -219,13 +333,13 @@ def create_parallel_retrieval_fusion_node(llm=None, **kwargs):
         return {
             "sql_result": sql_rows,
             "hybrid_result": hybrid_rows,
-            "merged_result": fused,
-            "rerank_result": parent_rows,
+            "merged_result": reranked_rows,
+            "rerank_result": final_rows,
             "tool_error": None,
             "current_node": "parallel_retrieval_fusion_node",
             "search_explain": (
                 "Parallel retrieval completed. "
-                f"label={label}, sql_rows={len(sql_rows)}, hybrid_rows={len(hybrid_rows)}, fused_rows={len(fused)}, parent_rows={len(parent_rows)}"
+                f"label={label}, sql_rows={len(sql_rows)}, hybrid_rows={len(hybrid_rows)}, fused_rows={len(fused)}, final_rows={len(final_rows)}, result_mode={result_mode}"
             ),
             "routing_metrics": routing_metrics,
             "search_config": search_config,
@@ -237,13 +351,16 @@ def create_parallel_retrieval_fusion_node(llm=None, **kwargs):
                 "sql_error": sql_error,
                 "hybrid_error": hybrid_error,
                 "fusion_meta": fusion_meta,
-                "parent_rows_count": len(parent_rows),
+                "rerank_meta": rerank_meta,
+                "parent_rows_count": len(final_rows),
+                "result_mode": result_mode,
+                "parent_context": parent_context,
             },
             "messages": [
                 AIMessage(
                     content=(
                         f"Parallel retrieval + fusion complete (label={label}, "
-                        f"sql={len(sql_rows)}, hybrid={len(hybrid_rows)}, fused={len(fused)})."
+                        f"sql={len(sql_rows)}, hybrid={len(hybrid_rows)}, fused={len(reranked_rows)})."
                     )
                 )
             ],

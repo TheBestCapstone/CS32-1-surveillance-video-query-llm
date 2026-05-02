@@ -143,6 +143,19 @@ def create_self_query_node(llm: Any = None):
                 result = _fallback_self_query(raw_query)
 
         rewritten_query = _normalize_query_text(result.get("rewritten_query", raw_query)) or _normalize_query_text(raw_query)
+        print(
+            "[SELF_QUERY_DEBUG] "
+            + json.dumps(
+                {
+                    "raw_query": raw_query,
+                    "rewritten_query": rewritten_query,
+                    "intent_label": result.get("intent_label", "mixed"),
+                    "retrieval_focus": result.get("retrieval_focus", "mixed"),
+                },
+                ensure_ascii=False,
+                sort_keys=True,
+            )
+        )
         return {
             **reset_updates,
             "original_user_query": raw_query,

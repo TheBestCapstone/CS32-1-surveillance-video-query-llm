@@ -7,7 +7,13 @@ from pathlib import Path
 from typing import Any
 
 from .config import DEFAULT_SQLITE_PATH
-from .schema import CREATE_TABLE_SQL, INDEX_SQL_LIST, INSERT_COLUMNS
+from .schema import (
+    CREATE_TABLE_SQL,
+    FTS5_CREATE_SQL_LIST,
+    FTS5_REBUILD_SQL,
+    INDEX_SQL_LIST,
+    INSERT_COLUMNS,
+)
 
 
 logger = logging.getLogger(__name__)
@@ -42,17 +48,21 @@ class SQLiteDatabaseBuilder:
             self.db_path.unlink()
 
         profile = self._new_init_profile()
+        fts_state: dict[str, Any] = {"enabled": False, "row_count": 0}
         try:
             with sqlite3.connect(self.db_path) as conn:
                 self._configure_connection(conn)
                 self._create_schema(conn)
                 self._create_indexes(conn)
+                fts_state["enabled"] = self._create_fts5(conn)
                 inserted = 0
                 if seed_files:
                     for seed_file in seed_files:
                         rows, file_profile = self._load_seed_rows(seed_file)
                         self._merge_profile(profile, file_profile)
                         inserted += self._insert_rows(conn, rows)
+                if fts_state["enabled"] and inserted > 0:
+                    fts_state["row_count"] = self._rebuild_fts5(conn)
                 conn.commit()
         except Exception as exc:
             logger.exception("Failed to build sqlite db")
@@ -62,6 +72,8 @@ class SQLiteDatabaseBuilder:
             "db_path": str(self.db_path),
             "seed_files": [str(x) for x in (seed_files or [])],
             "inserted_rows": inserted,
+            "fts5_enabled": fts_state["enabled"],
+            "fts5_row_count": fts_state["row_count"],
         }
         if self.config.generate_init_prompt:
             artifacts = self._write_init_prompt_artifacts(profile)
@@ -82,6 +94,45 @@ class SQLiteDatabaseBuilder:
     def _create_indexes(conn: sqlite3.Connection) -> None:
         for sql in INDEX_SQL_LIST:
             conn.execute(sql)
+
+    @staticmethod
+    def _create_fts5(conn: sqlite3.Connection) -> bool:
+        """Create the ``episodic_events_fts`` virtual table + sync triggers.
+
+        Returns ``True`` if the index is available after the call. Falls back
+        gracefully (returns ``False``) when the host SQLite was compiled
+        without FTS5 -- callers should detect this by inspecting
+        ``sqlite_master`` and route around the lexical index.
+        """
+
+        try:
+            for stmt in FTS5_CREATE_SQL_LIST:
+                conn.execute(stmt)
+            return True
+        except sqlite3.OperationalError as exc:
+            logger.warning(
+                "FTS5 not available on this SQLite build (%s); falling back to LIKE-only text search.",
+                exc,
+            )
+            return False
+
+    @staticmethod
+    def _rebuild_fts5(conn: sqlite3.Connection) -> int:
+        """Reseed the FTS5 index from the underlying table after bulk inserts.
+
+        Triggers keep the index in sync incrementally, but the documented
+        ``rebuild`` call after large seed insertions is a belt-and-braces
+        guarantee that the index matches the data.
+        """
+
+        try:
+            conn.execute(FTS5_REBUILD_SQL)
+            cur = conn.execute("SELECT count(*) FROM episodic_events_fts;")
+            row = cur.fetchone()
+            return int(row[0]) if row else 0
+        except sqlite3.OperationalError as exc:
+            logger.warning("FTS5 rebuild failed (%s); index may be stale.", exc)
+            return 0
 
     def _load_seed_rows(self, seed_file: Path) -> tuple[list[dict[str, Any]], dict[str, set[str]]]:
         if not seed_file.exists():

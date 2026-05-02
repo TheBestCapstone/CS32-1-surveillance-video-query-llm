@@ -1,0 +1,123 @@
+{
+  "dataset": {
+    "xlsx_path": "/home/yangxp/Capstone/agent/test/agent_test.xlsx",
+    "normalized_json_path": "/home/yangxp/Capstone/agent/test/generated/ragas_eval_project_openai_unified/dataset_part1_part4/agent_test_normalized.json",
+    "sqlite_path": "/home/yangxp/Capstone/agent/test/generated/ragas_eval_project_openai_unified/dataset_part1_part4/agent_test_eval.sqlite",
+    "retrieval_view_path": "/home/yangxp/Capstone/agent/test/generated/ragas_eval_project_openai_unified/dataset_part1_part4/agent_test_retrieval_eval.json",
+    "e2e_view_path": "/home/yangxp/Capstone/agent/test/generated/ragas_eval_project_openai_unified/dataset_part1_part4/agent_test_e2e_eval.json",
+    "generation_view_path": "/home/yangxp/Capstone/agent/test/generated/ragas_eval_project_openai_unified/dataset_part1_part4/agent_test_generation_eval.json",
+    "include_sheets": [
+      "Part1",
+      "Part4"
+    ],
+    "total_cases": 468,
+    "per_sheet_counts": {
+      "Part1": 312,
+      "Part4": 156
+    },
+    "answer_label_counts": {
+      "yes": 270,
+      "no": 40,
+      "unknown": 158
+    },
+    "difficulty_counts": {
+      "easy": 55,
+      "medium": 55,
+      "hard": 55,
+      "unknown": 303
+    },
+    "retrieval_ready_count": 468,
+    "e2e_ready_count": 310,
+    "generation_ready_count": 310
+  },
+  "bootstrap": {
+    "sqlite": {
+      "db_path": "/home/yangxp/Capstone/agent/test/generated/ragas_eval_project_openai_unified/runtime/eval_subset.sqlite",
+      "seed_files": [
+        "/home/yangxp/Capstone/agent/test/generated/datasets/ucfcrime_events_vector_flat/Abuse037_x264_events_vector_flat.json",
+        "/home/yangxp/Capstone/agent/test/generated/datasets/ucfcrime_events_vector_flat/Abuse038_x264_events_vector_flat.json",
+        "/home/yangxp/Capstone/agent/test/generated/datasets/ucfcrime_events_vector_flat/Abuse039_x264_events_vector_flat.json",
+        "/home/yangxp/Capstone/agent/test/generated/datasets/ucfcrime_events_vector_flat/Abuse040_x264_events_vector_flat.json"
+      ],
+      "inserted_rows": 52
+    },
+    "chroma": {
+      "chroma_path": "/home/yangxp/Capstone/agent/test/generated/ragas_eval_project_openai_unified/runtime/eval_subset_chroma",
+      "seed_files": [
+        "/home/yangxp/Capstone/agent/test/generated/datasets/ucfcrime_events_vector_flat/Abuse037_x264_events_vector_flat.json",
+        "/home/yangxp/Capstone/agent/test/generated/datasets/ucfcrime_events_vector_flat/Abuse038_x264_events_vector_flat.json",
+        "/home/yangxp/Capstone/agent/test/generated/datasets/ucfcrime_events_vector_flat/Abuse039_x264_events_vector_flat.json",
+        "/home/yangxp/Capstone/agent/test/generated/datasets/ucfcrime_events_vector_flat/Abuse040_x264_events_vector_flat.json"
+      ],
+      "child_collection": "ucfcrime_eval_child",
+      "parent_collection": "ucfcrime_eval_parent",
+      "child_record_count": 52,
+      "parent_record_count": 4,
+      "chunk_strategy": {
+        "child": "track-level (video_id + entity_hint)",
+        "parent": "video-level (video_id)"
+      }
+    }
+  },
+  "case_count": 10,
+  "success_count": 10,
+  "top_hit_rate": 0.8,
+  "avg_latency_ms": 18362.66,
+  "retrieval_summary": {
+    "context_precision_avg": 0.375,
+    "context_recall_avg": 0.25
+  },
+  "generation_summary": {
+    "faithfulness_avg": 0.6667,
+    "answer_relevancy_avg": 0.1406,
+    "factual_correctness_avg": 0.4
+  },
+  "end_to_end_summary": {
+    "ragas_e2e_score_avg": 0.3148
+  },
+  "error_summary": {
+    "ragas_metric_error_cases": 0,
+    "graph_error_cases": 0
+  },
+  "runtime_profile": {
+    "ragas_runtime": {
+      "ragas_model": "gpt-4o",
+      "ragas_api_provider": "OpenAI",
+      "ragas_api_base_url": "https://api.openai.com/v1",
+      "ragas_embedding_model": "text-embedding-3-small",
+      "ragas_embedding_dimensions": null,
+      "agent_embedding": {
+        "provider": "openai",
+        "model": "text-embedding-3-small",
+        "dimensions": null
+      },
+      "agent_execution_mode": "parallel_fusion",
+      "agent_use_llamaindex_sql": "1",
+      "agent_use_llamaindex_vector": "1",
+      "agent_sqlite_db_path": "/home/yangxp/Capstone/agent/test/generated/ragas_eval_project_openai_unified/runtime/eval_subset.sqlite",
+      "agent_chroma_path": "/home/yangxp/Capstone/agent/test/generated/ragas_eval_project_openai_unified/runtime/eval_subset_chroma",
+      "agent_chroma_collection": "ucfcrime_eval_child",
+      "agent_chroma_parent_collection": "ucfcrime_eval_parent"
+    },
+    "eval_config": {
+      "top_k": 5,
+      "ragas_concurrency": 1,
+      "ragas_case_batch_size": 1,
+      "ragas_max_contexts": 3,
+      "ragas_max_context_chars": 700,
+      "ragas_max_total_context_chars": 1800,
+      "ragas_max_response_chars": 900,
+      "ragas_max_reference_chars": 700,
+      "answer_relevancy_strictness": 1,
+      "ragas_metric_max_retries": 4,
+      "ragas_metric_retry_delay_sec": 2.0
+    },
+    "timing": {
+      "graph_total_ms": 183626.58,
+      "graph_avg_ms_per_case": 18362.66,
+      "ragas_total_ms": 237606.91,
+      "ragas_avg_ms_per_case": 23760.69,
+      "wall_total_ms": 422471.12
+    }
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "cases": [
+    {
+      "case_id": "PART1_0002",
+      "video_id": "Abuse037_x264",
+      "question": "Is there a clip of a car running over a black dog on the road?",
+      "reference_answer": "Yes. The relevant clip is in Abuse037_x264, around 0:00:06 - 0:00:22.",
+      "response": "No matching results found. You can add more specific descriptions like colors or actions.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": null,
+          "context_recall": null
+        },
+        "generation": {
+          "answer_relevancy": 0.0,
+          "factual_correctness": 0.0,
+          "faithfulness": null
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.0
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0003",
+      "video_id": "Abuse037_x264",
+      "question": "A vehicle injured an animal on the road, and other animals approached the injured one afterward.",
+      "reference_answer": "Yes. The relevant clip is in Abuse037_x264, around 0:00:30 - 0:00:43.",
+      "response": "In one video, a black car hits two puppies on a road, and afterward, one puppy stays in the middle while the other moves away. In another, a white car strikes a black dog, and later, another black dog approaches the injured one; a gray dog even pulls the tail of the hurt dog before leaving. These scenes show animals reacting to a fellow animal struck by a vehicle.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.5,
+          "context_recall": 0.5
+        },
+        "generation": {
+          "answer_relevancy": 0.6506,
+          "factual_correctness": 0.0,
+          "faithfulness": 0.2857
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.3873
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0004",
+      "video_id": "Abuse037_x264",
+      "question": "An animal bent down to pull the tail of a motionless object on the ground, then left after a moment.",
+      "reference_answer": "No matching clip is expected.",
+      "response": "In one video, a gray dog bends down and pulls the tail of another dog that had just been run over by a car, then stays briefly before leaving. This matches your description of an animal interacting with a motionless object on the ground before departing.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.0,
+          "context_recall": 0.0
+        },
+        "generation": {
+          "answer_relevancy": 0.3212,
+          "factual_correctness": 0.0,
+          "faithfulness": 0.2
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.1042
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0005",
+      "video_id": "Abuse038_x264",
+      "question": "Is there a clip of two puppies being hit by a car and rolling on the road?",
+      "reference_answer": "Yes. The relevant clip is in Abuse038_x264, around 0:00:09 - 0:00:13.",
+      "response": "Yes, there is a clip (video Abuse038_x264) showing two puppies on a road being hit by a black car. After the impact, both puppies roll on the road—one leaves the road shortly after, while the other stays in the middle before running to the side. The incident occurs amid traffic and bystanders.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 1.0,
+          "context_recall": 1.0
+        },
+        "generation": {
+          "answer_relevancy": 0.313,
+          "factual_correctness": 0.14,
+          "faithfulness": 0.5714
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.6049
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0006",
+      "video_id": "Abuse038_x264",
+      "question": "Animals fell on the road after a vehicle passed, while pedestrians were chatting nearby.",
+      "reference_answer": "Yes. The relevant clip is in Abuse038_x264, around 0:00:11 - 0:00:14.",
+      "response": "In one video, two puppies appeared on a road while adults chatted nearby; a black car hit them, and the dogs rolled before one ran off. In another, a white car struck a black dog on the road, and other dogs reacted nearby. Both scenes show animals falling or being hit after vehicles passed, with pedestrians present.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 1.0,
+          "context_recall": 1.0
+        },
+        "generation": {
+          "answer_relevancy": 0.4997,
+          "factual_correctness": 0.0,
+          "faithfulness": 0.625
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.6249
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0007",
+      "video_id": "Abuse038_x264",
+      "question": "A car with its lights on stopped, and the headlights shone on something on the road ahead.",
+      "reference_answer": "Yes. The relevant clip is in Abuse038_x264, around 0:00:14 - 0:00:20.",
+      "response": "In one video, a car with its headlights on stops on the road, illuminating a puppy ahead—this follows an earlier incident where two puppies were hit by a black car. In another video, a white car with flashing lights strikes a black dog in the road, while other dogs linger nearby. Both scenes involve vehicles and distressed dogs on the roadway.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 1.0,
+          "context_recall": 0.5
+        },
+        "generation": {
+          "answer_relevancy": 0.2614,
+          "factual_correctness": 0.0,
+          "faithfulness": 0.5714
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.4666
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0008",
+      "video_id": "Abuse039_x264",
+      "question": "Is there a video of two staff members conducting a full-body search on a detained woman in a closed room?",
+      "reference_answer": "Yes. The relevant clip is in Abuse039_x264, around 0:03:03 - 0:04:40.",
+      "response": "Yes, video footage exists showing two staff members—a yellow-haired woman and a man in black—conducting what appears to be a full-body search on a detained black-haired woman inside a closed room. The incident occurs between approximately 316s and 341s in video Abuse039_x264, where the woman bends over a wall while the yellow-haired staff member checks her body.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.0,
+          "context_recall": 0.0
+        },
+        "generation": {
+          "answer_relevancy": 0.8364,
+          "factual_correctness": 0.0,
+          "faithfulness": 0.0
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.1673
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0009",
+      "video_id": "Abuse039_x264",
+      "question": "A woman was repeatedly told to turn around and face the wall in a closed room, and was forced to undress.",
+      "reference_answer": "Yes. The relevant clip is in Abuse039_x264, around 0:00:09 - 0:05:50.",
+      "response": "In a disturbing incident captured on video, a black-haired woman was repeatedly told to face the wall in a closed room, forced to undress, and later physically assaulted by others present, including a yellow-haired woman and a man in black. The event involved coercive actions, removal of clothing, and violent behavior over several minutes.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.0,
+          "context_recall": 0.0
+        },
+        "generation": {
+          "answer_relevancy": 0.3187,
+          "factual_correctness": 0.0,
+          "faithfulness": 0.0
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.0637
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0010",
+      "video_id": "Abuse039_x264",
+      "question": "A person used a handheld device to scan another person top to bottom, then someone took shoes from a conveyor belt.",
+      "reference_answer": "Yes. The relevant clip is in Abuse039_x264, around 0:05:15 - 0:05:40.",
+      "response": "In one video, a yellow-haired woman uses a handheld device to scan a black-haired woman from head to toe, while a man in black later takes shoes from a conveyor belt nearby. The scene unfolds in a room with multiple interactions between the individuals, including moments of tension and physical contact.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.0,
+          "context_recall": 0.0
+        },
+        "generation": {
+          "answer_relevancy": 0.2446,
+          "factual_correctness": 0.0,
+          "faithfulness": 0.2
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.0889
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0011",
+      "video_id": "Abuse040_x264",
+      "question": "Is there a clip of a caregiver repeatedly hitting a white-haired elderly person on the head while they sit on a sofa?",
+      "reference_answer": "Yes. The relevant clip is in Abuse040_x264.",
+      "response": "No matching results found. You can add more specific descriptions like colors or actions.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": null,
+          "context_recall": null
+        },
+        "generation": {
+          "answer_relevancy": 0.0,
+          "factual_correctness": 0.0,
+          "faithfulness": null
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.0
+        },
+        "metric_errors": {}
+      }
+    }
+  ]
+}

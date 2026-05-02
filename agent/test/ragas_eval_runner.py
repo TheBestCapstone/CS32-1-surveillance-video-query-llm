@@ -4,7 +4,9 @@ import argparse
 import asyncio
 import importlib
 import json
+import math
 import os
+import re
 import statistics
 import sys
 import time
@@ -12,12 +14,10 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from openai import AsyncOpenAI, OpenAI
+from openai import AsyncOpenAI
 
-from ragas.embeddings.base import BaseRagasEmbedding, embedding_factory
 from ragas.llms import llm_factory
 from ragas.metrics.collections import (
-    AnswerRelevancy,
     ContextPrecisionWithReference,
     ContextRecall,
     Faithfulness,
@@ -35,17 +35,44 @@ if str(AGENT_DIR) not in sys.path:
 from agent.core.runtime import load_env  # noqa: E402
 from agent.db.chroma_builder import ChromaBuildConfig, ChromaIndexBuilder  # noqa: E402
 from agent.db.sqlite_builder import SQLiteBuildConfig, SQLiteDatabaseBuilder  # noqa: E402
+from agent.tools.llm import get_embedding_runtime_profile  # noqa: E402
 from agent_test_importer import AgentTestDatasetImporter, AgentTestImportConfig  # noqa: E402
 from langchain_core.messages import HumanMessage  # noqa: E402
 
 
-DEFAULT_XLSX_PATH = ROOT_DIR / "agent" / "test" / "agent_test.xlsx"
-DEFAULT_SEED_DIR = ROOT_DIR / "agent" / "test" / "generated" / "ucfcrime_events_vector_flat"
+DEFAULT_TEST_DATA_DIR = ROOT_DIR / "agent" / "test" / "data"
+DEFAULT_XLSX_PATH = DEFAULT_TEST_DATA_DIR / "agent_test.xlsx"
+# Prefer vector-flat seeds under ``agent/test/data``; fall back to repo bundle.
+_LEGACY_GENERATED_SEED_DIR = (
+    ROOT_DIR / "agent" / "test" / "generated" / "datasets" / "ucfcrime_events_vector_flat"
+)
 DEFAULT_OUTPUT_DIR = ROOT_DIR / "agent" / "test" / "generated" / "ragas_eval"
 DEFAULT_INCLUDE_SHEETS = ["Part1", "Part4"]
-EMBEDDING_BATCH_LIMIT = 10
 DEFAULT_RAGAS_MODEL = "gpt-4o"
-DEFAULT_RAGAS_EMBEDDING_MODEL = "text-embedding-3-small"
+
+
+def resolve_default_seed_directory() -> Path:
+    """Pick a directory containing ``*_events_vector_flat.json``.
+
+    Resolution order:
+
+    1. ``agent/test/data/events_vector_flat``
+    2. ``agent/test/data/ucfcrime_events_vector_flat``
+    3. ``agent/test/data`` (flat layout)
+    4. Legacy bundle under ``agent/test/generated/datasets/ucfcrime_events_vector_flat``
+    """
+    candidates = [
+        DEFAULT_TEST_DATA_DIR / "events_vector_flat",
+        DEFAULT_TEST_DATA_DIR / "ucfcrime_events_vector_flat",
+        DEFAULT_TEST_DATA_DIR,
+    ]
+    for cand in candidates:
+        try:
+            if cand.is_dir() and any(cand.glob("*_events_vector_flat.json")):
+                return cand.resolve()
+        except OSError:
+            continue
+    return _LEGACY_GENERATED_SEED_DIR.resolve()
 
 
 @dataclass
@@ -59,66 +86,6 @@ class EvalPaths:
     e2e_report_json: Path
     summary_report_json: Path
     summary_report_md: Path
-
-
-class OpenAICompatibleRagasEmbedding(BaseRagasEmbedding):
-    def __init__(
-        self,
-        *,
-        api_key: str,
-        base_url: str | None,
-        model: str = DEFAULT_RAGAS_EMBEDDING_MODEL,
-        dimensions: int | None = None,
-    ) -> None:
-        super().__init__()
-        self.model = model
-        self.dimensions = dimensions
-        client_kwargs = {"api_key": api_key}
-        if base_url:
-            client_kwargs["base_url"] = base_url
-        self.sync_client = OpenAI(**client_kwargs)
-        self.async_client = AsyncOpenAI(**client_kwargs)
-
-    def embed_text(self, text: str, **kwargs: Any) -> list[float]:
-        request = {
-            "input": text,
-            "model": self.model,
-            "encoding_format": "float",
-            **kwargs,
-        }
-        if self.dimensions is not None:
-            request["dimensions"] = self.dimensions
-        response = self.sync_client.embeddings.create(**request)
-        return response.data[0].embedding
-
-    async def aembed_text(self, text: str, **kwargs: Any) -> list[float]:
-        request = {
-            "input": text,
-            "model": self.model,
-            "encoding_format": "float",
-            **kwargs,
-        }
-        if self.dimensions is not None:
-            request["dimensions"] = self.dimensions
-        response = await self.async_client.embeddings.create(**request)
-        return response.data[0].embedding
-
-    async def aembed_texts(self, texts: list[str], **kwargs: Any) -> list[list[float]]:
-        outputs: list[list[float]] = []
-        for start in range(0, len(texts), EMBEDDING_BATCH_LIMIT):
-            batch = texts[start : start + EMBEDDING_BATCH_LIMIT]
-            request = {
-                "input": batch,
-                "model": self.model,
-                "encoding_format": "float",
-                **kwargs,
-            }
-            if self.dimensions is not None:
-                request["dimensions"] = self.dimensions
-            response = await self.async_client.embeddings.create(**request)
-            sorted_items = sorted(response.data, key=lambda item: item.index)
-            outputs.extend(item.embedding for item in sorted_items)
-        return outputs
 
 
 def _default_paths(output_dir: Path) -> EvalPaths:
@@ -170,10 +137,159 @@ def _strip_sources(text: str | None) -> str:
 
 
 def _mean(values: list[float | None]) -> float | None:
-    nums = [float(v) for v in values if isinstance(v, (int, float))]
+    nums: list[float] = []
+    for v in values:
+        if not isinstance(v, (int, float)):
+            continue
+        f = float(v)
+        if math.isfinite(f):
+            nums.append(f)
     if not nums:
         return None
     return round(statistics.mean(nums), 4)
+
+
+def _safe_float(value: Any) -> float | None:
+    try:
+        if value is None or value == "":
+            return None
+        return float(value)
+    except Exception:
+        return None
+
+
+def _is_valid_span(start_time: Any, end_time: Any) -> bool:
+    start_sec = _safe_float(start_time)
+    end_sec = _safe_float(end_time)
+    return start_sec is not None and end_sec is not None and end_sec >= start_sec
+
+
+def _pick_primary_eval_row(row: dict[str, Any]) -> dict[str, Any]:
+    child_rows = row.get("_child_rows") if isinstance(row.get("_child_rows"), list) else []
+    if not child_rows:
+        return row
+
+    def _sort_key(item: dict[str, Any]) -> tuple[float, float]:
+        distance = item.get("_distance")
+        hybrid = item.get("_hybrid_score")
+        safe_distance = float(distance) if isinstance(distance, (int, float)) else 999999.0
+        safe_hybrid = -float(hybrid) if isinstance(hybrid, (int, float)) else 0.0
+        return (safe_distance, safe_hybrid)
+
+    ranked_children = sorted(
+        [item for item in child_rows if isinstance(item, dict)],
+        key=_sort_key,
+    )
+    return ranked_children[0] if ranked_children else row
+
+
+def _extract_predicted_span(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    if not rows:
+        return {"predicted_video_id": None, "predicted_start_sec": None, "predicted_end_sec": None}
+    top_row = rows[0]
+    primary = _pick_primary_eval_row(top_row)
+    return {
+        "predicted_video_id": str(primary.get("video_id") or top_row.get("video_id") or "").strip() or None,
+        "predicted_start_sec": primary.get("start_time", top_row.get("start_time")),
+        "predicted_end_sec": primary.get("end_time", top_row.get("end_time")),
+    }
+
+
+def _compute_temporal_iou(
+    expected_start_sec: float,
+    expected_end_sec: float,
+    predicted_start_sec: float,
+    predicted_end_sec: float,
+) -> float:
+    gt_start = float(expected_start_sec)
+    gt_end = float(expected_end_sec)
+    pred_start = float(predicted_start_sec)
+    pred_end = float(predicted_end_sec)
+
+    gt_len = gt_end - gt_start
+    pred_len = pred_end - pred_start
+    if gt_len == 0.0 and pred_len == 0.0:
+        return 1.0 if gt_start == pred_start else 0.0
+    if gt_len == 0.0:
+        return 1.0 if pred_start <= gt_start <= pred_end else 0.0
+    if pred_len == 0.0:
+        return 1.0 if gt_start <= pred_start <= gt_end else 0.0
+
+    intersection = max(0.0, min(gt_end, pred_end) - max(gt_start, pred_start))
+    union = max(gt_end, pred_end) - min(gt_start, pred_start)
+    if union <= 0.0:
+        return 0.0
+    return intersection / union
+
+
+def _score_time_range_overlap(case_result: dict[str, Any]) -> dict[str, Any]:
+    """Task-native localization metrics (challenge.md §5.2).
+
+    Returns video_match_score / temporal_iou / localization_score alongside
+    the legacy ``time_range_overlap_iou`` key so the new metrics live next to
+    the ones the old summary expected.
+    """
+    expected_label = str(case_result.get("expected_answer_label") or "").strip().lower()
+    expected_start = _safe_float(case_result.get("expected_start_sec"))
+    expected_end = _safe_float(case_result.get("expected_end_sec"))
+    predicted_start = _safe_float(case_result.get("predicted_start_sec"))
+    predicted_end = _safe_float(case_result.get("predicted_end_sec"))
+    expected_video_id = str(case_result.get("video_id") or "").strip()
+    predicted_video_id = str(case_result.get("predicted_video_id") or "").strip()
+
+    video_match_score: float | None = None
+    if expected_label == "yes" and expected_video_id:
+        video_match_score = 1.0 if (predicted_video_id and predicted_video_id == expected_video_id) else 0.0
+
+    eligible = expected_label == "yes" and expected_start is not None and expected_end is not None
+    if not eligible:
+        return {
+            "time_range_overlap_iou": None,
+            "temporal_iou": None,
+            "localization_score": None,
+            "video_match_score": video_match_score,
+            "eligible": False,
+            "video_match": None,
+        }
+
+    video_match = bool(expected_video_id and predicted_video_id and expected_video_id == predicted_video_id)
+    if not video_match:
+        return {
+            "time_range_overlap_iou": 0.0,
+            "temporal_iou": 0.0,
+            "localization_score": 0.0,
+            "video_match_score": 0.0 if video_match_score is None else video_match_score,
+            "eligible": True,
+            "video_match": False,
+        }
+
+    if not _is_valid_span(expected_start, expected_end) or not _is_valid_span(predicted_start, predicted_end):
+        return {
+            "time_range_overlap_iou": 0.0,
+            "temporal_iou": 0.0,
+            "localization_score": 0.0,
+            "video_match_score": 1.0,
+            "eligible": True,
+            "video_match": True,
+        }
+
+    overlap_iou = round(
+        _compute_temporal_iou(
+            expected_start_sec=expected_start,
+            expected_end_sec=expected_end,
+            predicted_start_sec=predicted_start,
+            predicted_end_sec=predicted_end,
+        ),
+        4,
+    )
+    return {
+        "time_range_overlap_iou": overlap_iou,
+        "temporal_iou": overlap_iou,
+        "localization_score": overlap_iou,
+        "video_match_score": 1.0,
+        "eligible": True,
+        "video_match": True,
+    }
 
 
 def _truncate_text(text: str | None, max_chars: int) -> str:
@@ -229,6 +345,29 @@ def _load_filtered_cases(
     return filtered, report
 
 
+def _load_cases_from_dataset_dir(dataset_dir: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    """Load pre-imported cases from ``agent_test_normalized.json`` (skip xlsx)."""
+    dataset_dir = dataset_dir.expanduser().resolve()
+    normalized_path = dataset_dir / "agent_test_normalized.json"
+    if not normalized_path.exists():
+        raise FileNotFoundError(
+            f"Missing {normalized_path}. Run the Excel importer first or pass a valid --from-dataset-dir."
+        )
+    cases = json.loads(normalized_path.read_text(encoding="utf-8"))
+    filtered = [case for case in cases if case.get("e2e_ready") == 1]
+    report_path = dataset_dir / "agent_test_import_report.json"
+    if report_path.exists():
+        report = json.loads(report_path.read_text(encoding="utf-8"))
+    else:
+        report = {
+            "source": "from_dataset_dir",
+            "dataset_dir": str(dataset_dir),
+            "normalized_case_count": len(cases),
+            "e2e_ready_count": len(filtered),
+        }
+    return filtered, report
+
+
 def _resolve_seed_files(seed_dir: Path, cases: list[dict[str, Any]]) -> list[Path]:
     unique_ids = sorted({str(case.get("video_id", "")).strip() for case in cases if str(case.get("video_id", "")).strip()})
     seed_files: list[Path] = []
@@ -250,6 +389,7 @@ def _prepare_subset_databases(
     seed_files: list[Path],
     child_collection: str,
     parent_collection: str,
+    event_collection: str,
 ) -> dict[str, Any]:
     paths.runtime_dir.mkdir(parents=True, exist_ok=True)
     sqlite_result = SQLiteDatabaseBuilder(
@@ -264,6 +404,7 @@ def _prepare_subset_databases(
             chroma_path=paths.chroma_path,
             child_collection=child_collection,
             parent_collection=parent_collection,
+            event_collection=event_collection,
             reset_existing=True,
         )
     ).build(seed_files=seed_files)
@@ -279,6 +420,7 @@ def _load_graph_with_runtime_env(
     chroma_path: Path,
     child_collection: str,
     parent_collection: str,
+    event_collection: str,
 ):
     load_env(ROOT_DIR)
     os.environ["AGENT_SQLITE_DB_PATH"] = str(sqlite_path)
@@ -286,6 +428,7 @@ def _load_graph_with_runtime_env(
     os.environ["AGENT_CHROMA_COLLECTION"] = child_collection
     os.environ["AGENT_CHROMA_CHILD_COLLECTION"] = child_collection
     os.environ["AGENT_CHROMA_PARENT_COLLECTION"] = parent_collection
+    os.environ["AGENT_CHROMA_EVENT_COLLECTION"] = event_collection
     if "graph" in sys.modules:
         graph_module = importlib.reload(sys.modules["graph"])
     else:
@@ -293,7 +436,7 @@ def _load_graph_with_runtime_env(
     return graph_module.create_graph()
 
 
-def _build_ragas_runtime(args: argparse.Namespace) -> tuple[Any, Any, dict[str, Any]]:
+def _build_ragas_runtime(args: argparse.Namespace) -> tuple[Any, dict[str, Any]]:
     load_env(ROOT_DIR)
     api_key = os.getenv("OPENAI_API_KEY")
     base_url = args.ragas_openai_base_url.strip() or os.getenv("RAGAS_OPENAI_BASE_URL", "").strip() or "https://api.openai.com/v1"
@@ -306,20 +449,43 @@ def _build_ragas_runtime(args: argparse.Namespace) -> tuple[Any, Any, dict[str, 
         client=openai_async_client,
         temperature=0,
     )
-    ragas_embeddings = embedding_factory(
-        provider="openai",
-        model=args.ragas_embedding_model,
-        client=openai_async_client,
-        **({"dimensions": args.ragas_embedding_dimensions} if args.ragas_embedding_dimensions > 0 else {}),
-    )
     runtime_profile = {
         "ragas_model": args.ragas_model,
         "ragas_api_provider": "OpenAI",
         "ragas_api_base_url": base_url,
-        "ragas_embedding_model": args.ragas_embedding_model,
-        "ragas_embedding_dimensions": args.ragas_embedding_dimensions if args.ragas_embedding_dimensions > 0 else None,
+        "agent_embedding": get_embedding_runtime_profile(),
+        "agent_execution_mode": os.getenv("AGENT_EXECUTION_MODE", "parallel_fusion"),
+        "agent_use_llamaindex_sql": os.getenv("AGENT_USE_LLAMAINDEX_SQL", "0"),
+        "agent_use_llamaindex_vector": os.getenv("AGENT_USE_LLAMAINDEX_VECTOR", "0"),
+        "agent_sqlite_db_path": os.getenv("AGENT_SQLITE_DB_PATH", ""),
+        "agent_chroma_path": os.getenv("AGENT_CHROMA_PATH", ""),
+        "agent_chroma_collection": os.getenv("AGENT_CHROMA_COLLECTION", ""),
+        "agent_chroma_parent_collection": os.getenv("AGENT_CHROMA_PARENT_COLLECTION", ""),
+        "agent_chroma_event_collection": os.getenv("AGENT_CHROMA_EVENT_COLLECTION", ""),
     }
-    return ragas_llm, ragas_embeddings, runtime_profile
+    return ragas_llm, runtime_profile
+
+
+def _is_retryable_metric_error(message: str) -> bool:
+    low = (message or "").lower()
+    return "rate limit" in low or "429" in low or "timeout" in low or "connection" in low
+
+
+def _extract_retry_delay_seconds(message: str, default_delay: float) -> float:
+    text = str(message or "")
+    second_match = re.search(r"try again in\s*([0-9.]+)s", text, flags=re.IGNORECASE)
+    if second_match:
+        return max(float(second_match.group(1)) + 0.5, default_delay)
+    ms_match = re.search(r"try again in\s*([0-9.]+)ms", text, flags=re.IGNORECASE)
+    if ms_match:
+        return max(float(ms_match.group(1)) / 1000.0 + 0.5, default_delay)
+    return default_delay
+
+
+def _chunked(values: list[Any], size: int) -> list[list[Any]]:
+    if size <= 1:
+        return [[item] for item in values]
+    return [values[idx : idx + size] for idx in range(0, len(values), size)]
 
 
 async def _score_case_with_ragas(
@@ -329,82 +495,66 @@ async def _score_case_with_ragas(
     reference: str,
     contexts: list[str],
     ragas_llm: Any,
-    ragas_embeddings: OpenAICompatibleRagasEmbedding,
-    answer_relevancy_strictness: int,
+    metric_max_retries: int,
+    metric_retry_delay_sec: float,
 ) -> dict[str, Any]:
     retrieval_scores: dict[str, Any] = {}
     generation_scores: dict[str, Any] = {}
     metric_errors: dict[str, str] = {}
 
-    async def _run_metric(metric_name: str, coro) -> float | None:
-        try:
-            result = await coro
-            return round(float(result.value), 4)
-        except Exception as exc:
-            metric_errors[metric_name] = str(exc)
-            return None
+    async def _run_metric(metric_name: str, coro_factory) -> float | None:
+        last_error = None
+        for attempt in range(max(1, int(metric_max_retries))):
+            try:
+                result = await coro_factory()
+                value = round(float(result.value), 4)
+                if not math.isfinite(value):
+                    return None
+                return value
+            except Exception as exc:
+                last_error = str(exc)
+                if attempt >= max(1, int(metric_max_retries)) - 1 or not _is_retryable_metric_error(last_error):
+                    metric_errors[metric_name] = last_error
+                    return None
+                await asyncio.sleep(_extract_retry_delay_seconds(last_error, float(metric_retry_delay_sec)))
+        if last_error:
+            metric_errors[metric_name] = last_error
+        return None
 
     if contexts and reference:
         context_precision = ContextPrecisionWithReference(llm=ragas_llm)
         context_recall = ContextRecall(llm=ragas_llm)
-        retrieval_values = await asyncio.gather(
-            _run_metric(
-                "context_precision",
-                context_precision.ascore(user_input=question, reference=reference, retrieved_contexts=contexts),
-            ),
-            _run_metric(
-                "context_recall",
-                context_recall.ascore(user_input=question, retrieved_contexts=contexts, reference=reference),
-            ),
+        retrieval_scores["context_precision"] = await _run_metric(
+            "context_precision",
+            lambda: context_precision.ascore(user_input=question, reference=reference, retrieved_contexts=contexts),
         )
-        retrieval_scores["context_precision"] = retrieval_values[0]
-        retrieval_scores["context_recall"] = retrieval_values[1]
+        retrieval_scores["context_recall"] = await _run_metric(
+            "context_recall",
+            lambda: context_recall.ascore(user_input=question, retrieved_contexts=contexts, reference=reference),
+        )
     else:
         retrieval_scores["context_precision"] = None
         retrieval_scores["context_recall"] = None
 
     if response:
-        answer_relevancy = AnswerRelevancy(
-            llm=ragas_llm,
-            embeddings=ragas_embeddings,
-            strictness=answer_relevancy_strictness,
-        )
         factual_correctness = FactualCorrectness(llm=ragas_llm, mode="precision")
         if contexts:
             faithfulness = Faithfulness(llm=ragas_llm)
-            generation_values = await asyncio.gather(
-                _run_metric(
-                    "answer_relevancy",
-                    answer_relevancy.ascore(user_input=question, response=response),
-                ),
-                _run_metric(
-                    "factual_correctness",
-                    factual_correctness.ascore(response=response, reference=reference),
-                ),
-                _run_metric(
-                    "faithfulness",
-                    faithfulness.ascore(user_input=question, response=response, retrieved_contexts=contexts),
-                ),
+            generation_scores["factual_correctness"] = await _run_metric(
+                "factual_correctness",
+                lambda: factual_correctness.ascore(response=response, reference=reference),
             )
-            generation_scores["answer_relevancy"] = generation_values[0]
-            generation_scores["factual_correctness"] = generation_values[1]
-            generation_scores["faithfulness"] = generation_values[2]
+            generation_scores["faithfulness"] = await _run_metric(
+                "faithfulness",
+                lambda: faithfulness.ascore(user_input=question, response=response, retrieved_contexts=contexts),
+            )
         else:
-            generation_values = await asyncio.gather(
-                _run_metric(
-                    "answer_relevancy",
-                    answer_relevancy.ascore(user_input=question, response=response),
-                ),
-                _run_metric(
-                    "factual_correctness",
-                    factual_correctness.ascore(response=response, reference=reference),
-                ),
+            generation_scores["factual_correctness"] = await _run_metric(
+                "factual_correctness",
+                lambda: factual_correctness.ascore(response=response, reference=reference),
             )
-            generation_scores["answer_relevancy"] = generation_values[0]
-            generation_scores["factual_correctness"] = generation_values[1]
             generation_scores["faithfulness"] = None
     else:
-        generation_scores["answer_relevancy"] = None
         generation_scores["factual_correctness"] = None
         generation_scores["faithfulness"] = None
 
@@ -412,7 +562,6 @@ async def _score_case_with_ragas(
         [
             retrieval_scores.get("context_precision"),
             retrieval_scores.get("context_recall"),
-            generation_scores.get("answer_relevancy"),
             generation_scores.get("factual_correctness"),
             generation_scores.get("faithfulness"),
         ]
@@ -452,15 +601,30 @@ def _run_case(graph: Any, case: dict[str, Any], idx: int, top_k: int) -> dict[st
             contexts.append(text)
     top_video_ids = [str(row.get("video_id", "")).strip() for row in rows[:top_k] if str(row.get("video_id", "")).strip()]
     response = _strip_sources(last_chunk.get("final_answer"))
+    predicted_span = _extract_predicted_span(rows)
+    cr = last_chunk.get("classification_result")
+    sd = last_chunk.get("sql_debug")
+    fusion_meta = sd.get("fusion_meta") if isinstance(sd, dict) else None
     return {
         "case_id": case.get("case_id"),
         "source_sheet": case.get("source_sheet"),
         "video_id": case.get("video_id"),
         "question": question,
         "reference_answer": case.get("reference_answer"),
+        "reference_answer_rich": case.get("reference_answer_rich"),
+        "reference_scene_description": case.get("reference_scene_description"),
+        "recall_challenge": case.get("recall_challenge"),
         "expected_answer_label": case.get("expected_answer_label"),
+        "expected_time_raw": case.get("expected_time_raw"),
+        "expected_start_sec": case.get("expected_start_sec"),
+        "expected_end_sec": case.get("expected_end_sec"),
         "elapsed_ms": elapsed_ms,
         "route_mode": ((last_chunk.get("tool_choice") or {}).get("mode") if isinstance(last_chunk.get("tool_choice"), dict) else None),
+        "classification_result": cr if isinstance(cr, dict) else {},
+        "answer_type": str(last_chunk.get("answer_type") or "").strip(),
+        "verifier_result": last_chunk.get("verifier_result") if isinstance(last_chunk.get("verifier_result"), dict) else {},
+        "fusion_meta": fusion_meta if isinstance(fusion_meta, dict) else {},
+        "routing_metrics": last_chunk.get("routing_metrics") if isinstance(last_chunk.get("routing_metrics"), dict) else {},
         "error": error,
         "tool_error": last_chunk.get("tool_error"),
         "node_trace": node_trace,
@@ -468,6 +632,9 @@ def _run_case(graph: Any, case: dict[str, Any], idx: int, top_k: int) -> dict[st
         "retrieved_contexts": contexts,
         "top_video_ids": top_video_ids,
         "top_hit": str(case.get("video_id", "")).strip() in top_video_ids,
+        "predicted_video_id": predicted_span["predicted_video_id"],
+        "predicted_start_sec": predicted_span["predicted_start_sec"],
+        "predicted_end_sec": predicted_span["predicted_end_sec"],
         "raw_summary_result": last_chunk.get("summary_result") if isinstance(last_chunk.get("summary_result"), dict) else {},
     }
 
@@ -476,6 +643,18 @@ def _build_summary(case_results: list[dict[str, Any]], dataset_report: dict[str,
     retrieval_cases = [item["ragas"]["retrieval"] for item in case_results]
     generation_cases = [item["ragas"]["generation"] for item in case_results]
     e2e_cases = [item["ragas"]["end_to_end"] for item in case_results]
+    temporal_cases = [item.get("temporal") or {} for item in case_results]
+    temporal_scores = [item.get("time_range_overlap_iou") for item in temporal_cases]
+    temporal_eligible = [item for item in temporal_cases if item.get("eligible")]
+    localization_scores = [item.get("localization_score") for item in temporal_cases]
+    localization_eligible = [item for item in temporal_cases if item.get("localization_score") is not None]
+    # Top-1 video match uses ``video_match_score`` populated for any case with a GT video.
+    video_match_scores = [item.get("video_match_score") for item in temporal_cases if item.get("video_match_score") is not None]
+    rich_ref_cases = sum(
+        1
+        for item in case_results
+        if str((item.get("ragas_input_profile") or {}).get("reference_source") or "") == "rich"
+    )
     return {
         "dataset": dataset_report,
         "bootstrap": bootstrap_result,
@@ -486,11 +665,42 @@ def _build_summary(case_results: list[dict[str, Any]], dataset_report: dict[str,
         "retrieval_summary": {
             "context_precision_avg": _mean([item.get("context_precision") for item in retrieval_cases]),
             "context_recall_avg": _mean([item.get("context_recall") for item in retrieval_cases]),
+            "reference_used_rich_count": rich_ref_cases,
         },
         "generation_summary": {
             "faithfulness_avg": _mean([item.get("faithfulness") for item in generation_cases]),
-            "answer_relevancy_avg": _mean([item.get("answer_relevancy") for item in generation_cases]),
             "factual_correctness_avg": _mean([item.get("factual_correctness") for item in generation_cases]),
+        },
+        "temporal_summary": {
+            "time_range_overlap_iou_avg": _mean(temporal_scores),
+            "temporal_iou_avg": _mean(temporal_scores),
+            "time_range_overlap_iou_case_count": len(temporal_eligible),
+            "time_range_overlap_iou_hit_rate_at_0_3": round(
+                sum(1 for item in temporal_eligible if isinstance(item.get("time_range_overlap_iou"), (int, float)) and float(item["time_range_overlap_iou"]) >= 0.3)
+                / max(len(temporal_eligible), 1),
+                4,
+            ) if temporal_eligible else None,
+            "time_range_overlap_iou_hit_rate_at_0_5": round(
+                sum(1 for item in temporal_eligible if isinstance(item.get("time_range_overlap_iou"), (int, float)) and float(item["time_range_overlap_iou"]) >= 0.5)
+                / max(len(temporal_eligible), 1),
+                4,
+            ) if temporal_eligible else None,
+        },
+        "localization_summary": {
+            "video_match_score_avg": _mean(video_match_scores),
+            "video_match_case_count": len(video_match_scores),
+            "localization_score_avg": _mean(localization_scores),
+            "localization_case_count": len(localization_eligible),
+            "localization_hit_rate_at_0_3": round(
+                sum(1 for item in localization_eligible if isinstance(item.get("localization_score"), (int, float)) and float(item["localization_score"]) >= 0.3)
+                / max(len(localization_eligible), 1),
+                4,
+            ) if localization_eligible else None,
+            "localization_hit_rate_at_0_5": round(
+                sum(1 for item in localization_eligible if isinstance(item.get("localization_score"), (int, float)) and float(item["localization_score"]) >= 0.5)
+                / max(len(localization_eligible), 1),
+                4,
+            ) if localization_eligible else None,
         },
         "end_to_end_summary": {
             "ragas_e2e_score_avg": _mean([item.get("ragas_e2e_score") for item in e2e_cases]),
@@ -518,11 +728,26 @@ def _build_markdown(summary: dict[str, Any], case_results: list[dict[str, Any]])
         "",
         "## Generation",
         f"- Faithfulness avg: `{summary['generation_summary']['faithfulness_avg']}`",
-        f"- Answer relevancy avg: `{summary['generation_summary']['answer_relevancy_avg']}`",
         f"- Factual correctness avg: `{summary['generation_summary']['factual_correctness_avg']}`",
+        "",
+        "## Temporal Localization",
+        f"- Time overlap IoU avg: `{summary['temporal_summary']['time_range_overlap_iou_avg']}`",
+        f"- Time overlap case count: `{summary['temporal_summary']['time_range_overlap_iou_case_count']}`",
+        f"- Time overlap hit@0.3: `{summary['temporal_summary']['time_range_overlap_iou_hit_rate_at_0_3']}`",
+        f"- Time overlap hit@0.5: `{summary['temporal_summary']['time_range_overlap_iou_hit_rate_at_0_5']}`",
+        "",
+        "## Task-native Localization (challenge.md §5.2)",
+        f"- Video match score avg (top-1): `{summary['localization_summary']['video_match_score_avg']}`"
+        f" (cases={summary['localization_summary']['video_match_case_count']})",
+        f"- Localization score avg: `{summary['localization_summary']['localization_score_avg']}`"
+        f" (cases={summary['localization_summary']['localization_case_count']})",
+        f"- Localization hit@0.3: `{summary['localization_summary']['localization_hit_rate_at_0_3']}`",
+        f"- Localization hit@0.5: `{summary['localization_summary']['localization_hit_rate_at_0_5']}`",
         "",
         "## End To End",
         f"- RAGAS e2e avg: `{summary['end_to_end_summary']['ragas_e2e_score_avg']}`",
+        f"- RAGAS reference used rich: `{summary['retrieval_summary']['reference_used_rich_count']}`"
+        f" / `{summary['case_count']}`",
         "",
         "## Cases",
     ]
@@ -537,6 +762,7 @@ def _build_markdown(summary: dict[str, Any], case_results: list[dict[str, Any]])
                 f"- Top hit: `{case['top_hit']}`",
                 f"- Retrieval: `{json.dumps(case['ragas']['retrieval'], ensure_ascii=False)}`",
                 f"- Generation: `{json.dumps(case['ragas']['generation'], ensure_ascii=False)}`",
+                f"- Temporal: `{json.dumps(case.get('temporal', {}), ensure_ascii=False)}`",
                 f"- End-to-end: `{json.dumps(case['ragas']['end_to_end'], ensure_ascii=False)}`",
                 f"- Metric errors: `{json.dumps(case['ragas'].get('metric_errors', {}), ensure_ascii=False)}`",
                 "",
@@ -547,10 +773,42 @@ def _build_markdown(summary: dict[str, Any], case_results: list[dict[str, Any]])
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Run RAGAS evaluation for Part1/Part4 agent cases")
-    parser.add_argument("--xlsx-path", type=str, default=str(DEFAULT_XLSX_PATH), help="Source xlsx path")
-    parser.add_argument("--seed-dir", type=str, default=str(DEFAULT_SEED_DIR), help="events_vector_flat seed directory")
+    parser.add_argument(
+        "--xlsx-path",
+        type=str,
+        default=str(DEFAULT_XLSX_PATH),
+        help="Evaluation spreadsheet (default: agent/test/data/agent_test.xlsx)",
+    )
+    parser.add_argument(
+        "--seed-dir",
+        type=str,
+        default="",
+        help=(
+            "Directory with *_events_vector_flat.json seeds. Empty = auto: "
+            "test/data/events_vector_flat, test/data/ucfcrime_events_vector_flat, "
+            "test/data, then generated/datasets/ucfcrime_events_vector_flat"
+        ),
+    )
+    parser.add_argument(
+        "--from-dataset-dir",
+        type=str,
+        default="",
+        help=(
+            "Skip xlsx import; load agent_test_normalized.json from this folder "
+            "(often agent/test/data/imported after running agent_test_importer.py)"
+        ),
+    )
     parser.add_argument("--output-dir", type=str, default=str(DEFAULT_OUTPUT_DIR), help="Output directory")
-    parser.add_argument("--include-sheets", nargs="*", default=list(DEFAULT_INCLUDE_SHEETS), help="Sheets to include, default Part1 Part4")
+    parser.add_argument(
+        "--include-sheets",
+        nargs="*",
+        default=None,
+        metavar="SHEET",
+        help=(
+            "Sheets to include for xlsx import. Default Part1 Part4 when this flag is omitted or given with no sheet names "
+            "(explicit values override; Part2 and Part6 are always skipped)."
+        ),
+    )
     parser.add_argument("--limit", type=int, default=0, help="Limit case count for smoke test")
     parser.add_argument("--top-k", type=int, default=5, help="How many retrieved rows to evaluate")
     parser.add_argument("--prepare-subset-db", action="store_true", help="Build subset sqlite/chroma from selected video ids")
@@ -558,17 +816,32 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--chroma-path", type=str, default="", help="Use an existing chroma path")
     parser.add_argument("--child-collection", type=str, default="ucfcrime_eval_child", help="Chroma child collection name")
     parser.add_argument("--parent-collection", type=str, default="ucfcrime_eval_parent", help="Chroma parent collection name")
+    parser.add_argument("--event-collection", type=str, default="ucfcrime_eval_event", help="Chroma event-level collection name")
     parser.add_argument("--ragas-model", type=str, default=DEFAULT_RAGAS_MODEL, help="RAGAS evaluation LLM model")
     parser.add_argument("--ragas-openai-base-url", type=str, default="", help="Optional base url for RAGAS OpenAI client")
-    parser.add_argument("--ragas-embedding-model", type=str, default=DEFAULT_RAGAS_EMBEDDING_MODEL, help="Embedding model used by RAGAS")
-    parser.add_argument("--ragas-embedding-dimensions", type=int, default=0, help="Optional embedding dimensions, 0 means provider default")
-    parser.add_argument("--ragas-concurrency", type=int, default=3, help="Parallel RAGAS scoring concurrency")
+    parser.add_argument("--ragas-concurrency", type=int, default=4, help="Parallel RAGAS scoring concurrency")
+    parser.add_argument("--ragas-case-batch-size", type=int, default=4, help="How many cases to score in one asyncio batch")
     parser.add_argument("--ragas-max-contexts", type=int, default=3, help="Max contexts passed into RAGAS")
     parser.add_argument("--ragas-max-context-chars", type=int, default=700, help="Max chars per context for RAGAS")
     parser.add_argument("--ragas-max-total-context-chars", type=int, default=1800, help="Max total context chars for RAGAS")
     parser.add_argument("--ragas-max-response-chars", type=int, default=900, help="Max response chars for RAGAS")
     parser.add_argument("--ragas-max-reference-chars", type=int, default=700, help="Max reference chars for RAGAS")
-    parser.add_argument("--answer-relevancy-strictness", type=int, default=2, help="Question generation count for answer relevancy")
+    parser.add_argument("--ragas-metric-max-retries", type=int, default=4, help="Max retries for retryable RAGAS metric failures")
+    parser.add_argument("--ragas-metric-retry-delay-sec", type=float, default=2.0, help="Base retry delay for retryable RAGAS metric failures")
+    # challenge.md §5.1: default-on rich reference for RAGAS.
+    parser.add_argument(
+        "--ragas-use-rich-reference",
+        dest="ragas_use_rich_reference",
+        action="store_true",
+        default=True,
+        help="Use reference_answer_rich (video + time + scene description) for RAGAS scoring (default)",
+    )
+    parser.add_argument(
+        "--ragas-no-rich-reference",
+        dest="ragas_use_rich_reference",
+        action="store_false",
+        help="Force legacy pointer-style reference_answer for RAGAS scoring (for A/B comparison)",
+    )
     return parser
 
 
@@ -577,13 +850,21 @@ def main() -> None:
     output_dir = Path(args.output_dir).expanduser().resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
     paths = _default_paths(output_dir)
-    include_sheets = [str(item) for item in args.include_sheets if str(item).strip()]
+    if args.include_sheets is None or len(args.include_sheets) == 0:
+        include_sheets = list(DEFAULT_INCLUDE_SHEETS)
+    else:
+        include_sheets = [str(item).strip() for item in args.include_sheets if str(item).strip()]
+        if not include_sheets:
+            include_sheets = list(DEFAULT_INCLUDE_SHEETS)
 
-    cases, dataset_report = _load_filtered_cases(
-        xlsx_path=Path(args.xlsx_path).expanduser().resolve(),
-        dataset_dir=paths.dataset_dir,
-        include_sheets=include_sheets,
-    )
+    if str(args.from_dataset_dir or "").strip():
+        cases, dataset_report = _load_cases_from_dataset_dir(Path(args.from_dataset_dir))
+    else:
+        cases, dataset_report = _load_filtered_cases(
+            xlsx_path=Path(args.xlsx_path).expanduser().resolve(),
+            dataset_dir=paths.dataset_dir,
+            include_sheets=include_sheets,
+        )
     if args.limit and args.limit > 0:
         cases = cases[: args.limit]
     if not cases:
@@ -594,12 +875,15 @@ def main() -> None:
     chroma_path = Path(args.chroma_path).expanduser().resolve() if args.chroma_path else paths.chroma_path
 
     if args.prepare_subset_db:
-        seed_files = _resolve_seed_files(Path(args.seed_dir).expanduser().resolve(), cases)
+        seed_base = Path(args.seed_dir).expanduser().resolve() if str(args.seed_dir or "").strip() else resolve_default_seed_directory()
+        print(f"[ragas_eval] Using seed directory: {seed_base}")
+        seed_files = _resolve_seed_files(seed_base, cases)
         bootstrap_result = _prepare_subset_databases(
             paths=paths,
             seed_files=seed_files,
             child_collection=args.child_collection,
             parent_collection=args.parent_collection,
+            event_collection=args.event_collection,
         )
 
     wall_t0 = time.perf_counter()
@@ -608,8 +892,9 @@ def main() -> None:
         chroma_path=chroma_path,
         child_collection=args.child_collection,
         parent_collection=args.parent_collection,
+        event_collection=args.event_collection,
     )
-    ragas_llm, ragas_embeddings, ragas_runtime_profile = _build_ragas_runtime(args)
+    ragas_llm, ragas_runtime_profile = _build_ragas_runtime(args)
 
     case_results: list[dict[str, Any]] = []
     graph_total_ms = 0.0
@@ -622,15 +907,38 @@ def main() -> None:
     async def _score_all_cases() -> None:
         semaphore = asyncio.Semaphore(max(1, int(args.ragas_concurrency)))
 
-        async def _score_one(case_result: dict[str, Any]) -> None:
+        use_rich_reference = bool(getattr(args, "ragas_use_rich_reference", True))
+        total = len(case_results)
+        # Mutable box so the nested coroutine can increment a shared completion counter
+        # without needing a threading lock (single-event-loop cooperative scheduling).
+        done_counter = {"n": 0}
+
+        async def _score_one(idx: int, case_result: dict[str, Any]) -> None:
+            case_id = case_result.get("case_id", f"idx_{idx}")
             question = _truncate_text(case_result.get("question"), 500)
             response = _truncate_text(case_result.get("response"), int(args.ragas_max_response_chars))
-            reference = _truncate_text(case_result.get("reference_answer"), int(args.ragas_max_reference_chars))
+            # challenge.md §5.1: RAGAS reference should carry scene content so
+            # context_precision / context_recall / faithfulness have real signal.
+            reference_source = "rich"
+            reference_raw = None
+            if use_rich_reference:
+                reference_raw = case_result.get("reference_answer_rich")
+            if not reference_raw:
+                reference_raw = case_result.get("reference_answer")
+                reference_source = "legacy_pointer"
+            reference = _truncate_text(reference_raw, int(args.ragas_max_reference_chars))
             contexts = _compact_contexts(
                 case_result.get("retrieved_contexts") or [],
                 max_contexts=int(args.ragas_max_contexts),
                 max_chars_per_context=int(args.ragas_max_context_chars),
                 max_total_chars=int(args.ragas_max_total_context_chars),
+            )
+            ctx_total_chars = sum(len(item) for item in contexts)
+            print(
+                f"[ragas] start {idx}/{total} {case_id} "
+                f"ctx={len(contexts)} ctx_chars={ctx_total_chars} "
+                f"resp_chars={len(response)} ref_chars={len(reference)}",
+                flush=True,
             )
             score_t0 = time.perf_counter()
             async with semaphore:
@@ -640,21 +948,35 @@ def main() -> None:
                     reference=reference,
                     contexts=contexts,
                     ragas_llm=ragas_llm,
-                    ragas_embeddings=ragas_embeddings,
-                    answer_relevancy_strictness=max(1, int(args.answer_relevancy_strictness)),
+                    metric_max_retries=max(1, int(args.ragas_metric_max_retries)),
+                    metric_retry_delay_sec=max(0.5, float(args.ragas_metric_retry_delay_sec)),
                 )
-            case_result["ragas_elapsed_ms"] = round((time.perf_counter() - score_t0) * 1000, 2)
+            elapsed_ms = round((time.perf_counter() - score_t0) * 1000, 2)
+            case_result["ragas_elapsed_ms"] = elapsed_ms
             case_result["ragas_input_profile"] = {
                 "context_count": len(contexts),
-                "context_total_chars": sum(len(item) for item in contexts),
+                "context_total_chars": ctx_total_chars,
                 "response_chars": len(response),
                 "reference_chars": len(reference),
+                "reference_source": reference_source,
+                "reference_text": reference,
                 "question_chars": len(question),
             }
             case_result["ragas"] = ragas_result
             case_result["retrieved_contexts_for_ragas"] = contexts
+            case_result["temporal"] = _score_time_range_overlap(case_result)
+            done_counter["n"] += 1
+            metric_errors = (ragas_result or {}).get("metric_errors") or {}
+            err_tag = f" errors={sorted(metric_errors)}" if metric_errors else ""
+            print(
+                f"[ragas] done  {idx}/{total} {case_id} "
+                f"in {elapsed_ms / 1000:.1f}s (completed {done_counter['n']}/{total}){err_tag}",
+                flush=True,
+            )
 
-        await asyncio.gather(*[_score_one(item) for item in case_results])
+        indexed = list(enumerate(case_results, start=1))
+        for batch in _chunked(indexed, max(1, int(args.ragas_case_batch_size))):
+            await asyncio.gather(*[_score_one(idx, item) for idx, item in batch])
 
     ragas_t0 = time.perf_counter()
     asyncio.run(_score_all_cases())
@@ -669,12 +991,14 @@ def main() -> None:
         "eval_config": {
             "top_k": args.top_k,
             "ragas_concurrency": args.ragas_concurrency,
+            "ragas_case_batch_size": args.ragas_case_batch_size,
             "ragas_max_contexts": args.ragas_max_contexts,
             "ragas_max_context_chars": args.ragas_max_context_chars,
             "ragas_max_total_context_chars": args.ragas_max_total_context_chars,
             "ragas_max_response_chars": args.ragas_max_response_chars,
             "ragas_max_reference_chars": args.ragas_max_reference_chars,
-            "answer_relevancy_strictness": args.answer_relevancy_strictness,
+            "ragas_metric_max_retries": args.ragas_metric_max_retries,
+            "ragas_metric_retry_delay_sec": args.ragas_metric_retry_delay_sec,
         },
         "timing": {
             "graph_total_ms": round(graph_total_ms, 2),

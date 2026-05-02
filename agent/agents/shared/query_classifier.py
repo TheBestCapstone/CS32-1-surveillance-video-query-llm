@@ -1,37 +1,104 @@
 import json
 import os
-from typing import Any, Dict
+import re
+from typing import Any, Dict, List, Tuple
 
-from lightingRL.prompt_registry import (
-    QUERY_CLASSIFICATION_SYSTEM_PROMPT_KEY,
-    QUERY_CLASSIFICATION_USER_PROMPT_KEY,
-    get_prompt_template,
-    render_prompt,
-)
 from langchain_core.messages import HumanMessage, SystemMessage
+
+# NOTE: P1-6 extends the label enum with ``multi_hop`` and attaches structured
+# ``signals`` to every classification payload so downstream fusion/verifier
+# nodes can reason about evidence rather than phrasing. P1-7 adds
+# ``answer_type`` so the grounder (match_verifier_node) can be enabled
+# selectively for existence-style questions.
 
 QUERY_CLASSIFICATION_OUTPUT_SCHEMA = {
     "title": "query_classification",
     "type": "object",
     "properties": {
-        "label": {"type": "string", "enum": ["structured", "semantic", "mixed"]},
+        "label": {
+            "type": "string",
+            "enum": ["structured", "semantic", "mixed", "multi_hop"],
+        },
+        "answer_type": {
+            "type": "string",
+            "enum": ["existence", "list", "description", "count", "unknown"],
+        },
         "confidence": {"type": "number"},
         "reason": {"type": "string"},
     },
-    "required": ["label", "confidence", "reason"],
+    "required": ["label", "answer_type", "confidence", "reason"],
 }
 
 
 LABEL_STRUCTURED = "structured"
 LABEL_SEMANTIC = "semantic"
 LABEL_MIXED = "mixed"
+LABEL_MULTI_HOP = "multi_hop"
+ALL_LABELS = {LABEL_STRUCTURED, LABEL_SEMANTIC, LABEL_MIXED, LABEL_MULTI_HOP}
+
+ANSWER_TYPE_EXISTENCE = "existence"
+ANSWER_TYPE_LIST = "list"
+ANSWER_TYPE_DESCRIPTION = "description"
+ANSWER_TYPE_COUNT = "count"
+ANSWER_TYPE_UNKNOWN = "unknown"
+ALL_ANSWER_TYPES = {
+    ANSWER_TYPE_EXISTENCE,
+    ANSWER_TYPE_LIST,
+    ANSWER_TYPE_DESCRIPTION,
+    ANSWER_TYPE_COUNT,
+    ANSWER_TYPE_UNKNOWN,
+}
+
+
+# Lightweight, domain-agnostic cue dictionaries. Kept intentionally small so
+# they function as *signals* (presence/absence) rather than a BOW classifier.
+_METADATA_ENUM_HITS = (
+    # objects
+    "person", "people", "pedestrian", "car", "truck", "vehicle", "bike",
+    "bicycle", "motorcycle", "dog", "animal",
+    # colors
+    "black", "white", "red", "blue", "dark", "light", "gray", "grey",
+    # scene zones
+    "parking", "sidewalk", "baseline", "court", "bleachers", "road",
+    "hallway", "door", "entrance",
+)
+
+_RELATION_CUES = (
+    "near", "around", "onto", "against", "beside", "behind", "in front of",
+    "similar", "like", "toward", "approach", "moving", "walking",
+    "running", "turning", "pulling", "throwing", "hitting", "scanning",
+    "entering", "exiting", "leaving",
+)
+
+_MULTI_STEP_CUES = (
+    " then ", " after ", " before ", " while ", " and then ",
+    " followed by ", " subsequently ", ", then ", ", and then ",
+    " afterwards ", " meanwhile ",
+)
+
+_EXISTENCE_CUES = (
+    "is there", "are there", "did you see", "do you see", "do you have",
+    "have you seen", "any clip", "any video", "any footage", "any scene",
+    "any shot", "有没有", "是否存在", "是否有",
+)
+
+_LIST_CUES = (
+    "list", "show me", "find all", "give me all", "enumerate",
+)
+
+_COUNT_CUES = (
+    "how many", "count", "number of",
+)
 
 
 def _normalize_label(value: Any) -> str:
     text = str(value or "").strip().lower()
-    if text in {LABEL_STRUCTURED, LABEL_SEMANTIC, LABEL_MIXED}:
-        return text
-    return LABEL_MIXED
+    return text if text in ALL_LABELS else LABEL_MIXED
+
+
+def _normalize_answer_type(value: Any) -> str:
+    text = str(value or "").strip().lower()
+    return text if text in ALL_ANSWER_TYPES else ANSWER_TYPE_UNKNOWN
 
 
 def _normalize_confidence(value: Any) -> float:
@@ -42,13 +109,78 @@ def _normalize_confidence(value: Any) -> float:
     return max(0.0, min(1.0, conf))
 
 
-def _fallback_result(reason: str, label: str = LABEL_MIXED) -> Dict[str, Any]:
+def _contains_any(haystack: str, needles: Tuple[str, ...]) -> List[str]:
+    return [needle.strip() for needle in needles if needle in haystack]
+
+
+def _collect_signals(text: str) -> Dict[str, List[str]]:
+    low = (text or "").strip().lower()
+    padded = f" {low} "
+    metadata_hits = sorted(
+        {
+            token
+            for token in _METADATA_ENUM_HITS
+            if re.search(rf"\b{re.escape(token)}\b", low)
+        }
+    )
+    relation_cues = sorted({cue.strip() for cue in _RELATION_CUES if cue in padded})
+    multi_step_cues = sorted({cue.strip() for cue in _MULTI_STEP_CUES if cue in padded})
+    existence_cues = sorted({cue for cue in _EXISTENCE_CUES if cue in low})
+    return {
+        "metadata_hits": metadata_hits,
+        "relation_cues": relation_cues,
+        "multi_step_cues": multi_step_cues,
+        "existence_cues": existence_cues,
+    }
+
+
+def _infer_answer_type(text: str) -> str:
+    low = (text or "").strip().lower()
+    if any(cue in low for cue in _EXISTENCE_CUES) or low.startswith(("is ", "are ", "was ", "were ", "does ", "do ")):
+        return ANSWER_TYPE_EXISTENCE
+    if any(cue in low for cue in _COUNT_CUES):
+        return ANSWER_TYPE_COUNT
+    if any(cue in low for cue in _LIST_CUES):
+        return ANSWER_TYPE_LIST
+    if low.endswith("?") or low.startswith(("what ", "describe ", "explain ")):
+        return ANSWER_TYPE_DESCRIPTION
+    return ANSWER_TYPE_UNKNOWN
+
+
+def _label_from_signals(signals: Dict[str, List[str]]) -> Tuple[str, float, str]:
+    metadata_n = len(signals.get("metadata_hits", []))
+    relation_n = len(signals.get("relation_cues", []))
+    multi_step_n = len(signals.get("multi_step_cues", []))
+
+    if multi_step_n >= 1 and (relation_n >= 1 or metadata_n >= 2):
+        return LABEL_MULTI_HOP, 0.8, f"multi_step_cues={multi_step_n}"
+    if metadata_n >= 1 and relation_n == 0 and multi_step_n == 0:
+        return LABEL_STRUCTURED, 0.78, f"metadata_hits={metadata_n}"
+    if relation_n >= 1 and metadata_n == 0:
+        return LABEL_SEMANTIC, 0.78, f"relation_cues={relation_n}"
+    if metadata_n >= 1 and relation_n >= 1:
+        return LABEL_MIXED, 0.7, f"metadata_hits={metadata_n}, relation_cues={relation_n}"
+    return LABEL_MIXED, 0.45, "no strong signals"
+
+
+def _compat_signal_counts(signals: Dict[str, List[str]], label: str) -> Dict[str, int]:
+    # Legacy consumers expected ``signals.structured`` / ``signals.semantic`` as
+    # ints; keep them for backward-compat alongside the new list-valued cues.
+    return {
+        "structured": 1 if label in {LABEL_STRUCTURED, LABEL_MIXED} else 0,
+        "semantic": 1 if label in {LABEL_SEMANTIC, LABEL_MIXED, LABEL_MULTI_HOP} else 0,
+    }
+
+
+def _fallback_result(reason: str, label: str = LABEL_MIXED, text: str = "") -> Dict[str, Any]:
     safe_label = _normalize_label(label)
+    signals = _collect_signals(text)
     return {
         "label": safe_label,
+        "answer_type": _infer_answer_type(text),
         "confidence": 0.35,
         "reason": reason,
-        "signals": {"structured": 0, "semantic": 0},
+        "signals": {**signals, **_compat_signal_counts(signals, safe_label)},
     }
 
 
@@ -57,38 +189,37 @@ def _fast_path_classification(text: str) -> Dict[str, Any] | None:
     if not low:
         return None
 
-    semantic_cues = [" near ", " around ", " similar ", " moving ", " after ", " before "]
-    explicit_location_cues = [
-        "parking",
-        "sidewalk",
-        "baseline",
-        "center court",
-        "court",
-        "bleachers",
-        "road right",
-        "right side",
-    ]
-    structured_cues = ["did you see", "are there", "show me", "list", "how many", "person", "car", "dark", "database"]
+    signals = _collect_signals(low)
+    metadata_n = len(signals["metadata_hits"])
+    relation_n = len(signals["relation_cues"])
+    multi_step_n = len(signals["multi_step_cues"])
 
-    padded = f" {low} "
-    has_semantic_cue = any(cue in padded for cue in semantic_cues)
-    has_explicit_location = any(cue in low for cue in explicit_location_cues)
-    has_structured_cue = any(cue in low for cue in structured_cues)
+    # Only take the fast path when signals are *unambiguous*. The old fast-path
+    # relied on fragile keyword co-occurrence (e.g. "did you see" + "court")
+    # which misrouted existence questions. The new rule: if there's a clear
+    # majority signal, return directly; otherwise defer to the LLM.
+    if multi_step_n >= 1 and (relation_n >= 1 or metadata_n >= 2):
+        label, confidence, reason = LABEL_MULTI_HOP, 0.82, f"fast-path multi-step ({multi_step_n} cues)"
+    elif metadata_n >= 2 and relation_n == 0 and multi_step_n == 0:
+        label, confidence, reason = LABEL_STRUCTURED, 0.82, f"fast-path metadata ({metadata_n} enum hits)"
+    elif relation_n >= 2 and metadata_n == 0:
+        label, confidence, reason = LABEL_SEMANTIC, 0.82, f"fast-path relation ({relation_n} cues)"
+    else:
+        return None
 
-    if has_structured_cue and has_explicit_location and not has_semantic_cue:
-        return {
-            "label": LABEL_STRUCTURED,
-            "confidence": 0.86,
-            "reason": "fast-path explicit filter query",
-            "signals": {"structured": 1, "semantic": 0},
-        }
-    return None
+    return {
+        "label": label,
+        "answer_type": _infer_answer_type(low),
+        "confidence": confidence,
+        "reason": reason,
+        "signals": {**signals, **_compat_signal_counts(signals, label)},
+    }
 
 
 def classify_query(query: str, llm: Any = None, config: Any = None) -> Dict[str, Any]:
     text = (query or "").strip()
     if not text:
-        return _fallback_result("empty query fallback")
+        return _fallback_result("empty query fallback", text=text)
     fast_path = _fast_path_classification(text)
     if fast_path is not None:
         return fast_path
@@ -104,43 +235,65 @@ def classify_query(query: str, llm: Any = None, config: Any = None) -> Dict[str,
                 base_url=os.getenv("DASHSCOPE_URL"),
             )
         except Exception:
-            return _fallback_result("llm init failed")
+            return _fallback_result("llm init failed", text=text)
 
-    prompt = render_prompt(QUERY_CLASSIFICATION_USER_PROMPT_KEY, query=text)
-    system_prompt = get_prompt_template(QUERY_CLASSIFICATION_SYSTEM_PROMPT_KEY)
+    signals = _collect_signals(text)
+    prompt = (
+        "You are a video-retrieval query classifier. Return JSON matching the schema.\n\n"
+        "label ∈ {structured, semantic, mixed, multi_hop}:\n"
+        "  - structured: answered by metadata/enum filters (object/color/scene/video_id/time).\n"
+        "  - semantic: requires visual/relational understanding (near, around, similar, motion).\n"
+        "  - mixed: both metadata filters and semantic understanding are needed.\n"
+        "  - multi_hop: asks about a sequence or composition (A then B, while, after).\n\n"
+        "answer_type ∈ {existence, list, description, count, unknown}:\n"
+        "  - existence: yes/no question ('is there', 'did you see', 'have you seen', '有没有').\n"
+        "  - list: show/list/enumerate matching clips.\n"
+        "  - description: explain / summarise a clip.\n"
+        "  - count: how many / number of.\n"
+        "  - unknown: cannot tell.\n\n"
+        "Classify by signal type, not sentence mood. An existence question can still be structured if\n"
+        "it only requires enum filters.\n\n"
+        f"User query: {text}\n"
+        f"Detected signals: {signals}\n"
+    )
     try:
         if hasattr(llm, "with_structured_output"):
             model = llm.with_structured_output(QUERY_CLASSIFICATION_OUTPUT_SCHEMA)
             result = model.invoke(
-                [SystemMessage(content=system_prompt), HumanMessage(content=prompt)],
+                [SystemMessage(content="Return JSON only."), HumanMessage(content=prompt)],
                 config=config,
             )
             payload = result.model_dump() if hasattr(result, "model_dump") else dict(result)
         else:
             raw = llm.invoke(
-                [SystemMessage(content=system_prompt), HumanMessage(content=prompt)],
+                [SystemMessage(content="Return JSON only."), HumanMessage(content=prompt)],
                 config=config,
             )
             text_out = raw.content if hasattr(raw, "content") else str(raw)
             text_out = text_out.replace("```json", "").replace("```", "").strip()
             payload = json.loads(text_out)
     except Exception:
-        return _fallback_result("llm classify failed")
+        return _fallback_result("llm classify failed", text=text)
 
     label = _normalize_label(payload.get("label"))
+    answer_type = _normalize_answer_type(payload.get("answer_type")) or _infer_answer_type(text)
+    if answer_type == ANSWER_TYPE_UNKNOWN:
+        answer_type = _infer_answer_type(text)
     confidence = _normalize_confidence(payload.get("confidence"))
     reason = str(payload.get("reason", "llm classifier")).strip() or "llm classifier"
-    signals = {
-        "structured": 1 if label in {LABEL_STRUCTURED, LABEL_MIXED} else 0,
-        "semantic": 1 if label in {LABEL_SEMANTIC, LABEL_MIXED} else 0,
+    return {
+        "label": label,
+        "answer_type": answer_type,
+        "confidence": confidence,
+        "reason": reason,
+        "signals": {**signals, **_compat_signal_counts(signals, label)},
     }
-    return {"label": label, "confidence": confidence, "reason": reason, "signals": signals}
 
 
 def classify_mode_from_label(label: str) -> str:
-    # Keep mode compatibility for existing tests/metrics while execution is parallel.
+    # Retained for legacy-router compatibility.
     if label == LABEL_STRUCTURED:
         return "pure_sql"
-    if label == LABEL_SEMANTIC:
+    if label in {LABEL_SEMANTIC, LABEL_MULTI_HOP}:
         return "hybrid_search"
     return os.getenv("AGENT_MIXED_COMPAT_MODE", "hybrid_search")

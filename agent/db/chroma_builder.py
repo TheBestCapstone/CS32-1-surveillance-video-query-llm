@@ -1,13 +1,14 @@
 import json
 import logging
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
 from .config import (
-    DEFAULT_CHROMA_CHILD_COLLECTION,
-    DEFAULT_CHROMA_PARENT_COLLECTION,
     DEFAULT_CHROMA_PATH,
+    get_graph_chroma_child_collection,
+    get_graph_chroma_event_collection,
+    get_graph_chroma_parent_collection,
 )
 from ..tools.llm import get_qwen_embedding
 
@@ -22,8 +23,10 @@ class ChromaBuildError(RuntimeError):
 @dataclass
 class ChromaBuildConfig:
     chroma_path: Path = DEFAULT_CHROMA_PATH
-    child_collection: str = DEFAULT_CHROMA_CHILD_COLLECTION
-    parent_collection: str = DEFAULT_CHROMA_PARENT_COLLECTION
+    # 采用 default_factory 以便每次实例化时读取最新 AGENT_CHROMA_NAMESPACE / 显式 env 覆盖。
+    child_collection: str = field(default_factory=get_graph_chroma_child_collection)
+    parent_collection: str = field(default_factory=get_graph_chroma_parent_collection)
+    event_collection: str = field(default_factory=get_graph_chroma_event_collection)
     reset_existing: bool = False
 
 
@@ -33,6 +36,7 @@ class ChromaIndexBuilder:
         self.chroma_path = config.chroma_path
         self.child_collection = config.child_collection
         self.parent_collection = config.parent_collection
+        self.event_collection = config.event_collection
 
     def build(self, seed_files: list[Path] | None = None) -> dict[str, Any]:
         import chromadb
@@ -42,12 +46,14 @@ class ChromaIndexBuilder:
         events = self._load_seed_events(seed_files)
         child_records = self._build_child_records(events)
         parent_records = self._build_parent_records(child_records)
+        event_records = self._build_event_records(events)
 
         try:
             client = chromadb.PersistentClient(path=str(self.chroma_path))
             if self.config.reset_existing:
                 self._delete_collection_if_exists(client, self.child_collection)
                 self._delete_collection_if_exists(client, self.parent_collection)
+                self._delete_collection_if_exists(client, self.event_collection)
 
             child_collection = client.get_or_create_collection(
                 name=self.child_collection,
@@ -57,11 +63,17 @@ class ChromaIndexBuilder:
                 name=self.parent_collection,
                 metadata={"hnsw:space": "cosine", "index_role": "parent"},
             )
+            event_collection = client.get_or_create_collection(
+                name=self.event_collection,
+                metadata={"hnsw:space": "cosine", "index_role": "event"},
+            )
 
             if child_records:
                 self._upsert_records(child_collection, child_records)
             if parent_records:
                 self._upsert_records(parent_collection, parent_records)
+            if event_records:
+                self._upsert_records(event_collection, event_records)
         except Exception as exc:
             logger.exception("Failed to build chroma indexes")
             raise ChromaBuildError(f"Build failed for {self.chroma_path}: {exc}") from exc
@@ -71,11 +83,14 @@ class ChromaIndexBuilder:
             "seed_files": [str(x) for x in seed_files],
             "child_collection": self.child_collection,
             "parent_collection": self.parent_collection,
+            "event_collection": self.event_collection,
             "child_record_count": len(child_records),
             "parent_record_count": len(parent_records),
+            "event_record_count": len(event_records),
             "chunk_strategy": {
                 "child": "track-level (video_id + entity_hint)",
                 "parent": "video-level (video_id)",
+                "event": "event-level (video_id + entity_hint + start_time + end_time)",
             },
         }
 
@@ -336,4 +351,123 @@ class ChromaIndexBuilder:
         child_summaries = [record["document"] for record in child_records]
         if child_summaries:
             sections.append("Child track summaries: " + " ".join(child_summaries))
+        return " ".join(sections)
+
+    def _build_event_records(self, events: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        """Build one Chroma record per single event for fine-grained temporal retrieval.
+
+        Record id format: ``{video_id}:{entity_hint}:{start_time}:{end_time}[:seq]``
+        which mirrors the ``vector_ref_id`` emitted by ``sqlite_builder`` so
+        that SQLite rows can be joined back to Chroma event hits if needed.
+        """
+        grouped: dict[tuple[str, str], list[dict[str, Any]]] = {}
+        for event in events:
+            key = (event["video_id"], event["entity_hint"])
+            grouped.setdefault(key, []).append(event)
+
+        records: list[dict[str, Any]] = []
+        seen_ids: set[str] = set()
+        for (video_id, entity_hint), group in sorted(grouped.items()):
+            ordered = sorted(
+                group,
+                key=lambda item: (
+                    float(item.get("start_time"))
+                    if isinstance(item.get("start_time"), (int, float))
+                    else float("inf"),
+                    float(item.get("end_time"))
+                    if isinstance(item.get("end_time"), (int, float))
+                    else float("inf"),
+                ),
+            )
+            parent_track_id = f"{video_id}_{entity_hint}"
+            for event_index, event in enumerate(ordered):
+                start_time = event.get("start_time")
+                end_time = event.get("end_time")
+                base_id = (
+                    f"{video_id}:{entity_hint}:"
+                    f"{self._format_time(start_time) if isinstance(start_time, (int, float)) else 'na'}:"
+                    f"{self._format_time(end_time) if isinstance(end_time, (int, float)) else 'na'}"
+                )
+                record_id = base_id
+                dedup_counter = 1
+                while record_id in seen_ids:
+                    record_id = f"{base_id}:{dedup_counter}"
+                    dedup_counter += 1
+                seen_ids.add(record_id)
+
+                appearance_notes = str(event.get("appearance_notes") or "").strip()
+                scene_zone = str(event.get("scene_zone") or "").strip()
+                object_type = str(event.get("object_type") or "").strip()
+                object_color = str(event.get("object_color") or "").strip()
+                event_text = str(event.get("event_text") or "").strip()
+                keywords = [str(kw).strip() for kw in event.get("keywords", []) if str(kw).strip()]
+
+                document = self._build_event_document(
+                    video_id=video_id,
+                    entity_hint=entity_hint,
+                    start_time=start_time,
+                    end_time=end_time,
+                    object_type=object_type,
+                    object_color=object_color,
+                    scene_zone=scene_zone,
+                    appearance_notes=appearance_notes,
+                    event_text=event_text,
+                    keywords=keywords,
+                )
+
+                records.append(
+                    {
+                        "id": record_id,
+                        "document": document,
+                        "metadata": {
+                            "record_level": "event",
+                            "video_id": video_id,
+                            "parent_track_id": parent_track_id,
+                            "grand_parent_video_id": video_id,
+                            "entity_hint": entity_hint,
+                            "event_index": event_index,
+                            "object_type": object_type or "unknown",
+                            "object_color": object_color or "unknown",
+                            "scene_zone": scene_zone or "unknown",
+                            "start_time": float(start_time) if isinstance(start_time, (int, float)) else -1.0,
+                            "end_time": float(end_time) if isinstance(end_time, (int, float)) else -1.0,
+                            "keywords": ", ".join(keywords),
+                        },
+                    }
+                )
+        return records
+
+    @staticmethod
+    def _build_event_document(
+        *,
+        video_id: str,
+        entity_hint: str,
+        start_time: float | None,
+        end_time: float | None,
+        object_type: str,
+        object_color: str,
+        scene_zone: str,
+        appearance_notes: str,
+        event_text: str,
+        keywords: list[str],
+    ) -> str:
+        sections = [
+            f"Video {video_id}. Track {entity_hint}.",
+            f"Event time range {ChromaIndexBuilder._format_time(start_time)}s to {ChromaIndexBuilder._format_time(end_time)}s.",
+        ]
+        subject_parts: list[str] = []
+        if object_color:
+            subject_parts.append(object_color)
+        if object_type:
+            subject_parts.append(object_type)
+        if subject_parts:
+            sections.append("Subject: " + " ".join(subject_parts) + ".")
+        if scene_zone:
+            sections.append(f"Located in: {scene_zone}.")
+        if appearance_notes:
+            sections.append(f"Appearance notes: {appearance_notes}")
+        if event_text:
+            sections.append(f"Event: {event_text}")
+        if keywords:
+            sections.append("Keywords: " + ", ".join(keywords) + ".")
         return " ".join(sections)

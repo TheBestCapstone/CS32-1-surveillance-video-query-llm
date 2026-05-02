@@ -1,6 +1,7 @@
 # agent/test 今日任务维护
 
 ## 当前目标
+
 - 用 `RAGAS` 搭建 `retrieval`、`generation`、`end-to-end` 三类评估流程。
 - 当前 `xlsx` 评测标签只纳入 `Part1` 和 `Part4`。
 - 评估流程需要能复用 `UCFCrime` 标准化事件数据，并支持最小样本快速验证。
@@ -8,6 +9,7 @@
 ## 阶段计划
 
 ### 阶段 1：评测数据收口
+
 - 工作目标：
 - 将 `agent_test.xlsx` 的输入范围收敛到 `Part1` 和 `Part4`。
 - 为评测流程准备统一 case 视图。
@@ -20,6 +22,7 @@
 - `Part1/Part4` 过滤后数据规模：`468` 条 case，其中 `310` 条可用于 `e2e/generation`
 
 ### 阶段 2：评估执行器
+
 - 工作目标：
 - 搭建统一 `RAGAS eval runner`
 - 同时输出 `retrieval`、`generation`、`end-to-end` 的逐样本结果与汇总结果
@@ -37,6 +40,7 @@
 - 可输出 `summary_report.md`
 
 ### 阶段 3：测试库准备
+
 - 工作目标：
 - 支持按选中 case 的 `video_id` 自动构建最小 `SQLite/Chroma` 子集库
 - 让简单测试可以快速跑通
@@ -50,6 +54,7 @@
 - 支持自动构建父子 `Chroma`
 
 ### 阶段 4：最小验证
+
 - 工作目标：
 - 跑一个简单的 `RAGAS` 评测样本验证流程
 - 校验 `retrieval`、`generation`、`end-to-end` 三类结果都能落盘

@@ -72,6 +72,58 @@ INDEX_SQL_LIST = [
 ]
 
 
+# ----- P1-1: SQLite FTS5 lexical index over event text columns ---------------
+#
+# We use an external-content FTS5 virtual table that mirrors selected text
+# columns from ``episodic_events``. Triggers keep the index in sync with
+# inserts/updates/deletes so callers never have to remember to rebuild.
+#
+# The text columns indexed are the same ones the BM25 corpus index reads:
+# ``event_text_en``, ``event_summary_en``, ``appearance_notes_en`` plus
+# ``keywords_json`` (kept as raw text -- FTS5 will tokenize the literal
+# JSON, which is fine because ``unicode61`` strips punctuation).
+#
+# All DDL is idempotent (``IF NOT EXISTS``) so the builder can run repeatedly
+# against an existing database.
+
+FTS_TABLE_NAME = "episodic_events_fts"
+
+FTS5_CREATE_SQL_LIST = [
+    (
+        f"CREATE VIRTUAL TABLE IF NOT EXISTS {FTS_TABLE_NAME} USING fts5(\n"
+        f"    event_text_en, event_summary_en, appearance_notes_en, keywords_json,\n"
+        f"    content='{TABLE_NAME}', content_rowid='event_id',\n"
+        f"    tokenize='unicode61 remove_diacritics 1'\n"
+        f");"
+    ),
+    (
+        f"CREATE TRIGGER IF NOT EXISTS {TABLE_NAME}_ai AFTER INSERT ON {TABLE_NAME} BEGIN\n"
+        f"    INSERT INTO {FTS_TABLE_NAME}(rowid, event_text_en, event_summary_en, appearance_notes_en, keywords_json)\n"
+        f"    VALUES (new.event_id, new.event_text_en, new.event_summary_en, new.appearance_notes_en, new.keywords_json);\n"
+        f"END;"
+    ),
+    (
+        f"CREATE TRIGGER IF NOT EXISTS {TABLE_NAME}_ad AFTER DELETE ON {TABLE_NAME} BEGIN\n"
+        f"    INSERT INTO {FTS_TABLE_NAME}({FTS_TABLE_NAME}, rowid, event_text_en, event_summary_en, appearance_notes_en, keywords_json)\n"
+        f"    VALUES('delete', old.event_id, old.event_text_en, old.event_summary_en, old.appearance_notes_en, old.keywords_json);\n"
+        f"END;"
+    ),
+    (
+        f"CREATE TRIGGER IF NOT EXISTS {TABLE_NAME}_au AFTER UPDATE ON {TABLE_NAME} BEGIN\n"
+        f"    INSERT INTO {FTS_TABLE_NAME}({FTS_TABLE_NAME}, rowid, event_text_en, event_summary_en, appearance_notes_en, keywords_json)\n"
+        f"    VALUES('delete', old.event_id, old.event_text_en, old.event_summary_en, old.appearance_notes_en, old.keywords_json);\n"
+        f"    INSERT INTO {FTS_TABLE_NAME}(rowid, event_text_en, event_summary_en, appearance_notes_en, keywords_json)\n"
+        f"    VALUES (new.event_id, new.event_text_en, new.event_summary_en, new.appearance_notes_en, new.keywords_json);\n"
+        f"END;"
+    ),
+]
+
+# Reseed the FTS contents from the underlying table -- safe to run any time and
+# cheap enough to re-run after large bulk inserts as a belt-and-braces
+# guarantee that the index matches the data.
+FTS5_REBUILD_SQL = f"INSERT INTO {FTS_TABLE_NAME}({FTS_TABLE_NAME}) VALUES('rebuild');"
+
+
 INSERT_COLUMNS = [
     "video_id",
     "camera_id",

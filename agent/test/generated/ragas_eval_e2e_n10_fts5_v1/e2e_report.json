@@ -1,0 +1,1872 @@
+{
+  "cases": [
+    {
+      "case_id": "PART1_0002",
+      "source_sheet": "Part1",
+      "video_id": "Abuse037_x264",
+      "question": "Is there a clip of a car running over a black dog on the road?",
+      "reference_answer": "Yes. The relevant clip is in Abuse037_x264, around 0:00:06 - 0:00:22.",
+      "reference_answer_rich": "Yes. In Abuse037_x264 around 0:00:06 - 0:00:22, Minimal; keywords directly match annotation.",
+      "reference_scene_description": "Minimal; keywords directly match annotation",
+      "recall_challenge": "Minimal; keywords directly match annotation",
+      "expected_answer_label": "yes",
+      "expected_time_raw": "0:00:06 - 0:00:22",
+      "expected_start_sec": 6.0,
+      "expected_end_sec": 22.0,
+      "elapsed_ms": 22478.71,
+      "route_mode": "hybrid_search",
+      "classification_result": {
+        "label": "semantic",
+        "answer_type": "existence",
+        "confidence": 0.95,
+        "reason": "The query includes metadata elements like 'black', 'car', 'dog', and 'road', but the key action 'running over' requires visual/relational understanding of motion and interaction between objects, making it semantic. The presence of 'is there' indicates an existence question.",
+        "signals": {
+          "metadata_hits": [
+            "black",
+            "car",
+            "dog",
+            "road"
+          ],
+          "relation_cues": [
+            "running"
+          ],
+          "multi_step_cues": [],
+          "existence_cues": [
+            "is there"
+          ],
+          "structured": 0,
+          "semantic": 1
+        }
+      },
+      "answer_type": "existence",
+      "verifier_result": {
+        "decision": "exact",
+        "confidence": 0.98,
+        "reason": "The evidence explicitly describes a clip where a car (specifically white with double flashes) runs over a black dog on the road, matching the user query precisely in terms of subject (car), action (ru",
+        "mode": "llm",
+        "video_id": "Abuse037_x264",
+        "start_time": 1.2,
+        "end_time": 8.2,
+        "primary_summary": "Video Abuse037_x264. Track segment_1. Time range 1.2s to 8.2s. Appearance notes: High activity; A white car with double flashes slowly appeared on the screen, crushing the black dog walking in the middle of the road. Located in: road. Events: From 1.2s to 8.2s, a white car with double flashes slowly appeared on the screen, crushing the black dog walking in the middle of the road. Keywords: white, "
+      },
+      "fusion_meta": {
+        "label": "semantic",
+        "weights": {
+          "sql": 0.35,
+          "hybrid": 0.65
+        },
+        "rrf_k": 60.0,
+        "sql_count": 25,
+        "hybrid_count": 50,
+        "fused_count": 50,
+        "overlap_count": 4,
+        "method": "weighted_rrf",
+        "signal_bias": {
+          "applied": true,
+          "metadata_hits": 4,
+          "relation_cues": 1,
+          "multi_step_cues": 0,
+          "sql_bias": 0.2,
+          "hybrid_bias": 0.05,
+          "base_sql": 0.2,
+          "base_hybrid": 0.8
+        },
+        "degraded": false,
+        "signals": {
+          "metadata_hits": [
+            "black",
+            "car",
+            "dog",
+            "road"
+          ],
+          "relation_cues": [
+            "running"
+          ],
+          "multi_step_cues": [],
+          "existence_cues": [
+            "is there"
+          ],
+          "structured": 0,
+          "semantic": 1
+        }
+      },
+      "routing_metrics": {
+        "execution_mode": "parallel_fusion",
+        "label": "semantic",
+        "query": "Is there a clip of a car running over a black dog on the road",
+        "sql_rows_count": 25,
+        "hybrid_rows_count": 50,
+        "sql_error": null,
+        "hybrid_error": null
+      },
+      "error": null,
+      "tool_error": null,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "response": "Yes. The relevant clip is in Abuse037_x264, around 0:00:01 - 0:00:08.",
+      "retrieved_contexts": [
+        "Video Abuse037_x264. Track segment_1. Time range 1.2s to 8.2s. Appearance notes: High activity; A white car with double flashes slowly appeared on the screen, crushing the black dog walking in the middle of the road. Located in: road. Events: From 1.2s to 8.2s, a white car with double flashes slowly appeared on the screen, crushing the black dog walking in the middle of the road. Keywords: white, car, double, flashes, slowly, appeared.",
+        "Video Abuse038_x264. Track segment_1. Time range 0.3s to 10.4s. Appearance notes: High activity; Several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies. Located in: road. Events: From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies. Keywords: several, adults, talking, side, road, many.",
+        "From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies.",
+        "Video Abuse037_x264. Track segment_3. Time range 25.3s to 48.5s. Appearance notes: High activity; There was a black dog left on the road. It walked to the middle of the road next to the dog that had just been crushed. Located in: road. Events: From 25.3s to 48.5s, there was a black dog left on the road. It walked to the middle of the road next to the dog that had just been crushed. Keywords: black, dog, left, road, walked, middle.",
+        "Video Arrest050_x264. Track segment_8. Time range 121.5s to 128.6s. Appearance notes: Observed event; A black police car drove over and stopped on the side of the road. Located in: road. Events: From 121.5s to 128.6s, a black police car drove over and stopped on the side of the road. Keywords: black, police, car, drove, stopped, side."
+      ],
+      "top_video_ids": [
+        "Abuse037_x264",
+        "Abuse038_x264",
+        "Abuse038_x264",
+        "Abuse037_x264",
+        "Arrest050_x264"
+      ],
+      "top_hit": true,
+      "predicted_video_id": "Abuse037_x264",
+      "predicted_start_sec": 1.2,
+      "predicted_end_sec": 8.2,
+      "raw_summary_result": {
+        "summary": "Yes. The relevant clip is in Abuse037_x264, around 0:00:01 - 0:00:08.",
+        "style": "llm_summary",
+        "confidence": 0.8,
+        "citations": [
+          {
+            "source_type": "hybrid",
+            "video_id": "Abuse037_x264",
+            "event_id": "Abuse037_x264_segment_1",
+            "start_time": 1.2,
+            "end_time": 8.2,
+            "record_level": "child"
+          },
+          {
+            "source_type": "hybrid",
+            "video_id": "Abuse038_x264",
+            "event_id": "Abuse038_x264_segment_1",
+            "start_time": 0.3,
+            "end_time": 10.4,
+            "record_level": "child"
+          },
+          {
+            "source_type": "mixed",
+            "video_id": "Abuse038_x264",
+            "event_id": 6,
+            "start_time": 0.3,
+            "end_time": 10.4,
+            "record_level": "child"
+          }
+        ]
+      },
+      "ragas_elapsed_ms": 44674.0,
+      "ragas_input_profile": {
+        "context_count": 3,
+        "context_total_chars": 1149,
+        "response_chars": 69,
+        "reference_chars": 92,
+        "reference_source": "rich",
+        "reference_text": "Yes. In Abuse037_x264 around 0:00:06 - 0:00:22, Minimal; keywords directly match annotation.",
+        "question_chars": 62
+      },
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.8333,
+          "context_recall": 1.0
+        },
+        "generation": {
+          "factual_correctness": 0.5,
+          "faithfulness": 1.0
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.8333
+        },
+        "metric_errors": {}
+      },
+      "retrieved_contexts_for_ragas": [
+        "Video Abuse037_x264. Track segment_1. Time range 1.2s to 8.2s. Appearance notes: High activity; A white car with double flashes slowly appeared on the screen, crushing the black dog walking in the middle of the road. Located in: road. Events: From 1.2s to 8.2s, a white car with double flashes slowly appeared on the screen, crushing the black dog walking in the middle of the road. Keywords: white, car, double, flashes, slowly, appeared.",
+        "Video Abuse038_x264. Track segment_1. Time range 0.3s to 10.4s. Appearance notes: High activity; Several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies. Located in: road. Events: From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies. Keywords: several, adults, talking, side, road, many.",
+        "From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies."
+      ],
+      "temporal": {
+        "time_range_overlap_iou": 0.1058,
+        "temporal_iou": 0.1058,
+        "localization_score": 0.1058,
+        "video_match_score": 1.0,
+        "eligible": true,
+        "video_match": true
+      }
+    },
+    {
+      "case_id": "PART1_0003",
+      "source_sheet": "Part1",
+      "video_id": "Abuse037_x264",
+      "question": "A vehicle injured an animal on the road, and other animals approached the injured one afterward.",
+      "reference_answer": "Yes. The relevant clip is in Abuse037_x264, around 0:00:30 - 0:00:43.",
+      "reference_answer_rich": "Yes. In Abuse037_x264 around 0:00:30 - 0:00:43, Must link 'other dogs approaching' to the main collision event.",
+      "reference_scene_description": "Must link 'other dogs approaching' to the main collision event",
+      "recall_challenge": "Must link 'other dogs approaching' to the main collision event",
+      "expected_answer_label": "yes",
+      "expected_time_raw": "0:00:30 - 0:00:43",
+      "expected_start_sec": 30.0,
+      "expected_end_sec": 43.0,
+      "elapsed_ms": 18712.9,
+      "route_mode": "hybrid_search",
+      "classification_result": {
+        "label": "semantic",
+        "answer_type": "list",
+        "confidence": 0.85,
+        "reason": "The query involves relational understanding (e.g., 'approached the injured animal') which requires semantic interpretation of visual content, and it implies listing or retrieving relevant clips rather than a yes/no answer, count, or description. Although metadata terms like 'animal', 'road', and 'vehicle' are present, the core requirement is semantic due to the relational cue 'approach'.",
+        "signals": {
+          "metadata_hits": [
+            "animal",
+            "road",
+            "vehicle"
+          ],
+          "relation_cues": [
+            "approach"
+          ],
+          "multi_step_cues": [],
+          "existence_cues": [],
+          "structured": 0,
+          "semantic": 1
+        }
+      },
+      "answer_type": "list",
+      "verifier_result": {
+        "decision": "skipped",
+        "confidence": 0.0,
+        "reason": "answer_type=list",
+        "mode": "skipped"
+      },
+      "fusion_meta": {
+        "label": "semantic",
+        "weights": {
+          "sql": 0.30000000000000004,
+          "hybrid": 0.7000000000000001
+        },
+        "rrf_k": 60.0,
+        "sql_count": 31,
+        "hybrid_count": 50,
+        "fused_count": 50,
+        "overlap_count": 0,
+        "method": "weighted_rrf",
+        "signal_bias": {
+          "applied": true,
+          "metadata_hits": 3,
+          "relation_cues": 1,
+          "multi_step_cues": 0,
+          "sql_bias": 0.15000000000000002,
+          "hybrid_bias": 0.05,
+          "base_sql": 0.2,
+          "base_hybrid": 0.8
+        },
+        "degraded": false,
+        "signals": {
+          "metadata_hits": [
+            "animal",
+            "road",
+            "vehicle"
+          ],
+          "relation_cues": [
+            "approach"
+          ],
+          "multi_step_cues": [],
+          "existence_cues": [],
+          "structured": 0,
+          "semantic": 1
+        }
+      },
+      "routing_metrics": {
+        "execution_mode": "parallel_fusion",
+        "label": "semantic",
+        "query": "A vehicle struck an animal on the road, and subsequently, other animals approached the injured animal",
+        "sql_rows_count": 31,
+        "hybrid_rows_count": 50,
+        "sql_error": null,
+        "hybrid_error": null
+      },
+      "error": null,
+      "tool_error": null,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "response": "Yes. The relevant clip is in Abuse038_x264, around 0:00:00 - 0:00:10.",
+      "retrieved_contexts": [
+        "Video Abuse038_x264. Track segment_1. Time range 0.3s to 10.4s. Appearance notes: High activity; Several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies. Located in: road. Events: From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies. Keywords: several, adults, talking, side, road, many.",
+        "Video Arrest050_x264. Track segment_4. Time range 68.1s to 70.8s. Appearance notes: High activity; A black car hit a building on the side of the road and stopped. Located in: road. Events: From 68.1s to 70.8s, a black car hit a building on the side of the road and stopped. Keywords: black, car, hit, building, side, road.",
+        "Video Abuse037_x264. Track segment_2. Time range 8.4s to 25.3s. Appearance notes: High activity; The white car was driving in the middle of the road, and several dogs ran onto the road. Located in: road. Events: From 8.4s to 25.3s, the white car was driving in the middle of the road, and several dogs ran onto the road. Keywords: white, car, driving, middle, road, several.",
+        "Video Abuse038_x264. Track segment_2. Time range 11.5s to 17.2s. Appearance notes: Observed event; Two puppies rolled on the road, then one of the dogs left the road and the other stopped in the middle of the road. Located in: road. Events: From 11.5s to 17.2s, two puppies rolled on the road, then one of the dogs left the road and the other stopped in the middle of the road. Keywords: two, puppies, rolled, road, one, dogs.",
+        "Video Abuse037_x264. Track segment_3. Time range 25.3s to 48.5s. Appearance notes: High activity; There was a black dog left on the road. It walked to the middle of the road next to the dog that had just been crushed. Located in: road. Events: From 25.3s to 48.5s, there was a black dog left on the road. It walked to the middle of the road next to the dog that had just been crushed. Keywords: black, dog, left, road, walked, middle."
+      ],
+      "top_video_ids": [
+        "Abuse038_x264",
+        "Arrest050_x264",
+        "Abuse037_x264",
+        "Abuse038_x264",
+        "Abuse037_x264"
+      ],
+      "top_hit": true,
+      "predicted_video_id": "Abuse038_x264",
+      "predicted_start_sec": 0.3,
+      "predicted_end_sec": 10.4,
+      "raw_summary_result": {
+        "summary": "Yes. The relevant clip is in Abuse038_x264, around 0:00:00 - 0:00:10.",
+        "style": "llm_summary",
+        "confidence": 0.8,
+        "citations": [
+          {
+            "source_type": "hybrid",
+            "video_id": "Abuse038_x264",
+            "event_id": "Abuse038_x264_segment_1",
+            "start_time": 0.3,
+            "end_time": 10.4,
+            "record_level": "child"
+          },
+          {
+            "source_type": "hybrid",
+            "video_id": "Arrest050_x264",
+            "event_id": "Arrest050_x264_segment_4",
+            "start_time": 68.1,
+            "end_time": 70.8,
+            "record_level": "child"
+          },
+          {
+            "source_type": "hybrid",
+            "video_id": "Abuse037_x264",
+            "event_id": "Abuse037_x264_segment_2",
+            "start_time": 8.4,
+            "end_time": 25.3,
+            "record_level": "child"
+          }
+        ]
+      },
+      "ragas_elapsed_ms": 62044.29,
+      "ragas_input_profile": {
+        "context_count": 3,
+        "context_total_chars": 1222,
+        "response_chars": 69,
+        "reference_chars": 111,
+        "reference_source": "rich",
+        "reference_text": "Yes. In Abuse037_x264 around 0:00:30 - 0:00:43, Must link 'other dogs approaching' to the main collision event.",
+        "question_chars": 96
+      },
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.3333,
+          "context_recall": 0.0
+        },
+        "generation": {
+          "factual_correctness": 0.0,
+          "faithfulness": 0.75
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.2708
+        },
+        "metric_errors": {}
+      },
+      "retrieved_contexts_for_ragas": [
+        "Video Abuse038_x264. Track segment_1. Time range 0.3s to 10.4s. Appearance notes: High activity; Several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies. Located in: road. Events: From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies. Keywords: several, adults, talking, side, road, many.",
+        "Video Arrest050_x264. Track segment_4. Time range 68.1s to 70.8s. Appearance notes: High activity; A black car hit a building on the side of the road and stopped. Located in: road. Events: From 68.1s to 70.8s, a black car hit a building on the side of the road and stopped. Keywords: black, car, hit, building, side, road.",
+        "Video Abuse037_x264. Track segment_2. Time range 8.4s to 25.3s. Appearance notes: High activity; The white car was driving in the middle of the road, and several dogs ran onto the road. Located in: road. Events: From 8.4s to 25.3s, the white car was driving in the middle of the road, and several dogs ran onto the road. Keywords: white, car, driving, middle, road, several."
+      ],
+      "temporal": {
+        "time_range_overlap_iou": 0.0,
+        "temporal_iou": 0.0,
+        "localization_score": 0.0,
+        "video_match_score": 0.0,
+        "eligible": true,
+        "video_match": false
+      }
+    },
+    {
+      "case_id": "PART1_0004",
+      "source_sheet": "Part1",
+      "video_id": "Abuse037_x264",
+      "question": "An animal bent down to pull the tail of a motionless object on the ground, then left after a moment.",
+      "reference_answer": "No matching clip is expected.",
+      "reference_answer_rich": "No matching clip is expected.",
+      "reference_scene_description": "Avoids all core keywords; targets the marginal behavior of a gray dog pulling a tail",
+      "recall_challenge": "Avoids all core keywords; targets the marginal behavior of a gray dog pulling a tail",
+      "expected_answer_label": "no",
+      "expected_time_raw": "N/A",
+      "expected_start_sec": null,
+      "expected_end_sec": null,
+      "elapsed_ms": 18516.44,
+      "route_mode": "hybrid_search",
+      "classification_result": {
+        "label": "multi_hop",
+        "answer_type": "list",
+        "confidence": 0.95,
+        "reason": "The query describes a sequence of actions ('bent down', 'pulled the tail', 'then left', 'after a short time'), indicating multi-hop reasoning. It asks for clips matching this sequence, which aligns with a list answer type.",
+        "signals": {
+          "metadata_hits": [
+            "animal"
+          ],
+          "relation_cues": [],
+          "multi_step_cues": [
+            ", then",
+            "after",
+            "then"
+          ],
+          "existence_cues": [],
+          "structured": 0,
+          "semantic": 1
+        }
+      },
+      "answer_type": "list",
+      "verifier_result": {
+        "decision": "skipped",
+        "confidence": 0.0,
+        "reason": "answer_type=list",
+        "mode": "skipped"
+      },
+      "fusion_meta": {
+        "label": "multi_hop",
+        "weights": {
+          "sql": 0.19999999999999998,
+          "hybrid": 0.8
+        },
+        "rrf_k": 60.0,
+        "sql_count": 5,
+        "hybrid_count": 50,
+        "fused_count": 50,
+        "overlap_count": 1,
+        "method": "weighted_rrf",
+        "signal_bias": {
+          "applied": true,
+          "metadata_hits": 1,
+          "relation_cues": 0,
+          "multi_step_cues": 3,
+          "sql_bias": 0.05,
+          "hybrid_bias": 0.15000000000000002,
+          "base_sql": 0.3,
+          "base_hybrid": 0.7
+        },
+        "degraded": false,
+        "signals": {
+          "metadata_hits": [
+            "animal"
+          ],
+          "relation_cues": [],
+          "multi_step_cues": [
+            ", then",
+            "after",
+            "then"
+          ],
+          "existence_cues": [],
+          "structured": 0,
+          "semantic": 1
+        }
+      },
+      "routing_metrics": {
+        "execution_mode": "parallel_fusion",
+        "label": "multi_hop",
+        "query": "An animal bent down and pulled the tail of a motionless object on the ground, then left after a short time",
+        "sql_rows_count": 5,
+        "hybrid_rows_count": 50,
+        "sql_error": null,
+        "hybrid_error": null
+      },
+      "error": null,
+      "tool_error": null,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "response": "Yes. The relevant clip is in Abuse037_x264, around 0:00:40 - 0:00:48.",
+      "retrieved_contexts": [
+        "From 40.4s to 47.6s, the gray dog pulled out the tail of the dog that had just been run over by the car, then stayed for a few minutes and left.",
+        "Video Abuse037_x264. Track segment_5. Time range 40.4s to 47.6s. Appearance notes: Observed event; The gray dog pulled out the tail of the dog that had just been run over by the car, then stayed for a few minutes and left. Located in: unknown. Events: From 40.4s to 47.6s, the gray dog pulled out the tail of the dog that had just been run over by the car, then stayed for a few minutes and left. Keywords: gray, dog, pulled, out, tail, had.",
+        "Video Arrest043_x264. Track segment_11. Time range 122.2s to 222.3s. Appearance notes: Observed event; During this period, a man stood on the man lying on the ground and kept pulling something. Located in: unknown. Events: From 122.2s to 222.3s, during this period, a man stood on the man lying on the ground and kept pulling something. Keywords: during, period, man, stood, lying, ground.",
+        "From 224.7s to 236.5s, a man lying on the ground stood up and walked to the side of another man lying on the ground.",
+        "From 48.5s to 59.1s, the black dog walked away and left the middle of the road."
+      ],
+      "top_video_ids": [
+        "Abuse037_x264",
+        "Abuse037_x264",
+        "Arrest043_x264",
+        "Arrest043_x264",
+        "Abuse037_x264"
+      ],
+      "top_hit": true,
+      "predicted_video_id": "Abuse037_x264",
+      "predicted_start_sec": 40.4,
+      "predicted_end_sec": 47.6,
+      "raw_summary_result": {
+        "summary": "Yes. The relevant clip is in Abuse037_x264, around 0:00:40 - 0:00:48.",
+        "style": "llm_summary",
+        "confidence": 0.8,
+        "citations": [
+          {
+            "source_type": "hybrid",
+            "video_id": "Abuse037_x264",
+            "event_id": 5,
+            "start_time": 40.4,
+            "end_time": 47.6,
+            "record_level": "child"
+          },
+          {
+            "source_type": "hybrid",
+            "video_id": "Abuse037_x264",
+            "event_id": "Abuse037_x264_segment_5",
+            "start_time": 40.4,
+            "end_time": 47.6,
+            "record_level": "child"
+          },
+          {
+            "source_type": "hybrid",
+            "video_id": "Arrest043_x264",
+            "event_id": "Arrest043_x264_segment_11",
+            "start_time": 122.2,
+            "end_time": 222.3,
+            "record_level": "child"
+          }
+        ]
+      },
+      "ragas_elapsed_ms": 43910.77,
+      "ragas_input_profile": {
+        "context_count": 3,
+        "context_total_chars": 974,
+        "response_chars": 69,
+        "reference_chars": 29,
+        "reference_source": "rich",
+        "reference_text": "No matching clip is expected.",
+        "question_chars": 100
+      },
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.0,
+          "context_recall": 0.0
+        },
+        "generation": {
+          "factual_correctness": 0.0,
+          "faithfulness": 1.0
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.25
+        },
+        "metric_errors": {}
+      },
+      "retrieved_contexts_for_ragas": [
+        "From 40.4s to 47.6s, the gray dog pulled out the tail of the dog that had just been run over by the car, then stayed for a few minutes and left.",
+        "Video Abuse037_x264. Track segment_5. Time range 40.4s to 47.6s. Appearance notes: Observed event; The gray dog pulled out the tail of the dog that had just been run over by the car, then stayed for a few minutes and left. Located in: unknown. Events: From 40.4s to 47.6s, the gray dog pulled out the tail of the dog that had just been run over by the car, then stayed for a few minutes and left. Keywords: gray, dog, pulled, out, tail, had.",
+        "Video Arrest043_x264. Track segment_11. Time range 122.2s to 222.3s. Appearance notes: Observed event; During this period, a man stood on the man lying on the ground and kept pulling something. Located in: unknown. Events: From 122.2s to 222.3s, during this period, a man stood on the man lying on the ground and kept pulling something. Keywords: during, period, man, stood, lying, ground."
+      ],
+      "temporal": {
+        "time_range_overlap_iou": null,
+        "temporal_iou": null,
+        "localization_score": null,
+        "video_match_score": null,
+        "eligible": false,
+        "video_match": null
+      }
+    },
+    {
+      "case_id": "PART1_0005",
+      "source_sheet": "Part1",
+      "video_id": "Abuse038_x264",
+      "question": "Is there a clip of two puppies being hit by a car and rolling on the road?",
+      "reference_answer": "Yes. The relevant clip is in Abuse038_x264, around 0:00:09 - 0:00:13.",
+      "reference_answer_rich": "Yes. In Abuse038_x264 around 0:00:09 - 0:00:13, Minimal.",
+      "reference_scene_description": "Minimal",
+      "recall_challenge": "Minimal",
+      "expected_answer_label": "yes",
+      "expected_time_raw": "0:00:09 - 0:00:13",
+      "expected_start_sec": 9.0,
+      "expected_end_sec": 13.0,
+      "elapsed_ms": 7283.9,
+      "route_mode": "pure_sql",
+      "classification_result": {
+        "label": "structured",
+        "answer_type": "existence",
+        "confidence": 0.82,
+        "reason": "fast-path metadata (2 enum hits)",
+        "signals": {
+          "metadata_hits": [
+            "car",
+            "road"
+          ],
+          "relation_cues": [],
+          "multi_step_cues": [],
+          "existence_cues": [
+            "is there"
+          ],
+          "structured": 1,
+          "semantic": 0
+        }
+      },
+      "answer_type": "existence",
+      "verifier_result": {
+        "decision": "exact",
+        "confidence": 0.95,
+        "reason": "The evidence explicitly describes a clip in which two puppies appear on the road and are hit by a black car, matching the user's query about a clip of two puppies being hit by a car and rolling on the",
+        "mode": "llm",
+        "video_id": "Abuse038_x264",
+        "start_time": 0.3,
+        "end_time": 10.4,
+        "primary_summary": "From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies."
+      },
+      "fusion_meta": {
+        "label": "structured",
+        "weights": {
+          "sql": 0.9,
+          "hybrid": 0.1
+        },
+        "rrf_k": 60.0,
+        "sql_count": 15,
+        "hybrid_count": 50,
+        "fused_count": 50,
+        "overlap_count": 14,
+        "method": "weighted_rrf",
+        "signal_bias": {
+          "applied": true,
+          "metadata_hits": 2,
+          "relation_cues": 0,
+          "multi_step_cues": 0,
+          "sql_bias": 0.1,
+          "hybrid_bias": 0.0,
+          "base_sql": 0.8,
+          "base_hybrid": 0.2
+        },
+        "degraded": false,
+        "signals": {
+          "metadata_hits": [
+            "car",
+            "road"
+          ],
+          "relation_cues": [],
+          "multi_step_cues": [],
+          "existence_cues": [
+            "is there"
+          ],
+          "structured": 1,
+          "semantic": 0
+        }
+      },
+      "routing_metrics": {
+        "execution_mode": "parallel_fusion",
+        "label": "structured",
+        "query": "Is there a clip of two puppies being hit by a car and rolling on the road",
+        "sql_rows_count": 15,
+        "hybrid_rows_count": 50,
+        "sql_error": null,
+        "hybrid_error": null
+      },
+      "error": null,
+      "tool_error": null,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "response": "Yes. The relevant clip is in Abuse038_x264, around 0:00:00 - 0:00:10.",
+      "retrieved_contexts": [
+        "From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies.",
+        "Video Abuse038_x264. Track segment_1. Time range 0.3s to 10.4s. Appearance notes: High activity; Several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies. Located in: road. Events: From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies. Keywords: several, adults, talking, side, road, many.",
+        "Video Abuse038_x264. Track segment_4. Time range 14.5s to 20.6s. Appearance notes: Observed event; In the middle of the road on one side, a car with lights on stopped driving, and the lights shone on the puppy on the road in front. Located in: road. Events: From 14.5s to 20.6s, in the middle of the road on one side, a car with lights on stopped driving, and the lights shone on the puppy on the road in front. Keywords: middle, road, one, side, car, lights.",
+        "From 14.5s to 20.6s, in the middle of the road on one side, a car with lights on stopped driving, and the lights shone on the puppy on the road in front.",
+        "From 1.2s to 8.2s, a white car with double flashes slowly appeared on the screen, crushing the black dog walking in the middle of the road."
+      ],
+      "top_video_ids": [
+        "Abuse038_x264",
+        "Abuse038_x264",
+        "Abuse038_x264",
+        "Abuse038_x264",
+        "Abuse037_x264"
+      ],
+      "top_hit": true,
+      "predicted_video_id": "Abuse038_x264",
+      "predicted_start_sec": 0.3,
+      "predicted_end_sec": 10.4,
+      "raw_summary_result": {
+        "summary": "Yes. The relevant clip is in Abuse038_x264, around 0:00:00 - 0:00:10.",
+        "style": "llm_summary",
+        "confidence": 0.8,
+        "citations": [
+          {
+            "source_type": "mixed",
+            "video_id": "Abuse038_x264",
+            "event_id": 6,
+            "start_time": 0.3,
+            "end_time": 10.4,
+            "record_level": "child"
+          },
+          {
+            "source_type": "hybrid",
+            "video_id": "Abuse038_x264",
+            "event_id": "Abuse038_x264_segment_1",
+            "start_time": 0.3,
+            "end_time": 10.4,
+            "record_level": "child"
+          },
+          {
+            "source_type": "hybrid",
+            "video_id": "Abuse038_x264",
+            "event_id": "Abuse038_x264_segment_4",
+            "start_time": 14.5,
+            "end_time": 20.6,
+            "record_level": "child"
+          }
+        ]
+      },
+      "ragas_elapsed_ms": 54434.91,
+      "ragas_input_profile": {
+        "context_count": 3,
+        "context_total_chars": 1169,
+        "response_chars": 69,
+        "reference_chars": 56,
+        "reference_source": "rich",
+        "reference_text": "Yes. In Abuse038_x264 around 0:00:09 - 0:00:13, Minimal.",
+        "question_chars": 74
+      },
+      "ragas": {
+        "retrieval": {
+          "context_precision": 1.0,
+          "context_recall": 0.5
+        },
+        "generation": {
+          "factual_correctness": 0.5,
+          "faithfulness": 0.6667
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.6667
+        },
+        "metric_errors": {}
+      },
+      "retrieved_contexts_for_ragas": [
+        "From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies.",
+        "Video Abuse038_x264. Track segment_1. Time range 0.3s to 10.4s. Appearance notes: High activity; Several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies. Located in: road. Events: From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies. Keywords: several, adults, talking, side, road, many.",
+        "Video Abuse038_x264. Track segment_4. Time range 14.5s to 20.6s. Appearance notes: Observed event; In the middle of the road on one side, a car with lights on stopped driving, and the lights shone on the puppy on the road in front. Located in: road. Events: From 14.5s to 20.6s, in the middle of the road on one side, a car with lights on stopped driving, and the lights shone on the puppy on the road in front. Keywords: middle, road, one, side, car, lights."
+      ],
+      "temporal": {
+        "time_range_overlap_iou": 0.1102,
+        "temporal_iou": 0.1102,
+        "localization_score": 0.1102,
+        "video_match_score": 1.0,
+        "eligible": true,
+        "video_match": true
+      }
+    },
+    {
+      "case_id": "PART1_0006",
+      "source_sheet": "Part1",
+      "video_id": "Abuse038_x264",
+      "question": "Animals fell on the road after a vehicle passed, while pedestrians were chatting nearby.",
+      "reference_answer": "Yes. The relevant clip is in Abuse038_x264, around 0:00:11 - 0:00:14.",
+      "reference_answer_rich": "Yes. In Abuse038_x264 around 0:00:11 - 0:00:14, Pedestrian chatting is background detail that must be integrated with the main event.",
+      "reference_scene_description": "Pedestrian chatting is background detail that must be integrated with the main event",
+      "recall_challenge": "Pedestrian chatting is background detail that must be integrated with the main event",
+      "expected_answer_label": "yes",
+      "expected_time_raw": "0:00:11 - 0:00:14",
+      "expected_start_sec": 11.0,
+      "expected_end_sec": 14.0,
+      "elapsed_ms": 3856.98,
+      "route_mode": "hybrid_search",
+      "classification_result": {
+        "label": "multi_hop",
+        "answer_type": "unknown",
+        "confidence": 0.82,
+        "reason": "fast-path multi-step (2 cues)",
+        "signals": {
+          "metadata_hits": [
+            "road",
+            "vehicle"
+          ],
+          "relation_cues": [
+            "near"
+          ],
+          "multi_step_cues": [
+            "after",
+            "while"
+          ],
+          "existence_cues": [],
+          "structured": 0,
+          "semantic": 1
+        }
+      },
+      "answer_type": "unknown",
+      "verifier_result": {
+        "decision": "skipped",
+        "confidence": 0.0,
+        "reason": "answer_type=unknown",
+        "mode": "skipped"
+      },
+      "fusion_meta": {
+        "label": "multi_hop",
+        "weights": {
+          "sql": 0.25,
+          "hybrid": 0.75
+        },
+        "rrf_k": 60.0,
+        "sql_count": 15,
+        "hybrid_count": 50,
+        "fused_count": 50,
+        "overlap_count": 1,
+        "method": "weighted_rrf",
+        "signal_bias": {
+          "applied": true,
+          "metadata_hits": 2,
+          "relation_cues": 1,
+          "multi_step_cues": 2,
+          "sql_bias": 0.1,
+          "hybrid_bias": 0.15000000000000002,
+          "base_sql": 0.3,
+          "base_hybrid": 0.7
+        },
+        "degraded": false,
+        "signals": {
+          "metadata_hits": [
+            "road",
+            "vehicle"
+          ],
+          "relation_cues": [
+            "near"
+          ],
+          "multi_step_cues": [
+            "after",
+            "while"
+          ],
+          "existence_cues": [],
+          "structured": 0,
+          "semantic": 1
+        }
+      },
+      "routing_metrics": {
+        "execution_mode": "parallel_fusion",
+        "label": "multi_hop",
+        "query": "Animals fell on the road after a vehicle passed, while pedestrians were chatting nearby",
+        "sql_rows_count": 15,
+        "hybrid_rows_count": 50,
+        "sql_error": null,
+        "hybrid_error": null
+      },
+      "error": null,
+      "tool_error": null,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "response": "Yes. The relevant clip is in Abuse038_x264, around 0:00:00 - 0:00:10.",
+      "retrieved_contexts": [
+        "From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies.",
+        "Video Abuse038_x264. Track segment_1. Time range 0.3s to 10.4s. Appearance notes: High activity; Several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies. Located in: road. Events: From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies. Keywords: several, adults, talking, side, road, many.",
+        "Video Abuse037_x264. Track segment_3. Time range 25.3s to 48.5s. Appearance notes: High activity; There was a black dog left on the road. It walked to the middle of the road next to the dog that had just been crushed. Located in: road. Events: From 25.3s to 48.5s, there was a black dog left on the road. It walked to the middle of the road next to the dog that had just been crushed. Keywords: black, dog, left, road, walked, middle.",
+        "Video Abuse037_x264. Track segment_2. Time range 8.4s to 25.3s. Appearance notes: High activity; The white car was driving in the middle of the road, and several dogs ran onto the road. Located in: road. Events: From 8.4s to 25.3s, the white car was driving in the middle of the road, and several dogs ran onto the road. Keywords: white, car, driving, middle, road, several.",
+        "Video Abuse037_x264. Track segment_4. Time range 48.5s to 59.1s. Appearance notes: Observed event; The black dog walked away and left the middle of the road. Located in: road. Events: From 48.5s to 59.1s, the black dog walked away and left the middle of the road. Keywords: black, dog, walked, away, left, middle."
+      ],
+      "top_video_ids": [
+        "Abuse038_x264",
+        "Abuse038_x264",
+        "Abuse037_x264",
+        "Abuse037_x264",
+        "Abuse037_x264"
+      ],
+      "top_hit": true,
+      "predicted_video_id": "Abuse038_x264",
+      "predicted_start_sec": 0.3,
+      "predicted_end_sec": 10.4,
+      "raw_summary_result": {
+        "summary": "Yes. The relevant clip is in Abuse038_x264, around 0:00:00 - 0:00:10.",
+        "style": "llm_summary",
+        "confidence": 0.8,
+        "citations": [
+          {
+            "source_type": "mixed",
+            "video_id": "Abuse038_x264",
+            "event_id": 6,
+            "start_time": 0.3,
+            "end_time": 10.4,
+            "record_level": "child"
+          },
+          {
+            "source_type": "hybrid",
+            "video_id": "Abuse038_x264",
+            "event_id": "Abuse038_x264_segment_1",
+            "start_time": 0.3,
+            "end_time": 10.4,
+            "record_level": "child"
+          },
+          {
+            "source_type": "hybrid",
+            "video_id": "Abuse037_x264",
+            "event_id": "Abuse037_x264_segment_3",
+            "start_time": 25.3,
+            "end_time": 48.5,
+            "record_level": "child"
+          }
+        ]
+      },
+      "ragas_elapsed_ms": 55107.57,
+      "ragas_input_profile": {
+        "context_count": 3,
+        "context_total_chars": 1144,
+        "response_chars": 69,
+        "reference_chars": 133,
+        "reference_source": "rich",
+        "reference_text": "Yes. In Abuse038_x264 around 0:00:11 - 0:00:14, Pedestrian chatting is background detail that must be integrated with the main event.",
+        "question_chars": 88
+      },
+      "ragas": {
+        "retrieval": {
+          "context_precision": 1.0,
+          "context_recall": 0.0
+        },
+        "generation": {
+          "factual_correctness": 0.5,
+          "faithfulness": 0.75
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.5625
+        },
+        "metric_errors": {}
+      },
+      "retrieved_contexts_for_ragas": [
+        "From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies.",
+        "Video Abuse038_x264. Track segment_1. Time range 0.3s to 10.4s. Appearance notes: High activity; Several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies. Located in: road. Events: From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies. Keywords: several, adults, talking, side, road, many.",
+        "Video Abuse037_x264. Track segment_3. Time range 25.3s to 48.5s. Appearance notes: High activity; There was a black dog left on the road. It walked to the middle of the road next to the dog that had just been crushed. Located in: road. Events: From 25.3s to 48.5s, there was a black dog left on the road. It walked to the middle of the road next to the dog that had just been crushed. Keywords: black, dog, left, road, walked, middle."
+      ],
+      "temporal": {
+        "time_range_overlap_iou": 0.0,
+        "temporal_iou": 0.0,
+        "localization_score": 0.0,
+        "video_match_score": 1.0,
+        "eligible": true,
+        "video_match": true
+      }
+    },
+    {
+      "case_id": "PART1_0007",
+      "source_sheet": "Part1",
+      "video_id": "Abuse038_x264",
+      "question": "A car with its lights on stopped, and the headlights shone on something on the road ahead.",
+      "reference_answer": "Yes. The relevant clip is in Abuse038_x264, around 0:00:14 - 0:00:20.",
+      "reference_answer_rich": "Yes. In Abuse038_x264 around 0:00:14 - 0:00:20, Headlights on the puppy is a secondary segment; all core event words are avoided.",
+      "reference_scene_description": "Headlights on the puppy is a secondary segment; all core event words are avoided",
+      "recall_challenge": "Headlights on the puppy is a secondary segment; all core event words are avoided",
+      "expected_answer_label": "yes",
+      "expected_time_raw": "0:00:14 - 0:00:20",
+      "expected_start_sec": 14.0,
+      "expected_end_sec": 20.0,
+      "elapsed_ms": 2502.86,
+      "route_mode": "pure_sql",
+      "classification_result": {
+        "label": "structured",
+        "answer_type": "unknown",
+        "confidence": 0.82,
+        "reason": "fast-path metadata (2 enum hits)",
+        "signals": {
+          "metadata_hits": [
+            "car",
+            "road"
+          ],
+          "relation_cues": [],
+          "multi_step_cues": [],
+          "existence_cues": [],
+          "structured": 1,
+          "semantic": 0
+        }
+      },
+      "answer_type": "unknown",
+      "verifier_result": {
+        "decision": "skipped",
+        "confidence": 0.0,
+        "reason": "answer_type=unknown",
+        "mode": "skipped"
+      },
+      "fusion_meta": {
+        "label": "structured",
+        "weights": {
+          "sql": 0.9,
+          "hybrid": 0.1
+        },
+        "rrf_k": 60.0,
+        "sql_count": 15,
+        "hybrid_count": 50,
+        "fused_count": 50,
+        "overlap_count": 14,
+        "method": "weighted_rrf",
+        "signal_bias": {
+          "applied": true,
+          "metadata_hits": 2,
+          "relation_cues": 0,
+          "multi_step_cues": 0,
+          "sql_bias": 0.1,
+          "hybrid_bias": 0.0,
+          "base_sql": 0.8,
+          "base_hybrid": 0.2
+        },
+        "degraded": false,
+        "signals": {
+          "metadata_hits": [
+            "car",
+            "road"
+          ],
+          "relation_cues": [],
+          "multi_step_cues": [],
+          "existence_cues": [],
+          "structured": 1,
+          "semantic": 0
+        }
+      },
+      "routing_metrics": {
+        "execution_mode": "parallel_fusion",
+        "label": "structured",
+        "query": "A car with its lights on stopped, and the headlights shone on something on the road ahead",
+        "sql_rows_count": 15,
+        "hybrid_rows_count": 50,
+        "sql_error": null,
+        "hybrid_error": null
+      },
+      "error": null,
+      "tool_error": null,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "response": "Yes. The relevant clip is in Abuse038_x264, around 0:00:14 - 0:00:21.",
+      "retrieved_contexts": [
+        "From 14.5s to 20.6s, in the middle of the road on one side, a car with lights on stopped driving, and the lights shone on the puppy on the road in front.",
+        "Video Abuse038_x264. Track segment_4. Time range 14.5s to 20.6s. Appearance notes: Observed event; In the middle of the road on one side, a car with lights on stopped driving, and the lights shone on the puppy on the road in front. Located in: road. Events: From 14.5s to 20.6s, in the middle of the road on one side, a car with lights on stopped driving, and the lights shone on the puppy on the road in front. Keywords: middle, road, one, side, car, lights.",
+        "From 133.6s to 206.5s, three cars were parked on the roadside, two white and one black. They all had their lights flashing. Many people were walking on the road.",
+        "Video Arrest050_x264. Track segment_9. Time range 133.6s to 206.5s. Appearance notes: High activity; Three cars were parked on the roadside, two white and one black. They all had their lights flashing. Many people were walking on the road. Located in: road. Events: From 133.6s to 206.5s, three cars were parked on the roadside, two white and one black. They all had their lights flashing. Many people were walking on the road. Keywords: three, cars, parked, roadside, two, white.",
+        "From 5.0s to 10.6s, a car drove to the side of the road and stopped, and there was a white car parked on the side of the road."
+      ],
+      "top_video_ids": [
+        "Abuse038_x264",
+        "Abuse038_x264",
+        "Arrest050_x264",
+        "Arrest050_x264",
+        "Arson020_x264"
+      ],
+      "top_hit": true,
+      "predicted_video_id": "Abuse038_x264",
+      "predicted_start_sec": 14.5,
+      "predicted_end_sec": 20.6,
+      "raw_summary_result": {
+        "summary": "Yes. The relevant clip is in Abuse038_x264, around 0:00:14 - 0:00:21.",
+        "style": "llm_summary",
+        "confidence": 0.8,
+        "citations": [
+          {
+            "source_type": "mixed",
+            "video_id": "Abuse038_x264",
+            "event_id": 9,
+            "start_time": 14.5,
+            "end_time": 20.6,
+            "record_level": "child"
+          },
+          {
+            "source_type": "hybrid",
+            "video_id": "Abuse038_x264",
+            "event_id": "Abuse038_x264_segment_4",
+            "start_time": 14.5,
+            "end_time": 20.6,
+            "record_level": "child"
+          },
+          {
+            "source_type": "mixed",
+            "video_id": "Arrest050_x264",
+            "event_id": 186,
+            "start_time": 133.6,
+            "end_time": 206.5,
+            "record_level": "child"
+          }
+        ]
+      },
+      "ragas_elapsed_ms": 43362.85,
+      "ragas_input_profile": {
+        "context_count": 3,
+        "context_total_chars": 773,
+        "response_chars": 69,
+        "reference_chars": 129,
+        "reference_source": "rich",
+        "reference_text": "Yes. In Abuse038_x264 around 0:00:14 - 0:00:20, Headlights on the puppy is a secondary segment; all core event words are avoided.",
+        "question_chars": 90
+      },
+      "ragas": {
+        "retrieval": {
+          "context_precision": 1.0,
+          "context_recall": 0.5
+        },
+        "generation": {
+          "factual_correctness": 0.5,
+          "faithfulness": 1.0
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.75
+        },
+        "metric_errors": {}
+      },
+      "retrieved_contexts_for_ragas": [
+        "From 14.5s to 20.6s, in the middle of the road on one side, a car with lights on stopped driving, and the lights shone on the puppy on the road in front.",
+        "Video Abuse038_x264. Track segment_4. Time range 14.5s to 20.6s. Appearance notes: Observed event; In the middle of the road on one side, a car with lights on stopped driving, and the lights shone on the puppy on the road in front. Located in: road. Events: From 14.5s to 20.6s, in the middle of the road on one side, a car with lights on stopped driving, and the lights shone on the puppy on the road in front. Keywords: middle, road, one, side, car, lights.",
+        "From 133.6s to 206.5s, three cars were parked on the roadside, two white and one black. They all had their lights flashing. Many people were walking on the road."
+      ],
+      "temporal": {
+        "time_range_overlap_iou": 0.8333,
+        "temporal_iou": 0.8333,
+        "localization_score": 0.8333,
+        "video_match_score": 1.0,
+        "eligible": true,
+        "video_match": true
+      }
+    },
+    {
+      "case_id": "PART1_0008",
+      "source_sheet": "Part1",
+      "video_id": "Abuse039_x264",
+      "question": "Is there a video of two staff members conducting a full-body search on a detained woman in a closed room?",
+      "reference_answer": "Yes. The relevant clip is in Abuse039_x264, around 0:03:03 - 0:04:40.",
+      "reference_answer_rich": "Yes. In Abuse039_x264 around 0:03:03 - 0:04:40, Minimal.",
+      "reference_scene_description": "Minimal",
+      "recall_challenge": "Minimal",
+      "expected_answer_label": "yes",
+      "expected_time_raw": "0:03:03 - 0:04:40",
+      "expected_start_sec": 183.0,
+      "expected_end_sec": 280.0,
+      "elapsed_ms": 14269.46,
+      "route_mode": "hybrid_search",
+      "classification_result": {
+        "label": "semantic",
+        "answer_type": "list",
+        "confidence": 0.9,
+        "reason": "The query requires visual understanding to identify actions (full-body search), participants (two staff members and a detained woman), and context (closed or private room), which cannot be resolved with metadata filters alone. It asks for video footage showing such an event, implying enumeration of matching clips.",
+        "signals": {
+          "metadata_hits": [],
+          "relation_cues": [],
+          "multi_step_cues": [],
+          "existence_cues": [],
+          "structured": 0,
+          "semantic": 1
+        }
+      },
+      "answer_type": "list",
+      "verifier_result": {
+        "decision": "skipped",
+        "confidence": 0.0,
+        "reason": "answer_type=list",
+        "mode": "skipped"
+      },
+      "fusion_meta": {
+        "label": "semantic",
+        "weights": {
+          "sql": 0.2,
+          "hybrid": 0.8
+        },
+        "rrf_k": 60.0,
+        "sql_count": 29,
+        "hybrid_count": 50,
+        "fused_count": 50,
+        "overlap_count": 14,
+        "method": "weighted_rrf",
+        "signal_bias": {
+          "applied": true,
+          "metadata_hits": 0,
+          "relation_cues": 0,
+          "multi_step_cues": 0,
+          "sql_bias": 0.0,
+          "hybrid_bias": 0.0,
+          "base_sql": 0.2,
+          "base_hybrid": 0.8
+        },
+        "degraded": false,
+        "signals": {
+          "metadata_hits": [],
+          "relation_cues": [],
+          "multi_step_cues": [],
+          "existence_cues": [],
+          "structured": 0,
+          "semantic": 1
+        }
+      },
+      "routing_metrics": {
+        "execution_mode": "parallel_fusion",
+        "label": "semantic",
+        "query": "Video footage showing two staff members performing a full-body search on a detained woman inside a closed or private room",
+        "sql_rows_count": 29,
+        "hybrid_rows_count": 50,
+        "sql_error": null,
+        "hybrid_error": null
+      },
+      "error": null,
+      "tool_error": null,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "response": "No matching clip is expected.",
+      "retrieved_contexts": [
+        "From 19.5s to 26.3s, the man in black standing at the door walked into the room and walked in front of the two women.",
+        "From 16.9s to 20.2s, the woman in pink clothes walked to the other side of the room.",
+        "From 87.6s to 96.5s, a bald man in black came and walked next to the two men in the room.",
+        "From 7.5s to 12.6s, a black-haired woman in black clothes walked into the room. She stood on the black footprints in the center of the room.",
+        "From 9.2s to 23.4s, a woman in a blue top walked into the room next to the desk lamp and turned off the light."
+      ],
+      "top_video_ids": [
+        "Abuse039_x264",
+        "Abuse041_x264",
+        "Arrest046_x264",
+        "Abuse039_x264",
+        "Abuse040_x264"
+      ],
+      "top_hit": true,
+      "predicted_video_id": "Abuse039_x264",
+      "predicted_start_sec": 19.5,
+      "predicted_end_sec": 26.3,
+      "raw_summary_result": {
+        "summary": "No matching clip is expected.",
+        "style": "llm_summary",
+        "confidence": 0.8,
+        "citations": [
+          {
+            "source_type": "mixed",
+            "video_id": "Abuse039_x264",
+            "event_id": 14,
+            "start_time": 19.5,
+            "end_time": 26.3,
+            "record_level": "child"
+          },
+          {
+            "source_type": "mixed",
+            "video_id": "Abuse041_x264",
+            "event_id": 55,
+            "start_time": 16.9,
+            "end_time": 20.2,
+            "record_level": "child"
+          },
+          {
+            "source_type": "mixed",
+            "video_id": "Arrest046_x264",
+            "event_id": 130,
+            "start_time": 87.6,
+            "end_time": 96.5,
+            "record_level": "child"
+          }
+        ]
+      },
+      "ragas_elapsed_ms": 55850.71,
+      "ragas_input_profile": {
+        "context_count": 3,
+        "context_total_chars": 290,
+        "response_chars": 29,
+        "reference_chars": 56,
+        "reference_source": "rich",
+        "reference_text": "Yes. In Abuse039_x264 around 0:03:03 - 0:04:40, Minimal.",
+        "question_chars": 105
+      },
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.0,
+          "context_recall": 0.0
+        },
+        "generation": {
+          "factual_correctness": 0.0,
+          "faithfulness": 1.0
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.25
+        },
+        "metric_errors": {}
+      },
+      "retrieved_contexts_for_ragas": [
+        "From 19.5s to 26.3s, the man in black standing at the door walked into the room and walked in front of the two women.",
+        "From 16.9s to 20.2s, the woman in pink clothes walked to the other side of the room.",
+        "From 87.6s to 96.5s, a bald man in black came and walked next to the two men in the room."
+      ],
+      "temporal": {
+        "time_range_overlap_iou": 0.0,
+        "temporal_iou": 0.0,
+        "localization_score": 0.0,
+        "video_match_score": 1.0,
+        "eligible": true,
+        "video_match": true
+      }
+    },
+    {
+      "case_id": "PART1_0009",
+      "source_sheet": "Part1",
+      "video_id": "Abuse039_x264",
+      "question": "A woman was repeatedly told to turn around and face the wall in a closed room, and was forced to undress.",
+      "reference_answer": "Yes. The relevant clip is in Abuse039_x264, around 0:00:09 - 0:05:50.",
+      "reference_answer_rich": "Yes. In Abuse039_x264 around 0:00:09 - 0:05:50, Avoids 'search'/'detain'; scene must be inferred from action sequence.",
+      "reference_scene_description": "Avoids 'search'/'detain'; scene must be inferred from action sequence",
+      "recall_challenge": "Avoids 'search'/'detain'; scene must be inferred from action sequence",
+      "expected_answer_label": "yes",
+      "expected_time_raw": "0:00:09 - 0:05:50",
+      "expected_start_sec": 9.0,
+      "expected_end_sec": 350.0,
+      "elapsed_ms": 6207.14,
+      "route_mode": "hybrid_search",
+      "classification_result": {
+        "label": "semantic",
+        "answer_type": "description",
+        "confidence": 0.9,
+        "reason": "The query describes a complex scene involving actions and interactions (e.g., 'repeatedly told', 'forced to undress') that require visual or relational understanding rather than simple metadata filters. It asks for a summary or explanation of the event, aligning with the 'description' answer type.",
+        "signals": {
+          "metadata_hits": [],
+          "relation_cues": [
+            "around"
+          ],
+          "multi_step_cues": [],
+          "existence_cues": [],
+          "structured": 0,
+          "semantic": 1
+        }
+      },
+      "answer_type": "description",
+      "verifier_result": {
+        "decision": "skipped",
+        "confidence": 0.0,
+        "reason": "answer_type=description",
+        "mode": "skipped"
+      },
+      "fusion_meta": {
+        "label": "semantic",
+        "weights": {
+          "sql": 0.15000000000000002,
+          "hybrid": 0.8500000000000001
+        },
+        "rrf_k": 60.0,
+        "sql_count": 47,
+        "hybrid_count": 50,
+        "fused_count": 50,
+        "overlap_count": 22,
+        "method": "weighted_rrf",
+        "signal_bias": {
+          "applied": true,
+          "metadata_hits": 0,
+          "relation_cues": 1,
+          "multi_step_cues": 0,
+          "sql_bias": 0.0,
+          "hybrid_bias": 0.05,
+          "base_sql": 0.2,
+          "base_hybrid": 0.8
+        },
+        "degraded": false,
+        "signals": {
+          "metadata_hits": [],
+          "relation_cues": [
+            "around"
+          ],
+          "multi_step_cues": [],
+          "existence_cues": [],
+          "structured": 0,
+          "semantic": 1
+        }
+      },
+      "routing_metrics": {
+        "execution_mode": "parallel_fusion",
+        "label": "semantic",
+        "query": "A woman was repeatedly told to turn around and face the wall in a closed room, and was forced to undress",
+        "sql_rows_count": 47,
+        "hybrid_rows_count": 50,
+        "sql_error": null,
+        "hybrid_error": null
+      },
+      "error": null,
+      "tool_error": null,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "response": "Yes. The relevant clip is in Abuse039_x264, around 4:31 - 4:40.",
+      "retrieved_contexts": [
+        "From 178.3s to 184.2s, the black-haired woman took a few steps towards the center of the room, and then the yellow-haired woman pushed the black-haired woman to the wall.",
+        "From 316.3s to 341.1s, the black-haired woman bent over the wall, and the yellow-haired woman was behind her, checking the black-haired woman's whole body.",
+        "Video Abuse039_x264. Track segment_23. Time range 316.3s to 341.1s. Appearance notes: Observed event; The black-haired woman bent over the wall, and the yellow-haired woman was behind her, checking the black-haired woman's whole body. Located in: room. Events: From 316.3s to 341.1s, the black-haired woman bent over the wall, and the yellow-haired woman was behind her, checking the black-haired woman's whole body. Keywords: black, haired, woman, bent, wall, yellow.",
+        "Video Abuse039_x264. Track segment_15. Time range 178.3s to 184.2s. Appearance notes: High activity; The black-haired woman took a few steps towards the center of the room, and then the yellow-haired woman pushed the black-haired woman to the wall. Located in: room. Events: From 178.3s to 184.2s, the black-haired woman took a few steps towards the center of the room, and then the yellow-haired woman pushed the black-haired woman to the wall. Keywords: black, haired, woman, took, few, steps.",
+        "From 271.5s to 280.6s, the black-haired woman standing by the wall took off her shirt, and then the yellow-haired woman and the man in black put their clothes aside."
+      ],
+      "top_video_ids": [
+        "Abuse039_x264",
+        "Abuse039_x264",
+        "Abuse039_x264",
+        "Abuse039_x264",
+        "Abuse039_x264"
+      ],
+      "top_hit": true,
+      "predicted_video_id": "Abuse039_x264",
+      "predicted_start_sec": 178.3,
+      "predicted_end_sec": 184.2,
+      "raw_summary_result": {
+        "summary": "Yes. The relevant clip is in Abuse039_x264, around 4:31 - 4:40.",
+        "style": "llm_summary",
+        "confidence": 0.8,
+        "citations": [
+          {
+            "source_type": "mixed",
+            "video_id": "Abuse039_x264",
+            "event_id": 25,
+            "start_time": 178.3,
+            "end_time": 184.2,
+            "record_level": "child"
+          },
+          {
+            "source_type": "mixed",
+            "video_id": "Abuse039_x264",
+            "event_id": 33,
+            "start_time": 316.3,
+            "end_time": 341.1,
+            "record_level": "child"
+          },
+          {
+            "source_type": "hybrid",
+            "video_id": "Abuse039_x264",
+            "event_id": "Abuse039_x264_segment_23",
+            "start_time": 316.3,
+            "end_time": 341.1,
+            "record_level": "child"
+          }
+        ]
+      },
+      "ragas_elapsed_ms": 59679.83,
+      "ragas_input_profile": {
+        "context_count": 3,
+        "context_total_chars": 793,
+        "response_chars": 63,
+        "reference_chars": 118,
+        "reference_source": "rich",
+        "reference_text": "Yes. In Abuse039_x264 around 0:00:09 - 0:05:50, Avoids 'search'/'detain'; scene must be inferred from action sequence.",
+        "question_chars": 105
+      },
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.5833,
+          "context_recall": 0.5
+        },
+        "generation": {
+          "factual_correctness": 1.0,
+          "faithfulness": 0.25
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.5833
+        },
+        "metric_errors": {}
+      },
+      "retrieved_contexts_for_ragas": [
+        "From 178.3s to 184.2s, the black-haired woman took a few steps towards the center of the room, and then the yellow-haired woman pushed the black-haired woman to the wall.",
+        "From 316.3s to 341.1s, the black-haired woman bent over the wall, and the yellow-haired woman was behind her, checking the black-haired woman's whole body.",
+        "Video Abuse039_x264. Track segment_23. Time range 316.3s to 341.1s. Appearance notes: Observed event; The black-haired woman bent over the wall, and the yellow-haired woman was behind her, checking the black-haired woman's whole body. Located in: room. Events: From 316.3s to 341.1s, the black-haired woman bent over the wall, and the yellow-haired woman was behind her, checking the black-haired woman's whole body. Keywords: black, haired, woman, bent, wall, yellow."
+      ],
+      "temporal": {
+        "time_range_overlap_iou": 0.0173,
+        "temporal_iou": 0.0173,
+        "localization_score": 0.0173,
+        "video_match_score": 1.0,
+        "eligible": true,
+        "video_match": true
+      }
+    },
+    {
+      "case_id": "PART1_0010",
+      "source_sheet": "Part1",
+      "video_id": "Abuse039_x264",
+      "question": "A person used a handheld device to scan another person top to bottom, then someone took shoes from a conveyor belt.",
+      "reference_answer": "Yes. The relevant clip is in Abuse039_x264, around 0:05:15 - 0:05:40.",
+      "reference_answer_rich": "Yes. In Abuse039_x264 around 0:05:15 - 0:05:40, Scanner use and shoe retrieval are minor events from different time segments.",
+      "reference_scene_description": "Scanner use and shoe retrieval are minor events from different time segments",
+      "recall_challenge": "Scanner use and shoe retrieval are minor events from different time segments",
+      "expected_answer_label": "yes",
+      "expected_time_raw": "0:05:15 - 0:05:40",
+      "expected_start_sec": 315.0,
+      "expected_end_sec": 340.0,
+      "elapsed_ms": 8014.92,
+      "route_mode": "hybrid_search",
+      "classification_result": {
+        "label": "multi_hop",
+        "answer_type": "list",
+        "confidence": 0.95,
+        "reason": "The query describes a sequence of two distinct actions ('scan another person top to bottom' followed by 'someone took shoes from a conveyor belt'), indicated by the presence of multi-step cues like ', then' and 'then'. This requires identifying clips that capture this compositional event sequence, making it a multi_hop query. The expected answer is a list of matching video clips.",
+        "signals": {
+          "metadata_hits": [
+            "person"
+          ],
+          "relation_cues": [],
+          "multi_step_cues": [
+            ", then",
+            "then"
+          ],
+          "existence_cues": [],
+          "structured": 0,
+          "semantic": 1
+        }
+      },
+      "answer_type": "list",
+      "verifier_result": {
+        "decision": "skipped",
+        "confidence": 0.0,
+        "reason": "answer_type=list",
+        "mode": "skipped"
+      },
+      "fusion_meta": {
+        "label": "multi_hop",
+        "weights": {
+          "sql": 0.25,
+          "hybrid": 0.75
+        },
+        "rrf_k": 60.0,
+        "sql_count": 80,
+        "hybrid_count": 50,
+        "fused_count": 50,
+        "overlap_count": 16,
+        "method": "weighted_rrf",
+        "signal_bias": {
+          "applied": true,
+          "metadata_hits": 1,
+          "relation_cues": 0,
+          "multi_step_cues": 2,
+          "sql_bias": 0.05,
+          "hybrid_bias": 0.1,
+          "base_sql": 0.3,
+          "base_hybrid": 0.7
+        },
+        "degraded": false,
+        "signals": {
+          "metadata_hits": [
+            "person"
+          ],
+          "relation_cues": [],
+          "multi_step_cues": [
+            ", then",
+            "then"
+          ],
+          "existence_cues": [],
+          "structured": 0,
+          "semantic": 1
+        }
+      },
+      "routing_metrics": {
+        "execution_mode": "parallel_fusion",
+        "label": "multi_hop",
+        "query": "A person used a handheld device to scan another person top to bottom, then someone took shoes from a conveyor belt",
+        "sql_rows_count": 80,
+        "hybrid_rows_count": 50,
+        "sql_error": null,
+        "hybrid_error": null
+      },
+      "error": null,
+      "tool_error": null,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "response": "The most relevant clip is in Abuse039_x264, around 0:05:20 - 0:05:41.",
+      "retrieved_contexts": [
+        "From 320.5s to 340.8s, the man in black stood next to the machine on the left side of the room. Then the man in black took the shoes from the conveyor belt of the machine and left the room.",
+        "Video Abuse039_x264. Track segment_24. Time range 320.5s to 340.8s. Appearance notes: Observed event; The man in black stood next to the machine on the left side of the room. Then the man in black took the shoes from the conveyor belt of the machine and left the room. Located in: room. Events: From 320.5s to 340.8s, the man in black stood next to the machine on the left side of the room. Then the man in black took the shoes from the conveyor belt of the machine and left the room. Keywords: man, black, stood, machine, left, side.",
+        "From 363.2s to 379.8s, the black-haired woman picked up the clothes on the machine conveyor belt and tried to put them on her body.",
+        "Video Abuse039_x264. Track segment_27. Time range 363.2s to 379.8s. Appearance notes: Observed event; The black-haired woman picked up the clothes on the machine conveyor belt and tried to put them on her body. Located in: unknown. Events: From 363.2s to 379.8s, the black-haired woman picked up the clothes on the machine conveyor belt and tried to put them on her body. Keywords: black, haired, woman, picked, clothes, machine.",
+        "From 121.0s to 134.7s, the man in the vest took off his shoes."
+      ],
+      "top_video_ids": [
+        "Abuse039_x264",
+        "Abuse039_x264",
+        "Abuse039_x264",
+        "Abuse039_x264",
+        "Arrest046_x264"
+      ],
+      "top_hit": true,
+      "predicted_video_id": "Abuse039_x264",
+      "predicted_start_sec": 320.5,
+      "predicted_end_sec": 340.8,
+      "raw_summary_result": {
+        "summary": "The most relevant clip is in Abuse039_x264, around 0:05:20 - 0:05:41.",
+        "style": "llm_summary",
+        "confidence": 0.8,
+        "citations": [
+          {
+            "source_type": "hybrid",
+            "video_id": "Abuse039_x264",
+            "event_id": 34,
+            "start_time": 320.5,
+            "end_time": 340.8,
+            "record_level": "child"
+          },
+          {
+            "source_type": "hybrid",
+            "video_id": "Abuse039_x264",
+            "event_id": "Abuse039_x264_segment_24",
+            "start_time": 320.5,
+            "end_time": 340.8,
+            "record_level": "child"
+          },
+          {
+            "source_type": "mixed",
+            "video_id": "Abuse039_x264",
+            "event_id": 37,
+            "start_time": 363.2,
+            "end_time": 379.8,
+            "record_level": "child"
+          }
+        ]
+      },
+      "ragas_elapsed_ms": 65893.65,
+      "ragas_input_profile": {
+        "context_count": 3,
+        "context_total_chars": 854,
+        "response_chars": 69,
+        "reference_chars": 125,
+        "reference_source": "rich",
+        "reference_text": "Yes. In Abuse039_x264 around 0:05:15 - 0:05:40, Scanner use and shoe retrieval are minor events from different time segments.",
+        "question_chars": 115
+      },
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.0,
+          "context_recall": 0.5
+        },
+        "generation": {
+          "factual_correctness": 0.5,
+          "faithfulness": 1.0
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.5
+        },
+        "metric_errors": {}
+      },
+      "retrieved_contexts_for_ragas": [
+        "From 320.5s to 340.8s, the man in black stood next to the machine on the left side of the room. Then the man in black took the shoes from the conveyor belt of the machine and left the room.",
+        "Video Abuse039_x264. Track segment_24. Time range 320.5s to 340.8s. Appearance notes: Observed event; The man in black stood next to the machine on the left side of the room. Then the man in black took the shoes from the conveyor belt of the machine and left the room. Located in: room. Events: From 320.5s to 340.8s, the man in black stood next to the machine on the left side of the room. Then the man in black took the shoes from the conveyor belt of the machine and left the room. Keywords: man, black, stood, machine, left, side.",
+        "From 363.2s to 379.8s, the black-haired woman picked up the clothes on the machine conveyor belt and tried to put them on her body."
+      ],
+      "temporal": {
+        "time_range_overlap_iou": 0.7558,
+        "temporal_iou": 0.7558,
+        "localization_score": 0.7558,
+        "video_match_score": 1.0,
+        "eligible": true,
+        "video_match": true
+      }
+    },
+    {
+      "case_id": "PART1_0011",
+      "source_sheet": "Part1",
+      "video_id": "Abuse040_x264",
+      "question": "Is there a clip of a caregiver repeatedly hitting a white-haired elderly person on the head while they sit on a sofa?",
+      "reference_answer": "Yes. The relevant clip is in Abuse040_x264.",
+      "reference_answer_rich": "Yes. In Abuse040_x264, Minimal.",
+      "reference_scene_description": "Minimal",
+      "recall_challenge": "Minimal",
+      "expected_answer_label": "yes",
+      "expected_time_raw": null,
+      "expected_start_sec": null,
+      "expected_end_sec": null,
+      "elapsed_ms": 8429.58,
+      "route_mode": "hybrid_search",
+      "classification_result": {
+        "label": "multi_hop",
+        "answer_type": "existence",
+        "confidence": 0.82,
+        "reason": "fast-path multi-step (1 cues)",
+        "signals": {
+          "metadata_hits": [
+            "person",
+            "white"
+          ],
+          "relation_cues": [
+            "hitting"
+          ],
+          "multi_step_cues": [
+            "while"
+          ],
+          "existence_cues": [
+            "is there"
+          ],
+          "structured": 0,
+          "semantic": 1
+        }
+      },
+      "answer_type": "existence",
+      "verifier_result": {
+        "decision": "mismatch",
+        "confidence": 0.0,
+        "reason": "The evidence describes a woman in blue moving a wheelchair and a white-haired elderly person sitting on a sofa, but there is no mention of any hitting or physical abuse. The query specifically asks fo",
+        "mode": "llm",
+        "video_id": "Abuse040_x264",
+        "start_time": 26.6,
+        "end_time": 40.3,
+        "primary_summary": "Video Abuse040_x264. Track segment_2. Time range 26.6s to 40.3s. Appearance notes: High activity; The woman in blue clothes took the wheelchair and pushed it to the side of the sofa. Sitting on the sofa was a white-haired woman in pink clothes. Located in: room. Events: From 26.6s to 40.3s, the woman in blue clothes took the wheelchair and pushed it to the side of the sofa. Sitting on the sofa was"
+      },
+      "fusion_meta": {
+        "label": "multi_hop",
+        "weights": {
+          "sql": 0.30000000000000004,
+          "hybrid": 0.7
+        },
+        "rrf_k": 60.0,
+        "sql_count": 80,
+        "hybrid_count": 50,
+        "fused_count": 50,
+        "overlap_count": 4,
+        "method": "weighted_rrf",
+        "signal_bias": {
+          "applied": true,
+          "metadata_hits": 2,
+          "relation_cues": 1,
+          "multi_step_cues": 1,
+          "sql_bias": 0.1,
+          "hybrid_bias": 0.1,
+          "base_sql": 0.3,
+          "base_hybrid": 0.7
+        },
+        "degraded": false,
+        "signals": {
+          "metadata_hits": [
+            "person",
+            "white"
+          ],
+          "relation_cues": [
+            "hitting"
+          ],
+          "multi_step_cues": [
+            "while"
+          ],
+          "existence_cues": [
+            "is there"
+          ],
+          "structured": 0,
+          "semantic": 1
+        }
+      },
+      "routing_metrics": {
+        "execution_mode": "parallel_fusion",
+        "label": "multi_hop",
+        "query": "Is there a clip of a caregiver repeatedly hitting a white-haired elderly person on the head while they sit on a sofa",
+        "sql_rows_count": 80,
+        "hybrid_rows_count": 50,
+        "sql_error": null,
+        "hybrid_error": null
+      },
+      "error": null,
+      "tool_error": null,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "response": "Yes. The relevant clip is in Abuse040_x264, around 0:00:46 - 0:00:59.",
+      "retrieved_contexts": [
+        "Video Abuse040_x264. Track segment_2. Time range 26.6s to 40.3s. Appearance notes: High activity; The woman in blue clothes took the wheelchair and pushed it to the side of the sofa. Sitting on the sofa was a white-haired woman in pink clothes. Located in: room. Events: From 26.6s to 40.3s, the woman in blue clothes took the wheelchair and pushed it to the side of the sofa. Sitting on the sofa was a white-haired woman in pink clothes. Keywords: woman, blue, clothes, took, wheelchair, pushed.",
+        "Video Abuse040_x264. Track segment_4. Time range 46.4s to 58.7s. Appearance notes: High activity; The woman next to the sofa hit the person on the sofa on the head and pushed it again. The woman on the sofa moved and then touched her leg. Located in: room. Events: From 46.4s to 58.7s, the woman next to the sofa hit the person on the sofa on the head and pushed it again. The woman on the sofa moved and then touched her leg. Keywords: woman, sofa, hit, person, head, pushed.",
+        "Video Abuse040_x264. Track segment_6. Time range 70.1s to 85.8s. Appearance notes: High activity; The white-haired woman on the sofa stood up with her wheelchair, then pushed the wheelchair towards the door, while the woman in blue top walked beside her. Located in: room. Events: From 70.1s to 85.8s, the white-haired woman on the sofa stood up with her wheelchair, then pushed the wheelchair towards the door, while the woman in blue top walked beside her. Keywords: white, haired, woman, sofa, stood, wheelchair.",
+        "Video Abuse040_x264. Track segment_3. Time range 40.3s to 44.4s. Appearance notes: High activity; The woman on the sofa wanted to sit up, but the woman standing next to her hit her on the head. Located in: room. Events: From 40.3s to 44.4s, the woman on the sofa wanted to sit up, but the woman standing next to her hit her on the head. Keywords: woman, sofa, wanted, sit, but, standing.",
+        "Video Abuse040_x264. Track segment_5. Time range 58.7s to 69.1s. Appearance notes: High activity; The woman in the blue top hit the white-haired woman on the head, then turned the wheelchair to her side and walked to the back. Located in: unknown. Events: From 58.7s to 69.1s, the woman in the blue top hit the white-haired woman on the head, then turned the wheelchair to her side and walked to the back. Keywords: woman, blue, top, hit, white, haired."
+      ],
+      "top_video_ids": [
+        "Abuse040_x264",
+        "Abuse040_x264",
+        "Abuse040_x264",
+        "Abuse040_x264",
+        "Abuse040_x264"
+      ],
+      "top_hit": true,
+      "predicted_video_id": "Abuse040_x264",
+      "predicted_start_sec": 26.6,
+      "predicted_end_sec": 40.3,
+      "raw_summary_result": {
+        "summary": "Yes. The relevant clip is in Abuse040_x264, around 0:00:46 - 0:00:59.",
+        "style": "llm_summary",
+        "confidence": 0.8,
+        "citations": [
+          {
+            "source_type": "hybrid",
+            "video_id": "Abuse040_x264",
+            "event_id": "Abuse040_x264_segment_2",
+            "start_time": 26.6,
+            "end_time": 40.3,
+            "record_level": "child"
+          },
+          {
+            "source_type": "hybrid",
+            "video_id": "Abuse040_x264",
+            "event_id": "Abuse040_x264_segment_4",
+            "start_time": 46.4,
+            "end_time": 58.7,
+            "record_level": "child"
+          },
+          {
+            "source_type": "hybrid",
+            "video_id": "Abuse040_x264",
+            "event_id": "Abuse040_x264_segment_6",
+            "start_time": 70.1,
+            "end_time": 85.8,
+            "record_level": "child"
+          }
+        ]
+      },
+      "ragas_elapsed_ms": 76661.61,
+      "ragas_input_profile": {
+        "context_count": 3,
+        "context_total_chars": 1487,
+        "response_chars": 69,
+        "reference_chars": 31,
+        "reference_source": "rich",
+        "reference_text": "Yes. In Abuse040_x264, Minimal.",
+        "question_chars": 117
+      },
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.5,
+          "context_recall": 1.0
+        },
+        "generation": {
+          "factual_correctness": 0.5,
+          "faithfulness": 0.75
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.6875
+        },
+        "metric_errors": {}
+      },
+      "retrieved_contexts_for_ragas": [
+        "Video Abuse040_x264. Track segment_2. Time range 26.6s to 40.3s. Appearance notes: High activity; The woman in blue clothes took the wheelchair and pushed it to the side of the sofa. Sitting on the sofa was a white-haired woman in pink clothes. Located in: room. Events: From 26.6s to 40.3s, the woman in blue clothes took the wheelchair and pushed it to the side of the sofa. Sitting on the sofa was a white-haired woman in pink clothes. Keywords: woman, blue, clothes, took, wheelchair, pushed.",
+        "Video Abuse040_x264. Track segment_4. Time range 46.4s to 58.7s. Appearance notes: High activity; The woman next to the sofa hit the person on the sofa on the head and pushed it again. The woman on the sofa moved and then touched her leg. Located in: room. Events: From 46.4s to 58.7s, the woman next to the sofa hit the person on the sofa on the head and pushed it again. The woman on the sofa moved and then touched her leg. Keywords: woman, sofa, hit, person, head, pushed.",
+        "Video Abuse040_x264. Track segment_6. Time range 70.1s to 85.8s. Appearance notes: High activity; The white-haired woman on the sofa stood up with her wheelchair, then pushed the wheelchair towards the door, while the woman in blue top walked beside her. Located in: room. Events: From 70.1s to 85.8s, the white-haired woman on the sofa stood up with her wheelchair, then pushed the wheelchair towards the door, while the woman in blue top walked beside her. Keywords: white, haired, woman, sofa, stood, wheelchair."
+      ],
+      "temporal": {
+        "time_range_overlap_iou": null,
+        "temporal_iou": null,
+        "localization_score": null,
+        "video_match_score": 1.0,
+        "eligible": false,
+        "video_match": null
+      }
+    }
+  ]
+}

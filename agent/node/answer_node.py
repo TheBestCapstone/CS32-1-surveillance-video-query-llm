@@ -1,3 +1,4 @@
+import os
 from typing import Any
 
 from langchain_core.messages import AIMessage
@@ -5,6 +6,15 @@ from langchain_core.runnables import RunnableConfig
 from langgraph.store.base import BaseStore
 
 from .types import AgentState
+
+
+def _existence_grounder_enabled() -> bool:
+    # P1-7: keep the grounder advisory by default. When disabled, final_answer_node
+    # behaves like the pre-grounder version (list top-K rows) so existing
+    # RAGAS baselines are preserved. Flip to ``1`` to let the verifier rewrite
+    # Yes/No responses for existence queries.
+    raw = os.getenv("AGENT_ENABLE_EXISTENCE_GROUNDER", "").strip().lower()
+    return raw in {"1", "true", "yes", "on"}
 
 
 def _select_final_rows(state: AgentState) -> list[dict[str, Any]]:
@@ -17,16 +27,61 @@ def _select_final_rows(state: AgentState) -> list[dict[str, Any]]:
     return list(state.get("sql_result") or [])
 
 
+def _format_existence_answer(verifier: dict[str, Any], rows: list[dict[str, Any]]) -> str:
+    decision = str(verifier.get("decision") or "").strip().lower()
+    video_id = str(verifier.get("video_id") or "").strip()
+    start_time = verifier.get("start_time")
+    end_time = verifier.get("end_time")
+    primary_summary = str(verifier.get("primary_summary") or "").strip()
+    reason = str(verifier.get("reason") or "").strip()
+
+    if decision == "mismatch" or not rows:
+        return (
+            "No matching clip found."
+            + (f" Reason: {reason}." if reason else "")
+        )
+    label = "Yes" if decision == "exact" else "Likely yes"
+    parts = [f"{label}."]
+    if video_id:
+        parts.append(f"Video={video_id}")
+    if start_time is not None:
+        parts.append(f"start={start_time}")
+    if end_time is not None:
+        parts.append(f"end={end_time}")
+    summary_head = ". " + ", ".join(parts[1:]) if len(parts) > 1 else ""
+    body = f"{parts[0]}{summary_head}."
+    if primary_summary:
+        body += f" Summary: {primary_summary}"
+    return body
+
+
 def final_answer_node(state: AgentState, config: RunnableConfig, store: BaseStore) -> dict[str, Any]:
     del config, store
     rows = _select_final_rows(state)
-    
+    answer_type = str(state.get("answer_type") or "").strip().lower()
+    verifier_result = state.get("verifier_result") or {}
+    if not isinstance(verifier_result, dict):
+        verifier_result = {}
+
     agent_summary = ""
     if state.get("sql_debug") and isinstance(state.get("sql_debug"), dict):
         agent_summary = state["sql_debug"].get("agent_summary", "")
     elif state.get("search_explain"):
         agent_summary = state.get("search_explain", "")
-        
+
+    if (
+        _existence_grounder_enabled()
+        and answer_type == "existence"
+        and verifier_result.get("decision") in {"exact", "partial", "mismatch"}
+    ):
+        final_answer = _format_existence_answer(verifier_result, rows)
+        return {
+            "raw_final_answer": final_answer,
+            "final_answer": final_answer,
+            "current_node": "final_answer_node",
+            "messages": [AIMessage(content=final_answer)],
+        }
+
     if not rows:
         final_answer = agent_summary if agent_summary else "No matching results found. You can add more specific descriptions like colors or actions."
         return {
@@ -35,13 +90,13 @@ def final_answer_node(state: AgentState, config: RunnableConfig, store: BaseStor
             "current_node": "final_answer_node",
             "messages": [AIMessage(content=final_answer)],
         }
-        
+
     parts: list[str] = []
     if agent_summary:
         parts.append(agent_summary + "\n\nDetailed results:")
     else:
         parts.append("Retrieval complete. Most relevant results:")
-        
+
     for idx, row in enumerate(rows[:5], start=1):
         is_parent = str(row.get("_record_level") or "").lower() == "parent"
         if is_parent:

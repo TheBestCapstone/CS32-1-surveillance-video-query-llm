@@ -16,9 +16,11 @@ def create_query_classification_node(**kwargs):
         user_query = InputValidator.resolve_active_query(state)
         result = classify_query(user_query, llm=llm, config=config)
         label = result["label"]
+        answer_type = result.get("answer_type", "unknown")
         compat_mode = classify_mode_from_label(label)
         return {
             "classification_result": result,
+            "answer_type": answer_type,
             "tool_choice": {
                 "mode": compat_mode,
                 "sql_needed": compat_mode == "pure_sql",
@@ -29,8 +31,8 @@ def create_query_classification_node(**kwargs):
             "messages": [
                 AIMessage(
                     content=(
-                        f"Classification complete: label={label}, compat_mode={compat_mode}, "
-                        "execution=parallel_sql_hybrid"
+                        f"Classification complete: label={label}, answer_type={answer_type}, "
+                        f"compat_mode={compat_mode}, execution=parallel_sql_hybrid"
                     )
                 )
             ],

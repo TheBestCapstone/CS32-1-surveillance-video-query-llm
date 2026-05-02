@@ -3,6 +3,7 @@ import json
 from langchain_core.messages import ToolMessage
 
 from agents.shared import run_react_sub_agent
+from tools.llamaindex_adapter import run_llamaindex_sql_query, use_llamaindex_sql
 from tools.sql_tools import execute_dynamic_sql, inspect_column_enum_values, inspect_database_schema
 
 PURE_SQL_AGENT_PROMPT = """
@@ -50,6 +51,8 @@ def _extract_sql_result(response: dict) -> tuple[str, list[dict]]:
 
 
 def run_pure_sql_sub_agent(user_query: str, llm):
+    if use_llamaindex_sql():
+        return run_llamaindex_sql_query(user_query)
     return run_react_sub_agent(
         user_query=user_query,
         llm=llm,
@@ -58,4 +61,3 @@ def run_pure_sql_sub_agent(user_query: str, llm):
         result_extractor=_extract_sql_result,
         recursion_limit=10,
     )
-

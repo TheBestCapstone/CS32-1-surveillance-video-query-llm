@@ -385,6 +385,7 @@ def create_tool_router_node(llm: Any = None, init_prompt_text: str = ""):
             "candidate_limit": existing_search_config.get("candidate_limit", 80),
             "top_k_per_event": existing_search_config.get("top_k_per_event", 20),
             "rerank_top_k": existing_search_config.get("rerank_top_k", 5),
+            "rerank_candidate_limit": existing_search_config.get("rerank_candidate_limit", 20),
             "distance_threshold": existing_search_config.get("distance_threshold"),
         }
         sql_plan = {
@@ -419,24 +420,32 @@ def create_tool_router_node(llm: Any = None, init_prompt_text: str = ""):
     return tool_router_node
 
 
+_LEGACY_DISABLE_PURE_SQL_FLAG = "AGENT_LEGACY_DISABLE_PURE_SQL_TERMINAL"
+
+
+def _legacy_disable_pure_sql_terminal() -> bool:
+    # P1-6: opt-in switch that redirects the legacy router's `pure_sql` terminal
+    # branch to `hybrid_search_node`. Default path (`parallel_fusion`) already
+    # treats SQL as a fusion channel; this flag lets legacy setups converge
+    # without touching the terminal graph topology.
+    raw = os.getenv(_LEGACY_DISABLE_PURE_SQL_FLAG, "").strip().lower()
+    return raw in {"1", "true", "yes", "on"}
+
+
 def route_by_tool_choice(state: AgentState) -> str:
     tool_choice = state.get("tool_choice", {})
     mode = tool_choice.get("mode", "none")
     if mode in {"hybrid_search", "hybrid"}:
         return "hybrid_search_node"
     if mode in {"pure_sql", "sql"}:
+        if _legacy_disable_pure_sql_terminal():
+            return "hybrid_search_node"
         return "pure_sql_node"
     return "hybrid_search_node"
 
 
 def deprecated_route_from_preprocess(state: AgentState) -> str:
-    tool_choice = state.get("tool_choice", {})
-    mode = tool_choice.get("mode", "none")
-    if mode in {"hybrid_search", "hybrid"}:
-        return "hybrid_search_node"
-    if mode in {"pure_sql", "sql"}:
-        return "pure_sql_node"
-    return "hybrid_search_node"
+    return route_by_tool_choice(state)
 
 
 route_from_preprocess = deprecated_route_from_preprocess

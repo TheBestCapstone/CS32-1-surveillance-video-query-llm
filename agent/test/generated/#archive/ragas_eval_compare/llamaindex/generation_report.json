@@ -1,0 +1,475 @@
+{
+  "cases": [
+    {
+      "case_id": "PART1_0002",
+      "video_id": "Abuse037_x264",
+      "question": "Is there a clip of a car running over a black dog on the road?",
+      "reference_answer": "Yes. The relevant clip is in Abuse037_x264, around 0:00:06 - 0:00:22.",
+      "response": "No matching results found. You can add more specific descriptions like colors or actions.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": null,
+          "context_recall": null
+        },
+        "generation": {
+          "answer_relevancy": 0.0,
+          "factual_correctness": 0.0,
+          "faithfulness": null
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.0
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0003",
+      "video_id": "Abuse037_x264",
+      "question": "A vehicle injured an animal on the road, and other animals approached the injured one afterward.",
+      "reference_answer": "Yes. The relevant clip is in Abuse037_x264, around 0:00:30 - 0:00:43.",
+      "response": "No matching results found. You can add more specific descriptions like colors or actions.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": null,
+          "context_recall": null
+        },
+        "generation": {
+          "answer_relevancy": 0.0,
+          "factual_correctness": 0.0,
+          "faithfulness": null
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.0
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0004",
+      "video_id": "Abuse037_x264",
+      "question": "An animal bent down to pull the tail of a motionless object on the ground, then left after a moment.",
+      "reference_answer": "No matching clip is expected.",
+      "response": "In one video, a gray dog pulls the tail of another dog that had just been run over by a car, stays briefly, then leaves. This matches your description of an animal interacting with a motionless object on the ground before departing.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.0,
+          "context_recall": 0.0
+        },
+        "generation": {
+          "answer_relevancy": 0.2881,
+          "factual_correctness": 0.0,
+          "faithfulness": 0.2
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.0976
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0005",
+      "video_id": "Abuse038_x264",
+      "question": "Is there a clip of two puppies being hit by a car and rolling on the road?",
+      "reference_answer": "Yes. The relevant clip is in Abuse038_x264, around 0:00:09 - 0:00:13.",
+      "response": "No matching results found. You can add more specific descriptions like colors or actions.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": null,
+          "context_recall": null
+        },
+        "generation": {
+          "answer_relevancy": 0.0,
+          "factual_correctness": 0.0,
+          "faithfulness": null
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.0
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0006",
+      "video_id": "Abuse038_x264",
+      "question": "Animals fell on the road after a vehicle passed, while pedestrians were chatting nearby.",
+      "reference_answer": "Yes. The relevant clip is in Abuse038_x264, around 0:00:11 - 0:00:14.",
+      "response": "In one video, two puppies appeared on a road where adults were chatting nearby; a black car hit them, and they rolled on the road before one ran to safety. In another, a white car struck a black dog while several dogs ran onto the road. Both incidents occurred amid moving traffic and bystanders.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 1.0,
+          "context_recall": 1.0
+        },
+        "generation": {
+          "answer_relevancy": 0.3283,
+          "factual_correctness": 0.0,
+          "faithfulness": 0.4444
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.5545
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0007",
+      "video_id": "Abuse038_x264",
+      "question": "A car with its lights on stopped, and the headlights shone on something on the road ahead.",
+      "reference_answer": "Yes. The relevant clip is in Abuse038_x264, around 0:00:14 - 0:00:20.",
+      "response": "In one video, a car with its headlights on stops on the road, illuminating a puppy ahead. This occurs amid a distressing scene where two puppies had earlier been hit by a black car, and one remains on the road before running to safety. The event takes place on a busy road with several adults nearby.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 1.0,
+          "context_recall": 1.0
+        },
+        "generation": {
+          "answer_relevancy": 0.3599,
+          "factual_correctness": 0.0,
+          "faithfulness": null
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.59
+        },
+        "metric_errors": {
+          "faithfulness": "<failed_attempts>\n\n<generation number=\"1\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29322, Requested 1572. Please try again in 1.788s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"2\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29462, Requested 1572. Please try again in 2.068s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"3\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 28936, Requested 1572. Please try again in 1.016s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n</failed_attempts>\n\n<last_exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 28936, Requested 1572. Please try again in 1.016s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</last_exception>"
+        }
+      }
+    },
+    {
+      "case_id": "PART1_0008",
+      "video_id": "Abuse039_x264",
+      "question": "Is there a video of two staff members conducting a full-body search on a detained woman in a closed room?",
+      "reference_answer": "Yes. The relevant clip is in Abuse039_x264, around 0:03:03 - 0:04:40.",
+      "response": "Yes, a video (Abuse039_x264) shows two staff members—a yellow-haired woman and a man in black—interacting with a detained black-haired woman in a closed room. Between 316–341 seconds, the yellow-haired woman conducts what appears to be a full-body search while the woman is bent over against a wall. The man is present during parts of the encounter but leaves the room shortly after.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.0,
+          "context_recall": 0.0
+        },
+        "generation": {
+          "answer_relevancy": 0.4207,
+          "factual_correctness": 0.0,
+          "faithfulness": null
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.1052
+        },
+        "metric_errors": {
+          "faithfulness": "<failed_attempts>\n\n<generation number=\"1\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29171, Requested 1605. Please try again in 1.552s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"2\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29244, Requested 1605. Please try again in 1.698s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"3\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29648, Requested 1605. Please try again in 2.506s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n</failed_attempts>\n\n<last_exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29648, Requested 1605. Please try again in 2.506s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</last_exception>"
+        }
+      }
+    },
+    {
+      "case_id": "PART1_0009",
+      "video_id": "Abuse039_x264",
+      "question": "A woman was repeatedly told to turn around and face the wall in a closed room, and was forced to undress.",
+      "reference_answer": "Yes. The relevant clip is in Abuse039_x264, around 0:00:09 - 0:05:50.",
+      "response": "In one video, a black-haired woman is repeatedly told to face the wall in a closed room, pushed against it, and forced to undress while others watch or participate. The scene involves multiple individuals directing her actions, followed by physical aggression. Other retrieved videos show different scenarios involving women and children but do not match the described event.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.0,
+          "context_recall": null
+        },
+        "generation": {
+          "answer_relevancy": 0.3195,
+          "factual_correctness": 0.0,
+          "faithfulness": 0.2857
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.1513
+        },
+        "metric_errors": {
+          "context_recall": "<failed_attempts>\n\n<generation number=\"1\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 30000, Requested 2183. Please try again in 4.366s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"2\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29202, Requested 2183. Please try again in 2.77s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"3\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 28823, Requested 2183. Please try again in 2.012s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n</failed_attempts>\n\n<last_exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 28823, Requested 2183. Please try again in 2.012s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</last_exception>"
+        }
+      }
+    },
+    {
+      "case_id": "PART1_0010",
+      "video_id": "Abuse039_x264",
+      "question": "A person used a handheld device to scan another person top to bottom, then someone took shoes from a conveyor belt.",
+      "reference_answer": "Yes. The relevant clip is in Abuse039_x264, around 0:05:15 - 0:05:40.",
+      "response": "In one video, a yellow-haired woman uses a handheld device to scan a black-haired woman from head to toe, while a man in black stands nearby. Shortly after, the same man takes shoes from a conveyor belt on a machine and leaves the room. This matches your description of scanning someone top to bottom and retrieving shoes from a conveyor belt.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": null,
+          "context_recall": null
+        },
+        "generation": {
+          "answer_relevancy": 0.2446,
+          "factual_correctness": 0.0,
+          "faithfulness": 0.0
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.0815
+        },
+        "metric_errors": {
+          "context_precision": "<failed_attempts>\n\n<generation number=\"1\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29007, Requested 1386. Please try again in 786ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"2\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29103, Requested 1386. Please try again in 977ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"3\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29105, Requested 1386. Please try again in 982ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n</failed_attempts>\n\n<last_exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29105, Requested 1386. Please try again in 982ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</last_exception>",
+          "context_recall": "<failed_attempts>\n\n<generation number=\"1\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 28704, Requested 2185. Please try again in 1.778s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"2\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29493, Requested 2185. Please try again in 3.356s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"3\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 30000, Requested 2185. Please try again in 4.37s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n</failed_attempts>\n\n<last_exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 30000, Requested 2185. Please try again in 4.37s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</last_exception>"
+        }
+      }
+    },
+    {
+      "case_id": "PART1_0011",
+      "video_id": "Abuse040_x264",
+      "question": "Is there a clip of a caregiver repeatedly hitting a white-haired elderly person on the head while they sit on a sofa?",
+      "reference_answer": "Yes. The relevant clip is in Abuse040_x264.",
+      "response": "No matching results found. You can add more specific descriptions like colors or actions.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": null,
+          "context_recall": null
+        },
+        "generation": {
+          "answer_relevancy": 0.0,
+          "factual_correctness": 0.0,
+          "faithfulness": null
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.0
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0012",
+      "video_id": "Abuse040_x264",
+      "question": "A person pushed a wheelchair next to a seated elderly person but also used violence against them.",
+      "reference_answer": "Yes. The relevant clip is in Abuse040_x264.",
+      "response": "In one video, a woman in blue pushes a wheelchair next to a seated elderly woman in pink, then repeatedly hits her on the head and slaps her—both while she’s on the sofa and after she stands up. The abuse occurs over about 90 seconds in a room, with the caregiver following the elderly woman toward the door while continuing to assault her.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.0,
+          "context_recall": null
+        },
+        "generation": {
+          "answer_relevancy": 0.3564,
+          "factual_correctness": 0.0,
+          "faithfulness": 0.0
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.0891
+        },
+        "metric_errors": {
+          "context_recall": "<failed_attempts>\n\n<generation number=\"1\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 28283, Requested 2174. Please try again in 914ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"2\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29149, Requested 2174. Please try again in 2.646s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"3\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 28288, Requested 2174. Please try again in 924ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n</failed_attempts>\n\n<last_exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 28288, Requested 2174. Please try again in 924ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</last_exception>"
+        }
+      }
+    },
+    {
+      "case_id": "PART1_0013",
+      "video_id": "Abuse040_x264",
+      "question": "After entering the room, the person turned off the light, then moved a piece of furniture next to a seated person.",
+      "reference_answer": "Yes. The relevant clip is in Abuse040_x264.",
+      "response": "In video Abuse040_x264, a woman in a blue top enters a room, turns off the light, and then moves a wheelchair next to a seated white-haired woman in pink clothes. This matches your description of someone entering, turning off the light, and moving furniture near a seated person.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 1.0,
+          "context_recall": null
+        },
+        "generation": {
+          "answer_relevancy": 0.1439,
+          "factual_correctness": 0.0,
+          "faithfulness": null
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.3813
+        },
+        "metric_errors": {
+          "context_recall": "<failed_attempts>\n\n<generation number=\"1\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 28494, Requested 2179. Please try again in 1.346s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"2\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 30000, Requested 2179. Please try again in 4.358s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"3\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29288, Requested 2179. Please try again in 2.934s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n</failed_attempts>\n\n<last_exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29288, Requested 2179. Please try again in 2.934s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</last_exception>",
+          "faithfulness": "<failed_attempts>\n\n<generation number=\"1\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 30000, Requested 1576. Please try again in 3.152s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"2\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29476, Requested 1576. Please try again in 2.104s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"3\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 28480, Requested 1576. Please try again in 112ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n</failed_attempts>\n\n<last_exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 28480, Requested 1576. Please try again in 112ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</last_exception>"
+        }
+      }
+    },
+    {
+      "case_id": "PART1_0014",
+      "video_id": "Abuse041_x264",
+      "question": "Is there indoor surveillance of multiple children sitting at green tables with an adult woman nearby?",
+      "reference_answer": "Yes. The relevant clip is in Abuse041_x264.",
+      "response": "Yes, in one video (Abuse041_x264), there is indoor footage showing multiple children sitting near three green tables, with a woman in pink clothes nearby—she’s seen cleaning the floor and interacting with the space. This matches your description of indoor surveillance with children at green tables and an adult woman present.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 1.0,
+          "context_recall": null
+        },
+        "generation": {
+          "answer_relevancy": 0.7955,
+          "factual_correctness": 0.0,
+          "faithfulness": null
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.5985
+        },
+        "metric_errors": {
+          "context_recall": "<failed_attempts>\n\n<generation number=\"1\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 30000, Requested 2175. Please try again in 4.35s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"2\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 30000, Requested 2175. Please try again in 4.35s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"3\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29906, Requested 2175. Please try again in 4.162s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n</failed_attempts>\n\n<last_exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29906, Requested 2175. Please try again in 4.162s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</last_exception>",
+          "faithfulness": "<failed_attempts>\n\n<generation number=\"1\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29127, Requested 1584. Please try again in 1.422s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"2\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29687, Requested 1584. Please try again in 2.542s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"3\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29686, Requested 1584. Please try again in 2.54s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n</failed_attempts>\n\n<last_exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29686, Requested 1584. Please try again in 2.54s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</last_exception>"
+        }
+      }
+    },
+    {
+      "case_id": "PART1_0015",
+      "video_id": "Abuse041_x264",
+      "question": "A woman moved around alone in a closed space with multiple children, occasionally crouching to clean the floor.",
+      "reference_answer": "Yes. The relevant clip is in Abuse041_x264.",
+      "response": "In one video, a woman in pink clothes moves around a room with multiple children, occasionally crouching to clean the floor near green tables. She’s seen holding a child, walking through the space, and tidying up while several children sit nearby.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 1.0,
+          "context_recall": null
+        },
+        "generation": {
+          "answer_relevancy": 0.2867,
+          "factual_correctness": 0.0,
+          "faithfulness": 0.2
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.3717
+        },
+        "metric_errors": {
+          "context_recall": "<failed_attempts>\n\n<generation number=\"1\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29575, Requested 2178. Please try again in 3.506s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"2\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 30000, Requested 2178. Please try again in 4.356s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"3\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 30000, Requested 2178. Please try again in 4.356s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n</failed_attempts>\n\n<last_exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 30000, Requested 2178. Please try again in 4.356s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</last_exception>"
+        }
+      }
+    },
+    {
+      "case_id": "PART1_0016",
+      "video_id": "Abuse041_x264",
+      "question": "A woman held a child with one hand and pulled out a green object from under the table with the other.",
+      "reference_answer": "Yes. The relevant clip is in Abuse041_x264.",
+      "response": "In one video, a woman in pink clothes is seen holding a child with one hand and pulling out a green stool from under a table with the other. This occurs early in the video (0–5.3 seconds) inside a room. Later, she puts the child down and moves around the space. Other videos show different scenarios involving women caring for or interacting with children, but only the first matches the specific action described.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 1.0,
+          "context_recall": null
+        },
+        "generation": {
+          "answer_relevancy": 0.2559,
+          "factual_correctness": 0.0,
+          "faithfulness": 0.625
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.4702
+        },
+        "metric_errors": {
+          "context_recall": "<failed_attempts>\n\n<generation number=\"1\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29561, Requested 2175. Please try again in 3.472s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"2\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 30000, Requested 2175. Please try again in 4.35s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"3\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 30000, Requested 2175. Please try again in 4.35s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n</failed_attempts>\n\n<last_exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 30000, Requested 2175. Please try again in 4.35s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</last_exception>"
+        }
+      }
+    },
+    {
+      "case_id": "PART1_0017",
+      "video_id": "Abuse042_x264",
+      "question": "Is there a video of a woman feeding a baby on the floor and forcefully pushing the baby at some point?",
+      "reference_answer": "Yes. The relevant clip is in Abuse042_x264.",
+      "response": "Yes, a video (Abuse042_x264) shows a woman in pink clothing feeding a baby on the floor and, at around 49.8–54.6 seconds, pushing the baby hard before continuing to feed. Later segments also show her slapping and roughly handling the child.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 1.0,
+          "context_recall": null
+        },
+        "generation": {
+          "answer_relevancy": 0.4493,
+          "factual_correctness": 0.0,
+          "faithfulness": 0.2
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.4123
+        },
+        "metric_errors": {
+          "context_recall": "<failed_attempts>\n\n<generation number=\"1\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 30000, Requested 2176. Please try again in 4.352s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"2\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 28362, Requested 2176. Please try again in 1.076s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"3\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 30000, Requested 2176. Please try again in 4.352s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n</failed_attempts>\n\n<last_exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 30000, Requested 2176. Please try again in 4.352s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</last_exception>"
+        }
+      }
+    },
+    {
+      "case_id": "PART1_0018",
+      "video_id": "Abuse042_x264",
+      "question": "A baby lay alone on the floor for a long time while the caregiver was away.",
+      "reference_answer": "Yes. The relevant clip is in Abuse042_x264.",
+      "response": "In one video, a baby is seen lying alone on the floor holding a bottle for over a minute while the caregiver is away. When she returns, she feeds and interacts with the child, but also engages in rough handling, including hitting with a pillow and slapping. The footage shows repeated instances of the caregiver leaving the baby unattended and using physical force during care.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": null,
+          "context_recall": null
+        },
+        "generation": {
+          "answer_relevancy": 0.4795,
+          "factual_correctness": 0.0,
+          "faithfulness": 0.125
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.2015
+        },
+        "metric_errors": {
+          "context_precision": "<failed_attempts>\n\n<generation number=\"1\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 30000, Requested 1369. Please try again in 2.738s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"2\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29213, Requested 1369. Please try again in 1.164s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"3\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29611, Requested 1369. Please try again in 1.959s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n</failed_attempts>\n\n<last_exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29611, Requested 1369. Please try again in 1.959s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</last_exception>",
+          "context_recall": "<failed_attempts>\n\n<generation number=\"1\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 30000, Requested 2169. Please try again in 4.338s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"2\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 30000, Requested 2169. Please try again in 4.338s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"3\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 30000, Requested 2169. Please try again in 4.338s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n</failed_attempts>\n\n<last_exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 30000, Requested 2169. Please try again in 4.338s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</last_exception>"
+        }
+      }
+    },
+    {
+      "case_id": "PART1_0019",
+      "video_id": "Abuse042_x264",
+      "question": "A woman talked on the phone while continuously patting the back of a baby lying beside her with her other hand.",
+      "reference_answer": "Yes. The relevant clip is in Abuse042_x264.",
+      "response": "In one video, a woman in pink clothes is seen patting a baby’s back with one hand while talking on the phone with the other. This occurs around the 12- to 13-minute mark, with the baby lying beside her. The same video also shows various other interactions between the woman and the baby, including feeding, wiping the baby’s mouth, and at times, rough handling.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": null,
+          "context_recall": null
+        },
+        "generation": {
+          "answer_relevancy": 0.5478,
+          "factual_correctness": 0.0,
+          "faithfulness": 0.125
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.2243
+        },
+        "metric_errors": {
+          "context_precision": "<failed_attempts>\n\n<generation number=\"1\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29071, Requested 1378. Please try again in 898ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"2\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29683, Requested 1378. Please try again in 2.122s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"3\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29094, Requested 1378. Please try again in 943ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n</failed_attempts>\n\n<last_exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29094, Requested 1378. Please try again in 943ms. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</last_exception>",
+          "context_recall": "<failed_attempts>\n\n<generation number=\"1\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29023, Requested 2178. Please try again in 2.402s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"2\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 30000, Requested 2178. Please try again in 4.356s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"3\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 28916, Requested 2178. Please try again in 2.188s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n</failed_attempts>\n\n<last_exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 28916, Requested 2178. Please try again in 2.188s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</last_exception>"
+        }
+      }
+    },
+    {
+      "case_id": "PART1_0020",
+      "video_id": "Arrest043_x264",
+      "question": "Is there a clip of a police officer stomping on and beating a person lying on the ground in a yard?",
+      "reference_answer": "Yes. The relevant clip is in Arrest043_x264.",
+      "response": "No matching results found. You can add more specific descriptions like colors or actions.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": null,
+          "context_recall": null
+        },
+        "generation": {
+          "answer_relevancy": 0.0,
+          "factual_correctness": 0.0,
+          "faithfulness": null
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.0
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0021",
+      "video_id": "Arrest043_x264",
+      "question": "Law enforcement was present, but one officer inflicted physical harm beyond normal procedure on a restrained person.",
+      "reference_answer": "Yes. The relevant clip is in Arrest043_x264.",
+      "response": "In one video, a man in a yellow hat and black police uniform is seen beating a restrained individual lying on the ground, stepping on him and pressing down forcefully. Law enforcement personnel are present throughout the incident, and the victim appears to be already subdued with hands tied before the excessive force occurs.",
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.0,
+          "context_recall": null
+        },
+        "generation": {
+          "answer_relevancy": 0.3992,
+          "factual_correctness": 0.0,
+          "faithfulness": 0.0
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.0998
+        },
+        "metric_errors": {
+          "context_recall": "<failed_attempts>\n\n<generation number=\"1\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29288, Requested 2179. Please try again in 2.934s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"2\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29343, Requested 2179. Please try again in 3.044s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n<generation number=\"3\">\n<exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29273, Requested 2179. Please try again in 2.904s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</exception>\n<completion>\n    None\n</completion>\n</generation>\n\n</failed_attempts>\n\n<last_exception>\n    Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o in organization org-VI1F6u5rNCpzlvsUCErTPhz6 on tokens per min (TPM): Limit 30000, Used 29273, Requested 2179. Please try again in 2.904s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}\n</last_exception>"
+        }
+      }
+    }
+  ]
+}

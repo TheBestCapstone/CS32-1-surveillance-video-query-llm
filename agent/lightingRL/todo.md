@@ -10,9 +10,7 @@
 - [x] 调研 `Agent-lightning/LightningRL` 的 prompt 优化与 RL 训练能力
 - [x] 明确第一阶段训练目标只针对当前默认主链路
 - [x] 输出完整接入方案到 `plan.md`
-- [x] 将当前 prompt 从节点代码中抽离为统一 `prompt registry`
-- [x] 修改节点代码接入 `prompt registry` 并保持默认行为不变
-- [x] 新增 `smoke test` 验证 prompt 读取路径与输出结构
+- [ ] 将当前 prompt 从节点代码中抽离为可注入的 `prompt registry`
 - [ ] 建立 `agent_test` 到 `Agent-lightning dataset` 的转换脚本
 - [ ] 建立基于 `RAGAS + 路由命中 + 延迟约束` 的 reward 适配层
 - [ ] 建立 `Trainer.dev()` 干跑脚本验证 traces 与 reward
@@ -27,8 +25,7 @@
 - [x] 交付当前仓库与框架的调研结论
 - [x] 交付 prompt 优先级排序与不建议训练项
 - [x] 交付分阶段接入路线
-- [x] 交付 `prompt registry` 原型代码
-- [x] 交付 `smoke test` 原型脚本
+- [ ] 交付 `prompt registry` 原型代码
 - [ ] 交付 `dataset builder` 原型代码
 - [ ] 交付 `reward adapter` 原型代码
 - [ ] 交付 `APO` 实验脚本
@@ -40,4 +37,3 @@
 - 第二优先级: `query classification prompt`
 - 第三优先级: `self_query prompt`
 - 暂不纳入第一阶段: `legacy_router` 下的 `init prompt` 与 `router prompts`
-- 当前已通过: `python agent/test_somke/prompt_registry_smoke_test.py`

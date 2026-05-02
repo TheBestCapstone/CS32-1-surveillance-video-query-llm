@@ -2,6 +2,7 @@ import sqlite3
 from typing import List, Dict, Any, Optional
 from langchain_core.tools import tool
 from node.types import default_sqlite_db_path
+from tools.sql_debug_utils import extract_where_clause, find_unknown_sql_columns, get_sqlite_table_columns, log_sql_debug
 
 @tool
 def inspect_database_schema(table_name: str = "episodic_events") -> str:
@@ -59,11 +60,20 @@ def execute_dynamic_sql(sql_query: str) -> str:
         # Set row factory to sqlite3.Row to return dict-like records
         conn.row_factory = sqlite3.Row
         cursor = conn.cursor()
+        schema_columns = get_sqlite_table_columns(db_path)
         
         # Simple defense: only allow SELECT queries
         if not sql_query.strip().upper().startswith("SELECT"):
             return "Error: Only SELECT queries are allowed."
-            
+        where_clause = extract_where_clause(sql_query)
+        unknown_columns = find_unknown_sql_columns(sql_query, schema_columns)
+        log_sql_debug(
+            "execute_dynamic_sql",
+            db_path=str(db_path),
+            final_sql=sql_query,
+            where_clause=where_clause,
+            unknown_columns=unknown_columns,
+        )
         cursor.execute(sql_query)
         rows = cursor.fetchall()
         

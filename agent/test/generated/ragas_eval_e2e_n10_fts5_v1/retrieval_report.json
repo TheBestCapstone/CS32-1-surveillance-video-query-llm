@@ -1,0 +1,344 @@
+{
+  "cases": [
+    {
+      "case_id": "PART1_0002",
+      "video_id": "Abuse037_x264",
+      "question": "Is there a clip of a car running over a black dog on the road?",
+      "retrieved_contexts": [
+        "Video Abuse037_x264. Track segment_1. Time range 1.2s to 8.2s. Appearance notes: High activity; A white car with double flashes slowly appeared on the screen, crushing the black dog walking in the middle of the road. Located in: road. Events: From 1.2s to 8.2s, a white car with double flashes slowly appeared on the screen, crushing the black dog walking in the middle of the road. Keywords: white, car, double, flashes, slowly, appeared.",
+        "Video Abuse038_x264. Track segment_1. Time range 0.3s to 10.4s. Appearance notes: High activity; Several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies. Located in: road. Events: From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies. Keywords: several, adults, talking, side, road, many.",
+        "From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies.",
+        "Video Abuse037_x264. Track segment_3. Time range 25.3s to 48.5s. Appearance notes: High activity; There was a black dog left on the road. It walked to the middle of the road next to the dog that had just been crushed. Located in: road. Events: From 25.3s to 48.5s, there was a black dog left on the road. It walked to the middle of the road next to the dog that had just been crushed. Keywords: black, dog, left, road, walked, middle.",
+        "Video Arrest050_x264. Track segment_8. Time range 121.5s to 128.6s. Appearance notes: Observed event; A black police car drove over and stopped on the side of the road. Located in: road. Events: From 121.5s to 128.6s, a black police car drove over and stopped on the side of the road. Keywords: black, police, car, drove, stopped, side."
+      ],
+      "top_video_ids": [
+        "Abuse037_x264",
+        "Abuse038_x264",
+        "Abuse038_x264",
+        "Abuse037_x264",
+        "Arrest050_x264"
+      ],
+      "top_hit": true,
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.8333,
+          "context_recall": 1.0
+        },
+        "generation": {
+          "factual_correctness": 0.5,
+          "faithfulness": 1.0
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.8333
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0003",
+      "video_id": "Abuse037_x264",
+      "question": "A vehicle injured an animal on the road, and other animals approached the injured one afterward.",
+      "retrieved_contexts": [
+        "Video Abuse038_x264. Track segment_1. Time range 0.3s to 10.4s. Appearance notes: High activity; Several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies. Located in: road. Events: From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies. Keywords: several, adults, talking, side, road, many.",
+        "Video Arrest050_x264. Track segment_4. Time range 68.1s to 70.8s. Appearance notes: High activity; A black car hit a building on the side of the road and stopped. Located in: road. Events: From 68.1s to 70.8s, a black car hit a building on the side of the road and stopped. Keywords: black, car, hit, building, side, road.",
+        "Video Abuse037_x264. Track segment_2. Time range 8.4s to 25.3s. Appearance notes: High activity; The white car was driving in the middle of the road, and several dogs ran onto the road. Located in: road. Events: From 8.4s to 25.3s, the white car was driving in the middle of the road, and several dogs ran onto the road. Keywords: white, car, driving, middle, road, several.",
+        "Video Abuse038_x264. Track segment_2. Time range 11.5s to 17.2s. Appearance notes: Observed event; Two puppies rolled on the road, then one of the dogs left the road and the other stopped in the middle of the road. Located in: road. Events: From 11.5s to 17.2s, two puppies rolled on the road, then one of the dogs left the road and the other stopped in the middle of the road. Keywords: two, puppies, rolled, road, one, dogs.",
+        "Video Abuse037_x264. Track segment_3. Time range 25.3s to 48.5s. Appearance notes: High activity; There was a black dog left on the road. It walked to the middle of the road next to the dog that had just been crushed. Located in: road. Events: From 25.3s to 48.5s, there was a black dog left on the road. It walked to the middle of the road next to the dog that had just been crushed. Keywords: black, dog, left, road, walked, middle."
+      ],
+      "top_video_ids": [
+        "Abuse038_x264",
+        "Arrest050_x264",
+        "Abuse037_x264",
+        "Abuse038_x264",
+        "Abuse037_x264"
+      ],
+      "top_hit": true,
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.3333,
+          "context_recall": 0.0
+        },
+        "generation": {
+          "factual_correctness": 0.0,
+          "faithfulness": 0.75
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.2708
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0004",
+      "video_id": "Abuse037_x264",
+      "question": "An animal bent down to pull the tail of a motionless object on the ground, then left after a moment.",
+      "retrieved_contexts": [
+        "From 40.4s to 47.6s, the gray dog pulled out the tail of the dog that had just been run over by the car, then stayed for a few minutes and left.",
+        "Video Abuse037_x264. Track segment_5. Time range 40.4s to 47.6s. Appearance notes: Observed event; The gray dog pulled out the tail of the dog that had just been run over by the car, then stayed for a few minutes and left. Located in: unknown. Events: From 40.4s to 47.6s, the gray dog pulled out the tail of the dog that had just been run over by the car, then stayed for a few minutes and left. Keywords: gray, dog, pulled, out, tail, had.",
+        "Video Arrest043_x264. Track segment_11. Time range 122.2s to 222.3s. Appearance notes: Observed event; During this period, a man stood on the man lying on the ground and kept pulling something. Located in: unknown. Events: From 122.2s to 222.3s, during this period, a man stood on the man lying on the ground and kept pulling something. Keywords: during, period, man, stood, lying, ground.",
+        "From 224.7s to 236.5s, a man lying on the ground stood up and walked to the side of another man lying on the ground.",
+        "From 48.5s to 59.1s, the black dog walked away and left the middle of the road."
+      ],
+      "top_video_ids": [
+        "Abuse037_x264",
+        "Abuse037_x264",
+        "Arrest043_x264",
+        "Arrest043_x264",
+        "Abuse037_x264"
+      ],
+      "top_hit": true,
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.0,
+          "context_recall": 0.0
+        },
+        "generation": {
+          "factual_correctness": 0.0,
+          "faithfulness": 1.0
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.25
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0005",
+      "video_id": "Abuse038_x264",
+      "question": "Is there a clip of two puppies being hit by a car and rolling on the road?",
+      "retrieved_contexts": [
+        "From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies.",
+        "Video Abuse038_x264. Track segment_1. Time range 0.3s to 10.4s. Appearance notes: High activity; Several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies. Located in: road. Events: From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies. Keywords: several, adults, talking, side, road, many.",
+        "Video Abuse038_x264. Track segment_4. Time range 14.5s to 20.6s. Appearance notes: Observed event; In the middle of the road on one side, a car with lights on stopped driving, and the lights shone on the puppy on the road in front. Located in: road. Events: From 14.5s to 20.6s, in the middle of the road on one side, a car with lights on stopped driving, and the lights shone on the puppy on the road in front. Keywords: middle, road, one, side, car, lights.",
+        "From 14.5s to 20.6s, in the middle of the road on one side, a car with lights on stopped driving, and the lights shone on the puppy on the road in front.",
+        "From 1.2s to 8.2s, a white car with double flashes slowly appeared on the screen, crushing the black dog walking in the middle of the road."
+      ],
+      "top_video_ids": [
+        "Abuse038_x264",
+        "Abuse038_x264",
+        "Abuse038_x264",
+        "Abuse038_x264",
+        "Abuse037_x264"
+      ],
+      "top_hit": true,
+      "ragas": {
+        "retrieval": {
+          "context_precision": 1.0,
+          "context_recall": 0.5
+        },
+        "generation": {
+          "factual_correctness": 0.5,
+          "faithfulness": 0.6667
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.6667
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0006",
+      "video_id": "Abuse038_x264",
+      "question": "Animals fell on the road after a vehicle passed, while pedestrians were chatting nearby.",
+      "retrieved_contexts": [
+        "From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies.",
+        "Video Abuse038_x264. Track segment_1. Time range 0.3s to 10.4s. Appearance notes: High activity; Several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies. Located in: road. Events: From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies. Keywords: several, adults, talking, side, road, many.",
+        "Video Abuse037_x264. Track segment_3. Time range 25.3s to 48.5s. Appearance notes: High activity; There was a black dog left on the road. It walked to the middle of the road next to the dog that had just been crushed. Located in: road. Events: From 25.3s to 48.5s, there was a black dog left on the road. It walked to the middle of the road next to the dog that had just been crushed. Keywords: black, dog, left, road, walked, middle.",
+        "Video Abuse037_x264. Track segment_2. Time range 8.4s to 25.3s. Appearance notes: High activity; The white car was driving in the middle of the road, and several dogs ran onto the road. Located in: road. Events: From 8.4s to 25.3s, the white car was driving in the middle of the road, and several dogs ran onto the road. Keywords: white, car, driving, middle, road, several.",
+        "Video Abuse037_x264. Track segment_4. Time range 48.5s to 59.1s. Appearance notes: Observed event; The black dog walked away and left the middle of the road. Located in: road. Events: From 48.5s to 59.1s, the black dog walked away and left the middle of the road. Keywords: black, dog, walked, away, left, middle."
+      ],
+      "top_video_ids": [
+        "Abuse038_x264",
+        "Abuse038_x264",
+        "Abuse037_x264",
+        "Abuse037_x264",
+        "Abuse037_x264"
+      ],
+      "top_hit": true,
+      "ragas": {
+        "retrieval": {
+          "context_precision": 1.0,
+          "context_recall": 0.0
+        },
+        "generation": {
+          "factual_correctness": 0.5,
+          "faithfulness": 0.75
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.5625
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0007",
+      "video_id": "Abuse038_x264",
+      "question": "A car with its lights on stopped, and the headlights shone on something on the road ahead.",
+      "retrieved_contexts": [
+        "From 14.5s to 20.6s, in the middle of the road on one side, a car with lights on stopped driving, and the lights shone on the puppy on the road in front.",
+        "Video Abuse038_x264. Track segment_4. Time range 14.5s to 20.6s. Appearance notes: Observed event; In the middle of the road on one side, a car with lights on stopped driving, and the lights shone on the puppy on the road in front. Located in: road. Events: From 14.5s to 20.6s, in the middle of the road on one side, a car with lights on stopped driving, and the lights shone on the puppy on the road in front. Keywords: middle, road, one, side, car, lights.",
+        "From 133.6s to 206.5s, three cars were parked on the roadside, two white and one black. They all had their lights flashing. Many people were walking on the road.",
+        "Video Arrest050_x264. Track segment_9. Time range 133.6s to 206.5s. Appearance notes: High activity; Three cars were parked on the roadside, two white and one black. They all had their lights flashing. Many people were walking on the road. Located in: road. Events: From 133.6s to 206.5s, three cars were parked on the roadside, two white and one black. They all had their lights flashing. Many people were walking on the road. Keywords: three, cars, parked, roadside, two, white.",
+        "From 5.0s to 10.6s, a car drove to the side of the road and stopped, and there was a white car parked on the side of the road."
+      ],
+      "top_video_ids": [
+        "Abuse038_x264",
+        "Abuse038_x264",
+        "Arrest050_x264",
+        "Arrest050_x264",
+        "Arson020_x264"
+      ],
+      "top_hit": true,
+      "ragas": {
+        "retrieval": {
+          "context_precision": 1.0,
+          "context_recall": 0.5
+        },
+        "generation": {
+          "factual_correctness": 0.5,
+          "faithfulness": 1.0
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.75
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0008",
+      "video_id": "Abuse039_x264",
+      "question": "Is there a video of two staff members conducting a full-body search on a detained woman in a closed room?",
+      "retrieved_contexts": [
+        "From 19.5s to 26.3s, the man in black standing at the door walked into the room and walked in front of the two women.",
+        "From 16.9s to 20.2s, the woman in pink clothes walked to the other side of the room.",
+        "From 87.6s to 96.5s, a bald man in black came and walked next to the two men in the room.",
+        "From 7.5s to 12.6s, a black-haired woman in black clothes walked into the room. She stood on the black footprints in the center of the room.",
+        "From 9.2s to 23.4s, a woman in a blue top walked into the room next to the desk lamp and turned off the light."
+      ],
+      "top_video_ids": [
+        "Abuse039_x264",
+        "Abuse041_x264",
+        "Arrest046_x264",
+        "Abuse039_x264",
+        "Abuse040_x264"
+      ],
+      "top_hit": true,
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.0,
+          "context_recall": 0.0
+        },
+        "generation": {
+          "factual_correctness": 0.0,
+          "faithfulness": 1.0
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.25
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0009",
+      "video_id": "Abuse039_x264",
+      "question": "A woman was repeatedly told to turn around and face the wall in a closed room, and was forced to undress.",
+      "retrieved_contexts": [
+        "From 178.3s to 184.2s, the black-haired woman took a few steps towards the center of the room, and then the yellow-haired woman pushed the black-haired woman to the wall.",
+        "From 316.3s to 341.1s, the black-haired woman bent over the wall, and the yellow-haired woman was behind her, checking the black-haired woman's whole body.",
+        "Video Abuse039_x264. Track segment_23. Time range 316.3s to 341.1s. Appearance notes: Observed event; The black-haired woman bent over the wall, and the yellow-haired woman was behind her, checking the black-haired woman's whole body. Located in: room. Events: From 316.3s to 341.1s, the black-haired woman bent over the wall, and the yellow-haired woman was behind her, checking the black-haired woman's whole body. Keywords: black, haired, woman, bent, wall, yellow.",
+        "Video Abuse039_x264. Track segment_15. Time range 178.3s to 184.2s. Appearance notes: High activity; The black-haired woman took a few steps towards the center of the room, and then the yellow-haired woman pushed the black-haired woman to the wall. Located in: room. Events: From 178.3s to 184.2s, the black-haired woman took a few steps towards the center of the room, and then the yellow-haired woman pushed the black-haired woman to the wall. Keywords: black, haired, woman, took, few, steps.",
+        "From 271.5s to 280.6s, the black-haired woman standing by the wall took off her shirt, and then the yellow-haired woman and the man in black put their clothes aside."
+      ],
+      "top_video_ids": [
+        "Abuse039_x264",
+        "Abuse039_x264",
+        "Abuse039_x264",
+        "Abuse039_x264",
+        "Abuse039_x264"
+      ],
+      "top_hit": true,
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.5833,
+          "context_recall": 0.5
+        },
+        "generation": {
+          "factual_correctness": 1.0,
+          "faithfulness": 0.25
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.5833
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0010",
+      "video_id": "Abuse039_x264",
+      "question": "A person used a handheld device to scan another person top to bottom, then someone took shoes from a conveyor belt.",
+      "retrieved_contexts": [
+        "From 320.5s to 340.8s, the man in black stood next to the machine on the left side of the room. Then the man in black took the shoes from the conveyor belt of the machine and left the room.",
+        "Video Abuse039_x264. Track segment_24. Time range 320.5s to 340.8s. Appearance notes: Observed event; The man in black stood next to the machine on the left side of the room. Then the man in black took the shoes from the conveyor belt of the machine and left the room. Located in: room. Events: From 320.5s to 340.8s, the man in black stood next to the machine on the left side of the room. Then the man in black took the shoes from the conveyor belt of the machine and left the room. Keywords: man, black, stood, machine, left, side.",
+        "From 363.2s to 379.8s, the black-haired woman picked up the clothes on the machine conveyor belt and tried to put them on her body.",
+        "Video Abuse039_x264. Track segment_27. Time range 363.2s to 379.8s. Appearance notes: Observed event; The black-haired woman picked up the clothes on the machine conveyor belt and tried to put them on her body. Located in: unknown. Events: From 363.2s to 379.8s, the black-haired woman picked up the clothes on the machine conveyor belt and tried to put them on her body. Keywords: black, haired, woman, picked, clothes, machine.",
+        "From 121.0s to 134.7s, the man in the vest took off his shoes."
+      ],
+      "top_video_ids": [
+        "Abuse039_x264",
+        "Abuse039_x264",
+        "Abuse039_x264",
+        "Abuse039_x264",
+        "Arrest046_x264"
+      ],
+      "top_hit": true,
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.0,
+          "context_recall": 0.5
+        },
+        "generation": {
+          "factual_correctness": 0.5,
+          "faithfulness": 1.0
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.5
+        },
+        "metric_errors": {}
+      }
+    },
+    {
+      "case_id": "PART1_0011",
+      "video_id": "Abuse040_x264",
+      "question": "Is there a clip of a caregiver repeatedly hitting a white-haired elderly person on the head while they sit on a sofa?",
+      "retrieved_contexts": [
+        "Video Abuse040_x264. Track segment_2. Time range 26.6s to 40.3s. Appearance notes: High activity; The woman in blue clothes took the wheelchair and pushed it to the side of the sofa. Sitting on the sofa was a white-haired woman in pink clothes. Located in: room. Events: From 26.6s to 40.3s, the woman in blue clothes took the wheelchair and pushed it to the side of the sofa. Sitting on the sofa was a white-haired woman in pink clothes. Keywords: woman, blue, clothes, took, wheelchair, pushed.",
+        "Video Abuse040_x264. Track segment_4. Time range 46.4s to 58.7s. Appearance notes: High activity; The woman next to the sofa hit the person on the sofa on the head and pushed it again. The woman on the sofa moved and then touched her leg. Located in: room. Events: From 46.4s to 58.7s, the woman next to the sofa hit the person on the sofa on the head and pushed it again. The woman on the sofa moved and then touched her leg. Keywords: woman, sofa, hit, person, head, pushed.",
+        "Video Abuse040_x264. Track segment_6. Time range 70.1s to 85.8s. Appearance notes: High activity; The white-haired woman on the sofa stood up with her wheelchair, then pushed the wheelchair towards the door, while the woman in blue top walked beside her. Located in: room. Events: From 70.1s to 85.8s, the white-haired woman on the sofa stood up with her wheelchair, then pushed the wheelchair towards the door, while the woman in blue top walked beside her. Keywords: white, haired, woman, sofa, stood, wheelchair.",
+        "Video Abuse040_x264. Track segment_3. Time range 40.3s to 44.4s. Appearance notes: High activity; The woman on the sofa wanted to sit up, but the woman standing next to her hit her on the head. Located in: room. Events: From 40.3s to 44.4s, the woman on the sofa wanted to sit up, but the woman standing next to her hit her on the head. Keywords: woman, sofa, wanted, sit, but, standing.",
+        "Video Abuse040_x264. Track segment_5. Time range 58.7s to 69.1s. Appearance notes: High activity; The woman in the blue top hit the white-haired woman on the head, then turned the wheelchair to her side and walked to the back. Located in: unknown. Events: From 58.7s to 69.1s, the woman in the blue top hit the white-haired woman on the head, then turned the wheelchair to her side and walked to the back. Keywords: woman, blue, top, hit, white, haired."
+      ],
+      "top_video_ids": [
+        "Abuse040_x264",
+        "Abuse040_x264",
+        "Abuse040_x264",
+        "Abuse040_x264",
+        "Abuse040_x264"
+      ],
+      "top_hit": true,
+      "ragas": {
+        "retrieval": {
+          "context_precision": 0.5,
+          "context_recall": 1.0
+        },
+        "generation": {
+          "factual_correctness": 0.5,
+          "faithfulness": 0.75
+        },
+        "end_to_end": {
+          "ragas_e2e_score": 0.6875
+        },
+        "metric_errors": {}
+      }
+    }
+  ]
+}

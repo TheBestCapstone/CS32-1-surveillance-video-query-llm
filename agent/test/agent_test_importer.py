@@ -12,9 +12,16 @@ from openpyxl import load_workbook
 
 
 ROOT_DIR = Path(__file__).resolve().parents[2]
-DEFAULT_XLSX_PATH = ROOT_DIR / "agent" / "test" / "agent_test.xlsx"
+DEFAULT_TEST_DATA_ROOT = ROOT_DIR / "agent" / "test" / "data"
+DEFAULT_XLSX_PATH = DEFAULT_TEST_DATA_ROOT / "agent_test.xlsx"
+# Default output: agent/test/data/imported/
+DEFAULT_IMPORT_OUTPUT_DIR = DEFAULT_TEST_DATA_ROOT / "imported"
+DEFAULT_IMPORT_INCLUDE_SHEETS = ("Part1", "Part4")
+# Legacy path kept for callers that referenced the older default.
 DEFAULT_OUTPUT_DIR = ROOT_DIR / "agent" / "test" / "generated"
 DEFAULT_DB_PATH = DEFAULT_OUTPUT_DIR / "agent_test_eval.sqlite"
+SQLITE_EVAL_FILENAME = DEFAULT_DB_PATH.name
+DEFAULT_IMPORT_SQLITE_PATH = DEFAULT_IMPORT_OUTPUT_DIR / SQLITE_EVAL_FILENAME
 DEFAULT_JSON_PATH = DEFAULT_OUTPUT_DIR / "agent_test_normalized.json"
 DEFAULT_REPORT_PATH = DEFAULT_OUTPUT_DIR / "agent_test_import_report.json"
 DEFAULT_RETRIEVAL_VIEW = DEFAULT_OUTPUT_DIR / "agent_test_retrieval_eval.json"
@@ -58,8 +65,8 @@ CREATE TABLE IF NOT EXISTS {TABLE_NAME} (
 @dataclass
 class AgentTestImportConfig:
     xlsx_path: Path = DEFAULT_XLSX_PATH
-    output_dir: Path = DEFAULT_OUTPUT_DIR
-    sqlite_path: Path = DEFAULT_DB_PATH
+    output_dir: Path = DEFAULT_IMPORT_OUTPUT_DIR
+    sqlite_path: Path = DEFAULT_IMPORT_SQLITE_PATH
     normalized_json_path: Path = DEFAULT_JSON_PATH
     report_json_path: Path = DEFAULT_REPORT_PATH
     retrieval_view_path: Path = DEFAULT_RETRIEVAL_VIEW
@@ -239,6 +246,18 @@ class AgentTestDatasetImporter:
             expected_time_raw=expected_time,
             question_language=question_language,
         )
+        reference_scene_description = self._build_reference_scene_description(
+            recall_challenge=recall_challenge,
+            question=question_text,
+            question_language=question_language,
+        )
+        reference_answer_rich = self._build_reference_answer_rich(
+            video_id=video_id,
+            answer_label=answer_label,
+            expected_time_raw=expected_time,
+            scene_description=reference_scene_description,
+            question_language=question_language,
+        )
         retrieval_ready = 1 if question_text and video_id else 0
         e2e_ready = 1 if retrieval_ready and answer_label in {"yes", "no"} else 0
         generation_ready = 1 if e2e_ready and reference_answer else 0
@@ -263,6 +282,8 @@ class AgentTestDatasetImporter:
             "video_quality_raw": video_quality,
             "video_quality_level": video_quality_level,
             "reference_answer": reference_answer,
+            "reference_scene_description": reference_scene_description,
+            "reference_answer_rich": reference_answer_rich,
             "retrieval_ready": retrieval_ready,
             "e2e_ready": e2e_ready,
             "generation_ready": generation_ready,
@@ -426,6 +447,96 @@ class AgentTestDatasetImporter:
             return "没有匹配片段。" if question_language == "zh" else "No matching clip is expected."
         return None
 
+    # ----- challenge.md: rich reference for RAGAS recall/precision/faithfulness -----
+
+    _QUESTION_EN_STOP_PREFIXES = (
+        "is there a clip of ",
+        "is there a clip showing ",
+        "is there a video of ",
+        "is there a video showing ",
+        "is there any clip of ",
+        "is there any video of ",
+        "are there any clips of ",
+        "are there any videos of ",
+        "did you see ",
+        "do you see ",
+        "have you seen ",
+        "do you have ",
+        "show me ",
+        "find ",
+        "list ",
+    )
+
+    _QUESTION_ZH_STOP_PREFIXES = ("有没有", "是否有", "是否存在", "请问有没有", "请找")
+
+    @staticmethod
+    def _strip_question_wrappers(question: str, language: str) -> str:
+        text = (question or "").strip()
+        if not text:
+            return ""
+        low = text.lower()
+        if language == "zh":
+            for prefix in AgentTestDatasetImporter._QUESTION_ZH_STOP_PREFIXES:
+                if text.startswith(prefix):
+                    text = text[len(prefix):]
+                    break
+            text = text.strip("？?。 ").strip()
+            return text
+        for prefix in AgentTestDatasetImporter._QUESTION_EN_STOP_PREFIXES:
+            if low.startswith(prefix):
+                text = text[len(prefix):]
+                low = text.lower()
+                break
+        text = text.rstrip("?.! ").strip()
+        if text:
+            text = text[0].lower() + text[1:] if text[0].isalpha() else text
+        return text
+
+    @staticmethod
+    def _build_reference_scene_description(
+        *,
+        recall_challenge: str | None,
+        question: str,
+        question_language: str,
+    ) -> str | None:
+        raw = (recall_challenge or "").strip()
+        if raw:
+            return raw.rstrip("。. ") or None
+        stripped_question = AgentTestDatasetImporter._strip_question_wrappers(question, question_language)
+        return stripped_question or None
+
+    @staticmethod
+    def _build_reference_answer_rich(
+        *,
+        video_id: str | None,
+        answer_label: str,
+        expected_time_raw: str | None,
+        scene_description: str | None,
+        question_language: str,
+    ) -> str | None:
+        if answer_label == "no":
+            return "没有匹配片段。" if question_language == "zh" else "No matching clip is expected."
+        if answer_label != "yes":
+            return None
+        video = (video_id or "").strip() or ("未知视频" if question_language == "zh" else "the target video")
+        scene = (scene_description or "").strip()
+        time_text = (expected_time_raw or "").strip()
+        if question_language == "zh":
+            parts: list[str] = [f"有。在视频 {video}"]
+            if time_text:
+                parts.append(f" 的 {time_text} 时段")
+            if scene:
+                parts.append(f"，{scene}")
+            parts.append("。")
+            return "".join(parts)
+        parts_en: list[str] = [f"Yes. In {video}"]
+        if time_text:
+            parts_en.append(f" around {time_text}")
+        if scene:
+            parts_en.append(f", {scene}")
+        parts_en.append(".")
+        return "".join(parts_en)
+
     def _write_views(self, cases: list[dict[str, Any]]) -> None:
         retrieval_cases = [self._build_retrieval_view_item(case) for case in cases if case["retrieval_ready"]]
         e2e_cases = [self._build_e2e_view_item(case) for case in cases if case["e2e_ready"]]
@@ -459,6 +570,8 @@ class AgentTestDatasetImporter:
             "expected_answer_label": case["expected_answer_label"],
             "expected_time_raw": case["expected_time_raw"],
             "reference_answer": case["reference_answer"],
+            "reference_answer_rich": case.get("reference_answer_rich"),
+            "reference_scene_description": case.get("reference_scene_description"),
             "difficulty_level": case["difficulty_level"],
             "question_language": case["question_language"],
         }
@@ -470,6 +583,8 @@ class AgentTestDatasetImporter:
             "query": case["question"],
             "video_id": case["video_id"],
             "reference_answer": case["reference_answer"],
+            "reference_answer_rich": case.get("reference_answer_rich"),
+            "reference_scene_description": case.get("reference_scene_description"),
             "expected_answer_label": case["expected_answer_label"],
             "expected_time_raw": case["expected_time_raw"],
             "question_language": case["question_language"],
@@ -561,10 +676,34 @@ class AgentTestDatasetImporter:
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Import agent_test.xlsx into normalized JSON and SQLite views")
     parser.add_argument("--xlsx-path", type=str, default=str(DEFAULT_XLSX_PATH), help="Source xlsx path")
-    parser.add_argument("--output-dir", type=str, default=str(DEFAULT_OUTPUT_DIR), help="Output directory")
-    parser.add_argument("--sqlite-path", type=str, default=str(DEFAULT_DB_PATH), help="SQLite output path")
+    parser.add_argument(
+        "--output-dir",
+        type=str,
+        default=str(DEFAULT_IMPORT_OUTPUT_DIR),
+        help="Output directory for JSON/SQLite (default: agent/test/data/imported)",
+    )
+    parser.add_argument(
+        "--sqlite-path",
+        type=str,
+        default=None,
+        help=f"SQLite output path (default: <output-dir>/{SQLITE_EVAL_FILENAME})",
+    )
     parser.add_argument("--reset", action="store_true", help="Reset existing SQLite before import")
-    parser.add_argument("--include-sheets", nargs="*", default=[], help="Only parse selected sheets, e.g. Part1 Part4")
+    parser.add_argument(
+        "--include-sheets",
+        nargs="*",
+        default=None,
+        metavar="SHEET",
+        help=(
+            "Only parse listed worksheets (default when omitted: Part1 Part4). "
+            "Part2 and Part6 are always skipped."
+        ),
+    )
+    parser.add_argument(
+        "--all-sheets",
+        action="store_true",
+        help="Parse all worksheets except the hard-skipped Part2 / Part6 (overrides default Part1/Part4 filter).",
+    )
     return parser
 
 
@@ -572,17 +711,31 @@ def main() -> None:
     parser = build_parser()
     args = parser.parse_args()
     output_dir = Path(args.output_dir).expanduser().resolve()
+    if args.all_sheets:
+        include_sheets: list[str] | None = None
+    elif args.include_sheets is None or len(args.include_sheets) == 0:
+        include_sheets = list(DEFAULT_IMPORT_INCLUDE_SHEETS)
+    else:
+        include_sheets = [str(item).strip() for item in args.include_sheets if str(item).strip()]
+        if not include_sheets:
+            include_sheets = list(DEFAULT_IMPORT_INCLUDE_SHEETS)
+
+    sqlite_path = (
+        Path(args.sqlite_path).expanduser().resolve()
+        if str(args.sqlite_path or "").strip()
+        else output_dir / SQLITE_EVAL_FILENAME
+    )
     config = AgentTestImportConfig(
         xlsx_path=Path(args.xlsx_path).expanduser().resolve(),
         output_dir=output_dir,
-        sqlite_path=Path(args.sqlite_path).expanduser().resolve(),
+        sqlite_path=sqlite_path,
         normalized_json_path=output_dir / DEFAULT_JSON_PATH.name,
         report_json_path=output_dir / DEFAULT_REPORT_PATH.name,
         retrieval_view_path=output_dir / DEFAULT_RETRIEVAL_VIEW.name,
         e2e_view_path=output_dir / DEFAULT_E2E_VIEW.name,
         generation_view_path=output_dir / DEFAULT_GENERATION_VIEW.name,
         reset_existing=bool(args.reset),
-        include_sheets=[str(item) for item in args.include_sheets] if args.include_sheets else None,
+        include_sheets=include_sheets,
     )
     importer = AgentTestDatasetImporter(config)
     result = importer.build()

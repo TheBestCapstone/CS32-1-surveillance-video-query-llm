@@ -19,9 +19,22 @@
 
 ## 当前 Chroma 索引策略
 - `child collection`：保留当前 `track-level` 方案，record id 为 `{video_id}_{entity_hint}`。
-- `parent collection`：新增 `video-level` 聚合，record id 为 `{video_id}`。
+- `parent collection`：`video-level` 聚合，record id 为 `{video_id}`。
+- `event collection`：P0-2 新增 `event-level` 细粒度层，record id 为 `{video_id}:{entity_hint}:{start}:{end}`。
 - `child metadata`：显式写入 `parent_id=video_id`，用于父子关联。
-- 在线检索默认仍读取 `child collection`，`parent collection` 先作为层级召回入口保留。
+- 在线检索默认读取 `child collection`，`parent collection` 作为层级召回入口，`event collection` 提供时间精确定位。
+
+## Chroma Collection Namespace
+- All three Chroma collections share a dataset-level namespace controlled by `AGENT_CHROMA_NAMESPACE`.
+- Default namespace is `basketball`, producing `basketball_tracks`, `basketball_tracks_parent`, `basketball_events`.
+- Example: `AGENT_CHROMA_NAMESPACE=ucfcrime` yields `ucfcrime_tracks`, `ucfcrime_tracks_parent`, `ucfcrime_events`.
+- Priority order for each collection getter:
+  1. Explicit full env name (`AGENT_CHROMA_CHILD_COLLECTION`, `AGENT_CHROMA_PARENT_COLLECTION`, `AGENT_CHROMA_EVENT_COLLECTION`).
+  2. `AGENT_CHROMA_NAMESPACE` + fixed suffix (`_tracks` / `_tracks_parent` / `_events`).
+  3. Built-in default (`basketball_*`).
+- `AGENT_CHROMA_RETRIEVAL_LEVEL` is orthogonal: it selects `child` vs `event` for the single-collection online lookup, independent of the namespace.
+- Persist via CLI: `python -m agent.db.manage_graph_db switch --chroma-namespace <name>`.
+- Rollback to historical behavior: unset `AGENT_CHROMA_NAMESPACE` or set it back to `basketball`.
 
 ## 依赖关系
 - `node/types.py` 通过 `config.py` 读取默认库路径。
