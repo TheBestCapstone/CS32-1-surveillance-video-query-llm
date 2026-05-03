@@ -2,13 +2,13 @@
 
 > 生成时间：2026-05-03  
 > 适用范围：下一个 agent / 工程师接手  
-> 配套文档：`agent/todo.md`（任务与优先级）、`agent/调试记录.md`（全 session 复盘）
+> 配套文档：`agent/todo.md`（任务与优先级）、`agent/工作记录_20260503.md`（本次会话工作记录）
 
 ---
 
 ## 1. 一句话总览
 
-主线已推进到 **P1-Next-G R4 Step1 fix + R6 query expansion**。评测集从 Part1 切换到 **Part4（Normal_Videos）**，IoU 口径修复。当前 **Part4 15-case** 上 `context_precision=0.697`、`context_recall=0.70`、`ragas_e2e=0.69`。
+主线已推进到 **Tier 1（video collection）+ Tier 2（zero-LLM scene boost）全部落地**。评测集为 **Part4（Normal_Videos）**。当前 **27-case** 上 `context_recall=0.667`（+0.056 vs Tier1）、`ragas_e2e=0.643`。
 
 ---
 
@@ -16,40 +16,42 @@
 
 | 主题 | 要点 |
 |------|------|
-| **导入切换** | `DEFAULT_INCLUDE_SHEETS = ["Part4"]`；104 个 Normal_Videos 种子已补全 |
-| **P1-Next-G R4** | `Keywords:` 剥离、reranker A/B 结论（ms-marco > bge-v2-m3）、**Step1 fix**：禁用 `AGENT_RERANK_METADATA_IN_QUERY`（默认 OFF），消除跨视频噪声。precision 0.673→0.697 |
-| **P1-Next-G R6** | self_query_node 扩展 `expansion_terms`，LLM 对抽象 query 生成具体替代词。recall +0.04 |
-| **IoU 修复** | 切 Part4 后 14/15 eligible（IoU 0.594）；修 expected_answer_label=="no" 时不应算 IoU 的 bug |
-| **种子兼容** | `_resolve_seed_files` 兼容 `Normal_Videos594` 和 `Normal_Videos_594` 双命名 |
+| **Tier 1** | Video collection + `_coarse_video_filter` 两阶段检索。LLM discriminator 生成 per-video 区分度 summary。Coarse filter 嵌入 `_run_hybrid_branch`，embedding 复用 P1-3 cache。latency +0.4s |
+| **Tier 2** | Zero-LLM scene attribute filtering。从 `episodic_events` 的 `object_type`/`scene_zone`/`object_color` 自动生成 `has_X` 词表 + IDF。self_query LLM 从词表选 scene_constraints。RRF 后 boost 重排（λ=0.1）。recall +0.056 |
+| **Part4 全量分析** | 155-case 全量跑通（top_hit=0.207）。难度分层：easy 0.765 / medium 0.621 / hard 0.379 e2e。63 个困难 case 已列出 |
+| **种子补全** | 104 个 Normal_Videos 种子已生成；`_resolve_seed_files` 双命名兼容；自动跳过无效 video_id |
+| **IoU 修复** | `expected_answer_label=="no"` 时跳过 IoU；`expected_answer_label=="yes"` 守卫 |
+| **parent 时间桶化** | 10 分钟时间窗分桶，解决长视频 parent document 超 8192 token 问题 |
 
 ---
 
-## 3. 评测数字（Part4 15-case，Step1 fix 后）
+## 3. 评测数字（27-case，Part4，Tier 1+2）
 
-| Metric | Value | 备注 |
-|---|:--:|---|
-| `top_hit_rate` | 0.867 | Part4 比 Part1 难（Normal_Videos 语义更细） |
-| `context_precision_avg` | **0.697** | R4 Step1 fix 后 +0.024 |
-| `context_recall_avg` | **0.700** | R6 expansion +0.04 |
-| `faithfulness_avg` | 0.600 | RAGAS 噪声范围内 |
-| `factual_correctness_avg` | 0.767 | Part4 rich reference 全面覆盖 |
-| `custom_correctness_avg` | 0.763 | 规则型指标 |
-| `time_range_overlap_iou_avg` | 0.594 | 14/15 eligible ✅ |
-| `video_match_score_avg` | 0.714 | Part4 瓶颈 |
-| `ragas_e2e_score_avg` | 0.690 | custom_correctness 替代 factual |
-| scoring error cases | 0 | 稳定 |
+| Metric | Baseline | Tier1 | Tier1+2 | Δ(T1+2 vs Baseline) |
+|---|:--:|:--:|:--:|:--:|
+| `top_hit_rate` | 0.852 | 0.852 | 0.852 | — |
+| `context_precision` | 0.479 | 0.517 | 0.509 | +0.030 |
+| `context_recall` | 0.630 | 0.611 | **0.667** | **+0.037** |
+| `faithfulness` | 0.707 | 0.682 | 0.710 | +0.003 |
+| `custom_correctness` | 0.685 | 0.685 | 0.685 | — |
+| `ragas_e2e_score` | 0.625 | 0.624 | **0.643** | **+0.018** |
+| `avg_latency` | 11.9s | 12.3s | 12.0s | +0.1s |
+| errors | 0 | 0 | 0 | — |
 
-输出目录：`agent/test/generated/ragas_eval_e2e_n15_p4_step1_v1/`
+输出目录：`agent/test/generated/ragas_eval_tier12_n27/`
+
+> 注：全量 155-case 尚未重跑 T1+T2。27-case 仅覆盖 9 个 Normal_Videos。52 视频全量预期效果更显著。
 
 ---
 
 ## 4. 待办优先级
 
-1. **跑 Part4 全量** — `bash run_part4_50.sh`，输出到 `agent/test/generated/ragas_eval_e2e_p4_full/`
-2. **R4 Step2（ulin abstention）** — reranker 顶加校准层，兜底 negative query（详见 `todo.md` R4）
-3. **R6 expansion 扩大触发面** — 目前仅 3-5/27 case 触发，可降低门槛
-4. **P1-Next-E entity_hint** — 长期方向，UCFCrime 数据侧
-5. **P1-Next-G R7 hybrid alpha sweep** — 独立项，留到最后
+1. **跑 Part4 全量 T1+T2** — `bash run_part4_50.sh` + `AGENT_BUILD_VIDEO_COLLECTION=1`，输出到新目录
+2. **Tier 3（oversample 10x + parent coarse filter）** — 如果全量 top_hit 仍低
+3. **R4 Step2（ulin abstention）** — reranker 顶加校准层
+4. **R6 expansion 扩大触发面**
+5. **P1-Next-E entity_hint**
+6. **P1-Next-G R7 hybrid alpha sweep** — 留到最后
 
 ---
 
@@ -57,23 +59,38 @@
 
 ### 5.1 Reranker 配置
 
-- `AGENT_RERANK_METADATA_IN_QUERY` **默认 OFF**。不要改回 ON——会导致跨视频噪声（已 A/B 验证）
-- 默认模型 `cross-encoder/ms-marco-MiniLM-L-6-v2`，bge-v2-m3 在我们的数据上更差
+- `AGENT_RERANK_METADATA_IN_QUERY` **默认 OFF**
+- 默认模型 `cross-encoder/ms-marco-MiniLM-L-6-v2`
 - `Keywords:` 剥离逻辑在 `rerank.py:_strip_keywords()`
 
-### 5.2 种子文件命名
+### 5.2 Tier 1 video collection
+
+- 需要 `AGENT_BUILD_VIDEO_COLLECTION=1` 才会在 `--prepare-subset-db` 时构建
+- video collection 名从 child collection 自动派生（如 `ucfcrime_eval_child` → `ucfcrime_eval_video`）
+- discriminator LLM 使用 `build_default_llm()`（qwen3-max via DashScope）
+- coarse filter 嵌入 `_run_hybrid_branch`，embedding 经 P1-3 LRU 缓存复用
+
+### 5.3 Tier 2 scene boost
+
+- 词表从 SQL 自动生成（`tools/scene_attrs.py`），零 LLM、零手工
+- `video_scene_attrs` 表和 `scene_attrs_vocab.json` 在 `--prepare-subset-db` 时自动生成
+- `AGENT_SCENE_ATTRS_VOCAB_PATH` env var 在 `_load_graph_with_runtime_env` 自动设置
+- `AGENT_SCENE_BOOST_LAMBDA` 默认 0.1
+- boost 在 RRF 融合后、reranker 前应用
+
+### 5.4 种子文件命名
 
 - 生成器输出 `Normal_Videos594_x264_events_vector_flat.json`（无下划线）
 - xlsx 引用 `Normal_Videos_594_x264`（有下划线）
 - `_resolve_seed_files` 已兼容两种格式
 
-### 5.3 import 路径
+### 5.5 import 路径
 
-`agent/node`、`agent/tools` 多用 bare `from node.x` / `from tools.x`（依赖 `agent/` 在 `sys.path`）。新测试请照现有文件写法。
+`agent/node`、`agent/tools` 多用 bare `from node.x` / `from tools.x`（依赖 `agent/` 在 `sys.path`）。
 
-### 5.4 DashScope / OpenAI 别名（`agent/core/runtime.py`）
+### 5.6 parent 文档
 
-必须 `OPENAI_API_KEY` 与 `OPENAI_BASE_URL` **成对缺失**才别名到 DashScope，否则真 OpenAI key 打到 DashScope → 401。
+10 分钟时间窗分桶，`parent_id = {video_id}_{bucket_start}s`。parent_projection 默认 OFF。
 
 ---
 
@@ -82,23 +99,26 @@
 ```
 agent/
 ├── node/
-│   ├── self_query_node.py          R6 expansion_terms；expansion 拼到 rewritten_query
-│   ├── summary_node.py             bail-out、existence、factual
-│   │   match_verifier_node.py       v2.3 多候选 span 重选
-│   └── graph_builder.py            仅 parallel fusion；可选关 verifier
+│   ├── self_query_node.py             R6 expansion + Tier2 scene_constraints
+│   ├── parallel_retrieval_fusion_node.py  Tier1 coarse_filter + Tier2 _apply_scene_boost
+│   ├── summary_node.py                bail-out、existence、factual
+│   └── graph_builder.py               仅 parallel fusion
 ├── tools/
-│   ├── rerank.py                   R4：Keywords: 剥离、metadata-in-query OFF、_enrich_query_with_metadata
-│   └── llm.py                      embedding LRU + 磁盘缓存
+│   ├── video_discriminator.py         Tier1: LLM per-video discriminator
+│   ├── scene_attrs.py                 Tier2: SQL 提取 + IDF + 词表
+│   ├── rerank.py                      R4: Keywords 剥离、metadata-in-query OFF
+│   ├── hybrid_tools.py                video_filter → Chroma $in where
+│   └── llm.py                         embedding LRU + 磁盘缓存
+├── db/
+│   ├── chroma_builder.py              Tier1: _build_video_records + parent 时间桶
+│   └── config.py                      video_collection config
 ├── test/
-│   ├── ragas_eval_runner.py          RAGAS 入口；_resolve_seed_files 双命名兼容
-│   ├── agent_test_importer.py        默认 Part4-only
-│   ├── ucfcrime_transcript_importer.py  种子生成
-│   └── eval_report_tables.py         REPORT_TABLES.md
-├── lightingRL/
-│   └── prompt_registry.py           self_query system prompt（含 expansion 指令）
+│   ├── ragas_eval_runner.py            Tier1/2 build pipeline 集成
+│   └── agent_test_importer.py          默认 Part4-only
 ├── todo.md
 ├── 调试记录.md
-└── ../run_part4_50.sh               Part4 50-case 一键脚本
+├── 全量测试分析.md                     Part4 全量分析（难度分层 + 困难 case）
+└── 工作记录_20260503.md               本次会话完整工作记录
 ```
 
 ---
@@ -106,24 +126,24 @@ agent/
 ## 7. 常用命令
 
 ```bash
-# Part4 全量评测（156 case）
-bash /home/yangxp/Capstone/run_part4_50.sh
-# 输出：agent/test/generated/ragas_eval_e2e_p4_full/
-
-# 单测
-cd /home/yangxp/Capstone
-python -m pytest agent/test/test_*.py -v
+# Part4 全量评测（需 Tier 1 video collection）
+cd /home/yangxp/Capstone/agent/test
+AGENT_BUILD_VIDEO_COLLECTION=1 python ragas_eval_runner.py --limit 155 \
+  --prepare-subset-db \
+  --seed-dir /home/yangxp/Capstone/agent/test/generated/datasets/ucfcrime_events_vector_flat \
+  --output-dir /home/yangxp/Capstone/agent/test/generated/ragas_eval_p4_tier12_full
 
 # 灰度开关
-# AGENT_RERANK_METADATA_IN_QUERY=1   # 回滚到旧行为（不推荐）
-# AGENT_DISABLE_VERIFIER_NODE=1      # 关 verifier
-# AGENT_ENABLE_EXISTENCE_GROUNDER=1  # 开 grounder
+# AGENT_BUILD_VIDEO_COLLECTION=0      # 跳过 video collection 构建
+# AGENT_SCENE_BOOST_LAMBDA=0          # 关闭 scene boost
+# AGENT_RERANK_METADATA_IN_QUERY=1    # 不推荐
 ```
 
 ---
 
 ## 8. 交接后建议
 
-1. 先跑 `bash run_part4_50.sh`，拿到 Part4 全量基线
-2. 读 `agent/test/generated/ragas_eval_e2e_p4_full/REPORT_TABLES.md` 和 `summary_report.json`
-3. 再读 `agent/todo.md` 未完成区，决定下一步优先级
+1. 跑 Part4 全量 T1+T2（上面命令），拿到 52-video 真实效果
+2. 读 `agent/todo.md` 未完成区
+3. 如果全量 top_hit < 0.5，做 Tier 3（oversample 10x + parent coarse）
+4. 如果 recall 还不达标，做 R4 Step2（ulin abstention）
