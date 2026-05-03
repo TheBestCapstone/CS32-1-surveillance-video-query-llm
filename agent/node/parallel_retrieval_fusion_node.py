@@ -293,14 +293,20 @@ def create_parallel_retrieval_fusion_node(llm=None, **kwargs):
         sql_error = None
         hybrid_error = None
 
+        disable_sql = os.getenv("AGENT_DISABLE_SQL_BRANCH", "0").strip().lower() in {"1", "true", "yes", "on"}
+
         with ThreadPoolExecutor(max_workers=2) as ex:
-            f_sql = ex.submit(_safe_sub_agent_call, _run_sql_branch, user_query, search_config)
+            if disable_sql:
+                sql_summary, sql_rows, sql_error = "", [], None
+            else:
+                f_sql = ex.submit(_safe_sub_agent_call, _run_sql_branch, user_query, search_config)
             f_hybrid = ex.submit(_safe_sub_agent_call, _run_hybrid_branch, user_query, search_config)
 
-            try:
-                sql_summary, sql_rows, sql_error = f_sql.result(timeout=branch_timeout)
-            except TimeoutError:
-                sql_error = f"pure_sql timeout ({branch_timeout}s)"
+            if not disable_sql:
+                try:
+                    sql_summary, sql_rows, sql_error = f_sql.result(timeout=branch_timeout)
+                except TimeoutError:
+                    sql_error = f"pure_sql timeout ({branch_timeout}s)"
             try:
                 hybrid_summary, hybrid_rows, hybrid_error = f_hybrid.result(timeout=branch_timeout)
             except TimeoutError:

@@ -256,6 +256,7 @@ def run_chunk(
     output_root: Path,
     xlsx_path: Path,
     no_progress: bool = False,
+    disable_sql: bool = False,
 ) -> dict[str, Any]:
     """Execute one chunk: prepare seeds, run ragas_eval_runner, collect metrics."""
     chunk_label = f"chunk{chunk_index:02d}"
@@ -304,6 +305,8 @@ def run_chunk(
     ]
     env = os.environ.copy()
     env["AGENT_BUILD_VIDEO_COLLECTION"] = "1"
+    if disable_sql:
+        env["AGENT_DISABLE_SQL_BRANCH"] = "1"
 
     print(f"[{chunk_label}] Running {len(video_ids)} videos, {len(cases)} cases")
     print(f"[{chunk_label}] Seeds in: {chunk_seeds}")
@@ -450,6 +453,11 @@ def main() -> None:
         action="store_true",
         help="Print chunk plan without executing",
     )
+    parser.add_argument(
+        "--disable-sql",
+        action="store_true",
+        help="Set AGENT_DISABLE_SQL_BRANCH=1 (hybrid-only ablation)",
+    )
     args = parser.parse_args()
 
     # --- Validate inputs ---
@@ -509,6 +517,7 @@ def main() -> None:
             output_root=args.output_root,
             xlsx_path=args.xlsx_path,
             no_progress=args.no_progress,
+            disable_sql=args.disable_sql,
         )
         results.append(result)
         pbar.update(1)
