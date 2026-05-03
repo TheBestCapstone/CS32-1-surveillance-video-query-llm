@@ -586,6 +586,14 @@ def _prepare_subset_databases(
             generate_init_prompt=False,
         )
     ).build(seed_files=seed_files)
+    # Tier 2: extract scene attributes from SQLite for structured filtering
+    scene_attrs_vocab = paths.runtime_dir / "scene_attrs_vocab.json"
+    try:
+        from tools.scene_attrs import build_scene_attrs
+        scene_attrs_result = build_scene_attrs(paths.sqlite_path, vocab_json_path=scene_attrs_vocab)
+        print(f"[ragas_eval] scene_attrs: {scene_attrs_result}")
+    except Exception as exc:
+        print(f"[ragas_eval] scene_attrs skipped: {exc}")
     # Derive video collection name from child collection namespace
     if video_collection is None:
         # "ucfcrime_eval_child" → "ucfcrime_eval_video"
@@ -628,6 +636,11 @@ def _load_graph_with_runtime_env(
     parts = child_collection.rsplit("_", 1)
     video_collection = f"{parts[0]}_video" if len(parts) == 2 else f"{child_collection}_video"
     os.environ["AGENT_CHROMA_VIDEO_COLLECTION"] = video_collection
+    # Tier 2: scene attrs vocab path for self_query
+    runtime_dir = sqlite_path.parent
+    scene_attrs_vocab = runtime_dir / "scene_attrs_vocab.json"
+    if scene_attrs_vocab.exists():
+        os.environ["AGENT_SCENE_ATTRS_VOCAB_PATH"] = str(scene_attrs_vocab)
     if "graph" in sys.modules:
         graph_module = importlib.reload(sys.modules["graph"])
     else:

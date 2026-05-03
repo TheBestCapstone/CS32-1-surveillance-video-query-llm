@@ -191,6 +191,50 @@ def _run_hybrid_branch(
     return "Hybrid direct retrieval complete", normalized
 
 
+def _apply_scene_boost(
+    rows: list[dict[str, Any]], scene_constraints: list[dict[str, Any]]
+) -> list[dict[str, Any]]:
+    """Tier 2: boost rows whose video matches query scene constraints."""
+    from pathlib import Path
+    lam = 0.1  # Scene boost lambda — conservative default
+    try:
+        lam = float(os.environ.get("AGENT_SCENE_BOOST_LAMBDA", "0.1"))
+    except Exception:
+        pass
+    try:
+        from tools.scene_attrs import query_video_attrs
+        from db.config import get_graph_sqlite_path
+        db_path = get_graph_sqlite_path()
+    except Exception:
+        return rows
+
+    boosted: list[dict[str, Any]] = []
+    total_boost = 0.0
+    for row in rows:
+        vid = str(row.get("video_id", "")).strip()
+        boost = 0.0
+        if vid:
+            try:
+                attrs = query_video_attrs(Path(db_path), vid)
+            except Exception:
+                attrs = {}
+            for sc in scene_constraints:
+                attr_name = str(sc.get("attr_name", "")).strip()
+                if attr_name in attrs:
+                    boost += lam * float(sc.get("weight", 0.5)) * attrs[attr_name]
+        updated = dict(row)
+        updated["_scene_boost"] = round(boost, 4)
+        total_boost += boost
+        boosted.append(updated)
+
+    if total_boost > 0:
+        # Sort by boost descending (existing order preserved via stable sort)
+        boosted.sort(key=lambda r: r.get("_scene_boost", 0.0), reverse=True)
+        print(f"[scene_boost] applied to {len(boosted)} rows, total_boost={total_boost:.4f}, "
+              f"constraints={[c['attr_name'] for c in scene_constraints]}")
+    return boosted
+
+
 def _coarse_video_filter(user_query: str) -> list[str] | None:
     """Tier 1 coarse stage: query the video collection for top-3 candidate videos.
     
@@ -345,6 +389,12 @@ def create_parallel_retrieval_fusion_node(llm=None, **kwargs):
 
         rerank_top_k = int(search_config.get("rerank_top_k", 5))
         rerank_candidate_limit = int(search_config.get("rerank_candidate_limit", 20))
+
+        # Tier 2: apply scene attribute boost before reranking
+        scene_constraints = (state.get("self_query_result") or {}).get("scene_constraints") or []
+        if scene_constraints:
+            fused = _apply_scene_boost(fused, scene_constraints)
+
         reranked_rows, rerank_meta = rerank_rows(
             user_query,
             fused,

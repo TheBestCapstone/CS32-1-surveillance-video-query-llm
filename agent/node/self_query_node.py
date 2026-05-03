@@ -31,6 +31,18 @@ SELF_QUERY_OUTPUT_SCHEMA = {
             "items": {"type": "string"},
             "description": "Concrete, observable alternative phrasing / keywords that help retrieval surface relevant chunks even when the original query uses abstract language",
         },
+        "scene_constraints": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "attr_name": {"type": "string"},
+                    "weight": {"type": "number", "minimum": 0, "maximum": 1},
+                },
+                "required": ["attr_name", "weight"],
+            },
+            "description": "Scene attributes relevant to this query, selected from the provided vocabulary. Only include attrs that are clearly implied by the query. Weight=0.9 for direct mention, 0.7 for strong inference, 0.5 for weak inference. Leave empty if no attrs are relevant.",
+        },
     },
     "required": [
         "rewritten_query",
@@ -56,6 +68,7 @@ def _fallback_self_query(raw_query: str) -> dict[str, Any]:
         "reasoning_summary": "Fallback to the original query because self-query preprocessing was unavailable.",
         "confidence": 0.35,
         "expansion_terms": [],
+        "scene_constraints": [],
     }
 
 
@@ -114,6 +127,25 @@ def _fast_path_self_query(raw_query: str) -> dict[str, Any] | None:
     return None
 
 
+def _load_scene_vocab_list() -> str:
+    """Build a human-readable list of scene attributes + aliases from the vocab JSON."""
+    import os
+    from pathlib import Path
+    vocab_path = os.environ.get("AGENT_SCENE_ATTRS_VOCAB_PATH", "").strip()
+    if not vocab_path:
+        return "(no scene vocabulary available)"
+    try:
+        from tools.scene_attrs import load_vocab
+        vocab = load_vocab(Path(vocab_path))
+    except Exception:
+        return "(scene vocabulary unavailable)"
+    lines = []
+    for attr_name, info in sorted(vocab.items()):
+        aliases = ", ".join(info.get("query_aliases", [attr_name]))
+        lines.append(f"  {attr_name}: {aliases}")
+    return "Available scene attributes (with query synonyms):\n" + "\n".join(lines)
+
+
 def create_self_query_node(llm: Any = None):
     def self_query_node(state: AgentState, config: RunnableConfig, store: BaseStore) -> dict[str, Any]:
         del store
@@ -129,7 +161,13 @@ def create_self_query_node(llm: Any = None):
             result = _fallback_self_query(raw_query)
         else:
             prompt = render_prompt(SELF_QUERY_USER_PROMPT_KEY, raw_query=raw_query)
-            system_prompt = get_prompt_template(SELF_QUERY_SYSTEM_PROMPT_KEY)
+            try:
+                system_prompt = get_prompt_template(SELF_QUERY_SYSTEM_PROMPT_KEY).format(
+                    scene_vocab_list=_load_scene_vocab_list(),
+                )
+            except Exception:
+                # Fallback: remove the placeholder if format fails
+                system_prompt = get_prompt_template(SELF_QUERY_SYSTEM_PROMPT_KEY).replace("{scene_vocab_list}", "(no scene vocabulary available)")
             try:
                 if hasattr(llm, "with_structured_output"):
                     model = llm.with_structured_output(SELF_QUERY_OUTPUT_SCHEMA)
@@ -151,6 +189,7 @@ def create_self_query_node(llm: Any = None):
 
         rewritten_query = _normalize_query_text(result.get("rewritten_query", raw_query)) or _normalize_query_text(raw_query)
         expansion_terms = result.get("expansion_terms") or []
+        scene_constraints = result.get("scene_constraints") or []
         # Append expansion terms to the rewritten query so retrieval can use them
         expanded_query = rewritten_query
         if expansion_terms:
@@ -163,6 +202,7 @@ def create_self_query_node(llm: Any = None):
                     "raw_query": raw_query,
                     "rewritten_query": rewritten_query,
                     "expansion_terms": expansion_terms,
+                    "scene_constraints": scene_constraints,
                     "intent_label": result.get("intent_label", "mixed"),
                     "retrieval_focus": result.get("retrieval_focus", "mixed"),
                 },
@@ -180,10 +220,11 @@ def create_self_query_node(llm: Any = None):
                 "rewritten_query": expanded_query,
                 "base_rewritten_query": rewritten_query,
                 "expansion_terms": expansion_terms,
+                "scene_constraints": scene_constraints,
                 "original_user_query": raw_query,
             },
             "current_node": "self_query_node",
-            "thought": f"SelfQuery: focus={result.get('retrieval_focus', 'mixed')}, intent={result.get('intent_label', 'mixed')}",
+            "thought": f"SelfQuery: focus={result.get('retrieval_focus', 'mixed')}, intent={result.get('intent_label', 'mixed')}, scene_attrs={len(scene_constraints)}",
             "messages": [AIMessage(content=f"Self-query rewrite complete: {rewritten_query}")],
         }
 
