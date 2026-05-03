@@ -14,7 +14,7 @@ def rerank_enabled() -> bool:
 
 
 def get_rerank_model_name() -> str:
-    return os.getenv("AGENT_RERANK_MODEL", "cross-encoder/ms-marco-MiniLM-L-6-v2")
+    return os.getenv("AGENT_RERANK_MODEL", "jinaai/jina-reranker-v2-base-multilingual")
 
 
 def _rerank_metadata_in_query() -> bool:
@@ -94,7 +94,7 @@ def _get_cross_encoder():
             import torch
 
             device = "cuda" if torch.cuda.is_available() else "cpu"
-            _CROSS_ENCODER = CrossEncoder(get_rerank_model_name(), device=device)
+            _CROSS_ENCODER = CrossEncoder(get_rerank_model_name(), device=device, trust_remote_code=True)
             return _CROSS_ENCODER
         except Exception as exc:
             _LOAD_ERROR = f"rerank model load failed: {exc}"

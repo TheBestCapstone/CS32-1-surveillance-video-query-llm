@@ -289,6 +289,66 @@ Tier 1+2 预期 top_hit 0.21→0.55-0.75。
 - 27-case 验证：`context_recall` +0.04（0.70→0.74）
 - TODO：expansion 仅在 3-5/27 case 触发，可降低触发门槛或改为检索内部 expansion
 
+### R9 Weighted RRF 消融：**去掉 RRF 再跑一遍评测** 🚧 待做
+
+> **动机**：RRF 不是唯一融合方式；在「向量侧跨视频假阳性多、一路列表很长」时，RRF 仍可能把噪声稳定送进候选池，伤害 **context precision**（见架构讨论）。需用同一批 case **实证** baseline（weighted RRF）vs 无 RRF 变体。
+
+**实施（建议顺序）**
+
+1. **融合模式开关**（`parallel_retrieval_fusion_node` + env）：例如 `AGENT_FUSION_MODE=weighted_rrf`（默认，现状）| `hybrid_only` | `sql_only` | `concat_dedupe`（两路结果去重按序截断至 `fused_limit`，**不经过 RRF**；具体语义实现时写死一版对照）。
+2. **下游不变**：Tier2 Scene Boost、Cross-Encoder Rerank、final answer 链路不变，只替换「进入 boost 前的 fused 列表」如何生成。
+3. **退化路径**：仅一路失败时行为与今天一致（fallback 单路），避免消融与稳定性混淆。
+
+**评测**
+
+- 与当前 **同一评测集**（如 Part4 `run_chunks` 已跑 chunk、或固定 `--case-ids-file` / `--limit` 子集），每档 fusion 各跑一遍。
+- **必看**：`context_precision_avg`、`top_hit_rate`、`context_recall_avg`、`ragas_e2e_score_avg`；可选按 `difficulty_level` 分层（见 `pooled_*_difficulty_strata.json` 做法）。
+- **产出**：表格 baseline vs 各变体 + 简短结论写入 `调试记录.md` / `handoff.md`。
+
+**工作量**：约 **0.5–1d**（含实现开关与至少 **2 档** 消融跑完）。
+
+### R10 RRF ID 一致性修复：两路 `event_id` 体系不匹配 + 粒度不一致 🚧 待做
+
+> 触发：code review 发现 `weighted_rrf_fuse()` 和 `reciprocal_rank_fuse()` 中两条检索链路的 `event_id` 根本不是同一套 ID 体系，导致 RRF 核心「奖励双路命中」机制完全失效。
+> 详见 `agent/agents/shared/fusion_engine.py`、`agent/tools/bm25_index.py`、`agent/tools/db_access.py:138-147`。
+
+#### 根因拆解
+
+| # | 问题 | 代码位置 | 影响 |
+|---|------|----------|------|
+| 1 | SQL `event_id` = 整数自增主键（如 `42`）；Chroma `event_id` = 字符串 `{video_id}_{entity_hint}`（如 `"video001_car_3"`） | `db_access.py:144`、`fusion_engine.py:84-96` | `_row_key()` 永远不匹配，overlap_count 恒为 0 |
+| 2 | SQL 是 **event 级**（单条事件），Chroma 默认 child collection 是 **track 级**（多事件聚合） | `chroma_builder.py:225-274` | 粒度不对齐，即使用 `(video_id, track_id)` 做 key，SQL 端是 N:1 关系 |
+| 3 | 内层 `reciprocal_rank_fuse()` 中 vector (Chroma 字符串 ID) + BM25 (SQLite 整数 ID) 同样无法去重 | `bm25_index.py:345-392` | BM25 项能匹配 SQL 分支、Chroma 项不能，非对称行为 |
+| 4 | `ChromaGateway.search()` 将 Chroma doc ID 赋给字段名 `event_id`，命名误导 | `db_access.py:144` | 让后续代码误以为这是 SQL `event_id` |
+| 5 | SQLite 有 `vector_ref_id` 列（与 Chroma event-level ID 格式一致），但 SQL SELECT 未包含此列，`_row_key()` 也未使用 | `schema.py:50`、`parallel_retrieval_fusion_node.py:128-133` | 已存在的 bridge 闲置 |
+
+#### 实际后果
+
+- `_source_type` 永远不会是 `"fused"`，只能是 `"sql"` / `"hybrid"` / `"bm25"` 等单源标签
+- 加权 RRF 退化为**加权秩排序合并**：每个文档只拿单路 `w * 1/(k+rank)` 分，没有双路命中加分
+- 如果同一条内容两路都排第 1，本该拿 `wsql/(k+1) + whybrid/(k+1)`，实际只拿了 `max(wsql/(k+1), whybrid/(k+1))`——少了一半融合分
+
+#### 修复方案（3 选 1）
+
+**方案 A：`_row_key()` 多字段 fallback（最小改动，~0.5h）**
+- 当 `event_id` 是含下划线的 Chroma 字符串时，fallback 到 `(video_id, track_id/entity_hint)` 做 key
+- **局限**：不解决粒度问题（track 级 vs event 级）
+
+**方案 B：切换到 event-level Chroma collection（推荐，~2-4h）**
+- 设 `AGENT_CHROMA_RETRIEVAL_LEVEL=event`
+- Chroma event ID 格式 `{video_id}:{entity_hint}:{start_time}:{end_time}` 与 `vector_ref_id` 一致
+- 在 `_run_sql_branch` 的 SELECT 中加上 `vector_ref_id` 列
+- 在 `_row_key()` 中用 `vector_ref_id` 或 `(video_id, track_id, start_time, end_time)` 做 key
+- **需要**：确认 event collection 有数据；可能需要改造 `ChromaGateway.search()` 让 metadata 包含 `event_id`
+
+**方案 C：接受现状，重命名为 weighted merge（~0.25h）**
+- 不改逻辑，只改文档/变量名，明确这是加权合并而非 RRF 融合
+
+#### 验收
+
+- 构造至少 1 个「同一 doc 在两路都被召回」的 case，确认 `overlap_count > 0` 且 `_source_type == "fused"`
+
+
 ### R8 交叉验证用 NonLLM/IDBased recall（诊断辅助）
 
 - 文件：`agent/test/ragas_eval_runner.py:521-532`

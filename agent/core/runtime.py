@@ -31,7 +31,7 @@ def load_env(project_root: Path | None = None) -> None:
     os.environ.setdefault("AGENT_USE_LLAMAINDEX_SQL", "1")
     os.environ.setdefault("AGENT_USE_LLAMAINDEX_VECTOR", "1")
     os.environ.setdefault("AGENT_ENABLE_RERANK", "1")
-    os.environ.setdefault("AGENT_RERANK_MODEL", "cross-encoder/ms-marco-MiniLM-L-6-v2")
+    os.environ.setdefault("AGENT_RERANK_MODEL", "jinaai/jina-reranker-v2-base-multilingual")
     os.environ.setdefault("AGENT_EMBEDDING_PROVIDER", "openai")
     os.environ.setdefault("AGENT_EMBEDDING_MODEL", "text-embedding-3-large")
     # The LlamaIndex NL2SQL LLM previously preferred DashScope unconditionally;
