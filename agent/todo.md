@@ -65,11 +65,7 @@
 
 # 🚧 未完成（按优先级排序）
 
-## IoU / 时间定位 ✅ 已解决（2026-05-03）
-
-> 切到 Part4-only 后，15-case smoke 中 **14/15** 有 GT 时间窗（`time_range_overlap_iou_case_count=14`），IoU 均值 **0.594**。Part4 天然自带完整的 `expected_start_sec/expected_end_sec`，不再需要数据补全。
->
-> 同时修复了 `expected_answer_label == "no"` 时不应计算 IoU 的 bug（`ragas_eval_runner.py` `_compute_custom_correctness`）。
+## IoU / 时间定位 ✅ 已解决 → 参见下方「已完成」
 
 ---
 
@@ -99,132 +95,9 @@ query → self_query(rewrite+expansion) → classification(structured/semantic/m
 | 4   | oversample 仅 3x（top-15 / 893 = 1.7%） | `db_access.ChromaGateway.search` line 119 | 大量相关 chunk 在候选外           |
 
 
-### Tier 1（首选）：Video Collection + Chroma where 过滤 ✅ DONE
+### Tier 1（首选）：Video Collection + Chroma where 过滤 ✅ DONE → 参见下方「已完成」
 
-> 已落地：`video_discriminator.py`、`chroma_builder._build_video_records()`、`_coarse_video_filter()`。
-> 27-case 验证：coarse filter 每 query ~200ms，latency +0.4s。全量 155-case 待验证。
-
-**建 video collection**，每条 = LLM 生成的视频区分度 summary。检索时先查 video_collection → top-3 video_ids → child_collection 加 `where video_id IN [...]`。
-
-```
-chroma_builder 新增 _build_video_records():
-  输入 per-video events → LLM →
-  "Convenience store. Fish tank on right wall. Square white floor tiles.
-   Blue trash bin near entrance. Counter area on left."
-
-检索改造:
-  Step 1: query → video_collection (embedding, 52 docs) → top-3 video_ids
-  Step 2: query → child_collection (embedding, where video_id IN [v1,v2,v3]) → top-K
-```
-
-**优势**：候选池 893→~50 chunk，噪声 -94%。利用 Chroma 原生 `where`，不改 embedding。
-
-- 改动：`chroma_builder.py` + `hybrid_tools.py` + `parallel_retrieval_fusion_node.py` + 新增 `agent/tools/video_discriminator.py`
-- 代价：~4h | 预期：top_hit 0.21→0.50+，precision 0.54→0.70+
-
-### Tier 2：结构化场景过滤（soft structured filter）✅ DONE
-
-> 已落地：`scene_attrs.py`（SQL 提取 + IDF）、`self_query_node` scene_constraints、`_apply_scene_boost()`。
-> 27-case 验证：recall +0.056，e2e +0.019。零 LLM 成本。
-
-**核心思路**：用预定义属性词表把"场景"显式编码，查询时做 soft boost（非 hard filter）。
-
-**设计决策（已锁定）**：
-
-
-| 决策              | 选择                                    | 理由                     |
-| --------------- | ------------------------------------- | ---------------------- |
-| Schema          | `**has_X` boolean**，自动从 SQL 字段生成      | 零 LLM，与数据完全对齐          |
-| 过滤方式            | **Boost（非 Filter）**                   | 泛 query 不被误伤           |
-| Distinctiveness | **Corpus IDF**（SQL 直算）LLM 定方向、IDF 定力度 | 高频属性不淹没稀有属性            |
-| 词表来源            | `**SELECT DISTINCT` 每次重新生成**          | 永不漂移，新视频自动扩展           |
-| self_query      | **LLM 从词表选择**（复用现有调用）                 | 语义推断 "sedan"→has_car   |
-| Boost 位置        | **RRF 融合后、reranker 前**                | 候选池更干净，reranker 输入质量更高 |
-
-
-#### Scoring 方程
-
-```
-final_score = vector_score + λ · Σ(query_weight_i · idf_i)
-```
-
-- `λ = 0.1`（保守先验，后续扫参对比 λ=0 vs λ=0.1）
-- `idf_i = log(N / df_i) / log(N)`，归一到 [0,1]。λ=0.1 下 max boost ≤0.09，不会主导向量排序
-- `query_weight_i`：LLM 输出（0.7-0.95）
-- Boost 时机：RRF 融合后的 candidate pool 上 apply，然后送 reranker
-- `attr_score < threshold` → 退回纯向量（threshold=0，即始终 apply）
-
-#### 词表（零 LLM，从 SQL schema 自动生成）
-
-词表**不手写、不用 LLM**，直接从 `episodic_events` 表的已有字段自动提取：
-
-```sql
-SELECT DISTINCT object_type, scene_zone_en, object_color_en
-FROM episodic_events
-GROUP BY video_id
-```
-
-当前 Part4 实际数据：
-
-```
-object_type:   car (38/52视频)  person (34)  child (1)  unknown (24)
-scene_zone:    road (23)        store (8)    room (14)  bedside (1)  unknown (42)
-object_color:  black (33)  white (26)  red (19)  blue (19)  silver (5)  gray (7)  green (8)  yellow (6)  purple (4)  pink (3)
-motion_level:  空
-event_type:    空
-```
-
-自动映射规则：
-
-```python
-SQL_TO_VOCAB = {
-    "object_type":  {"car": "has_car", "person": "has_person", "child": "has_child"},
-    "scene_zone_en": {"road": "has_road", "store": "has_store", "room": "has_room", "bedside": "has_bedside"},
-    "object_color_en": {c: f"has_{c}" for c in colors},  # has_black, has_white, ...
-}
-# unknown → 不生成属性（无信号）
-```
-
-**优势**：
-
-- 零 LLM 调用、零 hallucination
-- 新增视频/视频类型时词表**自动扩展**（跑一次 SQL 即可）
-- IDF 直接 SQL 算：`df = COUNT(DISTINCT video_id WHERE object_type='car')`
-- 与现有 `sqlite_builder._init_profile`（已聚拢 per-video object_types/colors/keywords）完全对齐
-
-#### 入库阶段（全自动）
-
-1. sqlite_builder 建库后 → 跑 `SELECT DISTINCT object_type/scene_zone/color GROUP BY video_id`
-2. 自动生成 `video_scene_attrs(video_id, attr_name, idf)` 表
-3. IDF = `log(N / COUNT(DISTINCT video_id WHERE attr=true)) / log(N)`
-4. 全量重跑时自动更新，无需手工维护
-
-#### 查询阶段
-
-1. **self_query_node**（复用现有 LLM 调用）新增 `scene_constraints` 输出：
-  - prompt 列出当前词表（Phase 1 step 5 生成的 JSON），LLM 只做选择不生成新属性
-  - 输出 `[{attr_name, weight}]`，weight 由 LLM 估计（0.7-0.95）
-  - 例："a black car drove to the refueling spot" → `[{has_car: 0.95}, {has_black: 0.9}]`
-  - "refueling spot" 不在词表中 → LLM 不输出（受限于词表）
-2. **Boost 应用**：RRF 融合后、reranker 前，对 candidate pool 每行按 `video_scene_attrs` 查匹配，apply boost 后送 reranker
-3. 无匹配 → fallback 纯向量（`attr_score=0`）
-4. Dump `attr_score`、命中 attrs、各 attr IDF 到 debug 日志
-
-#### 实施（~3.5h）
-
-
-| 步骤                                         | 时间    |
-| ------------------------------------------ | ----- |
-| `video_scene_attrs` 表 + SQL 提取 + IDF       | 0.5h  |
-| 词表 JSON 导出（`--prepare-subset-db` 时自动）      | 0.25h |
-| self_query 加 scene_constraints（LLM 从词表选）   | 1h    |
-| retrieval boost 集成（RRF 后 reranker 前，λ=0.1） | 1h    |
-| debug 日志 + λ=0 vs λ=0.1 ablation           | 0.75h |
-
-
-> 每次 `--prepare-subset-db` 自动重新生成词表。不持久化、不手工维护。
-
-**预期**：在 Tier1 基础上，有场景线索的 query precision +0.10~0.15。
+### Tier 2：结构化场景过滤（soft structured filter）✅ DONE → 参见下方「已完成」
 
 ### Tier 3：Oversample 扩大 + Parent 粗筛
 
@@ -264,11 +137,7 @@ Tier 1+2 预期 top_hit 0.21→0.55-0.75。
 
 > 这一组改动会动 retrieval 真实链路。评测噪声（F1–F3）已通过 P1-Next-F 压低；剩余 recall 缺口以 R4/R6/R8 真改为主。来源：`recall_diagnosis_2026_05_02.md`。
 
-### R4 reranker 升级 / metadata 净化 ✅ Step 1 DONE
-
-> **已落地**：`Keywords:` 剥离、`AGENT_RERANK_METADATA_IN_QUERY` 默认 OFF（灰度口保留）、`_enrich_query_with_metadata`。
-> **A/B 结论**：`bge-reranker-v2-m3` 不如 `ms-marco-MiniLM-L-6-v2`（precision -0.033, recall -0.037），保持旧模型。
-> **Step 1 fix 已验证**：metadata-in-query OFF → 15-case precision 0.673→0.697，PART4_0014 precision +0.417。
+### R4 reranker 升级 / metadata 净化 ✅ Step 1 DONE → 参见下方「已完成」
 
 #### 待做 Step 2（兜底，低成本）：reranker 顶上加 ulin abstention
 
@@ -282,12 +151,7 @@ Tier 1+2 预期 top_hit 0.21→0.55-0.75。
 4. 成本：~50 行代码，延迟 ~1ms
 5. 注意：按 query 类型分别 fit 或 "无答案" 类型单独走 binary classifier
 
-### R6 Query 改写 / expansion ✅ DONE
-
-- 文件：`agent/node/self_query_node.py`、`agent/lightingRL/prompt_registry.py`
-- 已落地：`expansion_terms` 字段，LLM 对抽象 query 生成 3-5 个可观测替代词，拼到 `rewritten_query` 尾部
-- 27-case 验证：`context_recall` +0.04（0.70→0.74）
-- TODO：expansion 仅在 3-5/27 case 触发，可降低触发门槛或改为检索内部 expansion
+### R6 Query 改写 / expansion ✅ DONE → 参见下方「已完成」
 
 ### R9 Weighted RRF 消融：**去掉 RRF 再跑一遍评测** 🚧 待做
 
@@ -314,13 +178,15 @@ Tier 1+2 预期 top_hit 0.21→0.55-0.75。
 
 #### 根因拆解
 
-| # | 问题 | 代码位置 | 影响 |
-|---|------|----------|------|
-| 1 | SQL `event_id` = 整数自增主键（如 `42`）；Chroma `event_id` = 字符串 `{video_id}_{entity_hint}`（如 `"video001_car_3"`） | `db_access.py:144`、`fusion_engine.py:84-96` | `_row_key()` 永远不匹配，overlap_count 恒为 0 |
-| 2 | SQL 是 **event 级**（单条事件），Chroma 默认 child collection 是 **track 级**（多事件聚合） | `chroma_builder.py:225-274` | 粒度不对齐，即使用 `(video_id, track_id)` 做 key，SQL 端是 N:1 关系 |
-| 3 | 内层 `reciprocal_rank_fuse()` 中 vector (Chroma 字符串 ID) + BM25 (SQLite 整数 ID) 同样无法去重 | `bm25_index.py:345-392` | BM25 项能匹配 SQL 分支、Chroma 项不能，非对称行为 |
-| 4 | `ChromaGateway.search()` 将 Chroma doc ID 赋给字段名 `event_id`，命名误导 | `db_access.py:144` | 让后续代码误以为这是 SQL `event_id` |
-| 5 | SQLite 有 `vector_ref_id` 列（与 Chroma event-level ID 格式一致），但 SQL SELECT 未包含此列，`_row_key()` 也未使用 | `schema.py:50`、`parallel_retrieval_fusion_node.py:128-133` | 已存在的 bridge 闲置 |
+
+| #   | 问题                                                                                                       | 代码位置                                                       | 影响                                                   |
+| --- | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------- |
+| 1   | SQL `event_id` = 整数自增主键（如 `42`）；Chroma `event_id` = 字符串 `{video_id}_{entity_hint}`（如 `"video001_car_3"`） | `db_access.py:144`、`fusion_engine.py:84-96`                | `_row_key()` 永远不匹配，overlap_count 恒为 0                |
+| 2   | SQL 是 **event 级**（单条事件），Chroma 默认 child collection 是 **track 级**（多事件聚合）                                  | `chroma_builder.py:225-274`                                | 粒度不对齐，即使用 `(video_id, track_id)` 做 key，SQL 端是 N:1 关系 |
+| 3   | 内层 `reciprocal_rank_fuse()` 中 vector (Chroma 字符串 ID) + BM25 (SQLite 整数 ID) 同样无法去重                        | `bm25_index.py:345-392`                                    | BM25 项能匹配 SQL 分支、Chroma 项不能，非对称行为                    |
+| 4   | `ChromaGateway.search()` 将 Chroma doc ID 赋给字段名 `event_id`，命名误导                                           | `db_access.py:144`                                         | 让后续代码误以为这是 SQL `event_id`                            |
+| 5   | SQLite 有 `vector_ref_id` 列（与 Chroma event-level ID 格式一致），但 SQL SELECT 未包含此列，`_row_key()` 也未使用            | `schema.py:50`、`parallel_retrieval_fusion_node.py:128-133` | 已存在的 bridge 闲置                                       |
+
 
 #### 实际后果
 
@@ -331,10 +197,12 @@ Tier 1+2 预期 top_hit 0.21→0.55-0.75。
 #### 修复方案（3 选 1）
 
 **方案 A：`_row_key()` 多字段 fallback（最小改动，~0.5h）**
+
 - 当 `event_id` 是含下划线的 Chroma 字符串时，fallback 到 `(video_id, track_id/entity_hint)` 做 key
 - **局限**：不解决粒度问题（track 级 vs event 级）
 
 **方案 B：切换到 event-level Chroma collection（推荐，~2-4h）**
+
 - 设 `AGENT_CHROMA_RETRIEVAL_LEVEL=event`
 - Chroma event ID 格式 `{video_id}:{entity_hint}:{start_time}:{end_time}` 与 `vector_ref_id` 一致
 - 在 `_run_sql_branch` 的 SELECT 中加上 `vector_ref_id` 列
@@ -342,12 +210,12 @@ Tier 1+2 预期 top_hit 0.21→0.55-0.75。
 - **需要**：确认 event collection 有数据；可能需要改造 `ChromaGateway.search()` 让 metadata 包含 `event_id`
 
 **方案 C：接受现状，重命名为 weighted merge（~0.25h）**
+
 - 不改逻辑，只改文档/变量名，明确这是加权合并而非 RRF 融合
 
 #### 验收
 
 - 构造至少 1 个「同一 doc 在两路都被召回」的 case，确认 `overlap_count > 0` 且 `_source_type == "fused"`
-
 
 ### R8 交叉验证用 NonLLM/IDBased recall（诊断辅助）
 
@@ -404,6 +272,50 @@ Tier 1+2 预期 top_hit 0.21→0.55-0.75。
 ---
 
 # ✅ 已完成（按时间倒序）
+
+## 消融实验：Jina reranker 切换 + SQL branch 关闭（2026-05-04）
+
+- 模型切换：`cross-encoder/ms-marco-MiniLM-L-6-v2` → `jinaai/jina-reranker-v2-base-multilingual`
+- Java 模型需 `trust_remote_code=True`
+- 新增 `AGENT_DISABLE_SQL_BRANCH` 环境变量，支持纯 hybrid-only 消融
+- 新增 `agent/test/run_chunks.py`：chunked Part4 评测（按视频分批、每批独立 seed 子集、`--disable-sql` 开关）
+- Chunk01 (30-case) baseline: E2E 0.5779；SQL OFF: E2E 0.6059 (+0.028)
+- SQL OFF 下 easy/medium/hard 分层 precision：0.89 / 0.26 / 0.28
+
+## Tier 2：结构化场景过滤（2026-05-03）✅
+
+- 文件：`agent/tools/scene_attrs.py`（SQL 提取 + IDF）、`self_query_node` scene_constraints、`parallel_retrieval_fusion_node._apply_scene_boost()`
+- 设计：`has_X` boolean schema 自动从 SQL 字段生成，零 LLM；Corpus IDF 加权；Boost（非 Filter）避免误伤
+- 27-case 验证：recall +0.056，e2e +0.019
+- `λ=0.1` 保守先验，每次 `--prepare-subset-db` 自动重新生成词表
+
+## Tier 1：Video Collection + Chroma where 过滤（2026-05-02）✅
+
+- 文件：`agent/tools/video_discriminator.py`、`chroma_builder._build_video_records()`、`_coarse_video_filter()`
+- 建 video collection（LLM 生成视频区分度 summary），检索先查 video_collection → top-3 video_ids → child_collection `where video_id IN [...]`
+- 候选池 893→~50 chunk，噪声 -94%；coarse filter ~200ms/query
+- 27-case 验证：`top_hit_rate` 0.852
+
+## R4 Step 1：reranker metadata 净化（2026-05-02）✅
+
+- 文件：`agent/tools/rerank.py`
+- `_strip_keywords()` 剥离 `Keywords: [...]` 尾部，防止元数据泄露到 cross-encoder
+- `AGENT_RERANK_METADATA_IN_QUERY` 默认 OFF（消除跨视频噪声）
+- A/B 结论：`bge-reranker-v2-m3` 不如 `ms-marco-MiniLM-L-6-v2`（precision -0.033, recall -0.037）
+- 15-case 验证：precision 0.673→0.697
+
+## R6 Query 改写 / expansion（2026-05-02）✅
+
+- 文件：`agent/node/self_query_node.py`
+- `expansion_terms` 字段：LLM 对抽象 query 生成 3-5 个可观测替代词
+- 27-case 验证：`context_recall` +0.04（0.70→0.74）
+
+## IoU / 时间定位（2026-05-03）✅
+
+- Part4-only 后 14/15 case 有 GT 时间窗，IoU 均值 0.594
+- 修复 `expected_answer_label == "no"` 时不应计算 IoU 的 bug
+
+---
 
 ## P1-Next-C `custom_correctness` + 保留 `factual_correctness` 对照 ✅ DONE（2026-05-02）
 
