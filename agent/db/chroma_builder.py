@@ -9,6 +9,7 @@ from .config import (
     get_graph_chroma_child_collection,
     get_graph_chroma_event_collection,
     get_graph_chroma_parent_collection,
+    get_graph_chroma_video_collection,
 )
 from ..tools.llm import get_qwen_embedding
 
@@ -27,6 +28,7 @@ class ChromaBuildConfig:
     child_collection: str = field(default_factory=get_graph_chroma_child_collection)
     parent_collection: str = field(default_factory=get_graph_chroma_parent_collection)
     event_collection: str = field(default_factory=get_graph_chroma_event_collection)
+    video_collection: str = field(default_factory=get_graph_chroma_video_collection)
     reset_existing: bool = False
 
 
@@ -37,8 +39,9 @@ class ChromaIndexBuilder:
         self.child_collection = config.child_collection
         self.parent_collection = config.parent_collection
         self.event_collection = config.event_collection
+        self.video_collection = config.video_collection
 
-    def build(self, seed_files: list[Path] | None = None) -> dict[str, Any]:
+    def build(self, seed_files: list[Path] | None = None, llm: Any = None) -> dict[str, Any]:
         import chromadb
 
         seed_files = seed_files or []
@@ -48,12 +51,16 @@ class ChromaIndexBuilder:
         parent_records = self._build_parent_records(child_records)
         event_records = self._build_event_records(events)
 
+        # Tier 1: per-video discriminator summaries for coarse retrieval
+        video_records = self._build_video_records(events, llm) if llm is not None else []
+
         try:
             client = chromadb.PersistentClient(path=str(self.chroma_path))
             if self.config.reset_existing:
                 self._delete_collection_if_exists(client, self.child_collection)
                 self._delete_collection_if_exists(client, self.parent_collection)
                 self._delete_collection_if_exists(client, self.event_collection)
+                self._delete_collection_if_exists(client, self.video_collection)
 
             child_collection = client.get_or_create_collection(
                 name=self.child_collection,
@@ -67,6 +74,10 @@ class ChromaIndexBuilder:
                 name=self.event_collection,
                 metadata={"hnsw:space": "cosine", "index_role": "event"},
             )
+            video_collection = client.get_or_create_collection(
+                name=self.video_collection,
+                metadata={"hnsw:space": "cosine", "index_role": "video"},
+            )
 
             if child_records:
                 self._upsert_records(child_collection, child_records)
@@ -74,25 +85,31 @@ class ChromaIndexBuilder:
                 self._upsert_records(parent_collection, parent_records)
             if event_records:
                 self._upsert_records(event_collection, event_records)
+            if video_records:
+                self._upsert_records(video_collection, video_records)
         except Exception as exc:
             logger.exception("Failed to build chroma indexes")
             raise ChromaBuildError(f"Build failed for {self.chroma_path}: {exc}") from exc
 
-        return {
+        result = {
             "chroma_path": str(self.chroma_path),
             "seed_files": [str(x) for x in seed_files],
             "child_collection": self.child_collection,
             "parent_collection": self.parent_collection,
             "event_collection": self.event_collection,
+            "video_collection": self.video_collection,
             "child_record_count": len(child_records),
             "parent_record_count": len(parent_records),
             "event_record_count": len(event_records),
+            "video_record_count": len(video_records),
             "chunk_strategy": {
                 "child": "track-level (video_id + entity_hint)",
-                "parent": "video-level (video_id)",
+                "parent": "video-level time-bucketed (10min windows)",
                 "event": "event-level (video_id + entity_hint + start_time + end_time)",
+                "video": "video-level discriminator summary",
             },
         }
+        return result
 
     @staticmethod
     def _delete_collection_if_exists(client: Any, collection_name: str) -> None:
@@ -282,22 +299,33 @@ class ChromaIndexBuilder:
             sections.append("Keywords: " + ", ".join(keywords) + ".")
         return " ".join(sections)
 
+    _PARENT_TIME_BUCKET_SEC: float = 600.0  # 10-minute parent windows
+
     def _build_parent_records(self, child_records: list[dict[str, Any]]) -> list[dict[str, Any]]:
-        grouped: dict[str, list[dict[str, Any]]] = {}
+        """Build parent records bucketed by 10-minute time windows instead of
+        whole-video.  This keeps each parent document small enough for the
+        embedding API while still providing coarse-grained temporal grouping."""
+        grouped: dict[tuple[str, int], list[dict[str, Any]]] = {}
         for record in child_records:
             video_id = str(record["metadata"].get("video_id", "")).strip()
             if not video_id:
                 continue
-            grouped.setdefault(video_id, []).append(record)
+            start = record["metadata"].get("start_time")
+            # Bucket by 10-min window; default to 0 if no start_time
+            bucket = int(start // self._PARENT_TIME_BUCKET_SEC) if isinstance(start, (int, float)) else 0
+            grouped.setdefault((video_id, bucket), []).append(record)
 
         records: list[dict[str, Any]] = []
-        for video_id, group in sorted(grouped.items()):
+        for (video_id, bucket), group in sorted(grouped.items()):
+            bucket_start = bucket * self._PARENT_TIME_BUCKET_SEC
+            bucket_end = bucket_start + self._PARENT_TIME_BUCKET_SEC
             start_time = self._safe_min([item["metadata"].get("start_time") for item in group])
             end_time = self._safe_max([item["metadata"].get("end_time") for item in group])
             child_ids = [item["id"] for item in group]
             scene_zones = self._dedupe_text([item["metadata"].get("scene_zone") for item in group])
             object_types = self._dedupe_text([item["metadata"].get("object_type") for item in group])
             object_colors = self._dedupe_text([item["metadata"].get("object_color") for item in group])
+            parent_id = f"{video_id}_{int(bucket_start)}s"
             document = self._build_parent_document(
                 video_id=video_id,
                 child_records=group,
@@ -306,10 +334,15 @@ class ChromaIndexBuilder:
                 object_colors=object_colors,
                 start_time=start_time,
                 end_time=end_time,
+                bucket_start=bucket_start,
+                bucket_end=bucket_end,
             )
+            # Update child parent_id to the new bucketed id
+            for child_record in group:
+                child_record["metadata"]["parent_id"] = parent_id
             records.append(
                 {
-                    "id": video_id,
+                    "id": parent_id,
                     "document": document,
                     "metadata": {
                         "record_level": "parent",
@@ -321,6 +354,41 @@ class ChromaIndexBuilder:
                         "object_types": ", ".join(object_types),
                         "object_colors": ", ".join(object_colors),
                         "child_ids_json": json.dumps(child_ids, ensure_ascii=False),
+                        "bucket_start": bucket_start,
+                        "bucket_end": bucket_end,
+                    },
+                }
+            )
+        return records
+
+    def _build_video_records(
+        self, events: list[dict[str, Any]], llm: Any
+    ) -> list[dict[str, Any]]:
+        """Build one Chroma record per video with an LLM-generated discriminator summary.
+
+        Used by Tier 1 two-stage retrieval: query → video_collection → top-3 video_ids
+        → child_collection (with ``where`` filter).
+        """
+        from ..tools.video_discriminator import generate_video_discriminator
+
+        # Group events by video_id
+        grouped: dict[str, list[dict[str, Any]]] = {}
+        for ev in events:
+            vid = str(ev.get("video_id", "")).strip()
+            if vid:
+                grouped.setdefault(vid, []).append(ev)
+
+        records: list[dict[str, Any]] = []
+        for video_id, group in sorted(grouped.items()):
+            summary = generate_video_discriminator(video_id=video_id, events=group, llm=llm)
+            records.append(
+                {
+                    "id": video_id,
+                    "document": summary,
+                    "metadata": {
+                        "record_level": "video",
+                        "video_id": video_id,
+                        "event_count": len(group),
                     },
                 }
             )
@@ -336,11 +404,14 @@ class ChromaIndexBuilder:
         object_colors: list[str],
         start_time: float | None,
         end_time: float | None,
+        bucket_start: float = 0.0,
+        bucket_end: float = 0.0,
     ) -> str:
         sections = [
             f"Video {video_id}.",
+            f"Window {ChromaIndexBuilder._format_time(bucket_start)}s-{ChromaIndexBuilder._format_time(bucket_end)}s.",
             f"Video time range {ChromaIndexBuilder._format_time(start_time)}s to {ChromaIndexBuilder._format_time(end_time)}s.",
-            f"This parent record summarizes {len(child_records)} child tracks.",
+            f"This parent record summarizes {len(child_records)} child tracks in this window.",
         ]
         if object_types:
             sections.append("Object types: " + ", ".join(object_types) + ".")

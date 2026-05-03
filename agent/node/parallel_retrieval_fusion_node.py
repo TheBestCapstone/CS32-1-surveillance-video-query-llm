@@ -135,9 +135,15 @@ def _run_sql_branch(user_query: str, search_config: Dict[str, Any]) -> Tuple[str
     return f"SQL direct retrieval rows={len(rows)} text_strategy={text_strategy}", rows
 
 
-def _run_hybrid_branch(user_query: str, search_config: Dict[str, Any]) -> Tuple[str, List[Dict[str, Any]]]:
+def _run_hybrid_branch(
+    user_query: str, search_config: Dict[str, Any], *, video_filter: list[str] | None = None,
+) -> Tuple[str, List[Dict[str, Any]]]:
     if not (user_query or "").strip():
         return "Hybrid retrieval skipped: empty query", []
+    # Tier 1: if no video_filter provided, run coarse filter — its embedding
+    # will be cached (P1-3 LRU) and reused by the hybrid search below.
+    if video_filter is None:
+        video_filter = _coarse_video_filter(user_query)
     filters = extract_structured_filters(user_query)
     if use_llamaindex_vector():
         summary, rows = run_llamaindex_vector_query(
@@ -146,14 +152,15 @@ def _run_hybrid_branch(user_query: str, search_config: Dict[str, Any]) -> Tuple[
             limit=int(search_config.get("hybrid_limit", 50)),
         )
         return summary, normalize_hybrid_rows(rows)
-    msg = dynamic_weighted_vector_search.invoke(
-        {
-            "query": user_query,
-            "filters": filters,
-            "alpha": float(search_config.get("hybrid_alpha", 0.7)),
-            "limit": int(search_config.get("hybrid_limit", 50)),
-        }
-    )
+    invoke_kwargs: dict[str, Any] = {
+        "query": user_query,
+        "filters": filters,
+        "alpha": float(search_config.get("hybrid_alpha", 0.7)),
+        "limit": int(search_config.get("hybrid_limit", 50)),
+    }
+    if video_filter:
+        invoke_kwargs["video_filter"] = video_filter
+    msg = dynamic_weighted_vector_search.invoke(invoke_kwargs)
     lowered = (msg or "").lower()
     if "failed on chroma" in lowered or "error code" in lowered:
         raise RuntimeError(msg)
@@ -182,6 +189,39 @@ def _run_hybrid_branch(user_query: str, search_config: Dict[str, Any]) -> Tuple[
     rows = json.loads(payload)
     normalized = normalize_hybrid_rows(rows)
     return "Hybrid direct retrieval complete", normalized
+
+
+def _coarse_video_filter(user_query: str) -> list[str] | None:
+    """Tier 1 coarse stage: query the video collection for top-3 candidate videos.
+    
+    Called inside _run_hybrid_branch. The embedding is computed here and
+    cached by P1-3 LRU; the subsequent hybrid search will hit the cache.
+    """
+    import time
+    t0 = time.perf_counter()
+    try:
+        from db.config import get_graph_chroma_path, get_graph_chroma_video_collection
+        from tools.db_access import ChromaGateway
+        from tools.llm import get_qwen_embedding
+
+        gateway = ChromaGateway(
+            db_path=get_graph_chroma_path(),
+            collection_name=get_graph_chroma_video_collection(),
+        )
+        query_vec = get_qwen_embedding(user_query)
+        res = gateway._collection.query(
+            query_embeddings=[query_vec], n_results=3, include=["metadatas"]
+        )
+        ids = res.get("ids", [[]])[0]
+        elapsed = (time.perf_counter() - t0) * 1000
+        if ids:
+            print(f"[coarse_video] {len(ids)} candidates in {elapsed:.0f}ms: {ids}")
+            return [str(i) for i in ids]
+        print(f"[coarse_video] no candidates in {elapsed:.0f}ms")
+    except Exception as exc:
+        elapsed = (time.perf_counter() - t0) * 1000
+        print(f"[coarse_video] failed in {elapsed:.0f}ms: {exc}")
+    return None
 
 
 def create_parallel_retrieval_fusion_node(llm=None, **kwargs):

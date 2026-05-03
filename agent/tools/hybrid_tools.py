@@ -109,7 +109,14 @@ def get_temporal_anchor(event_description: str) -> str:
         return [{"error": "Temporal anchor failed. Please note: Time-dimension queries are generally unsupported, but if finding an event time, it failed here: " + str(e)}]
 
 @tool
-def dynamic_weighted_vector_search(query: str, filters: dict, alpha: float = 0.5, limit: int = 5) -> str:
+def dynamic_weighted_vector_search(
+    query: str,
+    filters: dict,
+    alpha: float = 0.5,
+    limit: int = 5,
+    *,
+    video_filter: list[str] | None = None,
+) -> str:
     """Hybrid retrieval: pure-vector (Chroma) fused with corpus-wide BM25 via RRF.
 
     Parameters:
@@ -120,6 +127,8 @@ def dynamic_weighted_vector_search(query: str, filters: dict, alpha: float = 0.5
       hint to the metadata filter pass-through (``alpha >= 0.8`` keeps the
       semantic branch unfiltered, mirroring the previous behaviour).
     - limit: Number of fused results to return.
+    - video_filter: If provided, restrict vector search to these video_ids
+      (Chroma ``$in`` filter).  Used by Tier 1 two-stage retrieval.
 
     Set ``AGENT_HYBRID_BM25_FUSED=0`` to disable the BM25 channel and fall back
     to vector-only retrieval (used as a clean rollback knob during P1-2).
@@ -130,7 +139,9 @@ def dynamic_weighted_vector_search(query: str, filters: dict, alpha: float = 0.5
     fused_enabled = _hybrid_bm25_fused_enabled()
     over = max(int(os.getenv("AGENT_HYBRID_VECTOR_OVERSAMPLE", "3")), 1)
     vector_top_k = max(int(limit) * over, int(limit))
-    pass_filters = filters if (alpha is None or alpha < 0.8) else {}
+    pass_filters = dict(filters) if (alpha is None or alpha < 0.8) else {}
+    if video_filter:
+        pass_filters["video_id"] = {"$in": video_filter}
     try:
         if use_llamaindex_vector():
             _, vector_rows = run_llamaindex_vector_query(

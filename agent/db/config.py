@@ -116,6 +116,16 @@ def get_graph_chroma_event_collection() -> str:
     return f"{get_graph_chroma_namespace()}_{CHROMA_EVENT_SUFFIX}"
 
 
+CHROMA_VIDEO_SUFFIX = "video"
+
+
+def get_graph_chroma_video_collection() -> str:
+    raw = os.getenv("AGENT_CHROMA_VIDEO_COLLECTION", "").strip()
+    if raw:
+        return raw
+    return f"{get_graph_chroma_namespace()}_{CHROMA_VIDEO_SUFFIX}"
+
+
 def persist_env_value(key: str, value: str, env_file: Path | None = None) -> Path:
     target = env_file or DEFAULT_ENV_FILE
     target.parent.mkdir(parents=True, exist_ok=True)

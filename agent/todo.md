@@ -23,18 +23,20 @@
 
 ---
 
-## 当前已知瓶颈（截至 2026-05-03，Part4 15-case 基线）
+## 当前已知瓶颈（截至 2026-05-03，Part4 全量 155-case）
 
 
-| 指标                           | Part4 15-case | 目标     | 说明                                     |
-| ---------------------------- | ------------- | ------ | -------------------------------------- |
-| `top_hit_rate`               | 0.867         | ≥ 0.90 | Normal_Videos 检索比 UCFCrime 难           |
-| `context_precision_avg`      | **0.697**     | ≥ 0.75 | R4 Step1 fix 后已回升（+0.024 vs pre-R4R6）  |
-| `context_recall_avg`         | 0.700         | ≥ 0.75 | R6 expansion 已 +0.04；余量在 R4 Step2 / R8 |
-| `time_range_overlap_iou_avg` | 0.594         | ≥ 0.60 | 14/15 eligible，口径已修复                   |
-| `custom_correctness_avg`     | 0.763         | ≥ 0.80 | Part4 video_match 是瓶颈                  |
-| `ragas_e2e_score_avg`        | 0.690         | ≥ 0.75 | 用 custom_correctness 参与合成              |
+| 指标                   | 15-case | 全量 155-case | 目标     | 说明                     |
+| -------------------- | ------- | ----------- | ------ | ---------------------- |
+| `top_hit_rate`       | 0.867   | **0.207**   | ≥ 0.50 | 52 video 索引，语义重叠严重     |
+| `context_precision`  | 0.697   | 0.537       | ≥ 0.70 | hard 层仅 0.168          |
+| `context_recall`     | 0.700   | 0.674       | ≥ 0.75 | 接近持平，信息量未明显减少          |
+| `custom_correctness` | 0.763   | 0.456       | ≥ 0.70 | easy 0.658, hard 0.141 |
+| `ragas_e2e_score`    | 0.690   | 0.590       | ≥ 0.70 | easy 0.765, hard 0.379 |
 
+
+> 瓶颈根因：52 个 Normal_Videos 语义高度重叠（监控/柜台/车辆），纯向量检索无法区分。
+> 优化计划见下方「全量检索瓶颈与优化计划」Tier 1-5。
 
 ---
 
@@ -67,6 +69,190 @@
 > 切到 Part4-only 后，15-case smoke 中 **14/15** 有 GT 时间窗（`time_range_overlap_iou_case_count=14`），IoU 均值 **0.594**。Part4 天然自带完整的 `expected_start_sec/expected_end_sec`，不再需要数据补全。
 >
 > 同时修复了 `expected_answer_label == "no"` 时不应计算 IoU 的 bug（`ragas_eval_runner.py` `_compute_custom_correctness`）。
+
+---
+
+## 全量检索瓶颈与优化计划
+
+> 触发：Part4 全量 155-case 上 `top_hit_rate=0.21`、`precision=0.54`（15-case 子集上 top_hit=0.87）。
+> 根因：52 个 Normal_Videos 语义高度重叠，893 个 chunk 的向量空间严重拥挤。
+> 审查结论：chunk 文本缺视频级区分度、向量搜索无结构化过滤、parent collection 闲置。
+> 详见 `agent/全量测试分析.md`。
+
+### 当前检索链路
+
+```
+query → self_query(rewrite+expansion) → classification(structured/semantic/mixed)
+  → parallel:
+      SQL(FTS5, limit=80)      ┐
+      hybrid(Chroma cosine, oversample 3x=top15, +BM25 RRF) ┘
+  → weighted RRF fusion → rerank(ms-marco, top-5) → answer
+```
+
+
+| #   | 瓶颈                                   | 代码位置                                      | 影响                        |
+| --- | ------------------------------------ | ----------------------------------------- | ------------------------- |
+| 1   | chunk 文本缺视频级区分度                      | `chroma_builder._build_child_document`    | 893 chunk 语义重叠，cosine 不可靠 |
+| 2   | 向量搜索无 where 过滤，pass_filters 通常为空     | `hybrid_tools` line 133                   | 52 video 全在候选池            |
+| 3   | parent collection（82 时间桶）闲置          | `parallel_retrieval_fusion_node` line 315 | 粗筛信息未利用                   |
+| 4   | oversample 仅 3x（top-15 / 893 = 1.7%） | `db_access.ChromaGateway.search` line 119 | 大量相关 chunk 在候选外           |
+
+
+### Tier 1（首选）：Video Collection + Chroma where 过滤
+
+**建 video collection**，每条 = LLM 生成的视频区分度 summary。检索时先查 video_collection → top-3 video_ids → child_collection 加 `where video_id IN [...]`。
+
+```
+chroma_builder 新增 _build_video_records():
+  输入 per-video events → LLM →
+  "Convenience store. Fish tank on right wall. Square white floor tiles.
+   Blue trash bin near entrance. Counter area on left."
+
+检索改造:
+  Step 1: query → video_collection (embedding, 52 docs) → top-3 video_ids
+  Step 2: query → child_collection (embedding, where video_id IN [v1,v2,v3]) → top-K
+```
+
+**优势**：候选池 893→~50 chunk，噪声 -94%。利用 Chroma 原生 `where`，不改 embedding。
+
+- 改动：`chroma_builder.py` + `hybrid_tools.py` + `parallel_retrieval_fusion_node.py` + 新增 `agent/tools/video_discriminator.py`
+- 代价：~4h | 预期：top_hit 0.21→0.50+，precision 0.54→0.70+
+
+### Tier 2：结构化场景过滤（soft structured filter）
+
+**核心思路**：用预定义属性词表把"场景"显式编码，查询时做 soft boost（非 hard filter）。
+
+**设计决策（已锁定）**：
+
+
+| 决策              | 选择                                    | 理由                     |
+| --------------- | ------------------------------------- | ---------------------- |
+| Schema          | `**has_X` boolean**，自动从 SQL 字段生成      | 零 LLM，与数据完全对齐          |
+| 过滤方式            | **Boost（非 Filter）**                   | 泛 query 不被误伤           |
+| Distinctiveness | **Corpus IDF**（SQL 直算）LLM 定方向、IDF 定力度 | 高频属性不淹没稀有属性            |
+| 词表来源            | `**SELECT DISTINCT` 每次重新生成**          | 永不漂移，新视频自动扩展           |
+| self_query      | **LLM 从词表选择**（复用现有调用）                 | 语义推断 "sedan"→has_car   |
+| Boost 位置        | **RRF 融合后、reranker 前**                | 候选池更干净，reranker 输入质量更高 |
+
+
+#### Scoring 方程
+
+```
+final_score = vector_score + λ · Σ(query_weight_i · idf_i)
+```
+
+- `λ = 0.1`（保守先验，后续扫参对比 λ=0 vs λ=0.1）
+- `idf_i = log(N / df_i) / log(N)`，归一到 [0,1]。λ=0.1 下 max boost ≤0.09，不会主导向量排序
+- `query_weight_i`：LLM 输出（0.7-0.95）
+- Boost 时机：RRF 融合后的 candidate pool 上 apply，然后送 reranker
+- `attr_score < threshold` → 退回纯向量（threshold=0，即始终 apply）
+
+#### 词表（零 LLM，从 SQL schema 自动生成）
+
+词表**不手写、不用 LLM**，直接从 `episodic_events` 表的已有字段自动提取：
+
+```sql
+SELECT DISTINCT object_type, scene_zone_en, object_color_en
+FROM episodic_events
+GROUP BY video_id
+```
+
+当前 Part4 实际数据：
+
+```
+object_type:   car (38/52视频)  person (34)  child (1)  unknown (24)
+scene_zone:    road (23)        store (8)    room (14)  bedside (1)  unknown (42)
+object_color:  black (33)  white (26)  red (19)  blue (19)  silver (5)  gray (7)  green (8)  yellow (6)  purple (4)  pink (3)
+motion_level:  空
+event_type:    空
+```
+
+自动映射规则：
+
+```python
+SQL_TO_VOCAB = {
+    "object_type":  {"car": "has_car", "person": "has_person", "child": "has_child"},
+    "scene_zone_en": {"road": "has_road", "store": "has_store", "room": "has_room", "bedside": "has_bedside"},
+    "object_color_en": {c: f"has_{c}" for c in colors},  # has_black, has_white, ...
+}
+# unknown → 不生成属性（无信号）
+```
+
+**优势**：
+
+- 零 LLM 调用、零 hallucination
+- 新增视频/视频类型时词表**自动扩展**（跑一次 SQL 即可）
+- IDF 直接 SQL 算：`df = COUNT(DISTINCT video_id WHERE object_type='car')`
+- 与现有 `sqlite_builder._init_profile`（已聚拢 per-video object_types/colors/keywords）完全对齐
+
+#### 入库阶段（全自动）
+
+1. sqlite_builder 建库后 → 跑 `SELECT DISTINCT object_type/scene_zone/color GROUP BY video_id`
+2. 自动生成 `video_scene_attrs(video_id, attr_name, idf)` 表
+3. IDF = `log(N / COUNT(DISTINCT video_id WHERE attr=true)) / log(N)`
+4. 全量重跑时自动更新，无需手工维护
+
+#### 查询阶段
+
+1. **self_query_node**（复用现有 LLM 调用）新增 `scene_constraints` 输出：
+  - prompt 列出当前词表（Phase 1 step 5 生成的 JSON），LLM 只做选择不生成新属性
+  - 输出 `[{attr_name, weight}]`，weight 由 LLM 估计（0.7-0.95）
+  - 例："a black car drove to the refueling spot" → `[{has_car: 0.95}, {has_black: 0.9}]`
+  - "refueling spot" 不在词表中 → LLM 不输出（受限于词表）
+2. **Boost 应用**：RRF 融合后、reranker 前，对 candidate pool 每行按 `video_scene_attrs` 查匹配，apply boost 后送 reranker
+3. 无匹配 → fallback 纯向量（`attr_score=0`）
+4. Dump `attr_score`、命中 attrs、各 attr IDF 到 debug 日志
+
+#### 实施（~3.5h）
+
+
+| 步骤                                         | 时间    |
+| ------------------------------------------ | ----- |
+| `video_scene_attrs` 表 + SQL 提取 + IDF       | 0.5h  |
+| 词表 JSON 导出（`--prepare-subset-db` 时自动）      | 0.25h |
+| self_query 加 scene_constraints（LLM 从词表选）   | 1h    |
+| retrieval boost 集成（RRF 后 reranker 前，λ=0.1） | 1h    |
+| debug 日志 + λ=0 vs λ=0.1 ablation           | 0.75h |
+
+
+> 每次 `--prepare-subset-db` 自动重新生成词表。不持久化、不手工维护。
+
+**预期**：在 Tier1 基础上，有场景线索的 query precision +0.10~0.15。
+
+### Tier 3：Oversample 扩大 + Parent 粗筛
+
+oversample 3x→10x（top-50）；用 parent collection（82 时间桶）做粗筛。代价：~2h
+
+### Tier 4：Chunk 去重合并
+
+相邻时间段 chunk 去重。代价：~1h
+
+### Tier 5：Hybrid Alpha 动态调优
+
+代价：~0.5h，微调项
+
+### 执行优先级
+
+```
+Tier 1（Video Collection + where）→ 跑全量
+  → top_hit < 0.5：+ Tier 2（词表覆盖率 ≥60% 才动手）
+  → 还不够：+ Tier 3（oversample + parent coarse）
+  → Tier 4/5 微调
+```
+
+Tier 1+2 预期 top_hit 0.21→0.55-0.75。
+
+### 评测与 Ablation 规范
+
+每次 Tier 上线后产出：
+
+
+| Metric                                                                                             | baseline | current | Δ   | vector_only (λ=0) |
+| -------------------------------------------------------------------------------------------------- | -------- | ------- | --- | ----------------- |
+| top_hit_rate / precision_avg / recall_avg / e2e_score_avg / custom_correctness / video_match / IoU |          |         |     |                   |
+
+
+按 query 类型分桶（presence / temporal / object-search / negative）。Tier 2 额外加 `attr_coverage` 和 `avg_attr_score`。
 
 ---
 

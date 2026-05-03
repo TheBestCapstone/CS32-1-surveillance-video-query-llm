@@ -551,6 +551,24 @@ def _resolve_seed_files(seed_dir: Path, cases: list[dict[str, Any]]) -> list[Pat
     return seed_files
 
 
+def _build_discriminator_llm() -> Any:
+    """Create a lightweight LLM for building video discriminator summaries."""
+    raw = os.getenv("AGENT_BUILD_VIDEO_COLLECTION", "1").strip().lower()
+    if raw not in {"1", "true", "yes", "on"}:
+        return None
+    try:
+        from dotenv import load_dotenv
+        load_dotenv()
+    except Exception:
+        pass
+    try:
+        from core.runtime import build_default_llm
+        return build_default_llm()
+    except Exception as exc:
+        print(f"[ragas_eval] discriminator LLM unavailable: {exc}")
+        return None
+
+
 def _prepare_subset_databases(
     *,
     paths: EvalPaths,
@@ -558,6 +576,7 @@ def _prepare_subset_databases(
     child_collection: str,
     parent_collection: str,
     event_collection: str,
+    video_collection: str | None = None,
 ) -> dict[str, Any]:
     paths.runtime_dir.mkdir(parents=True, exist_ok=True)
     sqlite_result = SQLiteDatabaseBuilder(
@@ -567,15 +586,23 @@ def _prepare_subset_databases(
             generate_init_prompt=False,
         )
     ).build(seed_files=seed_files)
+    # Derive video collection name from child collection namespace
+    if video_collection is None:
+        # "ucfcrime_eval_child" → "ucfcrime_eval_video"
+        parts = child_collection.rsplit("_", 1)
+        video_collection = f"{parts[0]}_video" if len(parts) == 2 else f"{child_collection}_video"
     chroma_result = ChromaIndexBuilder(
         ChromaBuildConfig(
             chroma_path=paths.chroma_path,
             child_collection=child_collection,
             parent_collection=parent_collection,
             event_collection=event_collection,
+            video_collection=video_collection,
             reset_existing=True,
         )
-    ).build(seed_files=seed_files)
+    ).build(seed_files=seed_files, llm=_build_discriminator_llm())
+    # Ensure coarse video filter picks up the correct collection name
+    os.environ["AGENT_CHROMA_VIDEO_COLLECTION"] = video_collection
     return {
         "sqlite": sqlite_result,
         "chroma": chroma_result,
@@ -597,6 +624,10 @@ def _load_graph_with_runtime_env(
     os.environ["AGENT_CHROMA_CHILD_COLLECTION"] = child_collection
     os.environ["AGENT_CHROMA_PARENT_COLLECTION"] = parent_collection
     os.environ["AGENT_CHROMA_EVENT_COLLECTION"] = event_collection
+    # Derive and set video_collection for Tier 1 coarse filter
+    parts = child_collection.rsplit("_", 1)
+    video_collection = f"{parts[0]}_video" if len(parts) == 2 else f"{child_collection}_video"
+    os.environ["AGENT_CHROMA_VIDEO_COLLECTION"] = video_collection
     if "graph" in sys.modules:
         graph_module = importlib.reload(sys.modules["graph"])
     else:
@@ -981,6 +1012,12 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument("--limit", type=int, default=0, help="Limit case count for smoke test")
+    parser.add_argument(
+        "--case-ids-file",
+        type=str,
+        default="",
+        help="Path to a file with case IDs (one per line) to filter evaluation. Useful for re-running a specific subset (e.g. hard cases).",
+    )
     parser.add_argument("--top-k", type=int, default=5, help="How many retrieved rows to evaluate")
     parser.add_argument("--prepare-subset-db", action="store_true", help="Build subset sqlite/chroma from selected video ids")
     parser.add_argument("--sqlite-path", type=str, default="", help="Use an existing sqlite db path")
@@ -1046,6 +1083,11 @@ def main() -> None:
         )
     if args.limit and args.limit > 0:
         cases = cases[: args.limit]
+    if args.case_ids_file:
+        ids_path = Path(args.case_ids_file).expanduser().resolve()
+        target_ids = {line.strip() for line in ids_path.read_text(encoding="utf-8").splitlines() if line.strip() and not line.strip().startswith("#")}
+        cases = [c for c in cases if c.get("case_id") in target_ids]
+        print(f"[ragas_eval] Filtered to {len(cases)} cases (from --case-ids-file {ids_path})")
     if not cases:
         raise RuntimeError("No evaluation cases selected")
 
