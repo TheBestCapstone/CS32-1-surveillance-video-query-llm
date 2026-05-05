@@ -161,17 +161,23 @@ class ChromaIndexBuilder:
         for event in raw_events:
             if not isinstance(event, dict):
                 continue
-            video_id = str(event.get("video_id") or fallback_video_id or "").strip()
+            video_id = str(event.get("video_id") or fallback_video_id or event.get("camera_id") or "").strip()
             entity_hint = str(event.get("entity_hint") or event.get("track_id") or "na").strip()
             if not video_id:
                 continue
+            keywords = event.get("keywords")
+            if not keywords:
+                cls = event.get("class_name") or ""
+                etype = event.get("event_type") or ""
+                keywords = [k for k in [cls, etype] if k]
             normalized.append(
                 {
                     "video_id": video_id,
+                    "camera_id": event.get("camera_id"),
                     "entity_hint": entity_hint,
                     "start_time": event.get("start_time"),
                     "end_time": event.get("end_time"),
-                    "object_type": event.get("object_type"),
+                    "object_type": event.get("object_type") or event.get("class_name"),
                     "object_color": event.get("object_color_en") or event.get("object_color"),
                     "scene_zone": event.get("scene_zone_en") or event.get("scene_zone"),
                     "appearance_notes": event.get("appearance_notes_en") or event.get("appearance_notes"),
@@ -180,8 +186,10 @@ class ChromaIndexBuilder:
                         or event.get("event_summary_en")
                         or event.get("event_text")
                         or event.get("event_summary")
+                        or event.get("description_for_llm")
                     ),
-                    "keywords": ChromaIndexBuilder._normalize_keywords(event.get("keywords")),
+                    "keywords": ChromaIndexBuilder._normalize_keywords(keywords),
+                    "global_entity_id": event.get("global_entity_id"),
                     "raw_event": event,
                 }
             )
