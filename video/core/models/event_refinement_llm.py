@@ -14,7 +14,7 @@ from langchain_openai import ChatOpenAI
 
 from video.common.frames import FrameSample, PersonCrop, coarse_color_label_from_bgr, crop_bgr_at_time_xyxy
 from video.core.schema.multi_camera import MatchVerification
-from video.core.schema.refined_event_llm import RefinedEntity, RefinedEventsPayload, VectorEventsPayload
+from video.core.schema.refined_event_llm import RefinedEntity, RefinedEventsPayload, UCAEventPayload, VectorEventsPayload
 
 logger = logging.getLogger(__name__)
 
@@ -341,6 +341,101 @@ def refine_events_with_llm(
     )
     text = resp.content if isinstance(resp.content, str) else str(resp.content)
     return parser.parse(text)
+
+
+def refine_uca_events_with_llm(
+    *,
+    video_name: str,
+    duration: float,
+    clip: dict[str, float],
+    raw_events: list[dict[str, Any]],
+    frames: list[FrameSample],
+    model: str = "gpt-5.4",
+    temperature: float = 0.0,
+) -> UCAEventPayload:
+    """UCA dense captioning mode: output timestamps + sentences matching UCFCrime_Test.json format.
+
+    Uses UCA_SYSTEM_PROMPT from agent.node.uca_prompts for style consistency
+    with the ground truth annotations.
+    """
+    from agent.node.uca_prompts import UCA_SYSTEM_PROMPT, build_uca_dense_caption_prompt
+
+    images_content: list[dict[str, Any]] = [
+        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{f.jpg_base64}"}}
+        for f in frames
+    ]
+
+    # Build frame-level evidence for build_uca_dense_caption_prompt
+    frame_events_for_prompt = []
+    for e in raw_events:
+        t_mid = round((float(e.get("start_time", 0)) + float(e.get("end_time", 0))) / 2, 1)
+        objs = []
+        cls = e.get("class_name", "")
+        if cls:
+            objs.append(cls)
+        frame_events_for_prompt.append({
+            "t": t_mid,
+            "objects": objs,
+            "caption": e.get("description_for_llm", ""),
+        })
+    # Also add sampled frame timestamps as evidence points
+    for f in frames:
+        frame_events_for_prompt.append({
+            "t": round(f.t_sec, 1),
+            "caption": "key frame observation",
+        })
+    # Sort by time
+    frame_events_for_prompt.sort(key=lambda x: x.get("t", 0))
+
+    user_text = (
+        build_uca_dense_caption_prompt(
+            video_name=video_name,
+            duration=duration,
+            frame_events=frame_events_for_prompt,
+        )
+        + "\n\nRaw pipeline events (from YOLO+tracking, use as timing reference):\n"
+        + _compact_events_str(raw_events)
+        + "\n\nKey frame timestamps for visual evidence:\n"
+        + "\n".join([f"- t={f.t_sec:.3f}" for f in frames])
+        + "\n\n"
+        "Important rules:\n"
+        "- Produce non-overlapping or lightly-overlapping events covering the full video.\n"
+        "- Timestamps must be in seconds with 0.1s precision; start < end <= duration.\n"
+        "- Each sentence should be ~20 words, factual, surveillance-oriented.\n"
+        "- Merge fragmented track events into coherent narrative segments.\n"
+        "- Preserve the temporal evidence from raw_events; do not invent times.\n"
+    )
+
+    llm = ChatOpenAI(model=model, temperature=temperature)
+    # Use with_structured_output for more reliable JSON generation
+    structured_llm = llm.with_structured_output(UCAEventPayload)
+    result = structured_llm.invoke(
+        [
+            SystemMessage(content=UCA_SYSTEM_PROMPT),
+            HumanMessage(content=[{"type": "text", "text": user_text}, *images_content]),
+        ]
+    )
+    if isinstance(result, UCAEventPayload):
+        return result
+
+    # Fallback: if structured output returns dict, validate manually
+    if isinstance(result, dict):
+        return UCAEventPayload.model_validate(result)
+
+    # Last resort: raw text parsing
+    text = str(result)
+    import re
+    cleaned = text.strip()
+    if cleaned.startswith("```"):
+        cleaned = re.sub(r"^```\w*\n?", "", cleaned)
+        cleaned = re.sub(r"\n?```$", "", cleaned)
+    start = cleaned.find("{")
+    end = cleaned.rfind("}")
+    if start >= 0 and end > start:
+        json_str = cleaned[start:end + 1]
+        data = json.loads(json_str)
+        return UCAEventPayload.model_validate(data)
+    raise ValueError(f"Failed to parse UCA output: {text[:200]}")
 
 
 def refine_vector_events_with_llm(

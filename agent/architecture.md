@@ -17,6 +17,8 @@ flowchart TD
     SUMMARY --> END([END])
 ```
 
+
+
 `match_verifier_node` can be skipped via `AGENT_DISABLE_VERIFIER_NODE=1`,
 in which case `parallel_retrieval_fusion_node` connects directly to
 `final_answer_node`.
@@ -40,7 +42,7 @@ in which case `parallel_retrieval_fusion_node` connects directly to
 - `final_answer_node`
   - produces a grounded draft answer from retrieved rows
   - upgrades to a Yes / Likely-yes / No answer when
-    `AGENT_ENABLE_EXISTENCE_GROUNDER=1`
+  `AGENT_ENABLE_EXISTENCE_GROUNDER=1`
 - `summary_node`
   - rewrites the draft into concise native-sounding English
   - appends minimal citations for auditability
@@ -49,9 +51,10 @@ in which case `parallel_retrieval_fusion_node` connects directly to
 
 - The default architecture is no longer "pick one route then search".
 - The effective production path is
-  "self-query -> classify -> dual retrieval -> fusion (-> verifier) -> answer -> summary".
+"self-query -> classify -> dual retrieval -> fusion (-> verifier) -> answer -> summary".
 - The previous `AGENT_EXECUTION_MODE=legacy_router` fallback path
-  (`tool_router_node` / `reflection_node` / `cot_engine` /
-  `router_prompts`) is no longer available; `pure_sql_node` and
-  `hybrid_search_node` are still defined under `agents/` but are not
-  wired into the default graph.
+(`tool_router_node` / `reflection_node` / `cot_engine` /
+`router_prompts`) is no longer available; `pure_sql_node` and
+`hybrid_search_node` are still defined under `agents/` but are not
+wired into the default graph.
+

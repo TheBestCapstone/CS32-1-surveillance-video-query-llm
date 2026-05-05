@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from typing import Any, Dict, List, Optional, TypedDict
 
@@ -348,6 +349,17 @@ def default_chroma_retrieval_level() -> str:
 
 def default_chroma_namespace() -> str:
     return get_graph_chroma_namespace()
+
+
+def existence_grounder_enabled() -> bool:
+    """Shared flag: whether the existence-grounder (match_verifier_node)
+    may rewrite Yes/No responses for existence queries.
+
+    Mirrors the former per-file ``_existence_grounder_enabled`` helpers;
+    keeping a single source of truth avoids drift between answer_node
+    and summary_node."""
+    raw = os.getenv("AGENT_ENABLE_EXISTENCE_GROUNDER", "").strip().lower()
+    return raw in {"1", "true", "yes", "on"}
 
 
 if __name__ == "__main__":

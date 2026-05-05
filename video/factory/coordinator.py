@@ -127,8 +127,8 @@ def _add_refine_cli_args(p: argparse.ArgumentParser) -> None:
         "--mode",
         type=str,
         default="vector",
-        choices=["full", "vector"],
-        help="full=rich structure; vector=minimal retrieval events (default)",
+        choices=["full", "vector", "uca"],
+        help="full=rich structure; vector=minimal retrieval events; uca=UCA dense captioning (timestamps+sentences) (default)",
     )
     p.add_argument("--clip-index", type=int, default=None, help="Process only one clip segment index")
     p.add_argument("--num-frames", type=int, default=0,

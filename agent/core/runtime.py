@@ -20,14 +20,13 @@ def load_env(project_root: Path | None = None) -> None:
     # Aliasing just the URL while a real ``OPENAI_API_KEY`` is set sends real
     # OpenAI-keyed requests to the DashScope endpoint and returns 401 (the
     # exact symptom that masked the hybrid retrieval branch in P1-2 evals).
-    if (
-        not os.getenv("OPENAI_API_KEY")
-        and not os.getenv("OPENAI_BASE_URL")
-        and os.getenv("DASHSCOPE_API_KEY")
-        and os.getenv("DASHSCOPE_URL")
-    ):
-        os.environ["OPENAI_API_KEY"] = os.getenv("DASHSCOPE_API_KEY")
-        os.environ["OPENAI_BASE_URL"] = os.getenv("DASHSCOPE_URL")
+    openai_key = (os.getenv("OPENAI_API_KEY") or "").strip()
+    openai_base = (os.getenv("OPENAI_BASE_URL") or "").strip()
+    dashscope_key = (os.getenv("DASHSCOPE_API_KEY") or "").strip()
+    dashscope_url = (os.getenv("DASHSCOPE_URL") or "").strip()
+    if not openai_key and not openai_base and dashscope_key and dashscope_url:
+        os.environ["OPENAI_API_KEY"] = dashscope_key
+        os.environ["OPENAI_BASE_URL"] = dashscope_url
     os.environ.setdefault("AGENT_USE_LLAMAINDEX_SQL", "1")
     os.environ.setdefault("AGENT_USE_LLAMAINDEX_VECTOR", "1")
     os.environ.setdefault("AGENT_ENABLE_RERANK", "1")

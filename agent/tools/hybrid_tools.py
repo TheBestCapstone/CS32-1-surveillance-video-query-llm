@@ -106,7 +106,7 @@ def get_temporal_anchor(event_description: str) -> str:
         res = [dict(r) for r in rows]
         return f"Found temporal anchors:\n{json.dumps(res, ensure_ascii=False, indent=2)}\n\nYou can extract start_time from this."
     except Exception as e:
-        return [{"error": "Temporal anchor failed. Please note: Time-dimension queries are generally unsupported, but if finding an event time, it failed here: " + str(e)}]
+        return f"Temporal anchor failed. Please note: Time-dimension queries are generally unsupported, but if finding an event time, it failed here: {str(e)}"
 
 @tool
 def dynamic_weighted_vector_search(

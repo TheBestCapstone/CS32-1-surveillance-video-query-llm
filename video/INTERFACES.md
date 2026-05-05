@@ -63,16 +63,18 @@ prior2 = CameraTopologyPrior.load("results/topology.json")
 
 **关键方法**
 
-| 方法 | 用途 |
-|------|------|
-| `observe(a, b, dt)` | 记录单次确认转移 |
-| `observe_batch(triples)` | 批量观测；自动重新拟合 |
-| `score(a, b, dt) → float` | **核心评分接口**，[0,1] |
-| `expected_transit_sec(a, b)` | 估计平均通行时间 |
-| `transition_table()` | 序列化全部相机对统计 |
-| `most_connected_pairs(top_k)` | 排序观测最多的相机对 |
-| `save / load` | JSON 持久化 |
-| `CameraTopologyPrior.from_confirmed_matches(...)` | 从 GT 转移直接构造 |
+
+| 方法                                                | 用途               |
+| ------------------------------------------------- | ---------------- |
+| `observe(a, b, dt)`                               | 记录单次确认转移         |
+| `observe_batch(triples)`                          | 批量观测；自动重新拟合      |
+| `score(a, b, dt) → float`                         | **核心评分接口**，[0,1] |
+| `expected_transit_sec(a, b)`                      | 估计平均通行时间         |
+| `transition_table()`                              | 序列化全部相机对统计       |
+| `most_connected_pairs(top_k)`                     | 排序观测最多的相机对       |
+| `save / load`                                     | JSON 持久化         |
+| `CameraTopologyPrior.from_confirmed_matches(...)` | 从 GT 转移直接构造      |
+
 
 ---
 
@@ -81,6 +83,7 @@ prior2 = CameraTopologyPrior.load("results/topology.json")
 ### `ReIDEmbedder`
 
 行人外观 Re-ID 特征提取器。后端自动选择：
+
 - `torchreid_osnet`（默认，512-d，~2.2M 参数，OSNet x1.0）
 - `torchvision` MobileNetV2（fallback，1280-d）
 
@@ -116,16 +119,18 @@ MultiCameraOutput   # 整个 pipeline 最终输出
 
 ### `CrossCameraConfig` 关键参数
 
-| 参数 | 默认 | 含义 |
-|------|------|------|
-| `max_transition_sec` | 30.0 | 候选对最大时间间隔 |
-| `embedding_threshold` | 0.65 | cosine 准入阈值 |
-| `cross_camera_min_score` | 0.65 | **组合得分准入阈值（τ）** |
-| `topology_weight_reid` | 0.55 | cosine 在组合得分中的权重 |
-| `topology_weight_topo` | 0.45 | topology 在组合得分中的权重 |
-| `same_camera_max_gap_sec` | 3.0 | 同摄像头碎片缝合时间窗 |
-| `same_camera_reid_threshold` | 0.80 | 同摄像头碎片缝合相似度阈值 |
-| `llm_verify_cosine_min/max` | 0.65 / 0.80 | borderline 区间触发 VLM 复核 |
+
+| 参数                           | 默认          | 含义                     |
+| ---------------------------- | ----------- | ---------------------- |
+| `max_transition_sec`         | 30.0        | 候选对最大时间间隔              |
+| `embedding_threshold`        | 0.65        | cosine 准入阈值            |
+| `cross_camera_min_score`     | 0.65        | **组合得分准入阈值（τ）**        |
+| `topology_weight_reid`       | 0.55        | cosine 在组合得分中的权重       |
+| `topology_weight_topo`       | 0.45        | topology 在组合得分中的权重     |
+| `same_camera_max_gap_sec`    | 3.0         | 同摄像头碎片缝合时间窗            |
+| `same_camera_reid_threshold` | 0.80        | 同摄像头碎片缝合相似度阈值          |
+| `llm_verify_cosine_min/max`  | 0.65 / 0.80 | borderline 区间触发 VLM 复核 |
+
 
 ---
 
@@ -166,6 +171,7 @@ global_entities = match_across_cameras(
 ```
 
 **算法管线**：
+
 1. `build_candidate_pairs` — 时间约束筛选
 2. `score_candidate_pairs` — 组合评分（cosine + topology）
 3. `_greedy_assign` — 按分数贪心分配
@@ -194,6 +200,7 @@ save_multi_camera_output(output, "results/multicam.json")
 ```
 
 **内部步骤**：
+
 1. 各摄像头独立跑 Stage-1（YOLO + 跟踪 + Re-ID embedding）
 2. 同摄像头内碎片缝合（`_stitch_same_camera_fragments`）
 3. 跨摄像头匹配生成 `GlobalEntity`
@@ -203,18 +210,20 @@ save_multi_camera_output(output, "results/multicam.json")
 
 ## 7. 评估脚本（`tests/`）
 
-| 脚本 | 用途 |
-|------|------|
-| `tests/extract_mevid_crops.py` | 从 MEVID-v1 bbox tar 解压 → JPG 训练数据 |
-| `tests/test_mevid_evaluation.py` | MEVID Re-ID 标准评估（Rank-1/5/10, mAP）；含 topology 增益 |
-| `tests/eval_multicam_entity.py` | 跨摄像头 entity-level Precision/Recall/F1/Purity |
-| `tests/test_camera_topology.py` | CameraTopologyPrior 单元测试 |
-| `tests/test_meva_pipeline.py` | MEVA KF1 端到端 smoke test |
-| `tests/test_multi_camera.py` | 多摄像头管线集成测试（mock + 小数据集） |
-| `tests/pipeline_economy_test.py` | 长视频运动门控经济性测试 |
-| `tests/test_motion_coverage.py` | 运动覆盖率统计（46 视频） |
-| `tests/test_event_track_grounding.py` | YOLO 事件 vs LLM 时序定位对比 |
-| `tests/test_uca_*` | UCA 时序定位评估族（46/173 子集，COCO/TSGV 指标，ablation） |
+
+| 脚本                                    | 用途                                               |
+| ------------------------------------- | ------------------------------------------------ |
+| `tests/extract_mevid_crops.py`        | 从 MEVID-v1 bbox tar 解压 → JPG 训练数据                |
+| `tests/test_mevid_evaluation.py`      | MEVID Re-ID 标准评估（Rank-1/5/10, mAP）；含 topology 增益 |
+| `tests/eval_multicam_entity.py`       | 跨摄像头 entity-level Precision/Recall/F1/Purity     |
+| `tests/test_camera_topology.py`       | CameraTopologyPrior 单元测试                         |
+| `tests/test_meva_pipeline.py`         | MEVA KF1 端到端 smoke test                          |
+| `tests/test_multi_camera.py`          | 多摄像头管线集成测试（mock + 小数据集）                          |
+| `tests/pipeline_economy_test.py`      | 长视频运动门控经济性测试                                     |
+| `tests/test_motion_coverage.py`       | 运动覆盖率统计（46 视频）                                   |
+| `tests/test_event_track_grounding.py` | YOLO 事件 vs LLM 时序定位对比                            |
+| `tests/test_uca_`*                    | UCA 时序定位评估族（46/173 子集，COCO/TSGV 指标，ablation）     |
+
 
 ---
 

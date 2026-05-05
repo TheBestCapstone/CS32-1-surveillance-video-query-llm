@@ -203,8 +203,8 @@ def _apply_scene_boost(
         pass
     try:
         from tools.scene_attrs import query_video_attrs
-        from db.config import get_graph_sqlite_path
-        db_path = get_graph_sqlite_path()
+        from db.config import get_graph_sqlite_db_path
+        db_path = get_graph_sqlite_db_path()
     except Exception:
         return rows
 

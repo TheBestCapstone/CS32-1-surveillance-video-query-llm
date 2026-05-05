@@ -4,18 +4,15 @@ import struct
 import json
 from typing import List, Dict, Any, Optional
 
-from src.indexing.embedder import get_qwen_embedding
-
-from pathlib import Path
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
-DEFAULT_DB_PATH = str(BASE_DIR / "src" / "agent" / "memory" / "episodic" / "episodic_memory.db")
+from tools.llm import get_qwen_embedding
+from db.config import get_graph_sqlite_db_path
 
 def serialize_f32(vector: list[float]) -> bytes:
     return struct.pack(f"{len(vector)}f", *vector)
 
 class EventRetriever:
-    def __init__(self, db_path: str = DEFAULT_DB_PATH):
-        self.db_path = db_path
+    def __init__(self, db_path: str | None = None):
+        self.db_path = db_path or str(get_graph_sqlite_db_path())
 
     def _get_db_connection(self):
         db = sqlite3.connect(self.db_path)
@@ -42,7 +39,7 @@ class EventRetriever:
     def structured_search(self, 
                           video_id: str = None, 
                           object_type: str = None,
-                          scene_zone: str = None,
+                          scene_zone_en: str = None,
                           min_duration: float = None,
                           start_time_after: float = None,
                           limit: int = 10) -> List[Dict[str, Any]]:
@@ -59,11 +56,11 @@ class EventRetriever:
         if object_type:
             query += " AND object_type = ?"
             params.append(object_type)
-        if scene_zone:
-            query += " AND scene_zone = ?"
-            params.append(scene_zone)
+        if scene_zone_en:
+            query += " AND scene_zone_en = ?"
+            params.append(scene_zone_en)
         if min_duration is not None:
-            query += " AND duration >= ?"
+            query += " AND duration_sec >= ?"
             params.append(min_duration)
         if start_time_after is not None:
             query += " AND start_time >= ?"
@@ -83,7 +80,7 @@ class EventRetriever:
                             top_k: int = 5,
                             video_id: str = None,
                             object_type: str = None,
-                            scene_zone: str = None,
+                            scene_zone_en: str = None,
                             start_time_after: float = None,
                             end_time_before: float = None) -> List[Dict[str, Any]]:
         """
@@ -104,7 +101,7 @@ class EventRetriever:
                 e.video_id,
                 e.start_time,
                 e.end_time,
-                e.event_summary,
+                e.event_summary_en,
                 v.distance
             FROM episodic_events_vec v
             JOIN episodic_events e ON v.rowid = e.event_id
@@ -122,9 +119,9 @@ class EventRetriever:
             base_query += " AND e.object_type = ?"
             params.append(object_type)
             
-        if scene_zone:
-            base_query += " AND e.scene_zone = ?"
-            params.append(scene_zone)
+        if scene_zone_en:
+            base_query += " AND e.scene_zone_en = ?"
+            params.append(scene_zone_en)
             
         if start_time_after is not None:
             base_query += " AND e.start_time >= ?"
@@ -160,7 +157,7 @@ if __name__ == "__main__":
         print("Test get_event_detail (event_id=1):")
         detail = retriever.get_event_detail(1)
         if detail:
-            print(f"Fetched: {detail.get('event_summary')}")
+            print(f"Fetched: {detail.get('event_summary_en')}")
         else:
             print("No row found (database may be empty).")
             
@@ -168,4 +165,4 @@ if __name__ == "__main__":
         results = retriever.hybrid_event_search("find a parked car", top_k=3)
         for idx, res in enumerate(results):
             print(f"[{idx+1}] ID: {res['event_id']}, video: {res['video_id']}, distance: {res['distance']:.4f}")
-            print(f"    summary: {res['event_summary']}")
+            print(f"    summary: {res['event_summary_en']}")

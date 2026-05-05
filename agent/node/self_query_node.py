@@ -123,6 +123,7 @@ def _fast_path_self_query(raw_query: str) -> dict[str, Any] | None:
             "reasoning_summary": "Fast-path preprocessing kept the original meaning and only normalized surface noise.",
             "confidence": 0.8,
             "expansion_terms": [],
+            "scene_constraints": [],
         }
     return None
 

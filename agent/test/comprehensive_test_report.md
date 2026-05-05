@@ -3,6 +3,7 @@
 - Generated At: `2026-05-04 00:15:23`
 - Cases File: `/home/yangxp/Capstone/agent/test/comprehensive_cases_en.json`
 - Data Profile:
+
 ```json
 {
   "requested_path_exists": false,
@@ -18,7 +19,9 @@
   ]
 }
 ```
+
 - Summary:
+
 ```json
 {
   "total_cases": 11,
@@ -120,7 +123,9 @@
   }
 }
 ```
+
 - Metrics Summary:
+
 ```json
 {
   "sql_branch_non_empty_rate": 1.0,
@@ -137,7 +142,9 @@
   "sql_plan_coverage_rate": 1.0
 }
 ```
+
 - Trends:
+
 ```json
 {
   "baseline": {},
@@ -151,6 +158,7 @@
 ```
 
 ## FNC_SQL_001
+
 - Suite: `core_regression`
 - Priority: `P0`
 - Dimensions: `functional, routing`
@@ -160,6 +168,7 @@
 - Avg Latency: `20744.55 ms`
 - P95 Latency: `20744.55 ms`
 - Node Trace:
+
 ```json
 [
   "self_query_node",
@@ -170,7 +179,9 @@
   "summary_node"
 ]
 ```
+
 - Routing Metrics:
+
 ```json
 {
   "execution_mode": "parallel_fusion",
@@ -182,7 +193,9 @@
   "hybrid_error": "Collection expecting embedding with dimension of 1024, got 3072"
 }
 ```
+
 - Search Config:
+
 ```json
 {
   "candidate_limit": 80,
@@ -196,7 +209,9 @@
   "sql_limit": 80
 }
 ```
+
 - SQL Plan:
+
 ```json
 {
   "table": "episodic_events",
@@ -223,7 +238,9 @@
   "limit": 80
 }
 ```
+
 - Self Query Result:
+
 ```json
 {
   "rewritten_query": "Did you see any person in the database",
@@ -247,19 +264,25 @@
   "original_user_query": "Did you see any person in the database?"
 }
 ```
+
 - Raw Final Answer:
+
 ```json
 {
   "raw_final_answer": "Retrieval complete. Most relevant results:\n[1] event_id=6 | video=Abuse038_x264 | distance=0.0 | summary=From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies."
 }
 ```
+
 - LLM Final Output:
+
 ```json
 {
   "llm_final_output": "Yes. The relevant clip is in Abuse038_x264, around 0:00:00 - 0:00:10.\nSources: [hybrid] Abuse038_x264 | event_id=6 | 0.3-10.4"
 }
 ```
+
 - Assertions:
+
 ```json
 [
   {
@@ -475,7 +498,9 @@
   }
 ]
 ```
+
 - Last Iteration:
+
 ```json
 {
   "elapsed_ms": 20744.55,
@@ -640,6 +665,7 @@
 ```
 
 ## FNC_SQL_002
+
 - Suite: `core_regression`
 - Priority: `P0`
 - Dimensions: `functional, filtering`
@@ -649,6 +675,7 @@
 - Avg Latency: `7483.32 ms`
 - P95 Latency: `7483.32 ms`
 - Node Trace:
+
 ```json
 [
   "self_query_node",
@@ -659,7 +686,9 @@
   "summary_node"
 ]
 ```
+
 - Routing Metrics:
+
 ```json
 {
   "execution_mode": "parallel_fusion",
@@ -671,7 +700,9 @@
   "hybrid_error": "Collection expecting embedding with dimension of 1024, got 3072"
 }
 ```
+
 - Search Config:
+
 ```json
 {
   "candidate_limit": 80,
@@ -685,7 +716,9 @@
   "sql_limit": 80
 }
 ```
+
 - SQL Plan:
+
 ```json
 {
   "table": "episodic_events",
@@ -717,7 +750,9 @@
   "limit": 80
 }
 ```
+
 - Self Query Result:
+
 ```json
 {
   "rewritten_query": "Show me dark-clothed persons",
@@ -740,19 +775,25 @@
   "original_user_query": "Show me dark-clothed persons."
 }
 ```
+
 - Raw Final Answer:
+
 ```json
 {
   "raw_final_answer": "Retrieval complete. Most relevant results:\n[1] event_id=6 | video=Abuse038_x264 | distance=0.0 | summary=From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies.\n[2] event_id=3 | video=Abuse037_x264 | distance=0.0 | summary=From 25.3s to 48.5s, there was a black dog left on the road. It walked to the middle of the road next to the dog that had just been crushed.\n[3] event_id=4 | video=Abuse037_x264 | distance=0.0 | summary=From 48.5s to 59.1s, the black dog walked away and left the middle of the road.\n[4] event_id=1 | video=Abuse037_x264 | distance=0.0 | summary=From 1.2s to 8.2s, a white car with double flashes slowly appeared on the screen, crushing the black dog walking in the middle of the road.\n[5] event_id=5 | video=Abuse037_x264 | distance=0.0 | summary=From 40.4s to 47.6s, the gray dog pulled out the tail of the dog that had just been run over by the car, then stayed for a few minutes and left."
 }
 ```
+
 - LLM Final Output:
+
 ```json
 {
   "llm_final_output": "The most relevant clip is in Abuse038_x264, around 0:00:00 - 0:00:10.\nSources: [hybrid] Abuse038_x264 | event_id=6 | 0.3-10.4; [hybrid] Abuse037_x264 | event_id=3 | 25.3-48.5; [hybrid] Abuse037_x264 | event_id=4 | 48.5-59.1"
 }
 ```
+
 - Assertions:
+
 ```json
 [
   {
@@ -979,7 +1020,9 @@
   }
 ]
 ```
+
 - Last Iteration:
+
 ```json
 {
   "elapsed_ms": 7483.32,
@@ -1212,6 +1255,7 @@
 ```
 
 ## FNC_HYB_001
+
 - Suite: `semantic_regression`
 - Priority: `P0`
 - Dimensions: `functional, semantic, routing`
@@ -1221,6 +1265,7 @@
 - Avg Latency: `5751.64 ms`
 - P95 Latency: `5751.64 ms`
 - Node Trace:
+
 ```json
 [
   "self_query_node",
@@ -1231,7 +1276,9 @@
   "summary_node"
 ]
 ```
+
 - Routing Metrics:
+
 ```json
 {
   "execution_mode": "parallel_fusion",
@@ -1243,7 +1290,9 @@
   "hybrid_error": "Collection expecting embedding with dimension of 1024, got 3072"
 }
 ```
+
 - Search Config:
+
 ```json
 {
   "candidate_limit": 80,
@@ -1257,7 +1306,9 @@
   "sql_limit": 80
 }
 ```
+
 - SQL Plan:
+
 ```json
 {
   "table": "episodic_events",
@@ -1289,7 +1340,9 @@
   "limit": 80
 }
 ```
+
 - Self Query Result:
+
 ```json
 {
   "rewritten_query": "Find a person near the left bleachers",
@@ -1313,19 +1366,25 @@
   "original_user_query": "Find a person near the left bleachers."
 }
 ```
+
 - Raw Final Answer:
+
 ```json
 {
   "raw_final_answer": "Retrieval complete. Most relevant results:\n[1] event_id=3 | video=Abuse037_x264 | distance=0.0 | summary=From 25.3s to 48.5s, there was a black dog left on the road. It walked to the middle of the road next to the dog that had just been crushed.\n[2] event_id=4 | video=Abuse037_x264 | distance=0.0 | summary=From 48.5s to 59.1s, the black dog walked away and left the middle of the road.\n[3] event_id=5 | video=Abuse037_x264 | distance=0.0 | summary=From 40.4s to 47.6s, the gray dog pulled out the tail of the dog that had just been run over by the car, then stayed for a few minutes and left.\n[4] event_id=7 | video=Abuse038_x264 | distance=0.0 | summary=From 11.5s to 17.2s, two puppies rolled on the road, then one of the dogs left the road and the other stopped in the middle of the road.\n[5] event_id=6 | video=Abuse038_x264 | distance=0.0 | summary=From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies."
 }
 ```
+
 - LLM Final Output:
+
 ```json
 {
   "llm_final_output": "The most relevant clip is in Abuse037_x264, around 0:00:25 - 0:00:48.\nSources: [hybrid] Abuse037_x264 | event_id=3 | 25.3-48.5; [hybrid] Abuse037_x264 | event_id=4 | 48.5-59.1; [hybrid] Abuse037_x264 | event_id=5 | 40.4-47.6"
 }
 ```
+
 - Assertions:
+
 ```json
 [
   {
@@ -1533,7 +1592,9 @@
   }
 ]
 ```
+
 - Last Iteration:
+
 ```json
 {
   "elapsed_ms": 5751.64,
@@ -1767,6 +1828,7 @@
 ```
 
 ## FNC_HYB_002
+
 - Suite: `semantic_regression`
 - Priority: `P0`
 - Dimensions: `functional, semantic, behavior`
@@ -1776,6 +1838,7 @@
 - Avg Latency: `5454.23 ms`
 - P95 Latency: `5454.23 ms`
 - Node Trace:
+
 ```json
 [
   "self_query_node",
@@ -1786,7 +1849,9 @@
   "summary_node"
 ]
 ```
+
 - Routing Metrics:
+
 ```json
 {
   "execution_mode": "parallel_fusion",
@@ -1798,7 +1863,9 @@
   "hybrid_error": "Collection expecting embedding with dimension of 1024, got 3072"
 }
 ```
+
 - Search Config:
+
 ```json
 {
   "candidate_limit": 80,
@@ -1812,7 +1879,9 @@
   "sql_limit": 80
 }
 ```
+
 - SQL Plan:
+
 ```json
 {
   "table": "episodic_events",
@@ -1844,7 +1913,9 @@
   "limit": 80
 }
 ```
+
 - Self Query Result:
+
 ```json
 {
   "rewritten_query": "Look for a person moving on the sidewalk",
@@ -1868,19 +1939,25 @@
   "original_user_query": "Look for a person moving on the sidewalk."
 }
 ```
+
 - Raw Final Answer:
+
 ```json
 {
   "raw_final_answer": "Retrieval complete. Most relevant results:\n[1] event_id=6 | video=Abuse038_x264 | distance=0.0 | summary=From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies.\n[2] event_id=10 | video=Abuse038_x264 | distance=0.0 | summary=From 20.6s to 28.0s, the cars on the road continue to move forward slowly."
 }
 ```
+
 - LLM Final Output:
+
 ```json
 {
   "llm_final_output": "The most relevant clip is in Abuse038_x264, around 0:00:00 - 0:00:10.\nSources: [hybrid] Abuse038_x264 | event_id=6 | 0.3-10.4; [hybrid] Abuse038_x264 | event_id=10 | 20.6-28.0"
 }
 ```
+
 - Assertions:
+
 ```json
 [
   {
@@ -2081,7 +2158,9 @@
   }
 ]
 ```
+
 - Last Iteration:
+
 ```json
 {
   "elapsed_ms": 5454.23,
@@ -2266,6 +2345,7 @@
 ```
 
 ## NEG_SQL_001
+
 - Suite: `negative_regression`
 - Priority: `P0`
 - Dimensions: `functional, negative`
@@ -2275,6 +2355,7 @@
 - Avg Latency: `8764.57 ms`
 - P95 Latency: `8764.57 ms`
 - Node Trace:
+
 ```json
 [
   "self_query_node",
@@ -2285,7 +2366,9 @@
   "summary_node"
 ]
 ```
+
 - Routing Metrics:
+
 ```json
 {
   "execution_mode": "parallel_fusion",
@@ -2297,7 +2380,9 @@
   "hybrid_error": "Collection expecting embedding with dimension of 1024, got 3072"
 }
 ```
+
 - Search Config:
+
 ```json
 {
   "candidate_limit": 80,
@@ -2311,7 +2396,9 @@
   "sql_limit": 80
 }
 ```
+
 - SQL Plan:
+
 ```json
 {
   "table": "episodic_events",
@@ -2338,7 +2425,9 @@
   "limit": 80
 }
 ```
+
 - Self Query Result:
+
 ```json
 {
   "rewritten_query": "Are there any cars in the database",
@@ -2362,19 +2451,25 @@
   "original_user_query": "Are there any cars in the database?"
 }
 ```
+
 - Raw Final Answer:
+
 ```json
 {
   "raw_final_answer": "Retrieval complete. Most relevant results:\n[1] event_id=10 | video=Abuse038_x264 | distance=0.0 | summary=From 20.6s to 28.0s, the cars on the road continue to move forward slowly."
 }
 ```
+
 - LLM Final Output:
+
 ```json
 {
   "llm_final_output": "Yes. The relevant clip is in Abuse038_x264, around 0:00:21 - 0:00:28.\nSources: [hybrid] Abuse038_x264 | event_id=10 | 20.6-28.0"
 }
 ```
+
 - Assertions:
+
 ```json
 [
   {
@@ -2565,7 +2660,9 @@
   }
 ]
 ```
+
 - Last Iteration:
+
 ```json
 {
   "elapsed_ms": 8764.57,
@@ -2730,6 +2827,7 @@
 ```
 
 ## BND_INPUT_001
+
 - Suite: `boundary_inputs`
 - Priority: `P1`
 - Dimensions: `boundary, resilience`
@@ -2739,6 +2837,7 @@
 - Avg Latency: `1980.05 ms`
 - P95 Latency: `1980.05 ms`
 - Node Trace:
+
 ```json
 [
   "self_query_node",
@@ -2749,7 +2848,9 @@
   "summary_node"
 ]
 ```
+
 - Routing Metrics:
+
 ```json
 {
   "execution_mode": "parallel_fusion",
@@ -2761,7 +2862,9 @@
   "hybrid_error": null
 }
 ```
+
 - Search Config:
+
 ```json
 {
   "candidate_limit": 80,
@@ -2775,7 +2878,9 @@
   "sql_limit": 80
 }
 ```
+
 - SQL Plan:
+
 ```json
 {
   "table": "episodic_events",
@@ -2796,7 +2901,9 @@
   "limit": 80
 }
 ```
+
 - Self Query Result:
+
 ```json
 {
   "rewritten_query": "",
@@ -2813,19 +2920,25 @@
   "original_user_query": ""
 }
 ```
+
 - Raw Final Answer:
+
 ```json
 {
   "raw_final_answer": "Retrieval complete. Most relevant results:\n[1] event_id=10 | video=Abuse038_x264 | distance=0.0 | summary=From 20.6s to 28.0s, the cars on the road continue to move forward slowly.\n[2] event_id=6 | video=Abuse038_x264 | distance=0.0 | summary=From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies.\n[3] event_id=9 | video=Abuse038_x264 | distance=0.0 | summary=From 14.5s to 20.6s, in the middle of the road on one side, a car with lights on stopped driving, and the lights shone on the puppy on the road in front.\n[4] event_id=2 | video=Abuse037_x264 | distance=0.0 | summary=From 8.4s to 25.3s, the white car was driving in the middle of the road, and several dogs ran onto the road.\n[5] event_id=1 | video=Abuse037_x264 | distance=0.0 | summary=From 1.2s to 8.2s, a white car with double flashes slowly appeared on the screen, crushing the black dog walking in the middle of the road."
 }
 ```
+
 - LLM Final Output:
+
 ```json
 {
   "llm_final_output": "The most relevant clip is in Abuse038_x264, around 0:00:21 - 0:00:28.\nSources: [sql] Abuse038_x264 | event_id=10 | 20.6-28.0; [sql] Abuse038_x264 | event_id=6 | 0.3-10.4; [sql] Abuse038_x264 | event_id=9 | 14.5-20.6"
 }
 ```
+
 - Assertions:
+
 ```json
 [
   {
@@ -2955,7 +3068,9 @@
   }
 ]
 ```
+
 - Last Iteration:
+
 ```json
 {
   "elapsed_ms": 1980.05,
@@ -3198,6 +3313,7 @@
 ```
 
 ## BND_INPUT_002
+
 - Suite: `boundary_inputs`
 - Priority: `P1`
 - Dimensions: `boundary, routing`
@@ -3207,6 +3323,7 @@
 - Avg Latency: `6528.77 ms`
 - P95 Latency: `6528.77 ms`
 - Node Trace:
+
 ```json
 [
   "self_query_node",
@@ -3217,7 +3334,9 @@
   "summary_node"
 ]
 ```
+
 - Routing Metrics:
+
 ```json
 {
   "execution_mode": "parallel_fusion",
@@ -3229,7 +3348,9 @@
   "hybrid_error": "Collection expecting embedding with dimension of 1024, got 3072"
 }
 ```
+
 - Search Config:
+
 ```json
 {
   "candidate_limit": 80,
@@ -3243,7 +3364,9 @@
   "sql_limit": 80
 }
 ```
+
 - SQL Plan:
+
 ```json
 {
   "table": "episodic_events",
@@ -3270,7 +3393,9 @@
   "limit": 80
 }
 ```
+
 - Self Query Result:
+
 ```json
 {
   "rewritten_query": "person",
@@ -3289,19 +3414,25 @@
   "original_user_query": "person"
 }
 ```
+
 - Raw Final Answer:
+
 ```json
 {
   "raw_final_answer": "Retrieval complete. Most relevant results:\n[1] event_id=6 | video=Abuse038_x264 | distance=0.0 | summary=From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies."
 }
 ```
+
 - LLM Final Output:
+
 ```json
 {
   "llm_final_output": "The most relevant clip is in Abuse038_x264, around 0:00:00 - 0:00:10.\nSources: [hybrid] Abuse038_x264 | event_id=6 | 0.3-10.4"
 }
 ```
+
 - Assertions:
+
 ```json
 [
   {
@@ -3494,7 +3625,9 @@
   }
 ]
 ```
+
 - Last Iteration:
+
 ```json
 {
   "elapsed_ms": 6528.77,
@@ -3654,6 +3787,7 @@
 ```
 
 ## RES_INPUT_001
+
 - Suite: `resilience_inputs`
 - Priority: `P1`
 - Dimensions: `resilience, semantic`
@@ -3663,6 +3797,7 @@
 - Avg Latency: `7123.62 ms`
 - P95 Latency: `7123.62 ms`
 - Node Trace:
+
 ```json
 [
   "self_query_node",
@@ -3673,7 +3808,9 @@
   "summary_node"
 ]
 ```
+
 - Routing Metrics:
+
 ```json
 {
   "execution_mode": "parallel_fusion",
@@ -3685,7 +3822,9 @@
   "hybrid_error": "Collection expecting embedding with dimension of 1024, got 3072"
 }
 ```
+
 - Search Config:
+
 ```json
 {
   "candidate_limit": 80,
@@ -3699,7 +3838,9 @@
   "sql_limit": 80
 }
 ```
+
 - SQL Plan:
+
 ```json
 {
   "table": "episodic_events",
@@ -3731,7 +3872,9 @@
   "limit": 80
 }
 ```
+
 - Self Query Result:
+
 ```json
 {
   "rewritten_query": "Find A PERSON near the LEFT BLEACHERS",
@@ -3755,19 +3898,25 @@
   "original_user_query": "!!! Find A PERSON near the LEFT BLEACHERS ???"
 }
 ```
+
 - Raw Final Answer:
+
 ```json
 {
   "raw_final_answer": "Retrieval complete. Most relevant results:\n[1] event_id=3 | video=Abuse037_x264 | distance=0.0 | summary=From 25.3s to 48.5s, there was a black dog left on the road. It walked to the middle of the road next to the dog that had just been crushed.\n[2] event_id=4 | video=Abuse037_x264 | distance=0.0 | summary=From 48.5s to 59.1s, the black dog walked away and left the middle of the road.\n[3] event_id=5 | video=Abuse037_x264 | distance=0.0 | summary=From 40.4s to 47.6s, the gray dog pulled out the tail of the dog that had just been run over by the car, then stayed for a few minutes and left.\n[4] event_id=7 | video=Abuse038_x264 | distance=0.0 | summary=From 11.5s to 17.2s, two puppies rolled on the road, then one of the dogs left the road and the other stopped in the middle of the road.\n[5] event_id=6 | video=Abuse038_x264 | distance=0.0 | summary=From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies."
 }
 ```
+
 - LLM Final Output:
+
 ```json
 {
   "llm_final_output": "Yes. The relevant clip is in Abuse038_x264, around 0:00:00 - 0:00:10.\nSources: [hybrid] Abuse037_x264 | event_id=3 | 25.3-48.5; [hybrid] Abuse037_x264 | event_id=4 | 48.5-59.1; [hybrid] Abuse037_x264 | event_id=5 | 40.4-47.6"
 }
 ```
+
 - Assertions:
+
 ```json
 [
   {
@@ -3959,7 +4108,9 @@
   }
 ]
 ```
+
 - Last Iteration:
+
 ```json
 {
   "elapsed_ms": 7123.62,
@@ -4193,6 +4344,7 @@
 ```
 
 ## FNC_SQL_003
+
 - Suite: `filter_regression`
 - Priority: `P1`
 - Dimensions: `functional, filtering`
@@ -4202,6 +4354,7 @@
 - Avg Latency: `3925.07 ms`
 - P95 Latency: `3925.07 ms`
 - Node Trace:
+
 ```json
 [
   "self_query_node",
@@ -4212,7 +4365,9 @@
   "summary_node"
 ]
 ```
+
 - Routing Metrics:
+
 ```json
 {
   "execution_mode": "parallel_fusion",
@@ -4224,7 +4379,9 @@
   "hybrid_error": "Collection expecting embedding with dimension of 1024, got 3072"
 }
 ```
+
 - Search Config:
+
 ```json
 {
   "candidate_limit": 80,
@@ -4238,7 +4395,9 @@
   "sql_limit": 80
 }
 ```
+
 - SQL Plan:
+
 ```json
 {
   "table": "episodic_events",
@@ -4270,7 +4429,9 @@
   "limit": 80
 }
 ```
+
 - Self Query Result:
+
 ```json
 {
   "rewritten_query": "Show me a person in the parking area",
@@ -4294,19 +4455,25 @@
   "original_user_query": "Show me a person in the parking area."
 }
 ```
+
 - Raw Final Answer:
+
 ```json
 {
   "raw_final_answer": "Retrieval complete. Most relevant results:\n[1] event_id=6 | video=Abuse038_x264 | distance=0.0 | summary=From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies."
 }
 ```
+
 - LLM Final Output:
+
 ```json
 {
   "llm_final_output": "The most relevant clip is in Abuse038_x264, around 0:00:00 - 0:00:10.\nSources: [hybrid] Abuse038_x264 | event_id=6 | 0.3-10.4"
 }
 ```
+
 - Assertions:
+
 ```json
 [
   {
@@ -4511,7 +4678,9 @@
   }
 ]
 ```
+
 - Last Iteration:
+
 ```json
 {
   "elapsed_ms": 3925.07,
@@ -4681,6 +4850,7 @@
 ```
 
 ## PERF_SQL_001
+
 - Suite: `performance_smoke`
 - Priority: `P1`
 - Dimensions: `performance, functional`
@@ -4690,6 +4860,7 @@
 - Avg Latency: `8480.09 ms`
 - P95 Latency: `8279.08 ms`
 - Node Trace:
+
 ```json
 [
   "self_query_node",
@@ -4700,7 +4871,9 @@
   "summary_node"
 ]
 ```
+
 - Routing Metrics:
+
 ```json
 {
   "execution_mode": "parallel_fusion",
@@ -4712,7 +4885,9 @@
   "hybrid_error": "Collection expecting embedding with dimension of 1024, got 3072"
 }
 ```
+
 - Search Config:
+
 ```json
 {
   "candidate_limit": 80,
@@ -4726,7 +4901,9 @@
   "sql_limit": 80
 }
 ```
+
 - SQL Plan:
+
 ```json
 {
   "table": "episodic_events",
@@ -4753,7 +4930,9 @@
   "limit": 80
 }
 ```
+
 - Self Query Result:
+
 ```json
 {
   "rewritten_query": "Did you see any person in the database",
@@ -4777,19 +4956,25 @@
   "original_user_query": "Did you see any person in the database?"
 }
 ```
+
 - Raw Final Answer:
+
 ```json
 {
   "raw_final_answer": "Retrieval complete. Most relevant results:\n[1] event_id=6 | video=Abuse038_x264 | distance=0.0 | summary=From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies."
 }
 ```
+
 - LLM Final Output:
+
 ```json
 {
   "llm_final_output": "Yes. The relevant clip is in Abuse038_x264, around 0:00:00 - 0:00:10.\nSources: [hybrid] Abuse038_x264 | event_id=6 | 0.3-10.4"
 }
 ```
+
 - Assertions:
+
 ```json
 [
   {
@@ -4987,7 +5172,9 @@
   }
 ]
 ```
+
 - Last Iteration:
+
 ```json
 {
   "elapsed_ms": 8279.08,
@@ -5152,6 +5339,7 @@
 ```
 
 ## PERF_HYB_001
+
 - Suite: `performance_smoke`
 - Priority: `P1`
 - Dimensions: `performance, semantic`
@@ -5161,6 +5349,7 @@
 - Avg Latency: `5370.75 ms`
 - P95 Latency: `5280.25 ms`
 - Node Trace:
+
 ```json
 [
   "self_query_node",
@@ -5171,7 +5360,9 @@
   "summary_node"
 ]
 ```
+
 - Routing Metrics:
+
 ```json
 {
   "execution_mode": "parallel_fusion",
@@ -5183,7 +5374,9 @@
   "hybrid_error": "Collection expecting embedding with dimension of 1024, got 3072"
 }
 ```
+
 - Search Config:
+
 ```json
 {
   "candidate_limit": 80,
@@ -5197,7 +5390,9 @@
   "sql_limit": 80
 }
 ```
+
 - SQL Plan:
+
 ```json
 {
   "table": "episodic_events",
@@ -5229,7 +5424,9 @@
   "limit": 80
 }
 ```
+
 - Self Query Result:
+
 ```json
 {
   "rewritten_query": "Find a person near the left bleachers",
@@ -5253,19 +5450,25 @@
   "original_user_query": "Find a person near the left bleachers."
 }
 ```
+
 - Raw Final Answer:
+
 ```json
 {
   "raw_final_answer": "Retrieval complete. Most relevant results:\n[1] event_id=3 | video=Abuse037_x264 | distance=0.0 | summary=From 25.3s to 48.5s, there was a black dog left on the road. It walked to the middle of the road next to the dog that had just been crushed.\n[2] event_id=4 | video=Abuse037_x264 | distance=0.0 | summary=From 48.5s to 59.1s, the black dog walked away and left the middle of the road.\n[3] event_id=5 | video=Abuse037_x264 | distance=0.0 | summary=From 40.4s to 47.6s, the gray dog pulled out the tail of the dog that had just been run over by the car, then stayed for a few minutes and left.\n[4] event_id=7 | video=Abuse038_x264 | distance=0.0 | summary=From 11.5s to 17.2s, two puppies rolled on the road, then one of the dogs left the road and the other stopped in the middle of the road.\n[5] event_id=6 | video=Abuse038_x264 | distance=0.0 | summary=From 0.3s to 10.4s, several adults were talking on the side of the road. There were many vehicles on the road. Later, two puppies appeared on the road. A black car hit the two puppies."
 }
 ```
+
 - LLM Final Output:
+
 ```json
 {
   "llm_final_output": "The most relevant clip is in Abuse037_x264, around 0:00:25 - 0:00:48.\nSources: [hybrid] Abuse037_x264 | event_id=3 | 25.3-48.5; [hybrid] Abuse037_x264 | event_id=4 | 48.5-59.1; [hybrid] Abuse037_x264 | event_id=5 | 40.4-47.6"
 }
 ```
+
 - Assertions:
+
 ```json
 [
   {
@@ -5464,7 +5667,9 @@
   }
 ]
 ```
+
 - Last Iteration:
+
 ```json
 {
   "elapsed_ms": 4259.41,

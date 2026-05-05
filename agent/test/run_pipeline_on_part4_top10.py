@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-监控管道评估：对 video_data/part4 前 10 个视频跑完整流水线，并与 UCFCrime_Test.json 地面真值对齐。
+监控管道评估：对 video_data/part4 视频跑完整流水线，并与 UCFCrime_Test.json 地面真值对齐。
 
 流程：
   video_data/part4/{video_id}.mp4
@@ -8,12 +8,17 @@
     → Stage 2: LLM精炼 (vector 模式) → vector_flat.json
     → 对齐地面真值 UCFCrime_Test.json → manifest.json + summary.json
 
+支持断点续跑：已存在的 stage1/stage2 输出自动跳过。
+
 用法：
-  python agent/test/run_pipeline_on_part4_top10.py [--first-n 10] [--skip-stage1] [--skip-stage2]
+  python agent/test/run_pipeline_on_part4_top10.py --first-n 10    # 前 10 个
+  python agent/test/run_pipeline_on_part4_top10.py --first-n 0     # 全部 52 个
+  python agent/test/run_pipeline_on_part4_top10.py --first-n 0 --resume  # 断点续跑
 """
 
 import argparse
 import json
+import re
 import sys
 import time
 from dataclasses import dataclass, field
@@ -28,7 +33,8 @@ if str(ROOT_DIR) not in sys.path:
 # ── 路径常量 ──────────────────────────────────────────────
 PART4_VIDEO_DIR = ROOT_DIR / "video_data" / "part4"
 UCFCRIME_TEST_JSON = ROOT_DIR / "agent" / "test" / "data" / "UCFCrime_Test.json"
-DEFAULT_OUTPUT_DIR = ROOT_DIR / "agent" / "test" / "generated" / "pipeline_eval_part4_top10"
+AGENT_TEST_XLSX = ROOT_DIR / "agent" / "test" / "data" / "agent_test.xlsx"
+DEFAULT_OUTPUT_DIR = ROOT_DIR / "agent" / "test" / "generated" / "pipeline_eval_part4_full"
 
 
 @dataclass
@@ -67,36 +73,96 @@ class VideoRecord:
     error: Optional[str] = None
 
 
-def discover_videos(
+def _fuzzy_match_video_id(xlsx_video_id: str, part4_files: dict[str, Path]) -> Optional[Path]:
+    """将 xlsx 中的 video_id 与 part4 目录中的实际文件名做模糊匹配。
+
+    处理两种命名差异：
+      - Normal_Videos_594_x264（xlsx）↔ Normal_Videos594_x264.mp4（文件）
+      - Normal_Videos_924_x264（xlsx）↔ Normal_Videos_924_x264.mp4（文件，精确匹配）
+    """
+    if xlsx_video_id in part4_files:
+        return part4_files[xlsx_video_id]
+    # 去掉 Videos_ 后面的下划线：Videos_594 → Videos594
+    alt = re.sub(r"Videos_(\d)", r"Videos\1", xlsx_video_id)
+    if alt in part4_files:
+        return part4_files[alt]
+    # 大小写不敏感 + 去下划线
+    norm_xlsx = xlsx_video_id.lower().replace("_", "")
+    for pf_name, pf_path in part4_files.items():
+        if norm_xlsx == pf_name.lower().replace("_", ""):
+            return pf_path
+    return None
+
+
+def load_target_video_ids_from_xlsx(
+    xlsx_path: Path,
+    sheet_name: str = "Part4",
+) -> list[str]:
+    """从 xlsx 中读取目标 sheet 的 video_id 列表（去重）。"""
+    from openpyxl import load_workbook
+
+    wb = load_workbook(str(xlsx_path), read_only=True)
+    if sheet_name not in wb.sheetnames:
+        wb.close()
+        raise ValueError(f"Sheet '{sheet_name}' not found in {xlsx_path}. Available: {wb.sheetnames}")
+    ws = wb[sheet_name]
+    headers = [str(c.value) for c in next(ws.iter_rows(min_row=1, max_row=1))]
+    video_ids: list[str] = []
+    seen = set()
+    for row in ws.iter_rows(min_row=2, values_only=True):
+        row_dict = dict(zip(headers, [str(c) if c is not None else "" for c in row]))
+        vid = row_dict.get("Video_id", "").strip()
+        if vid and vid not in seen:
+            seen.add(vid)
+            video_ids.append(vid)
+    wb.close()
+    return video_ids
+
+
+def discover_videos_from_xlsx(
     video_dir: Path,
     ground_truth: dict[str, Any],
-    first_n: int = 10,
+    xlsx_path: Path,
+    sheet_name: str = "Part4",
 ) -> list[VideoRecord]:
-    """扫描 part4 目录，与 ground truth 对齐，取前 N 个。
+    """从 xlsx 读取目标视频列表，在 part4 目录中匹配，与 GT 对齐。
 
     Returns:
-        排序后的 VideoRecord 列表（按视频文件名排序）。
+        VideoRecord 列表（按 xlsx 中的出现顺序）。
     """
-    video_files = sorted(video_dir.glob("*.mp4"))
-    if not video_files:
+    part4_files = {f.stem: f for f in sorted(video_dir.glob("*.mp4"))}
+    if not part4_files:
         raise FileNotFoundError(f"在 {video_dir} 中未找到 .mp4 文件")
 
+    target_ids = load_target_video_ids_from_xlsx(xlsx_path, sheet_name)
+    print(f"xlsx {sheet_name} 共 {len(target_ids)} 个视频")
+
     records: list[VideoRecord] = []
-    for vf in video_files:
-        # 从文件名提取 video_id（去掉 .mp4 后缀）
-        video_id = vf.stem
+    missing_in_part4: list[str] = []
+    missing_in_gt: list[str] = []
+
+    for xlsx_vid in target_ids:
+        matched_path = _fuzzy_match_video_id(xlsx_vid, part4_files)
+        if matched_path is None:
+            missing_in_part4.append(xlsx_vid)
+            continue
+
+        video_id = matched_path.stem  # 使用实际文件名作为 video_id
         if video_id not in ground_truth:
-            print(f"  ⚠ 跳过 {video_id}：UCFCrime_Test.json 中无对应条目")
+            missing_in_gt.append(video_id)
             continue
 
         records.append(VideoRecord(
             video_id=video_id,
-            video_path=vf,
+            video_path=matched_path,
             ground_truth=ground_truth[video_id],
         ))
 
-    records = records[:first_n]
-    print(f"发现 {len(video_files)} 个视频，匹配 {len(records)} 个（取前 {first_n} 个）")
+    if missing_in_part4:
+        print(f"  ⚠ 在 part4 中未找到: {missing_in_part4}")
+    if missing_in_gt:
+        print(f"  ⚠ 在 GT JSON 中未找到: {missing_in_gt}")
+    print(f"  匹配成功: {len(records)} 个视频")
     return records
 
 
@@ -290,9 +356,11 @@ def build_parser() -> argparse.ArgumentParser:
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     p.add_argument("--first-n", type=int, default=10,
-                   help="跑前 N 个视频 (default: 10)")
+                   help="跑前 N 个视频，0=全部 (default: 10)")
+    p.add_argument("--from-xlsx", action="store_true",
+                   help="从 agent_test.xlsx 的 Part4 sheet 读取目标视频列表（覆盖 --first-n）")
     p.add_argument("--output-dir", type=str, default=str(DEFAULT_OUTPUT_DIR),
-                   help="输出目录 (default: agent/test/generated/pipeline_eval_part4_top10/)")
+                   help="输出目录 (default: agent/test/generated/pipeline_eval_part4_full/)")
     p.add_argument("--video-dir", type=str, default=str(PART4_VIDEO_DIR),
                    help="视频源目录")
     p.add_argument("--ground-truth", type=str, default=str(UCFCRIME_TEST_JSON),
@@ -301,6 +369,8 @@ def build_parser() -> argparse.ArgumentParser:
                    help="跳过 Stage 1（使用已有 events/clips.json）")
     p.add_argument("--skip-stage2", action="store_true",
                    help="跳过 Stage 2（使用已有 vector_flat.json）")
+    p.add_argument("--resume", action="store_true",
+                   help="断点续跑：自动跳过已完成的 Stage")
     p.add_argument("--model", type=str, default="11m",
                    help="YOLO 模型 (default: 11m)")
     p.add_argument("--conf", type=float, default=0.25,
@@ -345,20 +415,25 @@ def main() -> None:
     print(f"视频目录:   {video_dir}")
     print(f"地面真值:   {ground_truth_path}")
     print(f"输出目录:   {output_dir}")
-    print(f"取前 N:     {args.first_n}")
+    print(f"取前 N:     {'全部' if args.first_n <= 0 else args.first_n}")
+    print(f"从xlsx读取: {args.from_xlsx}")
     print(f"跳过Stage1: {args.skip_stage1}")
     print(f"跳过Stage2: {args.skip_stage2}")
+    print(f"断点续跑:   {args.resume}")
     print()
 
     ground_truth = json.loads(ground_truth_path.read_text(encoding="utf-8"))
     print(f"地面真值共 {len(ground_truth)} 个视频条目\n")
 
-    records = discover_videos(video_dir, ground_truth, first_n=args.first_n)
+    records = discover_videos_from_xlsx(
+        video_dir, ground_truth,
+        xlsx_path=Path(args.xlsx_path) if hasattr(args, 'xlsx_path') else AGENT_TEST_XLSX,
+    )
     if not records:
         print("没有找到可匹配的视频，退出。")
         sys.exit(1)
 
-    print("\n前 10 个视频列表：")
+    print(f"\nxlsx 目标视频列表：")
     for i, r in enumerate(records, 1):
         gt = r.ground_truth
         print(f"  {i:>2}. {r.video_id}  ({gt.get('duration', '?'):.1f}s, {len(gt.get('sentences', []))} 句描述)")
@@ -366,12 +441,41 @@ def main() -> None:
 
     # ── Stage 1: YOLO + 追踪 + 事件切片 ─────────────────
     total_start = time.time()
+
+    def _check_stage1_done(r: VideoRecord) -> bool:
+        ev_p = stage1_dir / f"{r.video_id}_events.json"
+        cl_p = stage1_dir / f"{r.video_id}_clips.json"
+        if ev_p.exists() and cl_p.exists():
+            r.events_path = ev_p
+            r.clips_path = cl_p
+            r.stage1_ok = True
+            return True
+        return False
+
+    def _check_stage2_done(r: VideoRecord) -> bool:
+        vf_p = stage2_dir / f"{r.video_id}_events_vector_flat.json"
+        if vf_p.exists():
+            r.vector_flat_path = vf_p
+            r.stage2_ok = True
+            return True
+        return False
+
+    # 断点续跑：先检查已完成的
+    if args.resume:
+        s1_skipped = sum(1 for r in records if _check_stage1_done(r))
+        s2_skipped = sum(1 for r in records if _check_stage2_done(r))
+        if s1_skipped or s2_skipped:
+            print(f"[断点续跑] Stage1 已完成 {s1_skipped} 个, Stage2 已完成 {s2_skipped} 个")
+
     if not args.skip_stage1:
         print("━" * 80)
         print("Stage 1: YOLO + BoT-SORT 追踪 + 事件切片")
         print("━" * 80)
-        for i, record in enumerate(records, 1):
-            print(f"\n[{i}/{len(records)}] {record.video_id}")
+        s1_pending = [r for r in records if not r.stage1_ok]
+        if not s1_pending:
+            print("  全部已完成，跳过。")
+        for i, record in enumerate(s1_pending, 1):
+            print(f"\n[{i}/{len(s1_pending)}] {record.video_id}")
             try:
                 run_stage1(record, config, stage1_dir)
             except Exception as e:
@@ -396,9 +500,11 @@ def main() -> None:
         print("\n" + "━" * 80)
         print("Stage 2: LLM 精炼 (vector 模式)")
         print("━" * 80)
-        s2_records = [r for r in records if r.stage1_ok]
-        for i, record in enumerate(s2_records, 1):
-            print(f"\n[{i}/{len(s2_records)}] {record.video_id}")
+        s2_pending = [r for r in records if r.stage1_ok and not r.stage2_ok]
+        if not s2_pending:
+            print("  全部已完成，跳过。")
+        for i, record in enumerate(s2_pending, 1):
+            print(f"\n[{i}/{len(s2_pending)}] {record.video_id}")
             try:
                 run_stage2(record, config, stage2_dir)
             except Exception as e:

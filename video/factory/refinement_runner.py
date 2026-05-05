@@ -16,16 +16,17 @@ from video.common.frames import (
 from video.core.models.event_refinement_llm import (
     build_entities_with_hard_constraints,
     refine_events_with_llm,
+    refine_uca_events_with_llm,
     refine_vector_events_with_llm,
 )
-from video.core.schema.refined_event_llm import RefinedAllClipsPayload, RefinedEventsPayload, VectorEventsPayload
+from video.core.schema.refined_event_llm import RefinedAllClipsPayload, RefinedEventsPayload, UCAEventPayload, VectorEventsPayload
 
 logger = logging.getLogger(__name__)
 
 
 @dataclass
 class RefineEventsConfig:
-    mode: Literal["full", "vector"] = "vector"
+    mode: Literal["full", "vector", "uca"] = "vector"
     clip_index: int | None = None
     # Adaptive sampling: prefer frames_per_sec from clip duration
     # If num_frames > 0, use fixed count (backward compatible)
@@ -81,6 +82,7 @@ def run_refine_events_to_dict(
 
     refined_list_full: list[RefinedEventsPayload] = []
     refined_list_vector: list[VectorEventsPayload] = []
+    refined_list_uca: list[UCAEventPayload] = []
 
     for idx in indices:
         clip = clip_segments[idx]
@@ -132,6 +134,20 @@ def run_refine_events_to_dict(
                     pre_entities=pre_entities,
                 )
             )
+        elif cfg.mode == "uca":
+            video_name = Path(video_path).stem
+            duration = clip_duration
+            refined_list_uca.append(
+                refine_uca_events_with_llm(
+                    video_name=video_name,
+                    duration=duration,
+                    clip={"start_sec": clip_start, "end_sec": clip_end},
+                    raw_events=clip_events,
+                    frames=frames,
+                    model=cfg.model,
+                    temperature=float(cfg.temperature),
+                )
+            )
         else:
             refined_list_vector.append(
                 refine_vector_events_with_llm(
@@ -150,6 +166,27 @@ def run_refine_events_to_dict(
         if len(refined_list_full) == 1:
             return refined_list_full[0].model_dump()
         return RefinedAllClipsPayload(video_path=str(video_path), clips=refined_list_full).model_dump()
+
+    if cfg.mode == "uca":
+        if not refined_list_uca:
+            return {"video_name": Path(video_path).stem, "duration": 0.0, "timestamps": [], "sentences": []}
+        if len(refined_list_uca) == 1:
+            return refined_list_uca[0].model_dump()
+        # Multiple clips: merge into a single UCA payload
+        merged_ts: list[list[float]] = []
+        merged_sent: list[str] = []
+        for uca in refined_list_uca:
+            merged_ts.extend(uca.timestamps)
+            merged_sent.extend(uca.sentences)
+        # Sort by start time
+        pairs = sorted(zip(merged_ts, merged_sent), key=lambda p: p[0][0])
+        return {
+            "video_name": Path(video_path).stem,
+            "duration": float(events_data["meta"].get("total_frames", 0))
+                / float(events_data["meta"].get("fps", 30)),
+            "timestamps": [p[0] for p in pairs],
+            "sentences": [p[1] for p in pairs],
+        }
 
     flat_events: list[dict[str, Any]] = []
     for ve in refined_list_vector:
@@ -345,6 +382,8 @@ def run_refine_events_from_files(
 
     if cfg.mode == "vector":
         out_path = events_path.with_name(events_path.stem + "_vector_flat.json")
+    elif cfg.mode == "uca":
+        out_path = events_path.with_name(events_path.stem + "_uca.json")
     elif out_dict.get("mode") == "full" and "refined_events" not in out_dict and "clips" not in out_dict:
         out_path = events_path.with_name(events_path.stem + "_refined_empty.json")
     elif isinstance(out_dict.get("clips"), list) and len(out_dict["clips"]) > 1:

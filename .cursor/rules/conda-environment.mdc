@@ -1,0 +1,16 @@
+---
+description: All project work must use the conda capstone environment
+alwaysApply: true
+---
+
+# Conda 环境
+
+本项目的所有工作都应在 `capstone` conda 环境中进行。
+
+运行任何 Python 脚本、安装依赖或执行项目相关命令前，确保已激活环境：
+
+```bash
+conda activate capstone
+```
+
+在 Shell 中执行命令时，如果涉及 Python 或项目相关操作，应先激活该环境。

@@ -130,3 +130,20 @@ class VectorEventsPayload(BaseModel):
 class VectorAllClipsPayload(BaseModel):
     video_id: str
     clips: list[VectorEventsPayload]
+
+
+class UCAEventPayload(BaseModel):
+    """UCA (UCF-Crime Annotation) dense captioning output.
+
+    Matches the UCA format used in UCFCrime_Test.json ground truth:
+    {video_name: {duration, timestamps: [[s,e],...], sentences: [...]}}
+    """
+
+    video_name: str = Field(description="Video filename without extension")
+    duration: float = Field(description="Total video duration in seconds")
+    timestamps: list[list[float]] = Field(
+        description="List of [start_sec, end_sec] pairs, 0.1s precision, start < end <= duration"
+    )
+    sentences: list[str] = Field(
+        description="English sentences, one per timestamp, UCA style (~20 words each)"
+    )

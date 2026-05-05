@@ -6,12 +6,14 @@
 
 ## 前置条件
 
-| 依赖 | 路径 |
-|------|------|
-| 题目 xlsx | `agent/test/data/agent_test.xlsx`（Part4 sheet） |
-| seed 文件 | `agent/test/generated/datasets/ucfcrime_events_vector_flat/*_events_vector_flat.json` |
-| eval runner | `agent/test/ragas_eval_runner.py` |
-| 工作目录 | `agent/test/` |
+
+| 依赖          | 路径                                                                                    |
+| ----------- | ------------------------------------------------------------------------------------- |
+| 题目 xlsx     | `agent/test/data/agent_test.xlsx`（Part4 sheet）                                        |
+| seed 文件     | `agent/test/generated/datasets/ucfcrime_events_vector_flat/*_events_vector_flat.json` |
+| eval runner | `agent/test/ragas_eval_runner.py`                                                     |
+| 工作目录        | `agent/test/`                                                                         |
+
 
 ---
 
@@ -43,16 +45,18 @@ nohup python run_chunks.py > run_chunks_stdout.log 2>&1 &
 
 ## 参数说明
 
-| 参数 | 默认值 | 说明 |
-|------|--------|------|
-| `--max-chunks N` | 0（=全部） | 只跑前 N 批 |
-| `--chunk-size N` | 10 | 每批视频数 |
-| `--disable-sql` | off | 设 `AGENT_DISABLE_SQL_BRANCH=1`，纯 hybrid |
-| `--no-progress` | off | 关闭 tqdm 进度条 |
-| `--dry-run` | — | 仅打印分块计划 |
-| `--xlsx-path` | `data/agent_test.xlsx` | 题目文件 |
-| `--seed-dir` | `generated/datasets/ucfcrime_events_vector_flat` | seed 目录 |
-| `--output-root` | `generated/ragas_eval_p4_chunks` | 输出根目录 |
+
+| 参数               | 默认值                                              | 说明                                      |
+| ---------------- | ------------------------------------------------ | --------------------------------------- |
+| `--max-chunks N` | 0（=全部）                                           | 只跑前 N 批                                 |
+| `--chunk-size N` | 10                                               | 每批视频数                                   |
+| `--disable-sql`  | off                                              | 设 `AGENT_DISABLE_SQL_BRANCH=1`，纯 hybrid |
+| `--no-progress`  | off                                              | 关闭 tqdm 进度条                             |
+| `--dry-run`      | —                                                | 仅打印分块计划                                 |
+| `--xlsx-path`    | `data/agent_test.xlsx`                           | 题目文件                                    |
+| `--seed-dir`     | `generated/datasets/ucfcrime_events_vector_flat` | seed 目录                                 |
+| `--output-root`  | `generated/ragas_eval_p4_chunks`                 | 输出根目录                                   |
+
 
 ---
 
@@ -69,12 +73,14 @@ results.csv ← 提取 summary_report.json 指标
 ### 垃圾视频过滤
 
 自动跳过 video_id 不满足条件的行：
+
 - 不包含 `Normal_Videos` 前缀
 - 以 `!?`、`RoadAccidents`、`多摄像头` 开头
 
 ### seed 双向映射
 
 xlsx 和磁盘文件命名可能不一致，脚本自动处理两种格式：
+
 - `Normal_Videos_924_x264` ↔ `Normal_Videos924_x264`
 
 ---
@@ -104,20 +110,22 @@ agent/test/generated/ragas_eval_p4_chunks/
 
 ## `results.csv` 字段
 
-| 字段 | 含义 |
-|------|------|
-| `chunk` | 批次编号 |
-| `videos` | 视频数 |
-| `cases` | 题目数 |
-| `top_hit` | Top-5 检索命中率 |
-| `precision` | `context_precision_avg` |
-| `recall` | `context_recall_avg` |
-| `factual_corr` | `factual_correctness_avg` |
-| `custom_corr` | `custom_correctness_avg` |
-| `e2e` | `ragas_e2e_score_avg` |
-| `iou_avg` | 时间窗口 IoU 均值 |
-| `vid_match_avg` | 视频匹配分均值 |
-| `latency_s` | 平均延迟（秒） |
+
+| 字段              | 含义                        |
+| --------------- | ------------------------- |
+| `chunk`         | 批次编号                      |
+| `videos`        | 视频数                       |
+| `cases`         | 题目数                       |
+| `top_hit`       | Top-5 检索命中率               |
+| `precision`     | `context_precision_avg`   |
+| `recall`        | `context_recall_avg`      |
+| `factual_corr`  | `factual_correctness_avg` |
+| `custom_corr`   | `custom_correctness_avg`  |
+| `e2e`           | `ragas_e2e_score_avg`     |
+| `iou_avg`       | 时间窗口 IoU 均值               |
+| `vid_match_avg` | 视频匹配分均值                   |
+| `latency_s`     | 平均延迟（秒）                   |
+
 
 ---
 
@@ -160,3 +168,4 @@ for level in ["easy", "medium", "hard"]:
     print(f"{level:<8} n={n}  top_hit={top_hit:.4f}  prec={prec:.4f}  rec={rec:.4f}  e2e={e2e_s:.4f}  iou={iou:.4f}")
 EOF
 ```
+

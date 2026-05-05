@@ -1,6 +1,7 @@
 # agent_test 导入工作记录
 
 ## 目标
+
 - 解析 `agent/test/data` 下的原始转录文件。
 - 将原始转录标准化为接近 `events_vector_flat` 的 JSON。
 - 建立统一导入 pipeline，并输出符合当前项目数据库导入格式的产物。
@@ -9,6 +10,7 @@
 ## 阶段记录
 
 ### 阶段 1：数据摸底与格式确认
+
 - 时间：2026-05-01
 - 已完成内容：
 - 初始误判数据源为 `agent/test/agent_test.xlsx`。
@@ -24,6 +26,7 @@
 - 需要同时输出统一 JSON 和本地 SQLite，方便后续 `E2E / RAGAS / generation eval` 复用。
 
 ### 阶段 2：解析与清洗规则落地
+
 - 时间：2026-05-01
 - 已完成内容：
 - 新增导入脚本：`agent/test/agent_test_importer.py`
@@ -45,12 +48,15 @@
 - `generation_ready`
 
 ### 阶段 3：导入 pipeline 与产物验证
+
 - 时间：2026-05-01
 - 已完成内容：
 - 已执行导入命令：
+
 ```bash
 python /home/yangxp/Capstone/agent/test/agent_test_importer.py --reset
 ```
+
 - 已产出文件：
 - `agent/test/generated/agent_test_normalized.json`
 - `agent/test/generated/agent_test_eval.sqlite`
@@ -74,6 +80,7 @@ python /home/yangxp/Capstone/agent/test/agent_test_importer.py --reset
 - 题目文本前缀已清理，适合直接交给后续评测模块
 
 ## 当前结论
+
 - 当前已经形成两条可复用的数据链路：
 - 评测标签链路：`agent_test.xlsx -> agent/test/generated/agent_test_*.json`
 - 原始转录链路：`UCFCrime_Test.json -> agent/test/generated/ucfcrime_events_vector_flat/*.json`
@@ -81,6 +88,7 @@ python /home/yangxp/Capstone/agent/test/agent_test_importer.py --reset
 - `agent_test.xlsx` 中缺失标准答案或难度的样本会落到 `unknown`，这是标签层原始数据缺口，不是导入失败。
 
 ### 阶段 4：原始转录导入链路更正
+
 - 时间：2026-05-01
 - 已完成内容：
 - 已确认 `agent/test/data/UCFCrime_Test.json` 是按 `video_id -> duration/timestamps/sentences` 组织的原始转录。
@@ -110,12 +118,15 @@ python /home/yangxp/Capstone/agent/test/agent_test_importer.py --reset
 - `entity_hint` 按 `segment_{index}` 生成
 
 ### 阶段 5：转录标准化与数据库导入验证
+
 - 时间：2026-05-01
 - 已完成内容：
 - 已执行转录标准化：
+
 ```bash
 python /home/yangxp/Capstone/agent/test/ucfcrime_transcript_importer.py
 ```
+
 - 已产出：
 - 目录：`agent/test/generated/ucfcrime_events_vector_flat/`
 - 清单：`agent/test/generated/ucfcrime_events_manifest.json`
@@ -129,6 +140,7 @@ python /home/yangxp/Capstone/agent/test/ucfcrime_transcript_importer.py
 - 全量导入验证：`310` 个视频，共 `4331` 条事件
 
 ### 阶段 6：端到端评测流程搭建
+
 - 时间：2026-05-01
 - 已完成内容：
 - 当前 `xlsx` 评测标签已收敛为仅纳入 `Part1` 和 `Part4`
@@ -150,9 +162,11 @@ python /home/yangxp/Capstone/agent/test/ucfcrime_transcript_importer.py
 - 可输出 `JSON + Markdown` 报告
 
 ### 阶段 7：RAGAS smoke test 验证
+
 - 时间：2026-05-01
 - 已完成内容：
 - 已执行最小验证命令：
+
 ```bash
 python /home/yangxp/Capstone/agent/test/ragas_eval_runner.py \
   --include-sheets Part1 Part4 \
@@ -160,6 +174,7 @@ python /home/yangxp/Capstone/agent/test/ragas_eval_runner.py \
   --prepare-subset-db \
   --output-dir /home/yangxp/Capstone/agent/test/generated/ragas_eval_smoke
 ```
+
 - smoke test 数据范围：
 - 样本数：`2`
 - 涉及视频：`Abuse037_x264`
@@ -182,3 +197,4 @@ python /home/yangxp/Capstone/agent/test/ragas_eval_runner.py \
 - `agent/test/generated/ragas_eval_smoke/e2e_report.json`
 - `agent/test/generated/ragas_eval_smoke/summary_report.json`
 - `agent/test/generated/ragas_eval_smoke/summary_report.md`
+
