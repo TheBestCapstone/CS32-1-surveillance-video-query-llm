@@ -12,6 +12,10 @@ Environment variables honoured::
 
     CHUNK_SIZE        default chunk size (overridden by --chunk-size)
     AGENT_BUILD_VIDEO_COLLECTION  set to 1 per chunk automatically
+
+Optional RAGAS retrieval backend (no LLM for precision/recall when ``id_based``)::
+
+    python run_chunks.py --retrieval-metrics-backend id_based ...
 """
 
 from __future__ import annotations
@@ -257,6 +261,8 @@ def run_chunk(
     xlsx_path: Path,
     no_progress: bool = False,
     disable_sql: bool = False,
+    ragas_contexts_filter: str = "none",
+    retrieval_metrics_backend: str = "llm",
 ) -> dict[str, Any]:
     """Execute one chunk: prepare seeds, run ragas_eval_runner, collect metrics."""
     chunk_label = f"chunk{chunk_index:02d}"
@@ -303,6 +309,10 @@ def run_chunk(
         "--include-sheets",
         "Part4",
     ]
+    if ragas_contexts_filter and ragas_contexts_filter != "none":
+        cmd.extend(["--ragas-contexts-filter", ragas_contexts_filter])
+    if retrieval_metrics_backend and retrieval_metrics_backend != "llm":
+        cmd.extend(["--retrieval-metrics-backend", retrieval_metrics_backend])
     env = os.environ.copy()
     env["AGENT_BUILD_VIDEO_COLLECTION"] = "1"
     if disable_sql:
@@ -458,6 +468,20 @@ def main() -> None:
         action="store_true",
         help="Set AGENT_DISABLE_SQL_BRANCH=1 (hybrid-only ablation)",
     )
+    parser.add_argument(
+        "--ragas-contexts-filter",
+        type=str,
+        default="none",
+        choices=["none", "same_expected_video"],
+        help="Forwarded to ragas_eval_runner.py --ragas-contexts-filter (default: none)",
+    )
+    parser.add_argument(
+        "--retrieval-metrics-backend",
+        type=str,
+        default="llm",
+        choices=["llm", "id_based"],
+        help="Forwarded to ragas_eval_runner.py --retrieval-metrics-backend (default: llm)",
+    )
     args = parser.parse_args()
 
     # --- Validate inputs ---
@@ -518,6 +542,8 @@ def main() -> None:
             xlsx_path=args.xlsx_path,
             no_progress=args.no_progress,
             disable_sql=args.disable_sql,
+            ragas_contexts_filter=args.ragas_contexts_filter,
+            retrieval_metrics_backend=args.retrieval_metrics_backend,
         )
         results.append(result)
         pbar.update(1)

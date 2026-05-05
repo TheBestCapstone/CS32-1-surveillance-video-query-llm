@@ -19,9 +19,78 @@ from video.core.models.event_refinement_llm import (
     refine_uca_events_with_llm,
     refine_vector_events_with_llm,
 )
+from video.core.schema.multi_camera import (
+    CameraAppearance,
+    CameraResult,
+    CrossCameraConfig,
+    GlobalEntity,
+    MultiCameraOutput,
+)
 from video.core.schema.refined_event_llm import RefinedAllClipsPayload, RefinedEventsPayload, UCAEventPayload, VectorEventsPayload
 
 logger = logging.getLogger(__name__)
+
+
+def multicam_output_from_saved_json(path: str | Path) -> MultiCameraOutput:
+    """Rebuild :class:`MultiCameraOutput` from ``save_multi_camera_output`` JSON.
+
+    Stage-1 JSON does not store full ``CameraResult`` blobs; we reconstruct minimal
+    ``per_camera`` rows (video path + merged clip span per camera) so
+    :func:`refine_multi_camera_output` can run without re-running YOLO.
+    """
+    path = Path(path)
+    data = json.loads(path.read_text(encoding="utf-8"))
+    meta = data["meta"]
+    cfg = CrossCameraConfig(**meta["cross_camera_config"])
+    cameras_map: dict[str, str] = meta["cameras"]
+    merged_events: list[dict[str, Any]] = list(data.get("events", []))
+
+    global_entities: list[GlobalEntity] = []
+    for ent in data.get("global_entities", []):
+        apps: list[CameraAppearance] = []
+        for a in ent.get("appearances", []):
+            apps.append(
+                CameraAppearance(
+                    camera_id=str(a["camera_id"]),
+                    track_id=int(a["track_id"]),
+                    start_time=float(a["start_time"]),
+                    end_time=float(a["end_time"]),
+                    confidence=float(a["confidence"]),
+                )
+            )
+        global_entities.append(
+            GlobalEntity(global_entity_id=str(ent["global_entity_id"]), appearances=apps)
+        )
+
+    per_camera: list[CameraResult] = []
+    for cam_id in sorted(cameras_map.keys()):
+        vp = cameras_map[cam_id]
+        cam_ev = [e for e in merged_events if e.get("camera_id") == cam_id]
+        clips: list[dict[str, float]] = []
+        if cam_ev:
+            t0 = min(float(e["start_time"]) for e in cam_ev)
+            t1 = max(float(e["end_time"]) for e in cam_ev)
+            if t1 <= t0:
+                t1 = t0 + 1.0
+            clips.append({"start_sec": t0, "end_sec": t1})
+        per_camera.append(
+            CameraResult(
+                camera_id=cam_id,
+                video_path=vp,
+                tracks=[],
+                events=cam_ev,
+                clips=clips,
+                meta={},
+            )
+        )
+
+    return MultiCameraOutput(
+        cameras=cameras_map,
+        config=cfg,
+        global_entities=global_entities,
+        per_camera=per_camera,
+        merged_events=merged_events,
+    )
 
 
 @dataclass

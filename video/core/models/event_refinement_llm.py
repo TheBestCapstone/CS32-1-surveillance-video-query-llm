@@ -5,7 +5,9 @@ from __future__ import annotations
 import json
 import logging
 import math
+import os
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any, Literal
 
 from langchain_core.messages import HumanMessage, SystemMessage
@@ -17,6 +19,67 @@ from video.core.schema.multi_camera import MatchVerification
 from video.core.schema.refined_event_llm import RefinedEntity, RefinedEventsPayload, UCAEventPayload, VectorEventsPayload
 
 logger = logging.getLogger(__name__)
+
+
+def _load_repo_dotenv() -> None:
+    """Load ``<repo>/.env`` so OPENAI_* vars work under nohup/IDE without manual export."""
+    try:
+        from dotenv import load_dotenv
+    except ImportError:
+        return
+    repo_root = Path(__file__).resolve().parents[3]
+    load_dotenv(repo_root / ".env")
+
+
+_load_repo_dotenv()
+
+
+def chat_openai_compatible_kwargs(
+    *,
+    model: str,
+    temperature: float,
+    base_url: str | None = None,
+    api_key: str | None = None,
+) -> dict[str, Any]:
+    """Keyword args for :class:`langchain_openai.ChatOpenAI`.
+
+    Supports the public OpenAI API and **OpenAI-compatible servers** (e.g. **vLLM**
+    ``python -m vllm.entrypoints.openai.api_server``).
+
+    Resolution order:
+
+    * ``base_url`` — explicit argument, else ``VLLM_OPENAI_BASE_URL``, then
+      ``OPENAI_BASE_URL``, then ``OPENAI_URL``.
+    * ``api_key`` — explicit argument, else ``OPENAI_API_KEY``, ``VLLM_API_KEY``,
+      ``OPENAI_KEY``, or ``OPENAIKEY``.
+      If ``base_url`` is set (typical local **vLLM**) and no key is found, uses
+      ``"EMPTY"`` (common vLLM default).
+      If still unset, ``"EMPTY"`` is used so :class:`ChatOpenAI` can construct
+      (newer ``openai`` requires *some* ``api_key``); real calls to OpenAI need a
+      valid key or ``OPENAI_BASE_URL`` pointing at your gateway.
+    """
+    bu = base_url if base_url is not None else (
+        os.getenv("VLLM_OPENAI_BASE_URL")
+        or os.getenv("OPENAI_BASE_URL")
+        or os.getenv("OPENAI_URL")
+    )
+    ak = api_key
+    if ak is None:
+        ak = (
+            os.getenv("OPENAI_API_KEY")
+            or os.getenv("VLLM_API_KEY")
+            or os.getenv("OPENAI_KEY")
+            or os.getenv("OPENAIKEY")
+        ) or None
+    kwargs: dict[str, Any] = {"model": model, "temperature": temperature}
+    if bu:
+        kwargs["base_url"] = bu.rstrip("/")
+        if ak is None:
+            ak = "EMPTY"
+    if ak is None:
+        ak = "EMPTY"
+    kwargs["api_key"] = ak
+    return kwargs
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -161,7 +224,7 @@ def _verify_merge_yesno_with_llm(
         "Same target? Answer YES only when very confident; otherwise NO.\n"
         f"{parser.get_format_instructions()}"
     )
-    llm = ChatOpenAI(model=model, temperature=temperature)
+    llm = ChatOpenAI(**chat_openai_compatible_kwargs(model=model, temperature=temperature))
     resp = llm.invoke([SystemMessage(content=system), HumanMessage(content=[{"type": "text", "text": user_text}])])
     text = resp.content if isinstance(resp.content, str) else str(resp.content)
     parsed = parser.parse(text)
@@ -332,7 +395,7 @@ def refine_events_with_llm(
         {"type": "text", "text": user_text},
         *images_content,
     ]
-    llm = ChatOpenAI(model=model, temperature=temperature)
+    llm = ChatOpenAI(**chat_openai_compatible_kwargs(model=model, temperature=temperature))
     resp = llm.invoke(
         [
             SystemMessage(content=system),
@@ -406,7 +469,7 @@ def refine_uca_events_with_llm(
         "- Preserve the temporal evidence from raw_events; do not invent times.\n"
     )
 
-    llm = ChatOpenAI(model=model, temperature=temperature)
+    llm = ChatOpenAI(**chat_openai_compatible_kwargs(model=model, temperature=temperature))
     # Use with_structured_output for more reliable JSON generation
     structured_llm = llm.with_structured_output(UCAEventPayload)
     result = structured_llm.invoke(
@@ -491,7 +554,7 @@ def refine_vector_events_with_llm(
         f"{parser.get_format_instructions()}"
     )
 
-    llm = ChatOpenAI(model=model, temperature=temperature)
+    llm = ChatOpenAI(**chat_openai_compatible_kwargs(model=model, temperature=temperature))
     resp = llm.invoke(
         [
             SystemMessage(content=system),
@@ -636,8 +699,15 @@ def verify_person_match_with_llm(
     crop_b: PersonCrop,
     model: str = "gpt-4o-mini",
     temperature: float = 0.0,
+    *,
+    base_url: str | None = None,
+    api_key: str | None = None,
 ) -> MatchVerification:
-    """Send two person crops to the VLM to decide if they are the same person."""
+    """Send two person crops to the VLM to decide if they are the same person.
+
+    Point ``base_url`` (or env ``OPENAI_BASE_URL`` / ``VLLM_OPENAI_BASE_URL``) at a
+    **vLLM** OpenAI-compatible server to run verification locally.
+    """
     system = (
         "You are a surveillance person-reidentification assistant. "
         "You receive two person crops from different cameras. "
@@ -662,7 +732,14 @@ def verify_person_match_with_llm(
         },
     ]
 
-    llm = ChatOpenAI(model=model, temperature=temperature)
+    llm = ChatOpenAI(
+        **chat_openai_compatible_kwargs(
+            model=model,
+            temperature=temperature,
+            base_url=base_url,
+            api_key=api_key,
+        )
+    )
     resp = llm.invoke([
         SystemMessage(content=system),
         HumanMessage(content=user_content),

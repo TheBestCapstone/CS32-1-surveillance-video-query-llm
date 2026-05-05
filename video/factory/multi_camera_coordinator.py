@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 from dataclasses import asdict
 from pathlib import Path
 from typing import Any
@@ -23,6 +24,31 @@ from video.factory.processors.cross_camera_matcher import match_across_cameras
 from video.factory.processors.vision import resolve_model, run_yolo_track_on_video
 
 logger = logging.getLogger(__name__)
+
+
+def _should_use_multicam_llm_verify(
+    use_llm_verify: bool | None,
+    llm_base_url: str | None,
+) -> bool:
+    """Whether to run borderline cosine VLM checks (``verify_person_match_with_llm``).
+
+    * ``use_llm_verify=True`` / ``False`` — explicit on/off.
+    * ``use_llm_verify=None`` — auto: on if ``llm_base_url`` or env
+      ``VLLM_OPENAI_BASE_URL`` / ``OPENAI_BASE_URL`` is set, or env
+      ``MULTICAM_USE_VLLM_VERIFY`` is truthy (``1``, ``true``, ``yes``, ``on``).
+    """
+    if use_llm_verify is not None:
+        return bool(use_llm_verify)
+    base = (
+        llm_base_url
+        or os.getenv("VLLM_OPENAI_BASE_URL")
+        or os.getenv("OPENAI_BASE_URL")
+        or os.getenv("OPENAI_URL")
+    )
+    if base:
+        return True
+    flag = os.getenv("MULTICAM_USE_VLLM_VERIFY", "").strip().lower()
+    return flag in ("1", "true", "yes", "on")
 
 
 def _same_camera_gap_sec(a: dict[str, Any], b: dict[str, Any]) -> float:
@@ -202,9 +228,13 @@ def run_multi_camera_pipeline(
     reid_weights: str | None = None,
     reid_device: str = "cpu",
     num_crops: int = 5,
-    use_llm_verify: bool = False,
+    use_llm_verify: bool | None = None,
     llm_model: str = "gpt-4o-mini",
+    llm_base_url: str | None = None,
+    llm_api_key: str | None = None,
     topology_prior_path: str | None = None,
+    seed_topology_campus_guide_v2: bool = False,
+    campus_logical_to_physical: dict[str, str] | None = None,
     **pipeline_kwargs: Any,
 ) -> MultiCameraOutput:
     """Main entry for multi-camera cross-view tracking.
@@ -216,6 +246,21 @@ def run_multi_camera_pipeline(
         topology_prior_path: Path to a saved :class:`CameraTopologyPrior` JSON.
             If the file exists it is loaded; if None a fresh prior is initialised
             from the camera list and updated online during this run.
+        use_llm_verify: Borderline-pair VLM verification (same person?). ``None``
+            (default) enables verification automatically when ``llm_base_url`` or
+            ``OPENAI_BASE_URL`` / ``VLLM_OPENAI_BASE_URL`` is set (typical **vLLM**
+            deployment); set ``False`` to disable.
+        llm_base_url / llm_api_key: Optional overrides for OpenAI-compatible /
+            **vLLM** endpoints (else env ``OPENAI_BASE_URL``, keys per
+            ``verify_person_match_with_llm``).
+        llm_model: VLM name served by vLLM / OpenAI; env ``MULTICAM_VLLM_MODEL``
+            overrides when set.
+        seed_topology_campus_guide_v2: If True (and no saved prior was loaded),
+            initialise the prior from the Campus Zone Map guide (ADMIN / BUS /
+            SCHOOL zones and walking-time windows). Camera keys should be physical
+            IDs (``G326``, …) or use ``campus_logical_to_physical``.
+        campus_logical_to_physical: Optional map from pipeline camera id to
+            physical camera code for zone lookup when seeding the campus guide.
     """
     from video.core.models.camera_topology import CameraTopologyPrior
 
@@ -230,13 +275,24 @@ def run_multi_camera_pipeline(
 
     # Load or initialise topology prior
     camera_ids = list(camera_videos.keys())
+    max_topo_sec = config.max_transition_sec * 10
     if topology_prior_path and Path(topology_prior_path).exists():
         topology_prior = CameraTopologyPrior.load(topology_prior_path)
         logger.info("Loaded topology prior from %s", topology_prior_path)
+    elif seed_topology_campus_guide_v2:
+        topology_prior = CameraTopologyPrior.from_campus_guide_v2(
+            cameras=camera_ids,
+            logical_to_physical=campus_logical_to_physical,
+            max_transit_sec=max_topo_sec,
+        )
+        logger.info(
+            "Initialised topology prior from campus zone map guide v2.0: %s",
+            camera_ids,
+        )
     else:
         topology_prior = CameraTopologyPrior(
             cameras=camera_ids,
-            max_transit_sec=config.max_transition_sec * 10,  # generous upper bound
+            max_transit_sec=max_topo_sec,  # generous upper bound
         )
         logger.info(
             "Initialised fresh topology prior for cameras: %s", camera_ids
@@ -252,12 +308,24 @@ def run_multi_camera_pipeline(
         _stitch_same_camera_fragments(result, config)
         per_camera.append(result)
 
-    # Stage 2: cross-camera match (with topology prior)
+    # Stage 2: cross-camera match (with topology prior + optional vLLM borderline verify)
     llm_verify_fn = None
-    if use_llm_verify:
-        from video.core.models.event_refinement_llm import verify_person_match_with_llm
+    effective_llm_model = os.getenv("MULTICAM_VLLM_MODEL") or llm_model
+    if _should_use_multicam_llm_verify(use_llm_verify, llm_base_url):
         from functools import partial
-        llm_verify_fn = partial(verify_person_match_with_llm, model=llm_model)
+
+        from video.core.models.event_refinement_llm import verify_person_match_with_llm
+
+        llm_verify_fn = partial(
+            verify_person_match_with_llm,
+            model=effective_llm_model,
+            base_url=llm_base_url,
+            api_key=llm_api_key,
+        )
+        logger.info(
+            "Cross-camera borderline VLM verification enabled (model=%s)",
+            effective_llm_model,
+        )
 
     global_entities = match_across_cameras(
         per_camera, config, embedder, llm_verify_fn,

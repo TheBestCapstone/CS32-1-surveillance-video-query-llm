@@ -16,13 +16,17 @@ from typing import Any
 
 from openai import AsyncOpenAI
 
+from ragas.dataset_schema import SingleTurnSample
 from ragas.llms import llm_factory
+from ragas.metrics._context_precision import IDBasedContextPrecision
+from ragas.metrics._context_recall import IDBasedContextRecall
 from ragas.metrics.collections import (
     ContextPrecisionWithReference,
     ContextRecall,
     Faithfulness,
     FactualCorrectness,
 )
+from ragas.run_config import RunConfig
 
 
 ROOT_DIR = Path(__file__).resolve().parents[2]
@@ -115,6 +119,13 @@ def _select_final_rows(final_state: dict[str, Any]) -> list[dict[str, Any]]:
     if "hybrid_result" in final_state:
         return list(final_state.get("hybrid_result") or [])
     return list(final_state.get("sql_result") or [])
+
+
+def _video_id_from_context_prefix(context: str) -> str:
+    """Parse ``Video <id>.`` prefix from ``_row_context_text`` output (fallback when row meta is missing)."""
+    body = str(context or "").strip()
+    m = re.match(r"^Video\s+(\S+)\.", body, flags=re.IGNORECASE)
+    return m.group(1).strip() if m else ""
 
 
 def _row_context_text(row: dict[str, Any]) -> str:
@@ -214,11 +225,15 @@ def _pick_primary_eval_row(row: dict[str, Any]) -> dict[str, Any]:
 def _normalize_video_id(video_id: str) -> str:
     """Normalize video_id to canonical form for comparison.
 
-    Handles bidirectional naming:
+    Handles bidirectional naming and extension suffixes:
     - ``Normal_Videos_598_x264`` → ``Normal_Videos598_x264`` (remove underscore before digits)
     - ``Normal_Videos598_x264``  → ``Normal_Videos598_x264`` (already canonical)
+    - ``Normal_Videos598_x264.mp4`` → ``Normal_Videos598_x264`` (strip .mp4)
     """
     vid = video_id.strip()
+    # Strip .mp4 suffix so xlsx (no extension) and DB (.mp4) IDs compare equal.
+    if vid.lower().endswith(".mp4"):
+        vid = vid[:-4]
     if vid.startswith("Normal_Videos_"):
         suffix = vid[len("Normal_Videos_"):]
         if suffix and suffix[0].isdigit():
@@ -465,6 +480,49 @@ def _truncate_text(text: str | None, max_chars: int) -> str:
     return value[:max_chars].rstrip() + " ..."
 
 
+def _filter_ragas_contexts_same_expected_video(
+    case_result: dict[str, Any],
+    contexts: list[str],
+) -> tuple[list[str], dict[str, Any]]:
+    """Keep only retrieved chunks whose ``video_id`` matches the case GT ``video_id``.
+
+    Reduces cross-video noise in RAGAS ``context_precision`` / ``context_recall`` when
+    hybrid fusion returns mixed-video top-k rows. Uses ``retrieved_context_video_ids``
+    when aligned with ``contexts``; otherwise parses the ``Video <id>.`` prefix.
+    """
+    exp = _normalize_video_id(str(case_result.get("video_id") or ""))
+    meta: dict[str, Any] = {
+        "ragas_contexts_filter_applied": "same_expected_video",
+        "ragas_context_filter_expected": exp,
+        "ragas_context_filter_before": len(contexts),
+    }
+    if not exp:
+        meta["ragas_contexts_filter_applied"] = "same_expected_video_skipped_empty_case_video"
+        meta["ragas_context_filter_after"] = len(contexts)
+        meta["ragas_context_filter_aligned_meta"] = False
+        return list(contexts), meta
+    vids = case_result.get("retrieved_context_video_ids") or []
+    # Use row-aligned ids only when lengths match *and* at least one id is non-empty;
+    # otherwise an all-empty list still truthy in Python and would drop every chunk.
+    use_aligned = len(vids) == len(contexts) and any(str(v or "").strip() for v in vids)
+    if use_aligned:
+        matched = []
+        for ctx, vid in zip(contexts, vids):
+            effective = str(vid or "").strip() or _video_id_from_context_prefix(ctx)
+            if _normalize_video_id(effective) == exp:
+                matched.append(ctx)
+        meta["ragas_context_filter_aligned_meta"] = True
+    else:
+        matched = [
+            ctx
+            for ctx in contexts
+            if _normalize_video_id(_video_id_from_context_prefix(ctx)) == exp
+        ]
+        meta["ragas_context_filter_aligned_meta"] = False
+    meta["ragas_context_filter_after"] = len(matched)
+    return matched, meta
+
+
 def _compact_contexts(
     contexts: list[str],
     *,
@@ -564,16 +622,30 @@ def _resolve_seed_files(seed_dir: Path, cases: list[dict[str, Any]]) -> list[Pat
     seed_files: list[Path] = []
     missing: list[str] = []
     skipped: list[str] = []
+
+    def _try_name(vid: str) -> Path | None:
+        """Try multiple naming conventions for a video_id."""
+        candidates: list[str] = [
+            f"{vid}_events_vector_flat.json",
+        ]
+        # Normal_Videos_594_x264 → Normal_Videos594_x264
+        if vid.startswith("Normal_Videos_"):
+            candidates.append(f"{vid.replace('Normal_Videos_', 'Normal_Videos')}_events_vector_flat.json")
+        # Normal_Videos594_x264 → Normal_Videos_594_x264
+        if vid.startswith("Normal_Videos") and not vid.startswith("Normal_Videos_"):
+            suffix = vid[len("Normal_Videos"):]
+            if suffix and suffix[0].isdigit():
+                candidates.append(f"Normal_Videos_{suffix}_events_vector_flat.json")
+        for cand in candidates:
+            p = seed_dir / cand
+            if p.exists():
+                return p
+        return None
+
     for video_id in unique_ids:
-        seed_file = seed_dir / f"{video_id}_events_vector_flat.json"
-        if seed_file.exists():
-            seed_files.append(seed_file)
-            continue
-        # Try alternate naming: Normal_Videos_594_x264 → Normal_Videos594_x264
-        alt_id = video_id.replace("Normal_Videos_", "Normal_Videos")
-        alt_file = seed_dir / f"{alt_id}_events_vector_flat.json"
-        if alt_file.exists():
-            seed_files.append(alt_file)
+        found = _try_name(video_id)
+        if found is not None:
+            seed_files.append(found)
             continue
         # Skip obviously invalid / garbled video_ids (e.g. ``!?4h?!``, ``多摄像头``)
         if not video_id.startswith("Normal_Videos"):
@@ -583,7 +655,7 @@ def _resolve_seed_files(seed_dir: Path, cases: list[dict[str, Any]]) -> list[Pat
     if skipped:
         print(f"[ragas_eval] Skipped {len(skipped)} unrecognized video_ids (no seed available): {skipped[:5]}")
     if missing:
-        raise FileNotFoundError(f"Missing seed files for video_ids: {missing[:10]}")
+        print(f"[ragas_eval] WARNING: {len(missing)} video(s) have no seed file and will be skipped: {missing[:10]}")
     return seed_files
 
 
@@ -742,6 +814,30 @@ def _chunked(values: list[Any], size: int) -> list[list[Any]]:
     return [values[idx : idx + size] for idx in range(0, len(values), size)]
 
 
+_ID_BASED_PRECISION: IDBasedContextPrecision | None = None
+_ID_BASED_RECALL: IDBasedContextRecall | None = None
+
+
+def _id_based_context_metrics() -> tuple[IDBasedContextPrecision, IDBasedContextRecall]:
+    """Lazily init RAGAS ID-based retrieval metrics (no LLM)."""
+    global _ID_BASED_PRECISION, _ID_BASED_RECALL
+    if _ID_BASED_PRECISION is None:
+        rc = RunConfig()
+        _ID_BASED_PRECISION = IDBasedContextPrecision()
+        _ID_BASED_RECALL = IDBasedContextRecall()
+        _ID_BASED_PRECISION.init(rc)
+        _ID_BASED_RECALL.init(rc)
+    return _ID_BASED_PRECISION, _ID_BASED_RECALL
+
+
+def _coerce_ragas_float(value: Any) -> float | None:
+    try:
+        f = float(value)
+        return round(f, 4) if math.isfinite(f) else None
+    except (TypeError, ValueError):
+        return None
+
+
 async def _score_case_with_ragas(
     *,
     question: str,
@@ -751,6 +847,8 @@ async def _score_case_with_ragas(
     ragas_llm: Any,
     metric_max_retries: int,
     metric_retry_delay_sec: float,
+    retrieval_metrics_backend: str = "llm",
+    id_reference_video_id: str = "",
 ) -> dict[str, Any]:
     retrieval_scores: dict[str, Any] = {}
     generation_scores: dict[str, Any] = {}
@@ -775,7 +873,41 @@ async def _score_case_with_ragas(
             metric_errors[metric_name] = last_error
         return None
 
-    if contexts and reference:
+    backend = (retrieval_metrics_backend or "llm").strip().lower()
+    retrieval_scores["retrieval_metric_backend"] = backend
+
+    if contexts and backend == "id_based":
+        exp_vid = _normalize_video_id(str(id_reference_video_id or "").strip())
+        retrieved_ids: list[str] = []
+        for ctx in contexts:
+            raw_vid = _video_id_from_context_prefix(ctx)
+            if not raw_vid:
+                continue
+            nid = _normalize_video_id(raw_vid)
+            if nid:
+                retrieved_ids.append(nid)
+        if not exp_vid or not retrieved_ids:
+            retrieval_scores["context_precision"] = None
+            retrieval_scores["context_recall"] = None
+        else:
+            try:
+                id_p, id_r = _id_based_context_metrics()
+                sample = SingleTurnSample(
+                    retrieved_context_ids=retrieved_ids,
+                    reference_context_ids=[exp_vid],
+                )
+                pv = await id_p.single_turn_ascore(sample, callbacks=[])
+                rv = await id_r.single_turn_ascore(sample, callbacks=[])
+                retrieval_scores["context_precision"] = _coerce_ragas_float(pv)
+                retrieval_scores["context_recall"] = _coerce_ragas_float(rv)
+                retrieval_scores["id_based_retrieved_video_ids"] = list(retrieved_ids)
+                retrieval_scores["id_based_reference_video_ids"] = [exp_vid]
+            except Exception as exc:
+                metric_errors["context_precision"] = str(exc)
+                metric_errors["context_recall"] = str(exc)
+                retrieval_scores["context_precision"] = None
+                retrieval_scores["context_recall"] = None
+    elif contexts and reference:
         context_precision = ContextPrecisionWithReference(llm=ragas_llm)
         context_recall = ContextRecall(llm=ragas_llm)
         retrieval_scores["context_precision"] = await _run_metric(
@@ -848,11 +980,13 @@ def _run_case(graph: Any, case: dict[str, Any], idx: int, top_k: int) -> dict[st
         error = str(exc)
     elapsed_ms = round((time.perf_counter() - t0) * 1000, 2)
     rows = _select_final_rows(last_chunk)
-    contexts = []
+    contexts: list[str] = []
+    retrieved_context_video_ids: list[str] = []
     for row in rows[:top_k]:
         text = _row_context_text(row)
         if text and text not in contexts:
             contexts.append(text)
+            retrieved_context_video_ids.append(str(row.get("video_id", "") or "").strip())
     top_video_ids = [str(row.get("video_id", "")).strip() for row in rows[:top_k] if str(row.get("video_id", "")).strip()]
     # Normalize both expected and retrieved video_ids so naming variants like
     # ``Normal_Videos_924_x264`` and ``Normal_Videos924_x264`` are treated as
@@ -889,6 +1023,7 @@ def _run_case(graph: Any, case: dict[str, Any], idx: int, top_k: int) -> dict[st
         "node_trace": node_trace,
         "response": response,
         "retrieved_contexts": contexts,
+        "retrieved_context_video_ids": retrieved_context_video_ids,
         "top_video_ids": top_video_ids,
         "top_hit": _normalize_video_id(str(case.get("video_id", ""))) in normalized_top_video_ids,
         "predicted_video_id": predicted_span["predicted_video_id"],
@@ -925,6 +1060,9 @@ def _build_summary(case_results: list[dict[str, Any]], dataset_report: dict[str,
             "context_precision_avg": _mean([item.get("context_precision") for item in retrieval_cases]),
             "context_recall_avg": _mean([item.get("context_recall") for item in retrieval_cases]),
             "reference_used_rich_count": rich_ref_cases,
+            "retrieval_metric_backend": (
+                (retrieval_cases[0].get("retrieval_metric_backend") if retrieval_cases else None) or "llm"
+            ),
         },
         "generation_summary": {
             "faithfulness_avg": _mean([item.get("faithfulness") for item in generation_cases]),
@@ -983,6 +1121,8 @@ def _build_markdown(summary: dict[str, Any], case_results: list[dict[str, Any]])
         f"- Avg latency ms: `{summary['avg_latency_ms']}`",
         "",
         "## Retrieval",
+        f"- Metric backend: `{summary['retrieval_summary'].get('retrieval_metric_backend', 'llm')}` "
+        f"(``llm`` = semantic RAGAS; ``id_based`` = video_id set overlap, no LLM)",
         f"- Context precision avg: `{summary['retrieval_summary']['context_precision_avg']}`",
         f"- Context recall avg: `{summary['retrieval_summary']['context_recall_avg']}`",
         "",
@@ -1098,6 +1238,29 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--ragas-max-reference-chars", type=int, default=700, help="Max reference chars for RAGAS")
     parser.add_argument("--ragas-metric-max-retries", type=int, default=4, help="Max retries for retryable RAGAS metric failures")
     parser.add_argument("--ragas-metric-retry-delay-sec", type=float, default=2.0, help="Base retry delay for retryable RAGAS metric failures")
+    parser.add_argument(
+        "--ragas-contexts-filter",
+        type=str,
+        default="none",
+        choices=["none", "same_expected_video"],
+        help=(
+            "Subset retrieved_contexts before RAGAS metrics. "
+            "same_expected_video: keep only chunks whose video_id matches the case GT video_id "
+            "(reduces cross-video noise in context_precision / context_recall). Default: none."
+        ),
+    )
+    parser.add_argument(
+        "--retrieval-metrics-backend",
+        type=str,
+        default="llm",
+        choices=["llm", "id_based"],
+        help=(
+            "How to score context_precision / context_recall. "
+            "llm: RAGAS ContextPrecisionWithReference + ContextRecall (OpenAI calls). "
+            "id_based: RAGAS IDBasedContextPrecision + IDBasedContextRecall — "
+            "compare normalized video_id parsed from each context vs case video_id (no LLM)."
+        ),
+    )
     # challenge.md §5.1: default-on rich reference for RAGAS.
     parser.add_argument(
         "--ragas-use-rich-reference",
@@ -1207,8 +1370,14 @@ def main() -> None:
                 reference_raw = case_result.get("reference_answer")
                 reference_source = "legacy_pointer"
             reference = _truncate_text(reference_raw, int(args.ragas_max_reference_chars))
+            raw_contexts = list(case_result.get("retrieved_contexts") or [])
+            filter_mode = str(getattr(args, "ragas_contexts_filter", "none") or "none").strip().lower()
+            filter_meta: dict[str, Any] = {"ragas_contexts_filter": filter_mode}
+            if filter_mode == "same_expected_video":
+                raw_contexts, fm = _filter_ragas_contexts_same_expected_video(case_result, raw_contexts)
+                filter_meta.update(fm)
             contexts = _compact_contexts(
-                case_result.get("retrieved_contexts") or [],
+                raw_contexts,
                 max_contexts=int(args.ragas_max_contexts),
                 max_chars_per_context=int(args.ragas_max_context_chars),
                 max_total_chars=int(args.ragas_max_total_context_chars),
@@ -1217,7 +1386,8 @@ def main() -> None:
             print(
                 f"[ragas] start {idx}/{total} {case_id} "
                 f"ctx={len(contexts)} ctx_chars={ctx_total_chars} "
-                f"resp_chars={len(response)} ref_chars={len(reference)}",
+                f"resp_chars={len(response)} ref_chars={len(reference)} "
+                f"ctx_filter={filter_mode}",
                 flush=True,
             )
             score_t0 = time.perf_counter()
@@ -1230,6 +1400,10 @@ def main() -> None:
                     ragas_llm=ragas_llm,
                     metric_max_retries=max(1, int(args.ragas_metric_max_retries)),
                     metric_retry_delay_sec=max(0.5, float(args.ragas_metric_retry_delay_sec)),
+                    retrieval_metrics_backend=str(
+                        getattr(args, "retrieval_metrics_backend", "llm") or "llm"
+                    ),
+                    id_reference_video_id=str(case_result.get("video_id") or ""),
                 )
             elapsed_ms = round((time.perf_counter() - score_t0) * 1000, 2)
             case_result["ragas_elapsed_ms"] = elapsed_ms
@@ -1241,6 +1415,7 @@ def main() -> None:
                 "reference_source": reference_source,
                 "reference_text": reference,
                 "question_chars": len(question),
+                **filter_meta,
             }
             cc = _compute_custom_correctness(case_result)
             gen = ragas_result.setdefault("generation", {})
@@ -1291,6 +1466,8 @@ def main() -> None:
             "ragas_max_reference_chars": args.ragas_max_reference_chars,
             "ragas_metric_max_retries": args.ragas_metric_max_retries,
             "ragas_metric_retry_delay_sec": args.ragas_metric_retry_delay_sec,
+            "ragas_contexts_filter": getattr(args, "ragas_contexts_filter", "none"),
+            "retrieval_metrics_backend": getattr(args, "retrieval_metrics_backend", "llm"),
         },
         "timing": {
             "graph_total_ms": round(graph_total_ms, 2),

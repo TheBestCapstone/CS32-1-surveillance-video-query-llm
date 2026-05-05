@@ -21,7 +21,11 @@ from pathlib import Path
 
 import numpy as np
 
-from video.core.models.camera_topology import CameraTopologyPrior
+from video.core.models.camera_topology import (
+    CAMERA_IDS_CAMPUS_GUIDE_V2,
+    CameraTopologyPrior,
+    campus_zone_of_camera,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -283,6 +287,37 @@ def demo_topology_report():
 
 
 # ---------------------------------------------------------------------------
+# Campus zone guide v2.0 seed
+# ---------------------------------------------------------------------------
+
+def test_campus_guide_v2_seed():
+    """Synthetic campus map yields fitted pairs and sane ADMIN↔BUS scores."""
+    prior = CameraTopologyPrior.from_campus_guide_v2(
+        cameras=["G326", "G329", "G505"],
+        rng=np.random.default_rng(0),
+        samples_per_pair=8,
+    )
+    assert ("G326", "G505") in prior._fitted or ("G505", "G326") in prior._fitted
+    # Mid-range ADMIN→BUS walk (~37 s) should beat nonsense gaps for fitted pairs
+    s_mid = prior.score("G326", "G505", 37.0)
+    s_bad = prior.score("G326", "G505", 280.0)
+    assert s_mid > s_bad, f"mid={s_mid:.3f} should beat tail={s_bad:.3f}"
+
+    full = CameraTopologyPrior.from_campus_guide_v2()
+    assert len(full.cameras) == len(CAMERA_IDS_CAMPUS_GUIDE_V2)
+    assert campus_zone_of_camera("G328") == "school"
+    assert campus_zone_of_camera("G326") == "admin"
+
+    alias = CameraTopologyPrior.from_campus_guide_v2(
+        cameras=["cam_a", "cam_b"],
+        logical_to_physical={"cam_a": "G326", "cam_b": "G505"},
+        rng=np.random.default_rng(1),
+    )
+    assert alias.score("cam_a", "cam_b", 35.0) > 0.0
+    print("[PASS] test_campus_guide_v2_seed")
+
+
+# ---------------------------------------------------------------------------
 # Run all
 # ---------------------------------------------------------------------------
 
@@ -294,5 +329,6 @@ if __name__ == "__main__":
     test_transition_table()
     test_topology_improves_score()
     test_from_confirmed_matches()
+    test_campus_guide_v2_seed()
     demo_topology_report()
     print("\nAll topology tests passed [OK]")

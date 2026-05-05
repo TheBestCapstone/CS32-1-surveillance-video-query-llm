@@ -8,6 +8,7 @@ from .config import (
     DEFAULT_CHROMA_PATH,
     get_graph_chroma_child_collection,
     get_graph_chroma_event_collection,
+    get_graph_chroma_global_entity_collection,
     get_graph_chroma_parent_collection,
     get_graph_chroma_video_collection,
 )
@@ -29,6 +30,7 @@ class ChromaBuildConfig:
     parent_collection: str = field(default_factory=get_graph_chroma_parent_collection)
     event_collection: str = field(default_factory=get_graph_chroma_event_collection)
     video_collection: str = field(default_factory=get_graph_chroma_video_collection)
+    global_entity_collection: str = field(default_factory=get_graph_chroma_global_entity_collection)
     reset_existing: bool = False
     sqlite_db_path: Path | None = None
 
@@ -41,6 +43,7 @@ class ChromaIndexBuilder:
         self.parent_collection = config.parent_collection
         self.event_collection = config.event_collection
         self.video_collection = config.video_collection
+        self.global_entity_collection = config.global_entity_collection
         self.sqlite_db_path = config.sqlite_db_path
 
     def build(self, seed_files: list[Path] | None = None, llm: Any = None) -> dict[str, Any]:
@@ -56,6 +59,9 @@ class ChromaIndexBuilder:
         # Tier 1: per-video discriminator summaries for coarse retrieval
         video_records = self._build_video_records(events, llm) if llm is not None else []
 
+        # Cross-camera aggregation: one record per global entity across all cameras
+        global_entity_records = self._build_global_entity_records(events)
+
         try:
             client = chromadb.PersistentClient(path=str(self.chroma_path))
             if self.config.reset_existing:
@@ -63,6 +69,7 @@ class ChromaIndexBuilder:
                 self._delete_collection_if_exists(client, self.parent_collection)
                 self._delete_collection_if_exists(client, self.event_collection)
                 self._delete_collection_if_exists(client, self.video_collection)
+                self._delete_collection_if_exists(client, self.global_entity_collection)
 
             child_collection = client.get_or_create_collection(
                 name=self.child_collection,
@@ -80,6 +87,10 @@ class ChromaIndexBuilder:
                 name=self.video_collection,
                 metadata={"hnsw:space": "cosine", "index_role": "video"},
             )
+            global_entity_collection = client.get_or_create_collection(
+                name=self.global_entity_collection,
+                metadata={"hnsw:space": "cosine", "index_role": "global_entity"},
+            )
 
             if child_records:
                 self._upsert_records(child_collection, child_records)
@@ -89,6 +100,8 @@ class ChromaIndexBuilder:
                 self._upsert_records(event_collection, event_records)
             if video_records:
                 self._upsert_records(video_collection, video_records)
+            if global_entity_records:
+                self._upsert_records(global_entity_collection, global_entity_records)
         except Exception as exc:
             logger.exception("Failed to build chroma indexes")
             raise ChromaBuildError(f"Build failed for {self.chroma_path}: {exc}") from exc
@@ -100,15 +113,18 @@ class ChromaIndexBuilder:
             "parent_collection": self.parent_collection,
             "event_collection": self.event_collection,
             "video_collection": self.video_collection,
+            "global_entity_collection": self.global_entity_collection,
             "child_record_count": len(child_records),
             "parent_record_count": len(parent_records),
             "event_record_count": len(event_records),
             "video_record_count": len(video_records),
+            "global_entity_record_count": len(global_entity_records),
             "chunk_strategy": {
                 "child": "track-level (video_id + entity_hint)",
                 "parent": "video-level time-bucketed (10min windows)",
                 "event": "event-level (video_id + entity_hint + start_time + end_time)",
                 "video": "video-level discriminator summary",
+                "global_entity": "cross-camera entity-level (global_entity_id)",
             },
         }
         return result
@@ -137,6 +153,15 @@ class ChromaIndexBuilder:
                 raise ChromaBuildError(f"Seed file not found: {seed_file}")
 
             payload = json.loads(seed_file.read_text(encoding="utf-8"))
+            # --- Camera-grouped multi-camera format ---
+            # { "G328": {"video_id": "...", "events": [...]}, "G339": {...} }
+            if isinstance(payload, dict) and self._is_camera_grouped(payload):
+                for _camera_id, camera_entry in payload.items():
+                    if not isinstance(camera_entry, dict):
+                        continue
+                    fallback = str(camera_entry.get("video_id", "")).strip() or str(_camera_id)
+                    events.extend(self._normalize_events(camera_entry.get("events") or [], fallback))
+                continue
             if isinstance(payload, dict) and isinstance(payload.get("events"), list):
                 fallback = str(payload.get("video_id", "")).strip() or None
                 events.extend(self._normalize_events(payload["events"], fallback))
@@ -170,6 +195,10 @@ class ChromaIndexBuilder:
                 cls = event.get("class_name") or ""
                 etype = event.get("event_type") or ""
                 keywords = [k for k in [cls, etype] if k]
+            # Derive global_entity_id from entity_hint for cross-camera tracking
+            global_entity_id = event.get("global_entity_id")
+            if not global_entity_id:
+                global_entity_id = ChromaIndexBuilder._derive_global_entity_id(entity_hint)
             normalized.append(
                 {
                     "video_id": video_id,
@@ -189,7 +218,7 @@ class ChromaIndexBuilder:
                         or event.get("description_for_llm")
                     ),
                     "keywords": ChromaIndexBuilder._normalize_keywords(keywords),
-                    "global_entity_id": event.get("global_entity_id"),
+                    "global_entity_id": global_entity_id,
                     "raw_event": event,
                 }
             )
@@ -203,6 +232,45 @@ class ChromaIndexBuilder:
             text = raw_keywords.replace("|", ",").replace(";", ",")
             return [part.strip() for part in text.split(",") if part.strip()]
         return []
+
+    # --- Multi-camera format detection & global entity derivation ---
+
+    _GLOBAL_ENTITY_PATTERNS: tuple[str, ...] = (
+        "_global_",       # person_global_1, vehicle_global_2, etc.
+        "global_entity_", # alternative naming
+    )
+
+    @staticmethod
+    def _is_camera_grouped(payload: dict[str, Any]) -> bool:
+        """Detect multi-camera format: {camera_id: {video_id, events}, ...}.
+
+        Heuristic: payload is a dict, does NOT have a direct "events" key,
+        and at least one value is a dict that contains an "events" list.
+        """
+        if not isinstance(payload, dict):
+            return False
+        if "events" in payload:
+            return False  # single-video format: {"video_id": ..., "events": [...]}
+        for val in payload.values():
+            if isinstance(val, dict) and isinstance(val.get("events"), list):
+                return True
+        return False
+
+    @staticmethod
+    def _derive_global_entity_id(entity_hint: str) -> str | None:
+        """Derive ``global_entity_id`` from ``entity_hint`` when it matches a
+        known global/cross-camera naming pattern (e.g. ``person_global_1``).
+
+        Returns the entity_hint as-is when it looks like a global entity;
+        returns None otherwise.
+        """
+        if not entity_hint:
+            return None
+        hint_lower = entity_hint.lower()
+        for pattern in ChromaIndexBuilder._GLOBAL_ENTITY_PATTERNS:
+            if pattern in hint_lower:
+                return entity_hint
+        return None
 
     @staticmethod
     def _dedupe_text(values: list[Any]) -> list[str]:
@@ -406,6 +474,110 @@ class ChromaIndexBuilder:
                 }
             )
         return records
+
+    # --- Cross-camera global entity collection ---
+
+    def _build_global_entity_records(self, events: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        """Build one Chroma record per global entity aggregated across all cameras.
+
+        Groups events by ``global_entity_id`` (derived from ``entity_hint``).
+        Events without a global_entity_id are skipped.
+        Each record summarizes the entity's full trajectory across all camera views,
+        enabling cross-camera queries like "what did person_global_1 do?".
+        """
+        grouped: dict[str, list[dict[str, Any]]] = {}
+        for event in events:
+            ge_id = event.get("global_entity_id")
+            if not ge_id:
+                continue
+            grouped.setdefault(ge_id, []).append(event)
+
+        records: list[dict[str, Any]] = []
+        for ge_id, group in sorted(grouped.items()):
+            start_time = self._safe_min([item.get("start_time") for item in group])
+            end_time = self._safe_max([item.get("end_time") for item in group])
+            appearance_notes = self._dedupe_text([item.get("appearance_notes") for item in group])
+            scene_zones = self._dedupe_text([item.get("scene_zone") for item in group])
+            event_texts = self._dedupe_text([item.get("event_text") for item in group])
+            object_types = self._dedupe_text([item.get("object_type") for item in group])
+            object_colors = self._dedupe_text([item.get("object_color") for item in group])
+            camera_ids = self._dedupe_text([item.get("camera_id") for item in group])
+            video_ids = self._dedupe_text([item.get("video_id") for item in group])
+            keywords = self._dedupe_text(
+                [keyword for item in group for keyword in item.get("keywords", [])]
+            )
+            document = self._build_global_entity_document(
+                global_entity_id=ge_id,
+                camera_ids=camera_ids,
+                video_ids=video_ids,
+                appearance_notes=appearance_notes,
+                scene_zones=scene_zones,
+                event_texts=event_texts,
+                object_types=object_types,
+                object_colors=object_colors,
+                keywords=keywords,
+                start_time=start_time,
+                end_time=end_time,
+                event_count=len(group),
+            )
+            records.append(
+                {
+                    "id": ge_id,
+                    "document": document,
+                    "metadata": {
+                        "record_level": "global_entity",
+                        "global_entity_id": ge_id,
+                        "camera_ids": ", ".join(camera_ids),
+                        "video_ids": ", ".join(video_ids),
+                        "object_type": object_types[0] if object_types else "unknown",
+                        "object_color": object_colors[0] if object_colors else "unknown",
+                        "scene_zone": ", ".join(scene_zones) if scene_zones else "unknown",
+                        "start_time": start_time if start_time is not None else -1.0,
+                        "end_time": end_time if end_time is not None else -1.0,
+                        "event_count": len(group),
+                        "camera_count": len(camera_ids),
+                        "keywords": ", ".join(keywords),
+                    },
+                }
+            )
+        return records
+
+    @staticmethod
+    def _build_global_entity_document(
+        *,
+        global_entity_id: str,
+        camera_ids: list[str],
+        video_ids: list[str],
+        appearance_notes: list[str],
+        scene_zones: list[str],
+        event_texts: list[str],
+        object_types: list[str],
+        object_colors: list[str],
+        keywords: list[str],
+        start_time: float | None,
+        end_time: float | None,
+        event_count: int,
+    ) -> str:
+        sections = [
+            f"Global entity {global_entity_id} observed across {len(camera_ids)} cameras.",
+            f"Cameras: {', '.join(camera_ids)}.",
+            f"Videos: {', '.join(video_ids)}.",
+            f"Time range {ChromaIndexBuilder._format_time(start_time)}s to {ChromaIndexBuilder._format_time(end_time)}s.",
+            f"{event_count} events total.",
+        ]
+        if object_types:
+            sections.append("Object types: " + ", ".join(object_types) + ".")
+        if object_colors:
+            sections.append("Object colors: " + ", ".join(object_colors) + ".")
+        if scene_zones:
+            sections.append("Located in: " + ", ".join(scene_zones) + ".")
+        if appearance_notes:
+            sections.append("Appearance notes: " + " ".join(appearance_notes))
+        if event_texts:
+            sections.append("Events: " + " ".join(event_texts))
+        if keywords:
+            sections.append("Keywords: " + ", ".join(keywords) + ".")
+        return " ".join(sections)
 
     @staticmethod
     def _build_parent_document(

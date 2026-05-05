@@ -15,6 +15,7 @@ DEFAULT_CHROMA_NAMESPACE = "basketball"
 CHROMA_CHILD_SUFFIX = "tracks"
 CHROMA_PARENT_SUFFIX = "tracks_parent"
 CHROMA_EVENT_SUFFIX = "events"
+CHROMA_GLOBAL_ENTITY_SUFFIX = "global_entities"
 
 # Canonical collection names under the default "basketball" namespace.
 # Kept as module-level constants so downstream code that imports them directly
@@ -23,6 +24,7 @@ CHROMA_EVENT_SUFFIX = "events"
 DEFAULT_CHROMA_CHILD_COLLECTION = f"{DEFAULT_CHROMA_NAMESPACE}_{CHROMA_CHILD_SUFFIX}"
 DEFAULT_CHROMA_PARENT_COLLECTION = f"{DEFAULT_CHROMA_NAMESPACE}_{CHROMA_PARENT_SUFFIX}"
 DEFAULT_CHROMA_EVENT_COLLECTION = f"{DEFAULT_CHROMA_NAMESPACE}_{CHROMA_EVENT_SUFFIX}"
+DEFAULT_CHROMA_GLOBAL_ENTITY_COLLECTION = f"{DEFAULT_CHROMA_NAMESPACE}_{CHROMA_GLOBAL_ENTITY_SUFFIX}"
 DEFAULT_CHROMA_COLLECTION = DEFAULT_CHROMA_CHILD_COLLECTION
 DEFAULT_ENV_FILE = PROJECT_ROOT / ".env"
 
@@ -117,6 +119,14 @@ def get_graph_chroma_event_collection() -> str:
 
 
 CHROMA_VIDEO_SUFFIX = "video"
+CHROMA_GLOBAL_ENTITY_SUFFIX = "global_entity"
+
+
+def get_graph_chroma_global_entity_collection() -> str:
+    raw = os.getenv("AGENT_CHROMA_GLOBAL_ENTITY_COLLECTION", "").strip()
+    if raw:
+        return raw
+    return f"{get_graph_chroma_namespace()}_{CHROMA_GLOBAL_ENTITY_SUFFIX}"
 
 
 def get_graph_chroma_video_collection() -> str:
@@ -124,6 +134,19 @@ def get_graph_chroma_video_collection() -> str:
     if raw:
         return raw
     return f"{get_graph_chroma_namespace()}_{CHROMA_VIDEO_SUFFIX}"
+
+
+def get_graph_chroma_global_entity_collection() -> str:
+    """Return the cross-camera global entity collection name.
+
+    Resolution order:
+    1. AGENT_CHROMA_GLOBAL_ENTITY_COLLECTION env var (explicit override).
+    2. Namespace-derived default: ``{namespace}_global_entities``.
+    """
+    raw = os.getenv("AGENT_CHROMA_GLOBAL_ENTITY_COLLECTION", "").strip()
+    if raw:
+        return raw
+    return f"{get_graph_chroma_namespace()}_{CHROMA_GLOBAL_ENTITY_SUFFIX}"
 
 
 def persist_env_value(key: str, value: str, env_file: Path | None = None) -> Path:

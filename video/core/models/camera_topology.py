@@ -35,6 +35,65 @@ import numpy as np
 
 logger = logging.getLogger(__name__)
 
+# ---------------------------------------------------------------------------
+# Campus Zone Map — Guide v2.0 (2026-05-04)
+# Synthetic transit priors seed CameraTopologyPrior.observe_batch so matching
+# uses zone-aware GMMs instead of cold-start linear decay.
+# ---------------------------------------------------------------------------
+
+_CAMPUS_ADMIN = frozenset({"G326", "G329"})
+_CAMPUS_BUS = frozenset({"G505", "G506", "G508"})
+_CAMPUS_SCHOOL = frozenset({
+    "G299",
+    "G328",
+    "G330",
+    "G336",
+    "G339",
+    "G419",
+    "G420",
+    "G421",
+    "G423",
+    "G424",
+    "G638",
+})
+CAMERA_IDS_CAMPUS_GUIDE_V2: tuple[str, ...] = tuple(
+    sorted(_CAMPUS_ADMIN | _CAMPUS_BUS | _CAMPUS_SCHOOL)
+)
+
+
+def campus_zone_of_camera(cam_id: str) -> str | None:
+    """Return ``admin`` | ``bus`` | ``school`` for known guide IDs, else ``None``."""
+    if cam_id in _CAMPUS_ADMIN:
+        return "admin"
+    if cam_id in _CAMPUS_BUS:
+        return "bus"
+    if cam_id in _CAMPUS_SCHOOL:
+        return "school"
+    return None
+
+
+def _campus_pair_transit_range_sec(za: str, zb: str) -> tuple[float, float] | None:
+    """Directed zones → plausible Δt window (seconds) from the zone map."""
+    if za == zb:
+        if za == "admin":
+            return (10.0, 45.0)
+        if za == "bus":
+            return (30.0, 90.0)
+        if za == "school":
+            return (15.0, 90.0)
+        return None
+    zones = frozenset({za, zb})
+    # ADMIN ↔ BUS: walking 15–60 s (diagram)
+    if zones == frozenset({"admin", "bus"}):
+        return (15.0, 60.0)
+    # ADMIN / BUS ↔ SCHOOL (vertical campus legs; not explicit in ASCII → conservative)
+    if zones == frozenset({"admin", "school"}):
+        return (20.0, 120.0)
+    if zones == frozenset({"bus", "school"}):
+        return (30.0, 120.0)
+    return None
+
+
 # Minimum observations before fitting GMM instead of falling back to flat prior
 _MIN_OBS_FOR_GMM = 5
 # Number of GMM components (capped by available samples)
@@ -310,6 +369,100 @@ class CameraTopologyPrior:
     # ------------------------------------------------------------------
     # Factory helpers
     # ------------------------------------------------------------------
+
+    @classmethod
+    def from_campus_guide_v2(
+        cls,
+        cameras: list[str] | None = None,
+        *,
+        logical_to_physical: dict[str, str] | None = None,
+        samples_per_pair: int = 8,
+        rng: np.random.Generator | None = None,
+        max_transit_sec: float = 300.0,
+        n_bins: int = 30,
+        min_obs_for_gmm: int = _MIN_OBS_FOR_GMM,
+    ) -> "CameraTopologyPrior":
+        """Seed topology from the Campus Zone Map (Guide **v2.0 — 2026-05-04**).
+
+        Zones::
+
+            ADMIN:  G326, G329
+            BUS:    G505, G506, G508
+            SCHOOL: G299, G328, G330, G336, G339, G419, G420,
+                    G421, G423, G424, G638
+
+        Inter-zone walking windows follow the diagram (ADMIN↔BUS 15–60 s; BUS
+        intra-zone 30–90 s; SCHOOL intra 15–90 s). ADMIN/BUS↔SCHOOL legs use
+        conservative ranges because the drawing does not label seconds.
+
+        Parameters
+        ----------
+        cameras:
+            Pipeline camera ids to include. Default: all guide ids
+            (:data:`CAMERA_IDS_CAMPUS_GUIDE_V2`).
+        logical_to_physical:
+            If tracks use aliases (e.g. ``cam1`` → ``G328``), map each logical
+            id to a **physical** camera code so zone lookup succeeds; seeded
+            observations are still stored under **logical** ids so
+            ``score(logical_a, logical_b, Δt)`` matches the matcher.
+        samples_per_pair:
+            Uniform samples per directed pair inside the window (≥ ``min_obs_for_gmm``
+            so GMM fits).
+        rng:
+            Optional NumPy Generator for reproducible synthetic Δt.
+
+        Returns
+        -------
+        CameraTopologyPrior
+            With synthetic observations fitted where zone pairs are known.
+        """
+        cam_list = (
+            list(cameras)
+            if cameras is not None
+            else list(CAMERA_IDS_CAMPUS_GUIDE_V2)
+        )
+        rng = rng or np.random.default_rng(42)
+        obj = cls(
+            cameras=cam_list,
+            max_transit_sec=max_transit_sec,
+            n_bins=n_bins,
+            min_obs_for_gmm=min_obs_for_gmm,
+        )
+
+        def zone_for(cid: str) -> str | None:
+            phys = cid
+            if logical_to_physical is not None and cid in logical_to_physical:
+                phys = logical_to_physical[cid]
+            return campus_zone_of_camera(phys)
+
+        transitions: list[tuple[str, str, float]] = []
+        for i, a in enumerate(cam_list):
+            za = zone_for(a)
+            if za is None:
+                continue
+            for b in cam_list[i + 1 :]:
+                zb = zone_for(b)
+                if zb is None:
+                    continue
+                tr_ab = _campus_pair_transit_range_sec(za, zb)
+                if tr_ab is None:
+                    continue
+                lo_ab, hi_ab = tr_ab
+                tr_ba = _campus_pair_transit_range_sec(zb, za)
+                if tr_ba is None:
+                    continue
+                lo_ba, hi_ba = tr_ba
+                for _ in range(samples_per_pair):
+                    transitions.append((a, b, float(rng.uniform(lo_ab, hi_ab))))
+                    transitions.append((b, a, float(rng.uniform(lo_ba, hi_ba))))
+
+        obj.observe_batch(transitions)
+        logger.info(
+            "Campus guide v2.0: seeded %d synthetic transitions (%d directed pairs)",
+            len(transitions),
+            len(obj._obs),
+        )
+        return obj
 
     @classmethod
     def from_confirmed_matches(
