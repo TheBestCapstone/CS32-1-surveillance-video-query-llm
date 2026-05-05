@@ -607,6 +607,7 @@ def _prepare_subset_databases(
             event_collection=event_collection,
             video_collection=video_collection,
             reset_existing=True,
+            sqlite_db_path=paths.sqlite_path,
         )
     ).build(seed_files=seed_files, llm=_build_discriminator_llm())
     # Ensure coarse video filter picks up the correct collection name
@@ -628,7 +629,12 @@ def _load_graph_with_runtime_env(
     load_env(ROOT_DIR)
     os.environ["AGENT_SQLITE_DB_PATH"] = str(sqlite_path)
     os.environ["AGENT_CHROMA_PATH"] = str(chroma_path)
-    os.environ["AGENT_CHROMA_COLLECTION"] = child_collection
+    # Respect AGENT_CHROMA_RETRIEVAL_LEVEL: when set to "event", use event collection
+    retrieval_level = os.environ.get("AGENT_CHROMA_RETRIEVAL_LEVEL", "").strip().lower()
+    if retrieval_level == "event":
+        os.environ["AGENT_CHROMA_COLLECTION"] = event_collection
+    else:
+        os.environ["AGENT_CHROMA_COLLECTION"] = child_collection
     os.environ["AGENT_CHROMA_CHILD_COLLECTION"] = child_collection
     os.environ["AGENT_CHROMA_PARENT_COLLECTION"] = parent_collection
     os.environ["AGENT_CHROMA_EVENT_COLLECTION"] = event_collection

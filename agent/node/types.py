@@ -4,6 +4,7 @@ from typing import Any, Dict, List, Optional, TypedDict
 from langchain_core.messages import BaseMessage, HumanMessage
 from db.config import (
     get_graph_chroma_child_collection,
+    get_graph_chroma_collection,
     get_graph_chroma_event_collection,
     get_graph_chroma_namespace,
     get_graph_chroma_parent_collection,
@@ -330,7 +331,7 @@ def default_chroma_path() -> Path:
 
 
 def default_chroma_collection() -> str:
-    return get_graph_chroma_child_collection()
+    return get_graph_chroma_collection()
 
 
 def default_chroma_parent_collection() -> str:

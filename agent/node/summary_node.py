@@ -6,6 +6,8 @@ from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langchain_core.runnables import RunnableConfig
 from langgraph.store.base import BaseStore
 
+from memory.short_term import format_history_for_prompt
+
 from .types import AgentState
 
 
@@ -357,6 +359,17 @@ def create_summary_node(llm: Any = None):
         prompt_lines.append(
             "Do not add extra scene details, explanations, or a sources section."
         )
+        # Inject conversation history if short-term memory is enabled
+        thread_id = ""
+        user_id = ""
+        if isinstance(config, dict) and "configurable" in config:
+            cfg = config["configurable"]
+            thread_id = str(cfg.get("thread_id", ""))
+            user_id = str(cfg.get("user_id", ""))
+        if thread_id and user_id:
+            history_block = format_history_for_prompt(thread_id, user_id)
+            if history_block:
+                prompt_lines.extend(["", history_block])
         prompt_lines.extend(
             [
                 "",

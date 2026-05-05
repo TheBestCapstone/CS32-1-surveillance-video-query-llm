@@ -42,6 +42,8 @@ def load_env(project_root: Path | None = None) -> None:
         "openai" if os.getenv("OPENAI_API_KEY") else "dashscope",
     )
     os.environ.setdefault("AGENT_LLAMAINDEX_LLM_MODEL", "gpt-4o-mini")
+    os.environ.setdefault("AGENT_ENABLE_SHORT_TERM_MEMORY", "0")
+    os.environ.setdefault("AGENT_MEMORY_MAX_TURNS", "5")
 
 
 def build_default_llm() -> ChatOpenAI:

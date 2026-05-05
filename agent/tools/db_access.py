@@ -141,7 +141,7 @@ class ChromaGateway:
             cosine_sim = max(0.0, 1.0 - distance)
             out.append(
                 {
-                    "event_id": ids[idx],
+                    "event_id": meta.get("event_id") or ids[idx],
                     "video_id": meta.get("video_id"),
                     "track_id": meta.get("entity_hint"),
                     "start_time": meta.get("start_time"),

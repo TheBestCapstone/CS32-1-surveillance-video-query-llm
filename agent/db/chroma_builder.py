@@ -30,6 +30,7 @@ class ChromaBuildConfig:
     event_collection: str = field(default_factory=get_graph_chroma_event_collection)
     video_collection: str = field(default_factory=get_graph_chroma_video_collection)
     reset_existing: bool = False
+    sqlite_db_path: Path | None = None
 
 
 class ChromaIndexBuilder:
@@ -40,6 +41,7 @@ class ChromaIndexBuilder:
         self.parent_collection = config.parent_collection
         self.event_collection = config.event_collection
         self.video_collection = config.video_collection
+        self.sqlite_db_path = config.sqlite_db_path
 
     def build(self, seed_files: list[Path] | None = None, llm: Any = None) -> dict[str, Any]:
         import chromadb
@@ -252,6 +254,7 @@ class ChromaIndexBuilder:
                 start_time=start_time,
                 end_time=end_time,
             )
+            event_ids = self._lookup_event_ids_for_track(video_id, entity_hint)
             records.append(
                 {
                     "id": child_id,
@@ -261,6 +264,8 @@ class ChromaIndexBuilder:
                         "video_id": video_id,
                         "parent_id": parent_id,
                         "entity_hint": entity_hint,
+                        "event_ids": event_ids,
+                        "event_id": event_ids[0] if event_ids else None,
                         "object_type": object_types[0] if object_types else "unknown",
                         "object_color": object_colors[0] if object_colors else "unknown",
                         "scene_zone": scene_zones[0] if scene_zones else "unknown",
@@ -497,6 +502,7 @@ class ChromaIndexBuilder:
                             "grand_parent_video_id": video_id,
                             "entity_hint": entity_hint,
                             "event_index": event_index,
+                            "event_id": self._lookup_event_id(video_id, entity_hint, start_time, end_time),
                             "object_type": object_type or "unknown",
                             "object_color": object_color or "unknown",
                             "scene_zone": scene_zone or "unknown",
@@ -542,3 +548,61 @@ class ChromaIndexBuilder:
         if keywords:
             sections.append("Keywords: " + ", ".join(keywords) + ".")
         return " ".join(sections)
+
+    # --- SQLite event_id backfill ---
+
+    def _lookup_event_id(self, video_id: str, entity_hint: str, start_time: Any, end_time: Any) -> int | None:
+        """Look up the SQLite ``event_id`` for a single event by its natural key.
+
+        Returns ``None`` when the SQLite database is not available (e.g. Chroma
+        built independently before SQLite).
+        """
+        if self.sqlite_db_path is None or not self.sqlite_db_path.exists():
+            return None
+        import sqlite3
+
+        try:
+            st = float(start_time) if isinstance(start_time, (int, float)) else None
+            et = float(end_time) if isinstance(end_time, (int, float)) else None
+        except (ValueError, TypeError):
+            return None
+        if st is None and et is None:
+            return None
+
+        try:
+            with sqlite3.connect(str(self.sqlite_db_path)) as conn:
+                conditions = ["video_id = ?", "(entity_hint = ? OR track_id = ?)"]
+                params: list[Any] = [video_id, entity_hint, entity_hint]
+                if st is not None:
+                    conditions.append("ABS(start_time - ?) < 0.01")
+                    params.append(st)
+                if et is not None:
+                    conditions.append("ABS(end_time - ?) < 0.01")
+                    params.append(et)
+                where = " AND ".join(conditions)
+                row = conn.execute(
+                    f"SELECT event_id FROM episodic_events WHERE {where} LIMIT 1", params
+                ).fetchone()
+                if row is not None:
+                    return int(row[0])
+        except Exception:
+            pass
+        return None
+
+    def _lookup_event_ids_for_track(self, video_id: str, entity_hint: str) -> list[int]:
+        """Look up all SQLite ``event_id`` values for a given track."""
+        if self.sqlite_db_path is None or not self.sqlite_db_path.exists():
+            return []
+        import sqlite3
+
+        try:
+            with sqlite3.connect(str(self.sqlite_db_path)) as conn:
+                rows = conn.execute(
+                    "SELECT event_id FROM episodic_events "
+                    "WHERE video_id = ? AND (entity_hint = ? OR track_id = ?) "
+                    "ORDER BY start_time ASC",
+                    (video_id, entity_hint, entity_hint),
+                ).fetchall()
+                return [int(r[0]) for r in rows]
+        except Exception:
+            return []

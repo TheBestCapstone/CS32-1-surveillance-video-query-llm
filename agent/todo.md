@@ -65,6 +65,197 @@
 
 # 🚧 未完成（按优先级排序）
 
+
+### R10 RRF ID 一致性修复：两路 `event_id` 体系不匹配 + 粒度不一致 🚧 待做
+
+> 触发：code review 发现 `weighted_rrf_fuse()` 和 `reciprocal_rank_fuse()` 中两条检索链路的 `event_id` 根本不是同一套 ID 体系，导致 RRF 核心「奖励双路命中」机制完全失效。
+> 详见 `agent/agents/shared/fusion_engine.py`、`agent/tools/bm25_index.py`、`agent/tools/db_access.py:138-147`。
+
+#### 根因拆解
+
+
+| #   | 问题                                                                                                       | 代码位置                                                       | 影响                                                   |
+| --- | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------- |
+| 1   | SQL `event_id` = 整数自增主键（如 `42`）；Chroma `event_id` = 字符串 `{video_id}_{entity_hint}`（如 `"video001_car_3"`） | `db_access.py:144`、`fusion_engine.py:84-96`                | `_row_key()` 永远不匹配，overlap_count 恒为 0                |
+| 2   | SQL 是 **event 级**（单条事件），Chroma 默认 child collection 是 **track 级**（多事件聚合）                                  | `chroma_builder.py:225-274`                                | 粒度不对齐，即使用 `(video_id, track_id)` 做 key，SQL 端是 N:1 关系 |
+| 3   | 内层 `reciprocal_rank_fuse()` 中 vector (Chroma 字符串 ID) + BM25 (SQLite 整数 ID) 同样无法去重                        | `bm25_index.py:345-392`                                    | BM25 项能匹配 SQL 分支、Chroma 项不能，非对称行为                    |
+| 4   | `ChromaGateway.search()` 将 Chroma doc ID 赋给字段名 `event_id`，命名误导                                           | `db_access.py:144`                                         | 让后续代码误以为这是 SQL `event_id`                            |
+| 5   | SQLite 有 `vector_ref_id` 列（与 Chroma event-level ID 格式一致），但 SQL SELECT 未包含此列，`_row_key()` 也未使用            | `schema.py:50`、`parallel_retrieval_fusion_node.py:128-133` | 已存在的 bridge 闲置                                       |
+
+
+#### 实际后果
+
+- `_source_type` 永远不会是 `"fused"`，只能是 `"sql"` / `"hybrid"` / `"bm25"` 等单源标签
+- 加权 RRF 退化为**加权秩排序合并**：每个文档只拿单路 `w * 1/(k+rank)` 分，没有双路命中加分
+- 如果同一条内容两路都排第 1，本该拿 `wsql/(k+1) + whybrid/(k+1)`，实际只拿了 `max(wsql/(k+1), whybrid/(k+1))`——少了一半融合分
+
+#### 修复方案（3 选 1）
+
+**方案 A：`_row_key()` 多字段 fallback（最小改动，~0.5h）**
+
+- 当 `event_id` 是含下划线的 Chroma 字符串时，fallback 到 `(video_id, track_id/entity_hint)` 做 key
+- **局限**：不解决粒度问题（track 级 vs event 级）
+
+**方案 B：切换到 event-level Chroma collection（推荐，~2-4h）**
+
+- 设 `AGENT_CHROMA_RETRIEVAL_LEVEL=event`
+- Chroma event ID 格式 `{video_id}:{entity_hint}:{start_time}:{end_time}` 与 `vector_ref_id` 一致
+- 在 `_run_sql_branch` 的 SELECT 中加上 `vector_ref_id` 列
+- 在 `_row_key()` 中用 `vector_ref_id` 或 `(video_id, track_id, start_time, end_time)` 做 key
+- **需要**：确认 event collection 有数据；可能需要改造 `ChromaGateway.search()` 让 metadata 包含 `event_id`
+
+**方案 C：接受现状，重命名为 weighted merge（~0.25h）**
+
+- 不改逻辑，只改文档/变量名，明确这是加权合并而非 RRF 融合
+
+#### 验收
+
+- 构造至少 1 个「同一 doc 在两路都被召回」的 case，确认 `overlap_count > 0` 且 `_source_type == "fused"`
+
+### R8 交叉验证用 NonLLM/IDBased recall（诊断辅助）
+
+- 文件：`agent/test/ragas_eval_runner.py:521-532`
+- 改动：加跑 `IDBasedContextRecall`（dataset 加 `reference_context_ids = [video_id]` 或 `event_id`）
+- 用途：本身不提升数字，但能确认 P1-Next-F 是否真的修对了"评测噪声"
+- 工作量：低-中
+
+---
+
+## P1-Next-G R7 Hybrid alpha sweep（独立项，留到最后）
+
+> 从 P1-Next-G 中拆出，作为最终微调项。
+
+- 文件：`agent/node/retrieval_contracts.py:15-17` (`hybrid_alpha=0.7`, `hybrid_fallback_alpha=0.9`)
+- 改动：跑 0.5 / 0.7 / 0.9 三档 + dense-only ablation 对比
+- 预期：**+0.01~0.03 recall**（不确定，属于 fine-tuning 级别）
+- 工作量：低
+
+### 验收
+
+- 同一 `--limit 50`（Part4）子集上 ablate 至少 3 档 alpha + dense-only
+- 选最优 alpha 入默认配置
+- context_recall / context_precision 不退步
+
+---
+
+## 短期记忆模块（Short-Term Memory）
+
+> 需求：Agent 能记住同一轮会话（thread）内的历史查询与回答，新查询时可参考之前的上下文。
+> 记忆内容：**只存用户原始 query + summary_node 最终输出**，中间步骤（rewritten_query、sql_result、hybrid_result、rerank_result、verifier_result 等）全部丢弃。
+> 约束：**跑测试时不能启用**（通过 feature flag 默认关闭保证）。
+
+### 设计调研
+
+#### 现有链路分析
+
+```
+FastAPI (/api/v1/query)
+  → AgentGraphService.run_query()
+    → graph.stream({"messages": [HumanMessage(content=question)]}, config)
+      → self_query_node → ... → summary_node → END
+```
+
+关键发现：
+
+- 每次 `run_query()` 只传 **单条 HumanMessage**，不携带历史
+- `config` 中已有 `thread_id` + `user_id`，天然适合做 session key
+- `summary_node` 是 LLM prompt 的动态构建点，最适合注入对话历史
+- `StateResetter.reset_ephemeral_state()` 在每个新 query 时清空所有临时状态
+- 所有 feature flag 使用 `os.getenv()` + `{"1","true","yes","on"}` 真值判断，默认关闭
+
+#### 实现方案
+
+**存储：内存 dict（keyed by `thread_id:user_id`），非持久化。**
+
+
+| 组件           | 文件                                                    | 改动              |
+| ------------ | ----------------------------------------------------- | --------------- |
+| 记忆模块         | `agent/memory/short_term.py`（新建）                      | ~70 LoC         |
+| Feature Flag | `agent/core/runtime.py`                               | +2 行 setdefault |
+| History 注入   | `fastapi/service.py` `run_query()` / `stream_query()` | +15 LoC         |
+| Prompt 注入    | `agent/node/summary_node.py`                          | +5 LoC          |
+
+
+**数据结构：**
+
+```
+_memory_store: Dict[str, List[Dict]]
+  key = f"{thread_id}:{user_id}"
+  value = [{"query": str, "answer": str, "timestamp": float}, ...]
+  
+AGENT_ENABLE_SHORT_TERM_MEMORY=0  →  整个模块不工作（get_history 返回空，add_turn 直接 return）
+AGENT_MEMORY_MAX_TURNS=5          →  每 session 最多保留 N 轮
+```
+
+**两个注入点：**
+
+1. `**service.py` graph 调用前**：如果 memory enabled，从 `_memory_store[thread_id]` 取历史 turns，构造 `[HumanMessage, AIMessage, HumanMessage, AIMessage, ...]` 序列，**prepend** 到当前 query 的 messages 前面。这样下游节点（尤其是 `self_query_node` 和 `summary_node`）可以从 `state.messages` 中读到完整对话历史。
+2. `**summary_node` LLM prompt**：在 prompt 中添加 `Conversation history` 段（用 `format_history_for_prompt()` 格式化），格式为纯 Q&A —— 只包含用户原始问题 + summary 最终答案，让 LLM 在生成最终回答时明确知道之前问了什么、答了什么。
+
+**graph 调用后**：`service.py` 拿到 summary_node 产出的 `final_answer`（即 `_strip_sources(last_chunk.get("final_answer"))`），调用 `add_turn(thread_id, user_id, query=原始问题, answer=final_answer)` 存入记忆。**只存这两个字段**，其余所有中间结果（rerank_result、verifier_result、classification_result 等）均不入记忆。
+
+**测试安全性**：
+
+- `runtime.py` 中 `os.environ.setdefault("AGENT_ENABLE_SHORT_TERM_MEMORY", "0")` — flag 默认 **0**
+- 所有测试脚本（`ragas_eval_runner.py`、`run_part4_50.sh`、`run_hard63.sh`、`comprehensive_test_runner.py`）**不设置**该 flag → 记忆模块始终不工作
+- 只有 FastAPI Web UI 启动时通过 `.env` 或运行时 env 显式设置 `AGENT_ENABLE_SHORT_TERM_MEMORY=1` 才会激活
+- 线程安全：使用 `threading.Lock()` 保护 `_memory_store` 读写
+
+**不修改的部分**：
+
+- `AgentState` 不新增字段（记忆存储在外部模块，不污染 state）
+- `StateResetter` 不改（记忆不是 ephemeral state）
+- `graph_builder.py` 不改（记忆是 service 层职责）
+- 评测 pipeline 完全不感知此模块
+
+### 工作量：约 2h
+
+### 交付物
+
+- `agent/memory/__init__.py` — 空文件
+- `agent/memory/short_term.py` — 记忆模块（~70 LoC）
+- `agent/core/runtime.py` — 加 default flag
+- `fastapi/service.py` — `run_query()` + `stream_query()` history 注入 + 存档
+- `agent/node/summary_node.py` — LLM prompt 加 conversation history 段
+- 手工验证：FastAPI 启动 + 连续两问，确认第二问 prompt 含第一问上下文
+
+### 验收
+
+- `AGENT_ENABLE_SHORT_TERM_MEMORY=0`（默认）：行为与改造前完全一致
+- `AGENT_ENABLE_SHORT_TERM_MEMORY=1`：同 thread_id 连续 2+ 轮 query，第二轮 summary_node LLM prompt 中出现第一轮的 Q&A
+- 所有现有测试（`ragas_eval_runner.py`、smoke tests）通过，不受影响
+
+---
+
+## P1-Next-E entity_hint 字段语义修复（长期，独立路径）
+
+> 触发：UCFCrime source data 的 `entity_hint = segment_<event_index>` 顺序编号，导致 chroma_builder 按 `(video_id, entity_hint)` 聚合时每组仅 1 event，三层架构退化为两层（详见 `data_audit_2026_05_02.md`）。
+
+### 推荐方案 B: LLM-based entity clustering
+
+- 不重跑视觉模型，基于现有 events 文字字段做 LLM 实体聚类
+- 改 `agent/test/ucfcrime_transcript_importer.py` 在 events 生成时调 LLM
+- 新增 `agent/test/entity_clustering.py`（约 +120 LoC）
+- 重新生成 ucfcrime source data 310 文件
+- 重建 ucfcrime chroma 库
+- env flag: `AGENT_USE_LEGACY_ENTITY_HINT=1` 灰度回滚口；chroma 双 namespace 并行
+
+### 备选方案 A: visual entity tracking（重做 source data，工作量大）
+
+### 备选方案 C: heuristic alias normalization（最简，精度低）
+
+### 工作量：方案 B 全套约 6-8 小时
+
+### 验收
+
+- ucfcrime 全数据集 events / (video, entity_hint) 平均 ≥ 2.0（当前 1.0）
+- chroma child collection 数量 ≤ 0.6 × event collection 数量
+- top_hit_rate / localization_score 不退步
+- context_recall 预期 +0.05（child 含更多 events → recall 自然涨）
+
+---
+
+# ✅ 已完成（按时间倒序）
 ## IoU / 时间定位 ✅ 已解决 → 参见下方「已完成」
 
 ---
@@ -170,108 +361,6 @@ Tier 1+2 预期 top_hit 0.21→0.55-0.75。
 - **产出**：表格 baseline vs 各变体 + 简短结论写入 `调试记录.md` / `handoff.md`。
 
 **工作量**：约 **0.5–1d**（含实现开关与至少 **2 档** 消融跑完）。
-
-### R10 RRF ID 一致性修复：两路 `event_id` 体系不匹配 + 粒度不一致 🚧 待做
-
-> 触发：code review 发现 `weighted_rrf_fuse()` 和 `reciprocal_rank_fuse()` 中两条检索链路的 `event_id` 根本不是同一套 ID 体系，导致 RRF 核心「奖励双路命中」机制完全失效。
-> 详见 `agent/agents/shared/fusion_engine.py`、`agent/tools/bm25_index.py`、`agent/tools/db_access.py:138-147`。
-
-#### 根因拆解
-
-
-| #   | 问题                                                                                                       | 代码位置                                                       | 影响                                                   |
-| --- | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------- |
-| 1   | SQL `event_id` = 整数自增主键（如 `42`）；Chroma `event_id` = 字符串 `{video_id}_{entity_hint}`（如 `"video001_car_3"`） | `db_access.py:144`、`fusion_engine.py:84-96`                | `_row_key()` 永远不匹配，overlap_count 恒为 0                |
-| 2   | SQL 是 **event 级**（单条事件），Chroma 默认 child collection 是 **track 级**（多事件聚合）                                  | `chroma_builder.py:225-274`                                | 粒度不对齐，即使用 `(video_id, track_id)` 做 key，SQL 端是 N:1 关系 |
-| 3   | 内层 `reciprocal_rank_fuse()` 中 vector (Chroma 字符串 ID) + BM25 (SQLite 整数 ID) 同样无法去重                        | `bm25_index.py:345-392`                                    | BM25 项能匹配 SQL 分支、Chroma 项不能，非对称行为                    |
-| 4   | `ChromaGateway.search()` 将 Chroma doc ID 赋给字段名 `event_id`，命名误导                                           | `db_access.py:144`                                         | 让后续代码误以为这是 SQL `event_id`                            |
-| 5   | SQLite 有 `vector_ref_id` 列（与 Chroma event-level ID 格式一致），但 SQL SELECT 未包含此列，`_row_key()` 也未使用            | `schema.py:50`、`parallel_retrieval_fusion_node.py:128-133` | 已存在的 bridge 闲置                                       |
-
-
-#### 实际后果
-
-- `_source_type` 永远不会是 `"fused"`，只能是 `"sql"` / `"hybrid"` / `"bm25"` 等单源标签
-- 加权 RRF 退化为**加权秩排序合并**：每个文档只拿单路 `w * 1/(k+rank)` 分，没有双路命中加分
-- 如果同一条内容两路都排第 1，本该拿 `wsql/(k+1) + whybrid/(k+1)`，实际只拿了 `max(wsql/(k+1), whybrid/(k+1))`——少了一半融合分
-
-#### 修复方案（3 选 1）
-
-**方案 A：`_row_key()` 多字段 fallback（最小改动，~0.5h）**
-
-- 当 `event_id` 是含下划线的 Chroma 字符串时，fallback 到 `(video_id, track_id/entity_hint)` 做 key
-- **局限**：不解决粒度问题（track 级 vs event 级）
-
-**方案 B：切换到 event-level Chroma collection（推荐，~2-4h）**
-
-- 设 `AGENT_CHROMA_RETRIEVAL_LEVEL=event`
-- Chroma event ID 格式 `{video_id}:{entity_hint}:{start_time}:{end_time}` 与 `vector_ref_id` 一致
-- 在 `_run_sql_branch` 的 SELECT 中加上 `vector_ref_id` 列
-- 在 `_row_key()` 中用 `vector_ref_id` 或 `(video_id, track_id, start_time, end_time)` 做 key
-- **需要**：确认 event collection 有数据；可能需要改造 `ChromaGateway.search()` 让 metadata 包含 `event_id`
-
-**方案 C：接受现状，重命名为 weighted merge（~0.25h）**
-
-- 不改逻辑，只改文档/变量名，明确这是加权合并而非 RRF 融合
-
-#### 验收
-
-- 构造至少 1 个「同一 doc 在两路都被召回」的 case，确认 `overlap_count > 0` 且 `_source_type == "fused"`
-
-### R8 交叉验证用 NonLLM/IDBased recall（诊断辅助）
-
-- 文件：`agent/test/ragas_eval_runner.py:521-532`
-- 改动：加跑 `IDBasedContextRecall`（dataset 加 `reference_context_ids = [video_id]` 或 `event_id`）
-- 用途：本身不提升数字，但能确认 P1-Next-F 是否真的修对了"评测噪声"
-- 工作量：低-中
-
----
-
-## P1-Next-G R7 Hybrid alpha sweep（独立项，留到最后）
-
-> 从 P1-Next-G 中拆出，作为最终微调项。
-
-- 文件：`agent/node/retrieval_contracts.py:15-17` (`hybrid_alpha=0.7`, `hybrid_fallback_alpha=0.9`)
-- 改动：跑 0.5 / 0.7 / 0.9 三档 + dense-only ablation 对比
-- 预期：**+0.01~0.03 recall**（不确定，属于 fine-tuning 级别）
-- 工作量：低
-
-### 验收
-
-- 同一 `--limit 50`（Part4）子集上 ablate 至少 3 档 alpha + dense-only
-- 选最优 alpha 入默认配置
-- context_recall / context_precision 不退步
-
----
-
-## P1-Next-E entity_hint 字段语义修复（长期，独立路径）
-
-> 触发：UCFCrime source data 的 `entity_hint = segment_<event_index>` 顺序编号，导致 chroma_builder 按 `(video_id, entity_hint)` 聚合时每组仅 1 event，三层架构退化为两层（详见 `data_audit_2026_05_02.md`）。
-
-### 推荐方案 B: LLM-based entity clustering
-
-- 不重跑视觉模型，基于现有 events 文字字段做 LLM 实体聚类
-- 改 `agent/test/ucfcrime_transcript_importer.py` 在 events 生成时调 LLM
-- 新增 `agent/test/entity_clustering.py`（约 +120 LoC）
-- 重新生成 ucfcrime source data 310 文件
-- 重建 ucfcrime chroma 库
-- env flag: `AGENT_USE_LEGACY_ENTITY_HINT=1` 灰度回滚口；chroma 双 namespace 并行
-
-### 备选方案 A: visual entity tracking（重做 source data，工作量大）
-
-### 备选方案 C: heuristic alias normalization（最简，精度低）
-
-### 工作量：方案 B 全套约 6-8 小时
-
-### 验收
-
-- ucfcrime 全数据集 events / (video, entity_hint) 平均 ≥ 2.0（当前 1.0）
-- chroma child collection 数量 ≤ 0.6 × event collection 数量
-- top_hit_rate / localization_score 不退步
-- context_recall 预期 +0.05（child 含更多 events → recall 自然涨）
-
----
-
-# ✅ 已完成（按时间倒序）
 
 ## 消融实验：Jina reranker 切换 + SQL branch 关闭（2026-05-04）
 
