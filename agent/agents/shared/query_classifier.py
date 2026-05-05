@@ -80,6 +80,13 @@ _EXISTENCE_CUES = (
     "is there", "are there", "did you see", "do you see", "do you have",
     "have you seen", "any clip", "any video", "any footage", "any scene",
     "any shot", "有没有", "是否存在", "是否有",
+    # P2-3: extended existence patterns — many "no" cases start with these
+    "does the video record", "does the surveillance", "does the camera",
+    "can you find", "can you see", "can you locate",
+    "is a scene", "is there a scene", "is there a clip",
+    "is there any", "are there any", "was there",
+    "search for a segment", "search for the footage",
+    "find a segment", "find the footage", "find if",
 )
 
 _LIST_CUES = (
@@ -136,7 +143,10 @@ def _collect_signals(text: str) -> Dict[str, List[str]]:
 
 def _infer_answer_type(text: str) -> str:
     low = (text or "").strip().lower()
-    if any(cue in low for cue in _EXISTENCE_CUES) or low.startswith(("is ", "are ", "was ", "were ", "does ", "do ")):
+    if any(cue in low for cue in _EXISTENCE_CUES) or low.startswith((
+        "is ", "are ", "was ", "were ", "does ", "do ",
+        "can you ", "could you ",  # P2-3: "Can you find..." is existence
+    )):
         return ANSWER_TYPE_EXISTENCE
     if any(cue in low for cue in _COUNT_CUES):
         return ANSWER_TYPE_COUNT

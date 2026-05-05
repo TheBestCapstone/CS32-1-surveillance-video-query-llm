@@ -134,14 +134,27 @@ class ChromaGateway:
         # Chroma already ranks ascending by cosine distance for the
         # ``hnsw:space=cosine`` index, so we keep that order and surface the
         # cosine similarity as ``_vector_score`` for telemetry.
+        # Return all oversampled results so downstream RRF / rerank has full
+        # rank information.  The caller (or rerank_rows) is responsible for
+        # truncating to the final ``limit``.
         out: list[dict[str, Any]] = []
-        for idx in range(min(len(ids), int(limit))):
+        for idx in range(len(ids)):
             meta = metas[idx] or {}
             distance = float(dists[idx])
             cosine_sim = max(0.0, 1.0 - distance)
+            # P0-1: Normalize event_id to int when possible so cross-branch RRF
+            # fusion can match SQL (int) rows with Chroma (str/int/None) rows.
+            raw_event_id = meta.get("event_id")
+            if raw_event_id is not None:
+                try:
+                    event_id = int(float(raw_event_id))
+                except (ValueError, TypeError):
+                    event_id = raw_event_id
+            else:
+                event_id = ids[idx]
             out.append(
                 {
-                    "event_id": meta.get("event_id") or ids[idx],
+                    "event_id": event_id,
                     "video_id": meta.get("video_id"),
                     "track_id": meta.get("entity_hint"),
                     "start_time": meta.get("start_time"),

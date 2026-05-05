@@ -263,6 +263,56 @@ class WeightedRrfOverlapTests(unittest.TestCase):
         self.assertEqual(len(hybrid_only), 1)
         self.assertNotEqual(hybrid_only[0].get("_source_type"), "fused")
 
+    def test_overlap_with_mixed_event_id_types_int_vs_str(self) -> None:
+        """P0-1 fix: SQL (int) and Chroma (str) event_ids should fuse correctly.
+
+        This was the root cause of the RRF ID mismatch bug: SQL returns
+        ``event_id=42`` (int) while Chroma returns ``event_id="42"`` (str),
+        causing ``_row_key`` to generate different keys and ``overlap_count``
+        to always be 0.
+        """
+        from agents.shared.fusion_engine import weighted_rrf_fuse
+
+        sql_rows = [
+            {"event_id": 42, "video_id": "v1", "track_id": "t1",
+             "start_time": 10.5, "end_time": 15.2,
+             "event_summary_en": "sql summary", "_source_type": "sql"},
+        ]
+        # Chroma returns event_id as string
+        hybrid_rows = [
+            {"event_id": "42", "video_id": "v1", "track_id": "t1",
+             "start_time": 10.5, "end_time": 15.2,
+             "event_summary_en": "hybrid summary", "_source_type": "hybrid"},
+        ]
+
+        rows, meta = weighted_rrf_fuse(sql_rows, hybrid_rows, label="mixed", limit=5)
+
+        self.assertEqual(len(rows), 1, "Should be 1 fused row, not 2 separate rows")
+        self.assertEqual(meta["overlap_count"], 1,
+                         "Expected overlap_count=1 when int 42 matches str '42'")
+        self.assertEqual(rows[0].get("_source_type"), "fused",
+                         "Expected _source_type='fused' for cross-type match")
+
+    def test_overlap_with_numeric_string_event_id(self) -> None:
+        """P0-1 fix: '42.0' string should also match int 42."""
+        from agents.shared.fusion_engine import weighted_rrf_fuse
+
+        sql_rows = [
+            {"event_id": 42, "video_id": "v1", "track_id": "t1",
+             "start_time": 10.5, "end_time": 15.2,
+             "event_summary_en": "sql row", "_source_type": "sql"},
+        ]
+        hybrid_rows = [
+            {"event_id": "42.0", "video_id": "v1", "track_id": "t1",
+             "start_time": 10.5, "end_time": 15.2,
+             "event_summary_en": "hybrid row", "_source_type": "hybrid"},
+        ]
+
+        rows, meta = weighted_rrf_fuse(sql_rows, hybrid_rows, label="mixed", limit=5)
+
+        self.assertEqual(len(rows), 1, "'42.0' should normalize to 42 and match")
+        self.assertEqual(meta["overlap_count"], 1)
+
 
 if __name__ == "__main__":
     unittest.main()

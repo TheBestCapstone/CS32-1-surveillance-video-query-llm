@@ -120,13 +120,23 @@ def _safe_float(value: Any) -> float | None:
         return None
 
 
+def _normalize_event_id(value: Any) -> Any:
+    """P0-1: Coerce numeric event_ids to int for cross-branch RRF matching."""
+    if value is None:
+        return value
+    try:
+        return int(float(value))
+    except (ValueError, TypeError):
+        return value
+
+
 def normalize_sql_rows(rows: list[dict[str, Any]] | None) -> list[dict[str, Any]]:
     normalized: list[dict[str, Any]] = []
     for row in rows or []:
         normalized.append(
             {
                 **row,
-                "event_id": row.get("event_id"),
+                "event_id": _normalize_event_id(row.get("event_id")),
                 "video_id": row.get("video_id"),
                 "track_id": row.get("track_id"),
                 "start_time": row.get("start_time"),
@@ -149,7 +159,7 @@ def normalize_hybrid_rows(rows: list[dict[str, Any]] | None) -> list[dict[str, A
         normalized.append(
             {
                 **row,
-                "event_id": row.get("event_id"),
+                "event_id": _normalize_event_id(row.get("event_id")),
                 "video_id": row.get("video_id"),
                 "track_id": row.get("track_id"),
                 "start_time": row.get("start_time"),

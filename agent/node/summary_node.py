@@ -8,7 +8,7 @@ from langgraph.store.base import BaseStore
 
 from memory.short_term import format_history_for_prompt
 
-from .types import AgentState
+from .types import AgentState, existence_grounder_enabled
 
 
 def _bail_out_strict_enabled() -> bool:
@@ -18,14 +18,6 @@ def _bail_out_strict_enabled() -> bool:
     # the query as a verified ``mismatch``. Set ``=0`` to recover the legacy
     # behaviour where any code path may yield 'No matching clip is expected.'
     raw = os.getenv("AGENT_SUMMARY_BAIL_OUT_STRICT", "1").strip().lower()
-    return raw in {"1", "true", "yes", "on"}
-
-
-def _existence_grounder_enabled() -> bool:
-    # Mirrors ``answer_node._existence_grounder_enabled``; we cannot import
-    # from answer_node without a circular dependency, so duplicate the
-    # tiny helper. Keep the env-var name identical.
-    raw = os.getenv("AGENT_ENABLE_EXISTENCE_GROUNDER", "").strip().lower()
     return raw in {"1", "true", "yes", "on"}
 
 
@@ -131,7 +123,7 @@ def _grounder_mismatch_rerank_forbids_positive_clip_summary(verifier_result: dic
     turned into a Yes-style clip answer when the existence grounder is on — the
     re-selected span can point at the wrong video while decision is still mismatch.
     """
-    if not _existence_grounder_enabled():
+    if not existence_grounder_enabled():
         return False
     if not isinstance(verifier_result, dict):
         return False
@@ -240,7 +232,7 @@ def _allow_no_match_decision(
         return True
     if (
         grounder_enabled
-        and answer_type == "existence"
+        and answer_type in {"existence", "unknown"}  # P2-3: also allow for unknown
         and verifier_decision == "mismatch"
     ):
         return True
@@ -338,16 +330,15 @@ def create_summary_node(llm: Any = None):
             "You are the final response summarizer for a retrieval assistant.",
             "Return a short factual answer that matches the reference-answer style used in evaluation.",
             "Use only the single strongest result. Do not merge multiple videos.",
+            "Even if the evidence is partial, summarize using the strongest result. "
+            "Do not return 'No matching clip is expected.' when results are provided.",
+            # P2-2: Conservative existence reasoning — if the retrieved evidence
+            # does not clearly and directly describe the specific action or scene
+            # the user asked about, you MUST answer 'No matching clip is expected.'
+            # A false positive (claiming a clip exists when it doesn't) is worse
+            # than a false negative. Do not infer or assume actions not explicitly
+            # stated in the evidence.
         ]
-        if not rows:
-            prompt_lines.append(
-                "If no result is provided, answer exactly: No matching clip is expected."
-            )
-        else:
-            prompt_lines.append(
-                "Even if the evidence is partial, summarize using the strongest result. "
-                "Do not return 'No matching clip is expected.' when results are provided."
-            )
         prompt_lines.append(
             "If the evidence supports the query, use exactly this format: "
             "'Yes. The relevant clip is in <video_id>, around <h:mm:ss> - <h:mm:ss>.'"
@@ -386,7 +377,7 @@ def create_summary_node(llm: Any = None):
         if isinstance(verifier_payload, dict):
             verifier_decision = str(verifier_payload.get("decision") or "").strip().lower()
         answer_type = str(state.get("answer_type") or "").strip().lower()
-        grounder_enabled = _existence_grounder_enabled()
+        grounder_enabled = existence_grounder_enabled()
         bail_out_strict = _bail_out_strict_enabled()
         allow_no_match = _allow_no_match_decision(
             rows=rows,

@@ -342,6 +342,21 @@ class BM25Index:
         return keep
 
 
+def _normalize_event_id(event_id: Any) -> Any:
+    """Normalize event_id for cross-branch matching (P0-1).
+
+    SQL branch returns ``int`` (e.g. 42), Chroma/BM25 may return ``str``
+    (e.g. "42").  Coerce numeric values to ``int`` so they compare equal
+    regardless of source.
+    """
+    if event_id is None:
+        return None
+    try:
+        return int(float(event_id))
+    except (ValueError, TypeError):
+        return event_id
+
+
 def reciprocal_rank_fuse(
     ranked_lists: Iterable[Iterable[Mapping[str, Any]]],
     *,
@@ -363,7 +378,7 @@ def reciprocal_rank_fuse(
     rank_records: dict[Any, list[tuple[int, int]]] = {}
     for source_idx, ranked in enumerate(ranked_lists):
         for rank, item in enumerate(ranked, start=1):
-            ident = item.get(id_key)
+            ident = _normalize_event_id(item.get(id_key))
             if ident is None:
                 ident = id(item)
             if ident not in fused:

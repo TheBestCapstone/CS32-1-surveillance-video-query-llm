@@ -449,7 +449,11 @@ def _llm_select_best_chunk(
         "- exact: picked chunk clearly describes the queried action with matching subject.",
         "- partial: picked chunk is in the right context but details / subject roles are coarser.",
         "- mismatch: NO chunk in the list supports the query (different incident, actors, or scene).",
-        "Be evidence-based; synonyms count as match.",
+        "",
+        "CRITICAL: Be conservative. If the evidence only loosely resembles the query or requires",
+        "assumptions to connect, choose mismatch. A false positive (saying a clip exists when it",
+        "doesn't) is worse than a false negative. Synonyms count as match, but thematic similarity",
+        "without the specific queried action does NOT.",
         "",
         "CANDIDATES:",
     ]
@@ -536,9 +540,16 @@ def create_match_verifier_node(llm: Any = None):
     def match_verifier_node(state: AgentState, config: RunnableConfig, store: BaseStore) -> dict[str, Any]:
         del store
         answer_type = str(state.get("answer_type") or "").strip().lower()
-        if answer_type != "existence":
+        # P2-3: Run verifier for "existence" AND "unknown" (previously skipped
+        # "unknown", causing 8/30 false-positive "yes" answers for queries
+        # whose answer should have been "no"). When answer_type is unknown the
+        # classifier could not determine the question shape, so it is safer to
+        # verify existence than to skip. Only skip for non-existence types
+        # where verification would be meaningless (list, count, description).
+        _SKIP_ANSWER_TYPES = {"list", "count", "description"}
+        if answer_type in _SKIP_ANSWER_TYPES:
             return {
-                "verifier_result": _skipped_verdict(f"answer_type={answer_type or 'unknown'}"),
+                "verifier_result": _skipped_verdict(f"answer_type={answer_type}"),
                 "current_node": "match_verifier_node",
             }
 

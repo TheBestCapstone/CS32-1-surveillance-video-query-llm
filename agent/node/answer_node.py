@@ -1,20 +1,10 @@
-import os
 from typing import Any
 
 from langchain_core.messages import AIMessage
 from langchain_core.runnables import RunnableConfig
 from langgraph.store.base import BaseStore
 
-from .types import AgentState
-
-
-def _existence_grounder_enabled() -> bool:
-    # P1-7: keep the grounder advisory by default. When disabled, final_answer_node
-    # behaves like the pre-grounder version (list top-K rows) so existing
-    # RAGAS baselines are preserved. Flip to ``1`` to let the verifier rewrite
-    # Yes/No responses for existence queries.
-    raw = os.getenv("AGENT_ENABLE_EXISTENCE_GROUNDER", "").strip().lower()
-    return raw in {"1", "true", "yes", "on"}
+from .types import AgentState, existence_grounder_enabled
 
 
 def _select_final_rows(state: AgentState) -> list[dict[str, Any]]:
@@ -68,8 +58,8 @@ def final_answer_node(state: AgentState, config: RunnableConfig, store: BaseStor
         agent_summary = state.get("search_explain", "")
 
     if (
-        _existence_grounder_enabled()
-        and answer_type == "existence"
+        existence_grounder_enabled()
+        and answer_type in {"existence", "unknown"}  # P2-3: also apply verifier for unknown
         and verifier_result.get("decision") in {"exact", "partial", "mismatch"}
     ):
         final_answer = _format_existence_answer(verifier_result, rows)

@@ -211,6 +211,21 @@ def _pick_primary_eval_row(row: dict[str, Any]) -> dict[str, Any]:
     return ranked_children[0] if ranked_children else row
 
 
+def _normalize_video_id(video_id: str) -> str:
+    """Normalize video_id to canonical form for comparison.
+
+    Handles bidirectional naming:
+    - ``Normal_Videos_598_x264`` → ``Normal_Videos598_x264`` (remove underscore before digits)
+    - ``Normal_Videos598_x264``  → ``Normal_Videos598_x264`` (already canonical)
+    """
+    vid = video_id.strip()
+    if vid.startswith("Normal_Videos_"):
+        suffix = vid[len("Normal_Videos_"):]
+        if suffix and suffix[0].isdigit():
+            return f"Normal_Videos{suffix}"
+    return vid
+
+
 def _extract_predicted_span(rows: list[dict[str, Any]]) -> dict[str, Any]:
     if not rows:
         return {"predicted_video_id": None, "predicted_start_sec": None, "predicted_end_sec": None}
@@ -385,8 +400,8 @@ def _score_time_range_overlap(case_result: dict[str, Any]) -> dict[str, Any]:
     expected_end = _safe_float(case_result.get("expected_end_sec"))
     predicted_start = _safe_float(case_result.get("predicted_start_sec"))
     predicted_end = _safe_float(case_result.get("predicted_end_sec"))
-    expected_video_id = str(case_result.get("video_id") or "").strip()
-    predicted_video_id = str(case_result.get("predicted_video_id") or "").strip()
+    expected_video_id = _normalize_video_id(str(case_result.get("video_id") or ""))
+    predicted_video_id = _normalize_video_id(str(case_result.get("predicted_video_id") or ""))
 
     video_match_score: float | None = None
     if expected_label == "yes" and expected_video_id:
@@ -496,6 +511,19 @@ def _load_filtered_cases(
     return filtered, report
 
 
+def _is_valid_video_id(video_id: str) -> bool:
+    """P0-2: Reject obviously invalid or out-of-scope video_ids.
+
+    Valid video_ids for Part4 are ``Normal_Videos*``.  Entries like
+    ``RoadAccidents*``, ``Arrest*``, ``!?4h?!``, ``多摄像头`` etc. are
+    either UCFCrime seeds that were accidentally included or garbled data.
+    """
+    vid = str(video_id or "").strip()
+    if not vid:
+        return False
+    return vid.startswith("Normal_Videos")
+
+
 def _load_cases_from_dataset_dir(dataset_dir: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     """Load pre-imported cases from ``agent_test_normalized.json`` (skip xlsx)."""
     dataset_dir = dataset_dir.expanduser().resolve()
@@ -506,6 +534,14 @@ def _load_cases_from_dataset_dir(dataset_dir: Path) -> tuple[list[dict[str, Any]
         )
     cases = json.loads(normalized_path.read_text(encoding="utf-8"))
     filtered = [case for case in cases if case.get("e2e_ready") == 1]
+    # P0-2: Remove cases with invalid/out-of-scope video_ids (RoadAccidents,
+    # garbled entries etc.) so they don't pollute evaluation metrics.
+    before_count = len(filtered)
+    filtered = [case for case in filtered if _is_valid_video_id(case.get("video_id", ""))]
+    removed = before_count - len(filtered)
+    if removed > 0:
+        removed_ids = sorted({c.get("video_id","") for c in cases if c.get("e2e_ready") == 1 and not _is_valid_video_id(c.get("video_id",""))})
+        print(f"[ragas_eval] P0-2: Filtered out {removed} cases with invalid video_ids: {removed_ids}")
     report_path = dataset_dir / "agent_test_import_report.json"
     if report_path.exists():
         report = json.loads(report_path.read_text(encoding="utf-8"))
@@ -818,6 +854,10 @@ def _run_case(graph: Any, case: dict[str, Any], idx: int, top_k: int) -> dict[st
         if text and text not in contexts:
             contexts.append(text)
     top_video_ids = [str(row.get("video_id", "")).strip() for row in rows[:top_k] if str(row.get("video_id", "")).strip()]
+    # Normalize both expected and retrieved video_ids so naming variants like
+    # ``Normal_Videos_924_x264`` and ``Normal_Videos924_x264`` are treated as
+    # the same ID when computing top_hit.
+    normalized_top_video_ids = [_normalize_video_id(vid) for vid in top_video_ids]
     response = _strip_sources(last_chunk.get("final_answer"))
     predicted_span = _extract_predicted_span(rows)
     cr = last_chunk.get("classification_result")
@@ -850,7 +890,7 @@ def _run_case(graph: Any, case: dict[str, Any], idx: int, top_k: int) -> dict[st
         "response": response,
         "retrieved_contexts": contexts,
         "top_video_ids": top_video_ids,
-        "top_hit": str(case.get("video_id", "")).strip() in top_video_ids,
+        "top_hit": _normalize_video_id(str(case.get("video_id", ""))) in normalized_top_video_ids,
         "predicted_video_id": predicted_span["predicted_video_id"],
         "predicted_start_sec": predicted_span["predicted_start_sec"],
         "predicted_end_sec": predicted_span["predicted_end_sec"],
