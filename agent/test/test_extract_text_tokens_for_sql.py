@@ -22,7 +22,7 @@ if str(AGENT_DIR) not in sys.path:
 
 from node.retrieval_contracts import (  # noqa: E402  (must come after sys.path mutation)
     _PLURAL_TO_SINGULAR,
-    _SQL_TOKEN_STOPWORDS,
+    SQL_TOKEN_STOPWORDS,
     extract_structured_filters,
     extract_text_tokens_for_sql,
 )
@@ -116,7 +116,7 @@ class ExtractTextTokensForSqlTests(unittest.TestCase):
         for banned in ("person", "car", "moving", "area", "clothed", "officer", "ground"):
             self.assertNotIn(
                 banned,
-                _SQL_TOKEN_STOPWORDS,
+                SQL_TOKEN_STOPWORDS,
                 f"stopword set should not contain content word {banned!r}",
             )
 

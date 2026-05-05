@@ -42,7 +42,7 @@ from typing import Any, Iterable, Mapping
 # stays in lock-step with ``extract_text_tokens_for_sql``.
 from node.retrieval_contracts import (
     _PLURAL_TO_SINGULAR,
-    _SQL_TOKEN_STOPWORDS,
+    SQL_TOKEN_STOPWORDS,
 )
 
 
@@ -99,7 +99,7 @@ def _tokenize(text: str | None, *, drop_stopwords: bool = True) -> list[str]:
         if len(match) < _MIN_TOKEN_LEN:
             continue
         token = _PLURAL_TO_SINGULAR.get(match, match)
-        if drop_stopwords and token in _SQL_TOKEN_STOPWORDS:
+        if drop_stopwords and token in SQL_TOKEN_STOPWORDS:
             continue
         tokens.append(token)
     return tokens

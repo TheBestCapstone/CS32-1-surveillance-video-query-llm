@@ -275,11 +275,16 @@ def _llm_verdict_single(
     prompt = (
         "Decide whether the retrieved evidence truly matches the user query.\n"
         "Be strict and conservative.\n"
-        "Return JSON only with keys decision, confidence, reason.\n"
+        "Return JSON only with keys: decision, confidence, reason.\n"
         "decision must be one of: exact, partial, mismatch.\n"
-        "Use mismatch when the evidence is only loosely related, mixes different incidents, or requires assumptions.\n"
-        "Use exact only when the evidence directly supports the asked clip.\n"
-        "Use partial only when the core incident matches but details or time boundaries are coarse.\n"
+        "- exact: the evidence directly describes the QUERIED action with matching "
+        "subject, object, and scene. Synonyms count as match.\n"
+        "- partial: core incident matches but details or time boundaries are coarse, "
+        "or the subject/object role is slightly different.\n"
+        "- mismatch: evidence is only LOOSELY related (same general scene but "
+        "different action), mixes different incidents, or requires assumptions "
+        "to connect to the query. Thematic similarity without the specific "
+        "queried action is NOT a match.\n"
         f"\nUser query: {query}"
         f"\nTop row video: {row.get('video_id')}"
         f"\nTop row time: {row.get('start_time')} - {row.get('end_time')}"
@@ -436,24 +441,26 @@ def _llm_select_best_chunk(
         "",
         f"User query: {query}",
         "",
-        (
-            "Below are candidate event chunks retrieved for this query (already "
-            "ranked by retrieval score; index 0 is rerank top-1)."
-        ),
-        (
-            "Pick the SINGLE BEST chunk that most directly matches the query, "
-            "and decide whether the picked chunk supports the query."
-        ),
+        "Below are candidate event chunks retrieved for this query (already "
+        "ranked by retrieval score; index 0 is rerank top-1).",
+        "Pick the SINGLE BEST chunk that most directly matches the query, "
+        "and decide whether the picked chunk supports the query.",
         "",
         "Decision guide:",
-        "- exact: picked chunk clearly describes the queried action with matching subject.",
-        "- partial: picked chunk is in the right context but details / subject roles are coarser.",
-        "- mismatch: NO chunk in the list supports the query (different incident, actors, or scene).",
+        "- exact: picked chunk clearly describes the queried action with matching "
+        "subject, object, and scene. Synonyms count as match.",
+        "- partial: picked chunk is in the right context but details or subject "
+        "roles are coarser or slightly different.",
+        "- mismatch: NO chunk in the list supports the query. The evidence may "
+        "be from the same general scene but describes a different action, or "
+        "involves different actors/objects. Thematic similarity without the "
+        "specific queried action does NOT count as a match.",
         "",
-        "CRITICAL: Be conservative. If the evidence only loosely resembles the query or requires",
-        "assumptions to connect, choose mismatch. A false positive (saying a clip exists when it",
-        "doesn't) is worse than a false negative. Synonyms count as match, but thematic similarity",
-        "without the specific queried action does NOT.",
+        "CRITICAL: Be conservative. If the evidence only loosely resembles the "
+        "query or requires assumptions to connect, choose mismatch. A false "
+        "positive (saying a clip exists when it doesn't) is worse than a false "
+        "negative. Verify that the specific action described in the query "
+        "appears in the chosen chunk.",
         "",
         "CANDIDATES:",
     ]

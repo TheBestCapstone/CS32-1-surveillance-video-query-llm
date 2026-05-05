@@ -330,26 +330,19 @@ def create_summary_node(llm: Any = None):
             "You are the final response summarizer for a retrieval assistant.",
             "Return a short factual answer that matches the reference-answer style used in evaluation.",
             "Use only the single strongest result. Do not merge multiple videos.",
-            "Even if the evidence is partial, summarize using the strongest result. "
-            "Do not return 'No matching clip is expected.' when results are provided.",
-            # P2-2: Conservative existence reasoning — if the retrieved evidence
-            # does not clearly and directly describe the specific action or scene
-            # the user asked about, you MUST answer 'No matching clip is expected.'
-            # A false positive (claiming a clip exists when it doesn't) is worse
-            # than a false negative. Do not infer or assume actions not explicitly
-            # stated in the evidence.
+            "Even if the evidence is partial, summarize using the strongest result.",
+            "",
+            "CONSERVATIVE EXISTENCE REASONING: If the retrieved evidence does NOT "
+            "clearly and directly describe the specific action or scene the user "
+            "asked about, answer 'No matching clip is expected.' A false positive "
+            "(claiming a clip exists when it doesn't) is worse than a false negative. "
+            "Do NOT infer or assume actions not explicitly stated in the evidence.",
+            "When the evidence SUPPORTS the query, use EXACTLY: "
+            "'Yes. The relevant clip is in <video_id>, around <h:mm:ss> - <h:mm:ss>.'",
+            "For non-binary descriptive questions, use: "
+            "'The most relevant clip is in <video_id>, around <h:mm:ss> - <h:mm:ss>.'",
+            "Do NOT add extra scene details, explanations, or a sources section.",
         ]
-        prompt_lines.append(
-            "If the evidence supports the query, use exactly this format: "
-            "'Yes. The relevant clip is in <video_id>, around <h:mm:ss> - <h:mm:ss>.'"
-        )
-        prompt_lines.append(
-            "For non-binary questions, use: "
-            "'The most relevant clip is in <video_id>, around <h:mm:ss> - <h:mm:ss>.'"
-        )
-        prompt_lines.append(
-            "Do not add extra scene details, explanations, or a sources section."
-        )
         # Inject conversation history if short-term memory is enabled
         thread_id = ""
         user_id = ""

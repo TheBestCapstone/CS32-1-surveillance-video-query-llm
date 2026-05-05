@@ -5,6 +5,8 @@ import sqlite3
 from pathlib import Path
 from typing import Any
 
+from node.retrieval_contracts import SQL_TOKEN_STOPWORDS
+
 
 SQL_KEYWORDS = {
     "select",
@@ -173,48 +175,6 @@ def _simple_stems(token: str) -> list[str]:
 def _expanded_query_terms(user_query: str) -> list[str]:
     normalized = re.sub(r"[^a-z0-9]+", " ", str(user_query or "").lower()).strip()
     tokens = [item for item in normalized.split() if item]
-    stopwords = {
-        "a",
-        "an",
-        "the",
-        "is",
-        "are",
-        "there",
-        "did",
-        "do",
-        "does",
-        "you",
-        "your",
-        "me",
-        "show",
-        "see",
-        "any",
-        "database",
-        "of",
-        "to",
-        "on",
-        "in",
-        "at",
-        "for",
-        "with",
-        "while",
-        "they",
-        "them",
-        "their",
-        "this",
-        "that",
-        "after",
-        "before",
-        "then",
-        "into",
-        "from",
-        "over",
-        "under",
-        "clip",
-        "video",
-        "someone",
-        "repeatedly",
-    }
     synonym_map = {
         "car": ["vehicle", "vehicles", "automobile", "sedan"],
         "vehicle": ["car", "cars"],
@@ -240,12 +200,12 @@ def _expanded_query_terms(user_query: str) -> list[str]:
     terms: list[str] = []
     seen: set[str] = set()
     for token in tokens:
-        if len(token) < 3 or token in stopwords:
+        if len(token) < 3 or token in SQL_TOKEN_STOPWORDS:
             continue
         candidates = [token, *_simple_stems(token), *synonym_map.get(token, [])]
         for candidate in candidates:
             clean = candidate.strip().lower()
-            if not clean or clean in stopwords or clean in seen or len(clean) < 3:
+            if not clean or clean in SQL_TOKEN_STOPWORDS or clean in seen or len(clean) < 3:
                 continue
             seen.add(clean)
             terms.append(clean)
@@ -255,31 +215,7 @@ def _expanded_query_terms(user_query: str) -> list[str]:
 def _query_phrases(user_query: str) -> list[str]:
     normalized = re.sub(r"[^a-z0-9]+", " ", str(user_query or "").lower()).strip()
     tokens = [item for item in normalized.split() if len(item) >= 3]
-    stopwords = {
-        "the",
-        "there",
-        "did",
-        "does",
-        "show",
-        "see",
-        "you",
-        "any",
-        "database",
-        "while",
-        "they",
-        "them",
-        "their",
-        "this",
-        "that",
-        "after",
-        "before",
-        "with",
-        "from",
-        "into",
-        "clip",
-        "video",
-    }
-    filtered = [item for item in tokens if item not in stopwords]
+    filtered = [item for item in tokens if item not in SQL_TOKEN_STOPWORDS]
     phrases: list[str] = []
     seen: set[str] = set()
     for size in (2, 3):
@@ -288,7 +224,7 @@ def _query_phrases(user_query: str) -> list[str]:
             phrase = " ".join(chunk).strip()
             if len(phrase) < 7 or phrase in seen:
                 continue
-            if len([item for item in chunk if item not in stopwords]) < size:
+            if len([item for item in chunk if item not in SQL_TOKEN_STOPWORDS]) < size:
                 continue
             seen.add(phrase)
             phrases.append(phrase)

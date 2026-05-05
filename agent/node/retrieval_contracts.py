@@ -55,17 +55,35 @@ def build_search_config(existing: dict[str, Any] | None = None) -> dict[str, Any
     return cfg
 
 
+def _word_match(query: str, token: str) -> bool:
+    """Match *token* as a whole word within *query*, avoiding substring false-positives
+    (e.g. ``"scar"`` matching ``"car"``, ``"personal"`` matching ``"person"``)."""
+    return bool(re.search(rf"(?<![a-z0-9]){re.escape(token)}(?![a-z0-9])", query))
+
+
 def extract_structured_filters(user_query: str) -> dict[str, str]:
+    """Extract structured (enum) filters from the user query.
+
+    Only sets a filter when *exactly one* entity/color/zone is detected.
+    Multi-entity queries (e.g. ``"black car and white truck"``) produce no
+    hard filter — the downstream text search handles them.
+
+    Uses word-boundary matching to avoid substring false-positives
+    (``"scar"`` matching ``"car"``, ``"barking"`` matching ``"parking"``).
+    """
     q = (user_query or "").lower()
     out: dict[str, str] = {}
-    for token in ["person", "car", "truck", "bus", "bike", "motorcycle"]:
-        if token in q:
-            out["object_type"] = token
-            break
-    for token in ["dark", "black", "white", "red", "blue", "unknown"]:
-        if token in q:
-            out["object_color_en"] = token
-            break
+
+    object_matches = [t for t in ["person", "car", "truck", "bus", "bike", "motorcycle"]
+                      if _word_match(q, t)]
+    if len(object_matches) == 1:
+        out["object_type"] = object_matches[0]
+
+    color_matches = [t for t in ["dark", "black", "white", "red", "blue", "unknown"]
+                     if _word_match(q, t)]
+    if len(color_matches) == 1:
+        out["object_color_en"] = color_matches[0]
+
     zone_aliases = [
         ("left bleachers", "left bleachers"),
         ("bleachers", "bleachers"),
@@ -84,7 +102,7 @@ def extract_structured_filters(user_query: str) -> dict[str, str]:
         ("center", "center"),
     ]
     for phrase, normalized in zone_aliases:
-        if phrase in q:
+        if _word_match(q, phrase):
             out["scene_zone_en"] = normalized
             break
     return out
@@ -392,7 +410,10 @@ def build_routing_metrics(
 # blacklisted here, which dropped the strongest signal tokens and also
 # duplicated the work already done by ``filter_terms`` dedup below. They are
 # NOT included here anymore.
-_SQL_TOKEN_STOPWORDS: frozenset[str] = frozenset(
+#
+# Exported as ``SQL_TOKEN_STOPWORDS`` so ``sql_debug_utils`` can reuse the same
+# set, avoiding two copies drifting apart.
+SQL_TOKEN_STOPWORDS: frozenset[str] = frozenset(
     {
         # determiners / articles
         "the", "this", "that", "these", "those",
@@ -422,6 +443,9 @@ _SQL_TOKEN_STOPWORDS: frozenset[str] = frozenset(
         "there", "here",
         # hedge / meta
         "maybe", "possibly", "just", "really",
+        # additional stopwords used by sql_debug_utils (merged from _expanded_query_terms)
+        "a", "an", "is", "do", "me", "of", "to", "on", "in", "at",
+        "while", "someone", "repeatedly", "your", "did",
     }
 )
 
@@ -472,6 +496,17 @@ def _singularize_token(token: str) -> str:
 
 
 def extract_text_tokens_for_sql(user_query: str, filters: dict[str, str]) -> list[str]:
+    """Extract free-text tokens from the query for FTS5 / LIKE search.
+
+    Tokens already captured as structured filters are excluded (they are
+    applied via exact WHERE clauses instead).
+
+    The maximum number of tokens returned is controlled by
+    ``AGENT_SQL_TOKEN_LIMIT`` (default: 10, raised from the previous
+    hard-coded 6 to preserve more signal for longer queries).
+    Set ``AGENT_SQL_TOKEN_LIMIT=0`` to return all tokens (unbounded).
+    """
+    limit = int(os.getenv("AGENT_SQL_TOKEN_LIMIT", "10") or "10")
     filter_terms: set[str] = set()
     for value in filters.values():
         filter_terms.update(t for t in re.findall(r"[a-z0-9_]+", str(value).lower()) if t)
@@ -482,7 +517,7 @@ def extract_text_tokens_for_sql(user_query: str, filters: dict[str, str]) -> lis
         if len(raw) <= 2:
             continue
         token = _singularize_token(raw)
-        if token in _SQL_TOKEN_STOPWORDS:
+        if token in SQL_TOKEN_STOPWORDS:
             continue
         if token in filter_terms:
             continue
@@ -490,4 +525,6 @@ def extract_text_tokens_for_sql(user_query: str, filters: dict[str, str]) -> lis
             continue
         seen.add(token)
         out.append(token)
-    return out[:6]
+    if limit > 0:
+        return out[:limit]
+    return out

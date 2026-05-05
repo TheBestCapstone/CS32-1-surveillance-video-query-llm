@@ -1,8 +1,12 @@
+import json
 import sqlite3
 from typing import List, Dict, Any, Optional
 from langchain_core.tools import tool
 from node.types import default_sqlite_db_path
 from tools.sql_debug_utils import extract_where_clause, find_unknown_sql_columns, get_sqlite_table_columns, log_sql_debug
+
+_JSON_START_MARKER = "[SQL_JSON_START]"
+_JSON_END_MARKER = "[SQL_JSON_END]"
 
 @tool
 def inspect_database_schema(table_name: str = "episodic_events") -> str:
@@ -57,43 +61,66 @@ def execute_dynamic_sql(sql_query: str) -> str:
     db_path = default_sqlite_db_path()
     try:
         conn = sqlite3.connect(db_path)
-        # Set row factory to sqlite3.Row to return dict-like records
         conn.row_factory = sqlite3.Row
+        # Optimize for read-heavy concurrent access
+        conn.execute("PRAGMA journal_mode=WAL")
+        conn.execute("PRAGMA cache_size=-8000")
+        conn.execute("PRAGMA query_only=ON")
         cursor = conn.cursor()
         schema_columns = get_sqlite_table_columns(db_path)
-        
+
         # Simple defense: only allow SELECT queries
         if not sql_query.strip().upper().startswith("SELECT"):
+            conn.close()
             return "Error: Only SELECT queries are allowed."
-        where_clause = extract_where_clause(sql_query)
-        unknown_columns = find_unknown_sql_columns(sql_query, schema_columns)
+
+        # P2-5: Auto-append LIMIT if missing to prevent unbounded scans
+        normalized = sql_query.rstrip(" ;\t\n")
+        if "limit" not in normalized.lower():
+            normalized = normalized + " LIMIT 200"
+
+        where_clause = extract_where_clause(normalized)
+        unknown_columns = find_unknown_sql_columns(normalized, schema_columns)
         log_sql_debug(
             "execute_dynamic_sql",
             db_path=str(db_path),
-            final_sql=sql_query,
+            final_sql=normalized,
             where_clause=where_clause,
             unknown_columns=unknown_columns,
         )
-        cursor.execute(sql_query)
+
+        # Set a query timeout via progress handler (sqlite3 lacks native timeout)
+        _start = sqlite3.time.time() if hasattr(sqlite3, 'time') else __import__('time').time()
+        _timeout = 30.0
+
+        def _progress_handler():
+            return 0 if (__import__('time').time() - _start) < _timeout else 1
+
+        conn.set_progress_handler(_progress_handler, 1000)
+        cursor.execute(normalized)
         rows = cursor.fetchall()
-        
-        # Extract columns
+
         if not rows:
+            conn.close()
             return "Execution successful, but no results returned (0 records)."
-            
+
         columns = rows[0].keys()
         result_list = [dict(zip(columns, row)) for row in rows]
-        conn.close()
-        
-        import json
-        result_json = json.dumps(result_list, ensure_ascii=False, indent=2)
-        # Prevent massive JSON from overloading context limit and causing infinite loops
-        truncation_msg = ""
-        if len(result_json) > 10000:
+
+        # Truncate at SQL level to avoid fetching massive result sets
+        if len(result_list) > 50:
             result_list = result_list[:50]
-            result_json = json.dumps(result_list, ensure_ascii=False, indent=2)
-            truncation_msg = " (Truncated to 50 records due to size limit)"
-        
-        return f"Execution successful, returned {len(result_list)} records{truncation_msg}:\n" + result_json
+            truncation_msg = " (Truncated server-side to 50 records)"
+        else:
+            truncation_msg = ""
+
+        conn.close()
+
+        result_json = json.dumps(result_list, ensure_ascii=False, indent=2)
+        # Wrap JSON in markers so _extract_sql_result can parse it reliably
+        return (
+            f"Execution successful, returned {len(result_list)} records{truncation_msg}:\n"
+            f"{_JSON_START_MARKER}\n{result_json}\n{_JSON_END_MARKER}"
+        )
     except Exception as e:
         return f"SQL Execution Failed: {str(e)}"

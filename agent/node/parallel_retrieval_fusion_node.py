@@ -19,6 +19,7 @@ from tools.llamaindex_adapter import (
     use_llamaindex_vector,
 )
 from tools.rerank import rerank_rows
+from tools.sql_debug_utils import _build_hard_filter_clause, build_text2sql_plan, run_relaxed_sql_fallback
 from .retrieval_contracts import (
     build_routing_metrics,
     build_search_config,
@@ -66,13 +67,15 @@ def _fts5_table_present(conn: sqlite3.Connection, table_name: str = "episodic_ev
         return False
 
 
-# FTS5 ``MATCH`` syntax treats a small set of characters as operators (``"`` /
-# ``*`` / ``(`` / ``)`` / ``:`` / ``+`` / ``-`` / ``,``). We quote each token
-# so user content (e.g. tokens with hyphens) becomes a literal phrase.
+# FTS5 MATCH syntax: inside ``"..."`` the ONLY special character is ``"`` itself
+# (escaped as ``""``). Operators like ``*():"+-,`` are literal inside quotes.
+# We wrap each token in double quotes so user content is always a phrase search.
 _FTS5_TOKEN_QUOTE = re.compile(r'"')
 
 
 def _build_fts5_match_expr(tokens: List[str]) -> str:
+    if not tokens:
+        return ""
     quoted: List[str] = []
     for tok in tokens:
         clean = _FTS5_TOKEN_QUOTE.sub('""', tok)
@@ -87,36 +90,55 @@ def _run_sql_branch(user_query: str, search_config: Dict[str, Any]) -> Tuple[str
             limit=int(search_config.get("sql_limit", 80)),
         )
     db_path = default_sqlite_db_path()
-    filters = extract_structured_filters(user_query)
-    params: List[Any] = []
-    clauses: List[str] = []
-    if "object_type" in filters:
-        clauses.append("lower(object_type) = ?")
-        params.append(filters["object_type"])
-    if "object_color_en" in filters:
-        clauses.append("lower(object_color_en) = ?")
-        params.append(filters["object_color_en"])
-    if "scene_zone_en" in filters:
-        clauses.append("lower(scene_zone_en) LIKE ?")
-        params.append(f"%{filters['scene_zone_en']}%")
-
-    tokens = extract_text_tokens_for_sql(user_query, filters)
-    text_strategy = "none"
     sql_limit = int(search_config.get("sql_limit", 80))
+
+    # Phase 1 — fast FTS5 / LIKE path powered by build_text2sql_plan
+    # The plan provides alias-expanded hard filters and soft terms for text search.
+    plan = build_text2sql_plan(user_query=user_query, db_path=db_path)
+    hard_clause, hard_params = _build_hard_filter_clause(list(plan.get("hard_filters") or []))
+
+    clauses: List[str] = []
+    params: List[Any] = list(hard_params)
+    if hard_clause:
+        clauses.append(f"({hard_clause})")
+
+    # Soft terms from the plan are richer than extract_text_tokens_for_sql:
+    # they include alias expansion, stemming, and phrase extraction.
+    soft_terms = list(plan.get("soft_terms") or [])
+    soft_phrases = list(plan.get("soft_phrases") or [])
+
+    # Deduplicate and prioritize: phrases first (they carry more signal), then terms.
+    text_tokens: List[str] = []
+    seen_tokens: set[str] = set()
+    for p in soft_phrases:
+        for t in re.findall(r"[a-z0-9_]+", p):
+            if t not in seen_tokens:
+                seen_tokens.add(t)
+                text_tokens.append(t)
+    for t in soft_terms:
+        if t not in seen_tokens:
+            seen_tokens.add(t)
+            text_tokens.append(t)
+
+    text_strategy = "none"
     with sqlite3.connect(db_path) as conn:
         conn.row_factory = sqlite3.Row
-        use_fts5 = _sql_use_fts5_enabled() and tokens and _fts5_table_present(conn)
+        # P3-10: WAL mode + cache for better concurrent read performance
+        conn.execute("PRAGMA journal_mode=WAL")
+        conn.execute("PRAGMA synchronous=NORMAL")
+        conn.execute("PRAGMA cache_size=-8000")
+
+        use_fts5 = _sql_use_fts5_enabled() and text_tokens and _fts5_table_present(conn)
         if use_fts5:
-            # FTS5 path: one indexed lookup instead of N table-scan ORs.
-            match_expr = _build_fts5_match_expr(tokens)
+            match_expr = _build_fts5_match_expr(text_tokens)
             clauses.append(
                 "event_id IN (SELECT rowid FROM episodic_events_fts WHERE episodic_events_fts MATCH ?)"
             )
             params.append(match_expr)
             text_strategy = "fts5"
-        elif tokens:
+        elif text_tokens:
             text_clauses = []
-            for t in tokens:
+            for t in text_tokens:
                 text_clauses.append(
                     "(lower(coalesce(event_text_en,'')) LIKE ? OR lower(coalesce(event_summary_en,'')) LIKE ? OR lower(coalesce(appearance_notes_en,'')) LIKE ?)"
                 )
@@ -132,6 +154,19 @@ def _run_sql_branch(user_query: str, search_config: Dict[str, Any]) -> Tuple[str
             f"{where_sql} ORDER BY start_time ASC LIMIT {sql_limit}"
         )
         rows = normalize_sql_rows([dict(r) for r in conn.execute(sql, params).fetchall()])
+
+    # Phase 2 — relaxed fallback when the structured plan yields zero rows
+    if not rows and (hard_clause or text_tokens):
+        try:
+            fallback = run_relaxed_sql_fallback(
+                user_query=user_query, limit=sql_limit, db_path=db_path,
+            )
+            fb_rows = normalize_sql_rows(fallback.get("rows") or [])
+            if fb_rows:
+                return f"SQL relaxed-fallback rows={len(fb_rows)} text_strategy={text_strategy}", fb_rows
+        except Exception:
+            pass
+
     return f"SQL direct retrieval rows={len(rows)} text_strategy={text_strategy}", rows
 
 
