@@ -303,6 +303,96 @@ def _coarse_video_filter(user_query: str) -> list[str] | None:
     return None
 
 
+def _run_global_entity_branch(
+    user_query: str,
+    search_config: Dict[str, Any],
+) -> Tuple[str, List[Dict[str, Any]]]:
+    """Two-stage cross-camera global entity retrieval.
+
+    Stage 1: Semantic search in the ``global_entity`` Chroma collection
+    to find entities matching the user's description.
+    Stage 2: Use matched ``global_entity_id`` values to query SQLite
+    ``episodic_events`` and expand the full event trajectory across all cameras.
+    """
+    if not (user_query or "").strip():
+        return "GlobalEntity skipped: empty query", []
+
+    ge_top_k = int(search_config.get("global_entity_top_k", 5))
+    ge_sql_limit = int(search_config.get("global_entity_sql_limit", 200))
+
+    # --- Stage 1: Chroma semantic search ---
+    try:
+        from db.config import get_graph_chroma_global_entity_collection, get_graph_chroma_path
+        from tools.db_access import ChromaGateway
+
+        gateway = ChromaGateway(
+            db_path=get_graph_chroma_path(),
+            collection_name=get_graph_chroma_global_entity_collection(),
+        )
+        ge_results = gateway.search(
+            query=user_query,
+            metadata_filters=[],
+            limit=ge_top_k,
+        )
+    except Exception as exc:
+        return f"GlobalEntity Chroma search failed: {exc}", []
+
+    if not ge_results:
+        return "GlobalEntity Chroma search: no matches", []
+
+    # Extract matched global_entity_ids
+    ge_ids: list[str] = []
+    ge_scores: dict[str, float] = {}
+    for row in ge_results:
+        # ChromaGateway.search may return event_id as the primary id;
+        # for global_entity collection, the id IS the global_entity_id.
+        ge_id = row.get("event_id") or row.get("id")
+        if ge_id:
+            ge_ids.append(str(ge_id))
+            ge_scores[str(ge_id)] = float(row.get("_vector_score", 0.0))
+
+    if not ge_ids:
+        return "GlobalEntity Chroma search: no valid entity IDs", []
+
+    # deduplicate
+    ge_ids = list(dict.fromkeys(ge_ids))
+
+    # --- Stage 2: SQLite expansion ---
+    import sqlite3
+    db_path = default_sqlite_db_path()
+    placeholders = ",".join(["?" for _ in ge_ids])
+
+    with sqlite3.connect(str(db_path)) as conn:
+        conn.row_factory = sqlite3.Row
+        conn.execute("PRAGMA journal_mode=WAL")
+        conn.execute("PRAGMA synchronous=NORMAL")
+
+        sql = (
+            "SELECT event_id, video_id, camera_id, track_id, "
+            "start_time, end_time, object_type, object_color_en, "
+            "scene_zone_en, event_summary_en, global_entity_id "
+            "FROM episodic_events "
+            f"WHERE global_entity_id IN ({placeholders}) "
+            f"ORDER BY global_entity_id, start_time ASC "
+            f"LIMIT {ge_sql_limit}"
+        )
+        rows = [dict(r) for r in conn.execute(sql, ge_ids).fetchall()]
+
+    # Normalize
+    from .retrieval_contracts import normalize_sql_rows
+    normalized = normalize_sql_rows(rows)
+    for row in normalized:
+        ge_id = row.get("global_entity_id", "")
+        row["_source_type"] = "global_entity"
+        row["_ge_vector_score"] = ge_scores.get(str(ge_id), 0.0)
+
+    n_entities = len(set(r.get("global_entity_id") for r in normalized if r.get("global_entity_id")))
+    return (
+        f"GlobalEntity matched={len(ge_ids)} entities={n_entities} rows={len(normalized)}",
+        normalized,
+    )
+
+
 def create_parallel_retrieval_fusion_node(llm=None, **kwargs):
     del kwargs
     del llm
@@ -320,22 +410,39 @@ def create_parallel_retrieval_fusion_node(llm=None, **kwargs):
         classification_signals = classification_result.get("signals") if isinstance(classification_result.get("signals"), dict) else {}
         sql_plan = infer_sql_plan(user_query, search_config)
 
+        # Multi-camera detection
+        multi_camera = bool(
+            classification_result.get("multi_camera")
+            or (classification_signals or {}).get("multi_camera_cues")
+        )
+        disable_global_entity = os.getenv("AGENT_DISABLE_GLOBAL_ENTITY_BRANCH", "0").strip().lower() in {"1", "true", "yes", "on"}
+
         start = time.perf_counter()
         sql_summary = ""
         hybrid_summary = ""
+        ge_summary = ""
         sql_rows: List[Dict[str, Any]] = []
         hybrid_rows: List[Dict[str, Any]] = []
+        ge_rows: List[Dict[str, Any]] = []
         sql_error = None
         hybrid_error = None
+        ge_error = None
 
         disable_sql = os.getenv("AGENT_DISABLE_SQL_BRANCH", "0").strip().lower() in {"1", "true", "yes", "on"}
+        max_workers = 3 if (multi_camera and not disable_global_entity) else 2
 
-        with ThreadPoolExecutor(max_workers=2) as ex:
+        with ThreadPoolExecutor(max_workers=max_workers) as ex:
             if disable_sql:
                 sql_summary, sql_rows, sql_error = "", [], None
             else:
                 f_sql = ex.submit(_safe_sub_agent_call, _run_sql_branch, user_query, search_config)
             f_hybrid = ex.submit(_safe_sub_agent_call, _run_hybrid_branch, user_query, search_config)
+
+            # Global entity branch
+            if multi_camera and not disable_global_entity:
+                f_ge = ex.submit(_safe_sub_agent_call, _run_global_entity_branch, user_query, search_config)
+            else:
+                f_ge = None
 
             if not disable_sql:
                 try:
@@ -346,6 +453,11 @@ def create_parallel_retrieval_fusion_node(llm=None, **kwargs):
                 hybrid_summary, hybrid_rows, hybrid_error = f_hybrid.result(timeout=branch_timeout)
             except TimeoutError:
                 hybrid_error = f"hybrid timeout ({branch_timeout}s)"
+            if f_ge is not None:
+                try:
+                    ge_summary, ge_rows, ge_error = f_ge.result(timeout=branch_timeout)
+                except TimeoutError:
+                    ge_error = f"global_entity timeout ({branch_timeout}s)"
 
         both_failed = (sql_error is not None and hybrid_error is not None)
         if both_failed:
@@ -353,6 +465,7 @@ def create_parallel_retrieval_fusion_node(llm=None, **kwargs):
             return {
                 "sql_result": [],
                 "hybrid_result": [],
+                "global_entity_result": [],
                 "rerank_result": [],
                 "tool_error": f"Both branches failed: sql={sql_error}; hybrid={hybrid_error}",
                 "current_node": "parallel_retrieval_fusion_node",
@@ -387,6 +500,7 @@ def create_parallel_retrieval_fusion_node(llm=None, **kwargs):
                 label=label,
                 limit=fused_limit,
                 signals=classification_signals or None,
+                global_entity_rows=ge_rows if multi_camera else [],
             )
             fusion_meta["degraded"] = False
             if classification_signals:
@@ -463,12 +577,14 @@ def create_parallel_retrieval_fusion_node(llm=None, **kwargs):
         return {
             "sql_result": sql_rows,
             "hybrid_result": hybrid_rows,
+            "global_entity_result": ge_rows,
             "rerank_result": final_rows,
             "tool_error": None,
             "current_node": "parallel_retrieval_fusion_node",
             "search_explain": (
                 "Parallel retrieval completed. "
-                f"label={label}, sql_rows={len(sql_rows)}, hybrid_rows={len(hybrid_rows)}, fused_rows={len(fused)}, final_rows={len(final_rows)}, result_mode={result_mode}"
+                f"label={label}, sql_rows={len(sql_rows)}, hybrid_rows={len(hybrid_rows)}, "
+                f"ge_rows={len(ge_rows)}, fused_rows={len(fused)}, final_rows={len(final_rows)}, result_mode={result_mode}"
             ),
             "routing_metrics": routing_metrics,
             "search_config": search_config,
@@ -479,6 +595,10 @@ def create_parallel_retrieval_fusion_node(llm=None, **kwargs):
                 "hybrid_summary": hybrid_summary,
                 "sql_error": sql_error,
                 "hybrid_error": hybrid_error,
+                "ge_summary": ge_summary,
+                "ge_error": ge_error,
+                "ge_rows_count": len(ge_rows),
+                "multi_camera": multi_camera,
                 "fusion_meta": fusion_meta,
                 "rerank_meta": rerank_meta,
                 "parent_rows_count": len(final_rows),

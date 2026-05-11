@@ -27,6 +27,18 @@ def load_fusion_weights() -> Dict[str, Dict[str, float]]:
             "sql": _safe_float(os.getenv("AGENT_FUSION_MULTIHOP_SQL_WEIGHT", "0.3"), 0.3),
             "hybrid": _safe_float(os.getenv("AGENT_FUSION_MULTIHOP_HYBRID_WEIGHT", "0.7"), 0.7),
         },
+        # Multi-camera mode: three-way fusion with global_entity dominating
+        "multi_camera": {
+            "global_entity": _safe_float(
+                os.getenv("AGENT_FUSION_MULTICAM_GE_WEIGHT", "0.65"), 0.65
+            ),
+            "sql": _safe_float(
+                os.getenv("AGENT_FUSION_MULTICAM_SQL_WEIGHT", "0.15"), 0.15
+            ),
+            "hybrid": _safe_float(
+                os.getenv("AGENT_FUSION_MULTICAM_HYBRID_WEIGHT", "0.20"), 0.20
+            ),
+        },
         "rrf_k": {
             "k": _safe_float(os.getenv("AGENT_FUSION_RRF_K", "60"), 60.0),
         },
@@ -100,6 +112,12 @@ def _normalize_event_id(event_id: Any) -> str | None:
 
 
 def _row_key(row: Dict[str, Any]) -> str:
+    # Prefer global_entity_id + start_time for cross-branch matching of
+    # multi-camera entities (same entity has different event_id per camera).
+    ge_id = row.get("global_entity_id")
+    if ge_id:
+        st = row.get("start_time", "")
+        return f"ge:{ge_id}:{st}"
     event_id = _normalize_event_id(row.get("event_id"))
     if event_id is not None:
         return f"event_id:{event_id}"
@@ -121,13 +139,24 @@ def weighted_rrf_fuse(
     limit: int = 50,
     *,
     signals: Optional[Dict[str, Any]] = None,
+    global_entity_rows: Optional[List[Dict[str, Any]]] = None,
 ) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
     cfg = load_fusion_weights()
-    weights = cfg.get(label, cfg["mixed"])
-    base_sql = float(weights["sql"])
-    base_hybrid = float(weights["hybrid"])
-    w_sql, w_hybrid, bias_meta = _apply_signal_bias(base_sql, base_hybrid, signals)
     rrf_k = float(cfg["rrf_k"]["k"])
+
+    # Multi-camera mode: global_entity dominates the fusion
+    if global_entity_rows:
+        mc_weights = cfg["multi_camera"]
+        w_ge = float(mc_weights["global_entity"])
+        w_sql = float(mc_weights["sql"])
+        w_hybrid = float(mc_weights["hybrid"])
+        fusion_mode = "multi_camera"
+    else:
+        weights = cfg.get(label, cfg["mixed"])
+        w_sql = float(weights["sql"])
+        w_hybrid = float(weights["hybrid"])
+        w_ge = 0.0
+        fusion_mode = label
 
     score_map: Dict[str, float] = {}
     row_map: Dict[str, Dict[str, Any]] = {}
@@ -137,7 +166,6 @@ def weighted_rrf_fuse(
         if existing is None:
             return dict(incoming)
         merged = dict(existing)
-        items = incoming.items() if prefer_incoming else existing.items()
         for key, value in incoming.items():
             if key not in merged or merged.get(key) in (None, "", [], {}):
                 merged[key] = value
@@ -161,30 +189,43 @@ def weighted_rrf_fuse(
         row_map[key] = _merge_rows(row_map.get(key), row, prefer_incoming=True)
         trace.setdefault(key, {}).update({"hybrid_rank": rank, "hybrid_rrf": score, "seen_in_hybrid": True})
 
+    # GlobalEntity branch — highest weight in multi_camera mode
+    for rank, row in enumerate(global_entity_rows or [], start=1):
+        key = _row_key(row)
+        score = w_ge * (1.0 / (rrf_k + rank))
+        score_map[key] = score_map.get(key, 0.0) + score
+        row_map[key] = _merge_rows(row_map.get(key), row, prefer_incoming=True)
+        trace.setdefault(key, {}).update({"ge_rank": rank, "ge_rrf": score, "seen_in_ge": True})
+
     ranked = sorted(score_map.items(), key=lambda x: x[1], reverse=True)[:limit]
     out: List[Dict[str, Any]] = []
     overlap_count = 0
     for key, score in ranked:
         row = dict(row_map[key])
         row_trace = dict(trace.get(key, {}))
-        if row_trace.get("seen_in_sql") and row_trace.get("seen_in_hybrid"):
+        seen_in = sum(1 for k in ("seen_in_sql", "seen_in_hybrid", "seen_in_ge") if row_trace.get(k))
+        if seen_in >= 2:
             overlap_count += 1
             row["_source_type"] = "fused"
         row_trace["total_rrf"] = float(score)
         row["_fusion_score"] = float(score)
-        row["_fusion_label"] = label
+        row["_fusion_label"] = fusion_mode
         row["_fusion_trace"] = row_trace
         out.append(row)
 
-    return out, {
-        "label": label,
-        "weights": {"sql": w_sql, "hybrid": w_hybrid},
+    fusion_meta: Dict[str, Any] = {
+        "label": fusion_mode,
+        "weights": {"sql": w_sql, "hybrid": w_hybrid, "global_entity": w_ge},
         "rrf_k": rrf_k,
         "sql_count": len(sql_rows),
         "hybrid_count": len(hybrid_rows),
+        "ge_count": len(global_entity_rows or []),
         "fused_count": len(out),
         "overlap_count": overlap_count,
         "method": "weighted_rrf",
-        "signal_bias": bias_meta,
     }
+    if fusion_mode != "multi_camera":
+        _, _, bias_meta = _apply_signal_bias(w_sql, w_hybrid, signals)
+        fusion_meta["signal_bias"] = bias_meta
+    return out, fusion_meta
 

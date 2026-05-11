@@ -25,8 +25,12 @@ QUERY_CLASSIFICATION_OUTPUT_SCHEMA = {
         },
         "confidence": {"type": "number"},
         "reason": {"type": "string"},
+        "multi_camera": {
+            "type": "boolean",
+            "description": "Whether the user is asking about cross-camera / multi-camera behavior (e.g. 'appear in camera A and then camera B', 'which cameras did this person appear in')",
+        },
     },
-    "required": ["label", "answer_type", "confidence", "reason"],
+    "required": ["label", "answer_type", "confidence", "reason", "multi_camera"],
 }
 
 
@@ -97,6 +101,22 @@ _COUNT_CUES = (
     "how many", "count", "number of",
 )
 
+_MULTI_CAMERA_CUES = (
+    # 中文 — 多摄像头开放式查询
+    "跨摄像头", "跨镜头", "多个摄像头", "不同摄像头",
+    "各个摄像头", "每个摄像头", "哪个摄像头", "哪些摄像头",
+    "出现在几个", "经过哪些", "去过哪些",
+    "从哪个摄像头", "在哪些镜头", "各个镜头",
+    # 英文 — 多摄像头开放式查询
+    "across cameras", "across camera", "all cameras", "every camera",
+    "different cameras", "each camera", "which cameras", "what cameras",
+    "multiple cameras", "cross-camera", "cross camera",
+    # 英文 — cross_camera 验证问题 (appear in A and then B)
+    "appear in", "and then appear", "appear again",
+    "also appear", "from camera", "then in camera",
+    "first in", "then in",
+)
+
 
 def _normalize_label(value: Any) -> str:
     text = str(value or "").strip().lower()
@@ -133,11 +153,15 @@ def _collect_signals(text: str) -> Dict[str, List[str]]:
     relation_cues = sorted({cue.strip() for cue in _RELATION_CUES if cue in padded})
     multi_step_cues = sorted({cue.strip() for cue in _MULTI_STEP_CUES if cue in padded})
     existence_cues = sorted({cue for cue in _EXISTENCE_CUES if cue in low})
+    multi_camera_cues = sorted(
+        {cue.strip() for cue in _MULTI_CAMERA_CUES if cue in low}
+    )
     return {
         "metadata_hits": metadata_hits,
         "relation_cues": relation_cues,
         "multi_step_cues": multi_step_cues,
         "existence_cues": existence_cues,
+        "multi_camera_cues": multi_camera_cues,
     }
 
 
@@ -173,6 +197,11 @@ def _label_from_signals(signals: Dict[str, List[str]]) -> Tuple[str, float, str]
     return LABEL_MIXED, 0.45, "no strong signals"
 
 
+def _detect_multi_camera(signals: Dict[str, List[str]]) -> bool:
+    """快速判断是否有多摄像头意图。"""
+    return len(signals.get("multi_camera_cues", [])) > 0
+
+
 def _compat_signal_counts(signals: Dict[str, List[str]], label: str) -> Dict[str, int]:
     # Legacy consumers expected ``signals.structured`` / ``signals.semantic`` as
     # ints; keep them for backward-compat alongside the new list-valued cues.
@@ -191,6 +220,7 @@ def _fallback_result(reason: str, label: str = LABEL_MIXED, text: str = "") -> D
         "confidence": 0.35,
         "reason": reason,
         "signals": {**signals, **_compat_signal_counts(signals, safe_label)},
+        "multi_camera": _detect_multi_camera(signals),
     }
 
 
@@ -223,6 +253,7 @@ def _fast_path_classification(text: str) -> Dict[str, Any] | None:
         "confidence": confidence,
         "reason": reason,
         "signals": {**signals, **_compat_signal_counts(signals, label)},
+        "multi_camera": _detect_multi_camera(signals),
     }
 
 
@@ -265,6 +296,11 @@ def classify_query(query: str, llm: Any = None, config: Any = None) -> Dict[str,
         "  - description: request to explain or summarise a clip.\n"
         "  - count: asks how many / number of.\n"
         "  - unknown: cannot determine the answer type.\n\n"
+        "multi_camera ∈ {true, false}:\n"
+        "  - true: the user is asking about cross-camera / multi-camera behavior. "
+        "This includes questions like 'appear in camera A and then camera B', "
+        "'which cameras did this person appear in', 'also appear in camera', etc.\n"
+        "  - false: the question is about a single camera view.\n\n"
         "Classify by the INFORMATION TYPE needed, not sentence mood. "
         "An existence question like 'is there a black car on the road?' is "
         "structured because it only needs metadata filters, no semantic reasoning.\n\n"
@@ -296,12 +332,14 @@ def classify_query(query: str, llm: Any = None, config: Any = None) -> Dict[str,
         answer_type = _infer_answer_type(text)
     confidence = _normalize_confidence(payload.get("confidence"))
     reason = str(payload.get("reason", "llm classifier")).strip() or "llm classifier"
+    multi_camera = bool(payload.get("multi_camera")) or _detect_multi_camera(signals)
     return {
         "label": label,
         "answer_type": answer_type,
         "confidence": confidence,
         "reason": reason,
         "signals": {**signals, **_compat_signal_counts(signals, label)},
+        "multi_camera": multi_camera,
     }
 
 

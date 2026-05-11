@@ -583,8 +583,15 @@ class ChromaIndexBuilder:
             sections.append("Keywords: " + ", ".join(keywords) + ".")
         return " ".join(sections)
 
-    @staticmethod
+    # Max characters for a parent document.
+    # text-embedding-3-small has an 8192-token limit. At ~4 chars/token for English,
+    # 32000 chars ≈ 8000 tokens. We use 20000 (~5000 tokens) as a safe upper bound
+    # and apply hard truncation on the final document.
+    _PARENT_DOC_MAX_CHARS: int = 20000
+
+    @classmethod
     def _build_parent_document(
+        cls,
         *,
         video_id: str,
         child_records: list[dict[str, Any]],
@@ -610,8 +617,31 @@ class ChromaIndexBuilder:
             sections.append("Scene zones: " + ", ".join(scene_zones) + ".")
         child_summaries = [record["document"] for record in child_records]
         if child_summaries:
-            sections.append("Child track summaries: " + " ".join(child_summaries))
-        return " ".join(sections)
+            header_len = len(" ".join(sections)) + len("Child track summaries: ")
+            max_child_chars = max(0, cls._PARENT_DOC_MAX_CHARS - header_len)
+            truncated = ChromaIndexBuilder._truncate_doc_list(child_summaries, max_child_chars)
+            sections.append("Child track summaries: " + " ".join(truncated))
+        result = " ".join(sections)
+        # Hard safety net: ensure final document stays within embedding API limits
+        if len(result) > cls._PARENT_DOC_MAX_CHARS:
+            result = result[: cls._PARENT_DOC_MAX_CHARS]
+        return result
+
+    @staticmethod
+    def _truncate_doc_list(docs: list[str], max_chars: int) -> list[str]:
+        """Truncate a list of document strings to stay within max_chars total."""
+        result: list[str] = []
+        used = 0
+        for doc in docs:
+            if used + len(doc) <= max_chars:
+                result.append(doc)
+                used += len(doc) + 1  # +1 for space between entries
+            else:
+                remaining = max_chars - used
+                if remaining > 20:
+                    result.append(doc[:remaining] + "...")
+                break
+        return result
 
     def _build_event_records(self, events: list[dict[str, Any]]) -> list[dict[str, Any]]:
         """Build one Chroma record per single event for fine-grained temporal retrieval.

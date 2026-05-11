@@ -23,6 +23,8 @@ sanity/
 results/
 docs/
 agent/test/generated/
+agent/test_mulcamera/
+agent/test_smoke/
 
 # Root-level scratch result files
 /result_*.json
@@ -57,5 +59,7 @@ agent/_删除的文件/
 *.tmp
 *.bak
 *.swp
+*.pid
+*.out
 build/
 dist/

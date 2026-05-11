@@ -91,6 +91,7 @@ class AgentState(TypedDict, total=False):
     search_explain: str
     raw_final_answer: str
     summary_result: Dict[str, Any]
+    global_entity_result: List[Dict[str, Any]]  # Multi-camera global entity retrieval results
 
 
 def content_to_text(content: Any) -> str:
@@ -231,6 +232,7 @@ class StateResetter:
         "search_explain": "",
         "raw_final_answer": "",
         "summary_result": {},
+        "global_entity_result": [],
     }
 
     @staticmethod
