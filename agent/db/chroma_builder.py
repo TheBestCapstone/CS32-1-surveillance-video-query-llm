@@ -17,6 +17,11 @@ from ..tools.llm import get_qwen_embedding
 logger = logging.getLogger(__name__)
 
 
+# DashScope text embedding currently rejects a single input outside [1, 8192].
+# Keep a margin because APIs may count UTF-8/chars/tokens differently.
+MAX_EMBEDDING_DOCUMENT_CHARS = 7600
+
+
 class ChromaBuildError(RuntimeError):
     pass
 
@@ -120,13 +125,26 @@ class ChromaIndexBuilder:
 
     @staticmethod
     def _upsert_records(collection: Any, records: list[dict[str, Any]]) -> None:
-        embeddings = get_qwen_embedding([record["document"] for record in records])
+        documents = [
+            ChromaIndexBuilder._clip_embedding_document(record["document"])
+            for record in records
+        ]
+        embeddings = get_qwen_embedding(documents)
         collection.upsert(
             ids=[record["id"] for record in records],
-            documents=[record["document"] for record in records],
+            documents=documents,
             metadatas=[record["metadata"] for record in records],
             embeddings=embeddings,
         )
+
+    @staticmethod
+    def _clip_embedding_document(document: Any) -> str:
+        text = str(document or "").strip()
+        if not text:
+            return "empty document"
+        if len(text) <= MAX_EMBEDDING_DOCUMENT_CHARS:
+            return text
+        return text[:MAX_EMBEDDING_DOCUMENT_CHARS].rstrip() + " [truncated for embedding]"
 
     def _load_seed_events(self, seed_files: list[Path]) -> list[dict[str, Any]]:
         events: list[dict[str, Any]] = []

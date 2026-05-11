@@ -76,6 +76,105 @@ Capstone/
 - Child metadata stores `parent_id=video_id` so parent and child records stay linked.
 - Current online retrieval still reads the child collection by default, while the parent collection is built for hierarchical retrieval expansion.
 
+## MEVID Evaluation Flow
+
+The MEVID multi-camera test path is split into reusable video modules plus two stable evaluation wrappers.
+
+### Added Video Modules
+
+- `video.factory.person_crop_sampler`
+  - Samples person crops from tracked bbox events.
+  - Used by appearance refinement and QA evidence sampling.
+- `video.factory.appearance_refinement_runner`
+  - Runs crop-based person/global-entity appearance refinement for multi-camera output.
+  - Also supports single-camera track-level refinement with `entity_hint=track_<id>`.
+  - Writes into existing fields only: `object_color`, `appearance_notes`, `keywords`, `event_text`, `entity_hint`.
+  - Does not require a schema migration.
+- `video.indexing.search_enrichment`
+  - Normalizes clothing/color tokens for RAG.
+  - Adds retrieval-friendly keywords such as `light_grey_hoodie`, `hood_up`, `cross_camera`, and `same_person`.
+
+### Video-Only QA
+
+Use this to test YOLO + OSNet + topology + matching + optional appearance refinement before involving the agent:
+
+```powershell
+C:\Users\17809\anaconda3\envs\capstone\python.exe scripts\run_mevid_video_eval.py --slot 13-50 --limit 40
+```
+
+Equivalent direct command:
+
+```powershell
+C:\Users\17809\anaconda3\envs\capstone\python.exe tests\test_mevid_full.py --slot 13-50 --limit 40 --no-refine --appearance-refine
+```
+
+Useful options:
+
+```powershell
+--force-appearance-refine
+--with-clip-refine
+--video-dir _data/mevid_slots
+```
+
+### Single-Camera Appearance Refinement
+
+For a normal single-camera pipeline output, run detection/tracking first:
+
+```powershell
+C:\Users\17809\anaconda3\envs\capstone\python.exe -m video.factory.coordinator video path\to\video.mp4 --out-dir pipeline_output
+```
+
+Then run track-level crop appearance refinement on the generated `*_events.json`:
+
+```powershell
+C:\Users\17809\anaconda3\envs\capstone\python.exe -m video.factory.coordinator appearance --events pipeline_output\your_video_events.json
+```
+
+This creates:
+
+```text
+*_events_appearance_refined.json
+```
+
+The result is shaped like vector refinement events and can be merged/exported for RAG without changing the event schema.
+
+### Video + Agent E2E
+
+Before running the agent, regenerate vector seeds if the pipeline/refinement cache changed:
+
+```powershell
+C:\Users\17809\anaconda3\envs\capstone\python.exe scripts\generate_mevid_vector_flat.py --slot 13-50 --force
+```
+
+Then run the balanced agent evaluation:
+
+```powershell
+C:\Users\17809\anaconda3\envs\capstone\python.exe scripts\run_mevid_agent_eval.py --slot 13-50 --limit 40
+```
+
+Equivalent direct command:
+
+```powershell
+C:\Users\17809\anaconda3\envs\capstone\python.exe tests\test_mevid_video_agent_e2e.py --slot 13-50 --limit 40 --sample-mode balanced
+```
+
+Results are written under:
+
+```text
+results/mevid_full_*.json
+results/mevid_agent_e2e/<slot>_<timestamp>/
+```
+
+The agent report includes answer accuracy, top-hit rate, category breakdown, and per-case predictions. Negative/cross-camera cases should be inspected separately because a model that answers `yes` for every case can still look strong on positive-heavy samples.
+
+### Module Smoke Tests
+
+Run the fast tests for the new MEVID video helpers:
+
+```powershell
+C:\Users\17809\anaconda3\envs\capstone\python.exe -m pytest tests\test_mevid_video_modules.py
+```
+
 ## FastAPI Service
 
 - The Web UI and API service now live under `fastapi/`.

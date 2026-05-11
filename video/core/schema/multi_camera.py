@@ -69,6 +69,12 @@ class CrossCameraConfig:
     # Trigger VLM only for borderline cosine
     llm_verify_cosine_min: float = 0.65
     llm_verify_cosine_max: float = 0.80
+    # Cross-camera simultaneous-presence tolerance.
+    # Pairs whose time windows overlap by MORE than this many seconds are
+    # hard-rejected as different individuals (a person cannot be in two cameras
+    # at once).  A small positive value (default 5 s) accommodates tracker
+    # boundary jitter when a person lingers at the edge of two camera FOVs.
+    cross_camera_overlap_tolerance_sec: float = 5.0
     # Camera topology prior weights.
     # When a CameraTopologyPrior is injected the combined score becomes:
     #   topology_weight_reid  * cosine

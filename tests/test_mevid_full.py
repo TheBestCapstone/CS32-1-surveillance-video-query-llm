@@ -62,6 +62,11 @@ sys.path.insert(0, str(ROOT))
 
 from video.factory.multi_camera_coordinator import run_multi_camera_pipeline  # noqa: E402
 from video.factory.refinement_runner import RefineEventsConfig, refine_multi_camera_output  # noqa: E402
+from video.factory.appearance_refinement_runner import (  # noqa: E402
+    AppearanceRefinementConfig,
+    merge_refined_appearance,
+    run_appearance_refinement_for_pipeline,
+)
 from video.core.schema.multi_camera import CrossCameraConfig  # noqa: E402
 
 logging.basicConfig(
@@ -370,6 +375,174 @@ def run_refinement_for_slot(slot: str, video_dir: Path) -> dict:
 
 
 # ══════════════════════════════════════════════════════════════════════════════
+# ⑤b Optional person/entity appearance refinement
+# ══════════════════════════════════════════════════════════════════════════════
+
+def _json_object_from_text(text: str) -> dict:
+    """Best-effort extraction of one JSON object from an LLM response."""
+    raw = (text or "").strip()
+    if raw.startswith("```"):
+        raw = re.sub(r"^```(?:json)?\s*", "", raw, flags=re.IGNORECASE)
+        raw = re.sub(r"\s*```$", "", raw)
+    try:
+        return json.loads(raw)
+    except Exception:
+        pass
+    start = raw.find("{")
+    end = raw.rfind("}")
+    if start >= 0 and end > start:
+        return json.loads(raw[start:end + 1])
+    raise ValueError(f"No JSON object found in response: {text[:200]}")
+
+
+def _appearance_keywords_from_text(text: str) -> list[str]:
+    """Small retrieval-oriented keyword normalizer for clothing/color queries."""
+    tl = text.lower().replace("-", " ")
+    terms = [
+        "hoodie", "jacket", "coat", "shirt", "pants", "trousers", "jeans",
+        "bag", "backpack", "handbag", "hat", "cap", "hood", "scarf", "fur",
+        "collar", "white", "black", "grey", "gray", "dark", "light", "beige",
+        "brown", "red", "blue", "green",
+    ]
+    out: list[str] = []
+    seen: set[str] = set()
+
+    def add(token: str) -> None:
+        token = token.strip().lower().replace(" ", "_").replace("gray", "grey")
+        if token and token != "unknown" and token not in seen:
+            out.append(token)
+            seen.add(token)
+
+    for term in terms:
+        if re.search(rf"\b{re.escape(term)}\b", tl):
+            add(term)
+    if ("light grey" in tl or "light gray" in tl) and "hoodie" in tl:
+        add("light_grey_hoodie")
+    if "beige" in tl and ("jacket" in tl or "coat" in tl):
+        add("beige_jacket")
+    if ("dark" in tl or "black" in tl) and "coat" in tl:
+        add("dark_coat")
+    if ("dark" in tl or "black" in tl) and "hood" in tl:
+        add("hood_up")
+    if "fur" in tl and ("hood" in tl or "collar" in tl):
+        add("fur_trimmed_hood")
+    return out[:12]
+
+
+def _color_from_appearance(text: str) -> str:
+    tl = text.lower().replace("-", " ")
+    for phrase, color in [
+        ("light grey", "light_grey"),
+        ("light gray", "light_grey"),
+        ("dark grey", "dark_grey"),
+        ("dark gray", "dark_grey"),
+        ("silver grey", "silver_grey"),
+        ("silver gray", "silver_grey"),
+    ]:
+        if phrase in tl:
+            return color
+    for color in ["beige", "white", "black", "grey", "gray", "dark", "light", "brown", "red", "blue", "green"]:
+        if re.search(rf"\b{color}\b", tl):
+            return "grey" if color == "gray" else color
+    return "unknown"
+
+
+def _call_appearance_vlm(client: OpenAI, crops_b64: list[str], entity_id: str, trajectory: str) -> dict:
+    user_content: list[dict] = [{
+        "type": "text",
+        "text": (
+            "You are describing one tracked person for surveillance retrieval.\n"
+            f"Entity: {entity_id}\n"
+            f"Trajectory: {trajectory}\n\n"
+            "Look only at the person in the provided crops. Return strict JSON with:\n"
+            "{\n"
+            '  "object_color": "dominant upper-body color or unknown",\n'
+            '  "appearance_notes": "short English clothing summary, e.g. light grey hoodie, dark pants, medium build",\n'
+            '  "keywords": ["retrieval", "tokens"]\n'
+            "}\n"
+            "Use concrete visible clothing words. If uncertain, say unknown for that part, "
+            "but do not invent colors or clothing."
+        ),
+    }]
+    for b64 in crops_b64:
+        user_content.append({
+            "type": "image_url",
+            "image_url": {"url": f"data:image/jpeg;base64,{b64}"},
+        })
+    resp = client.chat.completions.create(
+        model=MODEL,
+        messages=[
+            {
+                "role": "system",
+                "content": (
+                    "You produce compact person appearance metadata for RAG. "
+                    "Return only valid JSON. Do not include markdown."
+                ),
+            },
+            {"role": "user", "content": user_content},
+        ],
+        temperature=0.0,
+        max_tokens=180,
+    )
+    parsed = _json_object_from_text(resp.choices[0].message.content or "{}")
+    appearance = str(parsed.get("appearance_notes") or "").strip()
+    color = str(parsed.get("object_color") or "").strip().lower().replace(" ", "_")
+    if not color or color == "unknown":
+        color = _color_from_appearance(appearance)
+    keywords = parsed.get("keywords") or []
+    if not isinstance(keywords, list):
+        keywords = []
+    keywords = [str(k).strip().lower().replace(" ", "_") for k in keywords if str(k).strip()]
+    for token in _appearance_keywords_from_text(" ".join([appearance, color])):
+        if token not in keywords:
+            keywords.append(token)
+    return {
+        "object_color": color or "unknown",
+        "appearance_notes": appearance or "unknown",
+        "keywords": [k for k in keywords if k and k != "unknown"][:12],
+    }
+
+
+def _merge_refined_slot(base: dict | None, appearance: dict | None) -> dict:
+    """Append appearance-refined person events to clip-refined data for context/RAG."""
+    return merge_refined_appearance(base, appearance)
+
+
+def run_appearance_refinement_for_slot(
+    slot: str,
+    video_dir: Path,
+    pipeline: dict,
+    force: bool = False,
+    max_entities: int = 0,
+) -> dict:
+    """Refine appearance by sending person/global-entity crops to the VLM.
+
+    Output uses the same existing event fields as clip-level refinement so downstream
+    QA and agent RAG do not need a schema change.
+    """
+    cache_file = PIPELINE_CACHE_DIR / f"{slot}_appearance_refined.json"
+    camera_to_video = {
+        cam_id: video_dir / f"{stem}.avi"
+        for cam_id, stem in SLOT_CAMERAS.get(slot, {}).items()
+    }
+    config = AppearanceRefinementConfig.from_env(
+        api_key=API_KEY,
+        base_url=BASE_URL,
+        model=MODEL,
+        cache_path=cache_file,
+        force=force,
+        max_entities=max_entities,
+    )
+    return run_appearance_refinement_for_pipeline(
+        slot=slot,
+        pipeline=pipeline,
+        camera_to_video=camera_to_video,
+        camera_video_stems=SLOT_CAMERAS.get(slot, {}),
+        config=config,
+    )
+
+
+# ══════════════════════════════════════════════════════════════════════════════
 # Context builder
 # ══════════════════════════════════════════════════════════════════════════════
 
@@ -423,12 +596,40 @@ def build_context(video_id: str, pipeline_data: dict[str, dict], refined_data: d
     if cam_refined:
         ref_events = cam_refined.get("events", [])
         if ref_events:
-            lines.append(f"\n[Camera {cam_id}] LLM-refined event descriptions:")
-            for ev in ref_events[:10]:
+            lines.append(f"\n[Camera {cam_id}] LLM-refined event descriptions and appearance:")
+            useful_ref_events = []
+            for ev in ref_events:
+                obj = str(ev.get("object_type") or ev.get("class_name") or "").lower()
+                if obj not in ("person", "people", "pedestrian"):
+                    continue
+                color = str(ev.get("object_color") or "").strip().lower()
+                appearance = str(ev.get("appearance_notes") or "").strip().lower()
+                if color == "unknown" and appearance == "unknown":
+                    continue
+                useful_ref_events.append(ev)
+            for ev in useful_ref_events[:12]:
                 start = _fmt_sec(ev.get("start_time", 0))
                 end   = _fmt_sec(ev.get("end_time", 0))
                 desc  = ev.get("event_text", ev.get("description", ""))
-                lines.append(f"  • {start}–{end}: {desc}")
+                color = str(ev.get("object_color") or "").strip()
+                appearance = str(ev.get("appearance_notes") or "").strip()
+                keywords = ev.get("keywords") or []
+                if isinstance(keywords, list):
+                    keywords_txt = ", ".join(str(k) for k in keywords[:6])
+                else:
+                    keywords_txt = str(keywords).strip()
+                entity_hint = str(ev.get("entity_hint") or "").strip()
+                extras = []
+                if color and color.lower() != "unknown":
+                    extras.append(f"color={color}")
+                if appearance and appearance.lower() != "unknown":
+                    extras.append(f"appearance={appearance}")
+                if keywords_txt:
+                    extras.append(f"keywords={keywords_txt}")
+                if entity_hint:
+                    extras.append(f"entity={entity_hint}")
+                suffix = f" [{' ; '.join(extras)}]" if extras else ""
+                lines.append(f"  • {start}–{end}: {desc}{suffix}")
 
     # ── Cross-camera global entities ───────────────────────────────────────────
     entities = slot_data.get("global_entities", [])
@@ -456,43 +657,49 @@ def build_context(video_id: str, pipeline_data: dict[str, dict], refined_data: d
                 q_cam_apps = [a for a in ge["appearances"] if a["camera_id"] in q_mentioned_cams]
                 if not my_apps or not q_cam_apps:
                     continue
+                conf_vals = [a.get("confidence", 0.0) for a in ge["appearances"]]
+                avg_conf = sum(conf_vals) / len(conf_vals) if conf_vals else 0.0
                 for q_app in q_cam_apps:
                     for my_app in my_apps:
                         my_dur = float(my_app.get("end_time", 0)) - float(my_app.get("start_time", 0))
+                        q_dur = float(q_app.get("end_time", 0)) - float(q_app.get("start_time", 0))
                         brief_note = f" [brief {my_dur:.0f}s appearance]" if my_dur <= 6.0 else ""
                         target_lines.append(
-                            f"  • Re-ID CANDIDATE: possible same person in {q_app['camera_id']} at "
+                            f"  • STRONG SAME-PERSON CANDIDATE ({ge['global_entity_id']}, Re-ID={avg_conf:.2f}): "
+                            f"{q_app['camera_id']} track#{q_app.get('track_id','?')} at "
                             f"{_fmt_sec(q_app['start_time'])}–{_fmt_sec(q_app['end_time'])} "
                             f"AND in {cam_id} at "
-                            f"{_fmt_sec(my_app['start_time'])}–{_fmt_sec(my_app['end_time'])}"
-                            f"{brief_note}"
-                            f" (candidate score={ge['appearances'][0].get('confidence',0):.2f})"
+                            f"{_fmt_sec(my_app['start_time'])}–{_fmt_sec(my_app['end_time'])} "
+                            f"track#{my_app.get('track_id','?')}{brief_note}; "
+                            f"durations {q_dur:.0f}s/{my_dur:.0f}s."
                         )
             if target_lines:
                 q_cam_str = " ↔ ".join([cam_id] + q_mentioned_cams)
                 lines.append(
-                    f"\n[Cross-camera {q_cam_str}] Re-ID candidate transitions "
-                    f"(use as hints; verify with visual/context evidence):"
+                    f"\n[Cross-camera {q_cam_str}] Strong Re-ID/topology candidate transitions. "
+                    f"These are not human labels, but they are the system's primary same-person evidence:"
                 )
                 lines.extend(target_lines[:6])
 
         # General cross-camera summary
-        lines.append(
-            f"\n[Cross-camera] Re-ID candidate list: {len(cross_cam_entities)} possible "
-            f"multi-camera person trajectory/trajectories in this slot:"
-        )
-        for ge in cross_cam_entities[:8]:
-            times = [
-                f"{a['camera_id']} at {_fmt_sec(a['start_time'])}–{_fmt_sec(a['end_time'])}"
-                for a in ge["appearances"]
-            ]
-            conf_vals = [a.get("confidence", 0.0) for a in ge["appearances"]]
-            avg_conf = sum(conf_vals) / len(conf_vals) if conf_vals else 0.0
-            conf_str = f" (Re-ID={avg_conf:.2f})" if avg_conf > 0 else ""
+        if not q_mentioned_cams:
             lines.append(
-                f"  • POSSIBLE SAME PERSON ({ge['global_entity_id']}){conf_str}: "
-                + " → ".join(times)
+                f"\n[Cross-camera] Re-ID candidate list: {len(cross_cam_entities)} possible "
+                f"multi-camera person trajectory/trajectories in this slot:"
             )
+            for ge in cross_cam_entities[:8]:
+                times = [
+                    f"{a['camera_id']} track#{a.get('track_id','?')} at "
+                    f"{_fmt_sec(a['start_time'])}–{_fmt_sec(a['end_time'])}"
+                    for a in ge["appearances"]
+                ]
+                conf_vals = [a.get("confidence", 0.0) for a in ge["appearances"]]
+                avg_conf = sum(conf_vals) / len(conf_vals) if conf_vals else 0.0
+                conf_str = f" (Re-ID={avg_conf:.2f})" if avg_conf > 0 else ""
+                lines.append(
+                    f"  • POSSIBLE SAME PERSON ({ge['global_entity_id']}){conf_str}: "
+                    + " → ".join(times)
+                )
 
     return "\n".join(lines)
 
@@ -511,9 +718,11 @@ SYSTEM_PROMPT = (
     "If yes, include the approximate time (mm:ss).\n"
     "CRITICAL RULES:\n"
     "1. For cross-camera identity questions (did person X appear in camera A and then camera B?): "
-    "Treat [Cross-camera Re-ID CANDIDATE] lines as candidate hints, not ground truth. "
-    "Answer YES only when the candidate timing plus the visible frames or event context support "
-    "the described appearance/person. Do not answer YES from Re-ID text alone.\n"
+    "A [Cross-camera] STRONG SAME-PERSON CANDIDATE line means the local system linked those "
+    "tracks with Re-ID plus camera timing/topology. Treat it as strong evidence, especially "
+    "when the linked cameras match the question and the sampled frames/crops do not contradict "
+    "the requested appearance. Answer NO only if the candidate is absent, the cameras do not "
+    "match, or the visual evidence clearly contradicts the described person.\n"
     "2. For single-camera appearance questions: "
     "If tracker or candidate context shows a person active in this camera at a specific time, "
     "use it as a clue, but still check whether it matches the requested appearance. "
@@ -626,6 +835,143 @@ def sample_frames_multi(video_dir: Path, appearances: list[dict],
                 frames_b64.append(base64.b64encode(buf).decode())
         cap.release()
     return frames_b64
+
+
+def _encode_crop_b64(crop: "np.ndarray", max_edge: int = 320) -> str | None:
+    """Encode a crop image for VLM input; returns None if encoding fails."""
+    if crop is None or crop.size == 0:
+        return None
+    h, w = crop.shape[:2]
+    if max(h, w) > max_edge:
+        scale = max_edge / max(h, w)
+        crop = cv2.resize(crop, (max(1, int(w * scale)), max(1, int(h * scale))),
+                          interpolation=cv2.INTER_AREA)
+    ok, buf = cv2.imencode(".jpg", crop, [cv2.IMWRITE_JPEG_QUALITY, 78])
+    if not ok:
+        return None
+    return base64.b64encode(buf).decode()
+
+
+def sample_person_crops_from_events(
+    video_path: str,
+    events: list[dict],
+    max_tracks: int = 6,
+    crops_per_track: int = 2,
+    min_crop_hw: tuple[int, int] = (36, 18),
+    padding: float = 0.20,
+) -> list[str]:
+    """Sample small person crops from cached event bboxes, capped by track.
+
+    This is intentionally best-effort: bad/missing bboxes or video read failures are
+    skipped so QA never fails because crop evidence is unavailable.
+    """
+    person_events = [
+        e for e in events
+        if str(e.get("class_name") or e.get("object_type") or "").lower()
+        in ("person", "people", "pedestrian")
+    ]
+    by_track: dict[int, list[dict]] = {}
+    for e in person_events:
+        tid = e.get("track_id")
+        if tid is None:
+            continue
+        try:
+            by_track.setdefault(int(tid), []).append(e)
+        except Exception:
+            continue
+
+    def _bbox_area(e: dict) -> float:
+        areas = []
+        for key in ("start_bbox_xyxy", "end_bbox_xyxy"):
+            b = e.get(key)
+            if isinstance(b, list) and len(b) == 4:
+                areas.append(max(0.0, float(b[2]) - float(b[0])) * max(0.0, float(b[3]) - float(b[1])))
+        return max(areas) if areas else 0.0
+
+    ranked_tracks = sorted(
+        by_track.items(),
+        key=lambda item: max((_bbox_area(e) for e in item[1]), default=0.0),
+        reverse=True,
+    )[:max_tracks]
+    if not ranked_tracks:
+        return []
+
+    cap = cv2.VideoCapture(str(video_path))
+    if not cap.isOpened():
+        return []
+    fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
+    vid_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT) or 0)
+    vid_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH) or 0)
+    if vid_h <= 0 or vid_w <= 0:
+        cap.release()
+        return []
+
+    out: list[str] = []
+    for _tid, evs in ranked_tracks:
+        evs_sorted = sorted(evs, key=_bbox_area, reverse=True)[:crops_per_track]
+        for e in evs_sorted:
+            for t_key, b_key in (("start_time", "start_bbox_xyxy"), ("end_time", "end_bbox_xyxy")):
+                bbox = e.get(b_key)
+                if not (isinstance(bbox, list) and len(bbox) == 4):
+                    continue
+                x1, y1, x2, y2 = [float(v) for v in bbox]
+                bw, bh = x2 - x1, y2 - y1
+                if bw < min_crop_hw[1] or bh < min_crop_hw[0]:
+                    continue
+                px, py = bw * padding, bh * padding
+                xi1 = max(0, int(x1 - px))
+                yi1 = max(0, int(y1 - py))
+                xi2 = min(vid_w, int(x2 + px))
+                yi2 = min(vid_h, int(y2 + py))
+                if xi2 <= xi1 or yi2 <= yi1:
+                    continue
+                t = float(e.get(t_key, e.get("start_time", 0.0)))
+                cap.set(cv2.CAP_PROP_POS_FRAMES, int(round(t * fps)))
+                ret, frame = cap.read()
+                if not ret or frame is None:
+                    continue
+                crop = frame[yi1:yi2, xi1:xi2]
+                encoded = _encode_crop_b64(crop)
+                if encoded:
+                    out.append(encoded)
+                break
+    cap.release()
+    return out
+
+
+def sample_person_crops_multi(video_dir: Path, appearances: list[dict],
+                              pipeline_data: dict[str, dict], slot: str | None,
+                              max_apps: int = 6, crops_per_app: int = 1) -> list[str]:
+    """Sample crops for specific cross-camera entity appearances."""
+    if not slot:
+        return []
+    per_cam = {
+        cr["camera_id"]: cr
+        for cr in pipeline_data.get(slot, {}).get("per_camera", [])
+    }
+    out: list[str] = []
+    for app in appearances[:max_apps]:
+        cam_id = app.get("camera_id", "")
+        stem = SLOT_CAMERAS.get(slot, {}).get(cam_id)
+        if not stem:
+            continue
+        video_path = video_dir / f"{stem}.avi"
+        if not video_path.exists():
+            continue
+        tid = app.get("track_id")
+        events = [
+            e for e in per_cam.get(cam_id, {}).get("events", [])
+            if tid is None or e.get("track_id") == tid
+        ]
+        if not events:
+            continue
+        out.extend(sample_person_crops_from_events(
+            str(video_path),
+            events,
+            max_tracks=1,
+            crops_per_track=crops_per_app,
+        ))
+    return out
 
 
 def call_vlm(client: OpenAI, frames_b64: list[str], question: str, context: str) -> dict:
@@ -783,6 +1129,12 @@ def main() -> None:
                     help="Frames to sample per VLM call (default 10)")
     ap.add_argument("--no-refine", action="store_true",
                     help="Skip LLM event refinement (faster/cheaper but weaker context)")
+    ap.add_argument("--appearance-refine", action="store_true",
+                    help="Run crop-based person/global-entity appearance refinement")
+    ap.add_argument("--force-appearance-refine", action="store_true",
+                    help="Re-run crop-based appearance refinement even if cache exists")
+    ap.add_argument("--appearance-refine-max-entities", type=int, default=0,
+                    help="Debug cap for crop-based appearance refinement entities (0 = all)")
     ap.add_argument("--reid-device", default="cpu",
                     help="Device for OSNet Re-ID: cpu | cuda | cuda:0 (default cpu)")
     ap.add_argument("--force-pipeline", action="store_true",
@@ -843,6 +1195,28 @@ def main() -> None:
                 print(f"  [{slot}] ✗  {e}")
     else:
         print("\n[Phase 5 skipped — --no-refine set. Context will be track-only (weak).]")
+
+    if args.appearance_refine:
+        print("\n" + "═" * 60)
+        print("PHASE 5b: Person/entity appearance refinement (crop-based)")
+        print("═" * 60)
+        for slot in slots:
+            try:
+                appearance_refined = run_appearance_refinement_for_slot(
+                    slot,
+                    video_dir,
+                    pipeline_data.get(slot, {}),
+                    force=args.force_appearance_refine,
+                    max_entities=args.appearance_refine_max_entities,
+                )
+                refined_data[slot] = _merge_refined_slot(refined_data.get(slot), appearance_refined)
+                n_events = sum(
+                    len(cam_data.get("events", []))
+                    for cam_data in appearance_refined.get("per_camera", {}).values()
+                )
+                print(f"  [{slot}] ✓  appearance refinement done ({n_events} entity-camera events)")
+            except Exception as e:
+                print(f"  [{slot}] ✗  appearance refinement failed: {e}")
 
     # ── Phase 6: VLM QA ───────────────────────────────────────────────────────
     print("\n" + "═" * 60)
@@ -914,6 +1288,8 @@ def main() -> None:
         BRIEF_DUR_SEC = 6.0
         entity_frames_b64: list[str] = []        # all entity apps (for event category)
         brief_entity_frames_b64: list[str] = []  # only brief apps (for appearance category)
+        entity_apps: list[dict] = []
+        brief_apps: list[dict] = []
         if slot_key and cam_key:
             slot_entities = pipeline_data.get(slot_key, {}).get("global_entities", [])
             entity_apps = [
@@ -935,12 +1311,41 @@ def main() -> None:
                     video_dir, brief_apps, n_per_cam=3, slot=slot_key
                 )
 
+        cam_events_for_crops: list[dict] = []
+        if slot_key and cam_key:
+            per_cam_for_crops = {
+                cr["camera_id"]: cr
+                for cr in pipeline_data.get(slot_key, {}).get("per_camera", [])
+            }
+            cam_events_for_crops = per_cam_for_crops.get(cam_key, {}).get("events", [])
+        person_crop_frames_b64 = sample_person_crops_from_events(
+            str(video_path),
+            cam_events_for_crops,
+            max_tracks=5,
+            crops_per_track=1,
+        ) if cam_events_for_crops else []
+        entity_crop_frames_b64 = sample_person_crops_multi(
+            video_dir,
+            sorted(
+                entity_apps,
+                key=lambda a: (
+                    float(a.get("end_time", 0)) - float(a.get("start_time", 0)) > BRIEF_DUR_SEC,
+                    float(a.get("start_time", 0)),
+                ),
+            )[:8],
+            pipeline_data,
+            slot=slot_key,
+            max_apps=8,
+            crops_per_app=1,
+        ) if entity_apps and slot_key else []
+
         # Base context (no question-specific camera targeting)
         base_context = build_context(video_id, pipeline_data, refined_data)
 
         print(f"\n[{video_id}] {len(vcases)} question(s)  "
               f"base={len(frames_b64)} brief_entity={len(brief_entity_frames_b64)}"
-              f" all_entity={len(entity_frames_b64)}")
+              f" all_entity={len(entity_frames_b64)} crops={len(person_crop_frames_b64)}"
+              f" entity_crops={len(entity_crop_frames_b64)}")
         if base_context:
             ctx_lines = base_context.count("\n") + 1
             print(f"  Context: {ctx_lines} lines from pipeline")
@@ -974,7 +1379,15 @@ def main() -> None:
             if c["category"] == "event":
                 case_frames = frames_b64 + entity_frames_b64
             elif c["category"] == "appearance":
-                case_frames = frames_b64 + brief_entity_frames_b64
+                # Prefer crops tied to cross-camera/global entity track windows. They are
+                # much more likely to show the evaluated person than generic largest-person
+                # crops from the camera.
+                case_frames = (
+                    frames_b64
+                    + brief_entity_frames_b64
+                    + entity_crop_frames_b64
+                    + person_crop_frames_b64[:2]
+                )
             else:
                 case_frames = frames_b64
 
@@ -986,25 +1399,31 @@ def main() -> None:
                     cam for cam in SLOT_CAMERAS.get(slot_key, {}).keys()
                     if cam != cam_key and cam.lower() in q_lower
                 ]
-                # Find entities that involve this camera AND the mentioned cameras
+                # Find strongest entities that involve this camera AND the mentioned cameras.
+                # Avoid adding unrelated other-camera entities; those made the VLM conservative.
                 relevant_appearances: list[dict] = []
+                ranked_entities: list[tuple[float, dict]] = []
                 for ge in slot_entities:
                     cam_apps = [a for a in ge["appearances"] if a["camera_id"] == cam_key]
                     if not cam_apps:
                         continue
                     q_cam_apps = [a for a in ge["appearances"] if a["camera_id"] in mentioned_cams]
-                    # For entities that span both cam_key and mentioned cameras:
-                    # Include frames from BOTH the current camera window AND the other camera window
                     if q_cam_apps:
-                        relevant_appearances.extend(cam_apps[:1])   # current cam entity window
-                        relevant_appearances.extend(q_cam_apps[:1]) # mentioned cam entity window
-                    else:
-                        # Entity involving current cam but not the mentioned cam
-                        other_apps = [
-                            a for a in ge["appearances"]
-                            if a["camera_id"] != cam_key
-                        ]
-                        relevant_appearances.extend(other_apps[:1])
+                        conf_vals = [float(a.get("confidence", 0.0) or 0.0) for a in ge["appearances"]]
+                        avg_conf = sum(conf_vals) / len(conf_vals) if conf_vals else 0.0
+                        ranked_entities.append((avg_conf, ge))
+                ranked_entities.sort(key=lambda item: item[0], reverse=True)
+                for _score, ge in ranked_entities[:4]:
+                    cam_apps = sorted(
+                        [a for a in ge["appearances"] if a["camera_id"] == cam_key],
+                        key=lambda a: float(a.get("start_time", 0)),
+                    )
+                    q_cam_apps = sorted(
+                        [a for a in ge["appearances"] if a["camera_id"] in mentioned_cams],
+                        key=lambda a: float(a.get("start_time", 0)),
+                    )
+                    relevant_appearances.extend(q_cam_apps[:1])
+                    relevant_appearances.extend(cam_apps[:1])
                 # De-duplicate by (camera_id, track start_time)
                 seen_apps: set[tuple[str, float]] = set()
                 unique_apps = []
@@ -1013,14 +1432,24 @@ def main() -> None:
                     if key not in seen_apps:
                         seen_apps.add(key)
                         unique_apps.append(a)
-                relevant_appearances = unique_apps[:8]  # cap total
+                relevant_appearances = unique_apps[:8]  # at most four entity pairs
                 if relevant_appearances:
                     extra_frames = sample_frames_multi(
-                        video_dir, relevant_appearances, n_per_cam=3, slot=slot_key
+                        video_dir, relevant_appearances, n_per_cam=2, slot=slot_key
                     )
-                    case_frames = frames_b64 + extra_frames
+                    crop_frames = sample_person_crops_multi(
+                        video_dir,
+                        relevant_appearances,
+                        pipeline_data,
+                        slot=slot_key,
+                        max_apps=6,
+                        crops_per_app=1,
+                    )
+                    case_frames = frames_b64 + extra_frames + crop_frames
                     print(f"    + {len(extra_frames)} cross-camera frames from "
                           f"{[a['camera_id'] for a in relevant_appearances]}")
+                    if crop_frames:
+                        print(f"    + {len(crop_frames)} person crop frame(s)")
 
             try:
                 vlm_resp = call_vlm(client, case_frames, c["question"], context)
@@ -1101,7 +1530,10 @@ def main() -> None:
     print(f"  Prompt tokens    : {total_prompt:,}")
     print(f"  Completion tokens: {total_completion:,}")
     print(f"  VLM cost         : ¥{total_cost:.4f} CNY")
-    print(f"  Refinement       : {'disabled (--no-refine)' if args.no_refine else 'enabled'}")
+    refine_label = "disabled (--no-refine)" if args.no_refine else "enabled"
+    if args.appearance_refine:
+        refine_label += " + appearance-refine"
+    print(f"  Refinement       : {refine_label}")
 
     # Pipeline summary
     print("\n  Pipeline module coverage:")
@@ -1121,6 +1553,7 @@ def main() -> None:
         "limit": args.limit,
         "slot_filter": args.slot or "all",
         "refine": not args.no_refine,
+        "appearance_refine": bool(args.appearance_refine),
         "reid_device": args.reid_device,
         "frames_per_case": args.frames,
         "model": MODEL,

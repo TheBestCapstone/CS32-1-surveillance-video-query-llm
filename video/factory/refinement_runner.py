@@ -40,6 +40,10 @@ class RefineEventsConfig:
     merge_center_dist_px: float = 30.0
     merge_location_norm_diff: float = 0.10
     min_event_duration_sec: float = 1.0
+    # Static vehicle events longer than this threshold are excluded from LLM
+    # refinement: they span the whole recording, appear in every clip, and the
+    # VLM cannot reliably determine color from full surveillance frames.
+    static_vehicle_max_refine_sec: float = 30.0
     # Entity merge hard constraints (on by default)
     entity_merge_max_gap_sec: float = 300.0
     entity_merge_min_llm_confidence: float = 0.75
@@ -250,6 +254,22 @@ def refine_multi_camera_output(
             cross_ctx,
         )
 
+    # ── Build deterministic track_id → global_entity_id map ─────────────────
+    # Key: (camera_id, track_id)  Value: global_entity_id string
+    track_to_global: dict[tuple[str, int], str] = {}
+    for ent in getattr(output, "global_entities", []):
+        for app in ent.appearances:
+            track_to_global[(app.camera_id, app.track_id)] = ent.global_entity_id
+
+    # Per-camera appearance intervals for overlap-based fallback fill
+    # Key: camera_id  Value: list of (start, end, global_entity_id)
+    cam_appearance_intervals: dict[str, list[tuple[float, float, str]]] = {}
+    for ent in getattr(output, "global_entities", []):
+        for app in ent.appearances:
+            cam_appearance_intervals.setdefault(app.camera_id, []).append(
+                (app.start_time, app.end_time, ent.global_entity_id)
+            )
+
     results: dict[str, Any] = {}
 
     for camera_result in output.per_camera:
@@ -263,6 +283,18 @@ def refine_multi_camera_output(
             if ev.get("camera_id") == cam_id
         ]
         raw_events = enrich_events_with_normalized_location(cam_events_raw, vw, vh)
+
+        # Inject entity_hint into raw_events so LLM can copy it verbatim.
+        # We build new dicts to avoid mutating the shared merged_events list.
+        def _with_hint(e: dict[str, Any]) -> dict[str, Any]:
+            tid = e.get("track_id")
+            if tid is not None:
+                hint = track_to_global.get((cam_id, int(tid)), f"track_{tid}")
+            else:
+                hint = None
+            return {**e, "entity_hint": hint} if hint else e
+
+        raw_events = [_with_hint(e) for e in raw_events]
 
         clip_segments: list[dict[str, float]] = camera_result.clips
         if not clip_segments:
@@ -282,6 +314,16 @@ def refine_multi_camera_output(
                         or float(e.get("start_time", 0.0)) > clip_end)
                 and (float(e.get("end_time", 0.0)) - float(e.get("start_time", 0.0)))
                     >= cfg.min_event_duration_sec
+                # Skip long-duration static vehicle events: they span the whole
+                # video, inflate every clip's event list, and the LLM cannot
+                # determine color/appearance from surveillance full-frames anyway.
+                and not (
+                    str(e.get("class_name", "")).lower()
+                        in {"car", "truck", "bus", "van", "motorcycle", "bicycle"}
+                    and str(e.get("event_type", "")) == "presence_static"
+                    and (float(e.get("end_time", 0.0)) - float(e.get("start_time", 0.0)))
+                        > cfg.static_vehicle_max_refine_sec
+                )
             ]
             if not clip_events:
                 continue
@@ -327,8 +369,42 @@ def refine_multi_camera_output(
         for ve in refined_list_vector:
             for ev in ve.events:
                 d = ev.model_dump()
+                d["video_id"] = d.get("video_id") or ve.video_id
+                d["clip_start_sec"] = (
+                    d.get("clip_start_sec")
+                    if d.get("clip_start_sec") is not None
+                    else ve.clip_start_sec
+                )
+                d["clip_end_sec"] = (
+                    d.get("clip_end_sec")
+                    if d.get("clip_end_sec") is not None
+                    else ve.clip_end_sec
+                )
                 d["camera_id"] = cam_id
                 flat_events.append(d)
+
+        # Fallback: fill entity_hint for any events the LLM left null,
+        # using time-overlap against global entity appearances on this camera.
+        intervals = cam_appearance_intervals.get(cam_id, [])
+        if intervals:
+            for d in flat_events:
+                if d.get("entity_hint"):
+                    continue  # already filled (by LLM copying the hint)
+                ev_s = float(d.get("start_time", 0.0))
+                ev_e = float(d.get("end_time", 0.0))
+                best_id: str | None = None
+                best_overlap = 0.0
+                for a_s, a_e, eid in intervals:
+                    ov = max(0.0, min(ev_e, a_e) - max(ev_s, a_s))
+                    if ov > best_overlap:
+                        best_overlap = ov
+                        best_id = eid
+                if best_id:
+                    d["entity_hint"] = best_id
+                    logger.debug(
+                        "Camera %s: entity_hint fallback filled %s for event %.1f-%.1f",
+                        cam_id, best_id, ev_s, ev_e,
+                    )
 
         results[cam_id] = {
             "video_id": Path(video_path).name,

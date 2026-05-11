@@ -92,13 +92,17 @@ def build_candidate_pairs(
         tracks_j = _person_tracks(cam_j) if config.person_only else cam_j.tracks
         for ti in tracks_i:
             for tj in tracks_j:
-                # Hard reject: a person cannot be in two DIFFERENT cameras at the
-                # same time.  Any temporal overlap between cross-camera tracks means
-                # they are distinct individuals — never link them.
+                # Reject cross-camera pairs whose time windows overlap by more than
+                # a small tolerance.  A person cannot be in two different cameras
+                # simultaneously; overlaps beyond the tolerance indicate distinct
+                # individuals.  A short tolerance (≤ 5 s) accommodates tracker
+                # boundary jitter when a person is visible at the edge of two
+                # camera fields-of-view at the same moment.
                 a_s = float(ti["start_time"]); a_e = float(ti["end_time"])
                 b_s = float(tj["start_time"]); b_e = float(tj["end_time"])
-                if min(a_e, b_e) > max(a_s, b_s):
-                    continue  # overlapping → different people
+                overlap = min(a_e, b_e) - max(a_s, b_s)
+                if overlap > config.cross_camera_overlap_tolerance_sec:
+                    continue  # genuine simultaneous presence → different people
                 if passes_time_constraint(ti, tj, config):
                     pairs.append((cam_i, ti, cam_j, tj))
     return pairs

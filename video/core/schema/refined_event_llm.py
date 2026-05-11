@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 
 class RefinedEntity(BaseModel):
@@ -104,9 +104,10 @@ class RefinedAllClipsPayload(BaseModel):
 
 
 class VectorEvent(BaseModel):
-    video_id: str
-    clip_start_sec: float
-    clip_end_sec: float
+    video_id: str | None = None
+    clip_start_sec: float | None = None
+    clip_end_sec: float | None = None
+    track_id: int | None = None
     start_time: float
     end_time: float
     object_type: str
@@ -125,6 +126,36 @@ class VectorEventsPayload(BaseModel):
     clip_start_sec: float
     clip_end_sec: float
     events: list[VectorEvent]
+
+    @model_validator(mode="before")
+    @classmethod
+    def drop_incomplete_events(cls, data: Any) -> Any:
+        """Drop malformed trailing event stubs emitted by some LLM completions.
+
+        The model sometimes appends an object like {"video_id": "..."} inside the
+        events array. Keeping valid events is more useful than failing the whole
+        clip, while required semantic fields still protect real event records.
+        """
+        if not isinstance(data, dict):
+            return data
+        events = data.get("events")
+        if not isinstance(events, list):
+            return data
+        required = {
+            "start_time",
+            "end_time",
+            "object_type",
+            "object_color",
+            "appearance_notes",
+            "scene_zone",
+            "event_text",
+            "keywords",
+        }
+        clean_events = [
+            ev for ev in events
+            if isinstance(ev, dict) and required.issubset(ev.keys())
+        ]
+        return {**data, "events": clean_events}
 
 
 class VectorAllClipsPayload(BaseModel):

@@ -35,7 +35,8 @@ _EV_TYPE_SHORT: dict[str, str] = {
 SLIM_EVENT_LEGEND = (
     "# raw_events compact format — "
     "ev: mv=moving, pam=still_after_move, app=appear, dis=disappear, sta=static | "
-    "id=track_id | cls=class | s/e=start/end_sec | b0/b1=start/end_bbox_xyxy(px)\n"
+    "id=track_id | cls=class | s/e=start/end_sec | b0/b1=start/end_bbox_xyxy(px) | "
+    "hint=entity_hint(copy verbatim to output)\n"
 )
 
 
@@ -50,7 +51,7 @@ def _slim_event(e: dict[str, Any]) -> dict[str, Any]:
     """
     raw_b0 = e.get("start_bbox_xyxy") or [0, 0, 0, 0]
     raw_b1 = e.get("end_bbox_xyxy")   or [0, 0, 0, 0]
-    return {
+    out: dict[str, Any] = {
         "ev":  _EV_TYPE_SHORT.get(str(e.get("event_type", "")), e.get("event_type", "?")),
         "id":  e.get("track_id"),
         "cls": e.get("class_name"),
@@ -59,6 +60,11 @@ def _slim_event(e: dict[str, Any]) -> dict[str, Any]:
         "b0":  [int(v) for v in raw_b0],
         "b1":  [int(v) for v in raw_b1],
     }
+    # Carry entity_hint if pre-injected by caller (multi-camera pipeline)
+    hint = e.get("entity_hint")
+    if hint:
+        out["hint"] = hint
+    return out
 
 
 def _compact_events_str(raw_events: list[dict[str, Any]]) -> str:
@@ -390,9 +396,24 @@ def refine_vector_events_with_llm(
         + cross_cam_block
         + "\nOutput rules:\n"
         "- JSON only; must match the schema.\n"
-        "- event_text: English sentence with time range + subject (with color) + action + scene region (entrance/exit/road right/parking/sidewalk).\n"
-        "- object_color: prefer white/black/silver_gray/red/blue/dark/unknown (English coarse bucket).\n"
-        "- keywords: short retrieval tokens (English), e.g. driving_in/parking/road_right/entrance/sidewalk.\n"
+        "- Top-level video_id/clip_start_sec/clip_end_sec are required. "
+        "For each event, include them too when possible; if omitted, the caller will copy them from the top level.\n"
+        "- track_id: copy the raw event 'id' value exactly into track_id. If id is missing, use null.\n"
+        "- event_text: One English sentence: '<time range> — <subject with coarse color> <action> <scene region>'. "
+        "  If cross-camera context is provided and the track matches a global entity, mention it "
+        "  (e.g. 'entity_global_3, last seen on G329, walked into frame from the left').\n"
+        "- object_color: coarse bucket — white/black/silver_gray/red/blue/green/yellow/dark/light/unknown (English).\n"
+        "- appearance_notes: visible clothing & physical description in English. "
+        "  For persons include: (1) upper-body clothing color+type (e.g. 'dark blue hoodie'), "
+        "  (2) lower-body clothing color+type (e.g. 'grey pants' or 'unknown'), "
+        "  (3) accessories if visible (backpack/bag/hat/cap/umbrella/etc.), "
+        "  (4) rough build/height if estimable (tall/medium/short, slim/heavy). "
+        "  For vehicles include: color, vehicle type (sedan/SUV/truck/bus/etc.), plate if readable. "
+        "  Use 'unknown' for anything not visible. Keep it concise (1–2 short phrases).\n"
+        "- scene_zone: one token from sidewalk/road/parking/entrance/exit/crosswalk/indoor/unknown.\n"
+        "- entity_hint: if the raw event has a 'hint' field, copy its value verbatim here; "
+        "  otherwise write null.\n"
+        "- keywords: 3–6 short English retrieval tokens, e.g. walking/running/standing/dark_hoodie/backpack/entrance.\n"
         f"{parser.get_format_instructions()}"
     )
 
@@ -404,6 +425,35 @@ def refine_vector_events_with_llm(
         ]
     )
     text = resp.content if isinstance(resp.content, str) else str(resp.content)
+
+    # Pre-parse cleanup: LLMs occasionally append a bare wrapper-level dict
+    # (e.g. {"video_id": "..."}) as an extra event, which fails required-field
+    # validation.  Strip any event entry that is missing required VectorEvent fields
+    # before handing off to Pydantic so the valid events are not thrown away.
+    _REQUIRED_EVENT_FIELDS = {
+        "start_time", "end_time", "object_type", "object_color",
+        "appearance_notes", "scene_zone", "event_text", "keywords",
+    }
+    try:
+        import json as _json
+        raw_dict = _json.loads(text)
+        if isinstance(raw_dict.get("events"), list):
+            orig_len = len(raw_dict["events"])
+            raw_dict["events"] = [
+                ev for ev in raw_dict["events"]
+                if _REQUIRED_EVENT_FIELDS.issubset(ev.keys())
+            ]
+            dropped = orig_len - len(raw_dict["events"])
+            if dropped:
+                logger.warning(
+                    "refine_vector_events_with_llm: dropped %d malformed event(s) "
+                    "(missing required fields) before Pydantic validation",
+                    dropped,
+                )
+            text = _json.dumps(raw_dict)
+    except Exception:
+        pass  # let parser.parse surface the real error
+
     return parser.parse(text)
 
 

@@ -15,6 +15,10 @@ from pathlib import Path
 from typing import Any, Sequence
 
 from video.common.paths import pipeline_output_dir
+from video.factory.appearance_refinement_runner import (
+    AppearanceRefinementConfig,
+    run_appearance_refinement_for_events,
+)
 from video.factory.processors.event_track_pipeline import run_pipeline, save_pipeline_output
 from video.factory.refinement_runner import RefineEventsConfig, run_refine_events_from_files
 
@@ -51,6 +55,36 @@ def run_refine_events(
 ) -> Path:
     """LLM-refine pipeline JSON; returns path to output JSON."""
     return run_refine_events_from_files(events_json, clips_json, config)
+
+
+def run_refine_appearance_events(
+    events_json: str | Path,
+    config: AppearanceRefinementConfig | None = None,
+) -> Path:
+    """Crop-refine person appearance from one *_events.json file."""
+    events_path = Path(events_json)
+    payload = json.loads(events_path.read_text(encoding="utf-8"))
+    meta = payload.get("meta", {})
+    video_path = meta.get("video_path")
+    if not video_path:
+        raise ValueError(f"{events_path} does not contain meta.video_path")
+    video_id = Path(video_path).name
+    camera_id = meta.get("camera_id")
+    cfg = config or AppearanceRefinementConfig.from_env()
+    if cfg.cache_path is None:
+        cfg.cache_path = events_path.with_name(events_path.stem + "_appearance_refined.json")
+    result = run_appearance_refinement_for_events(
+        video_path=video_path,
+        events=list(payload.get("events", [])),
+        video_id=video_id,
+        camera_id=camera_id,
+        config=cfg,
+    )
+    out_path = cfg.cache_path
+    assert out_path is not None
+    if not out_path.exists():
+        out_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+    return out_path
 
 
 def _add_video_cli_args(p: argparse.ArgumentParser) -> None:
@@ -148,6 +182,15 @@ def _add_refine_cli_args(p: argparse.ArgumentParser) -> None:
     p.add_argument("--min-event-duration-sec", type=float, default=1.0, help="Drop events shorter than this (seconds) before LLM")
 
 
+def _add_appearance_cli_args(p: argparse.ArgumentParser) -> None:
+    p.add_argument("--events", required=True, help="Path to *_events.json")
+    p.add_argument("--model", type=str, default=None, help="VLM model for crop appearance refinement")
+    p.add_argument("--max-tracks", type=int, default=0, help="Debug cap for person tracks (0 = all)")
+    p.add_argument("--crops-per-track", type=int, default=2)
+    p.add_argument("--force", action="store_true", help="Re-run even if output exists")
+    p.add_argument("--out", type=str, default=None, help="Output JSON path")
+
+
 def _run_refine_cli_namespace(args: argparse.Namespace) -> None:
     from dotenv import load_dotenv
 
@@ -179,8 +222,31 @@ def cli_run_refine_events(argv: Sequence[str] | None = None) -> None:
     _run_refine_cli_namespace(args)
 
 
+def _run_appearance_cli_namespace(args: argparse.Namespace) -> None:
+    from dotenv import load_dotenv
+
+    load_dotenv()
+    cfg = AppearanceRefinementConfig.from_env(
+        model=args.model or AppearanceRefinementConfig.from_env().model,
+        max_entities=int(args.max_tracks),
+        crops_per_app=int(args.crops_per_track),
+        force=bool(args.force),
+        cache_path=Path(args.out) if args.out else None,
+    )
+    out_path = run_refine_appearance_events(args.events, cfg)
+    print(f"appearance-refined events saved to: {out_path}")
+
+
+def cli_run_refine_appearance(argv: Sequence[str] | None = None) -> None:
+    """CLI: crop-based single-camera person appearance refinement."""
+    parser = argparse.ArgumentParser(description="Crop-based appearance refinement for *_events.json")
+    _add_appearance_cli_args(parser)
+    args = parser.parse_args(list(argv) if argv is not None else None)
+    _run_appearance_cli_namespace(args)
+
+
 def main(argv: Sequence[str] | None = None) -> None:
-    """Entry: python -m video.factory.coordinator video ... | refine ..."""
+    """Entry: python -m video.factory.coordinator video ... | refine ... | appearance ..."""
     argv = list(sys.argv[1:] if argv is None else argv)
     parser = argparse.ArgumentParser(description="Offline video pipeline: video (track+events) or refine (LLM)")
     sub = parser.add_subparsers(dest="cmd", required=True)
@@ -188,11 +254,15 @@ def main(argv: Sequence[str] | None = None) -> None:
     _add_video_cli_args(p_v)
     p_r = sub.add_parser("refine", help="Refine *_events.json + *_clips.json")
     _add_refine_cli_args(p_r)
+    p_a = sub.add_parser("appearance", help="Crop-refine person appearance from *_events.json")
+    _add_appearance_cli_args(p_a)
     args = parser.parse_args(argv)
     if args.cmd == "video":
         _run_video_cli_namespace(args)
-    else:
+    elif args.cmd == "refine":
         _run_refine_cli_namespace(args)
+    else:
+        _run_appearance_cli_namespace(args)
 
 
 if __name__ == "__main__":
