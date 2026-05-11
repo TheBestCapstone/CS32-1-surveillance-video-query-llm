@@ -1,0 +1,95 @@
+{
+  "inputs": {
+    "stage1": "/home/yangxp/Capstone/data/multicam_person4/multicam_person4_14-20-14-25.json",
+    "refined": "/home/yangxp/Capstone/data/multicam_person4/multicam_person4_refined_vector.json"
+  },
+  "notes": [
+    "No GT identity labels for Person4 in-repo: metrics are intrinsic/diagnostic only.",
+    "For supervised entity P/R/F1 use tests/eval_multicam_entity.py with MEVID annotations."
+  ],
+  "stage1_intrinsic": {
+    "n_cameras_configured": 8,
+    "camera_ids": [
+      "G328",
+      "G339",
+      "G419",
+      "G421",
+      "G423",
+      "G505",
+      "G506",
+      "G508"
+    ],
+    "n_global_entities": 3,
+    "n_multi_camera_entities_cam_ge_2": 3,
+    "n_merged_events": 1551,
+    "merged_events_with_global_entity_id": 54,
+    "fraction_merged_tagged_global": 0.0348,
+    "merged_events_per_camera": {
+      "G328": 675,
+      "G339": 382,
+      "G419": 2,
+      "G421": 2,
+      "G423": 9,
+      "G505": 57,
+      "G506": 346,
+      "G508": 78
+    },
+    "entities_detail": [
+      {
+        "global_entity_id": "person_global_1",
+        "n_appearances": 11,
+        "n_distinct_cameras": 3,
+        "cameras": [
+          "G328",
+          "G339",
+          "G423"
+        ],
+        "mean_confidence": 0.7761293172068441
+      },
+      {
+        "global_entity_id": "person_global_2",
+        "n_appearances": 3,
+        "n_distinct_cameras": 2,
+        "cameras": [
+          "G339",
+          "G423"
+        ],
+        "mean_confidence": 0.7970530976927992
+      },
+      {
+        "global_entity_id": "person_global_3",
+        "n_appearances": 5,
+        "n_distinct_cameras": 2,
+        "cameras": [
+          "G339",
+          "G423"
+        ],
+        "mean_confidence": 0.7562112016317413
+      }
+    ]
+  },
+  "stage2_refined_intrinsic": {
+    "n_cameras": 8,
+    "n_refined_events_total": 138,
+    "refined_events_per_camera": {
+      "G328": 8,
+      "G339": 32,
+      "G419": 2,
+      "G421": 1,
+      "G423": 7,
+      "G505": 34,
+      "G506": 17,
+      "G508": 37
+    },
+    "object_type_counts": {
+      "person": 49,
+      "car": 58,
+      "truck": 4,
+      "handbag": 20,
+      "backpack": 7
+    },
+    "entity_hint_non_null_count": 19,
+    "fraction_entity_hint_set": 0.1377,
+    "fraction_keywords_nonempty": 1.0
+  }
+}

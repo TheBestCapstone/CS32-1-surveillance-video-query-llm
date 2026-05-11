@@ -13,7 +13,7 @@ Environment variables honoured::
     CHUNK_SIZE        default chunk size (overridden by --chunk-size)
     AGENT_BUILD_VIDEO_COLLECTION  set to 1 per chunk automatically
 
-Optional RAGAS retrieval backend (no LLM for precision/recall when ``id_based``)::
+Optional retrieval backend (no LLM when ``id_based``): chunk-level same-video precision + RAGAS ID recall::
 
     python run_chunks.py --retrieval-metrics-backend id_based ...
 """
@@ -296,6 +296,7 @@ def run_chunk(
     # --- Build ragas_eval_runner command ---
     cmd = [
         sys.executable,
+        "-u",
         str(RAGAS_RUNNER),
         "--xlsx-path",
         str(xlsx_path),
@@ -318,12 +319,21 @@ def run_chunk(
     if disable_sql:
         env["AGENT_DISABLE_SQL_BRANCH"] = "1"
 
-    print(f"[{chunk_label}] Running {len(video_ids)} videos, {len(cases)} cases")
-    print(f"[{chunk_label}] Seeds in: {chunk_seeds}")
-    print(f"[{chunk_label}] Output in: {chunk_output}")
+    print(
+        f"[{chunk_label}] Running {len(video_ids)} videos, {len(cases)} cases",
+        flush=True,
+    )
+    print(f"[{chunk_label}] Seeds in: {chunk_seeds}", flush=True)
+    print(f"[{chunk_label}] Output in: {chunk_output}", flush=True)
+    print(
+        f"[{chunk_label}] Subprocess log (stdout+stderr): {chunk_log}",
+        file=sys.stderr,
+        flush=True,
+    )
 
     # --- Run ---
     start = time.monotonic()
+    env["PYTHONUNBUFFERED"] = "1"
     with open(chunk_log, "w", encoding="utf-8") as log_fp:
         proc = subprocess.Popen(
             cmd,
@@ -411,7 +421,7 @@ def write_results_csv(rows: list[dict[str, Any]], output_root: Path) -> None:
         writer = csv.DictWriter(f, fieldnames=_CSV_COLUMNS, extrasaction="ignore")
         for row in rows:
             writer.writerow(row)
-    print(f"\nResults written to {csv_path}")
+    print(f"\nResults written to {csv_path}", flush=True)
 
 
 # ---------------------------------------------------------------------------
@@ -493,34 +503,34 @@ def main() -> None:
         sys.exit(1)
 
     # --- Extract cases ---
-    print("Reading Part4 cases from xlsx ...")
+    print("Reading Part4 cases from xlsx ...", flush=True)
     cases = _extract_cases(args.xlsx_path)
-    print(f"  Total e2e-ready cases: {len(cases)}")
+    print(f"  Total e2e-ready cases: {len(cases)}", flush=True)
 
     # --- Group by video ---
     grouped = _group_cases_by_video(cases)
-    print(f"  Valid videos: {len(grouped)}")
+    print(f"  Valid videos: {len(grouped)}", flush=True)
     video_ids = list(grouped.keys())
 
     # --- Build chunks ---
     chunks = build_chunks(grouped, args.chunk_size)
-    print(f"  Chunks: {len(chunks)} (size={args.chunk_size} videos each)")
+    print(f"  Chunks: {len(chunks)} (size={args.chunk_size} videos each)", flush=True)
 
     if args.max_chunks > 0:
         chunks = chunks[: args.max_chunks]
-        print(f"  Limited to first {args.max_chunks} chunk(s)")
+        print(f"  Limited to first {args.max_chunks} chunk(s)", flush=True)
 
     if args.dry_run:
         total_cases = 0
         for i, (vids, batch_cases) in enumerate(chunks, start=1):
             total_cases += len(batch_cases)
-            print(f"  chunk{i:02d}: {len(vids)} videos, {len(batch_cases)} cases")
-        print(f"  Total: {total_cases} cases across {len(chunks)} chunks")
+            print(f"  chunk{i:02d}: {len(vids)} videos, {len(batch_cases)} cases", flush=True)
+        print(f"  Total: {total_cases} cases across {len(chunks)} chunks", flush=True)
         return
 
     # --- Prepare output root ---
     args.output_root.mkdir(parents=True, exist_ok=True)
-    print(f"Output root: {args.output_root}")
+    print(f"Output root: {args.output_root}", flush=True)
 
     # --- Run chunks ---
     results: list[dict[str, Any]] = []
@@ -555,7 +565,7 @@ def main() -> None:
     # --- Final summary ---
     passed = sum(1 for r in results if "error" not in r)
     failed = sum(1 for r in results if "error" in r)
-    print(f"\nDone. {passed}/{len(results)} chunks passed, {failed} failed.")
+    print(f"\nDone. {passed}/{len(results)} chunks passed, {failed} failed.", flush=True)
     write_results_csv(results, args.output_root)
 
 

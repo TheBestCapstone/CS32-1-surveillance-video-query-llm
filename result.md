@@ -1,7 +1,9 @@
 # Graph Result Test Report
+
 - Generated At: `2026-04-19 04:42:53`
 - Cases File: `/home/yangxp/Capstone/agent/test/result_cases.json`
 - Basketball Data Profile:
+
 ```json
 {
   "exists": true,
@@ -27,7 +29,9 @@
   ]
 }
 ```
+
 - Summary:
+
 ```json
 {
   "total": 5,
@@ -56,7 +60,9 @@
   }
 }
 ```
+
 - Metrics Summary:
+
 ```json
 {
   "citation_coverage_rate": 1.0,
@@ -66,10 +72,10 @@
 ```
 
 ## TC01
+
 - 问题: `Did you see any person in the database?`
 - 预期答案: 
-- 模型返回答案: `Yes, multiple people were detected in the video. The top results show individuals staying mostly still near the left baseline or bench area, with appearances ranging from about 12 to over 140 seconds in duration.
-Sources: [sql] basketball_1.mp4 | event_id=1 | 0.0-61.208333333333336; [sql] basketball_1.mp4 | event_id=2 | 0.0-16.083333333333332; [sql] basketball_1.mp4 | event_id=3 | 0.0-12.041666666666666`
+- 模型返回答案: `Yes, multiple people were detected in the video. The top results show individuals staying mostly still near the left baseline or bench area, with appearances ranging from about 12 to over 140 seconds in duration. Sources: [sql] basketball_1.mp4 | event_id=1 | 0.0-61.208333333333336; [sql] basketball_1.mp4 | event_id=2 | 0.0-16.083333333333332; [sql] basketball_1.mp4 | event_id=3 | 0.0-12.041666666666666`
 - 路由模式: `pure_sql`
 - 当前节点: `summary_node`
 - 耗时: `7277.73 ms`
@@ -77,6 +83,7 @@ Sources: [sql] basketball_1.mp4 | event_id=1 | 0.0-61.208333333333336; [sql] bas
 - 工具错误: `None`
 - 结果: `PASS`
 - Node Trace:
+
 ```json
 [
   "self_query_node",
@@ -86,7 +93,9 @@ Sources: [sql] basketball_1.mp4 | event_id=1 | 0.0-61.208333333333336; [sql] bas
   "summary_node"
 ]
 ```
+
 - Routing Metrics:
+
 ```json
 {
   "execution_mode": "parallel_fusion",
@@ -98,7 +107,9 @@ Sources: [sql] basketball_1.mp4 | event_id=1 | 0.0-61.208333333333336; [sql] bas
   "hybrid_error": null
 }
 ```
+
 - Search Config:
+
 ```json
 {
   "candidate_limit": 80,
@@ -111,7 +122,9 @@ Sources: [sql] basketball_1.mp4 | event_id=1 | 0.0-61.208333333333336; [sql] bas
   "sql_limit": 80
 }
 ```
+
 - SQL Plan:
+
 ```json
 {
   "table": "episodic_events",
@@ -138,7 +151,9 @@ Sources: [sql] basketball_1.mp4 | event_id=1 | 0.0-61.208333333333336; [sql] bas
   "limit": 80
 }
 ```
+
 - 断言明细:
+
 ```json
 [
   {
@@ -212,7 +227,9 @@ Sources: [sql] basketball_1.mp4 | event_id=1 | 0.0-61.208333333333336; [sql] bas
   }
 ]
 ```
+
 - Top1-Top5:
+
 ```json
 [
   {
@@ -237,13 +254,17 @@ Sources: [sql] basketball_1.mp4 | event_id=1 | 0.0-61.208333333333336; [sql] bas
   }
 ]
 ```
+
 - Thought:
+
 ```json
 {
   "thought": "SelfQuery: focus=structured, intent=structured"
 }
 ```
+
 - SQL Debug:
+
 ```json
 {
   "duration": 1.7002703629987082,
@@ -268,10 +289,10 @@ Sources: [sql] basketball_1.mp4 | event_id=1 | 0.0-61.208333333333336; [sql] bas
 ```
 
 ## TC02
+
 - 问题: `Show me dark persons.`
 - 预期答案: 
-- 模型返回答案: `In the video *basketball_2.mp4*, several clips show people in dark clothing: two standing still near the left bleachers (0–30.8s and 0–10s), and others moving across different court areas between 40.6s and 50.5s.
-Sources: [sql] basketball_2.mp4 | event_id=22 | 0.0-30.84; [sql] basketball_2.mp4 | event_id=27 | 0.0-9.96; [sql] basketball_2.mp4 | event_id=23 | 40.6-44.9`
+- 模型返回答案: `In the video *basketball_2.mp4*, several clips show people in dark clothing: two standing still near the left bleachers (0–30.8s and 0–10s), and others moving across different court areas between 40.6s and 50.5s. Sources: [sql] basketball_2.mp4 | event_id=22 | 0.0-30.84; [sql] basketball_2.mp4 | event_id=27 | 0.0-9.96; [sql] basketball_2.mp4 | event_id=23 | 40.6-44.9`
 - 路由模式: `pure_sql`
 - 当前节点: `summary_node`
 - 耗时: `8112.2 ms`
@@ -279,6 +300,7 @@ Sources: [sql] basketball_2.mp4 | event_id=22 | 0.0-30.84; [sql] basketball_2.mp
 - 工具错误: `None`
 - 结果: `PASS`
 - Node Trace:
+
 ```json
 [
   "self_query_node",
@@ -288,7 +310,9 @@ Sources: [sql] basketball_2.mp4 | event_id=22 | 0.0-30.84; [sql] basketball_2.mp
   "summary_node"
 ]
 ```
+
 - Routing Metrics:
+
 ```json
 {
   "execution_mode": "parallel_fusion",
@@ -300,7 +324,9 @@ Sources: [sql] basketball_2.mp4 | event_id=22 | 0.0-30.84; [sql] basketball_2.mp
   "hybrid_error": null
 }
 ```
+
 - Search Config:
+
 ```json
 {
   "candidate_limit": 80,
@@ -313,7 +339,9 @@ Sources: [sql] basketball_2.mp4 | event_id=22 | 0.0-30.84; [sql] basketball_2.mp
   "sql_limit": 80
 }
 ```
+
 - SQL Plan:
+
 ```json
 {
   "table": "episodic_events",
@@ -345,7 +373,9 @@ Sources: [sql] basketball_2.mp4 | event_id=22 | 0.0-30.84; [sql] basketball_2.mp
   "limit": 80
 }
 ```
+
 - 断言明细:
+
 ```json
 [
   {
@@ -419,7 +449,9 @@ Sources: [sql] basketball_2.mp4 | event_id=22 | 0.0-30.84; [sql] basketball_2.mp
   }
 ]
 ```
+
 - Top1-Top5:
+
 ```json
 [
   {
@@ -444,13 +476,17 @@ Sources: [sql] basketball_2.mp4 | event_id=22 | 0.0-30.84; [sql] basketball_2.mp
   }
 ]
 ```
+
 - Thought:
+
 ```json
 {
   "thought": "SelfQuery: focus=structured, intent=structured"
 }
 ```
+
 - SQL Debug:
+
 ```json
 {
   "duration": 2.8803786839998793,
@@ -475,10 +511,10 @@ Sources: [sql] basketball_2.mp4 | event_id=22 | 0.0-30.84; [sql] basketball_2.mp
 ```
 
 ## TC03
+
 - 问题: `Find a person near the left bleachers.`
 - 预期答案: 
-- 模型返回答案: `A dark-clothed person stands near the left bleachers with little motion from 0.00s to 30.84s in *basketball_2.mp4*. In *basketball_1.mp4*, several individuals remain mostly still near the left baseline, bench area, or left side of the court during various time intervals.
-Sources: [hybrid] basketball_2.mp4 | event_id=basketball_2.mp4_track_id_1 | 0.0-30.84; [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_1 | 0.0-61.208333333333336; [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_29 | 43.791666666666664-125.70833333333331`
+- 模型返回答案: `A dark-clothed person stands near the left bleachers with little motion from 0.00s to 30.84s in *basketball_2.mp4*. In *basketball_1.mp4*, several individuals remain mostly still near the left baseline, bench area, or left side of the court during various time intervals. Sources: [hybrid] basketball_2.mp4 | event_id=basketball_2.mp4_track_id_1 | 0.0-30.84; [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_1 | 0.0-61.208333333333336; [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_29 | 43.791666666666664-125.70833333333331`
 - 路由模式: `hybrid_search`
 - 当前节点: `summary_node`
 - 耗时: `9203.96 ms`
@@ -486,6 +522,7 @@ Sources: [hybrid] basketball_2.mp4 | event_id=basketball_2.mp4_track_id_1 | 0.0-
 - 工具错误: `None`
 - 结果: `PASS`
 - Node Trace:
+
 ```json
 [
   "self_query_node",
@@ -495,7 +532,9 @@ Sources: [hybrid] basketball_2.mp4 | event_id=basketball_2.mp4_track_id_1 | 0.0-
   "summary_node"
 ]
 ```
+
 - Routing Metrics:
+
 ```json
 {
   "execution_mode": "parallel_fusion",
@@ -507,7 +546,9 @@ Sources: [hybrid] basketball_2.mp4 | event_id=basketball_2.mp4_track_id_1 | 0.0-
   "hybrid_error": null
 }
 ```
+
 - Search Config:
+
 ```json
 {
   "candidate_limit": 80,
@@ -520,7 +561,9 @@ Sources: [hybrid] basketball_2.mp4 | event_id=basketball_2.mp4_track_id_1 | 0.0-
   "sql_limit": 80
 }
 ```
+
 - SQL Plan:
+
 ```json
 {
   "table": "episodic_events",
@@ -552,7 +595,9 @@ Sources: [hybrid] basketball_2.mp4 | event_id=basketball_2.mp4_track_id_1 | 0.0-
   "limit": 80
 }
 ```
+
 - 断言明细:
+
 ```json
 [
   {
@@ -626,7 +671,9 @@ Sources: [hybrid] basketball_2.mp4 | event_id=basketball_2.mp4_track_id_1 | 0.0-
   }
 ]
 ```
+
 - Top1-Top5:
+
 ```json
 [
   {
@@ -651,13 +698,17 @@ Sources: [hybrid] basketball_2.mp4 | event_id=basketball_2.mp4_track_id_1 | 0.0-
   }
 ]
 ```
+
 - Thought:
+
 ```json
 {
   "thought": "SelfQuery: focus=semantic, intent=semantic"
 }
 ```
+
 - SQL Debug:
+
 ```json
 {
   "duration": 2.9722101250008564,
@@ -682,10 +733,10 @@ Sources: [hybrid] basketball_2.mp4 | event_id=basketball_2.mp4_track_id_1 | 0.0-
 ```
 
 ## TC04
+
 - 问题: `Look for a person moving on the sidewalk.`
 - 预期答案: 
-- 模型返回答案: `The search found multiple instances of people on the sidewalk near the left-center baseline area, but they were mostly standing still rather than moving. These appear in the video *basketball_1.mp4* across various time segments, including 0–5 seconds, 11.5–91.8 seconds, and others. While located where requested, the individuals show little motion.
-Sources: [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_8 | 0.0-4.958333333333333; [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_11 | 11.5-91.75; [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_6 | 0.0-17.458333333333332`
+- 模型返回答案: `The search found multiple instances of people on the sidewalk near the left-center baseline area, but they were mostly standing still rather than moving. These appear in the video *basketball_1.mp4* across various time segments, including 0–5 seconds, 11.5–91.8 seconds, and others. While located where requested, the individuals show little motion. Sources: [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_8 | 0.0-4.958333333333333; [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_11 | 11.5-91.75; [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_6 | 0.0-17.458333333333332`
 - 路由模式: `hybrid_search`
 - 当前节点: `summary_node`
 - 耗时: `8370.41 ms`
@@ -693,6 +744,7 @@ Sources: [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_8 | 0.0-4.9
 - 工具错误: `None`
 - 结果: `PASS`
 - Node Trace:
+
 ```json
 [
   "self_query_node",
@@ -702,7 +754,9 @@ Sources: [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_8 | 0.0-4.9
   "summary_node"
 ]
 ```
+
 - Routing Metrics:
+
 ```json
 {
   "execution_mode": "parallel_fusion",
@@ -714,7 +768,9 @@ Sources: [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_8 | 0.0-4.9
   "hybrid_error": null
 }
 ```
+
 - Search Config:
+
 ```json
 {
   "candidate_limit": 80,
@@ -727,7 +783,9 @@ Sources: [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_8 | 0.0-4.9
   "sql_limit": 80
 }
 ```
+
 - SQL Plan:
+
 ```json
 {
   "table": "episodic_events",
@@ -759,7 +817,9 @@ Sources: [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_8 | 0.0-4.9
   "limit": 80
 }
 ```
+
 - 断言明细:
+
 ```json
 [
   {
@@ -833,7 +893,9 @@ Sources: [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_8 | 0.0-4.9
   }
 ]
 ```
+
 - Top1-Top5:
+
 ```json
 [
   {
@@ -858,13 +920,17 @@ Sources: [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_8 | 0.0-4.9
   }
 ]
 ```
+
 - Thought:
+
 ```json
 {
   "thought": "SelfQuery: focus=semantic, intent=semantic"
 }
 ```
+
 - SQL Debug:
+
 ```json
 {
   "duration": 2.805793921001168,
@@ -889,6 +955,7 @@ Sources: [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_8 | 0.0-4.9
 ```
 
 ## TC05
+
 - 问题: `Are there any cars in the database?`
 - 预期答案: 
 - 模型返回答案: `No matching results found. You can add more specific descriptions like colors or actions.`
@@ -899,6 +966,7 @@ Sources: [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_8 | 0.0-4.9
 - 工具错误: `None`
 - 结果: `PASS`
 - Node Trace:
+
 ```json
 [
   "self_query_node",
@@ -908,7 +976,9 @@ Sources: [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_8 | 0.0-4.9
   "summary_node"
 ]
 ```
+
 - Routing Metrics:
+
 ```json
 {
   "execution_mode": "parallel_fusion",
@@ -920,7 +990,9 @@ Sources: [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_8 | 0.0-4.9
   "hybrid_error": null
 }
 ```
+
 - Search Config:
+
 ```json
 {
   "candidate_limit": 80,
@@ -933,7 +1005,9 @@ Sources: [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_8 | 0.0-4.9
   "sql_limit": 80
 }
 ```
+
 - SQL Plan:
+
 ```json
 {
   "table": "episodic_events",
@@ -960,7 +1034,9 @@ Sources: [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_8 | 0.0-4.9
   "limit": 80
 }
 ```
+
 - 断言明细:
+
 ```json
 [
   {
@@ -1027,17 +1103,23 @@ Sources: [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_8 | 0.0-4.9
   }
 ]
 ```
+
 - Top1-Top5:
+
 ```json
 []
 ```
+
 - Thought:
+
 ```json
 {
   "thought": "SelfQuery: focus=structured, intent=structured"
 }
 ```
+
 - SQL Debug:
+
 ```json
 {
   "duration": 2.771013967001636,
@@ -1053,3 +1135,4 @@ Sources: [hybrid] basketball_1.mp4 | event_id=basketball_1.mp4_track_8 | 0.0-4.9
   }
 }
 ```
+

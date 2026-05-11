@@ -331,25 +331,29 @@ class ChromaIndexBuilder:
                 end_time=end_time,
             )
             event_ids = self._lookup_event_ids_for_track(video_id, entity_hint)
+            metadata = {
+                "record_level": "child",
+                "video_id": video_id,
+                "parent_id": parent_id,
+                "entity_hint": entity_hint,
+                "event_id": event_ids[0] if event_ids else None,
+                "object_type": object_types[0] if object_types else "unknown",
+                "object_color": object_colors[0] if object_colors else "unknown",
+                "scene_zone": scene_zones[0] if scene_zones else "unknown",
+                "start_time": start_time if start_time is not None else -1.0,
+                "end_time": end_time if end_time is not None else -1.0,
+                "event_count": len(group),
+                "keywords": ", ".join(keywords),
+            }
+            # Chroma rejects empty list metadata values; only include
+            # event_ids when the backfill succeeded.
+            if event_ids:
+                metadata["event_ids"] = event_ids
             records.append(
                 {
                     "id": child_id,
                     "document": document,
-                    "metadata": {
-                        "record_level": "child",
-                        "video_id": video_id,
-                        "parent_id": parent_id,
-                        "entity_hint": entity_hint,
-                        "event_ids": event_ids,
-                        "event_id": event_ids[0] if event_ids else None,
-                        "object_type": object_types[0] if object_types else "unknown",
-                        "object_color": object_colors[0] if object_colors else "unknown",
-                        "scene_zone": scene_zones[0] if scene_zones else "unknown",
-                        "start_time": start_time if start_time is not None else -1.0,
-                        "end_time": end_time if end_time is not None else -1.0,
-                        "event_count": len(group),
-                        "keywords": ", ".join(keywords),
-                    },
+                    "metadata": metadata,
                 }
             )
         return records
