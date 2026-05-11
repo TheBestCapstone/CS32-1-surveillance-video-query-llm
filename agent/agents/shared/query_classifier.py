@@ -168,7 +168,7 @@ def _collect_signals(text: str) -> Dict[str, List[str]]:
 def _infer_answer_type(text: str) -> str:
     low = (text or "").strip().lower()
     if any(cue in low for cue in _EXISTENCE_CUES) or low.startswith((
-        "is ", "are ", "was ", "were ", "does ", "do ",
+        "is ", "are ", "was ", "were ", "does ", "do ", "did ",
         "can you ", "could you ",  # P2-3: "Can you find..." is existence
     )):
         return ANSWER_TYPE_EXISTENCE

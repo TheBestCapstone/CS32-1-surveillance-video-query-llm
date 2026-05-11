@@ -1,0 +1,54 @@
+{
+  "title": "性能基准测试",
+  "started_at": "2026-05-12T02:23:08.900264",
+  "elapsed_sec": 0.0,
+  "total_cases": 4,
+  "passed": 4,
+  "failed": 0,
+  "env_vars": {},
+  "suites": [
+    {
+      "name": "性能指标",
+      "passed": 4,
+      "failed": 0,
+      "cases": [
+        {
+          "name": "分类 fast-path 延迟",
+          "passed": true,
+          "details": "0.03 ms/query (100 runs)",
+          "metrics": {
+            "latency_ms": 0.03,
+            "target_ms": 1.0
+          }
+        },
+        {
+          "name": "Stage1 Chroma global_entity 搜索",
+          "passed": true,
+          "details": "2 ms/query (10 runs)",
+          "metrics": {
+            "latency_ms": 2.0,
+            "target_ms": 500
+          }
+        },
+        {
+          "name": "Stage2 SQLite 展开",
+          "passed": true,
+          "details": "0 ms/query (10 runs)",
+          "metrics": {
+            "latency_ms": 0.0,
+            "target_ms": 200
+          }
+        },
+        {
+          "name": "三路 RRF 融合",
+          "passed": true,
+          "details": "0.093 ms/run (100 runs, 80 sql + 50 hyb + 10 ge)",
+          "metrics": {
+            "latency_ms": 0.093,
+            "target_ms": 10
+          }
+        }
+      ]
+    }
+  ]
+}

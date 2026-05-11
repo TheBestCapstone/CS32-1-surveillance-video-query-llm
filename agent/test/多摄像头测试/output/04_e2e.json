@@ -1,0 +1,73 @@
+{
+  "title": "端到端回归测试",
+  "started_at": "2026-05-12T02:23:08.899132",
+  "elapsed_sec": 0.0,
+  "total_cases": 8,
+  "passed": 8,
+  "failed": 0,
+  "env_vars": {},
+  "suites": [
+    {
+      "name": "单摄像头回归（不误触发 GE）",
+      "passed": 3,
+      "failed": 0,
+      "cases": [
+        {
+          "name": "[existence] Is there a person with beige jacket visible in camera G328?",
+          "passed": true,
+          "details": "multi_camera=False (expected=False)",
+          "metrics": {}
+        },
+        {
+          "name": "[appearance] Is there a person wearing black jacket in camera G339?",
+          "passed": true,
+          "details": "multi_camera=False (expected=False)",
+          "metrics": {}
+        },
+        {
+          "name": "[existence] Is there a person with dark jacket visible in camera G424?",
+          "passed": true,
+          "details": "multi_camera=False (expected=False)",
+          "metrics": {}
+        }
+      ]
+    },
+    {
+      "name": "negative 问题行为",
+      "passed": 5,
+      "failed": 0,
+      "cases": [
+        {
+          "name": "Did a person with dark blue or black top from camera G508 also appear in camera ",
+          "passed": true,
+          "details": "multi_camera=True (expected=True for negative questions)",
+          "metrics": {}
+        },
+        {
+          "name": "Did a person with dark hoodie from camera G421 also appear in camera G508?",
+          "passed": true,
+          "details": "multi_camera=True (expected=True for negative questions)",
+          "metrics": {}
+        },
+        {
+          "name": "Did a person with white coat from camera G336 also appear in camera G330?",
+          "passed": true,
+          "details": "multi_camera=True (expected=True for negative questions)",
+          "metrics": {}
+        },
+        {
+          "name": "Did a person with dark top from camera G299 also appear in camera G420?",
+          "passed": true,
+          "details": "multi_camera=True (expected=True for negative questions)",
+          "metrics": {}
+        },
+        {
+          "name": "Did a person with black coat from camera G329 also appear in camera G336?",
+          "passed": true,
+          "details": "multi_camera=True (expected=True for negative questions)",
+          "metrics": {}
+        }
+      ]
+    }
+  ]
+}

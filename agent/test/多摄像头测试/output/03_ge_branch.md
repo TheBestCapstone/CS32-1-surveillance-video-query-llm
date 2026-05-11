@@ -1,0 +1,51 @@
+# global_entity 分支独立测试
+
+**Started**: 2026-05-12T02:23:04.237827  
+**Elapsed**: 4.66s  
+
+## Results
+
+
+| Suite      | Total | Passed | Failed |
+| ---------- | ----- | ------ | ------ |
+| GE 分支两阶段检索 | 5     | 5      | 0      |
+| **Total**  | **5** | **5**  | **0**  |
+
+
+## GE 分支两阶段检索
+
+- ✅ **Did a person with light grey hoodie appear in camera G424 and then appear again **
+rows=78 entities=['person_global_1', 'person_global_10', 'person_global_11', 'person_global_12', 'person_global_2', 'person_global_3', 'person_global_4', 'person_global_5', 'person_global_6', 'person_global_7', 'person_global_8', 'person_global_9'] cameras=['G424', 'G328', 'G339', 'G421', 'G506', 'G329', 'G508']
+  - `row_count`: 78
+  - `entity_count`: 12
+  - `camera_count`: 7
+  - `expected_cameras`: ['G424', 'G339']
+  - `found_cameras`: ['G424', 'G328', 'G339', 'G421', 'G506', 'G329', 'G508']
+- ✅ **Did a person with black coat with fur-trimmed hood appear in camera G329 and the**
+rows=78 entities=['person_global_1', 'person_global_10', 'person_global_11', 'person_global_12', 'person_global_2', 'person_global_3', 'person_global_4', 'person_global_5', 'person_global_6', 'person_global_7', 'person_global_8', 'person_global_9'] cameras=['G424', 'G328', 'G339', 'G421', 'G506', 'G329', 'G508']
+  - `row_count`: 78
+  - `entity_count`: 12
+  - `camera_count`: 7
+  - `expected_cameras`: ['G329', 'G339']
+  - `found_cameras`: ['G424', 'G328', 'G339', 'G421', 'G506', 'G329', 'G508']
+- ✅ **Did a person with white shirt appear in camera G328 and then appear again in cam**
+rows=78 entities=['person_global_1', 'person_global_10', 'person_global_11', 'person_global_12', 'person_global_2', 'person_global_3', 'person_global_4', 'person_global_5', 'person_global_6', 'person_global_7', 'person_global_8', 'person_global_9'] cameras=['G424', 'G328', 'G339', 'G421', 'G506', 'G329', 'G508']
+  - `row_count`: 78
+  - `entity_count`: 12
+  - `camera_count`: 7
+  - `expected_cameras`: ['G328', 'G424']
+  - `found_cameras`: ['G424', 'G328', 'G339', 'G421', 'G506', 'G329', 'G508']
+- ✅ **Did a person with dark jacket hood up appear in camera G329 and then appear agai**
+rows=78 entities=['person_global_1', 'person_global_10', 'person_global_11', 'person_global_12', 'person_global_2', 'person_global_3', 'person_global_4', 'person_global_5', 'person_global_6', 'person_global_7', 'person_global_8', 'person_global_9'] cameras=['G424', 'G328', 'G339', 'G421', 'G506', 'G329', 'G508']
+  - `row_count`: 78
+  - `entity_count`: 12
+  - `camera_count`: 7
+  - `expected_cameras`: ['G329', 'G328']
+  - `found_cameras`: ['G424', 'G328', 'G339', 'G421', 'G506', 'G329', 'G508']
+- ✅ **Did a person with brown jacket with dark hood appear in camera G424 and then app**
+rows=78 entities=['person_global_1', 'person_global_10', 'person_global_11', 'person_global_12', 'person_global_2', 'person_global_3', 'person_global_4', 'person_global_5', 'person_global_6', 'person_global_7', 'person_global_8', 'person_global_9'] cameras=['G424', 'G328', 'G339', 'G421', 'G506', 'G329', 'G508']
+  - `row_count`: 78
+  - `entity_count`: 12
+  - `camera_count`: 7
+  - `expected_cameras`: ['G424', 'G339']
+  - `found_cameras`: ['G424', 'G328', 'G339', 'G421', 'G506', 'G329', 'G508']

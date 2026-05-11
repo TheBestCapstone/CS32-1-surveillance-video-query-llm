@@ -1,0 +1,3011 @@
+{
+  "title": "Agent 端到端 60 题测试",
+  "started_at": "2026-05-12T05:18:00.822339",
+  "total_elapsed_s": 355.1,
+  "total_questions": 60,
+  "passed": 42,
+  "failed": 18,
+  "pass_rate": 70.0,
+  "avg_recall": 0.475,
+  "avg_precision": 0.2759,
+  "avg_iou": 0.2731,
+  "avg_elapsed_s": 5.9,
+  "multi_camera_detection_rate": 0.5,
+  "answer_content_rate": 1.0,
+  "correctness_rate": 0.3,
+  "correctness_count": 18,
+  "time_match_rate": 0.2167,
+  "time_match_count": 13,
+  "per_category": {
+    "appearance": {
+      "total": 10,
+      "passed": 10,
+      "pass_rate": 100.0,
+      "correct": 3,
+      "correct_rate": 30.0,
+      "time_match": 2,
+      "avg_recall": 0.0,
+      "avg_elapsed": 6.8,
+      "mc_detected": 0,
+      "mc_detection_rate": 0.0
+    },
+    "cross_camera": {
+      "total": 20,
+      "passed": 5,
+      "pass_rate": 25.0,
+      "correct": 5,
+      "correct_rate": 25.0,
+      "time_match": 0,
+      "avg_recall": 0.95,
+      "avg_elapsed": 4.9,
+      "mc_detected": 20,
+      "mc_detection_rate": 100.0
+    },
+    "event": {
+      "total": 10,
+      "passed": 10,
+      "pass_rate": 100.0,
+      "correct": 0,
+      "correct_rate": 0.0,
+      "time_match": 0,
+      "avg_recall": 0.0,
+      "avg_elapsed": 7.7,
+      "mc_detected": 0,
+      "mc_detection_rate": 0.0
+    },
+    "existence": {
+      "total": 10,
+      "passed": 10,
+      "pass_rate": 100.0,
+      "correct": 3,
+      "correct_rate": 30.0,
+      "time_match": 1,
+      "avg_recall": 0.0,
+      "avg_elapsed": 6.3,
+      "mc_detected": 0,
+      "mc_detection_rate": 0.0
+    },
+    "negative": {
+      "total": 10,
+      "passed": 7,
+      "pass_rate": 70.0,
+      "correct": 7,
+      "correct_rate": 70.0,
+      "time_match": 10,
+      "avg_recall": 0.95,
+      "avg_elapsed": 5.0,
+      "mc_detected": 10,
+      "mc_detection_rate": 100.0
+    }
+  },
+  "per_question": [
+    {
+      "idx": 0,
+      "category": "cross_camera",
+      "question": "Did a person with red top appear in camera G638 and then appear again in camera G506?",
+      "recall_challenge": "Same person (16-35-P3) first in G638 @ 1:51, then G506 @ 3:54. Appearance: red top, dark trousers, no bag, short hair",
+      "expected_answer": "yes",
+      "expected_time": "3:54-4:15",
+      "expected_cameras": [
+        "G506",
+        "G638"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G424"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [mixed] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=815 | 11.5-21.8; [mixed] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=250 | 168.76666666666668-182.36666666666667; [mixed] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=263 | 182.86666666666667-182.9",
+      "error": null,
+      "elapsed_s": 14.5,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 0,
+      "passed": false,
+      "metrics": {
+        "expected_cameras": [
+          "G506",
+          "G638"
+        ],
+        "found_cameras": [
+          "G328",
+          "G424"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [3:54-4:15]"
+    },
+    {
+      "idx": 1,
+      "category": "cross_camera",
+      "question": "Did a person with black coat appear in camera G423 and then appear again in camera G330?",
+      "recall_challenge": "Same person (11-20-P19) first in G423 @ 4:24, then G330 @ 4:33. Appearance: black coat, tan trousers, no bag, short dark",
+      "expected_answer": "yes",
+      "expected_time": "4:33-5:00",
+      "expected_cameras": [
+        "G330",
+        "G423"
+      ],
+      "answer_cameras": [
+        "G330",
+        "G339",
+        "G423"
+      ],
+      "final_answer": "No matching clip is expected. Reason: No global entity appears in both camera G423 and G330; queried cameras are not present in any entity's camera list..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=616 | 166.733-167.3; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=596 | 150.933-153.533; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=597 | 164.383-166.633",
+      "error": null,
+      "elapsed_s": 4.3,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": false,
+      "metrics": {
+        "expected_cameras": [
+          "G330",
+          "G423"
+        ],
+        "found_cameras": [
+          "G330",
+          "G339",
+          "G423"
+        ],
+        "intersection": [
+          "G330",
+          "G423"
+        ],
+        "recall": 1.0,
+        "precision": 0.6667,
+        "iou": 0.6667
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [4:33-5:00]"
+    },
+    {
+      "idx": 2,
+      "category": "cross_camera",
+      "question": "Did a person with grey jacket appear in camera G419 and then appear again in camera G420?",
+      "recall_challenge": "Same person (11-20-P12) first in G419 @ 2:40, then G420 @ 2:40. Appearance: grey jacket, blue jeans, no bag, black beani",
+      "expected_answer": "yes",
+      "expected_time": "2:40-3:02",
+      "expected_cameras": [
+        "G419",
+        "G420"
+      ],
+      "answer_cameras": [
+        "G339",
+        "G419",
+        "G420",
+        "G424"
+      ],
+      "final_answer": "No matching clip is expected. Reason: No global entity appears in both camera G419 and G420; the queried cameras are not present in any entity's camera list..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=841 | 80.1-89.96666666666667; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=718 | 266.7-277.6; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=720 | 278.6-279.06666666666666",
+      "error": null,
+      "elapsed_s": 4.2,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": false,
+      "metrics": {
+        "expected_cameras": [
+          "G419",
+          "G420"
+        ],
+        "found_cameras": [
+          "G339",
+          "G419",
+          "G420",
+          "G424"
+        ],
+        "intersection": [
+          "G419",
+          "G420"
+        ],
+        "recall": 1.0,
+        "precision": 0.5,
+        "iou": 0.5
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [2:40-3:02]"
+    },
+    {
+      "idx": 3,
+      "category": "cross_camera",
+      "question": "Did a person with brown jacket with dark hood/scarf appear in camera G424 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P14) first in G424 @ 0:00, then G339 @ 0:55. Appearance: brown jacket with dark hood/scarf, dark trou",
+      "expected_answer": "yes",
+      "expected_time": "0:55-1:25",
+      "expected_cameras": [
+        "G339",
+        "G424"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G339",
+        "G424"
+      ],
+      "final_answer": "Likely yes. The queried entity appears across multiple cameras. | Cameras: G424, G328, G339 | Times: G424 80.1-89.96666666666667; G328 233.13333333333333-234.06666666666666; G339 266.7-277.6 | Summary: Entity person_global_1 appears in both G424 and G339 (as well as G328), confirming cross-camera presence; however, no appearance description (e.g., brown jacket with dark hood/scarf) is provided for t.\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=841 | 80.1-89.96666666",
+      "error": null,
+      "elapsed_s": 4.2,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G339",
+          "G424"
+        ],
+        "found_cameras": [
+          "G328",
+          "G339",
+          "G424"
+        ],
+        "intersection": [
+          "G339",
+          "G424"
+        ],
+        "recall": 1.0,
+        "precision": 0.6667,
+        "iou": 0.6667
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [0:55-1:25]"
+    },
+    {
+      "idx": 4,
+      "category": "cross_camera",
+      "question": "Did a person with light grey hoodie appear in camera G424 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P10) first in G424 @ 0:00, then G339 @ 0:55. Appearance: light grey hoodie, black trousers, beige bag",
+      "expected_answer": "yes",
+      "expected_time": "0:55-1:25",
+      "expected_cameras": [
+        "G339",
+        "G424"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G339",
+        "G424"
+      ],
+      "final_answer": "Likely yes. The queried entity appears across multiple cameras. | Cameras: G424, G328, G339 | Times: G424 80.1-89.96666666666667; G328 233.13333333333333-234.06666666666666; G339 266.7-277.6 | Summary: Entity person_global_1 appears in both G424 and G339 (as well as G328), confirming cross-camera presence; however, no appearance description (e.g., 'light grey hoodie') is provided for this entity, so.\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=841 | 80.1-89.96666666",
+      "error": null,
+      "elapsed_s": 5.5,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G339",
+          "G424"
+        ],
+        "found_cameras": [
+          "G328",
+          "G339",
+          "G424"
+        ],
+        "intersection": [
+          "G339",
+          "G424"
+        ],
+        "recall": 1.0,
+        "precision": 0.6667,
+        "iou": 0.6667
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [0:55-1:25]"
+    },
+    {
+      "idx": 5,
+      "category": "cross_camera",
+      "question": "Did a person with black coat with fur-trimmed hood appear in camera G329 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P4) first in G329 @ 3:08, then G339 @ 3:36. Appearance: black coat with fur-trimmed hood, dark trouse",
+      "expected_answer": "yes",
+      "expected_time": "3:36-3:50",
+      "expected_cameras": [
+        "G329",
+        "G339"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G329",
+        "G339",
+        "G421",
+        "G506"
+      ],
+      "final_answer": "Likely yes. The queried entity appears across multiple cameras. | Cameras: G506, G339, G329, G328, G421 | Times: G506 131.26666666666668-157.6; G339 150.8-153.55; G329 188.233-196.7; G328 279.2-283.23333333333335; G421 284.15-293.533 | Summary: Entity person_global_4 and person_global_5 both appear in G329 and G339, satisfying the cross-camera requirement; however, neither explicitly describes a 'black coat with fur-trimmed hood'—only genera.\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school",
+      "error": null,
+      "elapsed_s": 5.0,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G329",
+          "G339"
+        ],
+        "found_cameras": [
+          "G328",
+          "G329",
+          "G339",
+          "G421",
+          "G506"
+        ],
+        "intersection": [
+          "G329",
+          "G339"
+        ],
+        "recall": 1.0,
+        "precision": 0.4,
+        "iou": 0.4
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [3:36-3:50]"
+    },
+    {
+      "idx": 6,
+      "category": "cross_camera",
+      "question": "Did a person with black jacket appear in camera G420 and then appear again in camera G423?",
+      "recall_challenge": "Same person (11-20-P22) first in G420 @ 4:13, then G423 @ 4:26. Appearance: black jacket, dark trousers, no bag, Camoufl",
+      "expected_answer": "yes",
+      "expected_time": "4:26-4:31",
+      "expected_cameras": [
+        "G420",
+        "G423"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G420",
+        "G423",
+        "G424"
+      ],
+      "final_answer": "No matching clip is expected. Reason: No global entity appears in both camera G420 and G423; queried cameras are not present in any entity's camera list..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=841 | 80.1-89.96666666666667; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=317 | 233.13333333333333-234.06666666666666; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=320 | 234.8-254.9",
+      "error": null,
+      "elapsed_s": 3.8,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": false,
+      "metrics": {
+        "expected_cameras": [
+          "G420",
+          "G423"
+        ],
+        "found_cameras": [
+          "G328",
+          "G420",
+          "G423",
+          "G424"
+        ],
+        "intersection": [
+          "G420",
+          "G423"
+        ],
+        "recall": 1.0,
+        "precision": 0.5,
+        "iou": 0.5
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [4:26-4:31]"
+    },
+    {
+      "idx": 7,
+      "category": "cross_camera",
+      "question": "Did a person with black coat appear in camera G420 and then appear again in camera G423?",
+      "recall_challenge": "Same person (11-20-P19) first in G420 @ 4:09, then G423 @ 4:24. Appearance: black coat, tan trousers, no bag, short dark",
+      "expected_answer": "yes",
+      "expected_time": "4:24-4:29",
+      "expected_cameras": [
+        "G420",
+        "G423"
+      ],
+      "answer_cameras": [
+        "G339",
+        "G420",
+        "G423",
+        "G424"
+      ],
+      "final_answer": "No matching clip is expected. Reason: No global entity appears in both camera G420 and G423; queried cameras are not present in any entity's camera list..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=841 | 80.1-89.96666666666667; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=596 | 150.933-153.533; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=616 | 166.733-167.3",
+      "error": null,
+      "elapsed_s": 3.2,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": false,
+      "metrics": {
+        "expected_cameras": [
+          "G420",
+          "G423"
+        ],
+        "found_cameras": [
+          "G339",
+          "G420",
+          "G423",
+          "G424"
+        ],
+        "intersection": [
+          "G420",
+          "G423"
+        ],
+        "recall": 1.0,
+        "precision": 0.5,
+        "iou": 0.5
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [4:24-4:29]"
+    },
+    {
+      "idx": 8,
+      "category": "cross_camera",
+      "question": "Did a person with red top appear in camera G420 and then appear again in camera G638?",
+      "recall_challenge": "Same person (16-35-P3) first in G420 @ 1:16, then G638 @ 1:51. Appearance: red top, dark trousers, no bag, short hair",
+      "expected_answer": "yes",
+      "expected_time": "1:51-2:15",
+      "expected_cameras": [
+        "G420",
+        "G638"
+      ],
+      "answer_cameras": [
+        "G339",
+        "G420",
+        "G421",
+        "G424",
+        "G638"
+      ],
+      "final_answer": "No matching clip is expected. Reason: No global entity appears in both camera G420 and G638; queried cameras are not present in any entity's camera list..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G421.r13 | event_id=780 | 104.46666666666667-299.96666666666664; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=841 | 80.1-89.96666666666667; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=485 | 53.433-56.033",
+      "error": null,
+      "elapsed_s": 3.6,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": false,
+      "metrics": {
+        "expected_cameras": [
+          "G420",
+          "G638"
+        ],
+        "found_cameras": [
+          "G339",
+          "G420",
+          "G421",
+          "G424",
+          "G638"
+        ],
+        "intersection": [
+          "G420",
+          "G638"
+        ],
+        "recall": 1.0,
+        "precision": 0.4,
+        "iou": 0.4
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [1:51-2:15]"
+    },
+    {
+      "idx": 9,
+      "category": "cross_camera",
+      "question": "Did a person with light brown top appear in camera G328 and then appear again in camera G326?",
+      "recall_challenge": "Same person (16-35-P9) first in G328 @ 2:14, then G326 @ 3:28. Appearance: light brown top, dark trousers, light-coloure",
+      "expected_answer": "yes",
+      "expected_time": "3:28-3:32",
+      "expected_cameras": [
+        "G326",
+        "G328"
+      ],
+      "answer_cameras": [
+        "G326",
+        "G328"
+      ],
+      "final_answer": "No matching clip is expected. Reason: No global entity appears in both G328 and G326; G326 is not present in any entity's camera list..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=317 | 233.13333333333333-234.06666666666666; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=320 | 234.8-254.9; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=321 | 245.533-248.783",
+      "error": null,
+      "elapsed_s": 5.7,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": false,
+      "metrics": {
+        "expected_cameras": [
+          "G326",
+          "G328"
+        ],
+        "found_cameras": [
+          "G326",
+          "G328"
+        ],
+        "intersection": [
+          "G326",
+          "G328"
+        ],
+        "recall": 1.0,
+        "precision": 1.0,
+        "iou": 1.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [3:28-3:32]"
+    },
+    {
+      "idx": 10,
+      "category": "cross_camera",
+      "question": "Did a person with black hoodie appear in camera G420 and then appear again in camera G423?",
+      "recall_challenge": "Same person (11-20-P17) first in G420 @ 3:45, then G423 @ 4:04. Appearance: black hoodie, blue jeans, no bag, black base",
+      "expected_answer": "yes",
+      "expected_time": "4:04-4:11",
+      "expected_cameras": [
+        "G420",
+        "G423"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G420",
+        "G423",
+        "G424"
+      ],
+      "final_answer": "No matching clip is expected. Reason: No global entity appears in both camera G420 and G423; queried cameras are not present in any entity's camera list..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=841 | 80.1-89.96666666666667; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=317 | 233.13333333333333-234.06666666666666; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=320 | 234.8-254.9",
+      "error": null,
+      "elapsed_s": 5.0,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": false,
+      "metrics": {
+        "expected_cameras": [
+          "G420",
+          "G423"
+        ],
+        "found_cameras": [
+          "G328",
+          "G420",
+          "G423",
+          "G424"
+        ],
+        "intersection": [
+          "G420",
+          "G423"
+        ],
+        "recall": 1.0,
+        "precision": 0.5,
+        "iou": 0.5
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [4:04-4:11]"
+    },
+    {
+      "idx": 11,
+      "category": "cross_camera",
+      "question": "Did a person with light brown top appear in camera G420 and then appear again in camera G339?",
+      "recall_challenge": "Same person (16-35-P9) first in G420 @ 0:55, then G339 @ 2:51. Appearance: light brown top, dark trousers, light-coloure",
+      "expected_answer": "yes",
+      "expected_time": "2:51-3:08",
+      "expected_cameras": [
+        "G339",
+        "G420"
+      ],
+      "answer_cameras": [
+        "G339",
+        "G420",
+        "G421"
+      ],
+      "final_answer": "No matching clip is expected. Reason: No global entity appears in both G420 and G339; G420 is not present in any entity's camera list..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G421.r13 | event_id=780 | 104.46666666666667-299.96666666666664; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=485 | 53.433-56.033; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=486 | 66.883-71.483",
+      "error": null,
+      "elapsed_s": 6.0,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": false,
+      "metrics": {
+        "expected_cameras": [
+          "G339",
+          "G420"
+        ],
+        "found_cameras": [
+          "G339",
+          "G420",
+          "G421"
+        ],
+        "intersection": [
+          "G339",
+          "G420"
+        ],
+        "recall": 1.0,
+        "precision": 0.6667,
+        "iou": 0.6667
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [2:51-3:08]"
+    },
+    {
+      "idx": 12,
+      "category": "cross_camera",
+      "question": "Did a person with black leather jacket appear in camera G329 and then appear again in camera G326?",
+      "recall_challenge": "Same person (16-20-P3) first in G329 @ 0:14, then G326 @ 0:20. Appearance: black leather jacket, black trousers, light s",
+      "expected_answer": "yes",
+      "expected_time": "0:20-0:25",
+      "expected_cameras": [
+        "G326",
+        "G329"
+      ],
+      "answer_cameras": [
+        "G326",
+        "G328",
+        "G329"
+      ],
+      "final_answer": "No matching clip is expected. Reason: No global entity appears in both camera G329 and camera G326; G326 is not present in any entity's camera list..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=317 | 233.13333333333333-234.06666666666666; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=320 | 234.8-254.9; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=321 | 245.533-248.783",
+      "error": null,
+      "elapsed_s": 6.2,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": false,
+      "metrics": {
+        "expected_cameras": [
+          "G326",
+          "G329"
+        ],
+        "found_cameras": [
+          "G326",
+          "G328",
+          "G329"
+        ],
+        "intersection": [
+          "G326",
+          "G329"
+        ],
+        "recall": 1.0,
+        "precision": 0.6667,
+        "iou": 0.6667
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [0:20-0:25]"
+    },
+    {
+      "idx": 13,
+      "category": "cross_camera",
+      "question": "Did a person with grey jacket appear in camera G419 and then appear again in camera G330?",
+      "recall_challenge": "Same person (11-20-P12) first in G419 @ 2:40, then G330 @ 3:26. Appearance: grey jacket, blue jeans, no bag, black beani",
+      "expected_answer": "yes",
+      "expected_time": "3:26-5:00",
+      "expected_cameras": [
+        "G330",
+        "G419"
+      ],
+      "answer_cameras": [
+        "G330",
+        "G339",
+        "G419"
+      ],
+      "final_answer": "No matching clip is expected. Reason: No global entity appears in both camera G419 and G330; queried cameras are not present in any entity's camera list..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=718 | 266.7-277.6; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=720 | 278.6-279.06666666666666; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=723 | 279.93333333333334-280.5",
+      "error": null,
+      "elapsed_s": 4.9,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": false,
+      "metrics": {
+        "expected_cameras": [
+          "G330",
+          "G419"
+        ],
+        "found_cameras": [
+          "G330",
+          "G339",
+          "G419"
+        ],
+        "intersection": [
+          "G330",
+          "G419"
+        ],
+        "recall": 1.0,
+        "precision": 0.6667,
+        "iou": 0.6667
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [3:26-5:00]"
+    },
+    {
+      "idx": 14,
+      "category": "cross_camera",
+      "question": "Did a person with grey jacket appear in camera G419 and then appear again in camera G423?",
+      "recall_challenge": "Same person (11-20-P12) first in G419 @ 2:40, then G423 @ 3:11. Appearance: grey jacket, blue jeans, no bag, black beani",
+      "expected_answer": "yes",
+      "expected_time": "3:11-3:18",
+      "expected_cameras": [
+        "G419",
+        "G423"
+      ],
+      "answer_cameras": [
+        "G339",
+        "G419",
+        "G423",
+        "G424"
+      ],
+      "final_answer": "No matching clip is expected. Reason: No global entity appears in both camera G419 and G423; the queried cameras are not present in any entity's camera list..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=841 | 80.1-89.96666666666667; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=718 | 266.7-277.6; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=720 | 278.6-279.06666666666666",
+      "error": null,
+      "elapsed_s": 3.8,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": false,
+      "metrics": {
+        "expected_cameras": [
+          "G419",
+          "G423"
+        ],
+        "found_cameras": [
+          "G339",
+          "G419",
+          "G423",
+          "G424"
+        ],
+        "intersection": [
+          "G419",
+          "G423"
+        ],
+        "recall": 1.0,
+        "precision": 0.5,
+        "iou": 0.5
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [3:11-3:18]"
+    },
+    {
+      "idx": 15,
+      "category": "cross_camera",
+      "question": "Did a person with black jacket appear in camera G420 and then appear again in camera G423?",
+      "recall_challenge": "Same person (11-20-P18) first in G420 @ 3:45, then G423 @ 4:05. Appearance: black jacket, black trousers, no bag, dark h",
+      "expected_answer": "yes",
+      "expected_time": "4:05-4:12",
+      "expected_cameras": [
+        "G420",
+        "G423"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G420",
+        "G423",
+        "G424"
+      ],
+      "final_answer": "No matching clip is expected. Reason: No global entity appears in both camera G420 and G423; queried cameras are not present in any entity's camera list..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=841 | 80.1-89.96666666666667; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=317 | 233.13333333333333-234.06666666666666; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=320 | 234.8-254.9",
+      "error": null,
+      "elapsed_s": 3.3,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": false,
+      "metrics": {
+        "expected_cameras": [
+          "G420",
+          "G423"
+        ],
+        "found_cameras": [
+          "G328",
+          "G420",
+          "G423",
+          "G424"
+        ],
+        "intersection": [
+          "G420",
+          "G423"
+        ],
+        "recall": 1.0,
+        "precision": 0.5,
+        "iou": 0.5
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [4:05-4:12]"
+    },
+    {
+      "idx": 16,
+      "category": "cross_camera",
+      "question": "Did a person with black coat with fur-trimmed hood appear in camera G329 and then appear again in camera G328?",
+      "recall_challenge": "Same person (13-50-P4) first in G329 @ 3:08, then G328 @ 3:18. Appearance: black coat with fur-trimmed hood, dark trouse",
+      "expected_answer": "yes",
+      "expected_time": "3:18-4:28",
+      "expected_cameras": [
+        "G328",
+        "G329"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G329",
+        "G339",
+        "G421",
+        "G506"
+      ],
+      "final_answer": "Likely yes. The queried entity appears across multiple cameras. | Cameras: G506, G339, G329, G328, G421 | Times: G506 131.26666666666668-157.6; G339 150.8-153.55; G329 188.233-196.7; G328 279.2-283.23333333333335; G421 284.15-293.533 | Summary: Entity person_global_4 appears in both G329 and G328, matching the queried cameras, but lacks explicit description of 'black coat with fur-trimmed hood'..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=317 | 233.13333333333333-2",
+      "error": null,
+      "elapsed_s": 4.0,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G328",
+          "G329"
+        ],
+        "found_cameras": [
+          "G328",
+          "G329",
+          "G339",
+          "G421",
+          "G506"
+        ],
+        "intersection": [
+          "G328",
+          "G329"
+        ],
+        "recall": 1.0,
+        "precision": 0.4,
+        "iou": 0.4
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [3:18-4:28]"
+    },
+    {
+      "idx": 17,
+      "category": "cross_camera",
+      "question": "Did a person with white shirt appear in camera G328 and then appear again in camera G424?",
+      "recall_challenge": "Same person (13-50-P5) first in G328 @ 3:24, then G424 @ 3:25. Appearance: white shirt, black trousers, black bag, short",
+      "expected_answer": "yes",
+      "expected_time": "3:25-4:52",
+      "expected_cameras": [
+        "G328",
+        "G424"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G339",
+        "G424"
+      ],
+      "final_answer": "Likely yes. The queried entity appears across multiple cameras. | Cameras: G424, G328, G339 | Times: G424 80.1-89.96666666666667; G328 233.13333333333333-234.06666666666666; G339 266.7-277.6 | Summary: Entity person_global_1 appears in both G328 and G424 as part of a multi-camera track, satisfying the cross-camera appearance query; however, shirt color (white) is not mentioned in the evidence..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=317 | 233.13333333333333-234",
+      "error": null,
+      "elapsed_s": 3.9,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G328",
+          "G424"
+        ],
+        "found_cameras": [
+          "G328",
+          "G339",
+          "G424"
+        ],
+        "intersection": [
+          "G328",
+          "G424"
+        ],
+        "recall": 1.0,
+        "precision": 0.6667,
+        "iou": 0.6667
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [3:25-4:52]"
+    },
+    {
+      "idx": 18,
+      "category": "cross_camera",
+      "question": "Did a person with light blue top appear in camera G423 and then appear again in camera G419?",
+      "recall_challenge": "Same person (16-35-P1) first in G423 @ 3:40, then G419 @ 4:01. Appearance: light blue top, dark trousers, short hair, no",
+      "expected_answer": "yes",
+      "expected_time": "4:01-4:10",
+      "expected_cameras": [
+        "G419",
+        "G423"
+      ],
+      "answer_cameras": [
+        "G339",
+        "G419",
+        "G421",
+        "G423"
+      ],
+      "final_answer": "No matching clip is expected. Reason: No global entity appears in both camera G423 and G419; queried cameras are not present in any entity's camera list..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G421.r13 | event_id=780 | 104.46666666666667-299.96666666666664; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=485 | 53.433-56.033; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=486 | 66.883-71.483",
+      "error": null,
+      "elapsed_s": 3.2,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": false,
+      "metrics": {
+        "expected_cameras": [
+          "G419",
+          "G423"
+        ],
+        "found_cameras": [
+          "G339",
+          "G419",
+          "G421",
+          "G423"
+        ],
+        "intersection": [
+          "G419",
+          "G423"
+        ],
+        "recall": 1.0,
+        "precision": 0.5,
+        "iou": 0.5
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [4:01-4:10]"
+    },
+    {
+      "idx": 19,
+      "category": "cross_camera",
+      "question": "Did a person with red top appear in camera G423 and then appear again in camera G336?",
+      "recall_challenge": "Same person (16-35-P3) first in G423 @ 1:08, then G336 @ 2:19. Appearance: red top, dark trousers, no bag, short hair",
+      "expected_answer": "yes",
+      "expected_time": "2:19-4:27",
+      "expected_cameras": [
+        "G336",
+        "G423"
+      ],
+      "answer_cameras": [
+        "G336",
+        "G339",
+        "G421",
+        "G423"
+      ],
+      "final_answer": "No matching clip is expected. Reason: No global entity appears in both camera G423 and camera G336; the queried cameras are not present in any entity's camera list..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G421.r13 | event_id=780 | 104.46666666666667-299.96666666666664; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=485 | 53.433-56.033; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=486 | 66.883-71.483",
+      "error": null,
+      "elapsed_s": 3.2,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": false,
+      "metrics": {
+        "expected_cameras": [
+          "G336",
+          "G423"
+        ],
+        "found_cameras": [
+          "G336",
+          "G339",
+          "G421",
+          "G423"
+        ],
+        "intersection": [
+          "G336",
+          "G423"
+        ],
+        "recall": 1.0,
+        "precision": 0.5,
+        "iou": 0.5
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [2:19-4:27]"
+    },
+    {
+      "idx": 20,
+      "category": "existence",
+      "question": "Is there a person with black jacket visible in camera G420?",
+      "recall_challenge": "black jacket, dark grey trousers, no bag, bald",
+      "expected_answer": "yes",
+      "expected_time": "2:42-2:56",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G328",
+        "G424"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [sql] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=841 | 80.1-89.96666666666667; [sql] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=317 | 233.13333333333333-234.06666666666666; [sql] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=320 | 234.8-254.9",
+      "error": null,
+      "elapsed_s": 3.8,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G328",
+          "G424"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [2:42-2:56]"
+    },
+    {
+      "idx": 21,
+      "category": "existence",
+      "question": "Is there a person with beige jacket visible in camera G328?",
+      "recall_challenge": "beige jacket, dark trousers, dark shoes, black sling bag (worn over right shoulder, white pattern/logo), short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "2:02-3:36",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G328"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [mixed] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=317 | 233.13333333333333-234.06666666666666; [mixed] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=320 | 234.8-254.9; [mixed] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=321 | 245.533-248.783",
+      "error": null,
+      "elapsed_s": 7.4,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G328"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [2:02-3:36]"
+    },
+    {
+      "idx": 22,
+      "category": "existence",
+      "question": "Is there a person with red top visible in camera G419?",
+      "recall_challenge": "red top, dark trousers, no bag, short hair",
+      "expected_answer": "yes",
+      "expected_time": "1:20-1:28",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G328",
+        "G339",
+        "G424"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [mixed] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=625 | 175.93333333333334-182.13333333333333; [mixed] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=815 | 11.5-21.8; [mixed] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=250 | 168.76666666666668-182.36666666666667",
+      "error": null,
+      "elapsed_s": 4.1,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G328",
+          "G339",
+          "G424"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [1:20-1:28]"
+    },
+    {
+      "idx": 23,
+      "category": "existence",
+      "question": "Is there a person with brown jacket visible in camera G419?",
+      "recall_challenge": "brown jacket, dark trousers, long brown hair, carrying tan shoulder bag",
+      "expected_answer": "yes",
+      "expected_time": "0:49-0:58",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G339"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [mixed] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=718 | 266.7-277.6; [mixed] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=720 | 278.6-279.06666666666666; [mixed] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=723 | 279.93333333333334-280.5",
+      "error": null,
+      "elapsed_s": 9.2,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G339"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [0:49-0:58]"
+    },
+    {
+      "idx": 24,
+      "category": "existence",
+      "question": "Is there a person with dark jacket visible in camera G339?",
+      "recall_challenge": "dark jacket, dark trousers, no visible bag, short dark hair with beard",
+      "expected_answer": "yes",
+      "expected_time": "0:55-1:25",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G339"
+      ],
+      "final_answer": "Yes. The relevant clip is in 2018-03-11.13-50-01.13-55-01.school.G339.r13, around 0:00:53 - 0:00:56.\nSources: [mixed] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=720 | 278.6-279.06666666666666; [mixed] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=723 | 279.93333333333334-280.5; [mixed] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=718 | 266.7-277.6",
+      "error": null,
+      "elapsed_s": 8.0,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G339"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": true,
+      "time_detail": "found 00:00:53 in [0:55-1:25]"
+    },
+    {
+      "idx": 25,
+      "category": "existence",
+      "question": "Is there a person with grey jacket visible in camera G420?",
+      "recall_challenge": "grey jacket, dark trousers, shaved or bald head, no visible bag",
+      "expected_answer": "yes",
+      "expected_time": "0:50-0:58",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G339",
+        "G421",
+        "G424"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [mixed] 2018-03-11.13-50-01.13-55-01.school.G421.r13 | event_id=768 | 12.367-16.067; [mixed] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=492 | 53.767-64.933; [mixed] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=841 | 80.1-89.96666666666667",
+      "error": null,
+      "elapsed_s": 6.7,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G339",
+          "G421",
+          "G424"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [0:50-0:58]"
+    },
+    {
+      "idx": 26,
+      "category": "existence",
+      "question": "Is there a person with white top visible in camera G328?",
+      "recall_challenge": "white top, black pants,  black handbag, black hat, black scarf",
+      "expected_answer": "yes",
+      "expected_time": "0:54-1:30",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G328"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [sql] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=358 | 274.3666666666667-275.1; [sql] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=306 | 209.36666666666667-209.4; [sql] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=319 | 234.56666666666666-234.83333333333334",
+      "error": null,
+      "elapsed_s": 5.5,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G328"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [0:54-1:30]"
+    },
+    {
+      "idx": 27,
+      "category": "existence",
+      "question": "Is there a person with black coat visible in camera G329?",
+      "recall_challenge": "black coat, black trousers, no bag, short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "0:22-0:33",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G329"
+      ],
+      "final_answer": "Yes. The relevant clip is in 2018-03-11.13-50-01.13-55-01.admin.G329.r13, around 0:01:51 - 0:01:57.\nSources: [sql] 2018-03-11.13-50-01.13-55-01.admin.G329.r13 | event_id=4 | 111.267-116.567; [sql] 2018-03-11.13-50-01.13-55-01.admin.G329.r13 | event_id=5 | 117.067-122.767; [sql] 2018-03-11.13-50-01.13-55-01.admin.G329.r13 | event_id=8 | 186.933-197.8",
+      "error": null,
+      "elapsed_s": 6.7,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G329"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [0:22-0:33]"
+    },
+    {
+      "idx": 28,
+      "category": "existence",
+      "question": "Is there a person with light gray or white top visible in camera G328?",
+      "recall_challenge": "light gray or white top, black pants, no visible bag, short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "2:24-2:38",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G328",
+        "G329",
+        "G339"
+      ],
+      "final_answer": "Yes. The relevant clip is in 2018-03-11.13-50-01.13-55-01.school.G328.r13, around 0:04:39 - 0:04:43.\nSources: [sql] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=368 | 279.2-283.23333333333335; [sql] 2018-03-11.13-50-01.13-55-01.admin.G329.r13 | event_id=10 | 188.233-196.7; [sql] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=592 | 150.8-153.55",
+      "error": null,
+      "elapsed_s": 6.2,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G328",
+          "G329",
+          "G339"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [2:24-2:38]"
+    },
+    {
+      "idx": 29,
+      "category": "existence",
+      "question": "Is there a person with black zip jacket visible in camera G419?",
+      "recall_challenge": "black zip jacket, grey trousers, black shoes, short dark hair, no visible bag",
+      "expected_answer": "yes",
+      "expected_time": "1:07-2:12",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G339"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [sql] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=720 | 278.6-279.06666666666666; [sql] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=723 | 279.93333333333334-280.5; [sql] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=718 | 266.7-277.6",
+      "error": null,
+      "elapsed_s": 5.0,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G339"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [1:07-2:12]"
+    },
+    {
+      "idx": 30,
+      "category": "appearance",
+      "question": "Is there a person carrying no bag in camera G506?",
+      "recall_challenge": "khaki pants, black pants, no bag, white hat",
+      "expected_answer": "yes",
+      "expected_time": "3:44-4:40",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G328",
+        "G421",
+        "G506"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [mixed] 2018-03-11.13-50-01.13-55-01.bus.G506.r13 | event_id=27 | 131.26666666666668-157.6; [mixed] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=368 | 279.2-283.23333333333335; [mixed] 2018-03-11.13-50-01.13-55-01.school.G421.r13 | event_id=792 | 284.15-293.533",
+      "error": null,
+      "elapsed_s": 7.3,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G328",
+          "G421",
+          "G506"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [3:44-4:40]"
+    },
+    {
+      "idx": 31,
+      "category": "appearance",
+      "question": "Is there a person carrying no bag in camera G328?",
+      "recall_challenge": "dark top, light-colored pants, no bag",
+      "expected_answer": "yes",
+      "expected_time": "1:27-2:00",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G328"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [mixed] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=351 | 270.1666666666667-270.6; [mixed] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=355 | 272.7-272.7; [mixed] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=358 | 274.3666666666667-275.1",
+      "error": null,
+      "elapsed_s": 7.0,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G328"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [1:27-2:00]"
+    },
+    {
+      "idx": 32,
+      "category": "appearance",
+      "question": "Is there a person carrying no visible bag in camera G328?",
+      "recall_challenge": "black jacket, black pants, no visible bag, short hair",
+      "expected_answer": "yes",
+      "expected_time": "1:06-1:12",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G328"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [mixed] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=358 | 274.3666666666667-275.1; [mixed] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=351 | 270.1666666666667-270.6; [mixed] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=319 | 234.56666666666666-234.83333333333334",
+      "error": null,
+      "elapsed_s": 7.3,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G328"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [1:06-1:12]"
+    },
+    {
+      "idx": 33,
+      "category": "appearance",
+      "question": "Is there a person wearing light grey hoodie in camera G339?",
+      "recall_challenge": "light grey hoodie, black trousers, beige bag, short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "0:55-1:25",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G339",
+        "G421"
+      ],
+      "final_answer": "Yes. The relevant clip is in 2018-03-11.13-50-01.13-55-01.school.G339.r13, around 0:00:54 - 0:01:05.\nSources: [mixed] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=492 | 53.767-64.933; [mixed] 2018-03-11.13-50-01.13-55-01.school.G421.r13 | event_id=768 | 12.367-16.067; [mixed] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=592 | 150.8-153.55",
+      "error": null,
+      "elapsed_s": 5.7,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G339",
+          "G421"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": true,
+      "time_detail": "found 00:00:54 in [0:55-1:25]"
+    },
+    {
+      "idx": 34,
+      "category": "appearance",
+      "question": "Is there a person carrying no bag in camera G506?",
+      "recall_challenge": "black coat, dark jeans, no bag, short hair",
+      "expected_answer": "yes",
+      "expected_time": "3:44-4:40",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G328",
+        "G421",
+        "G506"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [mixed] 2018-03-11.13-50-01.13-55-01.bus.G506.r13 | event_id=27 | 131.26666666666668-157.6; [mixed] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=368 | 279.2-283.23333333333335; [mixed] 2018-03-11.13-50-01.13-55-01.school.G421.r13 | event_id=792 | 284.15-293.533",
+      "error": null,
+      "elapsed_s": 8.6,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G328",
+          "G421",
+          "G506"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [3:44-4:40]"
+    },
+    {
+      "idx": 35,
+      "category": "appearance",
+      "question": "Is there a person wearing black jacket in camera G330?",
+      "recall_challenge": "black jacket, tan trousers, tan backpack, short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "4:35-5:00",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G339"
+      ],
+      "final_answer": "Yes. The relevant clip is in 2018-03-11.13-50-01.13-55-01.school.G339.r13, around 0:04:27 - 0:04:38.\nSources: [sql] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=718 | 266.7-277.6; [sql] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=720 | 278.6-279.06666666666666; [sql] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=723 | 279.93333333333334-280.5",
+      "error": null,
+      "elapsed_s": 7.4,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G339"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": true,
+      "time_detail": "found 00:04:27 in [4:35-5:00]"
+    },
+    {
+      "idx": 36,
+      "category": "appearance",
+      "question": "Is there a person wearing black coat over red Sweater in camera G330?",
+      "recall_challenge": "black coat over red Sweater, black trousers, black shoulder bag, dark hair",
+      "expected_answer": "yes",
+      "expected_time": "4:18-5:00",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G339"
+      ],
+      "final_answer": "Yes. The relevant clip is in 2018-03-11.13-50-01.13-55-01.school.G339.r13, around 0:02:31 - 0:02:38.\nSources: [mixed] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=718 | 266.7-277.6; [mixed] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=720 | 278.6-279.06666666666666; [mixed] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=723 | 279.93333333333334-280.5",
+      "error": null,
+      "elapsed_s": 6.0,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G339"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [4:18-5:00]"
+    },
+    {
+      "idx": 37,
+      "category": "appearance",
+      "question": "Is there a person wearing red jacket in camera G328?",
+      "recall_challenge": "red jacket, dark trousers, no clear bag",
+      "expected_answer": "yes",
+      "expected_time": "2:22-3:24",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G328"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [sql] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=317 | 233.13333333333333-234.06666666666666; [sql] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=320 | 234.8-254.9; [sql] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=321 | 245.533-248.783",
+      "error": null,
+      "elapsed_s": 6.0,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G328"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [2:22-3:24]"
+    },
+    {
+      "idx": 38,
+      "category": "appearance",
+      "question": "Is there a person carrying no bag in camera G330?",
+      "recall_challenge": "black jacket, black trousers, no bag, dark hair and beard",
+      "expected_answer": "yes",
+      "expected_time": "4:20-5:00",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G339",
+        "G421"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [mixed] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=729 | 296.567-299.967; [mixed] 2018-03-11.13-50-01.13-55-01.school.G421.r13 | event_id=781 | 169.117-173.267; [mixed] 2018-03-11.13-50-01.13-55-01.school.G421.r13 | event_id=782 | 217.417-219.7",
+      "error": null,
+      "elapsed_s": 8.3,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G339",
+          "G421"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [4:20-5:00]"
+    },
+    {
+      "idx": 39,
+      "category": "appearance",
+      "question": "Is there a person wearing black coat in camera G329?",
+      "recall_challenge": "black coat, blue jeans, dark flat cap, white patterned scarf, carrying large black bag",
+      "expected_answer": "yes",
+      "expected_time": "0:10-0:20",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G328"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [sql] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=317 | 233.13333333333333-234.06666666666666; [sql] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=320 | 234.8-254.9; [sql] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=321 | 245.533-248.783",
+      "error": null,
+      "elapsed_s": 4.7,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G328"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [0:10-0:20]"
+    },
+    {
+      "idx": 40,
+      "category": "event",
+      "question": "Did a person exit from the left side of camera G420?",
+      "recall_challenge": "Person leaving frame left; black coat, dark trousers, long dark hair, carrying red or orange shoulder bag",
+      "expected_answer": "yes",
+      "expected_time": "4:12-4:22",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G421",
+        "G424"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [mixed] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=812 | 2.7-2.7; [mixed] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=866 | 94.63333333333334-94.63333333333334; [mixed] 2018-03-11.13-50-01.13-55-01.school.G421.r13 | event_id=769 | 45.166666666666664-45.3",
+      "error": null,
+      "elapsed_s": 7.3,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G421",
+          "G424"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [4:12-4:22]"
+    },
+    {
+      "idx": 41,
+      "category": "event",
+      "question": "Did a person exit from the up side of camera G339?",
+      "recall_challenge": "Person leaving frame up; light grey coat with black hat, dark trousers, no visible bag, short dark hair, male",
+      "expected_answer": "yes",
+      "expected_time": "0:55-1:25",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G339"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [mixed] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=606 | 158.33333333333334-158.33333333333334; [mixed] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=600 | 151.133-152.0; [mixed] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=623 | 173.16666666666666-173.9",
+      "error": null,
+      "elapsed_s": 8.6,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G339"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [0:55-1:25]"
+    },
+    {
+      "idx": 42,
+      "category": "event",
+      "question": "Did a person exit from the left side of camera G506?",
+      "recall_challenge": "Person leaving frame left; bright blue jacket, grey trousers, light hood or cap, blue backpack",
+      "expected_answer": "yes",
+      "expected_time": "2:56-3:18",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G328",
+        "G329",
+        "G506"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [mixed] 2018-03-11.13-50-01.13-55-01.bus.G506.r13 | event_id=27 | 131.26666666666668-157.6; [mixed] 2018-03-11.13-50-01.13-55-01.admin.G329.r13 | event_id=10 | 188.233-196.7; [mixed] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=368 | 279.2-283.23333333333335",
+      "error": null,
+      "elapsed_s": 7.9,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G328",
+          "G329",
+          "G506"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [2:56-3:18]"
+    },
+    {
+      "idx": 43,
+      "category": "event",
+      "question": "Did a person exit from the bottom-left side of camera G420?",
+      "recall_challenge": "Person leaving frame bottom-left; dark jacket, dark pants, no visible bag, beige/yellow hat",
+      "expected_answer": "yes",
+      "expected_time": "0:00-0:20",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G421",
+        "G424"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [mixed] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=812 | 2.7-2.7; [mixed] 2018-03-11.13-50-01.13-55-01.school.G421.r13 | event_id=769 | 45.166666666666664-45.3; [mixed] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=866 | 94.63333333333334-94.63333333333334",
+      "error": null,
+      "elapsed_s": 7.1,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G421",
+          "G424"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [0:00-0:20]"
+    },
+    {
+      "idx": 44,
+      "category": "event",
+      "question": "Did a person exit from the left side of camera G420?",
+      "recall_challenge": "Person leaving frame left; dark jacket, dark trousers, blue cap or hood, no visible bag",
+      "expected_answer": "yes",
+      "expected_time": "2:19-2:38",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G421",
+        "G424"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [mixed] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=812 | 2.7-2.7; [mixed] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=866 | 94.63333333333334-94.63333333333334; [mixed] 2018-03-11.13-50-01.13-55-01.school.G421.r13 | event_id=769 | 45.166666666666664-45.3",
+      "error": null,
+      "elapsed_s": 7.5,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G421",
+          "G424"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [2:19-2:38]"
+    },
+    {
+      "idx": 45,
+      "category": "event",
+      "question": "Did a person exit from the right side of camera G419?",
+      "recall_challenge": "Person leaving frame right; grey jacket, blue jeans, no bag, black beanie, beard",
+      "expected_answer": "yes",
+      "expected_time": "2:40-2:49",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G339",
+        "G421"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [sql] 2018-03-11.13-50-01.13-55-01.school.G421.r13 | event_id=786 | 234.76666666666668-237.53333333333333; [sql] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=717 | 265.5-280.5; [sql] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=470 | 37.13333333333333-37.13333333333333",
+      "error": null,
+      "elapsed_s": 7.1,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G339",
+          "G421"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [2:40-2:49]"
+    },
+    {
+      "idx": 46,
+      "category": "event",
+      "question": "Did a person exit from the left side of camera G420?",
+      "recall_challenge": "Person leaving frame left; light blue jacket, blue jeans, black cap, no visible bag",
+      "expected_answer": "yes",
+      "expected_time": "0:00-0:24",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G421",
+        "G424"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [mixed] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=812 | 2.7-2.7; [mixed] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=866 | 94.63333333333334-94.63333333333334; [mixed] 2018-03-11.13-50-01.13-55-01.school.G421.r13 | event_id=769 | 45.166666666666664-45.3",
+      "error": null,
+      "elapsed_s": 8.5,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G421",
+          "G424"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [0:00-0:24]"
+    },
+    {
+      "idx": 47,
+      "category": "event",
+      "question": "Did a person exit from the right side of camera G328?",
+      "recall_challenge": "Person leaving frame right; dark coat, black pants, no bag",
+      "expected_answer": "yes",
+      "expected_time": "0:00-3:11",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G328"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [sql] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=358 | 274.3666666666667-275.1; [sql] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=306 | 209.36666666666667-209.4; [sql] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=319 | 234.56666666666666-234.83333333333334",
+      "error": null,
+      "elapsed_s": 8.1,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G328"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [0:00-3:11]"
+    },
+    {
+      "idx": 48,
+      "category": "event",
+      "question": "Did a person exit from the top side of camera G506?",
+      "recall_challenge": "Person leaving frame top; black coat, dark jeans, no bag, short hair",
+      "expected_answer": "yes",
+      "expected_time": "3:44-4:40",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G328",
+        "G329",
+        "G506"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [mixed] 2018-03-11.13-50-01.13-55-01.bus.G506.r13 | event_id=27 | 131.26666666666668-157.6; [mixed] 2018-03-11.13-50-01.13-55-01.admin.G329.r13 | event_id=10 | 188.233-196.7; [mixed] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=368 | 279.2-283.23333333333335",
+      "error": null,
+      "elapsed_s": 7.2,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G328",
+          "G329",
+          "G506"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [3:44-4:40]"
+    },
+    {
+      "idx": 49,
+      "category": "event",
+      "question": "Did a person exit from the left side of camera G423?",
+      "recall_challenge": "Person leaving frame left; black coat, black trousers, no bag, short dark hair and beard with headphones",
+      "expected_answer": "yes",
+      "expected_time": "4:03-4:24",
+      "expected_cameras": [],
+      "answer_cameras": [
+        "G424"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [sql] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=815 | 11.5-21.8; [mixed] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=812 | 2.7-2.7; [mixed] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=866 | 94.63333333333334-94.63333333333334",
+      "error": null,
+      "elapsed_s": 7.7,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": false,
+      "expect_multi_camera": false,
+      "ge_rows_count": 0,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [],
+        "found_cameras": [
+          "G424"
+        ],
+        "intersection": [],
+        "recall": 0.0,
+        "precision": 0.0,
+        "iou": 0.0
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [4:03-4:24]"
+    },
+    {
+      "idx": 50,
+      "category": "negative",
+      "question": "Did a person with dark blue or black top from camera G508 also appear in camera G420?",
+      "recall_challenge": "NOT a match. 11-55-P12 (dark blue or black top, khaki pants, black backpack, short hair) in G508 ≠ 11-55-P48 (dark jacke",
+      "expected_answer": "no",
+      "expected_time": "N/A",
+      "expected_cameras": [
+        "G420",
+        "G508"
+      ],
+      "answer_cameras": [
+        "G339",
+        "G420",
+        "G421",
+        "G508"
+      ],
+      "final_answer": "No matching clip is expected. Reason: No global entity appears in both G508 and G420; G420 is not present in any entity's camera list..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G421.r13 | event_id=780 | 104.46666666666667-299.96666666666664; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=485 | 53.433-56.033; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=486 | 66.883-71.483",
+      "error": null,
+      "elapsed_s": 5.1,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G420",
+          "G508"
+        ],
+        "found_cameras": [
+          "G339",
+          "G420",
+          "G421",
+          "G508"
+        ],
+        "intersection": [
+          "G420",
+          "G508"
+        ],
+        "recall": 1.0,
+        "precision": 0.5,
+        "iou": 0.5
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": true,
+      "time_detail": "cannot parse expected_time=N/A → auto-pass"
+    },
+    {
+      "idx": 51,
+      "category": "negative",
+      "question": "Did a person with dark hoodie from camera G421 also appear in camera G508?",
+      "recall_challenge": "NOT a match. 13-50-P21 (dark hoodie, white t-shirt, dark trousers, white cap, white shoes) in G421 ≠ 13-50-P33 (blue and",
+      "expected_answer": "no",
+      "expected_time": "N/A",
+      "expected_cameras": [
+        "G421",
+        "G508"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G329",
+        "G339",
+        "G421",
+        "G424",
+        "G5",
+        "G508"
+      ],
+      "final_answer": "Likely yes. The queried entity appears across multiple cameras. | Cameras: G508, G421, G339, G329 | Times: G508 29.3-32.3; G421 54.667-63.267; G339 66.933-71.533; G329 111.267-116.567 | Summary: Entity person_global_10 appears in G421 (with 'dark long-sle' likely meaning dark long-sleeve/hoodie) and G339, but not in G508; however, person_global_5 and person_global_6 appear in both G421 and G5.\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=841 | 80.1-89.96666666666667;",
+      "error": null,
+      "elapsed_s": 5.9,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": false,
+      "metrics": {
+        "expected_cameras": [
+          "G421",
+          "G508"
+        ],
+        "found_cameras": [
+          "G328",
+          "G329",
+          "G339",
+          "G421",
+          "G424",
+          "G5",
+          "G508"
+        ],
+        "intersection": [
+          "G421",
+          "G508"
+        ],
+        "recall": 1.0,
+        "precision": 0.2857,
+        "iou": 0.2857
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": true,
+      "time_detail": "cannot parse expected_time=N/A → auto-pass"
+    },
+    {
+      "idx": 52,
+      "category": "negative",
+      "question": "Did a person with white coat from camera G336 also appear in camera G330?",
+      "recall_challenge": "NOT a match. 11-20-P10 (white coat, black trousers, white houlder bag,  hair tied back) in G336 ≠ 11-20-P21 (black jacke",
+      "expected_answer": "no",
+      "expected_time": "N/A",
+      "expected_cameras": [
+        "G330",
+        "G336"
+      ],
+      "answer_cameras": [
+        "G330",
+        "G336",
+        "G339"
+      ],
+      "final_answer": "No matching clip is expected. Reason: No global entity appears in both camera G336 and G330; the queried cameras are not present in any entity's camera list..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=616 | 166.733-167.3; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=596 | 150.933-153.533; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=597 | 164.383-166.633",
+      "error": null,
+      "elapsed_s": 4.1,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G330",
+          "G336"
+        ],
+        "found_cameras": [
+          "G330",
+          "G336",
+          "G339"
+        ],
+        "intersection": [
+          "G330",
+          "G336"
+        ],
+        "recall": 1.0,
+        "precision": 0.6667,
+        "iou": 0.6667
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": true,
+      "time_detail": "cannot parse expected_time=N/A → auto-pass"
+    },
+    {
+      "idx": 53,
+      "category": "negative",
+      "question": "Did a person with dark top from camera G299 also appear in camera G420?",
+      "recall_challenge": "NOT a match. 11-55-P26 (dark top, dark pants, no visible bag, short hair) in G299 ≠ 11-55-P46 (dark jacket, dark pants, ",
+      "expected_answer": "no",
+      "expected_time": "N/A",
+      "expected_cameras": [
+        "G299",
+        "G420"
+      ],
+      "answer_cameras": [
+        "G299",
+        "G339",
+        "G420",
+        "G421"
+      ],
+      "final_answer": "No matching clip is expected. Reason: No global entity appears in both camera G299 and G420; the queried cameras are not present in any entity's camera list..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G421.r13 | event_id=780 | 104.46666666666667-299.96666666666664; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=485 | 53.433-56.033; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=486 | 66.883-71.483",
+      "error": null,
+      "elapsed_s": 4.2,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G299",
+          "G420"
+        ],
+        "found_cameras": [
+          "G299",
+          "G339",
+          "G420",
+          "G421"
+        ],
+        "intersection": [
+          "G299",
+          "G420"
+        ],
+        "recall": 1.0,
+        "precision": 0.5,
+        "iou": 0.5
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": true,
+      "time_detail": "cannot parse expected_time=N/A → auto-pass"
+    },
+    {
+      "idx": 54,
+      "category": "negative",
+      "question": "Did a person with black coat from camera G329 also appear in camera G336?",
+      "recall_challenge": "NOT a match. 11-20-P4 (black coat, black trousers, no bag, short dark hair) in G329 ≠ 11-20-P8 (black jacket, black trou",
+      "expected_answer": "no",
+      "expected_time": "N/A",
+      "expected_cameras": [
+        "G329",
+        "G336"
+      ],
+      "answer_cameras": [
+        "G329",
+        "G336",
+        "G339"
+      ],
+      "final_answer": "No matching clip is expected. Reason: No global entity appears in both camera G329 and camera G336; G336 is not present in any entity's camera list..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=616 | 166.733-167.3; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=596 | 150.933-153.533; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=597 | 164.383-166.633",
+      "error": null,
+      "elapsed_s": 3.3,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G329",
+          "G336"
+        ],
+        "found_cameras": [
+          "G329",
+          "G336",
+          "G339"
+        ],
+        "intersection": [
+          "G329",
+          "G336"
+        ],
+        "recall": 1.0,
+        "precision": 0.6667,
+        "iou": 0.6667
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": true,
+      "time_detail": "cannot parse expected_time=N/A → auto-pass"
+    },
+    {
+      "idx": 55,
+      "category": "negative",
+      "question": "Did a person with black coat with fur-trimmed hood from camera G329 also appear in camera G421?",
+      "recall_challenge": "NOT a match. 13-50-P4 (black coat with fur-trimmed hood, dark trousers, black sneakers, long dark hair, no visible bag) ",
+      "expected_answer": "no",
+      "expected_time": "N/A",
+      "expected_cameras": [
+        "G329",
+        "G421"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G329",
+        "G339",
+        "G421",
+        "G506"
+      ],
+      "final_answer": "Likely yes. The queried entity appears across multiple cameras. | Cameras: G506, G339, G329, G328, G421 | Times: G506 131.26666666666668-157.6; G339 150.8-153.55; G329 188.233-196.7; G328 279.2-283.23333333333335; G421 284.15-293.533 | Summary: Entity person_global_4 and person_global_5 both appear in G329 and G421, satisfying the cross-camera requirement, but neither has a complete appearance description matching 'black coat with fur-trimme.\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school",
+      "error": null,
+      "elapsed_s": 5.5,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": false,
+      "metrics": {
+        "expected_cameras": [
+          "G329",
+          "G421"
+        ],
+        "found_cameras": [
+          "G328",
+          "G329",
+          "G339",
+          "G421",
+          "G506"
+        ],
+        "intersection": [
+          "G329",
+          "G421"
+        ],
+        "recall": 1.0,
+        "precision": 0.4,
+        "iou": 0.4
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": true,
+      "time_detail": "cannot parse expected_time=N/A → auto-pass"
+    },
+    {
+      "idx": 56,
+      "category": "negative",
+      "question": "Did a person with dark top from camera G299 also appear in camera G419?",
+      "recall_challenge": "NOT a match. 11-55-P26 (dark top, dark pants, no visible bag, short hair) in G299 ≠ 11-55-P42 (dark hoodie or jacket, da",
+      "expected_answer": "no",
+      "expected_time": "N/A",
+      "expected_cameras": [
+        "G299",
+        "G419"
+      ],
+      "answer_cameras": [
+        "G299",
+        "G339",
+        "G419",
+        "G421"
+      ],
+      "final_answer": "No matching clip is expected. Reason: No global entity appears in both camera G299 and G419; queried cameras are not present in any entity's camera list..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G421.r13 | event_id=780 | 104.46666666666667-299.96666666666664; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=485 | 53.433-56.033; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=486 | 66.883-71.483",
+      "error": null,
+      "elapsed_s": 5.5,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G299",
+          "G419"
+        ],
+        "found_cameras": [
+          "G299",
+          "G339",
+          "G419",
+          "G421"
+        ],
+        "intersection": [
+          "G299",
+          "G419"
+        ],
+        "recall": 1.0,
+        "precision": 0.5,
+        "iou": 0.5
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": true,
+      "time_detail": "cannot parse expected_time=N/A → auto-pass"
+    },
+    {
+      "idx": 57,
+      "category": "negative",
+      "question": "Did a person with olive green jacket from camera G329 also appear in camera G330?",
+      "recall_challenge": "NOT a match. 11-20-P3 (olive green jacket, black trousers, no bag, short dark hair) in G329 ≠ 11-20-P16 (black coat, bla",
+      "expected_answer": "no",
+      "expected_time": "N/A",
+      "expected_cameras": [
+        "G329",
+        "G330"
+      ],
+      "answer_cameras": [
+        "G329",
+        "G339"
+      ],
+      "final_answer": "Likely yes. The queried entity appears across multiple cameras. | Cameras: G329, G339 | Times: G329 119.633-121.733; G339 164.433-168.883 | Summary: Entity person_global_8 appears in both G329 and G339 with appearance 'green jacket', matching the queried olive green jacket; color description is approximate but consistent..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=718 | 266.7-277.6; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=720 | 278.6-279.0",
+      "error": null,
+      "elapsed_s": 7.6,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": false,
+      "metrics": {
+        "expected_cameras": [
+          "G329",
+          "G330"
+        ],
+        "found_cameras": [
+          "G329",
+          "G339"
+        ],
+        "intersection": [
+          "G329"
+        ],
+        "recall": 0.5,
+        "precision": 0.5,
+        "iou": 0.3333
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": true,
+      "time_detail": "cannot parse expected_time=N/A → auto-pass"
+    },
+    {
+      "idx": 58,
+      "category": "negative",
+      "question": "Did a person with dark blue or black top from camera G508 also appear in camera G328?",
+      "recall_challenge": "NOT a match. 11-55-P12 (dark blue or black top, khaki pants, black backpack, short hair) in G508 ≠ 11-55-P32 (light gray",
+      "expected_answer": "no",
+      "expected_time": "N/A",
+      "expected_cameras": [
+        "G328",
+        "G508"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G508"
+      ],
+      "final_answer": "No matching clip is expected. Reason: No global entity appears in both G508 and G328; entities from G508 (person_global_5, _6, _7) do not include G328, and entities in G328 (person_global_1, _3, _4) do not include G508..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=317 | 233.13333333333333-234.06666666666666; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=320 | 234.8-254.9; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=321 | 245.5",
+      "error": null,
+      "elapsed_s": 4.8,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G328",
+          "G508"
+        ],
+        "found_cameras": [
+          "G328",
+          "G508"
+        ],
+        "intersection": [
+          "G328",
+          "G508"
+        ],
+        "recall": 1.0,
+        "precision": 1.0,
+        "iou": 1.0
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": true,
+      "time_detail": "cannot parse expected_time=N/A → auto-pass"
+    },
+    {
+      "idx": 59,
+      "category": "negative",
+      "question": "Did a person with black jacket over yellow shirt from camera G508 also appear in camera G419?",
+      "recall_challenge": "NOT a match. 11-55-P17 (black jacket over yellow shirt, black pants, light tote bag, long hair) in G508 ≠ 11-55-P41 (bla",
+      "expected_answer": "no",
+      "expected_time": "N/A",
+      "expected_cameras": [
+        "G419",
+        "G508"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G419",
+        "G508"
+      ],
+      "final_answer": "No matching clip is expected. Reason: No global entity appears in both G508 and G419; G419 is not present in any entity's camera list..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=317 | 233.13333333333333-234.06666666666666; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=320 | 234.8-254.9; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=321 | 245.533-248.783",
+      "error": null,
+      "elapsed_s": 3.8,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "expect_multi_camera": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G419",
+          "G508"
+        ],
+        "found_cameras": [
+          "G328",
+          "G419",
+          "G508"
+        ],
+        "intersection": [
+          "G419",
+          "G508"
+        ],
+        "recall": 1.0,
+        "precision": 0.6667,
+        "iou": 0.6667
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": true,
+      "time_detail": "cannot parse expected_time=N/A → auto-pass"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "title": "融合层三路 RRF 测试",
+  "started_at": "2026-05-12T02:23:04.236287",
+  "elapsed_sec": 0.0,
+  "total_cases": 5,
+  "passed": 5,
+  "failed": 0,
+  "env_vars": {},
+  "suites": [
+    {
+      "name": "weighted_rrf_fuse",
+      "passed": 5,
+      "failed": 0,
+      "cases": [
+        {
+          "name": "普通模式（无 GE rows）→ 二路 RRF",
+          "passed": true,
+          "details": "weights={'sql': 0.5, 'hybrid': 0.5, 'global_entity': 0.0} fused=2",
+          "metrics": {
+            "sql": 0.5,
+            "hybrid": 0.5,
+            "global_entity": 0.0
+          }
+        },
+        {
+          "name": "多摄像头模式（GE rows）→ 三路 RRF GE=0.65 主导",
+          "passed": true,
+          "details": "weights={'sql': 0.15, 'hybrid': 0.2, 'global_entity': 0.65} fused=4",
+          "metrics": {
+            "sql": 0.15,
+            "hybrid": 0.2,
+            "global_entity": 0.65
+          }
+        },
+        {
+          "name": "GE rows 为空列表 → 退化为普通模式",
+          "passed": true,
+          "details": "weights={'sql': 0.5, 'hybrid': 0.5, 'global_entity': 0.0}",
+          "metrics": {
+            "sql": 0.5,
+            "hybrid": 0.5,
+            "global_entity": 0.0
+          }
+        },
+        {
+          "name": "所有分支为空 → 不报错返回空列表",
+          "passed": true,
+          "details": "fused=0",
+          "metrics": {}
+        },
+        {
+          "name": "_row_key 适配 global_entity_id",
+          "passed": true,
+          "details": "event_id:1 | ge:ge1:10.0 | ge:ge1:10.0",
+          "metrics": {}
+        }
+      ]
+    }
+  ]
+}

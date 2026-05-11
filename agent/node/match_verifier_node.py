@@ -413,6 +413,34 @@ def _heuristic_select_best_chunk(
     }
 
 
+def _has_attribute_signals(query: str) -> bool:
+    """Detect whether the query contains fine-grained attribute signals
+    (color, clothing, direction, absence) that event summaries may omit."""
+    low = (query or "").strip().lower()
+    color_words = {
+        "black", "white", "red", "blue", "green", "grey", "gray",
+        "brown", "beige", "khaki", "olive", "yellow", "orange", "pink",
+        "dark", "light", "bright",
+    }
+    clothing_words = {
+        "jacket", "coat", "hoodie", "shirt", "top", "trousers", "pants",
+        "bag", "hat", "hood", "scarf", "jeans", "sweater", "shoes",
+        "carrying", "wearing",
+    }
+    direction_words = {
+        "exit from", "enter from", "left side", "right side",
+        "up side", "down side", "top side", "bottom side",
+        "bottom-left", "bottom-right", "top-left", "top-right",
+    }
+    absence_words = {"no bag", "not carrying", "without", "no visible"}
+    tokens = set(re.findall(r"\b[a-z]+\b", low))
+    has_color = bool(tokens & color_words)
+    has_clothing = bool(tokens & clothing_words)
+    has_direction = any(d in low for d in direction_words)
+    has_absence = any(a in low for a in absence_words)
+    return has_color or has_clothing or has_direction or has_absence
+
+
 def _llm_select_best_chunk(
     llm: Any,
     query: str,
@@ -455,15 +483,45 @@ def _llm_select_best_chunk(
         "be from the same general scene but describes a different action, or "
         "involves different actors/objects. Thematic similarity without the "
         "specific queried action does NOT count as a match.",
-        "",
-        "CRITICAL: Be conservative. If the evidence only loosely resembles the "
-        "query or requires assumptions to connect, choose mismatch. A false "
-        "positive (saying a clip exists when it doesn't) is worse than a false "
-        "negative. Verify that the specific action described in the query "
-        "appears in the chosen chunk.",
+    ]
+
+    # P1/P2: Attribute-heavy query (color/clothing/direction/absence) → relaxed prompt
+    if _has_attribute_signals(query):
+        prompt_lines.extend([
+            "",
+            "ATTRIBUTE-AWARE GUIDANCE: The query asks about specific attributes "
+            "(color, clothing, spatial direction, or absence of an item). "
+            "Event summaries often omit these fine-grained attributes even when "
+            "the video contains them — the summary captures the general action, "
+            "not every visual detail.",
+            "",
+            "- If a candidate chunk matches the CORRECT CAMERA and describes the "
+            "same TYPE of entity/action (e.g., 'a person walks'), give at least "
+            "'partial' even if the exact color/clothing/direction is not mentioned.",
+            "- Camera match + entity type + action type is SUFFICIENT for partial.",
+            "- If the query mentions ABSENCE ('no bag', 'without', 'not carrying'), "
+            "the absence of that attribute in the summary does NOT disqualify "
+            "the match — event summaries rarely describe what is NOT present.",
+            "- Only choose 'mismatch' when the entity type clearly differs "
+            "(e.g., car vs person) or the action contradicts the query.",
+            "",
+            "Be practical, not perfectionist. Camera + entity match alone is "
+            "valuable evidence.",
+        ])
+    else:
+        prompt_lines.extend([
+            "",
+            "CRITICAL: Be conservative. If the evidence only loosely resembles the "
+            "query or requires assumptions to connect, choose mismatch. A false "
+            "positive (saying a clip exists when it doesn't) is worse than a false "
+            "negative. Verify that the specific action described in the query "
+            "appears in the chosen chunk.",
+        ])
+
+    prompt_lines.extend([
         "",
         "CANDIDATES:",
-    ]
+    ])
     prompt_lines.extend(candidate_lines)
     prompt_lines.extend(
         [
@@ -516,6 +574,236 @@ def _llm_select_best_chunk(
 
 
 # ---------------------------------------------------------------------------
+# Multi-camera verdict (v2.4)
+# ---------------------------------------------------------------------------
+
+
+def _detect_multi_camera_context(state: AgentState) -> bool:
+    """Check whether the current query is a multi-camera scenario."""
+    cr = state.get("classification_result")
+    if isinstance(cr, dict):
+        if cr.get("multi_camera"):
+            return True
+        signals = cr.get("signals")
+        if isinstance(signals, dict) and signals.get("multi_camera_cues"):
+            return True
+    return False
+
+
+def _collect_ge_rows(state: AgentState) -> list[dict[str, Any]]:
+    """Gather GE rows from fusion result or global_entity_result."""
+    # GE rows may be in rerank_result (post-fusion) or global_entity_result (pre-fusion).
+    ge_result = state.get("global_entity_result")
+    if isinstance(ge_result, list) and ge_result:
+        return ge_result
+    # Fallback: check rerank_result for rows with _source_type == "global_entity"
+    rerank = state.get("rerank_result")
+    if isinstance(rerank, list):
+        return [r for r in rerank if isinstance(r, dict) and r.get("_source_type") == "global_entity"]
+    return []
+
+
+def _group_by_global_entity(ge_rows: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
+    """Group GE rows by global_entity_id, keeping per-camera info."""
+    groups: dict[str, list[dict[str, Any]]] = {}
+    for row in ge_rows:
+        ge_id = str(row.get("global_entity_id") or "").strip()
+        if not ge_id:
+            continue
+        groups.setdefault(ge_id, []).append(row)
+    return groups
+
+
+def _multi_camera_llm_verdict(
+    llm: Any,
+    query: str,
+    ge_groups: dict[str, list[dict[str, Any]]],
+    config: RunnableConfig,
+) -> dict[str, Any] | None:
+    """LLM-based multi-camera verdict: does the cross-camera evidence support the query?"""
+    if llm is None or _llm_disabled() or not ge_groups:
+        return None
+
+    # Build a compact summary of the multi-camera evidence
+    entity_summaries: list[str] = []
+    for ge_id, events in ge_groups.items():
+        camera_set = sorted(set(str(e.get("camera_id") or e.get("video_id") or "").strip() for e in events))
+        if len(camera_set) < 2:
+            continue  # single-camera GE is not "multi-camera"
+        time_ranges: list[str] = []
+        for e in events[:10]:  # limit per GE
+            cam = str(e.get("camera_id") or e.get("video_id") or "").strip()
+            st = e.get("start_time")
+            et = e.get("end_time")
+            summary = (e.get("event_summary_en") or e.get("event_text_en") or "")[:120]
+            time_ranges.append(f"  {cam}: {st}-{et}  {summary}")
+        entity_summaries.append(
+            f"Entity {ge_id} appears in cameras: {', '.join(camera_set)}\n"
+            + "\n".join(time_ranges)
+        )
+
+    if not entity_summaries:
+        return None  # no multi-camera groups with >=2 cameras
+
+    prompt_lines = [
+        "You are a multi-camera event verifier. The user is asking about whether a person/object "
+        "appeared across multiple surveillance cameras.",
+        "",
+        f"User query: {query}",
+        "",
+        "Below is evidence from a cross-camera Global Entity retrieval. Each entity group shows "
+        "which cameras captured the same tracked person/object, with time ranges.",
+        "",
+        "Your task: decide whether the multi-camera evidence SUPPORTS the user's query.",
+        "",
+        "Decision guide for multi-camera:",
+        "- exact: Evidence from TWO OR MORE cameras clearly shows the queried person/object "
+        "with matching characteristics (color, type, action). The cameras and times are "
+        "consistent with the query intent. Synonym matching is acceptable. If the global "
+        "entity appears in the right set of cameras (matching the queried camera IDs), that "
+        "alone strongly supports 'exact'.",
+        "- partial: Entity appears in at least two of the queried cameras but some details "
+        "(color, exact action, time precision) are missing from the event summary. This is "
+        "still a positive verdict — the entity IS there across cameras.",
+        "- mismatch: The evidence does NOT contain any entity that appears in the queried "
+        "cameras, or only one camera appears (not truly cross-camera).",
+        "",
+        "CRITICAL RULES:",
+        "1. If a global entity appears in the same set of cameras the user asks about, "
+        "the answer MUST be 'exact' or 'partial' — NOT 'mismatch'. Missing appearance "
+        "descriptions do not invalidate the camera match.",
+        "2. Cross-camera tracking proves the same entity moved between cameras. That IS "
+        "the evidence the user is asking for. Do NOT require a perfect written description "
+        "of appearance — camera coverage alone is sufficient.",
+        "3. Only return 'mismatch' when NO entity appears in the queried cameras, or "
+        "the evidence clearly contradicts the query.",
+        "",
+        "EVIDENCE:",
+    ]
+    prompt_lines.extend(entity_summaries)
+    prompt_lines.extend(
+        [
+            "",
+            "Return JSON only:",
+            "{",
+            '  "decision": "exact" | "partial" | "mismatch",',
+            '  "confidence": <float 0.0-1.0>,',
+            '  "reason": "<one-line evidence-based, mention which cameras and why>",',
+            '  "best_global_entity_id": "<the entity id you picked>"',
+            "}",
+        ]
+    )
+    prompt = "\n".join(prompt_lines)
+
+    try:
+        model = llm.bind(max_tokens=250) if hasattr(llm, "bind") else llm
+        raw = model.invoke(
+            [
+                SystemMessage(content="You are a multi-camera video event verifier. Return JSON only."),
+                HumanMessage(content=prompt),
+            ],
+            config=config,
+        )
+        content = raw.content if hasattr(raw, "content") else str(raw)
+        data = _parse_json_object(str(content))
+        if not isinstance(data, dict):
+            return None
+        decision = str(data.get("decision") or "").strip().lower()
+        if decision not in _FAST_DECISIONS:
+            return None
+        try:
+            confidence = float(data.get("confidence", 0.0))
+        except Exception:
+            confidence = 0.0
+        return {
+            "decision": decision,
+            "confidence": max(0.0, min(1.0, confidence)),
+            "reason": str(data.get("reason") or "").strip()[:200],
+            "mode": "llm_multi_camera",
+            "best_global_entity_id": str(data.get("best_global_entity_id") or "").strip(),
+        }
+    except Exception:
+        return None
+
+
+def _multi_camera_heuristic_verdict(
+    query: str,
+    ge_groups: dict[str, list[dict[str, Any]]],
+) -> dict[str, Any]:
+    """Heuristic multi-camera verdict based on camera count and token coverage."""
+    query_terms = _query_terms(query)
+    best_ge_id = ""
+    best_camera_count = 0
+    best_coverage = 0.0
+    best_matched: list[str] = []
+
+    for ge_id, events in ge_groups.items():
+        camera_set = set(str(e.get("camera_id") or e.get("video_id") or "").strip() for e in events)
+        n_cameras = len(camera_set)
+        evidence = " ".join(
+            (e.get("event_summary_en") or e.get("event_text_en") or "") for e in events
+        ).lower()
+        matched = sorted(term for term in query_terms if term in evidence)
+        coverage = len(matched) / max(len(query_terms), 1)
+        # Prefer more cameras, then better coverage
+        if n_cameras > best_camera_count or (n_cameras == best_camera_count and coverage > best_coverage):
+            best_ge_id = ge_id
+            best_camera_count = n_cameras
+            best_coverage = coverage
+            best_matched = matched
+
+    if best_camera_count >= 2 and best_coverage >= 0.34:
+        decision = "exact" if best_coverage >= 0.58 else "partial"
+        confidence = min(0.95, 0.55 + best_coverage / 2)
+    elif best_camera_count >= 2:
+        # At least 2 cameras matched — give partial (not mismatch)
+        decision = "partial"
+        confidence = 0.55
+    else:
+        decision = "mismatch"
+        confidence = max(0.55, 1.0 - best_coverage)
+
+    return {
+        "decision": decision,
+        "confidence": confidence,
+        "reason": f"multi_camera heuristic: cameras={best_camera_count} coverage={best_coverage:.2f} matched={best_matched[:6]}",
+        "mode": "heuristic_multi_camera",
+        "best_global_entity_id": best_ge_id,
+    }
+
+
+def _build_multi_camera_descriptor(
+    ge_groups: dict[str, list[dict[str, Any]]],
+    best_ge_id: str,
+) -> dict[str, Any]:
+    """Build the multi-camera descriptor (cameras, times, summaries) for downstream nodes."""
+    events = ge_groups.get(best_ge_id, [])
+    cameras: list[dict[str, Any]] = []
+    camera_ids: list[str] = []
+    seen_cameras: set[str] = set()
+    for e in events:
+        cam = str(e.get("camera_id") or e.get("video_id") or "").strip()
+        if cam in seen_cameras:
+            continue
+        seen_cameras.add(cam)
+        camera_ids.append(cam)
+        cameras.append({
+            "camera_id": cam,
+            "start_time": e.get("start_time"),
+            "end_time": e.get("end_time"),
+            "summary": (e.get("event_summary_en") or e.get("event_text_en") or "")[:200],
+        })
+    return {
+        "multi_camera": True,
+        "global_entity_id": best_ge_id,
+        "cameras": cameras,
+        "camera_ids": camera_ids,
+        "camera_count": len(camera_ids),
+        "span_source": "multi_camera_ge",
+    }
+
+
+# ---------------------------------------------------------------------------
 # Verdict shapes
 # ---------------------------------------------------------------------------
 
@@ -561,6 +849,40 @@ def create_match_verifier_node(llm: Any = None):
             }
 
         query = str(state.get("original_user_query") or state.get("user_query") or "").strip()
+
+        # ── v2.4: Multi-camera path ──
+        is_multi_camera = _detect_multi_camera_context(state)
+        if is_multi_camera:
+            ge_rows = _collect_ge_rows(state)
+            ge_groups = _group_by_global_entity(ge_rows)
+            if ge_groups:
+                # Check if any group has >=2 cameras (true multi-camera)
+                has_multi = any(
+                    len(set(
+                        str(e.get("camera_id") or e.get("video_id") or "").strip()
+                        for e in events
+                    )) >= 2
+                    for events in ge_groups.values()
+                )
+                if has_multi:
+                    mc_llm = _multi_camera_llm_verdict(llm, query, ge_groups, config)
+                    if mc_llm is not None:
+                        verdict = mc_llm
+                    else:
+                        verdict = _multi_camera_heuristic_verdict(query, ge_groups)
+                    best_ge_id = verdict.get("best_global_entity_id", "")
+                    mc_descriptor = _build_multi_camera_descriptor(ge_groups, best_ge_id)
+                    return {
+                        "verifier_result": {
+                            **verdict,
+                            **mc_descriptor,
+                            "best_chunk_index": 0,
+                            "candidate_count": sum(len(v) for v in ge_groups.values()),
+                        },
+                        "current_node": "match_verifier_node",
+                    }
+
+        # ── Existing single-camera paths ──
         rows = _select_rows(state)
         if not rows:
             return {

@@ -1,0 +1,423 @@
+{
+  "title": "分类层 fast-path 准确率测试",
+  "started_at": "2026-05-12T02:23:04.233612",
+  "elapsed_sec": 0.0,
+  "total_cases": 65,
+  "passed": 65,
+  "failed": 0,
+  "env_vars": {},
+  "suites": [
+    {
+      "name": "fast-path 分类准确率",
+      "passed": 65,
+      "failed": 0,
+      "cases": [
+        {
+          "name": "[cross_camera] Did a person with red top appear in camera G638 and then appear again ",
+          "passed": true,
+          "details": "expected=True actual=True cues=['and then appear', 'appear again', 'appear in']",
+          "metrics": {}
+        },
+        {
+          "name": "[cross_camera] Did a person with black coat appear in camera G423 and then appear aga",
+          "passed": true,
+          "details": "expected=True actual=True cues=['and then appear', 'appear again', 'appear in']",
+          "metrics": {}
+        },
+        {
+          "name": "[cross_camera] Did a person with grey jacket appear in camera G419 and then appear ag",
+          "passed": true,
+          "details": "expected=True actual=True cues=['and then appear', 'appear again', 'appear in']",
+          "metrics": {}
+        },
+        {
+          "name": "[cross_camera] Did a person with brown jacket with dark hood/scarf appear in camera G",
+          "passed": true,
+          "details": "expected=True actual=True cues=['and then appear', 'appear again', 'appear in']",
+          "metrics": {}
+        },
+        {
+          "name": "[cross_camera] Did a person with light grey hoodie appear in camera G424 and then app",
+          "passed": true,
+          "details": "expected=True actual=True cues=['and then appear', 'appear again', 'appear in']",
+          "metrics": {}
+        },
+        {
+          "name": "[cross_camera] Did a person with black coat with fur-trimmed hood appear in camera G3",
+          "passed": true,
+          "details": "expected=True actual=True cues=['and then appear', 'appear again', 'appear in']",
+          "metrics": {}
+        },
+        {
+          "name": "[cross_camera] Did a person with black jacket appear in camera G420 and then appear a",
+          "passed": true,
+          "details": "expected=True actual=True cues=['and then appear', 'appear again', 'appear in']",
+          "metrics": {}
+        },
+        {
+          "name": "[cross_camera] Did a person with black coat appear in camera G420 and then appear aga",
+          "passed": true,
+          "details": "expected=True actual=True cues=['and then appear', 'appear again', 'appear in']",
+          "metrics": {}
+        },
+        {
+          "name": "[cross_camera] Did a person with red top appear in camera G420 and then appear again ",
+          "passed": true,
+          "details": "expected=True actual=True cues=['and then appear', 'appear again', 'appear in']",
+          "metrics": {}
+        },
+        {
+          "name": "[cross_camera] Did a person with light brown top appear in camera G328 and then appea",
+          "passed": true,
+          "details": "expected=True actual=True cues=['and then appear', 'appear again', 'appear in']",
+          "metrics": {}
+        },
+        {
+          "name": "[cross_camera] Did a person with black hoodie appear in camera G420 and then appear a",
+          "passed": true,
+          "details": "expected=True actual=True cues=['and then appear', 'appear again', 'appear in']",
+          "metrics": {}
+        },
+        {
+          "name": "[cross_camera] Did a person with light brown top appear in camera G420 and then appea",
+          "passed": true,
+          "details": "expected=True actual=True cues=['and then appear', 'appear again', 'appear in']",
+          "metrics": {}
+        },
+        {
+          "name": "[cross_camera] Did a person with black leather jacket appear in camera G329 and then ",
+          "passed": true,
+          "details": "expected=True actual=True cues=['and then appear', 'appear again', 'appear in']",
+          "metrics": {}
+        },
+        {
+          "name": "[cross_camera] Did a person with grey jacket appear in camera G419 and then appear ag",
+          "passed": true,
+          "details": "expected=True actual=True cues=['and then appear', 'appear again', 'appear in']",
+          "metrics": {}
+        },
+        {
+          "name": "[cross_camera] Did a person with grey jacket appear in camera G419 and then appear ag",
+          "passed": true,
+          "details": "expected=True actual=True cues=['and then appear', 'appear again', 'appear in']",
+          "metrics": {}
+        },
+        {
+          "name": "[cross_camera] Did a person with black jacket appear in camera G420 and then appear a",
+          "passed": true,
+          "details": "expected=True actual=True cues=['and then appear', 'appear again', 'appear in']",
+          "metrics": {}
+        },
+        {
+          "name": "[cross_camera] Did a person with black coat with fur-trimmed hood appear in camera G3",
+          "passed": true,
+          "details": "expected=True actual=True cues=['and then appear', 'appear again', 'appear in']",
+          "metrics": {}
+        },
+        {
+          "name": "[cross_camera] Did a person with white shirt appear in camera G328 and then appear ag",
+          "passed": true,
+          "details": "expected=True actual=True cues=['and then appear', 'appear again', 'appear in']",
+          "metrics": {}
+        },
+        {
+          "name": "[cross_camera] Did a person with light blue top appear in camera G423 and then appear",
+          "passed": true,
+          "details": "expected=True actual=True cues=['and then appear', 'appear again', 'appear in']",
+          "metrics": {}
+        },
+        {
+          "name": "[cross_camera] Did a person with red top appear in camera G423 and then appear again ",
+          "passed": true,
+          "details": "expected=True actual=True cues=['and then appear', 'appear again', 'appear in']",
+          "metrics": {}
+        },
+        {
+          "name": "[negative] Did a person with dark blue or black top from camera G508 also appear ",
+          "passed": true,
+          "details": "expected=True actual=True cues=['also appear', 'appear in', 'from camera']",
+          "metrics": {}
+        },
+        {
+          "name": "[negative] Did a person with dark hoodie from camera G421 also appear in camera G",
+          "passed": true,
+          "details": "expected=True actual=True cues=['also appear', 'appear in', 'from camera']",
+          "metrics": {}
+        },
+        {
+          "name": "[negative] Did a person with white coat from camera G336 also appear in camera G3",
+          "passed": true,
+          "details": "expected=True actual=True cues=['also appear', 'appear in', 'from camera']",
+          "metrics": {}
+        },
+        {
+          "name": "[negative] Did a person with dark top from camera G299 also appear in camera G420",
+          "passed": true,
+          "details": "expected=True actual=True cues=['also appear', 'appear in', 'from camera']",
+          "metrics": {}
+        },
+        {
+          "name": "[negative] Did a person with black coat from camera G329 also appear in camera G3",
+          "passed": true,
+          "details": "expected=True actual=True cues=['also appear', 'appear in', 'from camera']",
+          "metrics": {}
+        },
+        {
+          "name": "[negative] Did a person with black coat with fur-trimmed hood from camera G329 al",
+          "passed": true,
+          "details": "expected=True actual=True cues=['also appear', 'appear in', 'from camera']",
+          "metrics": {}
+        },
+        {
+          "name": "[negative] Did a person with dark top from camera G299 also appear in camera G419",
+          "passed": true,
+          "details": "expected=True actual=True cues=['also appear', 'appear in', 'from camera']",
+          "metrics": {}
+        },
+        {
+          "name": "[negative] Did a person with olive green jacket from camera G329 also appear in c",
+          "passed": true,
+          "details": "expected=True actual=True cues=['also appear', 'appear in', 'from camera']",
+          "metrics": {}
+        },
+        {
+          "name": "[negative] Did a person with dark blue or black top from camera G508 also appear ",
+          "passed": true,
+          "details": "expected=True actual=True cues=['also appear', 'appear in', 'from camera']",
+          "metrics": {}
+        },
+        {
+          "name": "[negative] Did a person with black jacket over yellow shirt from camera G508 also",
+          "passed": true,
+          "details": "expected=True actual=True cues=['also appear', 'appear in', 'from camera']",
+          "metrics": {}
+        },
+        {
+          "name": "[existence] Is there a person with black jacket visible in camera G420?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[existence] Is there a person with beige jacket visible in camera G328?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[existence] Is there a person with red top visible in camera G419?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[existence] Is there a person with brown jacket visible in camera G419?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[existence] Is there a person with dark jacket visible in camera G339?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[existence] Is there a person with grey jacket visible in camera G420?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[existence] Is there a person with white top visible in camera G328?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[existence] Is there a person with black coat visible in camera G329?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[existence] Is there a person with light gray or white top visible in camera G328?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[existence] Is there a person with black zip jacket visible in camera G419?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[appearance] Is there a person carrying no bag in camera G506?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[appearance] Is there a person carrying no bag in camera G328?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[appearance] Is there a person carrying no visible bag in camera G328?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[appearance] Is there a person wearing light grey hoodie in camera G339?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[appearance] Is there a person carrying no bag in camera G506?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[appearance] Is there a person wearing black jacket in camera G330?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[appearance] Is there a person wearing black coat over red Sweater in camera G330?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[appearance] Is there a person wearing red jacket in camera G328?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[appearance] Is there a person carrying no bag in camera G330?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[appearance] Is there a person wearing black coat in camera G329?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[event] Did a person exit from the left side of camera G420?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[event] Did a person exit from the up side of camera G339?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[event] Did a person exit from the left side of camera G506?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[event] Did a person exit from the bottom-left side of camera G420?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[event] Did a person exit from the left side of camera G420?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[event] Did a person exit from the right side of camera G419?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[event] Did a person exit from the left side of camera G420?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[event] Did a person exit from the right side of camera G328?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[event] Did a person exit from the top side of camera G506?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[event] Did a person exit from the left side of camera G423?",
+          "passed": true,
+          "details": "expected=False actual=False cues=[]",
+          "metrics": {}
+        },
+        {
+          "name": "[汇总] cross_camera",
+          "passed": true,
+          "details": "20/20 correct (100.0%)",
+          "metrics": {
+            "accuracy_pct": 100.0,
+            "target_pct": 95
+          }
+        },
+        {
+          "name": "[汇总] negative",
+          "passed": true,
+          "details": "10/10 correct (100.0%)",
+          "metrics": {
+            "accuracy_pct": 100.0,
+            "target_pct": 95
+          }
+        },
+        {
+          "name": "[汇总] existence",
+          "passed": true,
+          "details": "10/10 correct (100.0%)",
+          "metrics": {
+            "accuracy_pct": 100.0,
+            "target_pct": 90
+          }
+        },
+        {
+          "name": "[汇总] appearance",
+          "passed": true,
+          "details": "10/10 correct (100.0%)",
+          "metrics": {
+            "accuracy_pct": 100.0,
+            "target_pct": 90
+          }
+        },
+        {
+          "name": "[汇总] event",
+          "passed": true,
+          "details": "10/10 correct (100.0%)",
+          "metrics": {
+            "accuracy_pct": 100.0,
+            "target_pct": 90
+          }
+        }
+      ]
+    }
+  ]
+}

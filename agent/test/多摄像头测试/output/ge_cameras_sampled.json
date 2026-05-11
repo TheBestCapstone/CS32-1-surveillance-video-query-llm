@@ -1,0 +1,1164 @@
+{
+  "cross_camera": [
+    {
+      "video_id": "2018-03-11.11-55-00.12-00-00.bus.G508.r13",
+      "question": "Did a person with blue shirt appear in camera G506 and then appear again in camera G508?",
+      "recall_challenge": "Same person (11-55-P12) first in G506 @ 1:48, then G508 @ 2:17. Appearance: blue shirt, khaki pants, black backpack, short hair",
+      "expected_answer": "yes",
+      "expected_time": "2:17-5:00",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with black coat appear in camera G506 and then appear again in camera G508?",
+      "recall_challenge": "Same person (11-55-P13) first in G506 @ 1:49, then G508 @ 2:18. Appearance: black coat, black pants, white handbag, long hair",
+      "expected_answer": "yes",
+      "expected_time": "2:18-5:00",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with white top appear in camera G506 and then appear again in camera G508?",
+      "recall_challenge": "Same person (11-55-P11) first in G506 @ 1:55, then G508 @ 3:06. Appearance: white top, gray coat, blue jeans, tote bag, long hair",
+      "expected_answer": "yes",
+      "expected_time": "3:06-5:00",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.13-50-01.13-55-01.school.G328.r13",
+      "question": "Did a person with beige jacket appear in camera G329 and then appear again in camera G328?",
+      "recall_challenge": "Same person (13-50-P1) first in G329 @ 1:50, then G328 @ 2:02. Appearance: beige jacket, dark trousers, dark shoes, black sling bag (worn over right shoulder, white pattern/logo), short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "2:02-3:36",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with dark long coat appear in camera G329 and then appear again in camera G328?",
+      "recall_challenge": "Same person (13-50-P2) first in G329 @ 1:50, then G328 @ 2:03. Appearance: dark long coat, dark trousers, no visible bag, short dark hair, dark shoes",
+      "expected_answer": "yes",
+      "expected_time": "2:03-3:36",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with dark jacket (hood up) appear in camera G329 and then appear again in camera G328?",
+      "recall_challenge": "Same person (13-50-P3) first in G329 @ 3:08, then G328 @ 3:17. Appearance: dark jacket (hood up), dark trousers, dark shoes, no visible bag, short hair",
+      "expected_answer": "yes",
+      "expected_time": "3:17-4:28",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.13-50-01.13-55-01.school.G339.r13",
+      "question": "Did a person with dark jacket (hood up) appear in camera G328 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P3) first in G328 @ 3:17, then G339 @ 3:36. Appearance: dark jacket (hood up), dark trousers, dark shoes, no visible bag, short hair",
+      "expected_answer": "yes",
+      "expected_time": "3:36-3:50",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with dark jacket (hood up) appear in camera G329 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P3) first in G329 @ 3:08, then G339 @ 3:36. Appearance: dark jacket (hood up), dark trousers, dark shoes, no visible bag, short hair",
+      "expected_answer": "yes",
+      "expected_time": "3:36-3:50",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.13-50-01.13-55-01.school.G328.r13",
+      "question": "Did a person with black coat with fur-trimmed hood appear in camera G329 and then appear again in camera G328?",
+      "recall_challenge": "Same person (13-50-P4) first in G329 @ 3:08, then G328 @ 3:18. Appearance: black coat with fur-trimmed hood, dark trousers, black sneakers, long dark hair, no visible bag",
+      "expected_answer": "yes",
+      "expected_time": "3:18-4:28",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.13-50-01.13-55-01.school.G339.r13",
+      "question": "Did a person with black coat with fur-trimmed hood appear in camera G328 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P4) first in G328 @ 3:18, then G339 @ 3:36. Appearance: black coat with fur-trimmed hood, dark trousers, black sneakers, long dark hair, no visible bag",
+      "expected_answer": "yes",
+      "expected_time": "3:36-3:50",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with black coat with fur-trimmed hood appear in camera G329 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P4) first in G329 @ 3:08, then G339 @ 3:36. Appearance: black coat with fur-trimmed hood, dark trousers, black sneakers, long dark hair, no visible bag",
+      "expected_answer": "yes",
+      "expected_time": "3:36-3:50",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with white shirt appear in camera G328 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P5) first in G328 @ 3:24, then G339 @ 4:56. Appearance: white shirt, black trousers, black bag, short dark hair\nnotes:",
+      "expected_answer": "yes",
+      "expected_time": "4:56-4:59",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.13-50-01.13-55-01.school.G424.r13",
+      "question": "Did a person with white shirt appear in camera G328 and then appear again in camera G424?",
+      "recall_challenge": "Same person (13-50-P5) first in G328 @ 3:24, then G424 @ 3:25. Appearance: white shirt, black trousers, black bag, short dark hair\nnotes:",
+      "expected_answer": "yes",
+      "expected_time": "3:25-4:52",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.13-50-01.13-55-01.school.G339.r13",
+      "question": "Did a person with white shirt appear in camera G424 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P5) first in G424 @ 3:25, then G339 @ 4:56. Appearance: white shirt, black trousers, black bag, short dark hair\nnotes:",
+      "expected_answer": "yes",
+      "expected_time": "4:56-4:59",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.13-50-01.13-55-01.school.G421.r13",
+      "question": "Did a person with light grey hoodie appear in camera G339 and then appear again in camera G421?",
+      "recall_challenge": "Same person (13-50-P10) first in G339 @ 0:55, then G421 @ 4:41. Appearance: light grey hoodie, black trousers, beige bag, short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "4:41-4:53",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.13-50-01.13-55-01.school.G339.r13",
+      "question": "Did a person with light grey hoodie appear in camera G424 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P10) first in G424 @ 0:00, then G339 @ 0:55. Appearance: light grey hoodie, black trousers, beige bag, short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "0:55-1:25",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.13-50-01.13-55-01.bus.G506.r13",
+      "question": "Did a person with light grey hoodie appear in camera G339 and then appear again in camera G506?",
+      "recall_challenge": "Same person (13-50-P10) first in G339 @ 0:55, then G506 @ 2:11. Appearance: light grey hoodie, black trousers, beige bag, short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "2:11-2:39",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.13-50-01.13-55-01.school.G421.r13",
+      "question": "Did a person with light grey hoodie appear in camera G424 and then appear again in camera G421?",
+      "recall_challenge": "Same person (13-50-P10) first in G424 @ 0:00, then G421 @ 4:41. Appearance: light grey hoodie, black trousers, beige bag, short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "4:41-4:53",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with light grey hoodie appear in camera G506 and then appear again in camera G421?",
+      "recall_challenge": "Same person (13-50-P10) first in G506 @ 2:11, then G421 @ 4:41. Appearance: light grey hoodie, black trousers, beige bag, short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "4:41-4:53",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.13-50-01.13-55-01.bus.G506.r13",
+      "question": "Did a person with light grey hoodie appear in camera G424 and then appear again in camera G506?",
+      "recall_challenge": "Same person (13-50-P10) first in G424 @ 0:00, then G506 @ 2:11. Appearance: light grey hoodie, black trousers, beige bag, short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "2:11-2:39",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.13-50-01.13-55-01.school.G339.r13",
+      "question": "Did a person with long dark coat appear in camera G424 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P11) first in G424 @ 0:00, then G339 @ 0:55. Appearance: long dark coat, dark trousers, no visible bag, short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "0:55-1:25",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with dark jacket appear in camera G424 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P12) first in G424 @ 0:00, then G339 @ 0:55. Appearance: dark jacket, dark trousers, no visible bag, short dark hair with beard",
+      "expected_answer": "yes",
+      "expected_time": "0:55-1:25",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with beige/khaki coat appear in camera G424 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P13) first in G424 @ 0:00, then G339 @ 0:55. Appearance: beige/khaki coat, dark trousers, no visible bag, short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "0:55-1:25",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with brown jacket with dark hood/scarf appear in camera G424 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P14) first in G424 @ 0:00, then G339 @ 0:55. Appearance: brown jacket with dark hood/scarf, dark trousers, no visible bag, short dark hair with beard",
+      "expected_answer": "yes",
+      "expected_time": "0:55-1:25",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with light grey coat with black hat appear in camera G424 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P15) first in G424 @ 0:00, then G339 @ 0:55. Appearance: light grey coat with black hat, dark trousers, no visible bag, short dark hair, male",
+      "expected_answer": "yes",
+      "expected_time": "0:55-1:25",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with black hoodie (hood up) appear in camera G421 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P19) first in G421 @ 0:00, then G339 @ 2:32. Appearance: black hoodie (hood up), blue jeans, hair covered by hood",
+      "expected_answer": "yes",
+      "expected_time": "2:32-3:03",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with dark jacket appear in camera G421 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P20) first in G421 @ 0:00, then G339 @ 2:32. Appearance: dark jacket, dark trousers, short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "2:32-3:03",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with dark hoodie appear in camera G421 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P21) first in G421 @ 0:00, then G339 @ 2:32. Appearance: dark hoodie, white t-shirt, dark trousers, white cap, white shoes",
+      "expected_answer": "yes",
+      "expected_time": "2:32-3:03",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.14-20-01.14-25-01.school.G339.r13",
+      "question": "Did a person with black coat appear in camera G328 and then appear again in camera G339?",
+      "recall_challenge": "Same person (14-20-P4) first in G328 @ 0:00, then G339 @ 1:19. Appearance: black coat, green pants, no bag, glasses",
+      "expected_answer": "yes",
+      "expected_time": "1:19-0:00",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.14-20-01.14-25-01.bus.G506.r13",
+      "question": "Did a person with black coat appear in camera G328 and then appear again in camera G506?",
+      "recall_challenge": "Same person (14-20-P4) first in G328 @ 0:00, then G506 @ 3:44. Appearance: black coat, green pants, no bag, glasses",
+      "expected_answer": "yes",
+      "expected_time": "3:44-4:40",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with black coat appear in camera G339 and then appear again in camera G506?",
+      "recall_challenge": "Same person (14-20-P4) first in G339 @ 1:19, then G506 @ 3:44. Appearance: black coat, green pants, no bag, glasses",
+      "expected_answer": "yes",
+      "expected_time": "3:44-4:40",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.14-20-01.14-25-01.school.G339.r13",
+      "question": "Did a person with black coat appear in camera G328 and then appear again in camera G339?",
+      "recall_challenge": "Same person (14-20-P5) first in G328 @ 0:00, then G339 @ 1:19. Appearance: black coat, dark jeans, no bag, short hair",
+      "expected_answer": "yes",
+      "expected_time": "1:19-0:00",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.14-20-01.14-25-01.bus.G506.r13",
+      "question": "Did a person with black coat appear in camera G328 and then appear again in camera G506?",
+      "recall_challenge": "Same person (14-20-P5) first in G328 @ 0:00, then G506 @ 3:44. Appearance: black coat, dark jeans, no bag, short hair",
+      "expected_answer": "yes",
+      "expected_time": "3:44-4:40",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with black coat appear in camera G339 and then appear again in camera G506?",
+      "recall_challenge": "Same person (14-20-P5) first in G339 @ 1:19, then G506 @ 3:44. Appearance: black coat, dark jeans, no bag, short hair",
+      "expected_answer": "yes",
+      "expected_time": "3:44-4:40",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.14-20-01.14-25-01.school.G339.r13",
+      "question": "Did a person with grey coat appear in camera G328 and then appear again in camera G339?",
+      "recall_challenge": "Same person (14-20-P6) first in G328 @ 0:00, then G339 @ 1:19. Appearance: grey coat, black pants, no bag",
+      "expected_answer": "yes",
+      "expected_time": "1:19-0:00",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.14-20-01.14-25-01.bus.G506.r13",
+      "question": "Did a person with grey coat appear in camera G328 and then appear again in camera G506?",
+      "recall_challenge": "Same person (14-20-P6) first in G328 @ 0:00, then G506 @ 3:44. Appearance: grey coat, black pants, no bag",
+      "expected_answer": "yes",
+      "expected_time": "3:44-4:40",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with grey coat appear in camera G339 and then appear again in camera G506?",
+      "recall_challenge": "Same person (14-20-P6) first in G339 @ 1:19, then G506 @ 3:44. Appearance: grey coat, black pants, no bag",
+      "expected_answer": "yes",
+      "expected_time": "3:44-4:40",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.14-20-01.14-25-01.school.G339.r13",
+      "question": "Did a person with khaki pants appear in camera G328 and then appear again in camera G339?",
+      "recall_challenge": "Same person (14-20-P7) first in G328 @ 0:00, then G339 @ 1:19. Appearance: khaki pants, black pants, no bag, white hat",
+      "expected_answer": "yes",
+      "expected_time": "1:19-0:00",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.14-20-01.14-25-01.bus.G506.r13",
+      "question": "Did a person with khaki pants appear in camera G328 and then appear again in camera G506?",
+      "recall_challenge": "Same person (14-20-P7) first in G328 @ 0:00, then G506 @ 3:44. Appearance: khaki pants, black pants, no bag, white hat",
+      "expected_answer": "yes",
+      "expected_time": "3:44-4:40",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with khaki pants appear in camera G339 and then appear again in camera G506?",
+      "recall_challenge": "Same person (14-20-P7) first in G339 @ 1:19, then G506 @ 3:44. Appearance: khaki pants, black pants, no bag, white hat",
+      "expected_answer": "yes",
+      "expected_time": "3:44-4:40",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.14-20-01.14-25-01.school.G339.r13",
+      "question": "Did a person with dark coat appear in camera G328 and then appear again in camera G339?",
+      "recall_challenge": "Same person (14-20-P8) first in G328 @ 0:00, then G339 @ 1:19. Appearance: dark coat, black pants, no bag",
+      "expected_answer": "yes",
+      "expected_time": "1:19-0:00",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.14-20-01.14-25-01.bus.G506.r13",
+      "question": "Did a person with dark coat appear in camera G328 and then appear again in camera G506?",
+      "recall_challenge": "Same person (14-20-P8) first in G328 @ 0:00, then G506 @ 3:44. Appearance: dark coat, black pants, no bag",
+      "expected_answer": "yes",
+      "expected_time": "3:44-4:40",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with dark coat appear in camera G339 and then appear again in camera G506?",
+      "recall_challenge": "Same person (14-20-P8) first in G339 @ 1:19, then G506 @ 3:44. Appearance: dark coat, black pants, no bag",
+      "expected_answer": "yes",
+      "expected_time": "3:44-4:40",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.14-20-01.14-25-01.bus.G506.r13",
+      "question": "Did a person with grey top appear in camera G339 and then appear again in camera G506?",
+      "recall_challenge": "Same person (14-20-P9) first in G339 @ 0:31, then G506 @ 1:22. Appearance: grey top, black pants, white tote, black hat",
+      "expected_answer": "yes",
+      "expected_time": "1:22-3:48",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.14-20-01.14-25-01.bus.G506.r13",
+      "question": "Did a person with dark top appear in camera G339 and then appear again in camera G506?",
+      "recall_challenge": "Same person (14-20-P11) first in G339 @ 0:45, then G506 @ 1:55. Appearance: dark top, dark pants, gray tote, long hair",
+      "expected_answer": "yes",
+      "expected_time": "1:55-2:10",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.14-20-01.14-25-01.bus.G508.r13",
+      "question": "Did a person with dark top appear in camera G339 and then appear again in camera G508?",
+      "recall_challenge": "Same person (14-20-P11) first in G339 @ 0:45, then G508 @ 2:54. Appearance: dark top, dark pants, gray tote, long hair",
+      "expected_answer": "yes",
+      "expected_time": "2:54-5:00",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with white top appear in camera G506 and then appear again in camera G508?",
+      "recall_challenge": "Same person (14-20-P11) first in G506 @ 1:55, then G508 @ 2:54. Appearance: white top, gray coat, blue jeans, tote, long hair",
+      "expected_answer": "yes",
+      "expected_time": "2:54-5:00",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.14-20-01.14-25-01.bus.G506.r13",
+      "question": "Did a person with blue shirt appear in camera G339 and then appear again in camera G506?",
+      "recall_challenge": "Same person (14-20-P12) first in G339 @ 0:45, then G506 @ 1:48. Appearance: blue shirt, khaki pants, black backpack",
+      "expected_answer": "yes",
+      "expected_time": "1:48-2:09",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.14-20-01.14-25-01.bus.G508.r13",
+      "question": "Did a person with blue shirt appear in camera G339 and then appear again in camera G508?",
+      "recall_challenge": "Same person (14-20-P12) first in G339 @ 0:45, then G508 @ 2:54. Appearance: blue shirt, khaki pants, black backpack",
+      "expected_answer": "yes",
+      "expected_time": "2:54-5:00",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with blue shirt appear in camera G506 and then appear again in camera G508?",
+      "recall_challenge": "Same person (14-20-P12) first in G506 @ 1:48, then G508 @ 2:54. Appearance: blue shirt, khaki pants, backbag",
+      "expected_answer": "yes",
+      "expected_time": "2:54-5:00",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.14-20-01.14-25-01.bus.G506.r13",
+      "question": "Did a person with black coat appear in camera G339 and then appear again in camera G506?",
+      "recall_challenge": "Same person (14-20-P13) first in G339 @ 0:45, then G506 @ 1:49. Appearance: black coat, black pants, white handbag, long hair",
+      "expected_answer": "yes",
+      "expected_time": "1:49-2:09",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.14-20-01.14-25-01.bus.G508.r13",
+      "question": "Did a person with black coat appear in camera G339 and then appear again in camera G508?",
+      "recall_challenge": "Same person (14-20-P13) first in G339 @ 0:45, then G508 @ 2:54. Appearance: black coat, black pants, white handbag, long hair",
+      "expected_answer": "yes",
+      "expected_time": "2:54-3:14",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with black coat appear in camera G506 and then appear again in camera G508?",
+      "recall_challenge": "Same person (14-20-P13) first in G506 @ 1:49, then G508 @ 2:54. Appearance: black coat, black pants, white handbag, long hair",
+      "expected_answer": "yes",
+      "expected_time": "2:54-3:14",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.16-20-01.16-25-01.admin.G329.r13",
+      "question": "Did a person with black leather jacket appear in camera G328 and then appear again in camera G329?",
+      "recall_challenge": "Same person (16-20-P4) first in G328 @ 3:17, then G329 @ 3:36. Appearance: black leather jacket, dark trousers, light cap or light hair, dark backpack",
+      "expected_answer": "yes",
+      "expected_time": "3:36-3:49",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.16-35-01.16-40-01.admin.G329.r13",
+      "question": "Did a person with light brown top appear in camera G328 and then appear again in camera G329?",
+      "recall_challenge": "Same person (16-35-P9) first in G328 @ 2:14, then G329 @ 3:29. Appearance: light brown top, dark trousers, light-coloured hat, no visible bag",
+      "expected_answer": "yes",
+      "expected_time": "3:29-3:36",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with light brown hoodie appear in camera G339 and then appear again in camera G329?",
+      "recall_challenge": "Same person (16-35-P9) first in G339 @ 2:51, then G329 @ 3:29. Appearance: light brown hoodie, blue jeans, light-coloured flat cap, carrying dark jacket",
+      "expected_answer": "yes",
+      "expected_time": "3:29-3:36",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.16-35-01.16-40-01.school.G339.r13",
+      "question": "Did a person with light brown top appear in camera G328 and then appear again in camera G339?",
+      "recall_challenge": "Same person (16-35-P9) first in G328 @ 2:14, then G339 @ 2:51. Appearance: light brown top, dark trousers, light-coloured hat, no visible bag",
+      "expected_answer": "yes",
+      "expected_time": "2:51-3:08",
+      "difficulty": "hard",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with red top appear in camera G339 and then appear again in camera G506?",
+      "recall_challenge": "Same person (16-35-P3) first in G339 @ 3:40, then G506 @ 3:54. Appearance: red top, dark trousers, no bag, short hair",
+      "expected_answer": "yes",
+      "expected_time": "3:54-4:15",
+      "difficulty": "hard",
+      "video_quality": "high"
+    }
+  ],
+  "existence": [
+    {
+      "video_id": "",
+      "question": "Is there a person with black top with large white/blue back graphic visible in camera G328?",
+      "recall_challenge": "black top with large white/blue back graphic, black pants, dark backpack, short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "2:26-2:39",
+      "difficulty": "easy",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person with olive green jacket visible in camera G508?",
+      "recall_challenge": "olive green jacket, tan trousers, no bag, brown beanie, smoking",
+      "expected_answer": "yes",
+      "expected_time": "0:00-4:38",
+      "difficulty": "easy",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.14-20-01.14-25-01.school.G328.r13",
+      "question": "Is there a person with black top visible in camera G328?",
+      "recall_challenge": "black top, black pants, no bag",
+      "expected_answer": "yes",
+      "expected_time": "0:04-0:36",
+      "difficulty": "easy",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person with brown jacket with dark hood/scarf visible in camera G424?",
+      "recall_challenge": "brown jacket with dark hood/scarf, dark trousers, no visible bag, short dark hair with beard",
+      "expected_answer": "yes",
+      "expected_time": "0:00-3:18",
+      "difficulty": "easy",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person with black long coat visible in camera G421?",
+      "recall_challenge": "black long coat, dark trousers, white handbag, grey ankle boots, long dark hair",
+      "expected_answer": "yes",
+      "expected_time": "0:51-1:03",
+      "difficulty": "easy",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.13-50-01.13-55-01.admin.G329.r13",
+      "question": "Is there a person with beige jacket visible in camera G329?",
+      "recall_challenge": "beige jacket, dark trousers, dark shoes, black sling bag (worn over right shoulder, white pattern/logo), short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "1:50-2:01",
+      "difficulty": "easy",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person with black long coat visible in camera G328?",
+      "recall_challenge": "black long coat, black pants, black bag, long dark hair",
+      "expected_answer": "yes",
+      "expected_time": "2:24-2:38",
+      "difficulty": "easy",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person carrying no visible bag in camera G339?",
+      "recall_challenge": "dark jacket, dark trousers, no visible bag, short dark hair with beard",
+      "expected_answer": "yes",
+      "expected_time": "0:55-1:25",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person with black top with yellow horizontal stripe visible in camera G508?",
+      "recall_challenge": "black top with yellow horizontal stripe, black pants, dark bag, short hair",
+      "expected_answer": "yes",
+      "expected_time": "4:20-5:00",
+      "difficulty": "easy",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person carrying no visible bag in camera G424?",
+      "recall_challenge": "dark jacket, dark trousers, no visible bag, short dark hair with beard",
+      "expected_answer": "yes",
+      "expected_time": "0:00-3:18",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person with light grey jacket visible in camera G506?",
+      "recall_challenge": "light grey jacket, black trousers, long blonde hair, carrying black handbag",
+      "expected_answer": "yes",
+      "expected_time": "2:55-3:18",
+      "difficulty": "easy",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.11-55-00.12-00-00.bus.G506.r13",
+      "question": "Is there a person with gray top visible in camera G506?",
+      "recall_challenge": "gray top, black pants, khaki tote bag, black hat",
+      "expected_answer": "yes",
+      "expected_time": "1:22-3:48",
+      "difficulty": "easy",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person with olive green jacket visible in camera G508?",
+      "recall_challenge": "olive green jacket, tan trousers, no bag, brown beanie, smoking",
+      "expected_answer": "yes",
+      "expected_time": "4:42-5:00",
+      "difficulty": "easy",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.11-55-00.12-00-00.school.G328.r13",
+      "question": "Is there a person with red hoodie visible in camera G328?",
+      "recall_challenge": "red hoodie, dark pants, no visible bag, short hair",
+      "expected_answer": "yes",
+      "expected_time": "1:04-1:12",
+      "difficulty": "easy",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person with dark jacket visible in camera G421?",
+      "recall_challenge": "dark jacket, dark trousers, short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "0:00-4:59",
+      "difficulty": "easy",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.13-50-01.13-55-01.school.G424.r13",
+      "question": "Is there a person with long dark coat visible in camera G424?",
+      "recall_challenge": "long dark coat, dark trousers, no visible bag, short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "0:00-3:18",
+      "difficulty": "easy",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person carrying no visible bag in camera G328?",
+      "recall_challenge": "black jacket, black pants, no visible bag, short hair",
+      "expected_answer": "yes",
+      "expected_time": "1:06-1:12",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person carrying no visible bag in camera G424?",
+      "recall_challenge": "light grey coat with black hat, dark trousers, no visible bag, short dark hair, male",
+      "expected_answer": "yes",
+      "expected_time": "0:00-3:18",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person carrying no visible bag in camera G339?",
+      "recall_challenge": "long dark coat, dark trousers, no visible bag, short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "2:32-3:03",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person with light grey coat with black hat visible in camera G339?",
+      "recall_challenge": "light grey coat with black hat, dark trousers, no visible bag, short dark hair, male",
+      "expected_answer": "yes",
+      "expected_time": "2:32-3:03",
+      "difficulty": "easy",
+      "video_quality": "high"
+    }
+  ],
+  "appearance": [
+    {
+      "video_id": "",
+      "question": "Is there a person wearing black coat in camera G506?",
+      "recall_challenge": "black coat, green pants, no bag, glasses",
+      "expected_answer": "yes",
+      "expected_time": "3:44-4:40",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person carrying no bag in camera G339?",
+      "recall_challenge": "black coat, dark jeans, no bag, short hair",
+      "expected_answer": "yes",
+      "expected_time": "1:19-0:00",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person wearing black coat in camera G506?",
+      "recall_challenge": "black coat, black pants, white handbag, long hair",
+      "expected_answer": "yes",
+      "expected_time": "1:49-2:09",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person wearing white top in camera G328?",
+      "recall_challenge": "white top, black pants,  black handbag, black hat, black scarf",
+      "expected_answer": "yes",
+      "expected_time": "0:54-1:30",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person carrying black bag in camera G339?",
+      "recall_challenge": "white shirt, black trousers, black bag, short dark hair\nnotes:",
+      "expected_answer": "yes",
+      "expected_time": "4:56-4:59",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person wearing black top with large white/blue back graphic in camera G328?",
+      "recall_challenge": "black top with large white/blue back graphic, black pants, dark backpack, short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "2:26-2:39",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person carrying beige bag in camera G421?",
+      "recall_challenge": "light grey hoodie, black trousers, beige bag, short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "4:41-4:53",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person carrying no bag in camera G328?",
+      "recall_challenge": "khaki pants, black pants, no bag, white hat",
+      "expected_answer": "yes",
+      "expected_time": "0:00-3:11",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person carrying black sling bag (worn over right shoulder in camera G329?",
+      "recall_challenge": "beige jacket, dark trousers, dark shoes, black sling bag (worn over right shoulder, white pattern/logo), short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "1:50-2:01",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person wearing black leather jacket in camera G329?",
+      "recall_challenge": "black leather jacket, dark blue jeans, white checkered cap, dark backpack, hand near face",
+      "expected_answer": "yes",
+      "expected_time": "3:36-3:49",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person carrying no visible bag in camera G328?",
+      "recall_challenge": "dark jacket, dark trousers, no visible bag, distant view",
+      "expected_answer": "yes",
+      "expected_time": "1:21-2:08",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person carrying no bag in camera G329?",
+      "recall_challenge": "grey jacket, blue jeans, no bag, shoulder-length brown hair",
+      "expected_answer": "yes",
+      "expected_time": "0:18-0:33",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person carrying backbag in camera G508?",
+      "recall_challenge": "blue shirt, khaki pants, backbag",
+      "expected_answer": "yes",
+      "expected_time": "2:54-5:00",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person carrying no visible bag in camera G329?",
+      "recall_challenge": "brown jacket, blue jeans, dark shoes, no visible bag",
+      "expected_answer": "yes",
+      "expected_time": "0:25-0:30",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person wearing black jacket over yellow shirt in camera G508?",
+      "recall_challenge": "black jacket over yellow shirt, black pants, light tote bag, long hair",
+      "expected_answer": "yes",
+      "expected_time": "2:23-4:01",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person carrying backbag in camera G506?",
+      "recall_challenge": "blue shirt, khaki pants, backbag",
+      "expected_answer": "yes",
+      "expected_time": "1:48-2:09",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.13-50-01.13-55-01.school.G421.r13",
+      "question": "Is there a person wearing black hoodie (hood up) in camera G421?",
+      "recall_challenge": "black hoodie (hood up), blue jeans, hair covered by hood",
+      "expected_answer": "yes",
+      "expected_time": "0:00-4:59",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person carrying no visible bag in camera G339?",
+      "recall_challenge": "brown jacket with dark hood/scarf, dark trousers, no visible bag, short dark hair with beard",
+      "expected_answer": "yes",
+      "expected_time": "0:55-1:25",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person carrying white handbag in camera G508?",
+      "recall_challenge": "black coat, black pants, white handbag, long hair",
+      "expected_answer": "yes",
+      "expected_time": "2:18-5:00",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Is there a person carrying no visible bag in camera G328?",
+      "recall_challenge": "light gray or white top, black pants, no visible bag, short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "2:24-2:38",
+      "difficulty": "medium",
+      "video_quality": "high"
+    }
+  ],
+  "event": [
+    {
+      "video_id": "",
+      "question": "Did a person exit from the down side of camera G328?",
+      "recall_challenge": "Person leaving frame down; red jacket, dark trousers, no clear bag",
+      "expected_answer": "yes",
+      "expected_time": "2:22-3:24",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person exit from the up side of camera G339?",
+      "recall_challenge": "Person leaving frame up; beige/khaki coat, dark trousers, no visible bag, short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "2:32-3:03",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person exit from the up side of camera G506?",
+      "recall_challenge": "Person leaving frame up; gray coat, black pants, no bag",
+      "expected_answer": "yes",
+      "expected_time": "3:44-4:40",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person exit from the up side of camera G506?",
+      "recall_challenge": "Person leaving frame up; black coat, green pants, no bag, glasses",
+      "expected_answer": "yes",
+      "expected_time": "3:44-4:40",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.13-50-01.13-55-01.school.G421.r13",
+      "question": "Did a person exit from the right side of camera G421?",
+      "recall_challenge": "Person leaving frame right; black long coat, dark trousers, white handbag, grey ankle boots, long dark hair",
+      "expected_answer": "yes",
+      "expected_time": "0:51-1:03",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person exit from the up side of camera G506?",
+      "recall_challenge": "Person leaving frame up; black coat, dark jeans, no bag, short hair",
+      "expected_answer": "yes",
+      "expected_time": "3:44-4:40",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person exit from the up side of camera G339?",
+      "recall_challenge": "Person leaving frame up; light grey coat with black hat, dark trousers, no visible bag, short dark hair, male",
+      "expected_answer": "yes",
+      "expected_time": "2:32-3:03",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person exit from the up side of camera G328?",
+      "recall_challenge": "Person leaving frame up; red top, dark trousers, light shoulder bag, medium-length hair",
+      "expected_answer": "yes",
+      "expected_time": "4:08-5:00",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person exit from the up side of camera G339?",
+      "recall_challenge": "Person leaving frame up; brown jacket with dark hood/scarf, dark trousers, no visible bag, short dark hair with beard",
+      "expected_answer": "yes",
+      "expected_time": "2:32-3:03",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person exit from the top side of camera G506?",
+      "recall_challenge": "Person leaving frame top; black coat, black pants, white handbag, long hair",
+      "expected_answer": "yes",
+      "expected_time": "1:49-2:09",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person exit from the right side of camera G329?",
+      "recall_challenge": "Person leaving frame right; black coat with fur-trimmed hood, dark trousers, black sneakers, long dark hair, no visible bag",
+      "expected_answer": "yes",
+      "expected_time": "3:08-3:18",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.16-35-01.16-40-01.admin.G329.r13",
+      "question": "Did a person exit from the left side of camera G329?",
+      "recall_challenge": "Person leaving frame left; light brown hoodie, blue jeans, light-coloured flat cap, carrying dark jacket",
+      "expected_answer": "yes",
+      "expected_time": "3:29-3:36",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person exit from the up side of camera G508?",
+      "recall_challenge": "Person leaving frame up; black jacket, black trousers, white tote bag, long dark hair, wearing boots",
+      "expected_answer": "yes",
+      "expected_time": "0:00-1:29",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person exit from the left side of camera G506?",
+      "recall_challenge": "Person leaving frame left; bright blue jacket, grey trousers, light hood or cap, blue backpack",
+      "expected_answer": "yes",
+      "expected_time": "2:56-3:18",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.13-50-01.13-55-01.bus.G508.r13",
+      "question": "Did a person exit from the left side of camera G508?",
+      "recall_challenge": "Person leaving frame left; grey coat, dark trousers, black bag, shoulder-length light hair",
+      "expected_answer": "yes",
+      "expected_time": "0:06-0:32",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person exit from the right side of camera G328?",
+      "recall_challenge": "Person leaving frame right; dark coat, black pants, no bag",
+      "expected_answer": "yes",
+      "expected_time": "0:00-3:11",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person exit from the up side of camera G506?",
+      "recall_challenge": "Person leaving frame up; dark coat, black pants, no bag",
+      "expected_answer": "yes",
+      "expected_time": "3:44-4:40",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person exit from the up side of camera G506?",
+      "recall_challenge": "Person leaving frame up; white top, gray coat, blue jeans, tote bag, long hair",
+      "expected_answer": "yes",
+      "expected_time": "1:55-2:10",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person exit from the left side of camera G339?",
+      "recall_challenge": "Person leaving frame left; brown coat, black pants, tote, ponytail",
+      "expected_answer": "yes",
+      "expected_time": "0:45-0:51",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person exit from the up side of camera G339?",
+      "recall_challenge": "Person leaving frame up; beige/khaki coat, dark trousers, no visible bag, short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "0:55-1:25",
+      "difficulty": "medium",
+      "video_quality": "high"
+    }
+  ],
+  "negative": [
+    {
+      "video_id": "2018-03-11.13-50-01.13-55-01.school.G421.r13",
+      "question": "Did a person with dark hoodie from camera G421 also appear in camera G508?",
+      "recall_challenge": "NOT a match. 13-50-P21 (dark hoodie, white t-shirt, dark trousers, white cap, white shoes) in G421 ≠ 13-50-P33 (blue and black plaid shirt, no visible bag, dark trousers, short dark hair) in G508",
+      "expected_answer": "no",
+      "expected_time": "N/A",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.13-50-01.13-55-01.admin.G329.r13",
+      "question": "Did a person with dark long coat from camera G329 also appear in camera G424?",
+      "recall_challenge": "NOT a match. 13-50-P2 (dark long coat, dark trousers, no visible bag, short dark hair, dark shoes) in G329 ≠ 13-50-P15 (light grey coat with black hat, dark trousers, no visible bag, short dark hair, male) in G424",
+      "expected_answer": "no",
+      "expected_time": "N/A",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "",
+      "question": "Did a person with beige jacket from camera G329 also appear in camera G424?",
+      "recall_challenge": "NOT a match. 13-50-P1 (beige jacket, dark trousers, dark shoes, black sling bag (worn over right shoulder, white pattern/logo), short dark hair) in G329 ≠ 13-50-P14 (brown jacket with dark hood/scarf, dark trousers, no visible bag, short dark hair with beard) in G424",
+      "expected_answer": "no",
+      "expected_time": "N/A",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.13-50-01.13-55-01.admin.G329.r13",
+      "question": "Did a person with black coat with fur-trimmed hood from camera G329 also appear in camera G421?",
+      "recall_challenge": "NOT a match. 13-50-P4 (black coat with fur-trimmed hood, dark trousers, black sneakers, long dark hair, no visible bag) in G329 ≠ 13-50-P19 (black hoodie (hood up), blue jeans, hair covered by hood) in G421",
+      "expected_answer": "no",
+      "expected_time": "N/A",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.11-55-00.12-00-00.bus.G508.r13",
+      "question": "Did a person with dark blue or black top from camera G508 also appear in camera G328?",
+      "recall_challenge": "NOT a match. 11-55-P12 (dark blue or black top, khaki pants, black backpack, short hair) in G508 ≠ 11-55-P32 (light gray or white top, black pants, no visible bag, short dark hair) in G328",
+      "expected_answer": "no",
+      "expected_time": "N/A",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.13-50-01.13-55-01.admin.G329.r13",
+      "question": "Did a person with dark long coat from camera G329 also appear in camera G508?",
+      "recall_challenge": "NOT a match. 13-50-P2 (dark long coat, dark trousers, no visible bag, short dark hair, dark shoes) in G329 ≠ 13-50-P34 (dark blue jacket, dark trousers, black backpack, no hair) in G508",
+      "expected_answer": "no",
+      "expected_time": "N/A",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.13-50-01.13-55-01.admin.G329.r13",
+      "question": "Did a person with dark jacket (hood up) from camera G329 also appear in camera G421?",
+      "recall_challenge": "NOT a match. 13-50-P3 (dark jacket (hood up), dark trousers, dark shoes, no visible bag, short hair) in G329 ≠ 13-50-P20 (dark jacket, dark trousers, short dark hair) in G421",
+      "expected_answer": "no",
+      "expected_time": "N/A",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.13-50-01.13-55-01.school.G424.r13",
+      "question": "Did a person with brown jacket with dark hood/scarf from camera G424 also appear in camera G508?",
+      "recall_challenge": "NOT a match. 13-50-P14 (brown jacket with dark hood/scarf, dark trousers, no visible bag, short dark hair with beard) in G424 ≠ 13-50-P32 (grey coat, dark trousers, black bag, shoulder-length light hair) in G508",
+      "expected_answer": "no",
+      "expected_time": "N/A",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.16-20-01.16-25-01.bus.G508.r13",
+      "question": "Did a person with light blue jacket from camera G508 also appear in camera G328?",
+      "recall_challenge": "NOT a match. 16-20-P11 (light blue jacket, tan trousers, dark shoes, no clear bag) in G508 ≠ 16-20-P13 (red jacket, dark trousers, no clear bag) in G328",
+      "expected_answer": "no",
+      "expected_time": "N/A",
+      "difficulty": "medium",
+      "video_quality": "high"
+    },
+    {
+      "video_id": "2018-03-11.13-50-01.13-55-01.school.G328.r13",
+      "question": "Did a person with dark long coat from camera G328 also appear in camera G421?",
+      "recall_challenge": "NOT a match. 13-50-P2 (dark long coat, dark trousers, no visible bag, short dark hair, dark shoes) in G328 ≠ 13-50-P21 (dark hoodie, white t-shirt, dark trousers, white cap, white shoes) in G421",
+      "expected_answer": "no",
+      "expected_time": "N/A",
+      "difficulty": "medium",
+      "video_quality": "high"
+    }
+  ]
+}

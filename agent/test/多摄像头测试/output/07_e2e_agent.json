@@ -1,0 +1,1342 @@
+{
+  "title": "Agent 端到端做题测试",
+  "started_at": "2026-05-12T04:40:25.080164",
+  "total_elapsed_s": 130.5,
+  "total_questions": 25,
+  "passed": 23,
+  "failed": 2,
+  "pass_rate": 92.0,
+  "avg_recall": 0.98,
+  "avg_precision": 0.6293,
+  "avg_iou": 0.6227,
+  "avg_elapsed_s": 5.2,
+  "multi_camera_detection_rate": 1.0,
+  "answer_content_rate": 1.0,
+  "correctness_rate": 0.92,
+  "correctness_count": 23,
+  "time_match_rate": 0.12,
+  "time_match_count": 3,
+  "per_question": [
+    {
+      "idx": 0,
+      "question": "Did a person with beige jacket appear in camera G329 and then appear again in camera G328?",
+      "recall_challenge": "Same person (13-50-P1) first in G329 @ 1:50, then G328 @ 2:02. Appearance: beige jacket, dark trousers, dark shoes, blac",
+      "expected_answer": "yes",
+      "expected_time": "2:02-3:36",
+      "expected_cameras": [
+        "G328",
+        "G329"
+      ],
+      "answer_cameras": [
+        "G329",
+        "G339"
+      ],
+      "final_answer": "No matching clip is expected.\nSources: [mixed] 2018-03-11.13-50-01.13-55-01.admin.G329.r13 | event_id=7 | 119.633-121.733; [mixed] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=602 | 164.433-168.883; [mixed] 2018-03-11.13-50-01.13-55-01.admin.G329.r13 | event_id=2 | 109.7-116.5",
+      "error": null,
+      "elapsed_s": 18.3,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 0,
+      "passed": false,
+      "metrics": {
+        "expected_cameras": [
+          "G328",
+          "G329"
+        ],
+        "found_cameras": [
+          "G329",
+          "G339"
+        ],
+        "intersection": [
+          "G329"
+        ],
+        "recall": 0.5,
+        "precision": 0.5,
+        "iou": 0.3333
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [2:02-3:36]"
+    },
+    {
+      "idx": 1,
+      "question": "Did a person with dark long coat appear in camera G329 and then appear again in camera G328?",
+      "recall_challenge": "Same person (13-50-P2) first in G329 @ 1:50, then G328 @ 2:03. Appearance: dark long coat, dark trousers, no visible bag",
+      "expected_answer": "yes",
+      "expected_time": "2:03-3:36",
+      "expected_cameras": [
+        "G328",
+        "G329"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G329",
+        "G339",
+        "G421",
+        "G506"
+      ],
+      "final_answer": "Likely yes. The queried entity appears across multiple cameras. | Cameras: G506, G339, G329, G328, G421 | Times: G506 131.26666666666668-157.6; G339 150.8-153.55; G329 188.233-196.7; G328 279.2-283.23333333333335; G421 284.15-293.533 | Summary: Entity person_global_4 appears in both G329 and G328, matching the queried cameras, but lacks explicit description of 'dark long coat' in its appearance details..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=317 | 233.13333333",
+      "error": null,
+      "elapsed_s": 3.6,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G328",
+          "G329"
+        ],
+        "found_cameras": [
+          "G328",
+          "G329",
+          "G339",
+          "G421",
+          "G506"
+        ],
+        "intersection": [
+          "G328",
+          "G329"
+        ],
+        "recall": 1.0,
+        "precision": 0.4,
+        "iou": 0.4
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [2:03-3:36]"
+    },
+    {
+      "idx": 2,
+      "question": "Did a person with dark jacket (hood up) appear in camera G329 and then appear again in camera G328?",
+      "recall_challenge": "Same person (13-50-P3) first in G329 @ 3:08, then G328 @ 3:17. Appearance: dark jacket (hood up), dark trousers, dark sh",
+      "expected_answer": "yes",
+      "expected_time": "3:17-4:28",
+      "expected_cameras": [
+        "G328",
+        "G329"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G329",
+        "G339",
+        "G421",
+        "G506"
+      ],
+      "final_answer": "Likely yes. The queried entity appears across multiple cameras. | Cameras: G506, G339, G329, G328, G421 | Times: G506 131.26666666666668-157.6; G339 150.8-153.55; G329 188.233-196.7; G328 279.2-283.23333333333335; G421 284.15-293.533 | Summary: Entity person_global_4 appears in both G329 (3:08-3:16) and G328 (4:39-4:43), confirming cross-camera presence, but appearance details like 'dark jacket (hood up)' are not explicitly described for thi.\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school",
+      "error": null,
+      "elapsed_s": 4.4,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G328",
+          "G329"
+        ],
+        "found_cameras": [
+          "G328",
+          "G329",
+          "G339",
+          "G421",
+          "G506"
+        ],
+        "intersection": [
+          "G328",
+          "G329"
+        ],
+        "recall": 1.0,
+        "precision": 0.4,
+        "iou": 0.4
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": true,
+      "time_detail": "found 03:08:00 in [3:17-4:28]"
+    },
+    {
+      "idx": 3,
+      "question": "Did a person with dark jacket (hood up) appear in camera G328 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P3) first in G328 @ 3:17, then G339 @ 3:36. Appearance: dark jacket (hood up), dark trousers, dark sh",
+      "expected_answer": "yes",
+      "expected_time": "3:36-3:50",
+      "expected_cameras": [
+        "G328",
+        "G339"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G339",
+        "G424"
+      ],
+      "final_answer": "Yes. The queried entity appears across multiple cameras. | Cameras: G424, G328, G339 | Times: G424 80.1-89.96666666666667; G328 233.13333333333333-234.06666666666666; G339 266.7-277.6 | Summary: Entity person_global_1 appears in both G328 and G339 with consistent cross-camera tracking (G328 3:53-4:28 → G339 4:26-4:40), matching the query's camera sequence..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=317 | 233.13333333333333-234.06666666666666; [hybrid] 2018-03-11.1",
+      "error": null,
+      "elapsed_s": 6.4,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G328",
+          "G339"
+        ],
+        "found_cameras": [
+          "G328",
+          "G339",
+          "G424"
+        ],
+        "intersection": [
+          "G328",
+          "G339"
+        ],
+        "recall": 1.0,
+        "precision": 0.6667,
+        "iou": 0.6667
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": true,
+      "time_detail": "found 03:53:00 in [3:36-3:50]"
+    },
+    {
+      "idx": 4,
+      "question": "Did a person with dark jacket (hood up) appear in camera G329 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P3) first in G329 @ 3:08, then G339 @ 3:36. Appearance: dark jacket (hood up), dark trousers, dark sh",
+      "expected_answer": "yes",
+      "expected_time": "3:36-3:50",
+      "expected_cameras": [
+        "G329",
+        "G339"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G329",
+        "G339",
+        "G421",
+        "G506"
+      ],
+      "final_answer": "Yes. The queried entity appears across multiple cameras. | Cameras: G506, G339, G329, G328, G421 | Times: G506 131.26666666666668-157.6; G339 150.8-153.55; G329 188.233-196.7; G328 279.2-283.23333333333335; G421 284.15-293.533 | Summary: Entity person_global_4 appears in both G329 and G339 with consistent cross-camera tracking (G329 track#15 3:08-3:16 → G339 track#293 2:30-3:02), matching the query's camera sequence..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=718 ",
+      "error": null,
+      "elapsed_s": 5.5,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G329",
+          "G339"
+        ],
+        "found_cameras": [
+          "G328",
+          "G329",
+          "G339",
+          "G421",
+          "G506"
+        ],
+        "intersection": [
+          "G329",
+          "G339"
+        ],
+        "recall": 1.0,
+        "precision": 0.4,
+        "iou": 0.4
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": true,
+      "time_detail": "found 03:08:00 in [3:36-3:50]"
+    },
+    {
+      "idx": 5,
+      "question": "Did a person with black coat with fur-trimmed hood appear in camera G329 and then appear again in camera G328?",
+      "recall_challenge": "Same person (13-50-P4) first in G329 @ 3:08, then G328 @ 3:18. Appearance: black coat with fur-trimmed hood, dark trouse",
+      "expected_answer": "yes",
+      "expected_time": "3:18-4:28",
+      "expected_cameras": [
+        "G328",
+        "G329"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G329",
+        "G339",
+        "G421",
+        "G506"
+      ],
+      "final_answer": "Likely yes. The queried entity appears across multiple cameras. | Cameras: G506, G339, G329, G328, G421 | Times: G506 131.26666666666668-157.6; G339 150.8-153.55; G329 188.233-196.7; G328 279.2-283.23333333333335; G421 284.15-293.533 | Summary: Entity person_global_4 appears in both G329 (188.233-196.7) and G328 (279.2-283.233), satisfying the cross-camera query, but lacks explicit description of 'black coat with fur-trimmed hood'..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 ",
+      "error": null,
+      "elapsed_s": 4.9,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G328",
+          "G329"
+        ],
+        "found_cameras": [
+          "G328",
+          "G329",
+          "G339",
+          "G421",
+          "G506"
+        ],
+        "intersection": [
+          "G328",
+          "G329"
+        ],
+        "recall": 1.0,
+        "precision": 0.4,
+        "iou": 0.4
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [3:18-4:28]"
+    },
+    {
+      "idx": 6,
+      "question": "Did a person with black coat with fur-trimmed hood appear in camera G328 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P4) first in G328 @ 3:18, then G339 @ 3:36. Appearance: black coat with fur-trimmed hood, dark trouse",
+      "expected_answer": "yes",
+      "expected_time": "3:36-3:50",
+      "expected_cameras": [
+        "G328",
+        "G339"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G339",
+        "G424"
+      ],
+      "final_answer": "Likely yes. The queried entity appears across multiple cameras. | Cameras: G424, G328, G339 | Times: G424 80.1-89.96666666666667; G328 233.13333333333333-234.06666666666666; G339 266.7-277.6 | Summary: Entity person_global_1 appears in both G328 and G339 (as well as G424), confirming cross-camera presence; however, no appearance description (e.g., 'black coat with fur-trimmed hood') is provided for.\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=317 | 233.1333333333333",
+      "error": null,
+      "elapsed_s": 4.8,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G328",
+          "G339"
+        ],
+        "found_cameras": [
+          "G328",
+          "G339",
+          "G424"
+        ],
+        "intersection": [
+          "G328",
+          "G339"
+        ],
+        "recall": 1.0,
+        "precision": 0.6667,
+        "iou": 0.6667
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [3:36-3:50]"
+    },
+    {
+      "idx": 7,
+      "question": "Did a person with black coat with fur-trimmed hood appear in camera G329 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P4) first in G329 @ 3:08, then G339 @ 3:36. Appearance: black coat with fur-trimmed hood, dark trouse",
+      "expected_answer": "yes",
+      "expected_time": "3:36-3:50",
+      "expected_cameras": [
+        "G329",
+        "G339"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G329",
+        "G339",
+        "G421",
+        "G506"
+      ],
+      "final_answer": "Likely yes. The queried entity appears across multiple cameras. | Cameras: G506, G339, G329, G328, G421 | Times: G506 131.26666666666668-157.6; G339 150.8-153.55; G329 188.233-196.7; G328 279.2-283.23333333333335; G421 284.15-293.533 | Summary: Entity person_global_4 and person_global_5 both appear in G329 and G339, satisfying the cross-camera requirement, but neither has a recorded appearance description matching 'black coat with fur-trimme.\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school",
+      "error": null,
+      "elapsed_s": 5.7,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G329",
+          "G339"
+        ],
+        "found_cameras": [
+          "G328",
+          "G329",
+          "G339",
+          "G421",
+          "G506"
+        ],
+        "intersection": [
+          "G329",
+          "G339"
+        ],
+        "recall": 1.0,
+        "precision": 0.4,
+        "iou": 0.4
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [3:36-3:50]"
+    },
+    {
+      "idx": 8,
+      "question": "Did a person with white shirt appear in camera G328 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P5) first in G328 @ 3:24, then G339 @ 4:56. Appearance: white shirt, black trousers, black bag, short",
+      "expected_answer": "yes",
+      "expected_time": "4:56-4:59",
+      "expected_cameras": [
+        "G328",
+        "G339"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G339",
+        "G424"
+      ],
+      "final_answer": "Yes. The queried entity appears across multiple cameras. | Cameras: G424, G328, G339 | Times: G424 80.1-89.96666666666667; G328 233.13333333333333-234.06666666666666; G339 266.7-277.6 | Summary: Entity person_global_1 appears in both G328 and G339 with consistent cross-camera tracking, matching the query's camera sequence..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=317 | 233.13333333333333-234.06666666666666; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 |",
+      "error": null,
+      "elapsed_s": 3.3,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G328",
+          "G339"
+        ],
+        "found_cameras": [
+          "G328",
+          "G339",
+          "G424"
+        ],
+        "intersection": [
+          "G328",
+          "G339"
+        ],
+        "recall": 1.0,
+        "precision": 0.6667,
+        "iou": 0.6667
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [4:56-4:59]"
+    },
+    {
+      "idx": 9,
+      "question": "Did a person with white shirt appear in camera G328 and then appear again in camera G424?",
+      "recall_challenge": "Same person (13-50-P5) first in G328 @ 3:24, then G424 @ 3:25. Appearance: white shirt, black trousers, black bag, short",
+      "expected_answer": "yes",
+      "expected_time": "3:25-4:52",
+      "expected_cameras": [
+        "G328",
+        "G424"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G339",
+        "G424"
+      ],
+      "final_answer": "Yes. The queried entity appears across multiple cameras. | Cameras: G424, G328, G339 | Times: G424 80.1-89.96666666666667; G328 233.13333333333333-234.06666666666666; G339 266.7-277.6 | Summary: Entity person_global_1 appears in both G328 and G424 (as well as G339), confirming the same person moved between the queried cameras..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=317 | 233.13333333333333-234.06666666666666; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r",
+      "error": null,
+      "elapsed_s": 3.7,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G328",
+          "G424"
+        ],
+        "found_cameras": [
+          "G328",
+          "G339",
+          "G424"
+        ],
+        "intersection": [
+          "G328",
+          "G424"
+        ],
+        "recall": 1.0,
+        "precision": 0.6667,
+        "iou": 0.6667
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [3:25-4:52]"
+    },
+    {
+      "idx": 10,
+      "question": "Did a person with white shirt appear in camera G424 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P5) first in G424 @ 3:25, then G339 @ 4:56. Appearance: white shirt, black trousers, black bag, short",
+      "expected_answer": "yes",
+      "expected_time": "4:56-4:59",
+      "expected_cameras": [
+        "G339",
+        "G424"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G339",
+        "G424"
+      ],
+      "final_answer": "Likely yes. The queried entity appears across multiple cameras. | Cameras: G424, G328, G339 | Times: G424 80.1-89.96666666666667; G328 233.13333333333333-234.06666666666666; G339 266.7-277.6 | Summary: Entity person_global_1 appears in both G424 and G339 (as well as G328), confirming cross-camera presence; however, no appearance description (e.g., 'white shirt') is provided in the evidence for this.\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=841 | 80.1-89.966666666",
+      "error": null,
+      "elapsed_s": 5.0,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G339",
+          "G424"
+        ],
+        "found_cameras": [
+          "G328",
+          "G339",
+          "G424"
+        ],
+        "intersection": [
+          "G339",
+          "G424"
+        ],
+        "recall": 1.0,
+        "precision": 0.6667,
+        "iou": 0.6667
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [4:56-4:59]"
+    },
+    {
+      "idx": 11,
+      "question": "Did a person with light grey hoodie appear in camera G339 and then appear again in camera G421?",
+      "recall_challenge": "Same person (13-50-P10) first in G339 @ 0:55, then G421 @ 4:41. Appearance: light grey hoodie, black trousers, beige bag",
+      "expected_answer": "yes",
+      "expected_time": "4:41-4:53",
+      "expected_cameras": [
+        "G339",
+        "G421"
+      ],
+      "answer_cameras": [
+        "G339",
+        "G421"
+      ],
+      "final_answer": "Yes. The queried entity appears across multiple cameras. | Cameras: G421, G339 | Times: G421 12.367-16.067; G339 53.767-64.933 | Summary: Entity person_global_12 appears in both G339 and G421 with appearance described as 'light grey ho' (hoodie), matching the query's description and camera sequence..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G421.r13 | event_id=780 | 104.46666666666667-299.96666666666664; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=485 | 53.433-5",
+      "error": null,
+      "elapsed_s": 4.0,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G339",
+          "G421"
+        ],
+        "found_cameras": [
+          "G339",
+          "G421"
+        ],
+        "intersection": [
+          "G339",
+          "G421"
+        ],
+        "recall": 1.0,
+        "precision": 1.0,
+        "iou": 1.0
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [4:41-4:53]"
+    },
+    {
+      "idx": 12,
+      "question": "Did a person with light grey hoodie appear in camera G424 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P10) first in G424 @ 0:00, then G339 @ 0:55. Appearance: light grey hoodie, black trousers, beige bag",
+      "expected_answer": "yes",
+      "expected_time": "0:55-1:25",
+      "expected_cameras": [
+        "G339",
+        "G424"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G339",
+        "G424"
+      ],
+      "final_answer": "Likely yes. The queried entity appears across multiple cameras. | Cameras: G424, G328, G339 | Times: G424 80.1-89.96666666666667; G328 233.13333333333333-234.06666666666666; G339 266.7-277.6 | Summary: Entity person_global_1 appears in both G424 and G339 (as well as G328), confirming cross-camera presence; however, appearance details like 'light grey hoodie' are not described for this entity..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=841 | 80.1-89.96666666666667;",
+      "error": null,
+      "elapsed_s": 3.9,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G339",
+          "G424"
+        ],
+        "found_cameras": [
+          "G328",
+          "G339",
+          "G424"
+        ],
+        "intersection": [
+          "G339",
+          "G424"
+        ],
+        "recall": 1.0,
+        "precision": 0.6667,
+        "iou": 0.6667
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [0:55-1:25]"
+    },
+    {
+      "idx": 13,
+      "question": "Did a person with light grey hoodie appear in camera G339 and then appear again in camera G506?",
+      "recall_challenge": "Same person (13-50-P10) first in G339 @ 0:55, then G506 @ 2:11. Appearance: light grey hoodie, black trousers, beige bag",
+      "expected_answer": "yes",
+      "expected_time": "2:11-2:39",
+      "expected_cameras": [
+        "G339",
+        "G506"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G329",
+        "G339",
+        "G421",
+        "G506"
+      ],
+      "final_answer": "Likely yes. The queried entity appears across multiple cameras. | Cameras: G506, G339, G329, G328, G421 | Times: G506 131.26666666666668-157.6; G339 150.8-153.55; G329 188.233-196.7; G328 279.2-283.23333333333335; G421 284.15-293.533 | Summary: Entity person_global_4 appears in both G339 and G506 as required, with consistent cross-camera tracking, but lacks explicit mention of 'light grey hoodie' appearance in those camera segments..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13",
+      "error": null,
+      "elapsed_s": 4.4,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G339",
+          "G506"
+        ],
+        "found_cameras": [
+          "G328",
+          "G329",
+          "G339",
+          "G421",
+          "G506"
+        ],
+        "intersection": [
+          "G339",
+          "G506"
+        ],
+        "recall": 1.0,
+        "precision": 0.4,
+        "iou": 0.4
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [2:11-2:39]"
+    },
+    {
+      "idx": 14,
+      "question": "Did a person with light grey hoodie appear in camera G424 and then appear again in camera G421?",
+      "recall_challenge": "Same person (13-50-P10) first in G424 @ 0:00, then G421 @ 4:41. Appearance: light grey hoodie, black trousers, beige bag",
+      "expected_answer": "yes",
+      "expected_time": "4:41-4:53",
+      "expected_cameras": [
+        "G421",
+        "G424"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G339",
+        "G421",
+        "G424"
+      ],
+      "final_answer": "Likely yes. The queried entity appears across multiple cameras. | Cameras: G421, G424, G339 | Times: G421 169.117-173.267; G424 266.333-277.133; G339 296.567-299.967 | Summary: Entity person_global_2 appears in both G424 and G421, matching the queried cameras, but its appearance description is missing; cross-camera tracking confirms presence in both..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=841 | 80.1-89.96666666666667; [hybrid] 2018-03-11.13-50-01.13-55-01.scho",
+      "error": null,
+      "elapsed_s": 3.9,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G421",
+          "G424"
+        ],
+        "found_cameras": [
+          "G328",
+          "G339",
+          "G421",
+          "G424"
+        ],
+        "intersection": [
+          "G421",
+          "G424"
+        ],
+        "recall": 1.0,
+        "precision": 0.5,
+        "iou": 0.5
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [4:41-4:53]"
+    },
+    {
+      "idx": 15,
+      "question": "Did a person with light grey hoodie appear in camera G506 and then appear again in camera G421?",
+      "recall_challenge": "Same person (13-50-P10) first in G506 @ 2:11, then G421 @ 4:41. Appearance: light grey hoodie, black trousers, beige bag",
+      "expected_answer": "yes",
+      "expected_time": "4:41-4:53",
+      "expected_cameras": [
+        "G421",
+        "G506"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G329",
+        "G339",
+        "G421",
+        "G424",
+        "G506"
+      ],
+      "final_answer": "Yes. The queried entity appears across multiple cameras. | Cameras: G506, G339, G329, G328, G421 | Times: G506 131.26666666666668-157.6; G339 150.8-153.55; G329 188.233-196.7; G328 279.2-283.23333333333335; G421 284.15-293.533 | Summary: Entity person_global_4 appears in both G506 and G421, matching the queried cameras; cross-camera tracking confirms the same person moved from G506 to G421..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=841 | 80.1-89.96666666666667; [",
+      "error": null,
+      "elapsed_s": 5.5,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G421",
+          "G506"
+        ],
+        "found_cameras": [
+          "G328",
+          "G329",
+          "G339",
+          "G421",
+          "G424",
+          "G506"
+        ],
+        "intersection": [
+          "G421",
+          "G506"
+        ],
+        "recall": 1.0,
+        "precision": 0.3333,
+        "iou": 0.3333
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [4:41-4:53]"
+    },
+    {
+      "idx": 16,
+      "question": "Did a person with light grey hoodie appear in camera G424 and then appear again in camera G506?",
+      "recall_challenge": "Same person (13-50-P10) first in G424 @ 0:00, then G506 @ 2:11. Appearance: light grey hoodie, black trousers, beige bag",
+      "expected_answer": "yes",
+      "expected_time": "2:11-2:39",
+      "expected_cameras": [
+        "G424",
+        "G506"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G424",
+        "G506"
+      ],
+      "final_answer": "No matching clip is expected. Reason: No global entity appears in both G424 and G506; person_global_4 appears in G506 but not G424, while entities in G424 (e.g., person_global_1, _2, _3, _6, _9, _11) do not appear in G506..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=841 | 80.1-89.96666666666667; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_id=317 | 233.13333333333333-234.06666666666666; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G328.r13 | event_",
+      "error": null,
+      "elapsed_s": 5.5,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 78,
+      "passed": false,
+      "metrics": {
+        "expected_cameras": [
+          "G424",
+          "G506"
+        ],
+        "found_cameras": [
+          "G328",
+          "G424",
+          "G506"
+        ],
+        "intersection": [
+          "G424",
+          "G506"
+        ],
+        "recall": 1.0,
+        "precision": 0.6667,
+        "iou": 0.6667
+      },
+      "answer_has_content": true,
+      "answer_correct": false,
+      "time_ok": false,
+      "time_detail": "no time in [2:11-2:39]"
+    },
+    {
+      "idx": 17,
+      "question": "Did a person with long dark coat appear in camera G424 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P11) first in G424 @ 0:00, then G339 @ 0:55. Appearance: long dark coat, dark trousers, no visible ba",
+      "expected_answer": "yes",
+      "expected_time": "0:55-1:25",
+      "expected_cameras": [
+        "G339",
+        "G424"
+      ],
+      "answer_cameras": [
+        "G339",
+        "G424"
+      ],
+      "final_answer": "Likely yes. The queried entity appears across multiple cameras. | Cameras: G339, G424 | Times: G339 150.933-157.583; G424 246.76666666666668-273.06666666666666 | Summary: Entity person_global_11 appears in both G424 and G339 with appearance described as 'dark coat', matching the query's 'long dark coat'; camera IDs match but 'long' descriptor is truncated in evidence..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=616 | 166.733-167.3; [hybrid] 2018-03-11.13-50-01.13-5",
+      "error": null,
+      "elapsed_s": 4.5,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G339",
+          "G424"
+        ],
+        "found_cameras": [
+          "G339",
+          "G424"
+        ],
+        "intersection": [
+          "G339",
+          "G424"
+        ],
+        "recall": 1.0,
+        "precision": 1.0,
+        "iou": 1.0
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [0:55-1:25]"
+    },
+    {
+      "idx": 18,
+      "question": "Did a person with dark jacket appear in camera G424 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P12) first in G424 @ 0:00, then G339 @ 0:55. Appearance: dark jacket, dark trousers, no visible bag, ",
+      "expected_answer": "yes",
+      "expected_time": "0:55-1:25",
+      "expected_cameras": [
+        "G339",
+        "G424"
+      ],
+      "answer_cameras": [
+        "G339",
+        "G424"
+      ],
+      "final_answer": "Yes. The queried entity appears across multiple cameras. | Cameras: G339, G424 | Times: G339 150.933-157.583; G424 246.76666666666668-273.06666666666666 | Summary: Entity person_global_11 appears in both G424 and G339 with appearance described as 'dark coat', matching the query's 'dark jacket' across the exact requested cameras..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=841 | 80.1-89.96666666666667; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id",
+      "error": null,
+      "elapsed_s": 3.6,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G339",
+          "G424"
+        ],
+        "found_cameras": [
+          "G339",
+          "G424"
+        ],
+        "intersection": [
+          "G339",
+          "G424"
+        ],
+        "recall": 1.0,
+        "precision": 1.0,
+        "iou": 1.0
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [0:55-1:25]"
+    },
+    {
+      "idx": 19,
+      "question": "Did a person with beige/khaki coat appear in camera G424 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P13) first in G424 @ 0:00, then G339 @ 0:55. Appearance: beige/khaki coat, dark trousers, no visible ",
+      "expected_answer": "yes",
+      "expected_time": "0:55-1:25",
+      "expected_cameras": [
+        "G339",
+        "G424"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G339",
+        "G424"
+      ],
+      "final_answer": "Likely yes. The queried entity appears across multiple cameras. | Cameras: G424, G328, G339 | Times: G424 80.1-89.96666666666667; G328 233.13333333333333-234.06666666666666; G339 266.7-277.6 | Summary: Entity person_global_1 appears in both G424 and G339 (as well as G328), confirming cross-camera presence; however, no appearance description (e.g., beige/khaki coat) is provided for this entity..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=596 | 150.933-153.533; [hybr",
+      "error": null,
+      "elapsed_s": 7.7,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G339",
+          "G424"
+        ],
+        "found_cameras": [
+          "G328",
+          "G339",
+          "G424"
+        ],
+        "intersection": [
+          "G339",
+          "G424"
+        ],
+        "recall": 1.0,
+        "precision": 0.6667,
+        "iou": 0.6667
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [0:55-1:25]"
+    },
+    {
+      "idx": 20,
+      "question": "Did a person with brown jacket with dark hood/scarf appear in camera G424 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P14) first in G424 @ 0:00, then G339 @ 0:55. Appearance: brown jacket with dark hood/scarf, dark trou",
+      "expected_answer": "yes",
+      "expected_time": "0:55-1:25",
+      "expected_cameras": [
+        "G339",
+        "G424"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G339",
+        "G424"
+      ],
+      "final_answer": "Likely yes. The queried entity appears across multiple cameras. | Cameras: G424, G328, G339 | Times: G424 80.1-89.96666666666667; G328 233.13333333333333-234.06666666666666; G339 266.7-277.6 | Summary: Entity person_global_1 appears in both G424 and G339 (as well as G328), confirming cross-camera presence; however, appearance details like 'brown jacket with dark hood/scarf' are not described in the.\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G424.r13 | event_id=841 | 80.1-89.966666666",
+      "error": null,
+      "elapsed_s": 4.1,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G339",
+          "G424"
+        ],
+        "found_cameras": [
+          "G328",
+          "G339",
+          "G424"
+        ],
+        "intersection": [
+          "G339",
+          "G424"
+        ],
+        "recall": 1.0,
+        "precision": 0.6667,
+        "iou": 0.6667
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [0:55-1:25]"
+    },
+    {
+      "idx": 21,
+      "question": "Did a person with light grey coat with black hat appear in camera G424 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P15) first in G424 @ 0:00, then G339 @ 0:55. Appearance: light grey coat with black hat, dark trouser",
+      "expected_answer": "yes",
+      "expected_time": "0:55-1:25",
+      "expected_cameras": [
+        "G339",
+        "G424"
+      ],
+      "answer_cameras": [
+        "G328",
+        "G339",
+        "G424"
+      ],
+      "final_answer": "Likely yes. The queried entity appears across multiple cameras. | Cameras: G424, G328, G339 | Times: G424 80.1-89.96666666666667; G328 233.13333333333333-234.06666666666666; G339 266.7-277.6 | Summary: Entity person_global_1 appears in both G424 and G339 (as well as G328), confirming cross-camera presence; however, appearance details like 'light grey coat with black hat' are not described in its eve.\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=616 | 166.733-167.3; [",
+      "error": null,
+      "elapsed_s": 5.0,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G339",
+          "G424"
+        ],
+        "found_cameras": [
+          "G328",
+          "G339",
+          "G424"
+        ],
+        "intersection": [
+          "G339",
+          "G424"
+        ],
+        "recall": 1.0,
+        "precision": 0.6667,
+        "iou": 0.6667
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [0:55-1:25]"
+    },
+    {
+      "idx": 22,
+      "question": "Did a person with black hoodie (hood up) appear in camera G421 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P19) first in G421 @ 0:00, then G339 @ 2:32. Appearance: black hoodie (hood up), blue jeans, hair cov",
+      "expected_answer": "yes",
+      "expected_time": "2:32-3:03",
+      "expected_cameras": [
+        "G339",
+        "G421"
+      ],
+      "answer_cameras": [
+        "G339",
+        "G421",
+        "G424"
+      ],
+      "final_answer": "Likely yes. The queried entity appears across multiple cameras. | Cameras: G339, G421 | Times: G339 53.433-56.033; G421 104.46666666666667-299.96666666666664 | Summary: Entity person_global_10 appears in both G421 and G339 with 'dark long-sle' appearance, consistent with a black hoodie (hood up); however, description is truncated and lacks explicit confirmation of ho.\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G421.r13 | event_id=780 | 104.46666666666667-299.96666666666664; [hybrid] 2",
+      "error": null,
+      "elapsed_s": 4.5,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G339",
+          "G421"
+        ],
+        "found_cameras": [
+          "G339",
+          "G421",
+          "G424"
+        ],
+        "intersection": [
+          "G339",
+          "G421"
+        ],
+        "recall": 1.0,
+        "precision": 0.6667,
+        "iou": 0.6667
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [2:32-3:03]"
+    },
+    {
+      "idx": 23,
+      "question": "Did a person with dark jacket appear in camera G421 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P20) first in G421 @ 0:00, then G339 @ 2:32. Appearance: dark jacket, dark trousers, short dark hair",
+      "expected_answer": "yes",
+      "expected_time": "2:32-3:03",
+      "expected_cameras": [
+        "G339",
+        "G421"
+      ],
+      "answer_cameras": [
+        "G339",
+        "G421"
+      ],
+      "final_answer": "Yes. The queried entity appears across multiple cameras. | Cameras: G339, G421 | Times: G339 53.433-56.033; G421 104.46666666666667-299.96666666666664 | Summary: Entity person_global_10 appears in both G421 and G339 with appearance described as 'dark long-sle' (short for dark long-sleeve jacket), matching the query's 'dark jacket' and camera sequence..\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r13 | event_id=718 | 266.7-277.6; [hybrid] 2018-03-11.13-50-01.13-55-01.school.G339.r1",
+      "error": null,
+      "elapsed_s": 4.1,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G339",
+          "G421"
+        ],
+        "found_cameras": [
+          "G339",
+          "G421"
+        ],
+        "intersection": [
+          "G339",
+          "G421"
+        ],
+        "recall": 1.0,
+        "precision": 1.0,
+        "iou": 1.0
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [2:32-3:03]"
+    },
+    {
+      "idx": 24,
+      "question": "Did a person with dark hoodie appear in camera G421 and then appear again in camera G339?",
+      "recall_challenge": "Same person (13-50-P21) first in G421 @ 0:00, then G339 @ 2:32. Appearance: dark hoodie, white t-shirt, dark trousers, w",
+      "expected_answer": "yes",
+      "expected_time": "2:32-3:03",
+      "expected_cameras": [
+        "G339",
+        "G421"
+      ],
+      "answer_cameras": [
+        "G339",
+        "G421",
+        "G424"
+      ],
+      "final_answer": "Likely yes. The queried entity appears across multiple cameras. | Cameras: G339, G421 | Times: G339 53.433-56.033; G421 104.46666666666667-299.96666666666664 | Summary: Entity person_global_10 appears in both G421 and G339 with appearance described as 'dark long-sle' (likely 'dark long-sleeve' or 'dark hoodie'), matching the query's dark hoodie description and camera.\nSources: [hybrid] 2018-03-11.13-50-01.13-55-01.school.G421.r13 | event_id=780 | 104.46666666666667-299.96666666666664; [hybrid] 2",
+      "error": null,
+      "elapsed_s": 4.1,
+      "node_trace": [
+        "self_query_node",
+        "query_classification_node",
+        "parallel_retrieval_fusion_node",
+        "match_verifier_node",
+        "final_answer_node",
+        "summary_node"
+      ],
+      "multi_camera_detected": true,
+      "ge_rows_count": 78,
+      "passed": true,
+      "metrics": {
+        "expected_cameras": [
+          "G339",
+          "G421"
+        ],
+        "found_cameras": [
+          "G339",
+          "G421",
+          "G424"
+        ],
+        "intersection": [
+          "G339",
+          "G421"
+        ],
+        "recall": 1.0,
+        "precision": 0.6667,
+        "iou": 0.6667
+      },
+      "answer_has_content": true,
+      "answer_correct": true,
+      "time_ok": false,
+      "time_detail": "no time in [2:32-3:03]"
+    }
+  ]
+}

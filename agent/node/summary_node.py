@@ -168,6 +168,15 @@ def _build_factual_summary(
     if _grounder_mismatch_rerank_forbids_positive_clip_summary(verifier_result):
         return "No matching clip is expected."
 
+    # v2.5: When the verifier was skipped (non-existence answer type), build
+    # a factual summary from the top row instead of returning a bail-out.
+    verifier_decision = str(verifier_result.get("decision") or "").strip().lower() if isinstance(verifier_result, dict) else ""
+    if verifier_decision == "skipped":
+        top_row = rows[0]
+        primary = _pick_primary_row(top_row)
+        video_id = str(primary.get("video_id") or top_row.get("video_id") or "unknown_video").strip()
+        return f"The most relevant clip is in {video_id}."
+
     use_verifier_span = (
         isinstance(verifier_result, dict)
         and str(verifier_result.get("span_source") or "").strip().lower() == "rerank_reselected"
@@ -293,6 +302,27 @@ def create_summary_node(llm: Any = None):
         verifier_payload = state.get("verifier_result")
         if not isinstance(verifier_payload, dict):
             verifier_payload = None
+
+        # ── v2.4: Multi-camera early return ──
+        # When the verifier confirmed a multi-camera match, preserve the
+        # multi-camera formatted answer from final_answer_node instead of
+        # running it through the conservative single-video summary prompt.
+        if isinstance(verifier_payload, dict) and verifier_payload.get("multi_camera"):
+            final_text = raw_answer
+            if rendered_citations:
+                final_text += "\n" + rendered_citations
+            return {
+                "final_answer": final_text,
+                "summary_result": {
+                    "summary": raw_answer,
+                    "style": "multi_camera_preserved",
+                    "confidence": 0.9,
+                    "citations": citations,
+                },
+                "current_node": "summary_node",
+                "messages": [AIMessage(content=final_text)],
+            }
+
         factual_fallback = _build_factual_summary(
             rows, original_query or rewritten_query, verifier_result=verifier_payload
         )
