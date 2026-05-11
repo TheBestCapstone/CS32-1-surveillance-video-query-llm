@@ -68,8 +68,17 @@ def passes_time_constraint(
 # Candidate pair generation
 # ------------------------------------------------------------------
 
+_MIN_TRACK_DURATION_SEC = 2.0  # tracks shorter than this have noisy embeddings
+
+
 def _person_tracks(cam: CameraResult) -> list[dict[str, Any]]:
-    return [t for t in cam.tracks if t.get("class_name") == "person"]
+    """Return person tracks that are long enough to have reliable Re-ID embeddings."""
+    return [
+        t for t in cam.tracks
+        if t.get("class_name") == "person"
+        and (float(t.get("end_time", 0)) - float(t.get("start_time", 0)))
+            >= _MIN_TRACK_DURATION_SEC
+    ]
 
 
 def build_candidate_pairs(
@@ -83,6 +92,13 @@ def build_candidate_pairs(
         tracks_j = _person_tracks(cam_j) if config.person_only else cam_j.tracks
         for ti in tracks_i:
             for tj in tracks_j:
+                # Hard reject: a person cannot be in two DIFFERENT cameras at the
+                # same time.  Any temporal overlap between cross-camera tracks means
+                # they are distinct individuals — never link them.
+                a_s = float(ti["start_time"]); a_e = float(ti["end_time"])
+                b_s = float(tj["start_time"]); b_e = float(tj["end_time"])
+                if min(a_e, b_e) > max(a_s, b_s):
+                    continue  # overlapping → different people
                 if passes_time_constraint(ti, tj, config):
                     pairs.append((cam_i, ti, cam_j, tj))
     return pairs
@@ -140,6 +156,9 @@ def score_candidate_pairs(
         if emb_i is None or emb_j is None:
             continue
         cosine = float(emb_i @ emb_j)
+        # Hard gate: reject pairs below embedding_threshold regardless of topology score
+        if cosine < config.embedding_threshold:
+            continue
         gap = _time_gap(
             float(ti["start_time"]), float(ti["end_time"]),
             float(tj["start_time"]), float(tj["end_time"]),
@@ -211,51 +230,107 @@ def _greedy_assign(
     return assignments
 
 
+def _validate_entity_members(
+    members: list[tuple[str, int]],
+    track_lookup: dict[tuple[str, int], dict[str, Any]],
+) -> list[list[tuple[str, int]]]:
+    """(Kept for compatibility — no longer called directly.)"""
+    return [members]
+
+
 def _build_global_entities(
     assignments: list[tuple[str, int, str, int, float]],
     per_camera: list[CameraResult],
 ) -> list[GlobalEntity]:
-    """Merge pairwise assignments into global entities (Union-Find)."""
-    parent: dict[tuple[str, int], tuple[str, int]] = {}
+    """Build global entities using score-ordered greedy merging.
 
-    def find(x: tuple[str, int]) -> tuple[str, int]:
-        if x not in parent:
-            parent[x] = x
-        while parent[x] != x:
-            parent[x] = parent.get(parent[x], parent[x])
-            x = parent[x]
-        return x
+    Replaces Union-Find to prevent chain-merging.  Processes assignments from
+    highest score to lowest; a merge is allowed only when the combined entity
+    would still have AT MOST ONE track per camera.  This enforces the physical
+    constraint (one person cannot be in two places in the same camera at once)
+    during construction rather than as a post-processing split.
 
-    def union(a: tuple[str, int], b: tuple[str, int]) -> None:
-        ra, rb = find(a), find(b)
-        if ra != rb:
-            parent[ra] = rb
-
-    for cam_a, tid_a, cam_b, tid_b, _ in assignments:
-        union((cam_a, tid_a), (cam_b, tid_b))
-
+    This means:
+    - High-confidence matches are committed first.
+    - A noisy "bridge" track cannot chain two unrelated people together once
+      one of its cameras is already claimed by a high-score match.
+    """
+    # Build track_lookup: for merged tracks (same track_id after same-cam stitching),
+    # record the merged time span (earliest start, latest end) so entity appearances
+    # have accurate timestamps.
     track_lookup: dict[tuple[str, int], dict[str, Any]] = {}
     for cam in per_camera:
         for t in cam.tracks:
-            track_lookup[(cam.camera_id, t["track_id"])] = t
+            key = (cam.camera_id, int(t["track_id"]))
+            existing = track_lookup.get(key)
+            if existing is None:
+                track_lookup[key] = dict(t)  # shallow copy so we can mutate times
+            else:
+                # Expand the time span to cover all fragments merged into this id
+                existing["start_time"] = min(float(existing["start_time"]), float(t["start_time"]))
+                existing["end_time"]   = max(float(existing["end_time"]),   float(t["end_time"]))
 
     confidence_map: dict[tuple[str, int, str, int], float] = {}
     for cam_a, tid_a, cam_b, tid_b, score in assignments:
         confidence_map[(cam_a, tid_a, cam_b, tid_b)] = score
 
-    groups: dict[tuple[str, int], list[tuple[str, int]]] = {}
-    all_keys = set()
-    for cam_a, tid_a, cam_b, tid_b, _ in assignments:
-        all_keys.add((cam_a, tid_a))
-        all_keys.add((cam_b, tid_b))
-    for k in all_keys:
-        root = find(k)
-        groups.setdefault(root, []).append(k)
+    # assignments is already sorted highest-score first (from _greedy_assign)
+    # entity_of: track_key → entity_id
+    entity_of: dict[tuple[str, int], int] = {}
+    # entity_cams: entity_id → {cam_id: track_key}
+    entity_cams: dict[int, dict[str, tuple[str, int]]] = {}
+    next_eid: list[int] = [0]
+
+    def new_entity(key_a: tuple[str, int], key_b: tuple[str, int]) -> int:
+        eid = next_eid[0]; next_eid[0] += 1
+        entity_cams[eid] = {key_a[0]: key_a, key_b[0]: key_b}
+        entity_of[key_a] = eid
+        entity_of[key_b] = eid
+        return eid
+
+    def add_to_entity(eid: int, key: tuple[str, int]) -> None:
+        entity_cams[eid][key[0]] = key
+        entity_of[key] = eid
+
+    def merge_entities(eid_dst: int, eid_src: int) -> None:
+        for cam, key in entity_cams[eid_src].items():
+            entity_cams[eid_dst][cam] = key
+            entity_of[key] = eid_dst
+        del entity_cams[eid_src]
+
+    for cam_a, tid_a, cam_b, tid_b, _score in assignments:
+        key_a = (cam_a, tid_a)
+        key_b = (cam_b, tid_b)
+        eid_a = entity_of.get(key_a)
+        eid_b = entity_of.get(key_b)
+
+        if eid_a is None and eid_b is None:
+            new_entity(key_a, key_b)
+
+        elif eid_a is not None and eid_b is None:
+            if cam_b not in entity_cams[eid_a]:
+                add_to_entity(eid_a, key_b)
+
+        elif eid_a is None and eid_b is not None:
+            if cam_a not in entity_cams[eid_b]:
+                add_to_entity(eid_b, key_a)
+
+        else:
+            if eid_a == eid_b:
+                continue  # already in same entity
+            # Merge only if no camera conflict between the two entities
+            cams_a = set(entity_cams[eid_a].keys())
+            cams_b = set(entity_cams[eid_b].keys())
+            if not (cams_a & cams_b):
+                merge_entities(eid_a, eid_b)
+            # else: conflict — skip this assignment
 
     entities: list[GlobalEntity] = []
-    for idx, (_, members) in enumerate(sorted(groups.items()), start=1):
+    for idx, (eid, cam_track_map) in enumerate(
+        sorted(entity_cams.items()), start=1
+    ):
         appearances: list[CameraAppearance] = []
-        for cam_id, tid in members:
+        for cam_id, (cam_id2, tid) in cam_track_map.items():
             t = track_lookup.get((cam_id, tid))
             if t is None:
                 continue
@@ -275,6 +350,8 @@ def _build_global_entities(
             global_entity_id=f"person_global_{idx}",
             appearances=appearances,
         ))
+
+    logger.info("Global entities (score-ordered greedy): %d", len(entities))
     return entities
 
 

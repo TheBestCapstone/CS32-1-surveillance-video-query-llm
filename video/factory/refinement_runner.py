@@ -301,17 +301,27 @@ def refine_multi_camera_output(
                 )
                 continue
 
-            refined_list_vector.append(
-                refine_vector_events_with_llm(
-                    video_id=Path(video_path).name,
-                    clip={"start_sec": clip_start, "end_sec": clip_end},
-                    raw_events=clip_events,
-                    frames=frames,
-                    model=cfg.model,
-                    temperature=float(cfg.temperature),
-                    cross_camera_context=cross_ctx,
+            try:
+                refined_list_vector.append(
+                    refine_vector_events_with_llm(
+                        video_id=Path(video_path).name,
+                        clip={"start_sec": clip_start, "end_sec": clip_end},
+                        raw_events=clip_events,
+                        frames=frames,
+                        model=cfg.model,
+                        temperature=float(cfg.temperature),
+                        cross_camera_context=cross_ctx,
+                    )
                 )
-            )
+            except Exception as exc:
+                logger.warning(
+                    "Camera %s clip %.1f-%.1f: VLM refinement failed; keeping other clips. Error: %s",
+                    cam_id,
+                    clip_start,
+                    clip_end,
+                    exc,
+                )
+                continue
 
         flat_events: list[dict[str, Any]] = []
         for ve in refined_list_vector:

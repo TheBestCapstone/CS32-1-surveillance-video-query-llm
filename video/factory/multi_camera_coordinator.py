@@ -63,6 +63,13 @@ def _stitch_same_camera_fragments(
             a_tid, b_tid = int(a["track_id"]), int(b["track_id"])
             if a_tid == b_tid:
                 continue
+            # Skip pairs with temporal overlap — two simultaneously active tracks in the
+            # same camera MUST be different people; stitching them is always wrong.
+            a_s, a_e = float(a["start_time"]), float(a["end_time"])
+            b_s, b_e = float(b["start_time"]), float(b["end_time"])
+            overlap = min(a_e, b_e) - max(a_s, b_s)
+            if overlap > 0:
+                continue  # simultaneously visible → different people, never stitch
             gap = _same_camera_gap_sec(a, b)
             if gap > config.same_camera_max_gap_sec:
                 continue
