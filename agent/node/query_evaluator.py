@@ -48,7 +48,11 @@ class QueryEvaluator:
         )
 
     def is_satisfactory(self, quality_score: QueryQualityScore) -> bool:
-        return quality_score.get("overall", 0.0) >= 0.6 and len(quality_score.get("issues", [])) == 0
+        # Only the "overall" threshold matters for the satisfication check.
+        # Issues are informational and should not gate the result because
+        # evaluate() appends them for nearly every query (result count,
+        # missing event, etc.), making len(issues)==0 nearly impossible.
+        return quality_score.get("overall", 0.0) >= 0.6
 
 
 def create_query_evaluator() -> QueryEvaluator:

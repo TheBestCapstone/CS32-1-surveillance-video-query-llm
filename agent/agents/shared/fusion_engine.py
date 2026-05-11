@@ -81,8 +81,26 @@ def _apply_signal_bias(
     }
 
 
+def _normalize_event_id(event_id: Any) -> str | None:
+    """Normalize event_id to a canonical string for cross-branch matching.
+
+    SQL branch returns ``int`` (e.g. 42), Chroma branch may return ``str``
+    (e.g. "42") or ``None``.  This function coerces numeric event_ids to
+    ``str(int(...))`` so that ``_row_key`` generates the same key regardless
+    of source branch, fixing the RRF overlap bug (P0-1).
+    """
+    if event_id is None:
+        return None
+    try:
+        # Try int conversion: 42 → "42", "42" → "42", 42.0 → "42"
+        return str(int(float(event_id)))
+    except (ValueError, TypeError):
+        # Non-numeric event_id (e.g. Chroma record ID): use as-is
+        return str(event_id).strip()
+
+
 def _row_key(row: Dict[str, Any]) -> str:
-    event_id = row.get("event_id")
+    event_id = _normalize_event_id(row.get("event_id"))
     if event_id is not None:
         return f"event_id:{event_id}"
     return "|".join(

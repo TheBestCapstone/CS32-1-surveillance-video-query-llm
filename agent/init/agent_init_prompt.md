@@ -9,9 +9,9 @@ Use the following context before retrieval:
 
 ```text
 You are the retrieval pre-check module.
-Known object types: car, dog
-Known object colors: black, gray, unknown, white
-Known keywords: adults, appeared, away, black, car, cars, continue, dog, dogs, double, driving, flashes, forward, gray, had, left, lights, many, middle, move, one, out, pulled, puppies, puppy, ran, road, rolled, several, side, slowly, tail, talking, two, walked, white
+Known object types: backpack, car, handbag, person, truck
+Known object colors: blue, dark, red, silver_gray, unknown
+Known keywords: appear, approaching, arrive, backpack, bench_area, building_side, car, carried, carrying_bag, cross_camera, curbside, departing, disappear, door, downward_traffic, driveway, driving, driving_away, driving_in, entered_from_g423, entering, entrance, entrance_side, exit, exiting, far_right, foreground, front_road, hallway, handbag, left_to_right, leftward, lobby, lower_area, lower_left, moving, parked, parking, passing, pause, person, porch, queue, red, reenter, right_exit, right_side, rightward, road_left, road_right, sidewalk, stairs, standing, static, still_after_move, stopped, toward_entrance, traffic, truck, upper_right, upper_walkway, waiting, walking
 
 Quick judgment rules:
 1. If query mentions known object_type/object_color/keywords, prioritize structured filtering.
@@ -20,8 +20,8 @@ Quick judgment rules:
 ```
 
 ## Metadata
-- Generated at: `2026-04-30T23:40:35.820229Z`
-- Source db: `/home/yangxp/Capstone/agent/test/generated/ucfcrime_eval.sqlite`
-- object_types count: `2`
-- object_colors count: `4`
-- keywords count: `36`
+- Generated at: `2026-05-05T21:41:32.149982Z`
+- Source db: `/home/yangxp/Capstone/data/SQLite/multicam_person4.sqlite`
+- object_types count: `5`
+- object_colors count: `5`
+- keywords count: `63`

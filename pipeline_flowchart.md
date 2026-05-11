@@ -1,6 +1,6 @@
 # CS32-1 Surveillance Video Query System — Pipeline Flowchart
 
-> **Legend:** 🟢 Fully implemented &nbsp;|&nbsp; 🟡 Partially implemented &nbsp;|&nbsp; 🔴 Stub / Not yet implemented
+> **Legend:** 🟢 Fully implemented  |  🟡 Partially implemented  |  🔴 Stub / Not yet implemented
 
 ---
 
@@ -76,6 +76,8 @@ flowchart TD
     USER([👤 User Query]) --> PARSE
 ```
 
+
+
 ---
 
 ## 2. Stage 1 — Detailed Detection & Tracking Flow
@@ -125,6 +127,8 @@ flowchart TD
     style E5 fill:#EDE9FE
 ```
 
+
+
 ---
 
 ## 3. Stage 2 — LLM Refinement Flow
@@ -161,6 +165,8 @@ flowchart TD
     style FULL fill:#EFF6FF
     style VECTOR fill:#F0FDF4
 ```
+
+
 
 ---
 
@@ -209,6 +215,8 @@ flowchart TD
     style UF fill:#D1FAE5
 ```
 
+
+
 ---
 
 ## 5. ReID Embedder Architecture
@@ -240,6 +248,8 @@ flowchart TD
     style OSNET fill:#D1FAE5
     style MOB fill:#FEF3C7
 ```
+
+
 
 ---
 
@@ -305,6 +315,8 @@ flowchart TD
     style HR fill:#D1FAE5
 ```
 
+
+
 ---
 
 ## 7. Data Schema Flow
@@ -332,34 +344,39 @@ flowchart LR
     VF -->|"get_qwen_embedding()\n+ store_manager 🔴"| DB
 ```
 
+
+
 ---
 
 ## 8. Key Configuration Parameters
 
-| Parameter | Value | Location | Effect |
-|-----------|-------|----------|--------|
-| Detection model | `yolo11m.pt` | `vision.py resolve_model()` | Small object recall |
-| Detection conf | `0.25` | `run_pipeline()` default | Miss rate vs false positive |
-| Detection iou | `0.45` | `run_pipeline()` default | NMS overlap threshold |
-| Tracker | `botsort_reid` | `run_pipeline()` default | Appearance-based ReID |
-| `with_reid` | `True` | `botsort_reid.yaml` | Enable OSNet embeddings |
-| `track_buffer` | `100` | `botsort_reid.yaml` | Frames to keep lost tracks |
-| `appearance_thresh` | `0.25` | `botsort_reid.yaml` | ReID match threshold |
-| `gmc_method` | `sparseOptFlow` | `botsort_reid.yaml` | Camera motion compensation |
-| ReID primary | OSNet x0_5 (512-dim) | `reid_embedder.py` | Person appearance features |
-| ReID fallback | MobileNetV2 (1280-dim) | `reid_embedder.py` | Cross-platform safety |
-| Fragment stitch gap | `3.0s` | `default.yaml` | Same-cam track merge |
-| Fragment stitch cos | `0.80` | `default.yaml` | Same-cam cosine threshold |
-| Cross-cam max gap | `30.0s` | `default.yaml` | Time window for matching |
-| Cross-cam threshold | `0.65` | `default.yaml` | Min match score |
-| Cross-cam scoring | `0.7×cosine + 0.3×time` | `cross_camera_matcher.py` | Combined score formula |
-| LLM verify range | `[0.65, 0.80]` | `default.yaml` | Borderline VLM cases |
-| LLM verify top-k | `3` | `default.yaml` | Max VLM calls per run |
-| LLM model (refine) | `gpt-5.4-mini` | `refinement_runner.py` | Event description |
-| LLM model (verify) | `gpt-4o-mini` (default) | `event_refinement_llm.py` | Person identity check |
-| Embedding model | Qwen text-embedding-v3 | `embedder.py` | 1024-dim vector index |
-| Motion window | `1.5s` | `run_pipeline()` | Sliding window for motion |
-| Motion threshold | `20.0px` | `run_pipeline()` | Frame-diff sum threshold |
-| Entity merge gap | `300s` (5 min) | `RefineEventsConfig` | Max gap for LLM merge |
-| Entity merge conf | `0.75` | `RefineEventsConfig` | Min LLM confidence |
-| Max time adjust | `0.5s` | `RefineEventsConfig` | LLM timestamp correction |
+
+| Parameter           | Value                   | Location                    | Effect                      |
+| ------------------- | ----------------------- | --------------------------- | --------------------------- |
+| Detection model     | `yolo11m.pt`            | `vision.py resolve_model()` | Small object recall         |
+| Detection conf      | `0.25`                  | `run_pipeline()` default    | Miss rate vs false positive |
+| Detection iou       | `0.45`                  | `run_pipeline()` default    | NMS overlap threshold       |
+| Tracker             | `botsort_reid`          | `run_pipeline()` default    | Appearance-based ReID       |
+| `with_reid`         | `True`                  | `botsort_reid.yaml`         | Enable OSNet embeddings     |
+| `track_buffer`      | `100`                   | `botsort_reid.yaml`         | Frames to keep lost tracks  |
+| `appearance_thresh` | `0.25`                  | `botsort_reid.yaml`         | ReID match threshold        |
+| `gmc_method`        | `sparseOptFlow`         | `botsort_reid.yaml`         | Camera motion compensation  |
+| ReID primary        | OSNet x0_5 (512-dim)    | `reid_embedder.py`          | Person appearance features  |
+| ReID fallback       | MobileNetV2 (1280-dim)  | `reid_embedder.py`          | Cross-platform safety       |
+| Fragment stitch gap | `3.0s`                  | `default.yaml`              | Same-cam track merge        |
+| Fragment stitch cos | `0.80`                  | `default.yaml`              | Same-cam cosine threshold   |
+| Cross-cam max gap   | `30.0s`                 | `default.yaml`              | Time window for matching    |
+| Cross-cam threshold | `0.65`                  | `default.yaml`              | Min match score             |
+| Cross-cam scoring   | `0.7×cosine + 0.3×time` | `cross_camera_matcher.py`   | Combined score formula      |
+| LLM verify range    | `[0.65, 0.80]`          | `default.yaml`              | Borderline VLM cases        |
+| LLM verify top-k    | `3`                     | `default.yaml`              | Max VLM calls per run       |
+| LLM model (refine)  | `gpt-5.4-mini`          | `refinement_runner.py`      | Event description           |
+| LLM model (verify)  | `gpt-4o-mini` (default) | `event_refinement_llm.py`   | Person identity check       |
+| Embedding model     | Qwen text-embedding-v3  | `embedder.py`               | 1024-dim vector index       |
+| Motion window       | `1.5s`                  | `run_pipeline()`            | Sliding window for motion   |
+| Motion threshold    | `20.0px`                | `run_pipeline()`            | Frame-diff sum threshold    |
+| Entity merge gap    | `300s` (5 min)          | `RefineEventsConfig`        | Max gap for LLM merge       |
+| Entity merge conf   | `0.75`                  | `RefineEventsConfig`        | Min LLM confidence          |
+| Max time adjust     | `0.5s`                  | `RefineEventsConfig`        | LLM timestamp correction    |
+
+

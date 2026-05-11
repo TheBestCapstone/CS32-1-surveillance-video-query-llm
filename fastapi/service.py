@@ -5,7 +5,7 @@ import uuid
 from pathlib import Path
 from typing import Any, Iterator
 
-from langchain_core.messages import HumanMessage
+from langchain_core.messages import AIMessage, HumanMessage
 
 _PROJECT_ROOT = Path(__file__).resolve().parents[1]
 _AGENT_ROOT = _PROJECT_ROOT / "agent"
@@ -21,6 +21,7 @@ from db.config import (  # noqa: E402
     get_graph_sqlite_db_path,
 )
 import graph as graph_module  # noqa: E402
+from memory.short_term import add_turn, format_history_for_prompt, get_history  # noqa: E402
 from tools.bm25_index import BM25Index  # noqa: E402
 
 
@@ -39,6 +40,22 @@ def _strip_sources(text: str | None) -> str:
     if "\nSources:" in body:
         body = body.split("\nSources:", 1)[0].strip()
     return body
+
+
+def _build_messages_with_history(
+    question: str,
+    thread_id: str,
+    user_id: str,
+) -> list:
+    """Build the messages list for graph invocation, prepending conversation
+    history if short-term memory is enabled."""
+    messages: list = []
+    history_turns = get_history(thread_id, user_id)
+    for turn in history_turns:
+        messages.append(HumanMessage(content=str(turn["query"])))
+        messages.append(AIMessage(content=str(turn["answer"])))
+    messages.append(HumanMessage(content=question))
+    return messages
 
 
 class AgentGraphService:
@@ -188,10 +205,11 @@ class AgentGraphService:
         resolved_thread_id = thread_id or f"fastapi-{uuid.uuid4().hex[:12]}"
         config = {"configurable": {"thread_id": resolved_thread_id, "user_id": user_id}}
 
+        messages = _build_messages_with_history(question, resolved_thread_id, user_id)
         last_chunk: dict[str, Any] = {}
         node_trace: list[str] = []
         t0 = time.perf_counter()
-        for chunk in self.graph.stream({"messages": [HumanMessage(content=question)]}, config, stream_mode="values"):
+        for chunk in self.graph.stream({"messages": messages}, config, stream_mode="values"):
             last_chunk = chunk
             current_node = chunk.get("current_node")
             if include_node_trace and current_node and (not node_trace or node_trace[-1] != current_node):
@@ -203,6 +221,8 @@ class AgentGraphService:
         sql_debug = last_chunk.get("sql_debug") if isinstance(last_chunk.get("sql_debug"), dict) else {}
         fusion_meta = sql_debug.get("fusion_meta") if isinstance(sql_debug.get("fusion_meta"), dict) else {}
         answer = _strip_sources(last_chunk.get("final_answer"))
+
+        add_turn(resolved_thread_id, user_id, query=question, answer=answer)
 
         return {
             "query": question,
@@ -239,12 +259,13 @@ class AgentGraphService:
         resolved_thread_id = thread_id or f"fastapi-{uuid.uuid4().hex[:12]}"
         config = {"configurable": {"thread_id": resolved_thread_id, "user_id": user_id}}
 
+        messages = _build_messages_with_history(question, resolved_thread_id, user_id)
         last_chunk: dict[str, Any] = {}
         node_trace: list[str] = []
         t0 = time.perf_counter()
         try:
             for index, chunk in enumerate(
-                self.graph.stream({"messages": [HumanMessage(content=question)]}, config, stream_mode="values"),
+                self.graph.stream({"messages": messages}, config, stream_mode="values"),
                 start=1,
             ):
                 last_chunk = chunk
@@ -280,6 +301,7 @@ class AgentGraphService:
         sql_debug = last_chunk.get("sql_debug") if isinstance(last_chunk.get("sql_debug"), dict) else {}
         fusion_meta = sql_debug.get("fusion_meta") if isinstance(sql_debug.get("fusion_meta"), dict) else {}
         answer = _strip_sources(last_chunk.get("final_answer"))
+        add_turn(resolved_thread_id, user_id, query=question, answer=answer)
         final_payload = {
             "query": question,
             "answer": answer,

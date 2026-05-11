@@ -9,6 +9,7 @@ from .config import (
     get_graph_chroma_child_collection,
     get_graph_chroma_collection,
     get_graph_chroma_event_collection,
+    get_graph_chroma_global_entity_collection,
     get_graph_chroma_namespace,
     get_graph_chroma_parent_collection,
     get_graph_chroma_path,
@@ -56,12 +57,14 @@ def cmd_build_chroma(args: argparse.Namespace) -> None:
     child_collection = args.child_collection or get_graph_chroma_child_collection()
     parent_collection = args.parent_collection or get_graph_chroma_parent_collection()
     event_collection = args.event_collection or get_graph_chroma_event_collection()
+    global_entity_collection = args.global_entity_collection or get_graph_chroma_global_entity_collection()
     builder = ChromaIndexBuilder(
         ChromaBuildConfig(
             chroma_path=chroma_path,
             child_collection=child_collection,
             parent_collection=parent_collection,
             event_collection=event_collection,
+            global_entity_collection=global_entity_collection,
             reset_existing=bool(args.reset),
         )
     )
@@ -101,6 +104,9 @@ def cmd_switch(args: argparse.Namespace) -> None:
     if args.chroma_event_collection:
         persist_env_value("AGENT_CHROMA_EVENT_COLLECTION", args.chroma_event_collection, env_file=env_path)
         logger.info("Updated AGENT_CHROMA_EVENT_COLLECTION=%s", args.chroma_event_collection)
+    if args.chroma_global_entity_collection:
+        persist_env_value("AGENT_CHROMA_GLOBAL_ENTITY_COLLECTION", args.chroma_global_entity_collection, env_file=env_path)
+        logger.info("Updated AGENT_CHROMA_GLOBAL_ENTITY_COLLECTION=%s", args.chroma_global_entity_collection)
     if args.chroma_retrieval_level:
         level = args.chroma_retrieval_level.strip().lower()
         if level not in CHROMA_RETRIEVAL_LEVELS:
@@ -122,6 +128,7 @@ def cmd_switch(args: argparse.Namespace) -> None:
                 "effective_chroma_child_collection": get_graph_chroma_child_collection(),
                 "effective_chroma_parent_collection": get_graph_chroma_parent_collection(),
                 "effective_chroma_event_collection": get_graph_chroma_event_collection(),
+                "effective_chroma_global_entity_collection": get_graph_chroma_global_entity_collection(),
                 "effective_chroma_retrieval_level": get_graph_chroma_retrieval_level(),
             },
             ensure_ascii=False,
@@ -149,6 +156,10 @@ def build_parser() -> argparse.ArgumentParser:
     p_build_chroma.add_argument("--child-collection", type=str, default="", help="Child collection name")
     p_build_chroma.add_argument("--parent-collection", type=str, default="", help="Parent collection name")
     p_build_chroma.add_argument("--event-collection", type=str, default="", help="Event-level collection name")
+    p_build_chroma.add_argument(
+        "--global-entity-collection", type=str, default="",
+        help="Cross-camera global-entity collection name (default: {namespace}_global_entities)",
+    )
     p_build_chroma.add_argument("--reset", action="store_true", help="Delete existing Chroma collections before build")
     p_build_chroma.set_defaults(func=cmd_build_chroma)
 
@@ -169,6 +180,10 @@ def build_parser() -> argparse.ArgumentParser:
     p_switch.add_argument("--chroma-child-collection", type=str, default="", help="New Chroma child collection name")
     p_switch.add_argument("--chroma-parent-collection", type=str, default="", help="New Chroma parent collection name")
     p_switch.add_argument("--chroma-event-collection", type=str, default="", help="New Chroma event-level collection name")
+    p_switch.add_argument(
+        "--chroma-global-entity-collection", type=str, default="",
+        help="New Chroma cross-camera global-entity collection name",
+    )
     p_switch.add_argument(
         "--chroma-retrieval-level",
         type=str,

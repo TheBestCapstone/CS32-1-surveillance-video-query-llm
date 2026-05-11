@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS {TABLE_NAME} (
     -- Core identity
     video_id TEXT NOT NULL,
     camera_id TEXT,
+    global_entity_id TEXT,
     track_id TEXT,
     entity_hint TEXT,
 
@@ -61,6 +62,7 @@ CREATE TABLE IF NOT EXISTS {TABLE_NAME} (
 INDEX_SQL_LIST = [
     f"CREATE INDEX IF NOT EXISTS idx_events_video_id ON {TABLE_NAME}(video_id);",
     f"CREATE INDEX IF NOT EXISTS idx_events_camera_id ON {TABLE_NAME}(camera_id);",
+    f"CREATE INDEX IF NOT EXISTS idx_events_global_entity ON {TABLE_NAME}(global_entity_id);",
     f"CREATE INDEX IF NOT EXISTS idx_events_track_id ON {TABLE_NAME}(track_id);",
     f"CREATE INDEX IF NOT EXISTS idx_events_object_type ON {TABLE_NAME}(object_type);",
     f"CREATE INDEX IF NOT EXISTS idx_events_color ON {TABLE_NAME}(object_color_en);",
@@ -127,6 +129,7 @@ FTS5_REBUILD_SQL = f"INSERT INTO {FTS_TABLE_NAME}({FTS_TABLE_NAME}) VALUES('rebu
 INSERT_COLUMNS = [
     "video_id",
     "camera_id",
+    "global_entity_id",
     "track_id",
     "entity_hint",
     "clip_start_sec",

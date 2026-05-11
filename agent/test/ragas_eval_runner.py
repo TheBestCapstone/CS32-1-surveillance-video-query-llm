@@ -16,13 +16,16 @@ from typing import Any
 
 from openai import AsyncOpenAI
 
+from ragas.dataset_schema import SingleTurnSample
 from ragas.llms import llm_factory
+from ragas.metrics._context_recall import IDBasedContextRecall
 from ragas.metrics.collections import (
     ContextPrecisionWithReference,
     ContextRecall,
     Faithfulness,
     FactualCorrectness,
 )
+from ragas.run_config import RunConfig
 
 
 ROOT_DIR = Path(__file__).resolve().parents[2]
@@ -117,6 +120,13 @@ def _select_final_rows(final_state: dict[str, Any]) -> list[dict[str, Any]]:
     return list(final_state.get("sql_result") or [])
 
 
+def _video_id_from_context_prefix(context: str) -> str:
+    """Parse ``Video <id>.`` prefix from ``_row_context_text`` output (fallback when row meta is missing)."""
+    body = str(context or "").strip()
+    m = re.match(r"^Video\s+(\S+)\.", body, flags=re.IGNORECASE)
+    return m.group(1).strip() if m else ""
+
+
 def _row_context_text(row: dict[str, Any]) -> str:
     """Build the per-chunk context string fed to RAGAS.
 
@@ -209,6 +219,57 @@ def _pick_primary_eval_row(row: dict[str, Any]) -> dict[str, Any]:
         key=_sort_key,
     )
     return ranked_children[0] if ranked_children else row
+
+
+def _normalize_video_id(video_id: str) -> str:
+    """Normalize video_id to canonical form for comparison.
+
+    Handles bidirectional naming and extension suffixes:
+    - ``Normal_Videos_598_x264`` → ``Normal_Videos598_x264`` (remove underscore before digits)
+    - ``Normal_Videos598_x264``  → ``Normal_Videos598_x264`` (already canonical)
+    - ``Normal_Videos598_x264.mp4`` → ``Normal_Videos598_x264`` (strip .mp4)
+    """
+    vid = video_id.strip()
+    # Strip .mp4 suffix so xlsx (no extension) and DB (.mp4) IDs compare equal.
+    if vid.lower().endswith(".mp4"):
+        vid = vid[:-4]
+    if vid.startswith("Normal_Videos_"):
+        suffix = vid[len("Normal_Videos_"):]
+        if suffix and suffix[0].isdigit():
+            return f"Normal_Videos{suffix}"
+    return vid
+
+
+def _same_video_chunk_precision(contexts: list[str], reference_video_id: str) -> float | None:
+    """Share of retrieved context slots whose parsed ``video_id`` equals GT (precision@k over all k).
+
+    Uses one denominator per retrieved chunk string (not unique videos). This avoids the
+    RAGAS ``IDBasedContextPrecision`` pitfall where precision ≈ 1 / (#distinct videos).
+    """
+    exp = _normalize_video_id(str(reference_video_id or "").strip())
+    if not exp or not contexts:
+        return None
+    hits = 0
+    for ctx in contexts:
+        raw = _video_id_from_context_prefix(ctx)
+        if raw and _normalize_video_id(raw) == exp:
+            hits += 1
+    return round(hits / len(contexts), 4)
+
+
+def _same_video_precision_at_1(contexts: list[str], reference_video_id: str) -> float | None:
+    """Binary precision@1: whether the **first** retrieved chunk's ``video_id`` matches GT.
+
+    Usually much higher than ``_same_video_chunk_precision`` when fusion/rerank puts the
+    right video first but lower ranks mix in other videos.
+    """
+    exp = _normalize_video_id(str(reference_video_id or "").strip())
+    if not exp or not contexts:
+        return None
+    raw = _video_id_from_context_prefix(contexts[0])
+    if not raw:
+        return 0.0
+    return 1.0 if _normalize_video_id(raw) == exp else 0.0
 
 
 def _extract_predicted_span(rows: list[dict[str, Any]]) -> dict[str, Any]:
@@ -385,8 +446,8 @@ def _score_time_range_overlap(case_result: dict[str, Any]) -> dict[str, Any]:
     expected_end = _safe_float(case_result.get("expected_end_sec"))
     predicted_start = _safe_float(case_result.get("predicted_start_sec"))
     predicted_end = _safe_float(case_result.get("predicted_end_sec"))
-    expected_video_id = str(case_result.get("video_id") or "").strip()
-    predicted_video_id = str(case_result.get("predicted_video_id") or "").strip()
+    expected_video_id = _normalize_video_id(str(case_result.get("video_id") or ""))
+    predicted_video_id = _normalize_video_id(str(case_result.get("predicted_video_id") or ""))
 
     video_match_score: float | None = None
     if expected_label == "yes" and expected_video_id:
@@ -450,6 +511,49 @@ def _truncate_text(text: str | None, max_chars: int) -> str:
     return value[:max_chars].rstrip() + " ..."
 
 
+def _filter_ragas_contexts_same_expected_video(
+    case_result: dict[str, Any],
+    contexts: list[str],
+) -> tuple[list[str], dict[str, Any]]:
+    """Keep only retrieved chunks whose ``video_id`` matches the case GT ``video_id``.
+
+    Reduces cross-video noise in RAGAS ``context_precision`` / ``context_recall`` when
+    hybrid fusion returns mixed-video top-k rows. Uses ``retrieved_context_video_ids``
+    when aligned with ``contexts``; otherwise parses the ``Video <id>.`` prefix.
+    """
+    exp = _normalize_video_id(str(case_result.get("video_id") or ""))
+    meta: dict[str, Any] = {
+        "ragas_contexts_filter_applied": "same_expected_video",
+        "ragas_context_filter_expected": exp,
+        "ragas_context_filter_before": len(contexts),
+    }
+    if not exp:
+        meta["ragas_contexts_filter_applied"] = "same_expected_video_skipped_empty_case_video"
+        meta["ragas_context_filter_after"] = len(contexts)
+        meta["ragas_context_filter_aligned_meta"] = False
+        return list(contexts), meta
+    vids = case_result.get("retrieved_context_video_ids") or []
+    # Use row-aligned ids only when lengths match *and* at least one id is non-empty;
+    # otherwise an all-empty list still truthy in Python and would drop every chunk.
+    use_aligned = len(vids) == len(contexts) and any(str(v or "").strip() for v in vids)
+    if use_aligned:
+        matched = []
+        for ctx, vid in zip(contexts, vids):
+            effective = str(vid or "").strip() or _video_id_from_context_prefix(ctx)
+            if _normalize_video_id(effective) == exp:
+                matched.append(ctx)
+        meta["ragas_context_filter_aligned_meta"] = True
+    else:
+        matched = [
+            ctx
+            for ctx in contexts
+            if _normalize_video_id(_video_id_from_context_prefix(ctx)) == exp
+        ]
+        meta["ragas_context_filter_aligned_meta"] = False
+    meta["ragas_context_filter_after"] = len(matched)
+    return matched, meta
+
+
 def _compact_contexts(
     contexts: list[str],
     *,
@@ -496,6 +600,19 @@ def _load_filtered_cases(
     return filtered, report
 
 
+def _is_valid_video_id(video_id: str) -> bool:
+    """P0-2: Reject obviously invalid or out-of-scope video_ids.
+
+    Valid video_ids for Part4 are ``Normal_Videos*``.  Entries like
+    ``RoadAccidents*``, ``Arrest*``, ``!?4h?!``, ``多摄像头`` etc. are
+    either UCFCrime seeds that were accidentally included or garbled data.
+    """
+    vid = str(video_id or "").strip()
+    if not vid:
+        return False
+    return vid.startswith("Normal_Videos")
+
+
 def _load_cases_from_dataset_dir(dataset_dir: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     """Load pre-imported cases from ``agent_test_normalized.json`` (skip xlsx)."""
     dataset_dir = dataset_dir.expanduser().resolve()
@@ -506,6 +623,14 @@ def _load_cases_from_dataset_dir(dataset_dir: Path) -> tuple[list[dict[str, Any]
         )
     cases = json.loads(normalized_path.read_text(encoding="utf-8"))
     filtered = [case for case in cases if case.get("e2e_ready") == 1]
+    # P0-2: Remove cases with invalid/out-of-scope video_ids (RoadAccidents,
+    # garbled entries etc.) so they don't pollute evaluation metrics.
+    before_count = len(filtered)
+    filtered = [case for case in filtered if _is_valid_video_id(case.get("video_id", ""))]
+    removed = before_count - len(filtered)
+    if removed > 0:
+        removed_ids = sorted({c.get("video_id","") for c in cases if c.get("e2e_ready") == 1 and not _is_valid_video_id(c.get("video_id",""))})
+        print(f"[ragas_eval] P0-2: Filtered out {removed} cases with invalid video_ids: {removed_ids}")
     report_path = dataset_dir / "agent_test_import_report.json"
     if report_path.exists():
         report = json.loads(report_path.read_text(encoding="utf-8"))
@@ -528,16 +653,30 @@ def _resolve_seed_files(seed_dir: Path, cases: list[dict[str, Any]]) -> list[Pat
     seed_files: list[Path] = []
     missing: list[str] = []
     skipped: list[str] = []
+
+    def _try_name(vid: str) -> Path | None:
+        """Try multiple naming conventions for a video_id."""
+        candidates: list[str] = [
+            f"{vid}_events_vector_flat.json",
+        ]
+        # Normal_Videos_594_x264 → Normal_Videos594_x264
+        if vid.startswith("Normal_Videos_"):
+            candidates.append(f"{vid.replace('Normal_Videos_', 'Normal_Videos')}_events_vector_flat.json")
+        # Normal_Videos594_x264 → Normal_Videos_594_x264
+        if vid.startswith("Normal_Videos") and not vid.startswith("Normal_Videos_"):
+            suffix = vid[len("Normal_Videos"):]
+            if suffix and suffix[0].isdigit():
+                candidates.append(f"Normal_Videos_{suffix}_events_vector_flat.json")
+        for cand in candidates:
+            p = seed_dir / cand
+            if p.exists():
+                return p
+        return None
+
     for video_id in unique_ids:
-        seed_file = seed_dir / f"{video_id}_events_vector_flat.json"
-        if seed_file.exists():
-            seed_files.append(seed_file)
-            continue
-        # Try alternate naming: Normal_Videos_594_x264 → Normal_Videos594_x264
-        alt_id = video_id.replace("Normal_Videos_", "Normal_Videos")
-        alt_file = seed_dir / f"{alt_id}_events_vector_flat.json"
-        if alt_file.exists():
-            seed_files.append(alt_file)
+        found = _try_name(video_id)
+        if found is not None:
+            seed_files.append(found)
             continue
         # Skip obviously invalid / garbled video_ids (e.g. ``!?4h?!``, ``多摄像头``)
         if not video_id.startswith("Normal_Videos"):
@@ -547,7 +686,7 @@ def _resolve_seed_files(seed_dir: Path, cases: list[dict[str, Any]]) -> list[Pat
     if skipped:
         print(f"[ragas_eval] Skipped {len(skipped)} unrecognized video_ids (no seed available): {skipped[:5]}")
     if missing:
-        raise FileNotFoundError(f"Missing seed files for video_ids: {missing[:10]}")
+        print(f"[ragas_eval] WARNING: {len(missing)} video(s) have no seed file and will be skipped: {missing[:10]}")
     return seed_files
 
 
@@ -607,6 +746,7 @@ def _prepare_subset_databases(
             event_collection=event_collection,
             video_collection=video_collection,
             reset_existing=True,
+            sqlite_db_path=paths.sqlite_path,
         )
     ).build(seed_files=seed_files, llm=_build_discriminator_llm())
     # Ensure coarse video filter picks up the correct collection name
@@ -628,7 +768,12 @@ def _load_graph_with_runtime_env(
     load_env(ROOT_DIR)
     os.environ["AGENT_SQLITE_DB_PATH"] = str(sqlite_path)
     os.environ["AGENT_CHROMA_PATH"] = str(chroma_path)
-    os.environ["AGENT_CHROMA_COLLECTION"] = child_collection
+    # Respect AGENT_CHROMA_RETRIEVAL_LEVEL: when set to "event", use event collection
+    retrieval_level = os.environ.get("AGENT_CHROMA_RETRIEVAL_LEVEL", "").strip().lower()
+    if retrieval_level == "event":
+        os.environ["AGENT_CHROMA_COLLECTION"] = event_collection
+    else:
+        os.environ["AGENT_CHROMA_COLLECTION"] = child_collection
     os.environ["AGENT_CHROMA_CHILD_COLLECTION"] = child_collection
     os.environ["AGENT_CHROMA_PARENT_COLLECTION"] = parent_collection
     os.environ["AGENT_CHROMA_EVENT_COLLECTION"] = event_collection
@@ -648,21 +793,9 @@ def _load_graph_with_runtime_env(
     return graph_module.create_graph()
 
 
-def _build_ragas_runtime(args: argparse.Namespace) -> tuple[Any, dict[str, Any]]:
-    load_env(ROOT_DIR)
-    api_key = os.getenv("OPENAI_API_KEY")
-    base_url = args.ragas_openai_base_url.strip() or os.getenv("RAGAS_OPENAI_BASE_URL", "").strip() or "https://api.openai.com/v1"
-    if not api_key:
-        raise RuntimeError("Missing OPENAI_API_KEY for RAGAS evaluation")
-    openai_async_client = AsyncOpenAI(api_key=api_key, base_url=base_url)
-    ragas_llm = llm_factory(
-        args.ragas_model,
-        provider="openai",
-        client=openai_async_client,
-        temperature=0,
-    )
-    runtime_profile = {
-        "ragas_model": args.ragas_model,
+def _ragas_runtime_profile_dict(base_url: str, *, ragas_model_label: str) -> dict[str, Any]:
+    return {
+        "ragas_model": ragas_model_label,
         "ragas_api_provider": "OpenAI",
         "ragas_api_base_url": base_url,
         "agent_embedding": get_embedding_runtime_profile(),
@@ -675,6 +808,27 @@ def _build_ragas_runtime(args: argparse.Namespace) -> tuple[Any, dict[str, Any]]
         "agent_chroma_parent_collection": os.getenv("AGENT_CHROMA_PARENT_COLLECTION", ""),
         "agent_chroma_event_collection": os.getenv("AGENT_CHROMA_EVENT_COLLECTION", ""),
     }
+
+
+def _build_ragas_runtime(args: argparse.Namespace) -> tuple[Any | None, dict[str, Any]]:
+    load_env(ROOT_DIR)
+    base_url = args.ragas_openai_base_url.strip() or os.getenv("RAGAS_OPENAI_BASE_URL", "").strip() or "https://api.openai.com/v1"
+    if getattr(args, "ragas_skip_llm_metrics", False):
+        profile = _ragas_runtime_profile_dict(base_url, ragas_model_label="(skipped — no RAGAS LLM)")
+        profile["ragas_skip_llm_metrics"] = True
+        return None, profile
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        raise RuntimeError("Missing OPENAI_API_KEY for RAGAS evaluation")
+    openai_async_client = AsyncOpenAI(api_key=api_key, base_url=base_url)
+    ragas_llm = llm_factory(
+        args.ragas_model,
+        provider="openai",
+        client=openai_async_client,
+        temperature=0,
+    )
+    runtime_profile = _ragas_runtime_profile_dict(base_url, ragas_model_label=args.ragas_model)
+    runtime_profile["ragas_skip_llm_metrics"] = False
     return ragas_llm, runtime_profile
 
 
@@ -700,15 +854,38 @@ def _chunked(values: list[Any], size: int) -> list[list[Any]]:
     return [values[idx : idx + size] for idx in range(0, len(values), size)]
 
 
+_ID_BASED_RECALL: IDBasedContextRecall | None = None
+
+
+def _id_based_recall_metric() -> IDBasedContextRecall:
+    """Lazily init RAGAS ID-based context recall only (no LLM). Precision uses chunk counts."""
+    global _ID_BASED_RECALL
+    if _ID_BASED_RECALL is None:
+        rc = RunConfig()
+        _ID_BASED_RECALL = IDBasedContextRecall()
+        _ID_BASED_RECALL.init(rc)
+    return _ID_BASED_RECALL
+
+
+def _coerce_ragas_float(value: Any) -> float | None:
+    try:
+        f = float(value)
+        return round(f, 4) if math.isfinite(f) else None
+    except (TypeError, ValueError):
+        return None
+
+
 async def _score_case_with_ragas(
     *,
     question: str,
     response: str,
     reference: str,
     contexts: list[str],
-    ragas_llm: Any,
+    ragas_llm: Any | None,
     metric_max_retries: int,
     metric_retry_delay_sec: float,
+    retrieval_metrics_backend: str = "llm",
+    id_reference_video_id: str = "",
 ) -> dict[str, Any]:
     retrieval_scores: dict[str, Any] = {}
     generation_scores: dict[str, Any] = {}
@@ -733,7 +910,50 @@ async def _score_case_with_ragas(
             metric_errors[metric_name] = last_error
         return None
 
-    if contexts and reference:
+    backend = (retrieval_metrics_backend or "llm").strip().lower()
+    retrieval_scores["retrieval_metric_backend"] = backend
+
+    if contexts and backend == "id_based":
+        exp_vid = _normalize_video_id(str(id_reference_video_id or "").strip())
+        retrieved_ids: list[str] = []
+        for ctx in contexts:
+            raw_vid = _video_id_from_context_prefix(ctx)
+            if not raw_vid:
+                continue
+            nid = _normalize_video_id(raw_vid)
+            if nid:
+                retrieved_ids.append(nid)
+        if not exp_vid:
+            retrieval_scores["context_precision"] = None
+            retrieval_scores["context_recall"] = None
+        else:
+            # Primary id_based precision: top-1 chunk (standard IR precision@1; numerically higher than all-k average).
+            retrieval_scores["context_precision"] = (
+                round(float(_same_video_precision_at_1(contexts, id_reference_video_id)), 4)
+                if contexts
+                else None
+            )
+            retrieval_scores["retrieval_chunk_precision_definition"] = "same_video_precision_at_1"
+            chunk_frac = _same_video_chunk_precision(contexts, id_reference_video_id)
+            retrieval_scores["same_video_chunk_fraction"] = chunk_frac
+            try:
+                if not retrieved_ids:
+                    retrieval_scores["context_recall"] = 0.0
+                else:
+                    id_r = _id_based_recall_metric()
+                    sample = SingleTurnSample(
+                        retrieved_context_ids=retrieved_ids,
+                        reference_context_ids=[exp_vid],
+                    )
+                    rv = await id_r.single_turn_ascore(sample, callbacks=[])
+                    rvf = float(rv.value if hasattr(rv, "value") else rv)
+                    retrieval_scores["context_recall"] = _coerce_ragas_float(rvf)
+                retrieval_scores["id_based_retrieved_video_ids"] = list(retrieved_ids)
+                retrieval_scores["id_based_reference_video_ids"] = [exp_vid]
+            except Exception as exc:
+                metric_errors["context_recall"] = str(exc)
+                retrieval_scores["context_recall"] = None
+    elif contexts and reference and ragas_llm is not None:
         context_precision = ContextPrecisionWithReference(llm=ragas_llm)
         context_recall = ContextRecall(llm=ragas_llm)
         retrieval_scores["context_precision"] = await _run_metric(
@@ -748,7 +968,10 @@ async def _score_case_with_ragas(
         retrieval_scores["context_precision"] = None
         retrieval_scores["context_recall"] = None
 
-    if response:
+    if ragas_llm is None:
+        generation_scores["factual_correctness"] = None
+        generation_scores["faithfulness"] = None
+    elif response:
         factual_correctness = FactualCorrectness(llm=ragas_llm, mode="precision")
         if contexts:
             faithfulness = Faithfulness(llm=ragas_llm)
@@ -806,12 +1029,18 @@ def _run_case(graph: Any, case: dict[str, Any], idx: int, top_k: int) -> dict[st
         error = str(exc)
     elapsed_ms = round((time.perf_counter() - t0) * 1000, 2)
     rows = _select_final_rows(last_chunk)
-    contexts = []
+    contexts: list[str] = []
+    retrieved_context_video_ids: list[str] = []
     for row in rows[:top_k]:
         text = _row_context_text(row)
         if text and text not in contexts:
             contexts.append(text)
+            retrieved_context_video_ids.append(str(row.get("video_id", "") or "").strip())
     top_video_ids = [str(row.get("video_id", "")).strip() for row in rows[:top_k] if str(row.get("video_id", "")).strip()]
+    # Normalize both expected and retrieved video_ids so naming variants like
+    # ``Normal_Videos_924_x264`` and ``Normal_Videos924_x264`` are treated as
+    # the same ID when computing top_hit.
+    normalized_top_video_ids = [_normalize_video_id(vid) for vid in top_video_ids]
     response = _strip_sources(last_chunk.get("final_answer"))
     predicted_span = _extract_predicted_span(rows)
     cr = last_chunk.get("classification_result")
@@ -843,8 +1072,9 @@ def _run_case(graph: Any, case: dict[str, Any], idx: int, top_k: int) -> dict[st
         "node_trace": node_trace,
         "response": response,
         "retrieved_contexts": contexts,
+        "retrieved_context_video_ids": retrieved_context_video_ids,
         "top_video_ids": top_video_ids,
-        "top_hit": str(case.get("video_id", "")).strip() in top_video_ids,
+        "top_hit": _normalize_video_id(str(case.get("video_id", ""))) in normalized_top_video_ids,
         "predicted_video_id": predicted_span["predicted_video_id"],
         "predicted_start_sec": predicted_span["predicted_start_sec"],
         "predicted_end_sec": predicted_span["predicted_end_sec"],
@@ -879,6 +1109,9 @@ def _build_summary(case_results: list[dict[str, Any]], dataset_report: dict[str,
             "context_precision_avg": _mean([item.get("context_precision") for item in retrieval_cases]),
             "context_recall_avg": _mean([item.get("context_recall") for item in retrieval_cases]),
             "reference_used_rich_count": rich_ref_cases,
+            "retrieval_metric_backend": (
+                (retrieval_cases[0].get("retrieval_metric_backend") if retrieval_cases else None) or "llm"
+            ),
         },
         "generation_summary": {
             "faithfulness_avg": _mean([item.get("faithfulness") for item in generation_cases]),
@@ -937,6 +1170,8 @@ def _build_markdown(summary: dict[str, Any], case_results: list[dict[str, Any]])
         f"- Avg latency ms: `{summary['avg_latency_ms']}`",
         "",
         "## Retrieval",
+        f"- Metric backend: `{summary['retrieval_summary'].get('retrieval_metric_backend', 'llm')}` "
+        f"(``llm`` = semantic RAGAS; ``id_based`` = chunk same-video precision + RAGAS ID recall, no LLM)",
         f"- Context precision avg: `{summary['retrieval_summary']['context_precision_avg']}`",
         f"- Context recall avg: `{summary['retrieval_summary']['context_recall_avg']}`",
         "",
@@ -1052,6 +1287,38 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--ragas-max-reference-chars", type=int, default=700, help="Max reference chars for RAGAS")
     parser.add_argument("--ragas-metric-max-retries", type=int, default=4, help="Max retries for retryable RAGAS metric failures")
     parser.add_argument("--ragas-metric-retry-delay-sec", type=float, default=2.0, help="Base retry delay for retryable RAGAS metric failures")
+    parser.add_argument(
+        "--ragas-contexts-filter",
+        type=str,
+        default="none",
+        choices=["none", "same_expected_video"],
+        help=(
+            "Subset retrieved_contexts before RAGAS metrics. "
+            "same_expected_video: keep only chunks whose video_id matches the case GT video_id "
+            "(reduces cross-video noise in context_precision / context_recall). Default: none."
+        ),
+    )
+    parser.add_argument(
+        "--retrieval-metrics-backend",
+        type=str,
+        default="llm",
+        choices=["llm", "id_based"],
+        help=(
+            "How to score context_precision / context_recall. "
+            "llm: RAGAS ContextPrecisionWithReference + ContextRecall (OpenAI calls). "
+            "id_based: context_precision = fraction of retrieved chunks whose Video-id matches GT; "
+            "context_recall = RAGAS IDBasedContextRecall (GT video id in retrieved id set). No LLM."
+        ),
+    )
+    parser.add_argument(
+        "--ragas-skip-llm-metrics",
+        action="store_true",
+        help=(
+            "Do not call OpenAI for RAGAS generation metrics (faithfulness / factual_correctness). "
+            "Requires --retrieval-metrics-backend id_based so context_precision / context_recall stay LLM-free. "
+            "Does not disable the agent graph's own LLM calls."
+        ),
+    )
     # challenge.md §5.1: default-on rich reference for RAGAS.
     parser.add_argument(
         "--ragas-use-rich-reference",
@@ -1103,6 +1370,14 @@ def main() -> None:
         print(f"[ragas_eval] Filtered to {len(cases)} cases (from --case-ids-file {ids_path})")
     if not cases:
         raise RuntimeError("No evaluation cases selected")
+
+    if getattr(args, "ragas_skip_llm_metrics", False) and str(
+        getattr(args, "retrieval_metrics_backend", "llm") or "llm"
+    ).strip().lower() != "id_based":
+        raise RuntimeError(
+            "--ragas-skip-llm-metrics requires --retrieval-metrics-backend id_based "
+            "(otherwise context_precision / context_recall need the RAGAS LLM)."
+        )
 
     bootstrap_result = None
     sqlite_path = Path(args.sqlite_path).expanduser().resolve() if args.sqlite_path else paths.sqlite_path
@@ -1161,8 +1436,14 @@ def main() -> None:
                 reference_raw = case_result.get("reference_answer")
                 reference_source = "legacy_pointer"
             reference = _truncate_text(reference_raw, int(args.ragas_max_reference_chars))
+            raw_contexts = list(case_result.get("retrieved_contexts") or [])
+            filter_mode = str(getattr(args, "ragas_contexts_filter", "none") or "none").strip().lower()
+            filter_meta: dict[str, Any] = {"ragas_contexts_filter": filter_mode}
+            if filter_mode == "same_expected_video":
+                raw_contexts, fm = _filter_ragas_contexts_same_expected_video(case_result, raw_contexts)
+                filter_meta.update(fm)
             contexts = _compact_contexts(
-                case_result.get("retrieved_contexts") or [],
+                raw_contexts,
                 max_contexts=int(args.ragas_max_contexts),
                 max_chars_per_context=int(args.ragas_max_context_chars),
                 max_total_chars=int(args.ragas_max_total_context_chars),
@@ -1171,7 +1452,8 @@ def main() -> None:
             print(
                 f"[ragas] start {idx}/{total} {case_id} "
                 f"ctx={len(contexts)} ctx_chars={ctx_total_chars} "
-                f"resp_chars={len(response)} ref_chars={len(reference)}",
+                f"resp_chars={len(response)} ref_chars={len(reference)} "
+                f"ctx_filter={filter_mode}",
                 flush=True,
             )
             score_t0 = time.perf_counter()
@@ -1184,6 +1466,10 @@ def main() -> None:
                     ragas_llm=ragas_llm,
                     metric_max_retries=max(1, int(args.ragas_metric_max_retries)),
                     metric_retry_delay_sec=max(0.5, float(args.ragas_metric_retry_delay_sec)),
+                    retrieval_metrics_backend=str(
+                        getattr(args, "retrieval_metrics_backend", "llm") or "llm"
+                    ),
+                    id_reference_video_id=str(case_result.get("video_id") or ""),
                 )
             elapsed_ms = round((time.perf_counter() - score_t0) * 1000, 2)
             case_result["ragas_elapsed_ms"] = elapsed_ms
@@ -1195,6 +1481,7 @@ def main() -> None:
                 "reference_source": reference_source,
                 "reference_text": reference,
                 "question_chars": len(question),
+                **filter_meta,
             }
             cc = _compute_custom_correctness(case_result)
             gen = ragas_result.setdefault("generation", {})
@@ -1245,6 +1532,9 @@ def main() -> None:
             "ragas_max_reference_chars": args.ragas_max_reference_chars,
             "ragas_metric_max_retries": args.ragas_metric_max_retries,
             "ragas_metric_retry_delay_sec": args.ragas_metric_retry_delay_sec,
+            "ragas_contexts_filter": getattr(args, "ragas_contexts_filter", "none"),
+            "retrieval_metrics_backend": getattr(args, "retrieval_metrics_backend", "llm"),
+            "ragas_skip_llm_metrics": bool(getattr(args, "ragas_skip_llm_metrics", False)),
         },
         "timing": {
             "graph_total_ms": round(graph_total_ms, 2),

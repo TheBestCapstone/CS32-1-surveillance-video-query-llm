@@ -154,16 +154,25 @@ class SQLiteDatabaseBuilder:
             if isinstance(start_time, (int, float)) and isinstance(end_time, (int, float)):
                 duration_sec = float(end_time) - float(start_time)
 
-            keywords = event.get("keywords", [])
+            keywords = event.get("keywords") or []
             if isinstance(keywords, str):
                 keywords_list = self._tokenize_keywords(keywords)
             elif isinstance(keywords, list):
                 keywords_list = [str(x).strip() for x in keywords if str(x).strip()]
             else:
                 keywords_list = []
+            if not keywords_list:
+                cls = event.get("class_name") or ""
+                etype = event.get("event_type") or ""
+                keywords_list = [k for k in [cls, etype] if k]
 
             appearance_notes = event.get("appearance_notes_en") or event.get("appearance_notes")
-            event_text = event.get("event_text_en") or event.get("event_text_cn") or event.get("event_text")
+            event_text = (
+                event.get("event_text_en")
+                or event.get("event_text_cn")
+                or event.get("event_text")
+                or event.get("description_for_llm")
+            )
             event_summary = (
                 event.get("event_summary_en")
                 or event.get("event_summary_cn")
@@ -171,18 +180,40 @@ class SQLiteDatabaseBuilder:
                 or event_text
             )
             is_stationary = 1 if "stationary" in str(appearance_notes or "").lower() else 0
+            video_id = event.get("video_id") or fallback_video_id
+            if not video_id:
+                video_id = event.get("camera_id") or "multi_camera"
+
+            entity_hint = event.get("entity_hint")
+            if not entity_hint:
+                cls_hint = event.get("class_name") or "object"
+                tid = event.get("track_id")
+                entity_hint = f"{cls_hint}_{tid}" if tid is not None else None
+
+            # --- Global entity id derivation for multi-camera tracking ---
+            # When entity_hint looks like a global/cross-camera entity
+            # (e.g. "person_global_1"), populate global_entity_id so the
+            # cross-camera index can group the same real-world object across
+            # different camera views.
+            global_entity_id = event.get("global_entity_id")
+            if not global_entity_id and entity_hint:
+                global_entity_id = SQLiteDatabaseBuilder._derive_global_entity_id(entity_hint)
+
+            object_type = event.get("object_type") or event.get("class_name")
+
             rows.append(
                 {
-                    "video_id": event.get("video_id") or fallback_video_id,
+                    "video_id": video_id,
                     "camera_id": event.get("camera_id"),
+                    "global_entity_id": global_entity_id,
                     "track_id": str(event.get("track_id")) if event.get("track_id") is not None else None,
-                    "entity_hint": event.get("entity_hint"),
+                    "entity_hint": entity_hint,
                     "clip_start_sec": event.get("clip_start_sec"),
                     "clip_end_sec": event.get("clip_end_sec"),
                     "start_time": start_time,
                     "end_time": end_time,
                     "duration_sec": duration_sec,
-                    "object_type": event.get("object_type"),
+                    "object_type": object_type,
                     "object_color_en": event.get("object_color_en") or event.get("object_color"),
                     "scene_zone_en": event.get("scene_zone_en") or event.get("scene_zone"),
                     "motion_level": event.get("motion_level"),
@@ -202,7 +233,7 @@ class SQLiteDatabaseBuilder:
                     "keywords_json": json.dumps(keywords_list, ensure_ascii=False),
                     "semantic_tags_json": json.dumps({"keywords": keywords_list}, ensure_ascii=False),
                     "vector_doc_text": event_text or event_summary,
-                    "vector_ref_id": f"{event.get('video_id') or fallback_video_id}:{event.get('entity_hint') or event.get('track_id') or 'na'}:{start_time}:{end_time}",
+                    "vector_ref_id": f"{video_id}:{entity_hint or event.get('track_id') or 'na'}:{start_time}:{end_time}",
                     "source_format": "events_vector_flat",
                     "schema_version": self.config.schema_version,
                     "metadata_json": json.dumps(event, ensure_ascii=False),
@@ -210,7 +241,17 @@ class SQLiteDatabaseBuilder:
             )
 
         if isinstance(payload, dict):
-            if isinstance(payload.get("events"), list):
+            # --- Camera-grouped multi-camera format ---
+            # { "G328": {"video_id": "...", "events": [...]}, "G339": {...} }
+            if SQLiteDatabaseBuilder._is_camera_grouped(payload):
+                for __camera_id, camera_entry in payload.items():
+                    if not isinstance(camera_entry, dict):
+                        continue
+                    fallback = str(camera_entry.get("video_id", "")).strip() or str(__camera_id)
+                    for event in camera_entry.get("events") or []:
+                        if isinstance(event, dict):
+                            append_event(event, fallback)
+            elif isinstance(payload.get("events"), list):
                 fallback = str(payload.get("video_id", "")).strip() or None
                 for event in payload["events"]:
                     append_event(event, fallback)
@@ -261,9 +302,49 @@ class SQLiteDatabaseBuilder:
             return [part.strip() for part in text.split(",") if part.strip()]
         return []
 
+    # --- Multi-camera format detection & global entity derivation ---
+
+    _GLOBAL_ENTITY_PATTERNS: tuple[str, ...] = (
+        "_global_",       # person_global_1, vehicle_global_2, etc.
+        "global_entity_", # alternative naming
+    )
+
+    @staticmethod
+    def _is_camera_grouped(payload: dict[str, Any]) -> bool:
+        """Detect multi-camera format: {camera_id: {video_id, events}, ...}.
+
+        Heuristic: payload is a dict, does NOT have a direct "events" key,
+        and at least one value is a dict that contains an "events" list.
+        """
+        if not isinstance(payload, dict):
+            return False
+        if "events" in payload:
+            return False  # single-video format: {"video_id": ..., "events": [...]}
+        # Check that at least one value looks like a camera entry
+        for val in payload.values():
+            if isinstance(val, dict) and isinstance(val.get("events"), list):
+                return True
+        return False
+
+    @staticmethod
+    def _derive_global_entity_id(entity_hint: str) -> str | None:
+        """Derive ``global_entity_id`` from ``entity_hint`` when it matches a
+        known global/cross-camera naming pattern (e.g. ``person_global_1``).
+
+        Returns the entity_hint as-is when it looks like a global entity;
+        returns None otherwise so the caller falls back to per-camera tracking.
+        """
+        if not entity_hint:
+            return None
+        hint_lower = entity_hint.lower()
+        for pattern in SQLiteDatabaseBuilder._GLOBAL_ENTITY_PATTERNS:
+            if pattern in hint_lower:
+                return entity_hint
+        return None
+
     @staticmethod
     def _collect_prompt_tokens(profile: dict[str, set[str]], event: dict[str, Any]) -> None:
-        object_type = str(event.get("object_type", "")).strip().lower()
+        object_type = str(event.get("object_type") or event.get("class_name") or "").strip().lower()
         if object_type:
             profile["object_types"].add(object_type)
 
@@ -273,6 +354,12 @@ class SQLiteDatabaseBuilder:
 
         for kw in SQLiteDatabaseBuilder._tokenize_keywords(event.get("keywords")):
             profile["keywords"].add(kw.lower())
+        if not event.get("keywords"):
+            cls = str(event.get("class_name") or "").strip().lower()
+            etype = str(event.get("event_type") or "").strip().lower()
+            for kw in (cls, etype):
+                if kw:
+                    profile["keywords"].add(kw)
 
     @staticmethod
     def _merge_profile(target: dict[str, set[str]], source: dict[str, set[str]]) -> None:

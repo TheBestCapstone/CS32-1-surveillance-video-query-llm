@@ -80,6 +80,13 @@ _EXISTENCE_CUES = (
     "is there", "are there", "did you see", "do you see", "do you have",
     "have you seen", "any clip", "any video", "any footage", "any scene",
     "any shot", "有没有", "是否存在", "是否有",
+    # P2-3: extended existence patterns — many "no" cases start with these
+    "does the video record", "does the surveillance", "does the camera",
+    "can you find", "can you see", "can you locate",
+    "is a scene", "is there a scene", "is there a clip",
+    "is there any", "are there any", "was there",
+    "search for a segment", "search for the footage",
+    "find a segment", "find the footage", "find if",
 )
 
 _LIST_CUES = (
@@ -136,7 +143,10 @@ def _collect_signals(text: str) -> Dict[str, List[str]]:
 
 def _infer_answer_type(text: str) -> str:
     low = (text or "").strip().lower()
-    if any(cue in low for cue in _EXISTENCE_CUES) or low.startswith(("is ", "are ", "was ", "were ", "does ", "do ")):
+    if any(cue in low for cue in _EXISTENCE_CUES) or low.startswith((
+        "is ", "are ", "was ", "were ", "does ", "do ",
+        "can you ", "could you ",  # P2-3: "Can you find..." is existence
+    )):
         return ANSWER_TYPE_EXISTENCE
     if any(cue in low for cue in _COUNT_CUES):
         return ANSWER_TYPE_COUNT
@@ -241,18 +251,23 @@ def classify_query(query: str, llm: Any = None, config: Any = None) -> Dict[str,
     prompt = (
         "You are a video-retrieval query classifier. Return JSON matching the schema.\n\n"
         "label ∈ {structured, semantic, mixed, multi_hop}:\n"
-        "  - structured: answered by metadata/enum filters (object/color/scene/video_id/time).\n"
-        "  - semantic: requires visual/relational understanding (near, around, similar, motion).\n"
-        "  - mixed: both metadata filters and semantic understanding are needed.\n"
-        "  - multi_hop: asks about a sequence or composition (A then B, while, after).\n\n"
+        "  - structured: can be answered by metadata/enum filters alone "
+        "(object type, color, scene zone). Example: 'black car on the road'.\n"
+        "  - semantic: requires visual/relational understanding or free-text description "
+        "(near, around, similar, motion pattern, abstract behavior).\n"
+        "  - mixed: contains BOTH concrete metadata tokens AND semantic concepts. "
+        "Example: 'a person carrying a box near the door'.\n"
+        "  - multi_hop: requires sequencing or composition across multiple events "
+        "(A then B, while A happened B, after A found B).\n\n"
         "answer_type ∈ {existence, list, description, count, unknown}:\n"
-        "  - existence: yes/no question ('is there', 'did you see', 'have you seen', '有没有').\n"
-        "  - list: show/list/enumerate matching clips.\n"
-        "  - description: explain / summarise a clip.\n"
-        "  - count: how many / number of.\n"
-        "  - unknown: cannot tell.\n\n"
-        "Classify by signal type, not sentence mood. An existence question can still be structured if\n"
-        "it only requires enum filters.\n\n"
+        "  - existence: yes/no question ('is there', 'did you see', 'have you seen').\n"
+        "  - list: request to show/list/enumerate matching clips.\n"
+        "  - description: request to explain or summarise a clip.\n"
+        "  - count: asks how many / number of.\n"
+        "  - unknown: cannot determine the answer type.\n\n"
+        "Classify by the INFORMATION TYPE needed, not sentence mood. "
+        "An existence question like 'is there a black car on the road?' is "
+        "structured because it only needs metadata filters, no semantic reasoning.\n\n"
         f"User query: {text}\n"
         f"Detected signals: {signals}\n"
     )
