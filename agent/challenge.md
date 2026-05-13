@@ -8,14 +8,16 @@
 
 在 `agent_test.xlsx` 的 Part1 / Part4 上跑 `ragas_eval_runner.py --limit 50 --prepare-subset-db`，结果如下：
 
-| 指标 | 值 | 性质 |
-|------|-----|------|
-| `top_hit_rate` | **1.0 / 0.9** | 系统找对了视频 |
-| `factual_correctness` | 0.49 – 0.90 | 事实是对的 |
-| `context_precision` | 0.18 – 0.45 | 长期偏低 |
-| `context_recall` | 0.15 – 0.30 | 长期偏低 |
-| `faithfulness` | 0.19 – 0.40 | 长期偏低 |
-| `time_range_iou` | **0.13** | 真正的瓶颈 |
+
+| 指标                    | 值             | 性质      |
+| --------------------- | ------------- | ------- |
+| `top_hit_rate`        | **1.0 / 0.9** | 系统找对了视频 |
+| `factual_correctness` | 0.49 – 0.90   | 事实是对的   |
+| `context_precision`   | 0.18 – 0.45   | 长期偏低    |
+| `context_recall`      | 0.15 – 0.30   | 长期偏低    |
+| `faithfulness`        | 0.19 – 0.40   | 长期偏低    |
+| `time_range_iou`      | **0.13**      | 真正的瓶颈   |
+
 
 `top_hit_rate = 1.0`、`factual_correctness` 偏高，两者说明 **检索与事实判断本身是成立的**；但 `context_precision / recall / faithfulness` 却持续偏低。
 
@@ -29,10 +31,10 @@
 
 这种 reference 只包含视频 ID + 时间戳，**不含场景内容**。RAGAS 的 LLM judge 按如下方式计算每项指标：
 
-- **`context_recall`**：判断 reference 里的"信息"在 context 里能否找到。reference 文本里只有视频名和时间戳，context 里描述的是"灰狗拽尾巴"，judge 当然觉得"信息没覆盖"。→ **永远低**
-- **`context_precision`**：判断 context 里的句子和 reference 的相关性。同理，judge 看不出相关性。→ **永远低**
-- **`faithfulness`**：判断答案是否"基于" context。答案是"Yes. The relevant clip is in X, around Y-Z"，几乎没有 atomic claim 可追溯回 context。→ **永远低**
-- **`factual_correctness`**：判断答案在事实上对不对。你说对了视频和时间，这一项就会是高的。→ **能正确反映系统真实质量**
+- `**context_recall`**：判断 reference 里的"信息"在 context 里能否找到。reference 文本里只有视频名和时间戳，context 里描述的是"灰狗拽尾巴"，judge 当然觉得"信息没覆盖"。→ **永远低**
+- `**context_precision`**：判断 context 里的句子和 reference 的相关性。同理，judge 看不出相关性。→ **永远低**
+- `**faithfulness`**：判断答案是否"基于" context。答案是"Yes. The relevant clip is in X, around Y-Z"，几乎没有 atomic claim 可追溯回 context。→ **永远低**
+- `**factual_correctness`**：判断答案在事实上对不对。你说对了视频和时间，这一项就会是高的。→ **能正确反映系统真实质量**
 
 **结论**：`top_hit = 1.0 + factual_correctness` 偏高说明系统是 work 的，是 RAGAS 的其他三个指标 **系统性低估**了实际质量。
 
@@ -48,13 +50,15 @@
 
 ## 4. 真正该看的指标
 
-| 状态 | 指标 | 说明 |
-|------|------|------|
-| ✅ 对的指标 | `top_hit_rate` | 已 1.0 |
-| ✅ 对的指标 | `factual_correctness` | 0.7 → 0.9，真实在涨 |
-| ✅ **最该盯** | `time_range_iou` | **0.133 太低，是真正的瓶颈** |
-| ❌ 任务不匹配 | `context_precision` / `context_recall` | 先别管 |
-| ❌ 答案太短 | `faithfulness` | 指标失真 |
+
+| 状态        | 指标                                     | 说明                  |
+| --------- | -------------------------------------- | ------------------- |
+| ✅ 对的指标    | `top_hit_rate`                         | 已 1.0               |
+| ✅ 对的指标    | `factual_correctness`                  | 0.7 → 0.9，真实在涨      |
+| ✅ **最该盯** | `time_range_iou`                       | **0.133 太低，是真正的瓶颈** |
+| ❌ 任务不匹配   | `context_precision` / `context_recall` | 先别管                 |
+| ❌ 答案太短    | `faithfulness`                         | 指标失真                |
+
 
 `top_hit = 1.0`、`IoU = 0.13` 的组合是非常明确的一句话：**系统找对了视频，但找错了时间段**。
 
@@ -73,6 +77,7 @@
 其中 `<scene description>` 取自 `recall_challenge`（如果有），否则回退到 `question` 本身（去掉"Is there..."之类的疑问包装）。
 
 落地：
+
 - `agent_test_importer.py` 每个 case 新增两个字段：
   - `reference_scene_description`：原始的场景描述短文；
   - `reference_answer_rich`：把 scene description 拼进视频/时间锚点的自然句。
@@ -103,6 +108,7 @@ def localization_score(pred, ref):
 ```
 
 落地：
+
 - 每条 case 的 `temporal` dict 额外写入 `video_match_score`（1.0 / 0.0）和 `localization_score`。
 - `summary_report.json`：
   - `temporal_summary.localization_score_avg` —— 视频对 × IoU 的均值（主指标）。
@@ -148,3 +154,4 @@ def localization_score(pred, ref):
 
 - 本次改动**只改评估协议**，不动检索/路由/verifier/answer 节点。
 - 一切 RAGAS 指标的波动在本次之后应**基于富 reference 的新基线**看，别再和旧跑分直接对比。
+

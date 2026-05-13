@@ -23,9 +23,35 @@ def _format_existence_answer(verifier: dict[str, Any], rows: list[dict[str, Any]
     primary_summary = str(verifier.get("primary_summary") or "").strip()
     reason = str(verifier.get("reason") or "").strip()
 
+    # ── v2.4: Multi-camera answer formatting ──
+    if verifier.get("multi_camera") and verifier.get("cameras"):
+        cameras = verifier["cameras"]
+        if not isinstance(cameras, list):
+            cameras = []
+        if decision == "mismatch":
+            return (
+                "No matching clip is expected."
+                + (f" Reason: {reason}." if reason else "")
+            )
+        label = "Yes" if decision == "exact" else "Likely yes"
+        camera_list = ", ".join(c.get("camera_id", "") for c in cameras)
+        parts = [f"{label}. The queried entity appears across multiple cameras."]
+        parts.append(f"Cameras: {camera_list}")
+        times_parts: list[str] = []
+        for c in cameras:
+            cam_id = c.get("camera_id", "")
+            st = c.get("start_time", "")
+            et = c.get("end_time", "")
+            times_parts.append(f"{cam_id} {st}-{et}")
+        parts.append(f"Times: {'; '.join(times_parts)}")
+        if primary_summary or reason:
+            parts.append(f"Summary: {primary_summary or reason}")
+        return " | ".join(parts) + "."
+
+    # ── Single-camera answer formatting ──
     if decision == "mismatch" or not rows:
         return (
-            "No matching clip found."
+            "No matching clip is expected."
             + (f" Reason: {reason}." if reason else "")
         )
     label = "Yes" if decision == "exact" else "Likely yes"
