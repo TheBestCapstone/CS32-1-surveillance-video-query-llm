@@ -349,15 +349,25 @@ def _prepare_databases(
     seed_files: list[Path],
     namespace: str,
 ) -> dict[str, Any]:
+    from agent.core.runtime import load_env
     from agent.db.chroma_builder import ChromaBuildConfig, ChromaIndexBuilder
     from agent.db.sqlite_builder import SQLiteBuildConfig, SQLiteDatabaseBuilder
+    from langchain_openai import ChatOpenAI
 
+    load_env(ROOT)
+    discriminator_llm = ChatOpenAI(
+        model_name=os.getenv("MEVID_VIDEO_DISCRIMINATOR_MODEL", "qwen3.5-plus"),
+        temperature=0.0,
+        api_key=os.getenv("DASHSCOPE_API_KEY"),
+        base_url=os.getenv("DASHSCOPE_URL"),
+    )
     runtime_dir = output_dir / "runtime"
     sqlite_path = runtime_dir / "mevid_agent_e2e.sqlite"
     chroma_path = runtime_dir / "mevid_agent_e2e_chroma"
     child_collection = f"{namespace}_tracks"
     parent_collection = f"{namespace}_tracks_parent"
     event_collection = f"{namespace}_events"
+    video_collection = f"{namespace}_video"
 
     sqlite_result = SQLiteDatabaseBuilder(
         SQLiteBuildConfig(
@@ -373,9 +383,10 @@ def _prepare_databases(
             child_collection=child_collection,
             parent_collection=parent_collection,
             event_collection=event_collection,
+            video_collection=video_collection,
             reset_existing=True,
         )
-    ).build(seed_files=seed_files)
+    ).build(seed_files=seed_files, llm=discriminator_llm)
 
     return {
         "sqlite": sqlite_result,
@@ -385,6 +396,7 @@ def _prepare_databases(
         "child_collection": child_collection,
         "parent_collection": parent_collection,
         "event_collection": event_collection,
+        "video_collection": video_collection,
     }
 
 
@@ -398,6 +410,7 @@ def _load_agent_graph(db_info: dict[str, Any]):
     os.environ["AGENT_CHROMA_CHILD_COLLECTION"] = str(db_info["child_collection"])
     os.environ["AGENT_CHROMA_PARENT_COLLECTION"] = str(db_info["parent_collection"])
     os.environ["AGENT_CHROMA_EVENT_COLLECTION"] = str(db_info["event_collection"])
+    os.environ["AGENT_CHROMA_VIDEO_COLLECTION"] = str(db_info["video_collection"])
     os.environ.setdefault("AGENT_CHROMA_RETRIEVAL_LEVEL", "child")
 
     if "graph" in sys.modules:

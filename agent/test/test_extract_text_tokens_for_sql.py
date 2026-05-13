@@ -127,6 +127,31 @@ class ExtractTextTokensForSqlTests(unittest.TestCase):
         self.assertEqual(_PLURAL_TO_SINGULAR["children"], "child")
         self.assertEqual(_PLURAL_TO_SINGULAR["officers"], "officer")
 
+    def test_light_grey_hoodie_query_gets_phrase_expansion(self) -> None:
+        query = "Did a person with light grey hoodie appear in camera G424 and then appear again in camera G421?"
+        filters = extract_structured_filters(query)
+        tokens = extract_text_tokens_for_sql(query, filters)
+        self.assertIn("light grey hoodie", tokens)
+        self.assertIn("light_grey_hoodie", tokens)
+        self.assertIn("hoodie", tokens)
+
+    def test_hood_up_query_gets_canonical_terms(self) -> None:
+        query = "Did a person with dark jacket (hood up) from camera G329 also appear in camera G421?"
+        filters = extract_structured_filters(query)
+        tokens = extract_text_tokens_for_sql(query, filters)
+        self.assertIn("hood up", tokens)
+        self.assertIn("hood_up", tokens)
+        self.assertIn("hoodie", tokens)
+
+    def test_long_coat_query_expands_to_dark_coat_alias(self) -> None:
+        query = "Did a person with dark long coat from camera G329 also appear in camera G424?"
+        filters = extract_structured_filters(query)
+        tokens = extract_text_tokens_for_sql(query, filters)
+        self.assertIn("dark long coat", tokens)
+        self.assertIn("dark coat", tokens)
+        self.assertIn("long coat", tokens)
+        self.assertIn("dark_coat", tokens)
+
 
 if __name__ == "__main__":
     unittest.main()

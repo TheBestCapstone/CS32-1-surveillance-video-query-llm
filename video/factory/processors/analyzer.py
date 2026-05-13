@@ -147,6 +147,180 @@ def _merge_overlapping_segments(
     return out
 
 
+def _min_track_frames(class_name: str) -> int:
+    """Suppress one-frame tracker fragments before they become events."""
+    cls = str(class_name or "").lower()
+    if cls == "car":
+        return 5
+    return 3
+
+
+def _bbox_iou(a: list[float] | None, b: list[float] | None) -> float:
+    if not a or not b or len(a) != 4 or len(b) != 4:
+        return 0.0
+    ax1, ay1, ax2, ay2 = [float(x) for x in a]
+    bx1, by1, bx2, by2 = [float(x) for x in b]
+    ix1, iy1 = max(ax1, bx1), max(ay1, by1)
+    ix2, iy2 = min(ax2, bx2), min(ay2, by2)
+    inter = max(0.0, ix2 - ix1) * max(0.0, iy2 - iy1)
+    area_a = max(0.0, ax2 - ax1) * max(0.0, ay2 - ay1)
+    area_b = max(0.0, bx2 - bx1) * max(0.0, by2 - by1)
+    union = area_a + area_b - inter
+    return inter / union if union > 0 else 0.0
+
+
+def _bbox_center_distance(a: list[float] | None, b: list[float] | None) -> float:
+    if not a or not b or len(a) != 4 or len(b) != 4:
+        return float("inf")
+    ac = _bbox_center([float(x) for x in a])
+    bc = _bbox_center([float(x) for x in b])
+    dx = ac[0] - bc[0]
+    dy = ac[1] - bc[1]
+    return (dx * dx + dy * dy) ** 0.5
+
+
+def _event_bbox_at_start(ev: dict[str, Any]) -> list[float] | None:
+    bbox = ev.get("start_bbox_xyxy")
+    if isinstance(bbox, list) and len(bbox) == 4:
+        return [float(x) for x in bbox]
+    return None
+
+
+def _event_bbox_at_end(ev: dict[str, Any]) -> list[float] | None:
+    bbox = ev.get("end_bbox_xyxy")
+    if isinstance(bbox, list) and len(bbox) == 4:
+        return [float(x) for x in bbox]
+    return None
+
+
+def _is_person_event(ev: dict[str, Any]) -> bool:
+    return str(ev.get("class_name") or "").lower() in {"person", "people", "pedestrian"}
+
+
+def _is_vehicle_event(ev: dict[str, Any]) -> bool:
+    return str(ev.get("class_name") or "").lower() in {"car", "vehicle", "bus", "truck", "motorcycle", "bicycle"}
+
+
+def _can_merge_person_events(
+    prev: dict[str, Any],
+    cur: dict[str, Any],
+    *,
+    max_gap_sec: float,
+    max_center_dist_px: float,
+    min_iou: float,
+) -> bool:
+    if not (_is_person_event(prev) and _is_person_event(cur)):
+        return False
+    prev_end = float(prev.get("end_time", 0.0))
+    cur_start = float(cur.get("start_time", 0.0))
+    gap = cur_start - prev_end
+    if gap < 0 or gap > max_gap_sec:
+        return False
+
+    prev_box = _event_bbox_at_end(prev)
+    cur_box = _event_bbox_at_start(cur)
+    if prev_box is None or cur_box is None:
+        return False
+    if _bbox_iou(prev_box, cur_box) >= min_iou:
+        return True
+    return _bbox_center_distance(prev_box, cur_box) <= max_center_dist_px
+
+
+def _can_merge_vehicle_events(
+    prev: dict[str, Any],
+    cur: dict[str, Any],
+    *,
+    max_gap_sec: float,
+    max_center_dist_px: float,
+    min_iou: float,
+) -> bool:
+    if not (_is_vehicle_event(prev) and _is_vehicle_event(cur)):
+        return False
+    prev_end = float(prev.get("end_time", 0.0))
+    cur_start = float(cur.get("start_time", 0.0))
+    gap = cur_start - prev_end
+    if gap < 0 or gap > max_gap_sec:
+        return False
+
+    prev_box = _event_bbox_at_end(prev)
+    cur_box = _event_bbox_at_start(cur)
+    if prev_box is None or cur_box is None:
+        return False
+    if _bbox_iou(prev_box, cur_box) >= min_iou:
+        return True
+    return _bbox_center_distance(prev_box, cur_box) <= max_center_dist_px
+
+
+def _merge_person_event_fragments(
+    events: list[dict[str, Any]],
+    *,
+    max_gap_sec: float = 2.5,
+    max_center_dist_px: float = 90.0,
+    min_iou: float = 0.05,
+) -> list[dict[str, Any]]:
+    """Conservatively join short adjacent person fragments caused by tracker ID switches."""
+    merged: list[dict[str, Any]] = []
+    for ev in sorted(events, key=lambda e: (float(e.get("start_time", 0.0)), float(e.get("end_time", 0.0)))):
+        if not merged or not _can_merge_person_events(
+            merged[-1],
+            ev,
+            max_gap_sec=max_gap_sec,
+            max_center_dist_px=max_center_dist_px,
+            min_iou=min_iou,
+        ):
+            merged.append(dict(ev))
+            continue
+
+        dst = merged[-1]
+        dst["end_time"] = max(float(dst.get("end_time", 0.0)), float(ev.get("end_time", 0.0)))
+        dst["end_bbox_xyxy"] = ev.get("end_bbox_xyxy") or dst.get("end_bbox_xyxy")
+        dst["motion_level"] = "high" if "high" in {dst.get("motion_level"), ev.get("motion_level")} else dst.get("motion_level", "low")
+        dst["event_type"] = "person_track_fragment_merged"
+        dst["description_for_llm"] = "person appears as adjacent tracker fragments and is treated as one continuous event."
+
+        track_ids = list(dst.get("merged_track_ids") or [dst.get("track_id")])
+        if ev.get("track_id") not in track_ids:
+            track_ids.append(ev.get("track_id"))
+        dst["merged_track_ids"] = [tid for tid in track_ids if tid is not None]
+
+    return sorted(merged, key=lambda e: float(e.get("start_time", 0.0)))
+
+
+def _merge_vehicle_event_fragments(
+    events: list[dict[str, Any]],
+    *,
+    max_gap_sec: float = 3.0,
+    max_center_dist_px: float = 80.0,
+    min_iou: float = 0.35,
+) -> list[dict[str, Any]]:
+    """Conservatively join short adjacent vehicle fragments caused by tracker splits."""
+    merged: list[dict[str, Any]] = []
+    for ev in sorted(events, key=lambda e: (float(e.get("start_time", 0.0)), float(e.get("end_time", 0.0)))):
+        if not merged or not _can_merge_vehicle_events(
+            merged[-1],
+            ev,
+            max_gap_sec=max_gap_sec,
+            max_center_dist_px=max_center_dist_px,
+            min_iou=min_iou,
+        ):
+            merged.append(dict(ev))
+            continue
+
+        dst = merged[-1]
+        dst["end_time"] = max(float(dst.get("end_time", 0.0)), float(ev.get("end_time", 0.0)))
+        dst["end_bbox_xyxy"] = ev.get("end_bbox_xyxy") or dst.get("end_bbox_xyxy")
+        dst["motion_level"] = "high" if "high" in {dst.get("motion_level"), ev.get("motion_level")} else dst.get("motion_level", "low")
+        dst["event_type"] = "vehicle_track_fragment_merged"
+        dst["description_for_llm"] = "vehicle appears as adjacent tracker fragments and is treated as one continuous event."
+
+        track_ids = list(dst.get("merged_track_ids") or [dst.get("track_id")])
+        if ev.get("track_id") not in track_ids:
+            track_ids.append(ev.get("track_id"))
+        dst["merged_track_ids"] = [tid for tid in track_ids if tid is not None]
+
+    return sorted(merged, key=lambda e: float(e.get("start_time", 0.0)))
+
+
 def slice_events(
     tracks: list[dict[str, Any]],
     fps: float,
@@ -163,6 +337,9 @@ def slice_events(
     clip_segments: list[dict[str, float]] = []
 
     for tr in tracks:
+        if len(tr.get("frame_indices", [])) < _min_track_frames(str(tr.get("class_name", ""))):
+            continue
+
         t_start = tr["start_time"]
         t_end = tr["end_time"]
         duration = t_end - t_start
@@ -255,19 +432,21 @@ def slice_events(
                 t = seg_end
         else:
             clip_dur = min(duration, max_static_duration)
-            events.append({
-                "event_type": "presence_static",
-                "track_id": tr["track_id"],
-                "class_name": tr["class_name"],
-                "start_time": t_start,
-                "end_time": t_end,
-                "start_bbox_xyxy": _bbox_at_time(tr["time_xyxy"], t_start),
-                "end_bbox_xyxy": _bbox_at_time(tr["time_xyxy"], t_end),
-                "motion_level": "low",
-                "description_for_llm": f"{tr['class_name']} (id={tr['track_id']}) present with little motion.",
-            })
-            if clip_dur >= min_clip_duration:
+            if duration >= min_clip_duration:
+                events.append({
+                    "event_type": "presence_static",
+                    "track_id": tr["track_id"],
+                    "class_name": tr["class_name"],
+                    "start_time": t_start,
+                    "end_time": t_end,
+                    "start_bbox_xyxy": _bbox_at_time(tr["time_xyxy"], t_start),
+                    "end_bbox_xyxy": _bbox_at_time(tr["time_xyxy"], t_end),
+                    "motion_level": "low",
+                    "description_for_llm": f"{tr['class_name']} (id={tr['track_id']}) present with little motion.",
+                })
                 clip_segments.append({"start_sec": t_start, "end_sec": t_start + clip_dur})
 
+    events = _merge_person_event_fragments(events)
+    events = _merge_vehicle_event_fragments(events)
     merged = _merge_overlapping_segments(clip_segments, min_gap=0.5)
     return events, merged

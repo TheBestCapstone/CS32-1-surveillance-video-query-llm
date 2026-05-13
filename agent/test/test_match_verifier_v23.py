@@ -291,6 +291,142 @@ class PassThroughTests(_BaseVerifierTest):
         self.assertEqual(out["verifier_result"]["reason"], "no_rows")
 
 
+class StrictAttributeVerifierTests(_BaseVerifierTest):
+    def test_semantic_binary_appearance_conflict_returns_mismatch(self) -> None:
+        node = mv.create_match_verifier_node(llm=_StubLLM(reply='{"best_chunk_index": 0, "decision": "exact", "confidence": 0.95, "reason": "time matches"}'))
+        row = _row(
+            video_id="2018-03-11.14-20-01.14-25-01.school.G423.r13",
+            start=8.0,
+            end=13.0,
+            summary="A person with black coat, black pants, no bag exits from the right side.",
+        )
+        out = node(
+            {
+                "answer_type": "semantic",
+                "rerank_result": [row],
+                "user_query": "In the 14-20 video for camera G423, around 0:08-0:13, is there a person with bright red jacket visible?",
+            },
+            config={},
+            store=None,
+        )
+        vr = out["verifier_result"]
+        self.assertEqual(vr["decision"], "mismatch")
+        self.assertEqual(vr["mode"], "strict_rule")
+        self.assertIn("appearance_conflict", vr["reason"])
+
+    def test_semantic_binary_direction_conflict_returns_mismatch(self) -> None:
+        node = mv.create_match_verifier_node(llm=_StubLLM(reply='{"best_chunk_index": 0, "decision": "exact", "confidence": 0.95, "reason": "time matches"}'))
+        row = _row(
+            video_id="2018-03-11.14-20-01.14-25-01.school.G423.r13",
+            start=8.0,
+            end=13.0,
+            summary="A person with black coat exits from the right side.",
+        )
+        out = node(
+            {
+                "answer_type": "semantic",
+                "rerank_result": [row],
+                "user_query": "In the 14-20 video for camera G423, around 0:08-0:13, did a person exit from the left side?",
+            },
+            config={},
+            store=None,
+        )
+        vr = out["verifier_result"]
+        self.assertEqual(vr["decision"], "mismatch")
+        self.assertEqual(vr["mode"], "strict_rule")
+        self.assertIn("direction_conflict", vr["reason"])
+
+    def test_matching_direction_keeps_positive_verdict(self) -> None:
+        node = mv.create_match_verifier_node(llm=_StubLLM(reply='{"best_chunk_index": 0, "decision": "exact", "confidence": 0.95, "reason": "matches"}'))
+        row = _row(
+            video_id="2018-03-11.14-20-01.14-25-01.school.G423.r13",
+            start=8.0,
+            end=13.0,
+            summary="A person with black coat exits from the right side.",
+        )
+        out = node(
+            {
+                "answer_type": "semantic",
+                "rerank_result": [row],
+                "user_query": "In the 14-20 video for camera G423, around 0:08-0:13, did a person exit from the right side?",
+            },
+            config={},
+            store=None,
+        )
+        self.assertEqual(out["verifier_result"]["decision"], "exact")
+
+    def test_generic_dark_clothing_does_not_reject_black_coat(self) -> None:
+        node = mv.create_match_verifier_node(llm=_StubLLM(reply='{"best_chunk_index": 0, "decision": "exact", "confidence": 0.95, "reason": "matches"}'))
+        row = _row(
+            video_id="2018-03-11.14-20-01.14-25-01.school.G423.r13",
+            start=8.0,
+            end=13.0,
+            summary="Appearance: dark upper-body clothing, dark lower-body clothing, backpack visible.",
+        )
+        out = node(
+            {
+                "answer_type": "existence",
+                "rerank_result": [row],
+                "user_query": "In the 14-20 video for camera G423, around 0:08-0:13, is there a person with black coat visible?",
+            },
+            config={},
+            store=None,
+        )
+        self.assertEqual(out["verifier_result"]["decision"], "exact")
+
+    def test_missing_direction_detail_but_time_match_keeps_yes(self) -> None:
+        node = mv.create_match_verifier_node(llm=_StubLLM(reply='{"best_chunk_index": 0, "decision": "mismatch", "confidence": 0.8, "reason": "no direction words"}'))
+        row = _row(
+            video_id="2018-03-11.13-50-01.13-55-01.admin.G329.r13",
+            start=110.0,
+            end=116.0,
+            summary="Appearance: dark upper-body clothing, dark lower-body clothing, medium build.",
+        )
+        out = node(
+            {
+                "answer_type": "unknown",
+                "rerank_result": [row],
+                "user_query": "In the 13-50 video for camera G329, around 1:50-2:01, did a person exit from the right side?",
+            },
+            config={},
+            store=None,
+        )
+        vr = out["verifier_result"]
+        self.assertEqual(vr["decision"], "exact")
+        self.assertEqual(vr["mode"], "strict_rule")
+        self.assertIn("time_window_match", vr["reason"])
+
+    def test_time_window_preferred_before_attribute_check(self) -> None:
+        node = mv.create_match_verifier_node(llm=_StubLLM(reply='{"best_chunk_index": 0, "decision": "exact", "confidence": 0.95, "reason": "red candidate"}'))
+        rows = [
+            _row(
+                video_id="2018-03-11.14-20-01.14-25-01.school.G423.r13",
+                start=197.5,
+                end=200.3,
+                summary="Appearance: red upper-body clothing, dark lower-body pants.",
+            ),
+            _row(
+                video_id="2018-03-11.14-20-01.14-25-01.school.G423.r13",
+                start=8.0,
+                end=13.0,
+                summary="Appearance: dark upper-body clothing, dark lower-body clothing.",
+            ),
+        ]
+        out = node(
+            {
+                "answer_type": "existence",
+                "rerank_result": rows,
+                "user_query": "In the 14-20 video for camera G423, around 0:08-0:13, is there a person with bright red jacket visible?",
+            },
+            config={},
+            store=None,
+        )
+        vr = out["verifier_result"]
+        self.assertEqual(vr["decision"], "mismatch")
+        self.assertAlmostEqual(vr["start_time"], 8.0)
+        self.assertIn("appearance_conflict", vr["reason"])
+
+
 class LegacyPathTests(_BaseVerifierTest):
     def test_reselect_off_uses_v1_single_row_path(self) -> None:
         with mock.patch.dict(os.environ, {"AGENT_VERIFIER_RESELECT_SPAN": "0"}):

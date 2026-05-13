@@ -1,3 +1,5 @@
+import os
+import re
 from typing import Any
 
 from langchain_core.messages import AIMessage
@@ -5,6 +7,17 @@ from langchain_core.runnables import RunnableConfig
 from langgraph.store.base import BaseStore
 
 from .types import AgentState, existence_grounder_enabled
+
+
+def _looks_like_binary_query(text: str) -> bool:
+    query = str(text or "").strip().lower()
+    if not query:
+        return False
+    return bool(
+        re.match(r"^(is|are|was|were|do|does|did|can|could|has|have|had)\b", query)
+        or " is there " in f" {query} "
+        or query.endswith("?")
+    )
 
 
 def _select_final_rows(state: AgentState) -> list[dict[str, Any]]:
@@ -73,6 +86,7 @@ def final_answer_node(state: AgentState, config: RunnableConfig, store: BaseStor
     del config, store
     rows = _select_final_rows(state)
     answer_type = str(state.get("answer_type") or "").strip().lower()
+    query = str(state.get("original_user_query") or state.get("user_query") or "").strip()
     verifier_result = state.get("verifier_result") or {}
     if not isinstance(verifier_result, dict):
         verifier_result = {}
@@ -85,7 +99,7 @@ def final_answer_node(state: AgentState, config: RunnableConfig, store: BaseStor
 
     if (
         existence_grounder_enabled()
-        and answer_type in {"existence", "unknown"}  # P2-3: also apply verifier for unknown
+        and (answer_type in {"existence", "unknown"} or _looks_like_binary_query(query))
         and verifier_result.get("decision") in {"exact", "partial", "mismatch"}
     ):
         final_answer = _format_existence_answer(verifier_result, rows)

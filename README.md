@@ -175,6 +175,31 @@ Run the fast tests for the new MEVID video helpers:
 C:\Users\17809\anaconda3\envs\capstone\python.exe -m pytest tests\test_mevid_video_modules.py
 ```
 
+## UCA Video + Agent Evaluation
+
+For UCA dense-caption/video grounding metrics only:
+
+```powershell
+C:\Users\17809\anaconda3\envs\capstone\python.exe tests\test_uca_unified.py --config full --parts 1 --out results\uca_unified_part1.json
+```
+
+For the whole UCA video-to-agent path, first generate or resume video predictions, then feed those video-derived events into the agent index:
+
+```powershell
+C:\Users\17809\anaconda3\envs\capstone\python.exe tests\test_uca_unified.py --config full --parts 1 --out results\uca_unified_part1.json --resume
+C:\Users\17809\anaconda3\envs\capstone\python.exe scripts\run_uca_agent_eval.py --limit 40 --video-result-json results\uca_unified_part1.json --force-video-seed
+```
+
+Without `--video-result-json`, the agent harness uses the UCA transcript/GT seeds directly. With `--video-result-json`, the chain is `video predictions -> vector-flat seeds -> SQLite/Chroma -> agent graph`.
+
+Outputs are written under:
+
+```text
+results/uca_agent_e2e/<timestamp>/
+```
+
+The report includes top-hit rate, answer accuracy when labels are available, and span `tIoU` / `R@0.5` when expected timestamps are present in the agent test cases.
+
 ## FastAPI Service
 
 - The Web UI and API service now live under `fastapi/`.

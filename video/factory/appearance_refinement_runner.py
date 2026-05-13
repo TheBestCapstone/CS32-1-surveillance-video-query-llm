@@ -32,7 +32,7 @@ class AppearanceRefinementConfig:
     base_url: str = "https://dashscope.aliyuncs.com/compatible-mode/v1"
     model: str = "qwen-vl-max-latest"
     temperature: float = 0.0
-    max_tokens: int = 180
+    max_tokens: int = 260
     max_entities: int = 0
     max_apps_per_entity: int = 6
     crops_per_app: int = 1
@@ -122,6 +122,95 @@ def color_from_appearance(text: str) -> str:
     return "unknown"
 
 
+def _bbox_center(event: dict[str, Any], key: str) -> tuple[float, float] | None:
+    box = event.get(key)
+    if not isinstance(box, (list, tuple)) or len(box) < 4:
+        return None
+    try:
+        x1, y1, x2, y2 = [float(v) for v in box[:4]]
+    except Exception:
+        return None
+    return ((x1 + x2) / 2.0, (y1 + y2) / 2.0)
+
+
+def _infer_motion_from_events(events: list[dict[str, Any]]) -> dict[str, str]:
+    if not events:
+        return {"action_summary": "visible in the scene", "movement_direction": "unknown", "exit_side": "unknown"}
+
+    ordered = sorted(events, key=lambda e: float(e.get("start_time", 0.0)))
+    first = ordered[0]
+    last = ordered[-1]
+    start_center = _bbox_center(first, "start_bbox_xyxy") or _bbox_center(first, "end_bbox_xyxy")
+    end_center = _bbox_center(last, "end_bbox_xyxy") or _bbox_center(last, "start_bbox_xyxy")
+    if not start_center or not end_center:
+        return {"action_summary": "visible in the scene", "movement_direction": "unknown", "exit_side": "unknown"}
+
+    dx = end_center[0] - start_center[0]
+    dy = end_center[1] - start_center[1]
+    if abs(dx) < 20 and abs(dy) < 20:
+        direction = "stationary"
+        action = "standing or moving slightly"
+    elif abs(dx) >= abs(dy):
+        direction = "right" if dx > 0 else "left"
+        action = f"moving toward the {direction} side"
+    else:
+        direction = "down" if dy > 0 else "up"
+        action = f"moving toward the {direction} side"
+    return {
+        "action_summary": action,
+        "movement_direction": direction,
+        "exit_side": direction if direction != "stationary" else "unknown",
+    }
+
+
+def _append_unique_keywords(base: Any, extra: list[str], max_len: int = 16) -> list[str]:
+    out: list[str] = []
+    seen: set[str] = set()
+    if isinstance(base, list):
+        candidates = base
+    elif isinstance(base, str):
+        candidates = re.split(r"[,;/\s]+", base)
+    else:
+        candidates = []
+    for item in list(candidates) + list(extra):
+        token = str(item).strip().lower().replace(" ", "_")
+        if token and token != "unknown" and token not in seen:
+            out.append(token)
+            seen.add(token)
+        if len(out) >= max_len:
+            break
+    return out
+
+
+def _append_semantics_to_event_text(
+    text: Any,
+    notes: str,
+    color: str,
+    action_summary: str = "",
+    movement_direction: str = "",
+    exit_side: str = "",
+) -> str:
+    base = str(text or "").strip()
+    parts: list[str] = []
+    if notes and notes.lower() != "unknown" and notes.lower() not in base.lower():
+        parts.append(f"Appearance: {notes}.")
+    if color and color.lower() != "unknown" and color.lower().replace("_", " ") not in base.lower():
+        parts.append(f"Color: {color.replace('_', ' ')}.")
+    if action_summary and action_summary.lower() != "unknown" and action_summary.lower() not in base.lower():
+        parts.append(f"Action: {action_summary}.")
+    if movement_direction and movement_direction.lower() not in {"", "unknown", "stationary"}:
+        if f"toward the {movement_direction.lower()}" not in base.lower():
+            parts.append(f"Movement direction: {movement_direction.lower()}.")
+    if exit_side and exit_side.lower() not in {"", "unknown", "stationary"}:
+        if f"exit side: {exit_side.lower()}" not in base.lower():
+            parts.append(f"Exit side: {exit_side.lower()}.")
+    if not base:
+        return " ".join(parts).strip()
+    if parts:
+        return f"{base.rstrip()} {' '.join(parts)}"
+    return base
+
+
 def _call_appearance_vlm(
     client: OpenAI,
     crops_b64: list[str],
@@ -132,17 +221,17 @@ def _call_appearance_vlm(
     user_content: list[dict[str, Any]] = [{
         "type": "text",
         "text": (
-            "You are describing one tracked person for surveillance retrieval.\n"
-            f"Entity: {entity_id}\n"
-            f"Trajectory: {trajectory}\n\n"
-            "Look only at the person in the provided crops. Return strict JSON with:\n"
+            "Look at the person in the provided crop images. "
+            "Return strict JSON with exactly these three fields:\n"
             "{\n"
-            '  "object_color": "dominant upper-body color or unknown",\n'
-            '  "appearance_notes": "short English clothing summary, e.g. light grey hoodie, dark pants, medium build",\n'
-            '  "keywords": ["retrieval", "tokens"]\n'
+            '  "object_color": "dominant upper-body color word (e.g. dark, red, light, white, black)",\n'
+            '  "appearance_notes": "clothing description: upper-body color+type, lower-body color+type, '
+            'accessories if visible, rough build (e.g. dark blue hoodie, grey pants, backpack, medium build)",\n'
+            '  "action_summary": "visible action only, e.g. walking right, standing, leaving frame, unknown",\n'
+            '  "keywords": ["color/clothing tokens for retrieval"]\n'
             "}\n"
-            "Use concrete visible clothing words. If uncertain, say unknown for that part, "
-            "but do not invent colors or clothing."
+            "Rules: use concrete visible words only; if a detail is unclear say unknown for that part; "
+            "do not invent colors or clothing not visible in the images."
         ),
     }]
     for b64 in crops_b64:
@@ -168,6 +257,7 @@ def _call_appearance_vlm(
     )
     parsed = _json_object_from_text(resp.choices[0].message.content or "{}")
     appearance = str(parsed.get("appearance_notes") or "").strip()
+    action_summary = str(parsed.get("action_summary") or "").strip()
     color = str(parsed.get("object_color") or "").strip().lower().replace(" ", "_")
     if not color or color == "unknown":
         color = color_from_appearance(appearance)
@@ -181,6 +271,7 @@ def _call_appearance_vlm(
     return {
         "object_color": color or "unknown",
         "appearance_notes": appearance or "unknown",
+        "action_summary": action_summary or "visible in the scene",
         "keywords": [k for k in normalized if k and k != "unknown"][:12],
     }
 
@@ -223,15 +314,18 @@ def run_appearance_refinement_for_events(
     video_id: str | None = None,
     camera_id: str | None = None,
     config: AppearanceRefinementConfig | None = None,
+    base_events: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     """Run crop-based appearance refinement for one camera/video.
+
+    If ``base_events`` is provided (e.g. from a prior vector-refine pass), the
+    appearance fields (object_color, appearance_notes, keywords) are patched into
+    copies of those events so that scene_zone, event_text, bbox and other fields
+    are preserved.  Without base_events a minimal new event is created per track.
 
     The returned payload is vector-refinement shaped::
 
         {"video_id": "...", "events": [...]}
-
-    Each output event represents one person track and uses existing fields only,
-    with ``entity_hint`` set to ``track_<id>``.
     """
     cfg = config or AppearanceRefinementConfig.from_env()
     if cfg.cache_path and cfg.cache_path.exists() and not cfg.force:
@@ -242,6 +336,18 @@ def run_appearance_refinement_for_events(
 
     video_path = Path(video_path)
     out_video_id = video_id or video_path.name
+
+    # Build track_id → base event list from the prior refine output (if any)
+    track_to_base: dict[int, list[dict[str, Any]]] = defaultdict(list)
+    if base_events:
+        for ev in base_events:
+            tid = ev.get("track_id")
+            if tid is not None:
+                try:
+                    track_to_base[int(tid)].append(ev)
+                except Exception:
+                    pass
+
     by_track = _person_events_by_track(events)
     track_items = sorted(
         by_track.items(),
@@ -267,6 +373,7 @@ def run_appearance_refinement_for_events(
         start = min(float(e.get("start_time", 0.0)) for e in track_events)
         end = max(float(e.get("end_time", start)) for e in track_events)
         entity_id = f"track_{tid}"
+        motion = _infer_motion_from_events(track_events)
         trajectory = f"{camera_id or 'camera'} track#{tid} {_fmt_sec(start)}-{_fmt_sec(end)}"
 
         try:
@@ -275,33 +382,71 @@ def run_appearance_refinement_for_events(
             logger.warning("appearance refine failed for track_%s: %s", tid, exc)
             continue
 
+        notes = appearance["appearance_notes"]
+        color = appearance["object_color"]
+        action_summary = appearance.get("action_summary") or motion["action_summary"]
+        movement_direction = motion["movement_direction"]
+        exit_side = motion["exit_side"]
         keywords = list(appearance["keywords"])
-        for token in ("person", "appearance", entity_id):
+        for token in ("person", "appearance"):
             if token not in keywords:
                 keywords.append(token)
-        notes = appearance["appearance_notes"]
-        event_text = (
-            f"{entity_id} appeared in {camera_id or out_video_id} from "
-            f"{_fmt_sec(start)} to {_fmt_sec(end)}. Appearance: {notes}."
-        )
-        refined_events.append({
-            "video_id": out_video_id,
-            "camera_id": camera_id,
-            "track_id": tid,
-            "entity_hint": entity_id,
-            "clip_start_sec": start,
-            "clip_end_sec": end,
-            "start_time": start,
-            "end_time": end,
-            "object_type": "person",
-            "object_color": appearance["object_color"],
-            "appearance_notes": notes,
-            "scene_zone": "unknown",
-            "event_text": event_text,
-            "keywords": keywords[:14],
-            "start_bbox_xyxy": None,
-            "end_bbox_xyxy": None,
-        })
+        for token in (action_summary, movement_direction, exit_side):
+            token = str(token or "").strip().lower().replace(" ", "_")
+            if token and token not in {"unknown", "stationary"} and token not in keywords:
+                keywords.append(token)
+        keywords = [k for k in keywords if k and k != "unknown"][:14]
+
+        base_list = track_to_base.get(tid)
+        if base_list:
+            # Patch appearance fields into copies of existing refined events
+            for base_ev in base_list:
+                patched = dict(base_ev)
+                patched["object_color"] = color
+                patched["appearance_notes"] = notes
+                patched["action_summary"] = action_summary
+                patched["movement_direction"] = movement_direction
+                patched["exit_side"] = exit_side
+                patched["event_text"] = _append_semantics_to_event_text(
+                    patched.get("event_text") or patched.get("description"),
+                    notes,
+                    color,
+                    action_summary,
+                    movement_direction,
+                    exit_side,
+                )
+                patched["keywords"] = _append_unique_keywords(patched.get("keywords"), keywords)
+                refined_events.append(patched)
+        else:
+            # No prior refine — build a minimal new event
+            refined_events.append({
+                "video_id": out_video_id,
+                "camera_id": camera_id,
+                "track_id": tid,
+                "entity_hint": entity_id,
+                "clip_start_sec": start,
+                "clip_end_sec": end,
+                "start_time": start,
+                "end_time": end,
+                "object_type": "person",
+                "object_color": color,
+                "appearance_notes": notes,
+                "action_summary": action_summary,
+                "movement_direction": movement_direction,
+                "exit_side": exit_side,
+                "scene_zone": "unknown",
+                "event_text": _append_semantics_to_event_text(
+                    f"{entity_id} from {_fmt_sec(start)} to {_fmt_sec(end)}.",
+                    notes,
+                    color,
+                    action_summary,
+                    movement_direction,
+                    exit_side,
+                ),
+                "keywords": keywords,
+                "start_bbox_xyxy": None,
+                "end_bbox_xyxy": None,
+            })
 
     result = {
         "video_id": out_video_id,
@@ -375,18 +520,37 @@ def run_appearance_refinement_for_pipeline(
 
         color = appearance["object_color"]
         notes = appearance["appearance_notes"]
+        action_summary = appearance.get("action_summary") or "visible in the scene"
         keywords = list(appearance["keywords"])
         for token in ("person", "appearance", "cross_camera", "same_person", entity_id.lower()):
             if token not in keywords:
                 keywords.append(token)
         event_text = (
             f"{entity_id} appeared across cameras: {trajectory}. "
-            f"Appearance: {notes}."
+            f"Appearance: {notes}. Action: {action_summary}."
         )
         for app in apps:
             cam_id = str(app.get("camera_id") or "")
             if not cam_id:
                 continue
+            cam_events = [
+                e for e in camera_to_events.get(cam_id, [])
+                if str(e.get("track_id")) == str(app.get("track_id"))
+            ]
+            motion = _infer_motion_from_events(cam_events)
+            app_event_text = _append_semantics_to_event_text(
+                event_text,
+                notes,
+                color,
+                action_summary or motion["action_summary"],
+                motion["movement_direction"],
+                motion["exit_side"],
+            )
+            app_keywords = list(keywords)
+            for token in (motion["action_summary"], motion["movement_direction"], motion["exit_side"]):
+                token = str(token or "").strip().lower().replace(" ", "_")
+                if token and token not in {"unknown", "stationary"} and token not in app_keywords:
+                    app_keywords.append(token)
             per_cam_events[cam_id].append({
                 "video_id": (camera_video_stems or {}).get(cam_id, ""),
                 "camera_id": cam_id,
@@ -399,9 +563,12 @@ def run_appearance_refinement_for_pipeline(
                 "object_type": "person",
                 "object_color": color,
                 "appearance_notes": notes,
+                "action_summary": action_summary or motion["action_summary"],
+                "movement_direction": motion["movement_direction"],
+                "exit_side": motion["exit_side"],
                 "scene_zone": "unknown",
-                "event_text": event_text,
-                "keywords": keywords[:14],
+                "event_text": app_event_text,
+                "keywords": app_keywords[:16],
                 "start_bbox_xyxy": None,
                 "end_bbox_xyxy": None,
             })

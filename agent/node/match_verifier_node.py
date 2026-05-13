@@ -89,6 +89,117 @@ _SCENE_TERMS = {"road", "room", "sofa", "wall", "wheelchair", "conveyor", "parki
 
 _FAST_DECISIONS = {"exact", "partial", "mismatch"}
 
+_DIRECTION_ALIASES = {
+    "left": {"left", "left side"},
+    "right": {"right", "right side"},
+    "up": {"up", "top", "upper", "top side"},
+    "down": {"down", "bottom", "lower", "bottom side"},
+}
+
+_COLOR_TERMS = {
+    "black",
+    "blue",
+    "brown",
+    "dark",
+    "gray",
+    "grey",
+    "green",
+    "khaki",
+    "light",
+    "olive",
+    "purple",
+    "red",
+    "tan",
+    "white",
+    "yellow",
+}
+
+_COLOR_COMPATIBLE = {
+    "black": {"black", "dark"},
+    "dark": {"dark", "black", "brown", "blue", "gray", "grey"},
+    "gray": {"gray", "grey", "light", "white"},
+    "grey": {"grey", "gray", "light", "white"},
+    "light": {"light", "white", "gray", "grey", "khaki", "tan"},
+    "white": {"white", "light", "gray", "grey"},
+    "khaki": {"khaki", "tan", "brown", "light"},
+    "tan": {"tan", "khaki", "brown", "light"},
+    "brown": {"brown", "tan", "khaki", "dark"},
+}
+
+_COLOR_CONTRAST = {
+    "red": {"black", "dark", "blue", "green", "gray", "grey", "white", "yellow"},
+    "yellow": {"black", "dark", "blue", "red", "gray", "grey"},
+    "blue": {"red", "yellow", "green", "brown"},
+    "green": {"red", "blue", "yellow"},
+    "white": {"black", "dark", "red", "blue", "green", "brown"},
+    "black": {"red", "yellow", "white", "light"},
+    "dark": {"red", "yellow", "white", "light"},
+}
+
+_CLOTHING_TERMS = {
+    "backpack",
+    "bag",
+    "beanie",
+    "coat",
+    "hoodie",
+    "jacket",
+    "pants",
+    "shirt",
+    "top",
+    "trousers",
+}
+
+
+def _parse_clock_to_sec(text: str) -> float | None:
+    parts = str(text or "").strip().split(":")
+    if len(parts) == 2:
+        try:
+            return float(parts[0]) * 60.0 + float(parts[1])
+        except Exception:
+            return None
+    if len(parts) == 3:
+        try:
+            return float(parts[0]) * 3600.0 + float(parts[1]) * 60.0 + float(parts[2])
+        except Exception:
+            return None
+    return None
+
+
+def _query_time_window(query: str) -> tuple[float, float] | None:
+    q = str(query or "").lower()
+    match = re.search(r"\baround\s+(\d{1,2}:\d{1,2}(?::\d{1,2})?)\s*-\s*(\d{1,2}:\d{1,2}(?::\d{1,2})?)", q)
+    if not match:
+        return None
+    start = _parse_clock_to_sec(match.group(1))
+    end = _parse_clock_to_sec(match.group(2))
+    if start is None or end is None:
+        return None
+    if end < start:
+        start, end = end, start
+    return start, end
+
+
+def _row_time_overlap(row: dict[str, Any], window: tuple[float, float] | None) -> float | None:
+    if window is None:
+        return None
+    primary = _pick_primary_row(row)
+    try:
+        start = float(primary.get("start_time", row.get("start_time")))
+        end = float(primary.get("end_time", row.get("end_time")))
+    except Exception:
+        return None
+    if end < start:
+        start, end = end, start
+    return max(0.0, min(end, window[1]) - max(start, window[0]))
+
+
+def _row_matches_query_time(row: dict[str, Any], query: str) -> bool | None:
+    window = _query_time_window(query)
+    if window is None:
+        return None
+    overlap = _row_time_overlap(row, window)
+    return bool(overlap is not None and overlap > 0.0)
+
 
 # ---------------------------------------------------------------------------
 # v2.3 env knobs
@@ -159,6 +270,32 @@ def _tokenize(text: str) -> list[str]:
     return re.findall(r"[a-z0-9]+", str(text or "").lower())
 
 
+def _mentioned_cameras(text: str) -> list[str]:
+    out: list[str] = []
+    seen: set[str] = set()
+    for cam in re.findall(r"\bG\d+\b", str(text or ""), flags=re.IGNORECASE):
+        cam = cam.upper()
+        if cam not in seen:
+            out.append(cam)
+            seen.add(cam)
+    return out
+
+
+def _looks_like_cross_camera_query(query: str) -> bool:
+    q = str(query or "").lower()
+    return len(_mentioned_cameras(query)) >= 2 and any(
+        phrase in q
+        for phrase in (
+            "also appear",
+            "appear again",
+            "then appear",
+            "same person",
+            "cross-camera",
+            "cross camera",
+        )
+    )
+
+
 def _query_terms(query: str) -> set[str]:
     terms: set[str] = set()
     for token in _tokenize(query):
@@ -173,13 +310,230 @@ def _evidence_text(row: dict[str, Any], primary: dict[str, Any] | None = None) -
     parts = [
         row.get("event_summary_en"),
         row.get("event_text_en"),
+        row.get("event_text"),
+        row.get("appearance_notes"),
+        row.get("appearance_notes_en"),
+        row.get("keywords"),
         primary.get("event_summary_en"),
         primary.get("event_text_en"),
+        primary.get("event_text"),
+        primary.get("appearance_notes"),
+        primary.get("appearance_notes_en"),
+        primary.get("keywords"),
         row.get("object_type"),
         row.get("object_color_en"),
+        row.get("object_color"),
         row.get("scene_zone_en"),
     ]
-    return " ".join(str(item or "") for item in parts if item).lower()
+    rendered: list[str] = []
+    for item in parts:
+        if isinstance(item, list):
+            rendered.append(" ".join(str(x) for x in item))
+        elif item:
+            rendered.append(str(item))
+    return " ".join(rendered).lower()
+
+
+def _row_supports_mentioned_cameras(row: dict[str, Any], query: str) -> bool:
+    cams = _mentioned_cameras(query)
+    if len(cams) < 2:
+        return True
+    primary = _pick_primary_row(row)
+    text = _evidence_text(row, primary).upper()
+    row_video = str(primary.get("video_id") or row.get("video_id") or "").upper()
+    # A row can support a cross-camera query either through explicit trajectory
+    # text or through its own video id plus trajectory text from child rows.
+    haystack = f"{text} {row_video}"
+    return all(cam in haystack for cam in cams)
+
+
+def _cross_camera_verdict(query: str, row: dict[str, Any]) -> dict[str, Any] | None:
+    if not _looks_like_cross_camera_query(query):
+        return None
+    cams = _mentioned_cameras(query)
+    if _row_supports_mentioned_cameras(row, query):
+        return None
+    return {
+        "decision": "mismatch",
+        "confidence": 0.97,
+        "reason": f"cross_camera_camera_pair_missing: required={cams}",
+        "mode": "strict_rule",
+    }
+
+
+def _prefer_cross_camera_candidate(query: str, candidates: list[dict[str, Any]], current_idx: int) -> int:
+    """For cross-camera queries, prefer a candidate that mentions every requested camera.
+
+    This prevents a visually similar trajectory such as G421->G424 from answering
+    a query that explicitly asks about G421->G508.
+    """
+    if not _looks_like_cross_camera_query(query) or not candidates:
+        return current_idx
+    if 0 <= current_idx < len(candidates) and _row_supports_mentioned_cameras(candidates[current_idx], query):
+        return current_idx
+    for idx, row in enumerate(candidates):
+        if _row_supports_mentioned_cameras(row, query):
+            return idx
+    return current_idx
+
+
+def _looks_like_binary_query(text: str) -> bool:
+    query = str(text or "").strip().lower()
+    if not query:
+        return False
+    return bool(
+        re.match(r"^(is|are|was|were|do|does|did|can|could|has|have|had)\b", query)
+        or " is there " in f" {query} "
+        or query.endswith("?")
+    )
+
+
+def _query_direction(query: str) -> str:
+    q = str(query or "").lower()
+    patterns = [
+        r"\bexit(?:ed|s)?\s+from\s+the\s+([a-z ]+?)\s+side\b",
+        r"\bleav(?:e|es|ing)\s+(?:from\s+)?the\s+([a-z ]+?)\s+side\b",
+    ]
+    for pattern in patterns:
+        match = re.search(pattern, q)
+        if not match:
+            continue
+        raw = match.group(1).strip()
+        if raw in {"top", "upper"}:
+            return "up"
+        if raw in {"bottom", "lower"}:
+            return "down"
+        if raw in _DIRECTION_ALIASES:
+            return raw
+    return ""
+
+
+def _evidence_direction(evidence: str) -> str:
+    text = f" {str(evidence or '').lower()} "
+    patterns = [
+        r"\bexit(?:ed|s|ing)?\s+from\s+the\s+(left|right|up|down|top|bottom)\s+side\b",
+        r"\bleav(?:e|es|ing|t)?\s+(?:frame\s+)?(?:from\s+)?(?:the\s+)?(left|right|up|down|top|bottom)\b",
+        r"\bperson\s+leaving\s+frame\s+(left|right|up|down|top|bottom)\b",
+    ]
+    for pattern in patterns:
+        match = re.search(pattern, text)
+        if not match:
+            continue
+        raw = match.group(1)
+        if raw == "top":
+            return "up"
+        if raw == "bottom":
+            return "down"
+        return raw
+    return ""
+
+
+def _query_appearance_terms(query: str) -> set[str]:
+    q = str(query or "").lower()
+    phrase = ""
+    patterns = [
+        r"person\s+with\s+(.+?)\s+visible",
+        r"person\s+wearing\s+(.+?)\s+in\s+camera",
+        r"person\s+with\s+(.+?)\s+in\s+camera",
+        r"wearing\s+(.+?)(?:\?|$)",
+    ]
+    for pattern in patterns:
+        match = re.search(pattern, q)
+        if match:
+            phrase = match.group(1)
+            break
+    if not phrase:
+        return set()
+    return {
+        token
+        for token in _tokenize(phrase)
+        if token in _COLOR_TERMS or token in _CLOTHING_TERMS
+    }
+
+
+def _strict_attribute_verdict(query: str, row: dict[str, Any]) -> dict[str, Any] | None:
+    """Conservative yes/no guard for attribute-negative questions.
+
+    Retrieval may correctly hit the requested time window while the retrieved
+    evidence contradicts the asked attribute (e.g. query asks "red jacket" but
+    evidence says "black coat"). In that case the final answer should be no,
+    not "yes because someone exists in the window".
+    """
+    if not _looks_like_binary_query(query):
+        return None
+
+    primary = _pick_primary_row(row)
+    evidence = _evidence_text(row, primary)
+
+    time_match = _row_matches_query_time(row, query)
+    if time_match is False:
+        return {
+            "decision": "mismatch",
+            "confidence": 0.96,
+            "reason": "time_conflict: evidence does not overlap requested query window",
+            "mode": "strict_rule",
+        }
+
+    asked_direction = _query_direction(query)
+    if asked_direction:
+        actual_direction = _evidence_direction(evidence)
+        if actual_direction and actual_direction != asked_direction:
+            return {
+                "decision": "mismatch",
+                "confidence": 0.96,
+                "reason": f"direction_conflict: asked={asked_direction}; evidence={actual_direction}",
+                "mode": "strict_rule",
+            }
+
+    appearance_terms = _query_appearance_terms(query)
+    if appearance_terms:
+        asked_colors = appearance_terms & _COLOR_TERMS
+        evidence_colors = {token for token in _tokenize(evidence) if token in _COLOR_TERMS}
+        # Only reject on explicit contradiction. Generic evidence like
+        # "dark upper-body clothing" should still support "black coat" weakly,
+        # but it should reject "red jacket" when the time-matched evidence
+        # explicitly says dark/black.
+        compatible_evidence = set(evidence_colors)
+        for color in evidence_colors:
+            compatible_evidence.update(_COLOR_COMPATIBLE.get(color, set()))
+        explicit_conflicts = [
+            asked
+            for asked in asked_colors
+            if any(evidence_color in _COLOR_CONTRAST.get(asked, set()) for evidence_color in evidence_colors)
+        ]
+        if asked_colors and evidence_colors and explicit_conflicts and not asked_colors.intersection(compatible_evidence):
+            return {
+                "decision": "mismatch",
+                "confidence": 0.9,
+                "reason": f"appearance_conflict: asked_colors={sorted(asked_colors)}; evidence_colors={sorted(evidence_colors)}",
+                "mode": "strict_rule",
+            }
+
+    if time_match is True:
+        return {
+            "decision": "exact",
+            "confidence": 0.74,
+            "reason": "time_window_match_without_explicit_attribute_conflict",
+            "mode": "strict_rule",
+        }
+    return None
+
+
+def _prefer_time_matching_candidate(query: str, candidates: list[dict[str, Any]], current_idx: int) -> int:
+    window = _query_time_window(query)
+    if window is None or not candidates:
+        return current_idx
+    current_overlap = _row_time_overlap(candidates[current_idx], window)
+    if current_overlap and current_overlap > 0:
+        return current_idx
+    best_idx = current_idx
+    best_overlap = 0.0
+    for idx, row in enumerate(candidates):
+        overlap = _row_time_overlap(row, window) or 0.0
+        if overlap > best_overlap:
+            best_overlap = overlap
+            best_idx = idx
+    return best_idx if best_overlap > 0 else current_idx
 
 
 def _row_summary(row: dict[str, Any], max_chars: int = 220) -> str:
@@ -842,13 +1196,12 @@ def create_match_verifier_node(llm: Any = None):
         # verify existence than to skip. Only skip for non-existence types
         # where verification would be meaningless (list, count, description).
         _SKIP_ANSWER_TYPES = {"list", "count", "description"}
+        query = str(state.get("original_user_query") or state.get("user_query") or "").strip()
         if answer_type in _SKIP_ANSWER_TYPES:
             return {
                 "verifier_result": _skipped_verdict(f"answer_type={answer_type}"),
                 "current_node": "match_verifier_node",
             }
-
-        query = str(state.get("original_user_query") or state.get("user_query") or "").strip()
 
         # ── v2.4: Multi-camera path ──
         is_multi_camera = _detect_multi_camera_context(state)
@@ -897,6 +1250,7 @@ def create_match_verifier_node(llm: Any = None):
             verdict = _llm_verdict_single(llm, query, top_row, primary, config) or _heuristic_verdict_single(
                 query, top_row, primary
             )
+            verdict = _cross_camera_verdict(query, top_row) or _strict_attribute_verdict(query, top_row) or verdict
             descriptor = _row_descriptor(top_row)
             return {
                 "verifier_result": {
@@ -926,7 +1280,10 @@ def create_match_verifier_node(llm: Any = None):
         if best_idx < 0 or best_idx >= len(candidates):
             best_idx = 0
 
+        best_idx = _prefer_time_matching_candidate(query, candidates, best_idx)
+        best_idx = _prefer_cross_camera_candidate(query, candidates, best_idx)
         chosen_row = candidates[best_idx]
+        verdict = _cross_camera_verdict(query, chosen_row) or _strict_attribute_verdict(query, chosen_row) or verdict
         descriptor = _row_descriptor(chosen_row)
         # span_source is "rerank_reselected" only when the LLM/heuristic chose
         # something other than the rerank top-1; otherwise the rerank top-1

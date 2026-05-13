@@ -33,13 +33,6 @@ _YOLO11M_LOCAL = _YOLO_MODEL_DIR / "yolo11m.pt"
 DEFAULT_TARGET_CLASSES: list[str] = [
     "person",
     "car",
-    "bus",
-    "truck",
-    "motorcycle",
-    "bicycle",
-    "backpack",
-    "handbag",
-    "suitcase",
 ]
 
 

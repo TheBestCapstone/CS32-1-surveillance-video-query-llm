@@ -21,6 +21,12 @@ from video.factory.appearance_refinement_runner import (
 )
 from video.factory.processors.event_track_pipeline import run_pipeline, save_pipeline_output
 from video.factory.refinement_runner import RefineEventsConfig, run_refine_events_from_files
+from video.factory.scene_profile_runner import SceneProfileConfig, run_scene_profiles_for_pipeline
+from video.factory.single_camera_pipeline import (
+    DEFAULT_SINGLE_CAMERA_CLASSES,
+    SingleCameraPipelineConfig,
+    run_single_camera_semantic_pipeline,
+)
 
 
 def run_video_to_events(
@@ -60,8 +66,15 @@ def run_refine_events(
 def run_refine_appearance_events(
     events_json: str | Path,
     config: AppearanceRefinementConfig | None = None,
+    base_json: str | Path | None = None,
 ) -> Path:
-    """Crop-refine person appearance from one *_events.json file."""
+    """Crop-refine person appearance from one *_events.json file.
+
+    If ``base_json`` is given (path to a *_events_vector_flat.json), appearance
+    fields are patched into those events rather than creating new ones, so
+    scene_zone, event_text and bbox from the prior refine pass are preserved.
+    When omitted the function auto-detects a sibling *_events_vector_flat.json.
+    """
     events_path = Path(events_json)
     payload = json.loads(events_path.read_text(encoding="utf-8"))
     meta = payload.get("meta", {})
@@ -73,12 +86,25 @@ def run_refine_appearance_events(
     cfg = config or AppearanceRefinementConfig.from_env()
     if cfg.cache_path is None:
         cfg.cache_path = events_path.with_name(events_path.stem + "_appearance_refined.json")
+
+    # Load base events for merging
+    base_events: list[dict[str, Any]] | None = None
+    if base_json is None:
+        # Auto-detect sibling vector_flat file
+        auto = events_path.with_name(events_path.stem + "_vector_flat.json")
+        if auto.exists():
+            base_json = auto
+    if base_json is not None:
+        base_payload = json.loads(Path(base_json).read_text(encoding="utf-8"))
+        base_events = list(base_payload.get("events", []))
+
     result = run_appearance_refinement_for_events(
         video_path=video_path,
         events=list(payload.get("events", [])),
         video_id=video_id,
         camera_id=camera_id,
         config=cfg,
+        base_events=base_events,
     )
     out_path = cfg.cache_path
     assert out_path is not None
@@ -107,11 +133,17 @@ def _add_video_cli_args(p: argparse.ArgumentParser) -> None:
     p.add_argument(
         "--classes",
         type=str,
-        default="person,car,bus,truck,motorcycle,bicycle,backpack,handbag,suitcase",
-        help="Comma-separated class filter (default surveillance set: person,car,bus,truck,motorcycle,bicycle,backpack,handbag,suitcase)",
+        default="person,car",
+        help="Comma-separated class filter (default: person + car; bags/items remain VLM appearance attributes)",
     )
     p.add_argument("--save-video", action="store_true", help="Write annotated video with boxes + track_id")
     p.add_argument("--save-video-path", type=str, default=None, help="Output path for annotated video")
+
+
+def _parse_class_list(raw: str) -> tuple[str, ...] | None:
+    if not raw.strip():
+        return None
+    return tuple(item.strip() for item in raw.split(",") if item.strip())
 
 
 def _run_video_cli_namespace(args: argparse.Namespace) -> None:
@@ -184,11 +216,68 @@ def _add_refine_cli_args(p: argparse.ArgumentParser) -> None:
 
 def _add_appearance_cli_args(p: argparse.ArgumentParser) -> None:
     p.add_argument("--events", required=True, help="Path to *_events.json")
+    p.add_argument("--base", type=str, default=None, help="Path to *_events_vector_flat.json to merge into (auto-detected if omitted)")
     p.add_argument("--model", type=str, default=None, help="VLM model for crop appearance refinement")
     p.add_argument("--max-tracks", type=int, default=0, help="Debug cap for person tracks (0 = all)")
     p.add_argument("--crops-per-track", type=int, default=2)
     p.add_argument("--force", action="store_true", help="Re-run even if output exists")
     p.add_argument("--out", type=str, default=None, help="Output JSON path")
+
+
+def _add_semantic_cli_args(p: argparse.ArgumentParser) -> None:
+    p.add_argument("--events", required=True, help="Path to *_events.json")
+    p.add_argument("--clips", required=True, help="Path to *_clips.json")
+    p.add_argument("--camera", default="", help="Camera id override")
+    p.add_argument("--clip-model", default="gpt-5.4-mini", help="VLM model for clip/slice event refinement")
+    p.add_argument("--appearance-model", default=None, help="VLM model for crop appearance refinement")
+    p.add_argument("--min-frames", type=int, default=4)
+    p.add_argument("--max-frames", type=int, default=24)
+    p.add_argument("--crops-per-track", type=int, default=2)
+    p.add_argument("--max-tracks", type=int, default=0)
+    p.add_argument("--min-event-duration-sec", type=float, default=1.0)
+    p.add_argument("--force", action="store_true")
+
+
+def _add_single_camera_cli_args(p: argparse.ArgumentParser) -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    p.add_argument("video", help="Path to one input video")
+    p.add_argument("--camera", default="", help="Camera id override, e.g. G423")
+    p.add_argument("--video-id", default="", help="Video id/stem override used for output file names")
+    p.add_argument(
+        "--out-dir",
+        default=str(repo_root / "results" / "single_camera_pipeline"),
+        help="Where pipeline/refine/manifest JSON files are saved",
+    )
+    p.add_argument(
+        "--seed-out-dir",
+        default=str(repo_root / "agent" / "test" / "data" / "events_vector_flat"),
+        help="Where the final *_events_vector_flat.json seed is saved",
+    )
+    p.add_argument("--model", default="11m")
+    p.add_argument("--conf", type=float, default=0.35)
+    p.add_argument("--iou", type=float, default=0.35)
+    p.add_argument("--tracker", default="botsort_reid")
+    p.add_argument(
+        "--classes",
+        default=",".join(DEFAULT_SINGLE_CAMERA_CLASSES),
+        help="Comma-separated class filter. Default is person + car.",
+    )
+    p.add_argument("--min-event-duration-sec", type=float, default=1.0)
+    p.add_argument(
+        "--semantic-refine",
+        action="store_true",
+        help="Run clip/slice refine + crop appearance refine + scene profile",
+    )
+    p.add_argument("--clip-refine", action="store_true", help="Run only clip/slice event refinement")
+    p.add_argument("--appearance-refine", action="store_true", help="Run only crop appearance refinement")
+    p.add_argument("--scene-profile", action="store_true", help="Run only camera scene profiling")
+    p.add_argument("--clip-refine-model", default="gpt-5.4-mini")
+    p.add_argument("--clip-refine-min-frames", type=int, default=4)
+    p.add_argument("--clip-refine-max-frames", type=int, default=24)
+    p.add_argument("--appearance-model", default=None)
+    p.add_argument("--crops-per-track", type=int, default=2)
+    p.add_argument("--max-tracks", type=int, default=0)
+    p.add_argument("--force", action="store_true")
 
 
 def _run_refine_cli_namespace(args: argparse.Namespace) -> None:
@@ -233,7 +322,7 @@ def _run_appearance_cli_namespace(args: argparse.Namespace) -> None:
         force=bool(args.force),
         cache_path=Path(args.out) if args.out else None,
     )
-    out_path = run_refine_appearance_events(args.events, cfg)
+    out_path = run_refine_appearance_events(args.events, cfg, base_json=args.base or None)
     print(f"appearance-refined events saved to: {out_path}")
 
 
@@ -245,8 +334,124 @@ def cli_run_refine_appearance(argv: Sequence[str] | None = None) -> None:
     _run_appearance_cli_namespace(args)
 
 
+def _run_semantic_cli_namespace(args: argparse.Namespace) -> None:
+    from dotenv import load_dotenv
+
+    load_dotenv()
+    events_path = Path(args.events)
+    clips_path = Path(args.clips)
+    events_payload = json.loads(events_path.read_text(encoding="utf-8"))
+    meta = events_payload.get("meta", {})
+    video_path = meta.get("video_path")
+    if not video_path:
+        raise ValueError(f"{events_path} does not contain meta.video_path")
+    video_path = str(video_path)
+    camera_id = args.camera or meta.get("camera_id") or "CAM"
+    stem = Path(video_path).stem
+
+    print("[semantic-refine] Running clip/slice event refinement ...")
+    clip_cfg = RefineEventsConfig(
+        mode="vector",
+        frames_per_sec=0.1,
+        min_frames=max(1, int(args.min_frames)),
+        max_frames=max(1, int(args.max_frames)),
+        model=args.clip_model,
+        temperature=0.1,
+        min_event_duration_sec=float(args.min_event_duration_sec),
+    )
+    clip_path = run_refine_events_from_files(events_path, clips_path, clip_cfg)
+    clip_payload = json.loads(Path(clip_path).read_text(encoding="utf-8"))
+    base_events = list(clip_payload.get("events", []))
+    print(f"[semantic-refine] Clip refined events={len(base_events)}: {clip_path}")
+
+    print("[semantic-refine] Running crop appearance refinement ...")
+    appearance_path = events_path.with_name(events_path.stem + "_semantic_refined.json")
+    app_cfg = AppearanceRefinementConfig.from_env(
+        model=args.appearance_model or AppearanceRefinementConfig.from_env().model,
+        max_entities=max(0, int(args.max_tracks)),
+        crops_per_app=max(1, int(args.crops_per_track)),
+        cache_path=appearance_path,
+        force=bool(args.force),
+    )
+    appearance = run_appearance_refinement_for_events(
+        video_path=video_path,
+        events=list(events_payload.get("events", [])),
+        video_id=stem,
+        camera_id=camera_id,
+        config=app_cfg,
+        base_events=base_events,
+    )
+    print(f"[semantic-refine] Appearance+event refined events={len(appearance.get('events', []))}: {appearance_path}")
+
+    print("[semantic-refine] Running scene profile ...")
+    scene_path = events_path.with_name(events_path.stem + "_scene_profile.json")
+    scene_cfg = SceneProfileConfig.from_env(cache_path=scene_path, force=bool(args.force))
+    scene = run_scene_profiles_for_pipeline(
+        slot="single-video",
+        camera_to_video={camera_id: video_path},
+        camera_video_stems={camera_id: stem},
+        config=scene_cfg,
+    )
+    print(f"[semantic-refine] Scene profile: {scene_path}")
+
+    manifest_path = events_path.with_name(events_path.stem + "_semantic_manifest.json")
+    manifest = {
+        "video_id": stem,
+        "camera_id": camera_id,
+        "clip_refine_path": str(clip_path),
+        "semantic_refine_path": str(appearance_path),
+        "scene_profile_path": str(scene_path),
+        "scene_profile_cameras": list((scene.get("per_camera") or {}).keys()),
+    }
+    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"[semantic-refine] Manifest: {manifest_path}")
+
+
+def _run_single_camera_cli_namespace(args: argparse.Namespace) -> None:
+    from dotenv import load_dotenv
+
+    load_dotenv()
+    cfg = SingleCameraPipelineConfig(
+        model=args.model,
+        conf=float(args.conf),
+        iou=float(args.iou),
+        tracker=args.tracker,
+        target_classes=_parse_class_list(args.classes),
+        min_event_duration_sec=float(args.min_event_duration_sec),
+        semantic_refine=bool(args.semantic_refine),
+        clip_refine=bool(args.clip_refine),
+        appearance_refine=bool(args.appearance_refine),
+        scene_profile=bool(args.scene_profile),
+        clip_refine_model=args.clip_refine_model,
+        clip_refine_min_frames=int(args.clip_refine_min_frames),
+        clip_refine_max_frames=int(args.clip_refine_max_frames),
+        appearance_model=args.appearance_model,
+        crops_per_track=int(args.crops_per_track),
+        max_tracks=int(args.max_tracks),
+        force=bool(args.force),
+    )
+    result = run_single_camera_semantic_pipeline(
+        args.video,
+        out_dir=args.out_dir,
+        seed_out_dir=args.seed_out_dir,
+        camera_id=args.camera or None,
+        video_id=args.video_id or None,
+        config=cfg,
+    )
+    print("[single-camera] Done")
+    print(f"  video_id: {result['video_id']}")
+    print(f"  camera_id: {result['camera_id']}")
+    print(f"  raw events: {result.get('raw_event_count', 'existing')}")
+    print(f"  vector events: {result.get('vector_event_count', 0)}")
+    if result.get("dropped_short_event_count") is not None:
+        print(f"  dropped short events: {result.get('dropped_short_event_count')}")
+    if result.get("manifest_path"):
+        print(f"  manifest: {result['manifest_path']}")
+    print(f"  vector seed: {result['seed_path']}")
+
+
 def main(argv: Sequence[str] | None = None) -> None:
-    """Entry: python -m video.factory.coordinator video ... | refine ... | appearance ..."""
+    """Entry: python -m video.factory.coordinator video|refine|appearance|semantic-refine|single-camera ..."""
     argv = list(sys.argv[1:] if argv is None else argv)
     parser = argparse.ArgumentParser(description="Offline video pipeline: video (track+events) or refine (LLM)")
     sub = parser.add_subparsers(dest="cmd", required=True)
@@ -256,13 +461,21 @@ def main(argv: Sequence[str] | None = None) -> None:
     _add_refine_cli_args(p_r)
     p_a = sub.add_parser("appearance", help="Crop-refine person appearance from *_events.json")
     _add_appearance_cli_args(p_a)
+    p_s = sub.add_parser("semantic-refine", help="Run clip refine + crop appearance + scene profile")
+    _add_semantic_cli_args(p_s)
+    p_sc = sub.add_parser("single-camera", help="Run one-video single-camera pipeline and write vector-flat seed")
+    _add_single_camera_cli_args(p_sc)
     args = parser.parse_args(argv)
     if args.cmd == "video":
         _run_video_cli_namespace(args)
     elif args.cmd == "refine":
         _run_refine_cli_namespace(args)
-    else:
+    elif args.cmd == "appearance":
         _run_appearance_cli_namespace(args)
+    elif args.cmd == "semantic-refine":
+        _run_semantic_cli_namespace(args)
+    else:
+        _run_single_camera_cli_namespace(args)
 
 
 if __name__ == "__main__":

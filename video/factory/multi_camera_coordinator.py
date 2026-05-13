@@ -33,6 +33,80 @@ def _same_camera_gap_sec(a: dict[str, Any], b: dict[str, Any]) -> float:
     return min(abs(b_s - a_e), abs(a_s - b_e))
 
 
+def _bbox_center(xyxy: list[float]) -> tuple[float, float]:
+    x1, y1, x2, y2 = [float(v) for v in xyxy]
+    return ((x1 + x2) / 2.0, (y1 + y2) / 2.0)
+
+
+def _bbox_iou(a: list[float] | None, b: list[float] | None) -> float:
+    if not a or not b or len(a) != 4 or len(b) != 4:
+        return 0.0
+    ax1, ay1, ax2, ay2 = [float(x) for x in a]
+    bx1, by1, bx2, by2 = [float(x) for x in b]
+    ix1, iy1 = max(ax1, bx1), max(ay1, by1)
+    ix2, iy2 = min(ax2, bx2), min(ay2, by2)
+    inter = max(0.0, ix2 - ix1) * max(0.0, iy2 - iy1)
+    area_a = max(0.0, ax2 - ax1) * max(0.0, ay2 - ay1)
+    area_b = max(0.0, bx2 - bx1) * max(0.0, by2 - by1)
+    union = area_a + area_b - inter
+    return inter / union if union > 0 else 0.0
+
+
+def _bbox_center_distance(a: list[float] | None, b: list[float] | None) -> float:
+    if not a or not b or len(a) != 4 or len(b) != 4:
+        return float("inf")
+    ac = _bbox_center(a)
+    bc = _bbox_center(b)
+    dx = ac[0] - bc[0]
+    dy = ac[1] - bc[1]
+    return float((dx * dx + dy * dy) ** 0.5)
+
+
+def _track_bbox_at_start(track: dict[str, Any]) -> list[float] | None:
+    time_xyxy = list(track.get("time_xyxy") or [])
+    if not time_xyxy:
+        return None
+    return [float(x) for x in time_xyxy[0][1]]
+
+
+def _track_bbox_at_end(track: dict[str, Any]) -> list[float] | None:
+    time_xyxy = list(track.get("time_xyxy") or [])
+    if not time_xyxy:
+        return None
+    return [float(x) for x in time_xyxy[-1][1]]
+
+
+def _is_vehicle_track(track: dict[str, Any]) -> bool:
+    return str(track.get("class_name") or "").lower() in {"car", "vehicle", "bus", "truck", "motorcycle", "bicycle"}
+
+
+def _can_stitch_vehicle_tracks(
+    a: dict[str, Any],
+    b: dict[str, Any],
+    *,
+    max_gap_sec: float,
+    max_center_dist_px: float = 80.0,
+    min_iou: float = 0.35,
+) -> bool:
+    if not (_is_vehicle_track(a) and _is_vehicle_track(b)):
+        return False
+    a_s, a_e = float(a["start_time"]), float(a["end_time"])
+    b_s, b_e = float(b["start_time"]), float(b["end_time"])
+    overlap = min(a_e, b_e) - max(a_s, b_s)
+    if overlap > 0:
+        return False
+    gap = _same_camera_gap_sec(a, b)
+    if gap > max_gap_sec:
+        return False
+    a_box = _track_bbox_at_end(a if a_e <= b_s else b)
+    b_box = _track_bbox_at_start(b if a_e <= b_s else a)
+    if a_box is None or b_box is None:
+        return False
+    if _bbox_iou(a_box, b_box) >= min_iou:
+        return True
+    return _bbox_center_distance(a_box, b_box) <= max_center_dist_px
+
+
 def _stitch_same_camera_fragments(
     camera_result: CameraResult,
     config: CrossCameraConfig,
@@ -41,8 +115,10 @@ def _stitch_same_camera_fragments(
     Same-camera rules:
     - Same track_id is one target (native tracker semantics).
     - For different person track_ids with small gap, stitch with Re-ID if sim >= threshold.
+    - For different vehicle track_ids with small gap and matching geometry, stitch conservatively.
     """
     person_tracks = [t for t in camera_result.tracks if t.get("class_name") == "person"]
+    vehicle_tracks = [t for t in camera_result.tracks if _is_vehicle_track(t)]
     parent: dict[int, int] = {}
 
     def find(x: int) -> int:
@@ -81,11 +157,24 @@ def _stitch_same_camera_fragments(
             if sim >= config.same_camera_reid_threshold:
                 union(a_tid, b_tid)
 
+    for i in range(len(vehicle_tracks)):
+        for j in range(i + 1, len(vehicle_tracks)):
+            a, b = vehicle_tracks[i], vehicle_tracks[j]
+            a_tid, b_tid = int(a["track_id"]), int(b["track_id"])
+            if a_tid == b_tid:
+                continue
+            if _can_stitch_vehicle_tracks(
+                a,
+                b,
+                max_gap_sec=config.same_camera_max_gap_sec,
+            ):
+                union(a_tid, b_tid)
+
     if not parent:
         return
 
     tid_map: dict[int, int] = {}
-    for t in person_tracks:
+    for t in camera_result.tracks:
         tid = int(t["track_id"])
         tid_map[tid] = find(tid) if tid in parent else tid
 
@@ -148,6 +237,10 @@ def _process_single_camera(
         conf=pipeline_kwargs.get("conf", 0.25),
         iou=pipeline_kwargs.get("iou", 0.45),
         tracker=pipeline_kwargs.get("tracker", "botsort_reid"),
+        target_classes=pipeline_kwargs.get(
+            "target_classes",
+            ["person", "car"],
+        ),
     )
     all_tracks = aggregate_tracks(fps, frame_detections)
     events, clips = slice_events(

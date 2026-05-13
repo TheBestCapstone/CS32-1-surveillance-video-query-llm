@@ -495,6 +495,72 @@ def _singularize_token(token: str) -> str:
     return _PLURAL_TO_SINGULAR.get(token, token)
 
 
+_APPEARANCE_QUERY_EXPANSIONS: list[tuple[re.Pattern[str], list[str], set[str]]] = [
+    (
+        re.compile(r"\blight\s+gr(?:e|a)y\s+hoodie\b"),
+        ["light grey hoodie", "light_grey_hoodie", "hoodie"],
+        {"light", "grey", "gray", "hoodie"},
+    ),
+    (
+        re.compile(r"\bbeige\s+(?:jacket|coat)\b"),
+        ["beige jacket", "beige_jacket", "jacket", "coat"],
+        {"beige", "jacket", "coat"},
+    ),
+    (
+        re.compile(r"\bfur(?:\s*|-)?trimmed\s+hood\b"),
+        ["fur trimmed hood", "fur_trimmed_hood", "hood"],
+        {"fur", "trimmed", "hood"},
+    ),
+    (
+        re.compile(r"\bhood\s+up\b"),
+        ["hood up", "hood_up", "hoodie"],
+        {"hood", "up"},
+    ),
+    (
+        re.compile(r"\bhooded\s+jacket\b"),
+        ["hooded jacket", "hood_up", "hoodie", "jacket"],
+        {"hooded", "jacket"},
+    ),
+    (
+        re.compile(r"\bdark\s+hoodie\b"),
+        ["dark hoodie", "hood_up", "hoodie"],
+        {"dark", "hoodie"},
+    ),
+    (
+        re.compile(r"\bdark\s+long\s+coat\b"),
+        ["dark long coat", "dark coat", "long coat", "dark_coat", "coat"],
+        {"dark", "long", "coat"},
+    ),
+    (
+        re.compile(r"\bdark\s+coat\b"),
+        ["dark coat", "long coat", "dark_coat", "coat"],
+        {"dark", "coat"},
+    ),
+    (
+        re.compile(r"\blong\s+coat\b"),
+        ["long coat", "dark coat", "dark_coat", "coat"],
+        {"long", "coat"},
+    ),
+]
+
+
+def _expand_appearance_query_terms(user_query: str) -> tuple[list[str], set[str]]:
+    q = str(user_query or "").lower()
+    expansions: list[str] = []
+    suppressed: set[str] = set()
+    seen: set[str] = set()
+    for pattern, extra_terms, raw_terms in _APPEARANCE_QUERY_EXPANSIONS:
+        if not pattern.search(q):
+            continue
+        suppressed.update(raw_terms)
+        for term in extra_terms:
+            clean = str(term).strip().lower()
+            if clean and clean not in seen:
+                expansions.append(clean)
+                seen.add(clean)
+    return expansions, suppressed
+
+
 def extract_text_tokens_for_sql(user_query: str, filters: dict[str, str]) -> list[str]:
     """Extract free-text tokens from the query for FTS5 / LIKE search.
 
@@ -511,8 +577,14 @@ def extract_text_tokens_for_sql(user_query: str, filters: dict[str, str]) -> lis
     for value in filters.values():
         filter_terms.update(t for t in re.findall(r"[a-z0-9_]+", str(value).lower()) if t)
 
+    phrase_expansions, suppressed_terms = _expand_appearance_query_terms(user_query)
     out: list[str] = []
     seen: set[str] = set()
+    for term in phrase_expansions:
+        if term in seen:
+            continue
+        seen.add(term)
+        out.append(term)
     for raw in re.findall(r"[a-z0-9_]+", user_query.lower()):
         if len(raw) <= 2:
             continue
@@ -520,6 +592,8 @@ def extract_text_tokens_for_sql(user_query: str, filters: dict[str, str]) -> lis
         if token in SQL_TOKEN_STOPWORDS:
             continue
         if token in filter_terms:
+            continue
+        if token in suppressed_terms:
             continue
         if token in seen:
             continue
