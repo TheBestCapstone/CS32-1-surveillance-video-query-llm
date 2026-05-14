@@ -968,6 +968,48 @@ def _group_by_global_entity(ge_rows: list[dict[str, Any]]) -> dict[str, list[dic
     return groups
 
 
+def _fetch_camera_appearances_from_sqlite(
+    camera_ids: list[str],
+    max_per_camera: int = 6,
+) -> dict[str, list[str]]:
+    """Query SQLite directly for per-camera appearance descriptions.
+
+    Bypasses vector retrieval ranking so appearance evidence is always
+    available regardless of which GE rows ranked highest.
+    """
+    import sqlite3
+
+    db_path = os.getenv("AGENT_SQLITE_DB_PATH", "").strip()
+    if not db_path or not os.path.exists(db_path):
+        return {}
+    result: dict[str, list[str]] = {}
+    try:
+        conn = sqlite3.connect(db_path)
+        conn.row_factory = sqlite3.Row
+        for cam in camera_ids:
+            rows = conn.execute(
+                "SELECT DISTINCT appearance_notes_en, object_color_en, event_text_en "
+                "FROM episodic_events "
+                "WHERE camera_id = ? AND object_type = 'person' "
+                "AND (appearance_notes_en != '' OR object_color_en != '') "
+                "LIMIT ?",
+                (cam, max_per_camera),
+            ).fetchall()
+            snippets: list[str] = []
+            for r in rows:
+                notes = str(r["appearance_notes_en"] or "").strip()
+                text = str(r["event_text_en"] or "").strip()
+                snippet = notes or text[:100]
+                if snippet and snippet not in snippets:
+                    snippets.append(snippet)
+            if snippets:
+                result[cam] = snippets
+        conn.close()
+    except Exception:
+        pass
+    return result
+
+
 def _multi_camera_llm_verdict(
     llm: Any,
     query: str,
@@ -990,7 +1032,14 @@ def _multi_camera_llm_verdict(
             st = e.get("start_time")
             et = e.get("end_time")
             summary = (e.get("event_summary_en") or e.get("event_text_en") or "")[:120]
-            time_ranges.append(f"  {cam}: {st}-{et}  {summary}")
+            color = str(e.get("object_color") or e.get("object_color_en") or "").strip()
+            appearance = str(e.get("appearance_notes") or "").strip()[:80]
+            appearance_str = ""
+            if color:
+                appearance_str += f" color={color}"
+            if appearance:
+                appearance_str += f" appearance={appearance}"
+            time_ranges.append(f"  {cam}: {st}-{et}{appearance_str}  {summary}")
         entity_summaries.append(
             f"Entity {ge_id} appears in cameras: {', '.join(camera_set)}\n"
             + "\n".join(time_ranges)
@@ -1023,18 +1072,41 @@ def _multi_camera_llm_verdict(
         "cameras, or only one camera appears (not truly cross-camera).",
         "",
         "CRITICAL RULES:",
-        "1. If a global entity appears in the same set of cameras the user asks about, "
-        "the answer MUST be 'exact' or 'partial' — NOT 'mismatch'. Missing appearance "
-        "descriptions do not invalidate the camera match.",
-        "2. Cross-camera tracking proves the same entity moved between cameras. That IS "
-        "the evidence the user is asking for. Do NOT require a perfect written description "
-        "of appearance — camera coverage alone is sufficient.",
-        "3. Only return 'mismatch' when NO entity appears in the queried cameras, or "
-        "the evidence clearly contradicts the query.",
+        "1. If a global entity appears in the same set of cameras the user asks about AND "
+        "the query does NOT specify appearance attributes, the answer MUST be 'exact' or "
+        "'partial'. Missing appearance descriptions do not invalidate the camera match.",
+        "2. APPEARANCE CHECK: If the query specifies a SPECIFIC appearance (e.g., 'dark "
+        "hoodie', 'white shirt', 'beige jacket', 'black coat with fur'), you MUST verify "
+        "that the retrieved entity's appearance data (color, clothing, summary) actually "
+        "matches. If the entity's appearance clearly differs from the query (e.g., entity "
+        "has 'grey hoodie' but query asks for 'dark hoodie'), return 'mismatch' even when "
+        "the camera IDs match. Camera match is necessary but NOT sufficient when a "
+        "specific appearance is part of the query.",
+        "3. Cross-camera tracking proves an entity moved between cameras, but the entity "
+        "must still match the described appearance. Use both camera coverage AND appearance "
+        "consistency to decide.",
+        "4. Only return 'mismatch' when NO entity appears in the queried cameras, or "
+        "the evidence (camera or appearance) clearly contradicts the query.",
         "",
         "EVIDENCE:",
     ]
     prompt_lines.extend(entity_summaries)
+    # Fetch per-camera appearance from SQLite (bypasses retrieval ranking)
+    all_ge_cameras = {
+        str(e.get("camera_id") or e.get("video_id") or "").strip()
+        for events in ge_groups.values()
+        for e in events
+    } - {""}
+    cam_appearance = _fetch_camera_appearances_from_sqlite(list(all_ge_cameras))
+    if cam_appearance:
+        prompt_lines.append("")
+        prompt_lines.append(
+            "DETECTED APPEARANCES IN CAMERAS (from event/track records — use this "
+            "to verify whether the queried appearance actually exists in each camera):"
+        )
+        for cam, snippets in sorted(cam_appearance.items()):
+            prompt_lines.append(f"  {cam}: " + " ; ".join(snippets[:4]))
+
     prompt_lines.extend(
         [
             "",

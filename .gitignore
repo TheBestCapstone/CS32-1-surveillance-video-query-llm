@@ -53,6 +53,12 @@ agent/_删除的文件/
 .vscode/
 .DS_Store
 
+# ─── local runtime / eval artifacts (not versioned) ─────────────────────────
+_cache/
+mevid_fastapi/data/
+agent/test/mevid_test/data/
+agent/test/mevid_test/agent_eval_results/
+
 # ─── temp / build ───────────────────────────────────────────────────────────
 *.tmp
 *.bak
