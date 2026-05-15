@@ -347,11 +347,54 @@ def _row_supports_mentioned_cameras(row: dict[str, Any], query: str) -> bool:
     return all(cam in haystack for cam in cams)
 
 
-def _cross_camera_verdict(query: str, row: dict[str, Any]) -> dict[str, Any] | None:
+def _candidates_cover_cameras(
+    query: str,
+    candidates: list[dict[str, Any]],
+) -> bool:
+    """Return True if some entity_hint appears in candidates for ALL mentioned cameras.
+
+    This allows Q09-style cross-camera queries (G329→G421) to pass when the
+    candidates collectively include both G329 and G421 records for the same
+    tracked entity, even though no single row mentions both camera IDs.
+    """
+    cams = _mentioned_cameras(query)
+    if len(cams) < 2:
+        return True
+    # Group candidate video_ids by entity identity
+    entity_cams: dict[str, set[str]] = {}
+    for c in candidates:
+        hint = str(c.get("entity_hint") or c.get("global_entity_id") or "").strip()
+        if not hint:
+            # Chroma track records embed "Track person_global_N" in event_text;
+            # event_id format is "{video_id}_person_global_N" for global-entity tracks.
+            for field in ("event_text", "event_id", "event_summary_en", "event_text_en"):
+                val = str(c.get(field) or "")
+                m = re.search(r"\bperson_global_\d+\b", val, re.IGNORECASE)
+                if m:
+                    hint = m.group(0).lower()
+                    break
+        if not hint:
+            continue
+        vid = str(c.get("video_id") or "").upper()
+        for cam in cams:
+            if cam in vid:
+                entity_cams.setdefault(hint, set()).add(cam)
+    return any(set(cams).issubset(covered) for covered in entity_cams.values())
+
+
+def _cross_camera_verdict(
+    query: str,
+    row: dict[str, Any],
+    candidates: list[dict[str, Any]] | None = None,
+) -> dict[str, Any] | None:
     if not _looks_like_cross_camera_query(query):
         return None
     cams = _mentioned_cameras(query)
     if _row_supports_mentioned_cameras(row, query):
+        return None
+    # Collective check: if the candidate pool contains the same entity in all
+    # queried cameras, trust the LLM verdict rather than forcing mismatch.
+    if candidates and _candidates_cover_cameras(query, candidates):
         return None
     return {
         "decision": "mismatch",
@@ -1010,6 +1053,109 @@ def _fetch_camera_appearances_from_sqlite(
     return result
 
 
+_CAMERA_ID_RE = re.compile(r"\b([A-Z]\d{3})\b")
+_MAX_CROSS_CAMERA_TRANSIT_SEC = 240.0  # sequential gap threshold
+
+
+def _extract_queried_cameras(query: str) -> set[str]:
+    """Extract camera IDs (e.g. G421, G506) mentioned in the query."""
+    return set(_CAMERA_ID_RE.findall(query))
+
+
+def _per_camera_time_ranges(
+    events: list[dict[str, Any]],
+) -> dict[str, tuple[float, float]]:
+    """Compute (min_start, max_end) per camera for an entity's events."""
+    ranges: dict[str, list[float]] = {}
+    for e in events:
+        cam = str(e.get("camera_id") or e.get("video_id") or "").strip()
+        if not cam:
+            continue
+        try:
+            st = float(e["start_time"])
+            et = float(e["end_time"])
+        except (KeyError, TypeError, ValueError):
+            continue
+        bucket = ranges.setdefault(cam, [float("inf"), float("-inf")])
+        bucket[0] = min(bucket[0], st)
+        bucket[1] = max(bucket[1], et)
+    return {c: (v[0], v[1]) for c, v in ranges.items() if v[0] != float("inf")}
+
+
+def _camera_coverage_prefilter(
+    query: str,
+    ge_groups: dict[str, list[dict[str, Any]]],
+) -> dict[str, Any] | None:
+    """Return a mismatch verdict immediately if no GE entity covers all queried cameras.
+
+    Two hard checks (run before calling the LLM):
+    1. Camera coverage: at least one entity must appear in ALL cameras the query mentions.
+    2. Temporal gap: if the entity's appearances in the queried cameras are sequential
+       (non-overlapping) and the gap exceeds _MAX_CROSS_CAMERA_TRANSIT_SEC, the
+       appearances are too far apart to be the same person in a single slot.
+    """
+    queried_cameras = _extract_queried_cameras(query)
+    if not queried_cameras:
+        return None  # can't determine cameras → skip filter
+
+    # Check 1: camera coverage
+    covering: list[str] = []
+    for ge_id, events in ge_groups.items():
+        entity_cams = {
+            str(e.get("camera_id") or e.get("video_id") or "").strip()
+            for e in events
+        } - {""}
+        if queried_cameras.issubset(entity_cams):
+            covering.append(ge_id)
+
+    if not covering:
+        return {
+            "decision": "mismatch",
+            "confidence": 0.95,
+            "reason": (
+                f"no global entity covers all queried cameras "
+                f"{sorted(queried_cameras)} — cannot confirm cross-camera identity"
+            ),
+            "mode": "pre_filter_camera_coverage",
+            "best_global_entity_id": "",
+        }
+
+    # Check 2: temporal gap — only fires when appearances are sequential (non-overlapping)
+    all_gap_failures: list[str] = []
+    for ge_id in covering:
+        cam_ranges = _per_camera_time_ranges(ge_groups[ge_id])
+        relevant = {c: r for c, r in cam_ranges.items() if c in queried_cameras}
+        if len(relevant) < 2:
+            continue
+        sorted_ranges = sorted(relevant.values(), key=lambda r: r[0])
+        large_gap = False
+        for i in range(len(sorted_ranges) - 1):
+            a_end = sorted_ranges[i][1]
+            b_start = sorted_ranges[i + 1][0]
+            if b_start > a_end:  # sequential: gap between end of one and start of next
+                gap = b_start - a_end
+                if gap > _MAX_CROSS_CAMERA_TRANSIT_SEC:
+                    large_gap = True
+                    break
+        if large_gap:
+            all_gap_failures.append(ge_id)
+
+    if len(all_gap_failures) == len(covering):
+        # Every covering entity has a suspiciously large time gap
+        return {
+            "decision": "mismatch",
+            "confidence": 0.85,
+            "reason": (
+                f"entity appearances in queried cameras are separated by more than "
+                f"{_MAX_CROSS_CAMERA_TRANSIT_SEC:.0f}s — too large for same-slot transit"
+            ),
+            "mode": "pre_filter_time_gap",
+            "best_global_entity_id": all_gap_failures[0],
+        }
+
+    return None  # both checks passed → proceed to LLM
+
+
 def _multi_camera_llm_verdict(
     llm: Any,
     query: str,
@@ -1019,6 +1165,11 @@ def _multi_camera_llm_verdict(
     """LLM-based multi-camera verdict: does the cross-camera evidence support the query?"""
     if llm is None or _llm_disabled() or not ge_groups:
         return None
+
+    # Hard pre-filters before calling LLM
+    prefilter = _camera_coverage_prefilter(query, ge_groups)
+    if prefilter is not None:
+        return prefilter
 
     # Build a compact summary of the multi-camera evidence
     entity_summaries: list[str] = []
@@ -1087,6 +1238,11 @@ def _multi_camera_llm_verdict(
         "consistency to decide.",
         "4. Only return 'mismatch' when NO entity appears in the queried cameras, or "
         "the evidence (camera or appearance) clearly contradicts the query.",
+        "5. TEMPORAL GAP: For cross-camera movement, check the entity's per-camera time "
+        "ranges. If the entity's appearances in camera A and camera B are sequential "
+        "(non-overlapping) AND the gap between them exceeds 240 seconds, this is too "
+        "large for a single 5-minute recording slot — return 'mismatch'. Overlapping "
+        "time ranges (same person visible in both cameras simultaneously) are acceptable.",
         "",
         "EVIDENCE:",
     ]
@@ -1355,7 +1511,18 @@ def create_match_verifier_node(llm: Any = None):
         best_idx = _prefer_time_matching_candidate(query, candidates, best_idx)
         best_idx = _prefer_cross_camera_candidate(query, candidates, best_idx)
         chosen_row = candidates[best_idx]
-        verdict = _cross_camera_verdict(query, chosen_row) or _strict_attribute_verdict(query, chosen_row) or verdict
+        verdict = _cross_camera_verdict(query, chosen_row, candidates) or _strict_attribute_verdict(query, chosen_row) or verdict
+
+        # Cross-camera collective upgrade: if the LLM/heuristic said "mismatch" but
+        # the candidate pool has the same tracked entity in ALL queried cameras, the
+        # cross-camera appearance IS confirmed — upgrade to "partial".
+        if verdict.get("decision") == "mismatch" and _candidates_cover_cameras(query, candidates):
+            verdict = {
+                "decision": "partial",
+                "confidence": 0.70,
+                "reason": "cross_camera_entity_covers_all_queried_cameras_collectively",
+                "mode": "cross_camera_collective_coverage",
+            }
         descriptor = _row_descriptor(chosen_row)
         # span_source is "rerank_reselected" only when the LLM/heuristic chose
         # something other than the rerank top-1; otherwise the rerank top-1
